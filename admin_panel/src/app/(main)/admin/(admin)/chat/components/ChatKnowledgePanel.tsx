@@ -1,7 +1,6 @@
 // =============================================================
 // FILE: src/app/(main)/admin/(admin)/chat/components/ChatKnowledgePanel.tsx
-// AI Knowledge Base CRUD panel
-// Chat knowledge
+// AI Knowledge Base CRUD panel — gm standart kabuk
 // =============================================================
 
 'use client';
@@ -13,7 +12,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
-import { Badge } from '@/components/ui/badge';
 import {
   Select,
   SelectContent,
@@ -36,9 +34,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Plus, Pencil, Trash2, Save } from 'lucide-react';
+import { Plus, Pencil, Trash2, Save, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { cn } from '@/lib/utils';
 import { useAdminLocales } from '@/app/(main)/admin/_components/common/useAdminLocales';
 import { useAdminT } from '@/app/(main)/admin/_components/common/useAdminT';
 import {
@@ -54,7 +53,9 @@ import type {
   ChatAiKnowledgeListParams,
 } from '@/integrations/shared';
 
-// ─── Form dialog ────────────────────────────────────────────
+const FIELD = 'bg-gm-surface/40 border-gm-border-soft rounded-2xl h-11 focus:ring-gm-gold/50 text-sm';
+const LABEL = 'text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1';
+const TH = 'py-5 text-[10px] font-bold uppercase tracking-widest text-gm-muted';
 
 type FormState = {
   locale: string;
@@ -145,22 +146,22 @@ function KnowledgeFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-w-lg bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="font-serif text-2xl text-gm-text">
             {editItem ? t('knowledge.editTitle') : t('knowledge.addTitle')}
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <Label>{t('knowledge.locale')}</Label>
-                <Select value={form.locale} onValueChange={(v) => setForm((p) => ({ ...p, locale: v }))}>
-                <SelectTrigger>
+            <div className="space-y-2">
+              <Label className={LABEL}>{t('knowledge.locale')}</Label>
+              <Select value={form.locale} onValueChange={(v) => setForm((p) => ({ ...p, locale: v }))}>
+                <SelectTrigger className={FIELD}>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
                   {(localeOptions.length
                     ? localeOptions
                     : [{ value: coerceLocale('', defaultLocaleFromDb) || 'de', label: 'Default' }]
@@ -175,48 +176,52 @@ function KnowledgeFormDialog({
               </Select>
             </div>
 
-            <div className="space-y-1">
-              <Label>{t('knowledge.priority')}</Label>
+            <div className="space-y-2">
+              <Label className={LABEL}>{t('knowledge.priority')}</Label>
               <Input
                 type="number"
                 min={0}
                 max={1000}
                 value={form.priority}
                 onChange={(e) => setForm((p) => ({ ...p, priority: Number(e.target.value) || 100 }))}
+                className={FIELD}
               />
             </div>
           </div>
 
-          <div className="space-y-1">
-            <Label>{t('knowledge.titleLabel')}</Label>
+          <div className="space-y-2">
+            <Label className={LABEL}>{t('knowledge.titleLabel')}</Label>
             <Input
               value={form.title}
               onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
               placeholder={t('knowledge.titlePlaceholder')}
+              className={FIELD}
             />
           </div>
 
-          <div className="space-y-1">
-            <Label>{t('knowledge.contentLabel')}</Label>
+          <div className="space-y-2">
+            <Label className={LABEL}>{t('knowledge.contentLabel')}</Label>
             <Textarea
               rows={5}
               value={form.content}
               onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
               placeholder={t('knowledge.contentPlaceholder')}
+              className="bg-gm-surface/40 border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 text-sm"
             />
           </div>
 
-          <div className="space-y-1">
-            <Label>{t('knowledge.tags')}</Label>
+          <div className="space-y-2">
+            <Label className={LABEL}>{t('knowledge.tags')}</Label>
             <Input
               value={form.tags}
               onChange={(e) => setForm((p) => ({ ...p, tags: e.target.value }))}
               placeholder={t('knowledge.tagsPlaceholder')}
+              className={FIELD}
             />
           </div>
 
-          <div className="flex items-center justify-between rounded-lg border border-border p-3">
-            <Label>{t('knowledge.active')}</Label>
+          <div className="flex items-center justify-between rounded-2xl border border-gm-border-soft bg-gm-surface/30 p-4">
+            <Label className="text-sm text-gm-text">{t('knowledge.active')}</Label>
             <Switch
               checked={form.is_active}
               onCheckedChange={(v: boolean) => setForm((p) => ({ ...p, is_active: v }))}
@@ -225,11 +230,11 @@ function KnowledgeFormDialog({
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={onClose} disabled={saving}>
+          <Button variant="outline" onClick={onClose} disabled={saving} className="rounded-full border-gm-border-soft px-6 h-11 font-bold tracking-widest uppercase text-[10px]">
             {t('knowledge.cancel')}
           </Button>
-          <Button onClick={handleSave} disabled={saving} className="gap-2">
-            <Save className="h-4 w-4" />
+          <Button onClick={handleSave} disabled={saving} className="rounded-full px-6 h-11 font-bold tracking-widest uppercase text-[10px]">
+            <Save className="mr-2 h-4 w-4" />
             {saving ? t('knowledge.saving') : t('knowledge.save')}
           </Button>
         </DialogFooter>
@@ -282,12 +287,12 @@ export default function ChatKnowledgePanel() {
 
   return (
     <>
-      <Card>
-        <CardHeader className="space-y-2">
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[28px] backdrop-blur-sm shadow-xl">
+        <CardHeader className="space-y-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm">{t('knowledge.title')}</CardTitle>
-            <Button size="sm" onClick={handleAdd} className="gap-1">
-              <Plus className="h-4 w-4" />
+            <CardTitle className="text-[11px] font-bold tracking-[0.2em] uppercase text-gm-gold">{t('knowledge.title')}</CardTitle>
+            <Button size="sm" onClick={handleAdd} className="rounded-full px-6 h-10 font-bold tracking-widest uppercase text-[10px]">
+              <Plus className="mr-2 h-4 w-4" />
               {t('knowledge.addNew')}
             </Button>
           </div>
@@ -297,13 +302,13 @@ export default function ChatKnowledgePanel() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t('knowledge.searchPlaceholder')}
-              className="sm:max-w-[260px]"
+              className={cn(FIELD, 'sm:max-w-[280px]')}
             />
             <Select value={localeFilter} onValueChange={setLocaleFilter}>
-              <SelectTrigger className="w-[140px] h-8 text-xs">
+              <SelectTrigger className={cn(FIELD, 'w-[150px]')}>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
                 <SelectItem value="all">{t('knowledge.allLocales')}</SelectItem>
                 {localeOptions.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>
@@ -316,65 +321,59 @@ export default function ChatKnowledgePanel() {
         </CardHeader>
 
         <CardContent>
-          <div className="rounded-md border border-border overflow-hidden">
+          <div className="rounded-2xl border border-gm-border-soft overflow-hidden">
             <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[60px]">{t('knowledge.locale')}</TableHead>
-                  <TableHead className="w-[60px]">{t('knowledge.priority')}</TableHead>
-                  <TableHead>{t('knowledge.titleLabel')}</TableHead>
-                  <TableHead className="hidden md:table-cell">{t('knowledge.tags')}</TableHead>
-                  <TableHead className="w-[70px]">{t('knowledge.active')}</TableHead>
-                  <TableHead className="w-[100px]" />
+              <TableHeader className="bg-gm-surface/40">
+                <TableRow className="border-gm-border-soft hover:bg-transparent">
+                  <TableHead className={cn(TH, 'pl-6 w-[70px]')}>{t('knowledge.locale')}</TableHead>
+                  <TableHead className={cn(TH, 'w-[60px] text-center')}>{t('knowledge.priority')}</TableHead>
+                  <TableHead className={TH}>{t('knowledge.titleLabel')}</TableHead>
+                  <TableHead className={cn(TH, 'hidden md:table-cell')}>{t('knowledge.tags')}</TableHead>
+                  <TableHead className={cn(TH, 'w-[70px] text-center')}>{t('knowledge.active')}</TableHead>
+                  <TableHead className={cn(TH, 'w-[100px] pr-6')} />
                 </TableRow>
               </TableHeader>
 
               <TableBody>
                 {items.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-sm text-muted-foreground text-center">
-                      {isFetching ? t('knowledge.loading') : t('knowledge.noItems')}
+                    <TableCell colSpan={6} className="py-16 text-center">
+                      <div className="flex flex-col items-center gap-3 opacity-30">
+                        <AlertCircle className="w-12 h-12 text-gm-gold/50" />
+                        <span className="font-serif italic text-base text-gm-muted">
+                          {isFetching ? t('knowledge.loading') : t('knowledge.noItems')}
+                        </span>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ) : (
                   items.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell>
-                        <Badge variant="outline" className="text-[10px]">
+                    <TableRow key={item.id} className="border-gm-border-soft hover:bg-gm-primary/[0.03] transition-colors group">
+                      <TableCell className="py-5 pl-6">
+                        <span className="inline-flex px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border border-gm-border-soft bg-gm-surface/40 text-gm-muted">
                           {item.locale.toUpperCase()}
-                        </Badge>
+                        </span>
                       </TableCell>
-                      <TableCell className="text-xs">{item.priority}</TableCell>
-                      <TableCell>
-                        <p className="text-sm font-medium">{item.title}</p>
-                        <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
-                          {item.content}
-                        </p>
+                      <TableCell className="py-5 text-center text-xs font-mono text-gm-muted">{item.priority}</TableCell>
+                      <TableCell className="py-5">
+                        <p className="text-sm font-medium text-gm-text">{item.title}</p>
+                        <p className="text-xs text-gm-muted opacity-60 line-clamp-1 mt-0.5">{item.content}</p>
                       </TableCell>
-                      <TableCell className="hidden md:table-cell text-xs text-muted-foreground">
-                        {item.tags || '-'}
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant={item.is_active ? 'default' : 'secondary'} className="text-[10px]">
+                      <TableCell className="py-5 hidden md:table-cell text-xs text-gm-muted opacity-70">{item.tags || '-'}</TableCell>
+                      <TableCell className="py-5 text-center">
+                        <span className={cn(
+                          'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border',
+                          item.is_active ? 'bg-gm-success/10 text-gm-success border-gm-success/20' : 'bg-gm-surface/40 text-gm-muted border-gm-border-soft'
+                        )}>
                           {item.is_active ? t('knowledge.yes') : t('knowledge.no')}
-                        </Badge>
+                        </span>
                       </TableCell>
-                      <TableCell>
-                        <div className="flex gap-1">
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="h-7 w-7"
-                            onClick={() => handleEdit(item)}
-                          >
+                      <TableCell className="py-5 pr-6">
+                        <div className="flex gap-1 justify-end opacity-50 group-hover:opacity-100 transition-opacity">
+                          <Button size="icon" variant="ghost" className="rounded-full h-8 w-8 hover:bg-gm-gold/10 hover:text-gm-gold" onClick={() => handleEdit(item)}>
                             <Pencil className="h-3.5 w-3.5" />
                           </Button>
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="h-7 w-7 text-destructive hover:text-destructive"
-                            onClick={() => handleDelete(item.id)}
-                          >
+                          <Button size="icon" variant="ghost" className="rounded-full h-8 w-8 hover:bg-gm-error/10 hover:text-gm-error" onClick={() => handleDelete(item.id)}>
                             <Trash2 className="h-3.5 w-3.5" />
                           </Button>
                         </div>
@@ -388,11 +387,7 @@ export default function ChatKnowledgePanel() {
         </CardContent>
       </Card>
 
-      <KnowledgeFormDialog
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-        editItem={editItem}
-      />
+      <KnowledgeFormDialog open={dialogOpen} onClose={() => setDialogOpen(false)} editItem={editItem} />
     </>
   );
 }

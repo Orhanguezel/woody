@@ -186,7 +186,7 @@ function MenuItemDialog({
                 onChange={(e) => setForm((p) => ({ ...p, url: e.target.value }))}
                 placeholder="/hakkimizda veya https://…"
               />
-              <p className="text-[10px] text-muted-foreground italic">
+              <p className="text-[10px] text-gm-muted italic">
                 Dropdown ana başlık ise boş bırak
               </p>
             </div>
@@ -366,7 +366,7 @@ function SectionDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
         <DialogHeader>
           <DialogTitle>{editing ? 'Footer Bölümü Düzenle' : 'Yeni Footer Bölümü'}</DialogTitle>
           <DialogDescription>
@@ -492,12 +492,12 @@ function HeaderMenuTab({ locale }: { locale: string }) {
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gm-muted" />
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Başlık ara…"
-            className="pl-9"
+            className="pl-9 bg-gm-surface/40 border-gm-border-soft rounded-2xl h-11 focus:ring-gm-gold/50"
           />
         </div>
         <Button
@@ -514,9 +514,9 @@ function HeaderMenuTab({ locale }: { locale: string }) {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-12 text-muted-foreground text-sm">Yükleniyor…</div>
+        <div className="text-center py-16 text-gm-muted text-sm italic font-serif opacity-60">Yükleniyor…</div>
       ) : items.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground text-sm">
+        <div className="text-center py-16 text-gm-muted text-sm italic font-serif opacity-60">
           Henüz menü öğesi yok. Üstten "Yeni" ile başla.
         </div>
       ) : (
@@ -524,22 +524,22 @@ function HeaderMenuTab({ locale }: { locale: string }) {
           {filtered.map((parent) => {
             const kids = ((parent as any).children as AdminMenuItemDto[] | undefined) ?? [];
             return (
-              <Card key={parent.id} className="border-gm-border-soft">
+              <Card key={parent.id} className="bg-gm-surface/20 border-gm-border-soft rounded-2xl">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-muted-foreground w-8">
+                    <span className="font-mono text-xs text-gm-muted w-8">
                       #{parent.display_order}
                     </span>
                     <div className="flex-1">
                       <div className="font-medium">
-                        {parent.title || <em className="text-muted-foreground">başlıksız</em>}
+                        {parent.title || <em className="text-gm-muted">başlıksız</em>}
                         {!parent.is_active && (
-                          <span className="ml-2 text-[10px] uppercase bg-muted text-muted-foreground px-2 py-0.5 rounded">
+                          <span className="ml-2 text-[10px] uppercase bg-gm-surface/50 text-gm-muted border border-gm-border-soft px-2 py-0.5 rounded">
                             pasif
                           </span>
                         )}
                       </div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-xs text-gm-muted">
                         {parent.url || (
                           <em>dropdown kök ({kids.length} alt öğe)</em>
                         )}
@@ -572,7 +572,7 @@ function HeaderMenuTab({ locale }: { locale: string }) {
                       size="sm"
                       onClick={() => handleDelete(parent)}
                     >
-                      <Trash2 className="size-4 text-rose-500" />
+                      <Trash2 className="size-4 text-gm-error" />
                     </Button>
                   </div>
 
@@ -580,19 +580,19 @@ function HeaderMenuTab({ locale }: { locale: string }) {
                     <div className="mt-3 ml-8 space-y-1.5 border-l-2 border-gm-border-soft pl-4">
                       {kids.map((kid) => (
                         <div key={kid.id} className="flex items-center gap-2 text-sm">
-                          <ChevronRight className="size-3 text-muted-foreground" />
-                          <span className="font-mono text-[10px] text-muted-foreground w-6">
+                          <ChevronRight className="size-3 text-gm-muted" />
+                          <span className="font-mono text-[10px] text-gm-muted w-6">
                             #{kid.display_order}
                           </span>
                           <span className="flex-1">
                             {kid.title}
                             {!kid.is_active && (
-                              <span className="ml-2 text-[10px] uppercase bg-muted text-muted-foreground px-1.5 py-0.5 rounded">
+                              <span className="ml-2 text-[10px] uppercase bg-gm-surface/50 text-gm-muted border border-gm-border-soft px-1.5 py-0.5 rounded">
                                 pasif
                               </span>
                             )}
                           </span>
-                          <span className="text-xs text-muted-foreground">{kid.url}</span>
+                          <span className="text-xs text-gm-muted">{kid.url}</span>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -608,7 +608,7 @@ function HeaderMenuTab({ locale }: { locale: string }) {
                             size="sm"
                             onClick={() => handleDelete(kid)}
                           >
-                            <Trash2 className="size-3 text-rose-500" />
+                            <Trash2 className="size-3 text-gm-error" />
                           </Button>
                         </div>
                       ))}
@@ -705,9 +705,9 @@ function FooterTab({ locale }: { locale: string }) {
       </div>
 
       {secLoading ? (
-        <div className="text-center py-12 text-muted-foreground text-sm">Yükleniyor…</div>
+        <div className="text-center py-16 text-gm-muted text-sm italic font-serif opacity-60">Yükleniyor…</div>
       ) : sections.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground text-sm">
+        <div className="text-center py-16 text-gm-muted text-sm italic font-serif opacity-60">
           Henüz bölüm yok. Üstten "Yeni Bölüm" ile başla.
         </div>
       ) : (
@@ -715,21 +715,21 @@ function FooterTab({ locale }: { locale: string }) {
           {sections.map((sec) => {
             const links = itemsBySection.get(sec.id) ?? [];
             return (
-              <Card key={sec.id} className="border-gm-border-soft">
+              <Card key={sec.id} className="bg-gm-surface/20 border-gm-border-soft rounded-2xl">
                 <CardHeader className="pb-3 flex flex-row items-center gap-3">
-                  <span className="font-mono text-xs text-muted-foreground w-8">
+                  <span className="font-mono text-xs text-gm-muted w-8">
                     #{sec.display_order}
                   </span>
                   <div className="flex-1">
                     <CardTitle className="text-base">
-                      {sec.title || <em className="text-muted-foreground">başlıksız</em>}
+                      {sec.title || <em className="text-gm-muted">başlıksız</em>}
                       {!sec.is_active && (
-                        <span className="ml-2 text-[10px] uppercase bg-muted text-muted-foreground px-2 py-0.5 rounded">
+                        <span className="ml-2 text-[10px] uppercase bg-gm-surface/50 text-gm-muted border border-gm-border-soft px-2 py-0.5 rounded">
                           pasif
                         </span>
                       )}
                     </CardTitle>
-                    <p className="text-xs text-muted-foreground">slug: {sec.slug}</p>
+                    <p className="text-xs text-gm-muted">slug: {sec.slug}</p>
                   </div>
                   <Button
                     variant="ghost"
@@ -758,7 +758,7 @@ function FooterTab({ locale }: { locale: string }) {
                     size="sm"
                     onClick={() => handleDeleteSection(sec)}
                   >
-                    <Trash2 className="size-4 text-rose-500" />
+                    <Trash2 className="size-4 text-gm-error" />
                   </Button>
                 </CardHeader>
                 {links.length > 0 && (
@@ -766,19 +766,19 @@ function FooterTab({ locale }: { locale: string }) {
                     <div className="space-y-1.5 border-l-2 border-gm-border-soft pl-4">
                       {links.map((link) => (
                         <div key={link.id} className="flex items-center gap-2 text-sm">
-                          <ChevronRight className="size-3 text-muted-foreground" />
-                          <span className="font-mono text-[10px] text-muted-foreground w-6">
+                          <ChevronRight className="size-3 text-gm-muted" />
+                          <span className="font-mono text-[10px] text-gm-muted w-6">
                             #{link.display_order}
                           </span>
                           <span className="flex-1">
                             {link.title}
                             {!link.is_active && (
-                              <span className="ml-2 text-[10px] uppercase bg-muted text-muted-foreground px-1.5 py-0.5 rounded">
+                              <span className="ml-2 text-[10px] uppercase bg-gm-surface/50 text-gm-muted border border-gm-border-soft px-1.5 py-0.5 rounded">
                                 pasif
                               </span>
                             )}
                           </span>
-                          <span className="text-xs text-muted-foreground">{link.url}</span>
+                          <span className="text-xs text-gm-muted">{link.url}</span>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -794,7 +794,7 @@ function FooterTab({ locale }: { locale: string }) {
                             size="sm"
                             onClick={() => handleDeleteItem(link)}
                           >
-                            <Trash2 className="size-3 text-rose-500" />
+                            <Trash2 className="size-3 text-gm-error" />
                           </Button>
                         </div>
                       ))}
@@ -806,9 +806,9 @@ function FooterTab({ locale }: { locale: string }) {
           })}
 
           {(itemsBySection.get('__none__') ?? []).length > 0 && (
-            <Card className="border-dashed">
+            <Card className="bg-gm-surface/10 border-dashed border-gm-border-soft rounded-2xl">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-muted-foreground">
+                <CardTitle className="text-sm text-gm-muted">
                   Bölümsüz Linkler ({itemsBySection.get('__none__')!.length})
                 </CardTitle>
               </CardHeader>
@@ -817,7 +817,7 @@ function FooterTab({ locale }: { locale: string }) {
                   {(itemsBySection.get('__none__') ?? []).map((link) => (
                     <div key={link.id} className="flex items-center gap-2 text-sm">
                       <span className="flex-1">{link.title}</span>
-                      <span className="text-xs text-muted-foreground">{link.url}</span>
+                      <span className="text-xs text-gm-muted">{link.url}</span>
                       <Button
                         variant="ghost"
                         size="sm"
@@ -833,7 +833,7 @@ function FooterTab({ locale }: { locale: string }) {
                         size="sm"
                         onClick={() => handleDeleteItem(link)}
                       >
-                        <Trash2 className="size-3 text-rose-500" />
+                        <Trash2 className="size-3 text-gm-error" />
                       </Button>
                     </div>
                   ))}
