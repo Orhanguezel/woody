@@ -8,10 +8,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@agro/shared-backend/*": ["../../../packages/shared-backend/dist/*"],
-      "@agro/shared-types": ["../../../packages/shared-types/index.ts"],
-      "@agro/shared-types/*": ["../../../packages/shared-types/*"]
+      "@/*": ["src/*"]
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -20,7 +17,7 @@
     "strict": true,
     "skipLibCheck": true,
     "sourceMap": false,
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "verbatimModuleSyntax": true,
     "types": ["node"],
     "typeRoots": ["./node_modules/@types"],

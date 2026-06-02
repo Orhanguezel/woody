@@ -12,6 +12,8 @@
     "db:export-sql": "node src/db/seed/export-questions-sql.mjs"
   },
   "dependencies": {
+    "@shared/shared-backend": "workspace:*",
+    "@shared/shared-types": "workspace:*",
     "@fastify/cookie": "^11",
     "@fastify/cors": "^11",
     "@fastify/jwt": "^10",

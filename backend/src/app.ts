@@ -11,10 +11,10 @@ import mysqlPlugin from '@/plugins/mysql';
 import sentryPlugin from '@/plugins/sentry';
 import swaggerPlugin from '@/plugins/swagger';
 import { env } from '@/core/env';
-import { registerErrorHandlers } from '@agro/shared-backend/core/error';
-import { loggerConfig } from '@agro/shared-backend/core/logger';
-import { requestLoggerPlugin } from '@agro/shared-backend/modules/audit/requestLogger.plugin';
-import { getStorageSettings } from '@agro/shared-backend/modules/siteSettings';
+import { registerErrorHandlers } from '@shared/shared-backend/core/error';
+import { loggerConfig } from '@shared/shared-backend/core/logger';
+import { requestLoggerPlugin } from '@shared/shared-backend/modules/audit/requestLogger.plugin';
+import { getStorageSettings } from '@shared/shared-backend/modules/siteSettings';
 import { registerAllRoutes } from './routes';
 import { parseCorsOrigins, pickUploadsRoot, pickUploadsPrefix } from './app.helpers';
 

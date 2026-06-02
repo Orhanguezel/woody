@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
-import { requireAuth } from '@agro/shared-backend/middleware/auth';
-import { registerNotifications } from '@agro/shared-backend/modules/notifications';
+import { requireAuth } from '@shared/shared-backend/middleware/auth';
+import { registerNotifications } from '@shared/shared-backend/modules/notifications';
 import { registerTopics, registerTopicsAdmin } from '@/modules/topics';
 import { registerSubjects, registerSubjectsAdmin } from '@/modules/subjects';
 import { registerQuestions, registerQuestionsAdmin } from '@/modules/questions';

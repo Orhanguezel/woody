@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, graph } from '@/seo/jsonld';
-import AuthorBio from '@site/shared-ui/content/AuthorBio';
+import AuthorBio from '@shared/shared-ui/content/AuthorBio';
 import { getEditorialPolicyCopy } from '@/lib/page-copy';
 import {
   getEditorialTeamName,

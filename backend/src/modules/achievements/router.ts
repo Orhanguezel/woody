@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import { requireAuth } from '@agro/shared-backend/middleware/auth';
+import { requireAuth } from '@shared/shared-backend/middleware/auth';
 import { listAchievements, getMyAchievements } from './controller';
 
 export async function registerAchievements(app: FastifyInstance) {

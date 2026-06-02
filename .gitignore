@@ -151,6 +151,10 @@ vite.config.ts.timestamp-*
 # Referans materyali — projenin parçası değil, salt-okunur (iç içe .git içerir)
 _referans/
 
+# Ortak paketler — ayri repo (Orhanguezel/shared-ecosystem-packages), workspace olarak
+# lokalde bulunur ama woody reposunda tracklenmez. Kurulum: bu repoyu packages/ olarak klonla.
+packages/
+
 # Deploy sirlari — VPS credentials, SSH bilgileri (asla commit edilmez)
 .secrets/
 

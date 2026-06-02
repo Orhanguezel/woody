@@ -8,7 +8,7 @@ import { buildMetadataFromSeo, fetchSeoObject, fetchCustomPagePublicBySlug } fro
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld';
 import FaqAccordion from '@/components/common/FaqAccordion';
-import AuthorBio from '@site/shared-ui/content/AuthorBio';
+import AuthorBio from '@shared/shared-ui/content/AuthorBio';
 import { getEditorialTeamName, getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 
 type PageProps = {

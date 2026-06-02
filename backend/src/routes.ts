@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
-import { registerHealth } from '@agro/shared-backend/modules/health';
-import { requireAuth } from '@agro/shared-backend/middleware/auth';
-import { requireAdmin } from '@agro/shared-backend/middleware/roles';
+import { registerHealth } from '@shared/shared-backend/modules/health';
+import { requireAuth } from '@shared/shared-backend/middleware/auth';
+import { requireAdmin } from '@shared/shared-backend/middleware/roles';
 import { registerSharedPublic, registerSharedAdmin } from './routes/shared';
 import { registerProjectPublic, registerProjectAdmin } from './routes/project';
 

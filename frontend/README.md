@@ -12,6 +12,6 @@ cp .env.example .env.local
 bun run dev
 ```
 
-Varsayilan port **3077**. Ortak UI: `@site/shared-ui` (monorepo `packages/shared-ui`).
+Varsayilan port **3077**. Ortak UI: `@shared/shared-ui` (monorepo `packages/shared-ui`).
 
 API: proje `backend` (8086); koken `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_API_URL`.

@@ -1,11 +1,11 @@
 import type { FastifyInstance } from 'fastify';
-import { registerAuth, registerUserAdmin } from '@agro/shared-backend/modules/auth';
-import { registerStorage, registerStorageAdmin } from '@agro/shared-backend/modules/storage';
-import { registerProfiles } from '@agro/shared-backend/modules/profiles';
-import { registerSiteSettings, registerSiteSettingsAdmin } from '@agro/shared-backend/modules/siteSettings';
-import { registerMenuItems, registerMenuItemsAdmin } from '@agro/shared-backend/modules/menuItems';
-import { registerUserRoles } from '@agro/shared-backend/modules/userRoles';
-import { registerTheme, registerThemeAdmin } from '@agro/shared-backend/modules/theme';
+import { registerAuth, registerUserAdmin } from '@shared/shared-backend/modules/auth';
+import { registerStorage, registerStorageAdmin } from '@shared/shared-backend/modules/storage';
+import { registerProfiles } from '@shared/shared-backend/modules/profiles';
+import { registerSiteSettings, registerSiteSettingsAdmin } from '@shared/shared-backend/modules/siteSettings';
+import { registerMenuItems, registerMenuItemsAdmin } from '@shared/shared-backend/modules/menuItems';
+import { registerUserRoles } from '@shared/shared-backend/modules/userRoles';
+import { registerTheme, registerThemeAdmin } from '@shared/shared-backend/modules/theme';
 import { registerFooterSectionsPublic, registerPopupsPublicStub } from '@/modules/footerStub';
 
 export async function registerSharedPublic(api: FastifyInstance) {

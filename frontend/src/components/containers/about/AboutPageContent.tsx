@@ -16,7 +16,7 @@ import { downgradeH1ToH2, pickPage, toCdnSrc } from '@/integrations/shared';
 
 // Helpers
 import { useLocaleShort, useUiSection } from '@/i18n';
-import AuthorBio from '@site/shared-ui/content/AuthorBio';
+import AuthorBio from '@shared/shared-ui/content/AuthorBio';
 import { localizePath } from '@/integrations/shared';
 import { getPublicAppName } from '@/lib/site-config';
 import { injectAppName } from '@/lib/page-copy';
