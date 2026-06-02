@@ -1,20 +1,15 @@
 'use client';
 
 // =============================================================
-// FILE: src/app/(main)/admin/(admin)/email-templates/admin-email-templates-client.tsx
-// FINAL — Admin Email Templates List (App Router + shadcn)
-// - Modern UI with shadcn/ui components
-// - Tailwind CSS with dark mode support
-// - RTK Query hooks
-// - Locale support
-// - Template key & variables display
+// FILE: src/app/(main)/admin/(admin)/email-templates/_components/admin-email-templates-client.tsx
+// Admin Email Templates List — orders standardi (gm-theme)
 // =============================================================
 
 import * as React from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Code2, Loader2, Mail, Pencil, Plus, RefreshCcw, Search, Trash2 } from 'lucide-react';
+import { AlertCircle, Code2, Mail, Pencil, Plus, RefreshCcw, Search, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { AdminLocaleSelect } from '@/app/(main)/admin/_components/common/AdminLocaleSelect';
@@ -30,9 +25,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -51,6 +45,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   useDeleteEmailTemplateAdminMutation,
   useListEmailTemplatesAdminQuery,
@@ -153,7 +148,6 @@ export default function AdminEmailTemplatesClient() {
 
   // Build query params
   const queryParams = React.useMemo((): EmailTemplateAdminListQueryParams => {
-    // ✅ Sadece locale normalize et
     const apiLocale = localeShortClient(filters.locale);
 
     return {
@@ -209,11 +203,7 @@ export default function AdminEmailTemplatesClient() {
         id: item.id,
         body: { is_active: !item.is_active },
       }).unwrap();
-      toast.success(
-        item.is_active
-          ? t('list.toast.deactivated')
-          : t('list.toast.activated'),
-      );
+      toast.success(item.is_active ? t('list.toast.deactivated') : t('list.toast.activated'));
       refetch();
     } catch (err) {
       toast.error(getErrMsg(err, t('common.operationFailed')));
@@ -247,227 +237,213 @@ export default function AdminEmailTemplatesClient() {
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
         {/* Header */}
-        <Card>
-          <CardHeader>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div className="space-y-1.5">
-                <CardTitle>{t('list.title')}</CardTitle>
-                <CardDescription>{t('list.description')}</CardDescription>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <span className="w-8 h-px bg-gm-gold" />
+              <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">
+                {t('header.badge', null, 'E-posta Şablonları')}
+              </span>
+            </div>
+            <h1 className="font-serif text-4xl text-gm-text">{t('list.title')}</h1>
+            <p className="text-gm-muted text-sm font-serif italic opacity-70">{t('list.description')}</p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6 bg-gm-surface/20 px-8 py-4 rounded-[24px] border border-gm-border-soft backdrop-blur-sm shadow-lg">
+              <div className="text-center sm:text-right min-w-[80px]">
+                <p className="text-[10px] font-bold text-gm-muted tracking-widest uppercase mb-1">
+                  {t('summary.total_label', null, 'Toplam')}
+                </p>
+                <p className="font-serif text-3xl text-gm-gold">{total}</p>
               </div>
               <Button
-                onClick={() => router.push('/admin/email-templates/new')}
+                variant="outline"
+                size="sm"
+                onClick={() => refetch()}
                 disabled={busy}
-                className="gap-2"
+                className="rounded-full border-gm-border-soft px-8 h-12 hover:bg-gm-surface transition-all font-bold tracking-widest uppercase text-[10px]"
               >
-                <Plus className="size-4" />
-                {t('list.addButton')}
+                <RefreshCcw className={cn('mr-2 size-4', isFetching && 'animate-spin')} />
+                {t('list.refreshButton', null, 'Yenile')}
               </Button>
             </div>
-          </CardHeader>
+            <Button
+              onClick={() => router.push('/admin/email-templates/new')}
+              disabled={busy}
+              className="rounded-full px-8 h-12 font-bold tracking-widest uppercase text-[10px]"
+            >
+              <Plus className="mr-2 size-4" />
+              {t('list.addButton')}
+            </Button>
+          </div>
+        </div>
 
-          <CardContent className="space-y-4">
-            {/* Filters */}
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {/* Search */}
-              <div className="space-y-2 sm:col-span-2">
-                <Label htmlFor="search" className="text-sm">
-                  {t('list.filters.searchLabel')}
-                </Label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    id="search"
-                    placeholder={t('list.filters.searchPlaceholder')}
-                    value={filters.search}
-                    onChange={(e) => handleSearch(e.target.value)}
-                    disabled={busy}
-                    className="pl-9"
-                  />
-                </div>
-              </div>
-
-              {/* Active Filter */}
-              <div className="space-y-2">
-                <Label htmlFor="activeFilter" className="text-sm">
-                  {t('list.filters.statusLabel')}
-                </Label>
-                <Select
-                  value={filters.activeFilter}
-                  onValueChange={handleActiveFilterChange}
+        {/* Filters Card */}
+        <Card className="bg-gm-bg-deep/50 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-md shadow-2xl">
+          <CardContent className="p-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4 items-end">
+            <div className="space-y-3 md:col-span-2">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">
+                {t('list.filters.searchLabel')}
+              </Label>
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gm-muted/50" />
+                <Input
+                  placeholder={t('list.filters.searchPlaceholder')}
+                  value={filters.search}
+                  onChange={(e) => handleSearch(e.target.value)}
                   disabled={busy}
-                >
-                  <SelectTrigger id="activeFilter">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">
-                      {t('list.filters.statusOptions.all')}
-                    </SelectItem>
-                    <SelectItem value="active">
-                      {t('list.filters.statusOptions.active')}
-                    </SelectItem>
-                    <SelectItem value="inactive">
-                      {t('list.filters.statusOptions.inactive')}
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Locale */}
-              <div>
-                <AdminLocaleSelect
-                  value={filters.locale}
-                  onChange={handleLocaleChange}
-                  options={localeOptions}
-                  loading={localesLoading}
-                  disabled={busy}
+                  className="pl-12 bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm transition-all"
                 />
               </div>
             </div>
 
-            {/* Refresh */}
-            <div className="flex items-center justify-between gap-2">
-              <div className="text-sm text-muted-foreground">
-                {t('list.totalRecords', { count: total })}
-              </div>
-              <Button variant="outline" onClick={() => refetch()} disabled={busy} className="gap-2">
-                <RefreshCcw className={cn('size-4', isFetching && 'animate-spin')} />
-                {t('list.refreshButton')}
-              </Button>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1 block">
+                {t('list.filters.statusLabel')}
+              </Label>
+              <Select value={filters.activeFilter} onValueChange={handleActiveFilterChange} disabled={busy}>
+                <SelectTrigger className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                  <SelectItem value="all">{t('list.filters.statusOptions.all')}</SelectItem>
+                  <SelectItem value="active">{t('list.filters.statusOptions.active')}</SelectItem>
+                  <SelectItem value="inactive">{t('list.filters.statusOptions.inactive')}</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
-            {isFetching && (
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                <Loader2 className="size-4 animate-spin" />
-                <span>{t('list.fetching')}</span>
-              </div>
-            )}
+            <div className="space-y-3">
+              <AdminLocaleSelect
+                value={filters.locale}
+                onChange={handleLocaleChange}
+                options={localeOptions}
+                loading={localesLoading}
+                disabled={busy}
+              />
+            </div>
           </CardContent>
         </Card>
 
-        {/* Table (Desktop) */}
-        <Card className="hidden xl:block">
-          <CardContent className="p-0">
+        {/* Table Card */}
+        <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+          <CardContent className="p-0 overflow-x-auto">
             <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>{t('list.table.headers.templateKey')}</TableHead>
-                  <TableHead>{t('list.table.headers.nameSubject')}</TableHead>
-                  <TableHead className="w-48">
-                    {t('list.table.headers.variables')}
-                  </TableHead>
-                  <TableHead className="w-24 text-center">
-                    {t('list.table.headers.active')}
-                  </TableHead>
-                  <TableHead className="w-32">
-                    {t('list.table.headers.locale')}
-                  </TableHead>
-                  <TableHead className="w-44">
-                    {t('list.table.headers.date')}
-                  </TableHead>
-                  <TableHead className="w-40 text-right">
-                    {t('list.table.headers.actions')}
-                  </TableHead>
+              <TableHeader className="bg-gm-surface/40">
+                <TableRow className="border-gm-border-soft hover:bg-transparent">
+                  <TableHead className="py-6 px-8 text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('list.table.headers.templateKey')}</TableHead>
+                  <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('list.table.headers.nameSubject')}</TableHead>
+                  <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('list.table.headers.variables')}</TableHead>
+                  <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('list.table.headers.active')}</TableHead>
+                  <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('list.table.headers.locale')}</TableHead>
+                  <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('list.table.headers.date')}</TableHead>
+                  <TableHead className="py-6 px-8 text-right text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('list.table.headers.actions')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {isLoading ? (
-                  <TableRow>
-                    <TableCell colSpan={7} className="h-24 text-center">
-                      <div className="flex items-center justify-center gap-2">
-                        <Loader2 className="size-5 animate-spin" />
-                        <span>{t('list.loading')}</span>
-                      </div>
-                    </TableCell>
-                  </TableRow>
+                  Array.from({ length: 5 }).map((_, i) => (
+                    <TableRow key={i} className="border-gm-border-soft">
+                      <TableCell className="py-6 px-8"><Skeleton className="h-6 w-28 bg-gm-surface/20" /></TableCell>
+                      <TableCell className="py-6"><Skeleton className="h-10 w-44 bg-gm-surface/20" /></TableCell>
+                      <TableCell className="py-6"><Skeleton className="h-6 w-24 bg-gm-surface/20" /></TableCell>
+                      <TableCell className="py-6"><Skeleton className="h-6 w-10 bg-gm-surface/20 mx-auto" /></TableCell>
+                      <TableCell className="py-6"><Skeleton className="h-6 w-12 bg-gm-surface/20 mx-auto rounded-full" /></TableCell>
+                      <TableCell className="py-6"><Skeleton className="h-6 w-28 bg-gm-surface/20 mx-auto" /></TableCell>
+                      <TableCell className="py-6 px-8"><Skeleton className="h-10 w-24 ml-auto bg-gm-surface/20 rounded-full" /></TableCell>
+                    </TableRow>
+                  ))
                 ) : items.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="h-24 text-center">
-                      {t('list.empty')}
+                    <TableCell colSpan={7} className="py-24 text-center">
+                      <div className="flex flex-col items-center gap-4 opacity-30">
+                        <AlertCircle className="w-16 h-16 text-gm-gold/50" />
+                        <span className="font-serif italic text-lg text-gm-muted">{t('list.empty')}</span>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ) : (
                   items.map((item) => (
-                    <TableRow key={`${item.id}-${item.template_key}-${item.locale}`}>
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <Code2 className="size-4 text-muted-foreground" />
-                          <code className="rounded bg-muted px-2 py-1 text-xs font-medium">
-                            {item.template_key || '-'}
-                          </code>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="space-y-1">
-                          <div className="font-medium">{item.template_name || '-'}</div>
-                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                            <Mail className="size-3" />
-                            <span>{truncate(item.subject, 40)}</span>
+                    <TableRow
+                      key={`${item.id}-${item.template_key}-${item.locale}`}
+                      className="border-gm-border-soft hover:bg-gm-primary/[0.03] transition-colors group"
+                    >
+                      <TableCell className="py-6 px-8">
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 rounded-full bg-gm-gold/10 flex items-center justify-center text-gm-gold shadow-inner border border-gm-gold/20">
+                            <Code2 size={16} />
                           </div>
+                          <span className="font-mono text-[11px] font-bold tracking-widest text-gm-gold opacity-80">{item.template_key || '-'}</span>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="py-6">
+                        <div className="font-serif text-lg text-gm-text group-hover:text-gm-primary transition-colors">{item.template_name || '-'}</div>
+                        <div className="flex items-center gap-1.5 text-[10px] text-gm-muted font-mono opacity-60 tracking-tighter">
+                          <Mail className="size-3" />
+                          <span>{truncate(item.subject, 40)}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="py-6">
                         {item.detected_variables && item.detected_variables.length > 0 ? (
-                          <div className="flex flex-wrap gap-1">
+                          <div className="flex flex-wrap gap-1.5">
                             {item.detected_variables.slice(0, 3).map((v) => (
-                              <Badge key={v} variant="secondary" className="text-[10px]">
+                              <span key={v} className="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-wider bg-gm-surface/50 border border-gm-border-soft text-gm-muted font-mono">
                                 {v}
-                              </Badge>
+                              </span>
                             ))}
                             {item.detected_variables.length > 3 && (
-                              <Badge variant="secondary" className="text-[10px]">
+                              <span className="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-wider bg-gm-surface/50 border border-gm-border-soft text-gm-muted">
                                 +{item.detected_variables.length - 3}
-                              </Badge>
+                              </span>
                             )}
                           </div>
                         ) : (
-                          <span className="text-xs text-muted-foreground">-</span>
+                          <span className="text-xs text-gm-muted opacity-50">-</span>
                         )}
                       </TableCell>
-                      <TableCell className="text-center">
+                      <TableCell className="py-6 text-center">
                         <Switch
                           checked={item.is_active}
                           onCheckedChange={() => handleToggleActive(item)}
                           disabled={busy}
                         />
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="py-6 text-center">
                         {item.locale ? (
-                          <Badge variant="outline">{item.locale}</Badge>
+                          <span className="inline-flex px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border border-gm-border-soft bg-gm-surface/40 text-gm-muted">
+                            {item.locale}
+                          </span>
                         ) : (
-                          <span className="text-muted-foreground">-</span>
+                          <span className="text-gm-muted opacity-50">-</span>
                         )}
                       </TableCell>
-                      <TableCell className="text-xs text-muted-foreground">
-                        <div>{fmtDate(item.created_at, dateLocale)}</div>
-                        <div className="text-[10px]">
-                          {t('list.table.updatedLabel')}:{' '}
+                      <TableCell className="py-6 text-center">
+                        <div className="text-[10px] text-gm-muted font-mono tracking-tighter opacity-70">
                           {fmtDate(item.updated_at, dateLocale)}
                         </div>
                       </TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex items-center justify-end gap-2">
+                      <TableCell className="py-6 px-8 text-right">
+                        <div className="flex items-center justify-end gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
                           <Button
-                            variant="outline"
-                            size="sm"
+                            variant="ghost"
+                            size="icon"
                             onClick={() => handleEdit(item)}
                             disabled={busy}
-                            className="gap-2"
+                            className="rounded-full hover:bg-gm-gold/10 hover:text-gm-gold transition-all"
                           >
-                            <Pencil className="size-3.5" />
-                            {t('list.actions.edit')}
+                            <Pencil className="size-4" />
                           </Button>
                           <Button
-                            variant="outline"
-                            size="sm"
+                            variant="ghost"
+                            size="icon"
                             onClick={() => handleDeleteClick(item)}
                             disabled={busy}
-                            className="gap-2"
+                            className="rounded-full hover:bg-gm-error/10 hover:text-gm-error transition-all"
                           >
-                            <Trash2 className="size-3.5" />
-                            {t('list.actions.delete')}
+                            <Trash2 className="size-4" />
                           </Button>
                         </div>
                       </TableCell>
@@ -478,112 +454,6 @@ export default function AdminEmailTemplatesClient() {
             </Table>
           </CardContent>
         </Card>
-
-        {/* Cards (Mobile) */}
-        <div className="space-y-4 xl:hidden">
-          {isLoading ? (
-            <Card>
-              <CardContent className="flex items-center justify-center py-12">
-                <div className="flex items-center gap-2">
-                  <Loader2 className="size-5 animate-spin" />
-                  <span>{t('list.loading')}</span>
-                </div>
-              </CardContent>
-            </Card>
-          ) : items.length === 0 ? (
-            <Card>
-              <CardContent className="py-12 text-center text-muted-foreground">
-                {t('list.empty')}
-              </CardContent>
-            </Card>
-          ) : (
-            items.map((item) => (
-              <Card key={item.id}>
-                <CardContent className="space-y-4 pt-6">
-                  {/* Header */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <Code2 className="size-4 text-muted-foreground" />
-                        <code className="rounded bg-muted px-2 py-1 text-xs font-medium">
-                          {item.template_key || '-'}
-                        </code>
-                      </div>
-                      {item.locale && <Badge variant="outline">{item.locale}</Badge>}
-                      <h3 className="font-semibold">{item.template_name || '-'}</h3>
-                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <Mail className="size-3" />
-                        <span>{truncate(item.subject, 50)}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Label className="text-sm">
-                        {t('list.mobile.activeLabel')}
-                      </Label>
-                      <Switch
-                        checked={item.is_active}
-                        onCheckedChange={() => handleToggleActive(item)}
-                        disabled={busy}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Variables */}
-                  {item.detected_variables && item.detected_variables.length > 0 && (
-                    <div className="space-y-2">
-                      <Label className="text-xs text-muted-foreground">
-                        {t('list.mobile.variablesLabel')}
-                      </Label>
-                      <div className="flex flex-wrap gap-1">
-                        {item.detected_variables.map((v) => (
-                          <Badge key={v} variant="secondary" className="text-[10px]">
-                            {v}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Dates */}
-                  <div className="space-y-1 text-xs text-muted-foreground">
-                    <div>
-                      {t('list.mobile.createdLabel')}:{' '}
-                      {fmtDate(item.created_at, dateLocale)}
-                    </div>
-                    <div>
-                      {t('list.mobile.updatedLabel')}:{' '}
-                      {fmtDate(item.updated_at, dateLocale)}
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleEdit(item)}
-                      disabled={busy}
-                      className="flex-1 gap-2"
-                    >
-                      <Pencil className="size-3.5" />
-                      {t('list.actions.edit')}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleDeleteClick(item)}
-                      disabled={busy}
-                      className="flex-1 gap-2"
-                    >
-                      <Trash2 className="size-3.5" />
-                      {t('list.actions.delete')}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          )}
-        </div>
       </div>
 
       {/* Delete Dialog */}
@@ -593,9 +463,7 @@ export default function AdminEmailTemplatesClient() {
             <AlertDialogTitle>{t('list.dialog.title')}</AlertDialogTitle>
             <AlertDialogDescription>
               {t('list.dialog.description', {
-                template:
-                  itemToDelete?.template_key ||
-                  t('list.dialog.templateFallback'),
+                template: itemToDelete?.template_key || t('list.dialog.templateFallback'),
               })}
             </AlertDialogDescription>
           </AlertDialogHeader>
