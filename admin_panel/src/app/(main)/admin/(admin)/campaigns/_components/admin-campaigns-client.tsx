@@ -1,20 +1,16 @@
 'use client';
 
-import * as React from 'react';
-import { 
-  Tag, Plus, RefreshCcw, 
-  Trash2, Pencil, Ticket,
-  CheckCircle2, XCircle
-} from 'lucide-react';
+import { Plus, RefreshCcw, Trash2, Pencil, Ticket, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
-import { format } from 'date-fns';
 import Link from 'next/link';
 
-import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useAdminT } from '@/app/(main)/admin/_components/common/useAdminT';
 import {
   useListCampaignsAdminQuery,
   useUpdateCampaignAdminMutation,
@@ -22,139 +18,172 @@ import {
 } from '@/integrations/hooks';
 
 export default function AdminCampaignsClient() {
+  const t = useAdminT('admin.campaigns');
   const query = useListCampaignsAdminQuery(undefined);
   const [update] = useUpdateCampaignAdminMutation();
   const [remove] = useDeleteCampaignAdminMutation();
 
+  const items = query.data ?? [];
+  const total = items.length;
+
   const handleToggleActive = async (id: string, current: boolean) => {
     try {
       await update({ id, body: { is_active: !current } }).unwrap();
-      toast.success('Status updated.');
+      toast.success(t('toasts.statusUpdated', null, 'Durum güncellendi.'));
     } catch {
-      toast.error('Update failed.');
+      toast.error(t('toasts.updateFailed', null, 'Güncelleme başarısız.'));
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this campaign?')) return;
+    if (!confirm(t('confirms.delete', null, 'Bu kampanya silinsin mi?'))) return;
     try {
       await remove(id).unwrap();
-      toast.success('Campaign deleted.');
+      toast.success(t('toasts.deleted', null, 'Kampanya silindi.'));
     } catch {
-      toast.error('Delete failed.');
+      toast.error(t('toasts.deleteFailed', null, 'Silme başarısız.'));
     }
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold italic font-display text-gm-primary">Campaigns & Promos</h1>
-          <p className="text-sm text-muted-foreground">Manage discount codes, bonus credits, and special offers.</p>
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-px bg-gm-gold" />
+            <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">
+              {t('header.badge', null, 'Kampanya & Promosyon')}
+            </span>
+          </div>
+          <h1 className="font-serif text-4xl text-gm-text">{t('title', null, 'Kampanyalar')}</h1>
+          <p className="text-gm-muted text-sm font-serif italic opacity-70">
+            {t('description', null, 'İndirim kodlarını, bonus kredileri ve özel teklifleri yönetin.')}
+          </p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={() => query.refetch()} disabled={query.isFetching}>
-            <RefreshCcw className={`mr-2 size-4${query.isFetching ? ' animate-spin' : ''}`} />
-            Refresh
-          </Button>
-          <Button size="sm" asChild className="bg-gm-primary hover:bg-gm-primary-dark">
+
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6 bg-gm-surface/20 px-8 py-4 rounded-[24px] border border-gm-border-soft backdrop-blur-sm shadow-lg">
+            <div className="text-center sm:text-right min-w-[80px]">
+              <p className="text-[10px] font-bold text-gm-muted tracking-widest uppercase mb-1">
+                {t('summary.total_label', null, 'Toplam')}
+              </p>
+              <p className="font-serif text-3xl text-gm-gold">{total}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => query.refetch()}
+              disabled={query.isFetching}
+              className="rounded-full border-gm-border-soft px-8 h-12 hover:bg-gm-surface transition-all font-bold tracking-widest uppercase text-[10px]"
+            >
+              <RefreshCcw className={cn('mr-2 size-4', query.isFetching && 'animate-spin')} />
+              {t('actions.refresh', null, 'Yenile')}
+            </Button>
+          </div>
+          <Button asChild className="rounded-full px-8 h-12 font-bold tracking-widest uppercase text-[10px]">
             <Link href="/admin/campaigns/new">
               <Plus className="mr-2 size-4" />
-              New Campaign
+              {t('actions.new', null, 'Yeni Kampanya')}
             </Link>
           </Button>
         </div>
       </div>
 
-      <Card className="border-gm-border-soft bg-gm-surface/50 backdrop-blur-sm">
-        <CardContent className="p-0">
+      {/* Table Card */}
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardContent className="p-0 overflow-x-auto">
           <Table>
-            <TableHeader className="bg-gm-surface-high/50">
+            <TableHeader className="bg-gm-surface/40">
               <TableRow className="border-gm-border-soft hover:bg-transparent">
-                <TableHead className="w-12">Active</TableHead>
-                <TableHead>Campaign</TableHead>
-                <TableHead>Type & Value</TableHead>
-                <TableHead>Usage</TableHead>
-                <TableHead>Applies To</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="py-6 px-8 text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('table.active', null, 'Aktif')}</TableHead>
+                <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('table.campaign', null, 'Kampanya')}</TableHead>
+                <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('table.typeValue', null, 'Tür & Değer')}</TableHead>
+                <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('table.usage', null, 'Kullanım')}</TableHead>
+                <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('table.appliesTo', null, 'Kapsam')}</TableHead>
+                <TableHead className="py-6 px-8 text-right text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('table.actions', null, 'İşlemler')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {query.isLoading ? (
+                Array.from({ length: 5 }).map((_, i) => (
+                  <TableRow key={i} className="border-gm-border-soft">
+                    <TableCell className="py-6 px-8"><Skeleton className="h-6 w-10 bg-gm-surface/20" /></TableCell>
+                    <TableCell className="py-6"><Skeleton className="h-12 w-48 bg-gm-surface/20" /></TableCell>
+                    <TableCell className="py-6"><Skeleton className="h-10 w-24 bg-gm-surface/20" /></TableCell>
+                    <TableCell className="py-6"><Skeleton className="h-10 w-28 bg-gm-surface/20" /></TableCell>
+                    <TableCell className="py-6"><Skeleton className="h-6 w-24 bg-gm-surface/20 mx-auto rounded-full" /></TableCell>
+                    <TableCell className="py-6 px-8"><Skeleton className="h-8 w-20 ml-auto bg-gm-surface/20 rounded-full" /></TableCell>
+                  </TableRow>
+                ))
+              ) : items.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-10 text-center">Loading...</TableCell>
-                </TableRow>
-              ) : query.data?.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={6} className="py-10 text-center text-muted-foreground">No campaigns found.</TableCell>
+                  <TableCell colSpan={6} className="py-24 text-center">
+                    <div className="flex flex-col items-center gap-4 opacity-30">
+                      <AlertCircle className="w-16 h-16 text-gm-gold/50" />
+                      <span className="font-serif italic text-lg text-gm-muted">{t('table.empty', null, 'Kampanya bulunamadı.')}</span>
+                    </div>
+                  </TableCell>
                 </TableRow>
               ) : (
-                query.data?.map((item) => (
-                  <TableRow key={item.id} className="border-gm-border-soft hover:bg-gm-surface-high/30 transition-colors">
-                    <TableCell>
-                      <Switch 
-                        checked={item.is_active} 
-                        onCheckedChange={() => handleToggleActive(item.id, item.is_active)}
-                      />
+                items.map((item) => (
+                  <TableRow key={item.id} className="border-gm-border-soft hover:bg-gm-primary/[0.03] transition-colors group">
+                    <TableCell className="py-6 px-8">
+                      <Switch checked={item.is_active} onCheckedChange={() => handleToggleActive(item.id, item.is_active)} />
                     </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gm-primary/10 text-gm-primary">
-                          <Ticket className="size-5" />
+                    <TableCell className="py-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-gm-gold/10 flex items-center justify-center text-gm-gold shadow-inner border border-gm-gold/20 shrink-0">
+                          <Ticket size={16} />
                         </div>
                         <div>
-                          <div className="font-medium text-gm-text">{item.name_tr}</div>
-                          <div className="text-xs text-gm-muted flex items-center gap-1">
-                            <code className="bg-gm-bg-deep px-1.5 py-0.5 rounded text-gm-gold font-bold uppercase">{item.code}</code>
-                          </div>
+                          <div className="font-serif text-lg text-gm-text group-hover:text-gm-primary transition-colors">{item.name_tr}</div>
+                          <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-gm-gold opacity-80">{item.code}</div>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <div className="flex flex-col gap-1">
-                        <Badge variant="outline" className="w-fit text-[10px] uppercase border-gm-primary/30 text-gm-primary">
+                    <TableCell className="py-6">
+                      <div className="flex flex-col gap-1.5">
+                        <span className="inline-flex w-fit px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border border-gm-gold/20 bg-gm-gold/10 text-gm-gold">
                           {item.type.replace('_', ' ')}
-                        </Badge>
-                        <div className="font-bold text-gm-text">
+                        </span>
+                        <div className="font-serif text-lg text-gm-text font-bold">
                           {item.type === 'discount_percentage' && `%${item.value}`}
                           {item.type === 'discount_fixed' && `₺${item.value}`}
-                          {item.type === 'bonus_credits' && `${item.value} Credits`}
-                          {item.type === 'free_trial_days' && `${item.value} Days Free`}
+                          {item.type === 'bonus_credits' && `${item.value} ${t('values.credits', null, 'Kredi')}`}
+                          {item.type === 'free_trial_days' && `${item.value} ${t('values.daysFree', null, 'Gün Ücretsiz')}`}
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <div className="flex flex-col gap-1">
-                        <div className="text-xs text-gm-text-dim">
+                    <TableCell className="py-6">
+                      <div className="flex flex-col gap-1.5">
+                        <div className="text-[11px] text-gm-muted">
                           <span className="font-bold text-gm-text">{item.used_count}</span>
-                          {item.max_uses ? ` / ${item.max_uses}` : ' / ∞'} uses
+                          {item.max_uses ? ` / ${item.max_uses}` : ' / ∞'} {t('table.usesSuffix', null, 'kullanım')}
                         </div>
                         {item.max_uses && (
                           <div className="h-1.5 w-24 rounded-full bg-gm-bg-deep overflow-hidden">
-                            <div 
-                              className="h-full bg-gm-primary" 
-                              style={{ width: `${Math.min(100, (item.used_count / item.max_uses) * 100)}%` }} 
-                            />
+                            <div className="h-full bg-gm-gold" style={{ width: `${Math.min(100, (item.used_count / item.max_uses) * 100)}%` }} />
                           </div>
                         )}
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <Badge variant="secondary" className="bg-gm-surface-high text-gm-text-dim border-gm-border-soft capitalize">
+                    <TableCell className="py-6 text-center">
+                      <span className="inline-flex px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border border-gm-border-soft bg-gm-surface/40 text-gm-muted">
                         {item.applies_to.replace('_', ' ')}
-                      </Badge>
+                      </span>
                     </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-1">
-                        <Button asChild size="icon" variant="ghost" className="hover:bg-gm-primary/10 hover:text-gm-primary">
+                    <TableCell className="py-6 px-8 text-right">
+                      <div className="flex justify-end gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+                        <Button asChild size="icon" variant="ghost" className="rounded-full hover:bg-gm-gold/10 hover:text-gm-gold transition-all">
                           <Link href={`/admin/campaigns/${item.id}`}>
                             <Pencil className="size-4" />
                           </Link>
                         </Button>
-                        <Button 
-                          size="icon" 
-                          variant="ghost" 
-                          className="text-gm-error hover:bg-gm-error/10 hover:text-gm-error"
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="rounded-full hover:bg-gm-error/10 hover:text-gm-error transition-all"
                           onClick={() => handleDelete(item.id)}
                         >
                           <Trash2 className="size-4" />
