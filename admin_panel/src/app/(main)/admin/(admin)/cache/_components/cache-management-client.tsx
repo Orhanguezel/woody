@@ -4,10 +4,9 @@ import * as React from 'react';
 import { toast } from 'sonner';
 import { Trash2, RefreshCcw, Globe } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Card, CardContent } from '@/components/ui/card';
 
 async function revalidate(opts: { all?: boolean; path?: string }) {
   const res = await fetch('/api/revalidate-proxy', {
@@ -58,76 +57,85 @@ export default function CacheManagementClient() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-1">
-        <h1 className="text-lg font-semibold">Cache Yönetimi</h1>
-        <p className="text-sm text-muted-foreground">
-          Frontend sayfalarının cache'ini temizleyin. İçerik güncellemelerinin anında görünmesini
-          sağlar.
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* Header */}
+      <div className="space-y-2">
+        <div className="flex items-center gap-3">
+          <span className="w-8 h-px bg-gm-gold" />
+          <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">Önbellek</span>
+        </div>
+        <h1 className="font-serif text-4xl text-gm-text">Cache Yönetimi</h1>
+        <p className="text-gm-muted text-sm font-serif italic opacity-70">
+          Frontend sayfalarının cache&apos;ini temizleyin. İçerik güncellemelerinin anında görünmesini sağlar.
         </p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Hızlı Temizle</CardTitle>
-          <CardDescription>
-            Belirli bir sayfanın veya tüm sitenin cache'ini temizleyin. Cache temizlendikten sonra
-            sayfa ilk ziyarette yeniden oluşturulur.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {CACHE_ACTIONS.map((item, idx) => (
-            <React.Fragment key={item.id}>
-              {idx === 1 && <Separator />}
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-muted">
-                    <item.icon className="size-5 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium">{item.label}</span>
-                      {lastCleared[item.id] && (
-                        <Badge variant="secondary" className="text-[10px]">
-                          {lastCleared[item.id]}
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-xs text-muted-foreground">{item.description}</p>
-                  </div>
-                </div>
-                <Button
-                  variant={item.variant || 'outline'}
-                  size="sm"
-                  onClick={() => handleClear(item.id, item.action)}
-                  disabled={loading !== null}
-                >
-                  {loading === item.id ? (
-                    <RefreshCcw className="mr-2 size-4 animate-spin" />
-                  ) : (
-                    <Trash2 className="mr-2 size-4" />
+      {/* Actions Card */}
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardContent className="p-8 space-y-4">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">Hızlı Temizle</span>
+          </div>
+          {CACHE_ACTIONS.map((item) => (
+            <div
+              key={item.id}
+              className="flex items-center justify-between gap-4 rounded-2xl border border-gm-border-soft bg-gm-surface/30 p-5 hover:bg-gm-primary/[0.03] transition-colors"
+            >
+              <div className="flex items-center gap-4">
+                <div
+                  className={cn(
+                    'w-12 h-12 rounded-full flex items-center justify-center shadow-inner border',
+                    item.variant === 'destructive'
+                      ? 'bg-gm-error/10 text-gm-error border-gm-error/20'
+                      : 'bg-gm-gold/10 text-gm-gold border-gm-gold/20'
                   )}
-                  Temizle
-                </Button>
+                >
+                  <item.icon className="size-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-serif text-lg text-gm-text">{item.label}</span>
+                    {lastCleared[item.id] && (
+                      <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider bg-gm-surface/50 border border-gm-border-soft text-gm-muted font-mono">
+                        {lastCleared[item.id]}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-gm-muted opacity-70 mt-0.5">{item.description}</p>
+                </div>
               </div>
-            </React.Fragment>
+              <Button
+                variant={item.variant === 'destructive' ? 'destructive' : 'outline'}
+                size="sm"
+                onClick={() => handleClear(item.id, item.action)}
+                disabled={loading !== null}
+                className="rounded-full px-6 h-11 font-bold tracking-widest uppercase text-[10px] shrink-0"
+              >
+                {loading === item.id ? (
+                  <RefreshCcw className="mr-2 size-4 animate-spin" />
+                ) : (
+                  <Trash2 className="mr-2 size-4" />
+                )}
+                Temizle
+              </Button>
+            </div>
           ))}
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-sm">Bilgi</CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm text-muted-foreground space-y-2">
-          <p>
-            Frontend sayfaları 5 dakika (300 saniye) boyunca cache'lenir. Cache temizlendiğinde
-            sayfalar bir sonraki ziyarette API'den taze veri çeker.
+      {/* Info Card */}
+      <Card className="bg-gm-bg-deep/50 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-md shadow-lg">
+        <CardContent className="p-8 space-y-3">
+          <div className="flex items-center gap-3 mb-1">
+            <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">Bilgi</span>
+          </div>
+          <p className="text-sm text-gm-muted opacity-80">
+            Frontend sayfaları 5 dakika (300 saniye) boyunca cache&apos;lenir. Cache temizlendiğinde sayfalar bir
+            sonraki ziyarette API&apos;den taze veri çeker.
           </p>
-          <p>
-            Tema şablonu uygulandığında otomatik olarak tüm cache temizlenir — el ile temizlemeye
-            gerek yoktur. Sadece içerik (yorumlar, ürünler vb.) güncellendiğinde bu sayfayı
-            kullanın.
+          <p className="text-sm text-gm-muted opacity-80">
+            Tema şablonu uygulandığında otomatik olarak tüm cache temizlenir — el ile temizlemeye gerek yoktur.
+            Sadece içerik (yorumlar, ürünler vb.) güncellendiğinde bu sayfayı kullanın.
           </p>
         </CardContent>
       </Card>
