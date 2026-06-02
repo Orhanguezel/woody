@@ -187,6 +187,17 @@ if should_update_file "$ADMIN_CREATED"; then
   replace_in_file "$ADMIN_ENV" "NEXT_PUBLIC_APP_DESCRIPTION" "${PROJECT_NAME} yonetim paneli."
 fi
 
+# proje.json'a portlari yaz (root ecosystem.config.cjs + deploy.sh bunlari okur)
+python3 - "$ROOT_DIR/proje.json" "$BACKEND_PORT" "$ADMIN_PORT" "$FRONTEND_PORT" <<'PY'
+import json
+import sys
+
+path, backend, admin, frontend = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4])
+data = json.loads(open(path, encoding="utf-8").read())
+data["ports"] = {"backend": backend, "admin": admin, "frontend": frontend}
+open(path, "w", encoding="utf-8").write(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+PY
+
 python3 "$ROOT_DIR/scripts/apply-brand.py" "$ROOT_DIR" "$PROJECT_NAME" "$PROJECT_SLUG"
 
 echo

@@ -8,8 +8,10 @@ Yeni bir urune baslarken bu klasoru kopyalayip tek komutla baseline ayarlarini y
 - `frontend/` (Next.js)
 - `admin_panel/` (Next.js)
 - `proje.json` (proje metadatasi)
-- `scripts/init-project.sh` (env + `proje.json` + marka)
+- `scripts/init-project.sh` (env + `proje.json` + marka + portlar)
 - `scripts/apply-brand.py` (`AppName` token → gercek marka; seed + site-defaults + offline)
+- `ecosystem.config.cjs` (PM2 — `<slug>-backend/admin/frontend`, portlar `proje.json`'dan)
+- `deploy/` (markadan bagimsiz production deploy iskeleti — bkz. `deploy/README.md`)
 
 ## Sadece marka / sablon tokenlari
 
@@ -47,6 +49,21 @@ Mevcut `.env` dosyalarini da guncellemek istersen `--force` ekleyin.
 4. Monorepo root dizininden workspace adimini tamamlayin:
    - root `package.json` icindeki `workspaces` listesine yeni proje yollarini ekleyin
    - root dizinde `bun install` calistirin
+
+## Production Deploy (markadan bagimsiz)
+
+Deploy araclari slug ve portlari `proje.json`'dan, VPS sirlarini `.secrets/credentials.env`'den
+okur — hicbir proje adi hard-code edilmez. Detay: [`deploy/README.md`](deploy/README.md).
+
+```bash
+mkdir -p .secrets && cp deploy/credentials.env.example .secrets/credentials.env
+# .secrets/credentials.env doldur (VPS_HOST, SSH_KEY, domainler)
+./deploy/deploy.sh --seed     # ilk kurulum (backend + admin + frontend + DB seed)
+./deploy/deploy.sh backend    # gunluk tek-hedef deploy
+```
+
+> VPS/domain hazir olana kadar bu araclar bekler; `.env` dosyalari rsync'e dahil degildir,
+> production secret'lari VPS'te yasar.
 
 ## Notlar
 

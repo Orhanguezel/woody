@@ -1,0 +1,78 @@
+# Nginx reverse-proxy sablonu — markadan bagimsiz.
+# Tokenleri doldurup VPS'te /etc/nginx/sites-available/<slug>.conf olarak kaydedin,
+# sites-enabled'a symlink atin, sonra `certbot --nginx` ile SSL ekleyin.
+#
+# Tokenler:
+#   __DOMAIN_FRONTEND__  ornek: woodyvearkadaslari.com
+#   __DOMAIN_ADMIN__     ornek: admin.woodyvearkadaslari.com
+#   __DOMAIN_API__       ornek: api.woodyvearkadaslari.com  (veya frontend domain + /api)
+#   __BACKEND_PORT__ / __ADMIN_PORT__ / __FRONTEND_PORT__   proje.json'daki portlar
+#
+# Not: TarGO/Fastify is endpointleri /api/v1/... altindadir; /api -> backend proxy yeterli.
+
+# ── Frontend (public site) ───────────────────────────────────────────────────────
+server {
+  listen 80;
+  server_name __DOMAIN_FRONTEND__ www.__DOMAIN_FRONTEND__;
+
+  # API ve yuklemeler backend'e
+  location /api/ {
+    proxy_pass http://127.0.0.1:__BACKEND_PORT__;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+  location /uploads/ {
+    proxy_pass http://127.0.0.1:__BACKEND_PORT__;
+    proxy_set_header Host $host;
+  }
+
+  location / {
+    proxy_pass http://127.0.0.1:__FRONTEND_PORT__;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+  # Guvenlik basliklari (certbot SSL ekledikten sonra HSTS'i acin)
+  # add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header X-Frame-Options "SAMEORIGIN" always;
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+}
+
+# ── Admin panel ──────────────────────────────────────────────────────────────────
+server {
+  listen 80;
+  server_name __DOMAIN_ADMIN__;
+
+  location /api/ {
+    proxy_pass http://127.0.0.1:__BACKEND_PORT__;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+  location / {
+    proxy_pass http://127.0.0.1:__ADMIN_PORT__;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header X-Frame-Options "SAMEORIGIN" always;
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+}

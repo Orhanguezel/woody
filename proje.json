@@ -8,6 +8,11 @@
     "frontend": "frontend",
     "admin_panel": "admin_panel"
   },
+  "ports": {
+    "backend": 8101,
+    "admin": 3111,
+    "frontend": 3101
+  },
   "notes": [
     "Marka: Woody ve Arkadaşları (woody) — scripts/apply-brand.py",
     "Yeni proje: bash scripts/init-project.sh --name \"...\" --slug \"...\"",

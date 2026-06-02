@@ -150,3 +150,10 @@ vite.config.ts.timestamp-*
 
 # Referans materyali — projenin parçası değil, salt-okunur (iç içe .git içerir)
 _referans/
+
+# Deploy sirlari — VPS credentials, SSH bilgileri (asla commit edilmez)
+.secrets/
+
+# Backend yuklemeleri — runtime icerigi, repoya girmez (.gitkeep haric)
+backend/uploads/*
+!backend/uploads/.gitkeep
