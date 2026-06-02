@@ -12,11 +12,11 @@ export type ThemeMode = (typeof THEME_MODE_VALUES)[number];
 
 export const THEME_PRESET_OPTIONS = [
   {
-    label: "Default",
+    label: "Orman",
     value: "default",
     primary: {
-      light: "oklch(0.488 0.243 264.376)",
-      dark: "oklch(0.488 0.243 264.376)",
+      light: "oklch(0.723 0.192 149.58)",
+      dark: "oklch(0.792 0.18 150.04)",
     },
   },
   {
@@ -41,6 +41,22 @@ export const THEME_PRESET_OPTIONS = [
     primary: {
       light: "oklch(0.64 0.17 36.44)",
       dark: "oklch(0.64 0.17 36.44)",
+    },
+  },
+  {
+    label: "Okyanus",
+    value: "okyanus",
+    primary: {
+      light: "oklch(0.58 0.13 215.5)",
+      dark: "oklch(0.7 0.12 210)",
+    },
+  },
+  {
+    label: "Lavanta",
+    value: "lavanta",
+    primary: {
+      light: "oklch(0.55 0.18 300)",
+      dark: "oklch(0.72 0.15 300)",
     },
   },
 ] as const;
