@@ -14,7 +14,7 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '8086',
+        port: '8101',
         pathname: '/**',
       },
       {
@@ -48,6 +48,13 @@ const nextConfig = {
       {
         source: '/api/v1/:path*',
         destination: `${originOnly}/api/v1/:path*`,
+      },
+      // Yerel storage dosyalari backend'te servis edilir (LOCAL_STORAGE_BASE_URL=/uploads).
+      // Admin origin'inden goreli /uploads/* isteklerini backend'e proxy'le ki
+      // yuklenen gorseller (avatar, medya) onizlemede gorunsun.
+      {
+        source: '/uploads/:path*',
+        destination: `${originOnly}/uploads/:path*`,
       },
     ];
   },
