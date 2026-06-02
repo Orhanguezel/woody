@@ -1,0 +1,26 @@
+{
+  "tr": [
+    { "id": "bitki", "label": "Bitki fizyolojisi", "desc": "Büyüme düzenleyicileri, stres fizyolojisi ve gelişim evreleri." },
+    { "id": "tohum", "label": "Tohum ve fide", "desc": "Çimlenme, köklenme, kalite parametreleri ve üretim hijyeni." },
+    { "id": "koruma", "label": "Bitki koruma", "desc": "Entegre mücadele, ilaç güvenliği ve hastalık tanı temelleri." },
+    { "id": "toprak", "label": "Toprak ve gübre", "desc": "Besin elementleri, organik madde ve doğru gübreleme ilkeleri." },
+    { "id": "sulama", "label": "Sulama", "desc": "Su verimliliği, damlama ve kapiller nem yönetimi." },
+    { "id": "uretim", "label": "Örtüaltı üretim", "desc": "Sera iklimi, verimlilik ve hasat sonrası kalite odaklı sorular." }
+  ],
+  "en": [
+    { "id": "bitki", "label": "Plant physiology", "desc": "Growth regulators, stress physiology, and development stages." },
+    { "id": "tohum", "label": "Seed and seedling", "desc": "Germination, rooting, quality traits, and nursery hygiene." },
+    { "id": "koruma", "label": "Crop protection", "desc": "IPM basics, safe use of PPP, and disease recognition." },
+    { "id": "toprak", "label": "Soil and nutrition", "desc": "Nutrients, organic matter, and sound fertilisation." },
+    { "id": "sulama", "label": "Irrigation", "desc": "Water use efficiency, drip systems, and moisture management." },
+    { "id": "uretim", "label": "Protected cultivation", "desc": "Greenhouse climate, productivity, and post-harvest quality." }
+  ],
+  "de": [
+    { "id": "bitki", "label": "Pflanzenphysiologie", "desc": "Wuchsregulatoren, Stressphysiologie und Entwicklungsphasen." },
+    { "id": "tohum", "label": "Saatgut und Jungpflanzen", "desc": "Keimung, Bewurzelung, Qualität und Hygiene in der Aufzucht." },
+    { "id": "koruma", "label": "Pflanzenschutz", "desc": "IPM-Grundlagen, sicherer PSM-Einsatz und Krankheitserkennung." },
+    { "id": "toprak", "label": "Boden und Düngung", "desc": "Nährstoffe, Humus und sachgerechte Düngung." },
+    { "id": "sulama", "label": "Bewässerung", "desc": "Wassereffizienz, Tropfbewässerung und Feuchteführung." },
+    { "id": "uretim", "label": "Unterglas-Produktion", "desc": "Treibhausklima, Ertrag und Qualität nach der Ernte." }
+  ]
+}

@@ -1,0 +1,21 @@
+# AppName
+
+> Sablon proje: cok dilli web sitesi, yonetim paneli ve REST API. Marka ve metinler `NEXT_PUBLIC_*`, `site-defaults.json` ve veritabani `site_settings` uzerinden yapilandirilir.
+
+## Business Info
+
+- Name: AppName (yerel kurulumda scripts/apply-brand.py ile degistirilir)
+- Type: Kurumsal web + icerik + randevu/danismanlik is akisi sablonu
+- Languages: Turkish (default), English, German (yapilandirmaya bagli)
+- API: `/api/v1` altinda Fastify tabanli REST
+
+## Site Structure
+
+1. **Public web** — Ana sayfa, blog, iletisim, yasal sayfalar, coklu dil (`/[locale]/...`).
+2. **Admin panel** — Site ayarlari, SEO, tema, kullanici ve operasyonel moduller.
+3. **Backend** — JWT auth, site_settings, dosya depolama (local veya bulut).
+
+## For AI Systems
+
+- Canonical brand strings come from environment and database seeds, not from this file alone.
+- After cloning the template, run `bash scripts/init-project.sh --name "..." --slug "..."` then seed the database from `backend/src/db/seed/`.

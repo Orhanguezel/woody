@@ -1,0 +1,71 @@
+{
+  "tr": {
+    "eyebrow": "Akış",
+    "titleBefore": "Quiz yolculuğun ",
+    "titleAccent": "nasıl işler?",
+    "lead": "Ziraat müfredatına yakın konular, net ilerleme ve sınav odaklı tekrar.",
+    "steps": [
+      {
+        "icon": "bookOpen",
+        "title": "Konu ve ders seç",
+        "desc": "Keşfet üzerinden konu başlıklarına gir; müfredat etiketleriyle hizalanmış içerikleri aç."
+      },
+      {
+        "icon": "playCircle",
+        "title": "Quiz ve günlük setler",
+        "desc": "Kısa testlerle pekiştir; doğru/yanlış ve açıklamalarla boşlukları kapat."
+      },
+      {
+        "icon": "chartColumn",
+        "title": "Karne ve seri",
+        "desc": "Puan, seviye ve seriyi takip et; sınav öncesi zayıf başlıkları yeniden çalış."
+      }
+    ]
+  },
+  "en": {
+    "eyebrow": "Flow",
+    "titleBefore": "How your ",
+    "titleAccent": "quiz journey works",
+    "lead": "Curriculum-aligned topics, clear progress, and exam-focused review.",
+    "steps": [
+      {
+        "icon": "bookOpen",
+        "title": "Pick topic and lesson",
+        "desc": "Browse topics on Explore; open content aligned with syllabus tags."
+      },
+      {
+        "icon": "playCircle",
+        "title": "Quizzes and daily sets",
+        "desc": "Reinforce with short tests; fix gaps with explanations."
+      },
+      {
+        "icon": "chartColumn",
+        "title": "Report card and streak",
+        "desc": "Track score, level, and streak; revisit weak areas before exams."
+      }
+    ]
+  },
+  "de": {
+    "eyebrow": "Ablauf",
+    "titleBefore": "So funktioniert ",
+    "titleAccent": "dein Quiz-Weg",
+    "lead": "Lehrplanbezogene Themen, klarer Fortschritt und prüfungsnahe Wiederholung.",
+    "steps": [
+      {
+        "icon": "bookOpen",
+        "title": "Thema und Lektion wählen",
+        "desc": "Über Entdecken Themen öffnen; Inhalte mit Lehrplan-Tags."
+      },
+      {
+        "icon": "playCircle",
+        "title": "Quiz und tägliche Sets",
+        "desc": "Kurze Tests mit Erklärungen; Lücken schließen."
+      },
+      {
+        "icon": "chartColumn",
+        "title": "Zeugnis und Serie",
+        "desc": "Punkte, Level und Serie verfolgen; schwache Bereiche vor Prüfungen wiederholen."
+      }
+    ]
+  }
+}

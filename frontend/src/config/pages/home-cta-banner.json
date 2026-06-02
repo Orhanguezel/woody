@@ -1,0 +1,20 @@
+{
+  "tr": {
+    "title": "İlk adımı atmaya hazır mısınız?",
+    "desc": "Danışmanınızla bugün buluşun. Randevu almak sadece birkaç dakikanızı alır.",
+    "cta": "Danışman Bul",
+    "secondary": "Nasıl çalışır?"
+  },
+  "en": {
+    "title": "Ready to take the first step?",
+    "desc": "Connect with your consultant today. Booking takes just a few minutes.",
+    "cta": "Find a Consultant",
+    "secondary": "How does it work?"
+  },
+  "de": {
+    "title": "Bereit für den ersten Schritt?",
+    "desc": "Treffen Sie noch heute Ihren Berater. Eine Buchung dauert nur wenige Minuten.",
+    "cta": "Berater finden",
+    "secondary": "Wie funktioniert es?"
+  }
+}

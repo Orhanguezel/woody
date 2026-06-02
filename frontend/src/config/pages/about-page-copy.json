@@ -1,0 +1,83 @@
+{
+  "tr": {
+    "eyebrow": "{{appName}} Manifestosu",
+    "title": "Danışmanlığı daha anlaşılır, güvenilir ve erişilebilir yapmak için buradayız.",
+    "lead": "{{appName}}; öğrenme koçluğu, kariyer ve iletişim odaklarını tek bir danışmanlık deneyiminde buluşturan bir platformdur.",
+    "founderTitle": "Kurucu Hikayesi",
+    "founderParagraphs": [
+      "{{appName}} fikri, dijital ürün deneyimi ile güvenilir rehberlik ihtiyacını bir araya getirme isteğinden doğdu.",
+      "Teknoloji burada amaç değil, doğru kişiyi doğru uzmanla buluşturan sakin bir altyapıdır."
+    ],
+    "methodologyTitle": "Metodoloji",
+    "methodologyParagraphs": [
+      "Yaklaşımımız veri-temelli gözlem ve insan odaklı yorumun dengesi üzerine kurulur.",
+      "İçeriklerimiz uygulanabilir adımlar sunar; korku veya kesin hüküm üretmez."
+    ],
+    "experienceTitle": "Ekip ve Deneyim",
+    "experienceParagraphs": [
+      "{{appName}} ekibi; yazılım geliştirme, ürün tasarımı, editoryal kalite ve kullanıcı deneyimi alanlarının birleşiminden oluşur.",
+      "Danışmanlarımız öğrenme koçluğu, kariyer rehberliği, iletişim desteği ve odak yönetimi gibi alanlarda uzmanlaşır."
+    ],
+    "differentiatorsTitle": "Neden {{appName}}?",
+    "differentiators": [
+      { "title": "Şeffaf uzman seçimi", "body": "Profil, uzmanlık, paket ve değerlendirmeler görünürdür." },
+      { "title": "Bütünleşik seans akışı", "body": "Randevu, ödeme, hatırlatma ve iletişim tek akışta ilerler." },
+      { "title": "Sorumlu dil", "body": "İçerik dili farkındalık, seçenek ve kişisel sorumluluk odaklıdır." }
+    ],
+    "authorBio": "{{appName}} içerikleri, kullanıcıların daha bilinçli karar almasına yardımcı olacak şekilde hazırlanır."
+  },
+  "en": {
+    "eyebrow": "{{appName}} Manifesto",
+    "title": "We make guidance clearer, safer and easier to access.",
+    "lead": "{{appName}} brings learning coaching, career and communication guidance into one consultation platform.",
+    "founderTitle": "Founder Story",
+    "founderParagraphs": [
+      "{{appName}} started with a simple idea: combine product quality with trustworthy guidance.",
+      "Technology is the quiet infrastructure that helps users and consultants meet clearly."
+    ],
+    "methodologyTitle": "Methodology",
+    "methodologyParagraphs": [
+      "Our method balances data-informed observation with human interpretation.",
+      "We prioritize practical next steps over fear-based or absolute claims."
+    ],
+    "experienceTitle": "Team and Experience",
+    "experienceParagraphs": [
+      "The {{appName}} team combines software, product design, editorial quality and user experience.",
+      "Consultants specialize in learning coaching, career guidance, communication support and focus management."
+    ],
+    "differentiatorsTitle": "Why {{appName}}?",
+    "differentiators": [
+      { "title": "Transparent consultant choice", "body": "Profiles, expertise, packages and ratings are visible before booking." },
+      { "title": "Integrated flow", "body": "Booking, payment, reminders and communication are handled in one calm flow." },
+      { "title": "Responsible language", "body": "Content focuses on awareness, options and personal responsibility." }
+    ],
+    "authorBio": "{{appName}} content helps people make calmer and better-informed decisions."
+  },
+  "de": {
+    "eyebrow": "{{appName}} Manifest",
+    "title": "Wir machen Beratung verständlicher, sicherer und leichter zugänglich.",
+    "lead": "{{appName}} verbindet Lerncoaching, Karriere- und Kommunikationsberatung in einer Plattform.",
+    "founderTitle": "Gründungsgeschichte",
+    "founderParagraphs": [
+      "{{appName}} entstand aus der Idee, Produktqualität mit verlässlicher Beratung zu verbinden.",
+      "Technologie ist dabei eine ruhige Infrastruktur für klare Abläufe."
+    ],
+    "methodologyTitle": "Methodik",
+    "methodologyParagraphs": [
+      "Unser Ansatz verbindet datenbasierte Beobachtung mit menschlicher Interpretation.",
+      "Wir fokussieren praktikable nächste Schritte statt starrer Aussagen."
+    ],
+    "experienceTitle": "Team und Erfahrung",
+    "experienceParagraphs": [
+      "Das {{appName}} Team vereint Software, Produktdesign, redaktionelle Qualität und User Experience.",
+      "Berater fokussieren Lerncoaching, Karriere, Kommunikation und Fokus-Management."
+    ],
+    "differentiatorsTitle": "Warum {{appName}}?",
+    "differentiators": [
+      { "title": "Transparente Beraterwahl", "body": "Profile, Expertise, Pakete und Bewertungen sind sichtbar." },
+      { "title": "Integrierter Ablauf", "body": "Termin, Zahlung, Erinnerung und Kommunikation laufen in einem Fluss." },
+      { "title": "Verantwortungsvolle Sprache", "body": "Inhalte fokussieren Bewusstsein, Optionen und Eigenverantwortung." }
+    ],
+    "authorBio": "{{appName}} Inhalte helfen, Entscheidungen ruhiger und klarer zu treffen."
+  }
+}

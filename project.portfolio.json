@@ -1,0 +1,53 @@
+{
+  "title": "Woody ve Arkadaşları",
+  "slug": "woody",
+  "summary": "Anaokulu İngilizce eğitim setleri, dijital içerik kütüphanesi, öğretmen akademisi ve mağazayı tek çatıda toplayan çok dilli eğitim platformu.",
+  "description": "woodyvearkadaslari.com'un Next.js 16 + Fastify yeniden inşası. Eski CSR (Emergent/PHP) site SSR/SSG'ye taşınıyor; 10 dil için gerçek hreflang (next-intl), zengin JSON-LD şema (Product offers, Article author, FAQPage, LocalBusiness), llms.txt ve güvenlik başlıkları ile GEO/SEO skoru hedefleniyor. Kapsam: anasayfa, preschool, workshop, home-tutor, woody-academy, library, blog, store ve 12 dijital içerik ürün sayfası.",
+  "category": "WEB APPLICATION",
+  "services": [
+    "Frontend Development",
+    "Backend Development",
+    "SEO / GEO Optimization",
+    "i18n / Localization",
+    "Admin Panel"
+  ],
+  "techs": [
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Tailwind CSS v4",
+    "next-intl",
+    "Fastify",
+    "Drizzle ORM",
+    "MySQL"
+  ],
+  "features": [
+    "Çok dilli (10 dil) gerçek route + tam hreflang",
+    "SSR/SSG ile AI/arama motoru erişilebilir içerik",
+    "Dijital içerik kütüphanesi (Storyland / Movieland / Musicland)",
+    "Mağaza ve ürün sayfaları (Product + offers şeması)",
+    "Blog ve öğretmen akademisi",
+    "Yerel SEO (İstanbul anaokulu İngilizce eğitimi)",
+    "Zengin JSON-LD şema + llms.txt"
+  ],
+  "designHighlights": [
+    "Eski canlı tasarımın SSR sürümüne sadık taşınması",
+    "Çocuk dostu, marka renkli arayüz",
+    "Erişilebilirlik ve Core Web Vitals odaklı"
+  ],
+  "featured": false,
+  "displayOrder": 100,
+  "clientName": "Mina Yayınevi",
+  "status": "in-development",
+  "startDate": "2026-06-02",
+  "completeDate": null,
+  "completionTimeLabel": "Devam ediyor",
+  "repoUrl": null,
+  "websiteUrl": "https://woodyvearkadaslari.com",
+  "demoUrl": null,
+  "featuredImage": "/assets/imgs/work/img-1.png",
+  "featuredImageAlt": "Woody ve Arkadaşları platform kapak görseli",
+  "resumeTitle": "Woody ve Arkadaşları",
+  "resumeSubtitle": "WEB APPLICATION",
+  "excludeFromPortfolio": false
+}

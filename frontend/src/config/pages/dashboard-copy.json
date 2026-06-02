@@ -1,0 +1,182 @@
+{
+  "text": {
+    "loading": { "tr": "Yükleniyor…", "en": "Loading…" },
+    "toastAvatarSaveError": { "tr": "Avatar kaydedilemedi.", "en": "Could not save avatar." },
+    "toastProfileUpdated": { "tr": "Profil güncellendi", "en": "Profile updated" },
+    "toastGenericError": { "tr": "Hata oluştu", "en": "An error occurred" },
+    "toastPasswordsNoMatch": { "tr": "Şifreler uyuşmuyor", "en": "Passwords do not match" },
+    "toastPasswordUpdated": { "tr": "Şifre güncellendi", "en": "Password updated" },
+    "toastReadingDeleted": { "tr": "Yorum silindi", "en": "Reading deleted" },
+    "toastDeleteFailed": { "tr": "Silinemedi", "en": "Could not delete" },
+    "toastAllReadingsDeleted": { "tr": "Tüm yorum geçmişi silindi", "en": "All reading history deleted" },
+    "welcome": { "tr": "Hoş geldin", "en": "Welcome" },
+    "helloTemplate": { "tr": "Merhaba, {{name}}", "en": "Hello, {{name}}" },
+    "panelTitle": { "tr": "Panelim", "en": "Dashboard" },
+    "memberSinceTemplate": { "tr": "Üye: {{date}}", "en": "Member since {{date}}" },
+    "accountSettings": { "tr": "Hesap Ayarları", "en": "Account Settings" },
+    "signOut": { "tr": "Çıkış yap", "en": "Sign out" },
+    "pendingFeedbackEyebrow": { "tr": "Danışman geri bildirimi", "en": "Consultant feedback" },
+    "pendingFeedbackTitleTr": { "tr": "{{count}} bekleyen karne sorun var", "en": "{{count}} pending feedback {{itemWord}}" },
+    "pendingFeedbackItemSingular": { "tr": "kayıt", "en": "item" },
+    "pendingFeedbackItemPlural": { "tr": "kayıt", "en": "items" },
+    "pendingFeedbackDesc": {
+      "tr": "Geçmiş seanslarını değerlendir; geri bildirimler danışman profillerinin güven skorunu güçlendirir.",
+      "en": "Rate past sessions; feedback strengthens trust signals on consultant profiles."
+    },
+    "respond": { "tr": "Cevapla", "en": "Respond" },
+    "privacyPromiseTitle": { "tr": "Gizlilik Sözü", "en": "Privacy Promise" },
+    "privacyPromiseDesc": {
+      "tr": "Doğum bilgileri ve seans notlarınız KVKK uyumlu olarak şifreli saklanır. Hesabını dilediğin an silebilir, verilerini indirebilirsin.",
+      "en": "Your birth data and session notes are stored encrypted, KVKK-compliant. You can delete your account or export your data at any time."
+    },
+    "profileInfo": { "tr": "Profil Bilgileri", "en": "Profile Info" },
+    "fullName": { "tr": "Ad Soyad", "en": "Full name" },
+    "fullNamePlaceholder": { "tr": "Adınız ve soyadınız", "en": "Your full name" },
+    "phone": { "tr": "Telefon", "en": "Phone" },
+    "address": { "tr": "Adres", "en": "Address" },
+    "city": { "tr": "Şehir", "en": "City" },
+    "cityPlaceholder": { "tr": "Şehir ara…", "en": "Search city…" },
+    "saving": { "tr": "KAYDEDİLİYOR...", "en": "SAVING..." },
+    "saveChanges": { "tr": "DEĞİŞİKLİKLERİ KAYDET", "en": "SAVE CHANGES" },
+    "myBookings": { "tr": "Randevularım", "en": "My Bookings" },
+    "noBookings": { "tr": "Henüz bir randevunuz bulunmuyor.", "en": "No bookings yet." },
+    "findConsultants": { "tr": "Danışmanları Keşfet", "en": "Find Consultants" },
+    "consultation": { "tr": "Danışmanlık", "en": "Consultation" },
+    "consultant": { "tr": "Danışman", "en": "Consultant" },
+    "writeReview": { "tr": "YORUM YAP", "en": "WRITE REVIEW" },
+    "joinCall": { "tr": "GÖRÜŞMEYE KATIL", "en": "JOIN CALL" },
+    "message": { "tr": "MESAJ", "en": "MESSAGE" },
+    "details": { "tr": "Detaylar", "en": "Details" },
+    "historyItemLabel": { "tr": "Kayıt", "en": "Record" },
+    "readingHistory": { "tr": "Geçmiş Kayıtlarım", "en": "Record History" },
+    "deleteAll": { "tr": "Tümünü Sil", "en": "Delete All" },
+    "deleteAllConfirmTitle": { "tr": "Tüm yorum geçmişi silinsin mi?", "en": "Delete all reading history?" },
+    "deleteAllConfirmDesc": {
+      "tr": "Bu işlem kayıt geçmişinizi anında siler.",
+      "en": "This immediately deletes your record history."
+    },
+    "cancel": { "tr": "Vazgeç", "en": "Cancel" },
+    "noSavedReadings": { "tr": "Henüz kayıtlı yorumun yok.", "en": "No saved readings yet." },
+    "getReading": { "tr": "İlk yorumu al", "en": "Get a reading" },
+    "noPreview": { "tr": "Önizleme metni yok.", "en": "No preview available." },
+    "open": { "tr": "Aç", "en": "Open" },
+    "delete": { "tr": "Sil", "en": "Delete" },
+    "deleteOneConfirmTitle": { "tr": "Bu yorum silinsin mi?", "en": "Delete this reading?" },
+    "deleteOneConfirmDesc": {
+      "tr": "Bu kayıt hesabınızdan kalıcı olarak kaldırılır.",
+      "en": "This record will be permanently removed from your account."
+    },
+    "securitySettings": { "tr": "Güvenlik Ayarları", "en": "Security Settings" },
+    "currentPassword": { "tr": "Mevcut Şifre", "en": "Current password" },
+    "newPassword": { "tr": "Yeni Şifre", "en": "New password" },
+    "confirmPassword": { "tr": "Şifre Tekrar", "en": "Confirm password" },
+    "updating": { "tr": "GÜNCELLENİYOR...", "en": "UPDATING..." },
+    "updatePassword": { "tr": "ŞİFREYİ GÜNCELLE", "en": "UPDATE PASSWORD" }
+  },
+  "tabs": [
+    { "key": "overview", "tr": "Genel Bakış", "en": "Overview" },
+    { "key": "profile", "tr": "Profil", "en": "Profile" },
+    { "key": "bookings", "tr": "Randevular", "en": "Bookings" },
+    { "key": "history", "tr": "Geçmiş Yorumlarım", "en": "Reading History" },
+    { "key": "security", "tr": "Güvenlik", "en": "Security" }
+  ],
+  "overviewCards": [
+    {
+      "key": "profile",
+      "hrefMode": "tab",
+      "hrefValue": "profile",
+      "icon": "user",
+      "eyebrow": { "tr": "Hesap", "en": "Account" },
+      "title": { "tr": "Profilim", "en": "My Profile" },
+      "description": {
+        "tr": "Kişisel bilgilerinizi ve bildirim tercihlerinizi yönetin.",
+        "en": "Manage your personal info and notification preferences."
+      },
+      "cta": { "tr": "Profili düzenle", "en": "Edit profile" }
+    },
+    {
+      "key": "bookings",
+      "hrefMode": "tab",
+      "hrefValue": "bookings",
+      "icon": "calendar",
+      "eyebrow": { "tr": "Randevular", "en": "Bookings" },
+      "title": { "tr": "Seanslarım", "en": "My Sessions" },
+      "description": {
+        "tr": "Yaklaşan randevularınızı ve geçmiş görüşmelerinizi görüntüleyin.",
+        "en": "View upcoming appointments and past sessions."
+      },
+      "cta": { "tr": "Randevuları gör", "en": "View bookings" }
+    },
+    {
+      "key": "explore",
+      "hrefMode": "localizedPath",
+      "hrefValue": "/explore",
+      "icon": "sparkles",
+      "eyebrow": { "tr": "Keşfet", "en": "Explore" },
+      "title": { "tr": "Akışı keşfet", "en": "Explore the flow" },
+      "description": {
+        "tr": "Kategoriler, öne çıkan danışmanlar ve içerikleri tek yerden görün.",
+        "en": "Browse categories, featured consultants and content in one place."
+      },
+      "cta": { "tr": "Keşfet", "en": "Explore" }
+    },
+    {
+      "key": "history",
+      "hrefMode": "tab",
+      "hrefValue": "history",
+      "icon": "clock",
+      "eyebrow": { "tr": "Geçmiş", "en": "History" },
+      "title": { "tr": "Kayıtlarım", "en": "My Records" },
+      "description": {
+        "tr": "Hesabınıza ait kayıtları tek yerden görüntüleyin veya silin.",
+        "en": "View or delete your account records in one place."
+      },
+      "cta": { "tr": "Geçmişi gör", "en": "View history" }
+    },
+    {
+      "key": "pricing",
+      "hrefMode": "localizedPath",
+      "hrefValue": "/pricing",
+      "icon": "creditCard",
+      "eyebrow": { "tr": "Üyelik", "en": "Membership" },
+      "title": { "tr": "Aboneliğim", "en": "My Subscription" },
+      "description": {
+        "tr": "Premium üyelik durumunuzu, kredi bakiyenizi ve faturaları yönetin.",
+        "en": "Manage your premium status, credit balance and invoices."
+      },
+      "cta": { "tr": "Aboneliği yönet", "en": "Manage plan" }
+    },
+    {
+      "key": "consultants",
+      "hrefMode": "localizedPath",
+      "hrefValue": "/consultants",
+      "icon": "heart",
+      "eyebrow": { "tr": "Keşfet", "en": "Explore" },
+      "title": { "tr": "Danışman Bul", "en": "Find a Consultant" },
+      "description": {
+        "tr": "Uzman danışmanlarla yeni bir görüşme planlayın.",
+        "en": "Schedule a new session with expert consultants."
+      },
+      "cta": { "tr": "Danışmanları gör", "en": "Browse experts" }
+    },
+    {
+      "key": "consultantPanel",
+      "hrefMode": "localizedPath",
+      "hrefValue": "/me/consultant",
+      "icon": "settings",
+      "eyebrow": { "tr": "Danışman", "en": "Consultant" },
+      "title": { "tr": "Danışman Paneli", "en": "Consultant Dashboard" },
+      "description": {
+        "tr": "Profilinizi, hizmetlerinizi, müsaitliklerinizi ve kazançlarınızı yönetin.",
+        "en": "Manage your profile, services, availability and earnings."
+      },
+      "cta": { "tr": "Panele git", "en": "Open panel" }
+    }
+  ],
+  "historyFilters": [
+    { "key": "all", "tr": "Tümü", "en": "All" }
+  ],
+  "historyMeta": {
+    "default": { "tr": "Kayıt", "en": "Record", "route": "/dashboard" }
+  }
+}

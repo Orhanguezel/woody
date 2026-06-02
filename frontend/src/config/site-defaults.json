@@ -1,0 +1,285 @@
+{
+  "rootLayout": {
+    "titleDefault": "{{appName}} — Dijital öğrenme ve içerik",
+    "titleTemplate": "%s | {{appName}}"
+  },
+  "brand": {
+    "appName": "Woody ve Arkadaşları",
+    "taglineTr": "Dijital öğrenme ve içerik",
+    "taglineEn": "Digital learning and content",
+    "themeColor": "#15803d",
+    "themeColorDark": "#052e16",
+    "wordMarkLine1": "{{appName}}",
+    "wordMarkLine2": "",
+    "shortName": "{{appName}}",
+    "copyrightHolder": "{{appName}}",
+    "defaultLogoAlt": "Site logo"
+  },
+  "site": {
+    "originFallback": "http://localhost:3077",
+    "apiBaseFallback": "http://127.0.0.1:8086/api/v1"
+  },
+  "i18n": {
+    "defaultLocale": "tr"
+  },
+  "seo": {
+    "global": {
+      "site_name": "{{appName}}",
+      "title_default": "{{appName}} — Dijital öğrenme ve içerik",
+      "title_template": "%s | {{appName}}",
+      "description": "{{appName}} ile eğitim içeriklerine, içeriklere ve güvenilir kaynaklara erişin.",
+      "open_graph": {
+        "type": "website",
+        "images": [
+          "/img/og-default.jpg"
+        ]
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "site": "",
+        "creator": ""
+      },
+      "robots": {
+        "noindex": false,
+        "index": true,
+        "follow": true
+      }
+    },
+    "siteMetaByLocale": {
+      "tr": {
+        "title": "{{appName}} — Dijital öğrenme ve içerik platformu",
+        "description": "Konu bazlı içerikler, ilerleme takibi ve güvenilir kaynaklarla öğrenmeyi sürdürün.",
+        "keywords": "{{appName}}, eğitim, dijital öğrenme, içerik, online"
+      },
+      "en": {
+        "title": "{{appName}} — Digital learning and content",
+        "description": "Structured topics, progress tracking, and trusted educational content.",
+        "keywords": "{{appName}}, education, digital learning, online content"
+      },
+      "de": {
+        "title": "{{appName}} — Digitales Lernen und Inhalte",
+        "description": "Themenbasierte Inhalte, Fortschritt und vertrauenswürdige Lernressourcen.",
+        "keywords": "{{appName}}, bildung, digitales lernen, online-inhalte"
+      }
+    },
+    "localeDescriptionFallback": {
+      "tr": "{{appName}} — Eğitim içerikleri ve güvenilir dijital öğrenme deneyimi.",
+      "en": "{{appName}} — Educational content and a trusted digital learning experience.",
+      "de": "{{appName}} — Bildungsinhalte und ein vertrauenswürdiges digitales Lernerlebnis."
+    },
+    "htmlMetaDescriptionByLocale": {
+      "tr": "{{appName}} — Dijital öğrenme, içerik ve kullanıcı odaklı deneyim.",
+      "en": "{{appName}} — Digital learning, content, and a user-focused experience.",
+      "de": "{{appName}} — Digitales Lernen, Inhalte und nutzerzentrierte Erfahrung."
+    }
+  },
+  "jsonLd": {
+    "organizationDescription": {
+      "tr": "Dijital öğrenme ve içerik platformu.",
+      "en": "Digital learning and content platform.",
+      "de": "Digitale Lern- und Inhaltsplattform."
+    },
+    "placeholderSameAs": []
+  },
+  "editorial": {
+    "teamNameTemplate": "{{appName}} Editorial Team"
+  },
+  "manifest": {
+    "nameKey": "manifest.name",
+    "shortNameKey": "manifest.shortName",
+    "descriptionKey": "manifest.description",
+    "name": "{{appName}}",
+    "shortName": "{{appName}}",
+    "description": "Dijital öğrenme ve içerik platformu.",
+    "startLocalePath": "/tr"
+  },
+  "navigation": {
+    "headerFallbackMenu": [
+      {
+        "id": "fb-home",
+        "url": "/",
+        "label": {
+          "tr": "Ana Sayfa",
+          "en": "Home",
+          "de": "Startseite"
+        }
+      },
+      {
+        "id": "fb-learn",
+        "url": "/explore",
+        "label": {
+          "tr": "Keşfet",
+          "en": "Explore",
+          "de": "Entdecken"
+        }
+      },
+      {
+        "id": "fb-blog",
+        "url": "/blog",
+        "label": {
+          "tr": "Blog",
+          "en": "Blog",
+          "de": "Blog"
+        }
+      },
+      {
+        "id": "fb-karne",
+        "url": "/karne",
+        "label": {
+          "tr": "Karne",
+          "en": "Report card",
+          "de": "Zeugnis"
+        }
+      },
+      {
+        "id": "fb-about",
+        "url": "/about",
+        "label": {
+          "tr": "Hakkımızda",
+          "en": "About",
+          "de": "Über uns"
+        }
+      },
+      {
+        "id": "fb-contact",
+        "url": "/contact",
+        "label": {
+          "tr": "İletişim",
+          "en": "Contact",
+          "de": "Kontakt"
+        }
+      }
+    ],
+    "footerFallbackSections": [
+      {
+        "id": "fb-learn",
+        "title": {
+          "tr": "Öğren",
+          "en": "Learn",
+          "de": "Lernen"
+        },
+        "items": [
+          {
+            "id": "fb-explore",
+            "url": "/explore",
+            "label": {
+              "tr": "Keşfet",
+              "en": "Explore",
+              "de": "Entdecken"
+            }
+          },
+          {
+            "id": "fb-blog",
+            "url": "/blog",
+            "label": {
+              "tr": "Blog",
+              "en": "Blog",
+              "de": "Blog"
+            }
+          },
+          {
+            "id": "fb-faq",
+            "url": "/faqs",
+            "label": {
+              "tr": "SSS",
+              "en": "FAQ",
+              "de": "FAQ"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fb-company",
+        "title": {
+          "tr": "Şirket",
+          "en": "Company",
+          "de": "Unternehmen"
+        },
+        "items": [
+          {
+            "id": "fb-about",
+            "url": "/about",
+            "label": {
+              "tr": "Hakkımızda",
+              "en": "About",
+              "de": "Über uns"
+            }
+          },
+          {
+            "id": "fb-editorial",
+            "url": "/editorial-policy",
+            "label": {
+              "tr": "Editoryal Politika",
+              "en": "Editorial Policy",
+              "de": "Redaktionelle Richtlinie"
+            }
+          },
+          {
+            "id": "fb-karne",
+            "url": "/karne",
+            "label": {
+              "tr": "Karne",
+              "en": "Report card",
+              "de": "Zeugnis"
+            }
+          },
+          {
+            "id": "fb-contact",
+            "url": "/contact",
+            "label": {
+              "tr": "İletişim",
+              "en": "Contact",
+              "de": "Kontakt"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fb-legal",
+        "title": {
+          "tr": "Yasal",
+          "en": "Legal",
+          "de": "Rechtliches"
+        },
+        "items": [
+          {
+            "id": "fb-kvkk",
+            "url": "/kvkk",
+            "label": {
+              "tr": "KVKK",
+              "en": "Privacy (TR)",
+              "de": "Datenschutz (TR)"
+            }
+          },
+          {
+            "id": "fb-privacy",
+            "url": "/gizlilik",
+            "label": {
+              "tr": "Gizlilik Politikası",
+              "en": "Privacy Policy",
+              "de": "Datenschutz"
+            }
+          },
+          {
+            "id": "fb-terms",
+            "url": "/kullanim-sartlari",
+            "label": {
+              "tr": "Kullanım Şartları",
+              "en": "Terms of Use",
+              "de": "Nutzungsbedingungen"
+            }
+          },
+          {
+            "id": "fb-cookie",
+            "url": "/cerez-politikasi",
+            "label": {
+              "tr": "Çerez Politikası",
+              "en": "Cookie Policy",
+              "de": "Cookie-Richtlinie"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

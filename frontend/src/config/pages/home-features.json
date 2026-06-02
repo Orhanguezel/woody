@@ -1,0 +1,110 @@
+{
+  "tr": {
+    "eyebrow": "Neden {{appName}}?",
+    "title": "Ziraat öğreniminde <em>net</em> bir ritim.",
+    "features": [
+      {
+        "num": "— I —",
+        "title": "Müfredata <em>yakın</em> konu ağacı",
+        "body": "Konu ve alt başlıklar etiketlenir; eksik gördüğün alanlara göre tekrar planı kurarsın.",
+        "meta": ["Konu", "Etiket", "Özet"],
+        "settingKey": "ui_feature_learning_image",
+        "imageFallback": "/banners/slim_premium.svg",
+        "overlayLabel": "Konu haritası",
+        "imageAlt": "Konu ve modül görseli"
+      },
+      {
+        "num": "— II —",
+        "title": "Quiz + <em>açıklama</em>",
+        "body": "Her soruda gerekçe ve kaynak ipuçları; ezber değil, anlayarak pekiştirme.",
+        "meta": ["Çoktan seçmeli", "Açıklama", "Zorluk"],
+        "settingKey": "ui_feature_session_image",
+        "imageFallback": "/support_ai.png",
+        "overlayLabel": "Quiz akışı",
+        "imageAlt": "Quiz ekranı"
+      },
+      {
+        "num": "— III —",
+        "title": "Karne, seri ve <em>hedef</em>",
+        "body": "Günlük seri ve puanlarla motivasyon; sınav öncesi zayıf başlıkları yeniden çalış.",
+        "meta": ["Karne", "Seri", "Hedef"],
+        "settingKey": "ui_feature_symbolic_image",
+        "imageFallback": "/banners/slim_premium.svg",
+        "overlayLabel": "İlerleme",
+        "imageAlt": "İlerleme ve karne"
+      }
+    ]
+  },
+  "en": {
+    "eyebrow": "Why {{appName}}?",
+    "title": "A <em>clear</em> rhythm for agri learning.",
+    "features": [
+      {
+        "num": "— I —",
+        "title": "A topic tree <em>close</em> to the curriculum",
+        "body": "Topics and subheads are tagged; you rebuild practice where you are weakest.",
+        "meta": ["Topic", "Tags", "Summary"],
+        "settingKey": "ui_feature_learning_image",
+        "imageFallback": "/banners/slim_premium.svg",
+        "overlayLabel": "Topic map",
+        "imageAlt": "Topic map visual"
+      },
+      {
+        "num": "— II —",
+        "title": "Quizzes with <em>explanations</em>",
+        "body": "Rationale on each item — reinforce understanding, not cramming.",
+        "meta": ["MCQ", "Rationale", "Difficulty"],
+        "settingKey": "ui_feature_session_image",
+        "imageFallback": "/support_ai.png",
+        "overlayLabel": "Quiz flow",
+        "imageAlt": "Quiz screen"
+      },
+      {
+        "num": "— III —",
+        "title": "Report card, streak, <em>goals</em>",
+        "body": "Daily streaks and scores for motivation; revisit weak areas before exams.",
+        "meta": ["Report", "Streak", "Goals"],
+        "settingKey": "ui_feature_symbolic_image",
+        "imageFallback": "/banners/slim_premium.svg",
+        "overlayLabel": "Progress",
+        "imageAlt": "Progress overview"
+      }
+    ]
+  },
+  "de": {
+    "eyebrow": "Warum {{appName}}?",
+    "title": "Ein <em>klarer</em> Rhythmus fürs Agrarstudium.",
+    "features": [
+      {
+        "num": "— I —",
+        "title": "Themenbaum <em>nah</em> am Lehrplan",
+        "body": "Themen und Unterpunkte sind getaggt; gezielt nachholen, wo es fehlt.",
+        "meta": ["Thema", "Tags", "Überblick"],
+        "settingKey": "ui_feature_learning_image",
+        "imageFallback": "/banners/slim_premium.svg",
+        "overlayLabel": "Themenkarte",
+        "imageAlt": "Themenvisual"
+      },
+      {
+        "num": "— II —",
+        "title": "Quiz mit <em>Erklärung</em>",
+        "body": "Begründung pro Frage — Verständnis statt Auswendiglernen.",
+        "meta": ["MCQ", "Erklärung", "Level"],
+        "settingKey": "ui_feature_session_image",
+        "imageFallback": "/support_ai.png",
+        "overlayLabel": "Quizfluss",
+        "imageAlt": "Quiz"
+      },
+      {
+        "num": "— III —",
+        "title": "Zeugnis, Serie, <em>Ziele</em>",
+        "body": "Serie und Punkte für Motivation; schwache Bereiche vor Prüfungen wiederholen.",
+        "meta": ["Zeugnis", "Serie", "Ziele"],
+        "settingKey": "ui_feature_symbolic_image",
+        "imageFallback": "/banners/slim_premium.svg",
+        "overlayLabel": "Fortschritt",
+        "imageAlt": "Fortschritt"
+      }
+    ]
+  }
+}

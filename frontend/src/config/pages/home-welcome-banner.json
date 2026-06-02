@@ -1,0 +1,20 @@
+{
+  "tr": {
+    "subtitle": "Uzmanlarla <em>şeffaf</em> ve güvenilir danışmanlık deneyimi.",
+    "cta": "DANIŞMANLARI KEŞFET",
+    "link": "/tr/consultants",
+    "titleTemplate": "{{appName}}'YA HOŞ GELDİNİZ"
+  },
+  "en": {
+    "subtitle": "<em>Transparent</em>, trustworthy sessions with experts.",
+    "cta": "DISCOVER CONSULTANTS",
+    "link": "/en/consultants",
+    "titleTemplate": "WELCOME TO {{appName}}"
+  },
+  "de": {
+    "subtitle": "Beratung mit <em>Transparenz</em> und Vertrauen.",
+    "cta": "BERATER ENTDECKEN",
+    "link": "/de/consultants",
+    "titleTemplate": "WILLKOMMEN BEI {{appName}}"
+  }
+}
