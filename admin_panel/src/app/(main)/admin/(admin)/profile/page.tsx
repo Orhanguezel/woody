@@ -1,5 +1,7 @@
 'use client';
 
+import { UserCog } from 'lucide-react';
+
 import { ProfileForm } from './_components/ProfileForm';
 import { PasswordForm } from './_components/PasswordForm';
 import { useAdminT } from '@/app/(main)/admin/_components/common/useAdminT';
@@ -8,15 +10,23 @@ export default function ProfilePage() {
   const t = useAdminT();
 
   return (
-    <div className="flex-1 space-y-6 pb-10">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold tracking-tight">{t('admin.sidebar.user.account')}</h1>
-        <p className="text-muted-foreground">
-          {t('admin.profile.subtitle') || 'Profil bilgilerinizi ve şifrenizi buradan güncelleyebilirsiniz.'}
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* Header */}
+      <div className="space-y-2">
+        <div className="flex items-center gap-3">
+          <span className="w-8 h-px bg-gm-gold" />
+          <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">Hesap</span>
+        </div>
+        <h1 className="font-serif text-4xl text-gm-text flex items-center gap-3">
+          <UserCog className="w-7 h-7 text-gm-gold" />
+          {t('admin.sidebar.user.account', null, 'Hesabım')}
+        </h1>
+        <p className="text-gm-muted text-sm font-serif italic opacity-70">
+          {t('admin.profile.subtitle', null, 'Profil bilgilerinizi ve şifrenizi buradan güncelleyebilirsiniz.')}
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2 items-start">
         <ProfileForm />
         <PasswordForm />
       </div>

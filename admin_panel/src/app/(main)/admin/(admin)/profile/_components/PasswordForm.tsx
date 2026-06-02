@@ -47,16 +47,16 @@ export function PasswordForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('admin.profile.security') || 'Güvenlik'}</CardTitle>
-          <CardDescription>
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardHeader className="bg-gm-surface/40 p-6 border-b border-gm-border-soft">
+          <CardTitle className="font-serif text-2xl text-gm-text">{t('admin.profile.security') || 'Güvenlik'}</CardTitle>
+          <CardDescription className="text-gm-muted font-serif italic opacity-80">
             {t('admin.profile.securityDesc') || 'Hesap güvenliğiniz için şifrenizi güncelleyin.'}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="p-6 space-y-4">
           <div className="grid gap-2">
-            <Label htmlFor="new-password">{t('admin.profile.newPassword') || 'Yeni Şifre'}</Label>
+            <Label htmlFor="new-password" className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">{t('admin.profile.newPassword') || 'Yeni Şifre'}</Label>
             <Input
               id="new-password"
               type="password"
@@ -64,10 +64,11 @@ export function PasswordForm() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               disabled={isLoading}
+              className="h-12 bg-gm-surface/40 border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 text-sm"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="confirm-password">{t('admin.profile.confirmPassword') || 'Şifreyi Onayla'}</Label>
+            <Label htmlFor="confirm-password" className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">{t('admin.profile.confirmPassword') || 'Şifreyi Onayla'}</Label>
             <Input
               id="confirm-password"
               type="password"
@@ -75,11 +76,12 @@ export function PasswordForm() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••••"
               disabled={isLoading}
+              className="h-12 bg-gm-surface/40 border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 text-sm"
             />
           </div>
         </CardContent>
-        <CardFooter>
-          <Button type="submit" disabled={isLoading} className="w-full sm:w-auto">
+        <CardFooter className="p-6 pt-0">
+          <Button type="submit" disabled={isLoading} className="rounded-full px-8 h-12 font-bold tracking-widest uppercase text-[10px] w-full sm:w-auto">
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

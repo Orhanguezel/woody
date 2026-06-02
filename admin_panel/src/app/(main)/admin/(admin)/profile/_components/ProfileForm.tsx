@@ -90,17 +90,17 @@ export function ProfileForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('admin.profile.personalInfo') || 'Kişisel Bilgiler'}</CardTitle>
-          <CardDescription>
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardHeader className="bg-gm-surface/40 p-6 border-b border-gm-border-soft">
+          <CardTitle className="font-serif text-2xl text-gm-text">{t('admin.profile.personalInfo') || 'Kişisel Bilgiler'}</CardTitle>
+          <CardDescription className="text-gm-muted font-serif italic opacity-80">
             {t('admin.profile.personalInfoDesc') || 'Adınız, e-posta adresiniz ve profil resminiz.'}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="p-6 space-y-6">
           <div className="flex flex-col items-center gap-4 sm:flex-row">
             <div className="relative group">
-              <Avatar className="h-20 w-20 border-2 border-muted">
+              <Avatar className="h-20 w-20 border-2 border-gm-gold/30">
                 <AvatarImage src={avatarUrl || undefined} alt={fullName} />
                 <AvatarFallback className="text-xl">{getInitials(fullName || email || 'A')}</AvatarFallback>
               </Avatar>
@@ -120,8 +120,8 @@ export function ProfileForm() {
               />
             </div>
             <div className="flex-1 space-y-1 text-center sm:text-left">
-              <h4 className="font-semibold">{fullName || email || 'Admin'}</h4>
-              <p className="text-sm text-muted-foreground">
+              <h4 className="font-serif text-lg text-gm-text">{fullName || email || 'Admin'}</h4>
+              <p className="text-sm text-gm-muted opacity-70">
                 {avatarUrl ? (t('admin.profile.avatarSet') || 'Özel profil resmi ayarlandı') : (t('admin.profile.noAvatar') || 'Varsayılan avatar kullanılıyor')}
               </p>
             </div>
@@ -129,17 +129,18 @@ export function ProfileForm() {
 
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="full-name">{t('admin.profile.name') || 'Tam Ad'}</Label>
+              <Label htmlFor="full-name" className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">{t('admin.profile.name') || 'Tam Ad'}</Label>
               <Input
                 id="full-name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="John Doe"
                 disabled={isAnyLoading}
+                className="h-12 bg-gm-surface/40 border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 text-sm"
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="email">{t('admin.profile.email') || 'E-posta'}</Label>
+              <Label htmlFor="email" className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">{t('admin.profile.email') || 'E-posta'}</Label>
               <Input
                 id="email"
                 type="email"
@@ -147,12 +148,13 @@ export function ProfileForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@example.com"
                 disabled={isAnyLoading}
+                className="h-12 bg-gm-surface/40 border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 text-sm"
               />
             </div>
           </div>
         </CardContent>
-        <CardFooter>
-          <Button type="submit" disabled={isAnyLoading} className="w-full sm:w-auto">
+        <CardFooter className="p-6 pt-0">
+          <Button type="submit" disabled={isAnyLoading} className="rounded-full px-8 h-12 font-bold tracking-widest uppercase text-[10px] w-full sm:w-auto">
             {isUpdatingProfile || isUpdatingAuth ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
