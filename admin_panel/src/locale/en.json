@@ -3379,6 +3379,24 @@
       "errorFallback": "Operation failed"
     },
     "users": {
+      "create": {
+        "button": "New User",
+        "title": "New User",
+        "description": "Create a new user account.",
+        "fullName": "Full Name",
+        "phone": "Phone",
+        "email": "Email",
+        "password": "Password",
+        "passwordHint": "At least 8 characters.",
+        "role": "Role",
+        "active": "Active",
+        "cancel": "Cancel",
+        "submit": "Create",
+        "required": "Email and password are required.",
+        "passwordMin": "Password must be at least 8 characters.",
+        "success": "User created.",
+        "failed": "Could not create user."
+      },
       "list": {
         "title": "Users",
         "description": "View, edit, and manage user roles.",

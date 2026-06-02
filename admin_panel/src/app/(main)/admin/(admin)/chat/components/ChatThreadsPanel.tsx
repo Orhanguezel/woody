@@ -210,7 +210,7 @@ function MessagePanel({ thread }: { thread: ChatThread }) {
             <SelectTrigger className={cn(FIELD, 'w-[130px] h-8')}>
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+            <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
               <SelectItem value="auto">Auto</SelectItem>
               <SelectItem value="openai">OpenAI</SelectItem>
               <SelectItem value="anthropic">Anthropic</SelectItem>
@@ -331,7 +331,7 @@ export default function ChatThreadsPanel() {
             <SelectTrigger className={cn(FIELD, 'h-9')}>
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+            <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
               <SelectItem value="all">{t('threads.filterAll')}</SelectItem>
               <SelectItem value="ai">{t('threads.filterAi')}</SelectItem>
               <SelectItem value="admin">{t('threads.filterAdmin')}</SelectItem>

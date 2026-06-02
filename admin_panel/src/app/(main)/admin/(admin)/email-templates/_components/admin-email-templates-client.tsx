@@ -308,7 +308,7 @@ export default function AdminEmailTemplatesClient() {
                 <SelectTrigger className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                   <SelectItem value="all">{t('list.filters.statusOptions.all')}</SelectItem>
                   <SelectItem value="active">{t('list.filters.statusOptions.active')}</SelectItem>
                   <SelectItem value="inactive">{t('list.filters.statusOptions.inactive')}</SelectItem>

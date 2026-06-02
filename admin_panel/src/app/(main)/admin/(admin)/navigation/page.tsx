@@ -366,7 +366,7 @@ function SectionDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
+      <DialogContent className="max-w-md bg-background border-gm-border-soft rounded-[28px]">
         <DialogHeader>
           <DialogTitle>{editing ? 'Footer Bölümü Düzenle' : 'Yeni Footer Bölümü'}</DialogTitle>
           <DialogDescription>
@@ -892,7 +892,7 @@ export default function NavigationAdminPage() {
             <SelectTrigger className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+            <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
               {LOCALES.map((l) => (
                 <SelectItem key={l.value} value={l.value}>
                   {l.label}

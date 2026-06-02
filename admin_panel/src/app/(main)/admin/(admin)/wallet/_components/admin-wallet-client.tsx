@@ -389,7 +389,7 @@ export default function AdminWalletClient() {
                           <SelectTrigger className="w-[130px] mx-auto bg-gm-surface/40 border-gm-border-soft rounded-2xl h-10 text-xs">
                             <SelectValue />
                           </SelectTrigger>
-                          <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                          <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                             <SelectItem value="active">active</SelectItem>
                             <SelectItem value="suspended">suspended</SelectItem>
                             <SelectItem value="closed">closed</SelectItem>
@@ -445,7 +445,7 @@ export default function AdminWalletClient() {
               <Label className={cn(LABEL, 'block')}>{t('deposits.filters.status', {}, 'Durum')}</Label>
               <Select value={depositStatus} onValueChange={(v) => { setDepositStatus(v as WalletPaymentStatus | 'all'); setDepositPage(1); }}>
                 <SelectTrigger className={FIELD}><SelectValue /></SelectTrigger>
-                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                   <SelectItem value="all">all</SelectItem>
                   <SelectItem value="pending">pending</SelectItem>
                   <SelectItem value="completed">completed</SelectItem>
@@ -458,7 +458,7 @@ export default function AdminWalletClient() {
               <Label className={cn(LABEL, 'block')}>{t('deposits.filters.method', {}, 'Yöntem')}</Label>
               <Select value={depositMethod} onValueChange={(v) => { setDepositMethod(v as WalletPaymentMethod | 'all'); setDepositPage(1); }}>
                 <SelectTrigger className={FIELD}><SelectValue /></SelectTrigger>
-                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                   <SelectItem value="all">all</SelectItem>
                   <SelectItem value="paypal">paypal</SelectItem>
                   <SelectItem value="bank_transfer">bank_transfer</SelectItem>
@@ -589,7 +589,7 @@ export default function AdminWalletClient() {
 
       {/* Adjust dialog */}
       <Dialog open={adjustOpen} onOpenChange={setAdjustOpen}>
-        <DialogContent className="max-w-md bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
+        <DialogContent className="max-w-md bg-background border-gm-border-soft rounded-[28px]">
           <DialogHeader>
             <DialogTitle className="font-serif text-2xl text-gm-text">{t('adjust.title', {}, 'Manuel Bakiye Ayarla')}</DialogTitle>
           </DialogHeader>
@@ -598,7 +598,7 @@ export default function AdminWalletClient() {
               <Label className={LABEL}>{t('adjust.type', {}, 'İşlem Tipi')}</Label>
               <Select value={adjustType} onValueChange={(v) => setAdjustType(v as 'credit' | 'debit')}>
                 <SelectTrigger className={FIELD}><SelectValue /></SelectTrigger>
-                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                   <SelectItem value="credit">Credit (+)</SelectItem>
                   <SelectItem value="debit">Debit (-)</SelectItem>
                 </SelectContent>
@@ -630,7 +630,7 @@ export default function AdminWalletClient() {
 
       {/* Transactions dialog */}
       <Dialog open={txOpen} onOpenChange={setTxOpen}>
-        <DialogContent className="max-w-5xl bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
+        <DialogContent className="max-w-5xl bg-background border-gm-border-soft rounded-[28px]">
           <DialogHeader>
             <DialogTitle className="font-serif text-2xl text-gm-text">
               {t('transactions.title', {}, 'Cüzdan İşlemleri')} {selectedWallet ? `#${selectedWallet.id}` : ''}

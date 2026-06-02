@@ -439,7 +439,7 @@ export default function AdminStorageClient() {
               <SelectTrigger className="lg:w-40 bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 text-sm">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                 <SelectItem value={ADMIN_STORAGE_ALL_OPTION}>{t('list.allOption', null, 'Tümü')}</SelectItem>
                 {buckets.map((bucket) => (
                   <SelectItem key={bucket} value={bucket}>
@@ -452,7 +452,7 @@ export default function AdminStorageClient() {
               <SelectTrigger className="lg:w-44 bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 text-sm">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                 <SelectItem value={ADMIN_STORAGE_ALL_OPTION}>{t('list.allOption', null, 'Tümü')}</SelectItem>
                 {folders.map((folder) => (
                   <SelectItem key={folder || 'root'} value={folder || ''}>
@@ -465,7 +465,7 @@ export default function AdminStorageClient() {
               <SelectTrigger className="lg:w-40 bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 text-sm">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                 <SelectItem value={ADMIN_STORAGE_ALL_OPTION}>{t('list.allOption', null, 'Tümü')}</SelectItem>
                 {ADMIN_STORAGE_MIME_OPTIONS.map((option) => (
                   <SelectItem key={option.value} value={option.value}>
@@ -574,7 +574,7 @@ export default function AdminStorageClient() {
 
       {/* Detail dialog */}
       <Dialog open={Boolean(activeItem)} onOpenChange={(open) => !open && setActiveItem(null)}>
-        <DialogContent className="max-w-[900px] p-6 bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
+        <DialogContent className="max-w-[900px] p-6 bg-background border-gm-border-soft rounded-[28px]">
           {activeItem ? (
             <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_300px]">
               <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-2xl bg-gm-surface/30 border border-gm-border-soft">
@@ -654,7 +654,7 @@ export default function AdminStorageClient() {
 
       {/* Delete confirm */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <AlertDialogContent className="bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
+        <AlertDialogContent className="bg-background border-gm-border-soft rounded-[28px]">
           <AlertDialogHeader>
             <AlertDialogTitle className="font-serif text-xl text-gm-text">{t('list.deleteConfirmTitle', null, 'Dosyayı sil')}</AlertDialogTitle>
             <AlertDialogDescription>

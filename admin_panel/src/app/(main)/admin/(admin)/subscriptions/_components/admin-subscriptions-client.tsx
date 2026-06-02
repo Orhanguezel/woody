@@ -174,7 +174,7 @@ export default function AdminSubscriptionsClient() {
               <SelectTrigger className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                 {STATUSES.map((s) => (
                   <SelectItem key={s} value={s}>
                     {statusLabel(t, s)}

@@ -1782,6 +1782,24 @@
       "admin": "Admin",
       "consultant": "Danışman",
       "user": "Kullanıcı"
+    },
+    "create": {
+      "button": "Yeni Kullanıcı",
+      "title": "Yeni Kullanıcı",
+      "description": "Yeni bir kullanıcı hesabı oluşturun.",
+      "fullName": "Tam Ad",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "password": "Şifre",
+      "passwordHint": "En az 8 karakter.",
+      "role": "Rol",
+      "active": "Aktif",
+      "cancel": "İptal",
+      "submit": "Oluştur",
+      "required": "E-posta ve şifre zorunlu.",
+      "passwordMin": "Şifre en az 8 karakter olmalı.",
+      "success": "Kullanıcı oluşturuldu.",
+      "failed": "Kullanıcı oluşturulamadı."
     }
   },
   "userRoles": {

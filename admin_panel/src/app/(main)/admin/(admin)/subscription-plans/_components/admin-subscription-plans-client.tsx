@@ -261,7 +261,7 @@ export default function AdminSubscriptionPlansClient() {
                 <SelectTrigger className={FIELD_CLS}>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                   {PERIODS.map((p) => (
                     <SelectItem key={p} value={p}>
                       {t(`periods.${p}`, null, p)}

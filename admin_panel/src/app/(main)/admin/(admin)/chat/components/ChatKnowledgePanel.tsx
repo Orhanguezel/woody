@@ -146,7 +146,7 @@ function KnowledgeFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="max-w-lg bg-gm-bg-deep border-gm-border-soft rounded-[28px]">
+      <DialogContent className="max-w-lg bg-background border-gm-border-soft rounded-[28px]">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl text-gm-text">
             {editItem ? t('knowledge.editTitle') : t('knowledge.addTitle')}
@@ -161,7 +161,7 @@ function KnowledgeFormDialog({
                 <SelectTrigger className={FIELD}>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                   {(localeOptions.length
                     ? localeOptions
                     : [{ value: coerceLocale('', defaultLocaleFromDb) || 'de', label: 'Default' }]
@@ -308,7 +308,7 @@ export default function ChatKnowledgePanel() {
               <SelectTrigger className={cn(FIELD, 'w-[150px]')}>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                 <SelectItem value="all">{t('knowledge.allLocales')}</SelectItem>
                 {localeOptions.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>

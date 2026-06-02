@@ -259,7 +259,7 @@ export default function ChatSettingsPanel() {
               <SelectTrigger className={cn(FIELD, 'w-[220px]')}>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
                 <SelectItem value="auto">Auto</SelectItem>
                 <SelectItem value="openai">OpenAI</SelectItem>
                 <SelectItem value="anthropic">Anthropic</SelectItem>
