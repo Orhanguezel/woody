@@ -872,22 +872,27 @@ export default function NavigationAdminPage() {
   const [locale, setLocale] = React.useState<string>('tr');
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 pb-12">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-display text-2xl font-bold italic text-gm-primary">
-            Navigasyon Yönetimi
-          </h1>
-          <p className="text-sm text-muted-foreground mt-1">
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-px bg-gm-gold" />
+            <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">
+              Navigasyon
+            </span>
+          </div>
+          <h1 className="font-serif text-4xl text-gm-text">Navigasyon Yönetimi</h1>
+          <p className="text-gm-muted text-sm font-serif italic opacity-70">
             Üst menü (header) ve footer linklerini buradan yönet. Dropdown desteği var.
           </p>
         </div>
-        <div className="w-44">
+        <div className="w-48">
           <Select value={locale} onValueChange={setLocale}>
-            <SelectTrigger>
+            <SelectTrigger className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
               {LOCALES.map((l) => (
                 <SelectItem key={l.value} value={l.value}>
                   {l.label}
@@ -898,15 +903,25 @@ export default function NavigationAdminPage() {
         </div>
       </div>
 
-      <Tabs defaultValue="header">
-        <TabsList>
-          <TabsTrigger value="header">Header Menü</TabsTrigger>
-          <TabsTrigger value="footer">Footer Düzeni</TabsTrigger>
+      <Tabs defaultValue="header" className="w-full space-y-6">
+        <TabsList className="bg-gm-surface/30 border border-gm-border-soft rounded-full p-1.5 h-auto">
+          <TabsTrigger
+            value="header"
+            className="rounded-full px-6 py-2 text-[11px] font-bold tracking-widest uppercase data-[state=active]:bg-gm-gold/15 data-[state=active]:text-gm-gold transition-all"
+          >
+            Header Menü
+          </TabsTrigger>
+          <TabsTrigger
+            value="footer"
+            className="rounded-full px-6 py-2 text-[11px] font-bold tracking-widest uppercase data-[state=active]:bg-gm-gold/15 data-[state=active]:text-gm-gold transition-all"
+          >
+            Footer Düzeni
+          </TabsTrigger>
         </TabsList>
-        <TabsContent value="header" className="mt-6">
+        <TabsContent value="header">
           <HeaderMenuTab locale={locale} />
         </TabsContent>
-        <TabsContent value="footer" className="mt-6">
+        <TabsContent value="footer">
           <FooterTab locale={locale} />
         </TabsContent>
       </Tabs>

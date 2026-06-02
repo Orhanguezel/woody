@@ -19,7 +19,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { GripVertical, Save, RefreshCcw, Trash2, Plus, ChevronDown, ChevronRight } from 'lucide-react';
+import { GripVertical, Save, RefreshCcw, Trash2, Plus, ChevronDown, ChevronRight, AlertCircle } from 'lucide-react';
 
 import {
   useListHomeSectionsAdminQuery,
@@ -37,7 +37,9 @@ import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
 interface RowProps {
   section: AdminHomeSectionDto;
@@ -268,88 +270,110 @@ export default function HomeLayoutAdminClient() {
   const busy = isLoading || isFetching || isUpdating || isReordering || isDeleting || isCreating;
 
   return (
-    <div className="container mx-auto py-8 px-4 max-w-5xl space-y-6">
-      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-3xl overflow-hidden backdrop-blur-sm">
-        <CardHeader className="p-6 border-b border-gm-border-soft flex flex-row items-center justify-between gap-4">
-          <div>
-            <CardTitle className="font-serif text-2xl text-gm-text">Anasayfa Düzeni</CardTitle>
-            <CardDescription className="text-gm-muted font-serif italic mt-1">
-              Section'ları sürükleyip sırasını değiştir, aktif/pasif yap, config'i düzenle.
-            </CardDescription>
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-px bg-gm-gold" />
+            <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">
+              Anasayfa Düzeni
+            </span>
           </div>
-          <div className="flex items-center gap-2">
+          <h1 className="font-serif text-4xl text-gm-text">Anasayfa Düzeni</h1>
+          <p className="text-gm-muted text-sm font-serif italic opacity-70">
+            Section&apos;ları sürükleyip sırasını değiştir, aktif/pasif yap, config&apos;i düzenle.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6 bg-gm-surface/20 px-8 py-4 rounded-[24px] border border-gm-border-soft backdrop-blur-sm shadow-lg">
+            <div className="text-center sm:text-right min-w-[80px]">
+              <p className="text-[10px] font-bold text-gm-muted tracking-widest uppercase mb-1">Toplam</p>
+              <p className="font-serif text-3xl text-gm-gold">{items.length}</p>
+            </div>
             <Button
               variant="outline"
               size="sm"
               onClick={() => refetch()}
               disabled={busy}
-              className="border-gm-border-soft"
+              className="rounded-full border-gm-border-soft px-8 h-12 hover:bg-gm-surface transition-all font-bold tracking-widest uppercase text-[10px]"
             >
-              <RefreshCcw className="size-3.5 mr-2" />
+              <RefreshCcw className={cn('mr-2 size-4', busy && 'animate-spin')} />
               Yenile
             </Button>
-            <Button
-              size="sm"
-              onClick={() => setShowNew((v) => !v)}
-              disabled={busy}
-              className="bg-gm-gold text-gm-bg hover:bg-gm-gold-light"
-            >
-              <Plus className="size-3.5 mr-2" />
-              Yeni Section
-            </Button>
           </div>
-        </CardHeader>
+          <Button
+            onClick={() => setShowNew((v) => !v)}
+            disabled={busy}
+            className="rounded-full px-8 h-12 font-bold tracking-widest uppercase text-[10px]"
+          >
+            <Plus className="mr-2 size-4" />
+            Yeni Section
+          </Button>
+        </div>
+      </div>
 
-        {showNew && (
-          <div className="p-6 border-b border-gm-border-soft bg-gm-bg-deep/40 grid gap-3 md:grid-cols-4">
-            <div>
-              <Label className="text-[10px] uppercase tracking-widest text-gm-muted">Slug (a-z, _)</Label>
+      {/* New section form */}
+      {showNew && (
+        <Card className="bg-gm-bg-deep/50 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-md shadow-2xl">
+          <CardContent className="p-8 grid gap-6 md:grid-cols-4 items-end">
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Slug (a-z, _)</Label>
               <Input
                 value={newRow.slug}
                 onChange={(e) => setNewRow({ ...newRow, slug: e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, '') })}
                 placeholder="my_new_section"
-                className="h-9 bg-gm-bg-deep border-gm-border-soft mt-1"
+                className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm"
               />
             </div>
-            <div>
-              <Label className="text-[10px] uppercase tracking-widest text-gm-muted">Etiket</Label>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Etiket</Label>
               <Input
                 value={newRow.label}
                 onChange={(e) => setNewRow({ ...newRow, label: e.target.value })}
                 placeholder="Yeni Section"
-                className="h-9 bg-gm-bg-deep border-gm-border-soft mt-1"
+                className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm"
               />
             </div>
-            <div>
-              <Label className="text-[10px] uppercase tracking-widest text-gm-muted">Component</Label>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Component</Label>
               <select
                 value={newRow.component_key}
                 onChange={(e) => setNewRow({ ...newRow, component_key: e.target.value })}
-                className="h-9 mt-1 w-full rounded-md bg-gm-bg-deep border border-gm-border-soft text-gm-text px-3 text-sm"
+                className="h-12 w-full rounded-2xl bg-gm-surface/40 border border-gm-border-soft text-gm-text px-3 text-sm"
               >
                 {HOME_LAYOUT_COMPONENT_OPTIONS.map((c) => (
                   <option key={c.key} value={c.key}>{c.label}</option>
                 ))}
               </select>
             </div>
-            <div className="flex items-end">
-              <Button
-                onClick={handleCreate}
-                disabled={busy}
-                className="bg-gm-gold text-gm-bg hover:bg-gm-gold-light w-full h-9"
-              >
-                <Save className="size-3.5 mr-2" />
-                Ekle
-              </Button>
-            </div>
-          </div>
-        )}
+            <Button
+              onClick={handleCreate}
+              disabled={busy}
+              className="rounded-full h-12 font-bold tracking-widest uppercase text-[10px]"
+            >
+              <Save className="mr-2 size-4" />
+              Ekle
+            </Button>
+          </CardContent>
+        </Card>
+      )}
 
+      {/* List Card */}
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
         <CardContent className="p-6">
           {isLoading ? (
-            <div className="text-center py-12 text-gm-muted">Yükleniyor...</div>
+            <div className="space-y-2">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Skeleton key={i} className="h-16 w-full bg-gm-surface/20 rounded-2xl" />
+              ))}
+            </div>
           ) : items.length === 0 ? (
-            <div className="text-center py-12 text-gm-muted">Hiç section yok.</div>
+            <div className="flex flex-col items-center gap-4 py-20 opacity-30">
+              <AlertCircle className="w-16 h-16 text-gm-gold/50" />
+              <span className="font-serif italic text-lg text-gm-muted">Hiç section yok.</span>
+            </div>
           ) : (
             <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
               <SortableContext items={items.map((s) => s.id)} strategy={verticalListSortingStrategy}>
