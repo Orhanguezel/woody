@@ -230,7 +230,7 @@ export default function LlmPromptFormPage() {
                     id="key" 
                     value={formData.key} 
                     onChange={(e) => setFormData(p => ({ ...p, key: e.target.value.toUpperCase() }))}
-                    placeholder="DAILY_HOROSCOPE_V1"
+                    placeholder="ORNEK_PROMPT_V1"
                     className="border-gm-border-soft bg-gm-bg-deep/30 font-mono"
                   />
                   <p className="text-[10px] text-muted-foreground italic">Used in code to call this specific prompt.</p>

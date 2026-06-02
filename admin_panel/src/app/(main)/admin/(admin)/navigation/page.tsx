@@ -173,7 +173,7 @@ function MenuItemDialog({
               id="title"
               value={form.title}
               onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
-              placeholder="Doğum Haritası"
+              placeholder="Hakkımızda"
             />
           </div>
 
@@ -184,7 +184,7 @@ function MenuItemDialog({
                 id="url"
                 value={form.url}
                 onChange={(e) => setForm((p) => ({ ...p, url: e.target.value }))}
-                placeholder="/birth-chart veya https://…"
+                placeholder="/hakkimizda veya https://…"
               />
               <p className="text-[10px] text-muted-foreground italic">
                 Dropdown ana başlık ise boş bırak

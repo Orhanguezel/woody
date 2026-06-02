@@ -2,15 +2,7 @@
 
 import * as React from 'react';
 import { toast } from 'sonner';
-import {
-  Trash2,
-  RefreshCcw,
-  Globe,
-  Star,
-  Calendar,
-  LogIn,
-  Sparkles,
-} from 'lucide-react';
+import { Trash2, RefreshCcw, Globe } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -44,34 +36,6 @@ const CACHE_ACTIONS = [
     description: "Ana sayfanın cache'ini temizler.",
     icon: Globe,
     action: () => revalidate({ path: '/tr' }),
-  },
-  {
-    id: 'birth-chart',
-    label: 'Doğum Haritası',
-    description: "Doğum haritası sayfası cache'ini temizler.",
-    icon: Sparkles,
-    action: () => revalidate({ path: '/tr/birth-chart' }),
-  },
-  {
-    id: 'consultants',
-    label: 'Danışmanlar',
-    description: "Danışman listesi ve detay sayfaları cache'ini temizler.",
-    icon: Star,
-    action: () => revalidate({ path: '/tr/consultants' }),
-  },
-  {
-    id: 'booking',
-    label: 'Randevu',
-    description: "Randevu akışının cache'ini temizler.",
-    icon: Calendar,
-    action: () => revalidate({ path: '/tr/booking' }),
-  },
-  {
-    id: 'auth',
-    label: 'Giriş / Kayıt',
-    description: "Giriş ve kayıt sayfalarının cache'ini temizler.",
-    icon: LogIn,
-    action: () => revalidate({ path: '/tr/auth/login' }),
   },
 ];
 
