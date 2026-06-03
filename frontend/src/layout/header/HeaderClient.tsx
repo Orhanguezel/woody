@@ -8,8 +8,7 @@ import { ChevronDown } from 'lucide-react';
 import HeaderOffcanvas from './HeaderOffcanvas';
 import MegaMenuPanel from './MegaMenuPanel';
 import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
-import { useGetMyConsultantStatsQuery } from '@/integrations/rtk/private/consultant_self.endpoints';
-import type { PublicMenuItemDto, User } from '@/integrations/shared';
+import type { PublicMenuItemDto } from '@/integrations/shared';
 import { localizePath } from '@/integrations/shared';
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { useAuthStore } from '@/features/auth/auth.store';
@@ -49,38 +48,6 @@ const cleanHashLink = (href: string) => {
   return href;
 };
 
-type HeaderMegaMenuKind = 'discover';
-
-function normalizeMenuToken(value: unknown): string {
-  return String(value ?? '')
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-}
-
-function resolveHeaderMegaMenuKind(item: MenuItemWithChildren, children: MenuItemWithChildren[]): HeaderMegaMenuKind | undefined {
-  const parentToken = normalizeMenuToken(`${item.id ?? ''} ${item.title ?? ''} ${item.url ?? ''}`);
-
-  if (
-    parentToken.includes('kesfet') ||
-    parentToken.includes('explore') ||
-    parentToken.includes('discover') ||
-    parentToken.includes('mi-h-discover')
-  ) {
-    return 'discover';
-  }
-
-  const childToken = normalizeMenuToken(
-    children.map((child) => `${child.id ?? ''} ${child.title ?? ''} ${child.url ?? ''}`).join(' '),
-  );
-
-  if (childToken.includes('explore') || childToken.includes('kesfet') || childToken.includes('education')) {
-    return 'discover';
-  }
-
-  return undefined;
-}
-
 type HeaderClientBrand = {
   name: string;
   email?: string;
@@ -95,19 +62,6 @@ function getSettingString(value: unknown, key: string) {
   return typeof raw === 'string' && raw.trim() ? raw : undefined;
 }
 
-function roleToString(role: unknown): string {
-  if (typeof role === 'string') return role.toLowerCase();
-  if (typeof role !== 'object' || role === null) return '';
-  const raw = (role as { name?: unknown; role?: unknown }).name ?? (role as { role?: unknown }).role;
-  return typeof raw === 'string' ? raw.toLowerCase() : '';
-}
-
-function hasUserRole(user: User | null, roleName: string) {
-  const target = roleName.toLowerCase();
-  if (roleToString(user?.role) === target) return true;
-  return Array.isArray(user?.roles) && user.roles.some((role) => roleToString(role) === target);
-}
-
 type HeaderClientProps = {
   brand?: HeaderClientBrand;
   locale?: string;
@@ -120,15 +74,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const { isAuthenticated, user } = useAuthStore();
-  const isConsultant = hasUserRole(user, 'consultant');
-
-  // T29-4: Consultant rolündeki kullanıcının bekleyen anlık talep sayısı (header rozet için)
-  const { data: consultantStats } = useGetMyConsultantStatsQuery(undefined, {
-    skip: !isAuthenticated || !isConsultant,
-    pollingInterval: 30_000, // 30sn'de bir taze say
-  });
-  const pendingRequestNow = consultantStats?.requested_now_count ?? 0;
+  const { isAuthenticated } = useAuthStore();
 
   const locale = useLocaleShort(localeProp);
   const { ui } = useUiSection('ui_header', locale);
@@ -173,8 +119,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   const homeHref = localizePath(locale, '/');
-  const consultantsHref = localizePath(locale, '/consultants');
-  const consultantPanelHref = localizePath(locale, '/me/consultant');
+  const contactHref = localizePath(locale, '/contact');
+  const profileHref = localizePath(locale, '/profile');
 
   return (
     <Fragment>
@@ -213,18 +159,6 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
                   : '#';
 
                 if (hasChildren) {
-                  let expertiseFilter: string | undefined;
-                  let panelEyebrow: string | undefined;
-                  const consultantsHeading = locale === 'tr' ? 'Uzman Danışmanlar' : locale === 'de' ? 'Beraterinnen & Berater' : 'Featured Consultants';
-                  let allConsultantsExpertise: string | undefined;
-                  const megaMenuKind = resolveHeaderMegaMenuKind(item, children);
-
-                  if (megaMenuKind === 'discover') {
-                    expertiseFilter = 'education';
-                    allConsultantsExpertise = 'education';
-                    panelEyebrow = label;
-                  }
-
                   return (
                     <li key={item.id} className="static group/dd">
                       <button
@@ -238,13 +172,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
                         <div className="mx-auto w-fit px-6 lg:px-12 drop-shadow-2xl pt-2">
                           <MegaMenuPanel
                             links={children.map((c) => ({ id: c.id, url: (c as any).url, title: c.title }))}
-                            expertise={expertiseFilter}
                             locale={locale}
-                            consultantsHeading={consultantsHeading}
-                            allConsultantsLabel={locale === 'tr' ? 'Tümünü Gör' : locale === 'de' ? 'Alle ansehen' : 'See All'}
-                            allConsultantsExpertise={allConsultantsExpertise}
-                            panelEyebrow={panelEyebrow || label}
-                            limit={expertiseFilter ? 4 : 0}
+                            panelEyebrow={label}
                           />
                         </div>
                       </div>
@@ -267,30 +196,16 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               <ThemeToggle />
               {isAuthenticated && (
                 <Link
-                  href={localizePath(locale, '/dashboard')}
+                  href={profileHref}
                   className="inline-flex items-center gap-2 text-[12px] font-bold tracking-[0.18em] uppercase text-[var(--gm-text)] hover:text-[var(--gm-gold-deep)] transition-colors"
-                  title={locale === 'tr' ? 'Panelim' : 'Dashboard'}
+                  title={locale === 'tr' ? 'Profilim' : 'Profile'}
                 >
                   <IconUser className="w-4 h-4" />
-                  {locale === 'tr' ? 'Panel' : 'Dashboard'}
+                  {locale === 'tr' ? 'Profil' : 'Profile'}
                 </Link>
               )}
-              {isConsultant && (
-                <Link
-                  href={consultantPanelHref}
-                  className="relative inline-flex items-center gap-2 text-[12px] font-bold tracking-[0.18em] uppercase text-[var(--gm-gold)] hover:text-[var(--gm-gold-light)] transition-colors"
-                  title={locale === 'tr' ? 'Danışman Paneli' : 'Consultant Panel'}
-                >
-                  {locale === 'tr' ? 'Danışman Paneli' : 'Consultant Panel'}
-                  {pendingRequestNow > 0 && (
-                    <span className="inline-flex items-center justify-center min-w-[20px] h-[20px] px-1.5 rounded-full bg-rose-500 text-white text-[10px] font-bold animate-pulse">
-                      ⚡{pendingRequestNow}
-                    </span>
-                  )}
-                </Link>
-              )}
-              <Link href={consultantsHref} className="btn-premium py-2.5 px-6 text-[12px]">
-                {ui('ui_header_cta', 'DANIŞMAN BUL')}
+              <Link href={contactHref} className="btn-premium py-2.5 px-6 text-[12px]">
+                {ui('ui_header_cta', locale === 'tr' ? 'İLETİŞİM' : 'CONTACT')}
               </Link>
 
               {/* Hamburger Toggle */}
@@ -381,23 +296,9 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               );
             })}
           </ul>
-          <Link href={consultantsHref} className="btn-premium w-full max-w-xs text-center" onClick={() => setMobileOpen(false)}>
-            {ui('ui_header_cta', 'DANIŞMAN BUL')}
+          <Link href={contactHref} className="btn-premium w-full max-w-xs text-center" onClick={() => setMobileOpen(false)}>
+            {ui('ui_header_cta', locale === 'tr' ? 'İLETİŞİM' : 'CONTACT')}
           </Link>
-          {isConsultant && (
-            <Link
-              href={consultantPanelHref}
-              className="mt-4 inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full border border-[var(--gm-gold)]/40 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--gm-gold)]"
-              onClick={() => setMobileOpen(false)}
-            >
-              {locale === 'tr' ? 'Danışman Paneli' : 'Consultant Panel'}
-              {pendingRequestNow > 0 && (
-                <span className="inline-flex items-center justify-center min-w-[20px] h-[20px] px-1.5 rounded-full bg-rose-500 text-white text-[10px] font-bold animate-pulse">
-                  ⚡{pendingRequestNow}
-                </span>
-              )}
-            </Link>
-          )}
         </div>
       </header>
     </Fragment>

@@ -217,8 +217,8 @@ export function mergeSeoPageIntoSeo(
  *   const { locale } = await params;
  *   return buildPageMetadata({
  *     locale,
- *     pageKey: 'pricing',
- *     pathname: '/pricing',
+ *     pageKey: 'terms',
+ *     pathname: '/terms',
  *     fallback: { title: 'Pricing', description: '...' }, // DB boşsa kullanılır
  *   });
  * }

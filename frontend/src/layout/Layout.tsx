@@ -541,7 +541,7 @@ export default function Layout({
         name: effectiveBrand.name || getPublicAppName(),
         url: base,
         publisherId: orgId,
-        searchUrlTemplate: `${base}/tr/consultants?q={q}`,
+        searchUrlTemplate: `${base}/tr/blog?q={q}`,
       }),
     ]);
   }, [effectiveBrand.name, effectiveBrand.website, effectiveBrand.socials, siteLogoUrl, locale]);

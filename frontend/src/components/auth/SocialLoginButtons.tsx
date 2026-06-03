@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import { toast } from 'sonner';
@@ -48,7 +49,7 @@ declare global {
 }
 
 type Props = {
-  /** Login sonrası gidilecek URL (yoksa dashboard) */
+  /** Login sonrası gidilecek URL (yoksa profil) */
   nextHref?: string;
   /** Sıralama: row (yan yana) | column (alt alta) */
   layout?: 'row' | 'column';
@@ -184,7 +185,7 @@ function SocialButtonsInner({
             disabled={isLoading}
             className="inline-flex items-center justify-center gap-3 rounded-sm border border-(--gm-border-soft) bg-(--gm-surface) px-4 py-3 text-sm font-medium text-(--gm-text) transition-all hover:border-(--gm-gold)/40 hover:bg-(--gm-surface) hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <img src="/icons/google.png" alt="" width={18} height={18} />
+            <Image src="/icons/google.png" alt="" width={18} height={18} />
             <span>Google ile devam et</span>
           </button>
         )}
@@ -195,7 +196,7 @@ function SocialButtonsInner({
             disabled={isLoading}
             className="inline-flex items-center justify-center gap-3 rounded-sm border border-(--gm-border-soft) bg-(--gm-surface) px-4 py-3 text-sm font-medium text-(--gm-text) transition-all hover:border-(--gm-gold)/40 hover:bg-(--gm-surface) hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <img src="/icons/facebook.png" alt="" width={18} height={18} />
+            <Image src="/icons/facebook.png" alt="" width={18} height={18} />
             <span>Facebook ile devam et</span>
           </button>
         )}
@@ -232,7 +233,7 @@ function WithGoogle({ nextHref, layout, className }: Props) {
           window.localStorage.setItem('user', JSON.stringify((resp as any).user));
         }
         toast.success('Giriş başarılı');
-        router.push(nextHref || localizePath(locale, '/dashboard'));
+        router.push(nextHref || localizePath(locale, '/profile'));
       } catch (err) {
         toast.error(normalizeError(err).message || 'Sosyal giriş başarısız.');
       }
@@ -323,7 +324,7 @@ function FacebookOnly({ nextHref, layout, className }: Props) {
           window.localStorage.setItem('user', JSON.stringify((resp as any).user));
         }
         toast.success('Giriş başarılı');
-        router.push(nextHref || localizePath(locale, '/dashboard'));
+        router.push(nextHref || localizePath(locale, '/profile'));
       } catch (err) {
         toast.error(normalizeError(err).message || 'Sosyal giriş başarısız.');
       }

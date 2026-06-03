@@ -224,14 +224,14 @@ export function faqPage(items: Array<{ question: string; answer: string }>): Thi
 export const faqSchema = faqPage;
 
 // ─────────────────────────────────────────────────────────────────
-// T31-A3 + T31-B1..B4: danışman / içerik schema helper'ları (marka site-config ile uyumlu)
+// Genel içerik schema helper'ları (marka site-config ile uyumlu)
 // ─────────────────────────────────────────────────────────────────
 
 /**
- * Consultant Person schema — danışman detay sayfası için.
+ * Profile Person schema.
  * Person + makesOffer (services) + aggregateRating birleşimi.
  */
-export function consultantPerson(input: {
+export function profilePerson(input: {
   id?: string;
   name: string;
   url: string;
@@ -304,10 +304,10 @@ export function consultantPerson(input: {
   return node;
 }
 
-export const consultantPersonSchema = consultantPerson;
+export const profilePersonSchema = profilePerson;
 
 /**
- * Service / hizmet paketi schema — bağımsız Service node (consultant detayında veya pricing'de).
+ * Service / hizmet schema — bağımsız Service node.
  */
 export function service(input: {
   id?: string;
@@ -342,7 +342,7 @@ export function service(input: {
 }
 
 /**
- * ItemList schema — /consultants liste sayfası için.
+ * ItemList schema — liste sayfaları için.
  */
 export function itemList(input: {
   url: string;

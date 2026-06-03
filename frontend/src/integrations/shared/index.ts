@@ -15,12 +15,8 @@ export * from './users';
 export * from './admin_users.types';
 export * from './audit.types';
 
-
-export * from './dashboard.types';
 export * from './db.types';
 export * from './notifications.types';
-export * from './review.types';
-export * from './review_admin.types';
 
 export * from './services.types';
 export * from './slider.types';
@@ -38,9 +34,7 @@ export * from './menu_items.types';
 export * from './newsletter.types';
 export * from './faqs.types';
 
-export * from './bookings';
 export * from './availability.types';
-export * from './resources.types';
 export * from './chat.types';
 export * from './profiles';
 export * from './auth.types';
@@ -55,9 +49,7 @@ export * from './media';
 export * from './local';
 export * from './errors';
 export * from './localeDisplay';
-export * from './popups.types';
 export * from './wallet.types';
-export * from './orders.types';
 
 // =============================================================
 // END FILE

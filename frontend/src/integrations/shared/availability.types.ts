@@ -3,11 +3,10 @@
 // FINAL — FE/RTK types aligned with backend availability module
 // =============================================================
 
-import type { ResourceType } from '@/integrations/shared';
-
 export type UUID36 = string; // 36 chars
 export type Ymd = string; // YYYY-MM-DD
 export type Hm = string; // HH:mm
+export type ResourceType = string;
 
 type Active01 = 0 | 1;
 

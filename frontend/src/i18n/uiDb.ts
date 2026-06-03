@@ -21,13 +21,11 @@ export type UiSectionKey =
   | 'ui_contact'
   | 'ui_about'
   | 'ui_about_stats'
-  | 'ui_pricing'
   | 'ui_testimonials'
   | 'ui_faq'
   | 'ui_features'
   | 'ui_cta'
   | 'ui_blog'
-  | 'ui_dashboard'
   | 'ui_auth'
   | 'ui_newsletter'
   | 'ui_library'
@@ -65,7 +63,6 @@ const SECTION_KEYS: Record<UiSectionKey, readonly string[]> = {
   ui_header: [
     'ui_header_nav_home',
     'ui_header_nav_about',
-    'ui_header_nav_consultants',
     'ui_header_nav_blog',
     'ui_header_nav_news',
     'ui_header_nav_contact',
@@ -99,7 +96,6 @@ const SECTION_KEYS: Record<UiSectionKey, readonly string[]> = {
     'ui_footer_company',
     'ui_footer_about',
     'ui_footer_blog',
-    'ui_footer_resources',
     'ui_footer_free_tools',
     'ui_footer_contact_us',
     'ui_footer_services',
@@ -108,7 +104,6 @@ const SECTION_KEYS: Record<UiSectionKey, readonly string[]> = {
     'ui_footer_service_smm',
     'ui_footer_service_link_building',
     'ui_footer_service_cro',
-    'ui_footer_explore',
     'ui_footer_account',
     'ui_footer_privacy',
     'ui_footer_affiliate',
@@ -183,8 +178,6 @@ const SECTION_KEYS: Record<UiSectionKey, readonly string[]> = {
     'ui_about_stats_years_title',
   ],
 
-  ui_pricing: [],
-
   ui_testimonials: [
     'ui_feedback_subprefix',
     'ui_feedback_sublabel',
@@ -221,8 +214,6 @@ const SECTION_KEYS: Record<UiSectionKey, readonly string[]> = {
     'ui_blog_comment_submit',
     'ui_blog_filter_all',
   ],
-
-  ui_dashboard: [],
 
   ui_auth: [
     'ui_auth_title',
@@ -523,15 +514,15 @@ export function useUiSection(section: UiSectionKey, localeOverride?: string): Ui
   }, [allUiMap, section]);
 
   // 2) Tekil key'ler (ui_header_nav_home gibi) → label extraction
-  const keys = SECTION_KEYS[section] ?? [];
   const keyMap = useMemo(() => {
+    const keys = SECTION_KEYS[section] ?? [];
     const out: Record<string, SettingsValueRecord> = {};
     for (const k of keys) {
       const row = allUiMap.get(k);
       if (row) out[k] = normalizeValueToLabel(row.value);
     }
     return out;
-  }, [allUiMap, keys]);
+  }, [allUiMap, section]);
 
   const ui = (key: string, hardFallback = ''): string => {
     const k = String(key || '').trim();

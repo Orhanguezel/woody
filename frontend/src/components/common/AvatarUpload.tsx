@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
+import Image from 'next/image';
 import { Camera, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useUploadToBucketMutation } from '@/integrations/rtk/public/storage_public.endpoints';
@@ -80,7 +81,7 @@ export default function AvatarUpload({
     >
       <div className="w-full h-full rounded-full border-2 border-(--gm-gold)/30 p-1 overflow-hidden">
         {display ? (
-          <img src={display} alt="" className="w-full h-full rounded-full object-cover" />
+          <Image src={display} alt="" width={size} height={size} unoptimized className="w-full h-full rounded-full object-cover" />
         ) : (
           <div className="w-full h-full rounded-full bg-(--gm-bg-deep) flex items-center justify-center text-(--gm-gold) font-display text-2xl">
             {initials}

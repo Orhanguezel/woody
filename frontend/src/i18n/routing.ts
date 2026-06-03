@@ -17,11 +17,10 @@ export const pathnames = {
   "/contact": "/contact",
   "/blog": "/blog",
   "/blog/[slug]": "/blog/[slug]",
-  "/consultants": "/consultants",
-  "/consultants/[id]": "/consultants/[id]",
-  "/explore": "/explore",
-  "/pricing": "/pricing",
   "/faqs": "/faqs",
+  "/profile": "/profile",
+  "/terms": "/terms",
+  "/privacy-policy": "/privacy-policy",
 } as const;
 
 function normalizeActive(activeLocales?: string[]) {
