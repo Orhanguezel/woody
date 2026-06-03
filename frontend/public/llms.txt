@@ -5,7 +5,7 @@
 ## Business Info
 
 - Name: AppName (yerel kurulumda scripts/apply-brand.py ile degistirilir)
-- Type: Kurumsal web + icerik + randevu/danismanlik is akisi sablonu
+- Type: Kurumsal web + icerik + hesap akisi sablonu
 - Languages: Turkish (default), English, German (yapilandirmaya bagli)
 - API: `/api/v1` altinda Fastify tabanli REST
 

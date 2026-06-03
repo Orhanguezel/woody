@@ -13,9 +13,13 @@
 ---
 
 ## Faz 0 — Hazırlık
-- [ ] Dal: `git checkout -b frontend-sablon`
-- [ ] Baseline: `cd frontend && bun run build` ve `bun run lint` (mevcut hatalar not edilsin)
-- [ ] Her faz sonunda küçük commit + `bun run build` ile doğrula
+- [x] Dal: `git checkout -b frontend-sablon`
+- [x] Baseline: `cd frontend && bun run build` ve `bun run lint` (mevcut hatalar not edilsin)
+- [x] Her faz sonunda küçük commit + `bun run build` ile doğrula
+
+Baseline notu: İlk `bun run build`, `@shared/shared-ui/content/AuthorBio` export hatasıyla; ilk
+`bun run lint`, mevcut unused import/domain dosyası warning/error'larıyla kırıldı. Final doğrulamada
+`bun run build`, `bun run lint`, `bun run typecheck` temiz.
 
 ---
 
@@ -39,8 +43,8 @@
 | `pricing/` | **KALDIR** | premium/ticaret |
 | `checkout/`, `checkout/[orderId]/` | **KALDIR** | ticaret |
 
-- [ ] Yukarıdaki **KALDIR** route klasörlerini sil
-- [ ] Silinen route'lara link veren yerleri temizle (header/footer/menu/CTA)
+- [x] Yukarıdaki **KALDIR** route klasörlerini sil
+- [x] Silinen route'lara link veren yerleri temizle (header/footer/menu/CTA)
 
 ---
 
@@ -67,43 +71,43 @@
 | `booking-payment/` | **KALDIR** |
 | `feedback/` | **KALDIR** |
 
-- [ ] **KALDIR** container'ları sil + import edildikleri yerleri temizle
+- [x] **KALDIR** container'ları sil + import edildikleri yerleri temizle
 
 ---
 
 ## Faz 3 — Home section bileşenleri · `src/components/containers/home/`
 
 **KALDIR (astro/premium):**
-- [ ] `ConsultantsSection.tsx`, `ZodiacGridSection.tsx`, `ExpertiseCategoriesSection.tsx`
-- [ ] `HybridModelSection.tsx`, `TransparencySection.tsx`, `WaitlistSection.tsx`
-- [ ] `PremiumMembershipBanner.tsx`, `FirstSessionDiscountBanner.tsx`, `WelcomePremiumBanner.tsx`
-- [ ] `HomeBecomeConsultantBanner.tsx`, `HomeTestimonialsSection.tsx`, `AppDownloadSection.tsx`
+- [x] `ConsultantsSection.tsx`, `ZodiacGridSection.tsx`, `ExpertiseCategoriesSection.tsx`
+- [x] `HybridModelSection.tsx`, `TransparencySection.tsx`, `WaitlistSection.tsx`
+- [x] `PremiumMembershipBanner.tsx`, `FirstSessionDiscountBanner.tsx`, `WelcomePremiumBanner.tsx`
+- [x] `HomeBecomeConsultantBanner.tsx`, `HomeTestimonialsSection.tsx`, `AppDownloadSection.tsx`
 
 **KORU + NÖTR placeholder:**
-- [ ] `HeroNew.tsx`, `FeaturesNew.tsx`, `PromisesSection.tsx`, `HomeIntroSection.tsx`
-- [ ] `BannerSlot.tsx`, `WelcomeBannerSection.tsx`, `HomeCTABanner.tsx`
+- [x] `HeroNew.tsx`, `FeaturesNew.tsx`, `PromisesSection.tsx`, `HomeIntroSection.tsx`
+- [x] `BannerSlot.tsx`, `WelcomeBannerSection.tsx`, `HomeCTABanner.tsx`
 
 **Renderer:**
-- [ ] `HomeLayoutRenderer.tsx` + `HomeContent.tsx` → yalnız korunan section key'lerini map'le
-- [ ] `fetchHomeLayout.server.ts` → kaldırılan section'lara referans kalmasın
+- [x] `HomeLayoutRenderer.tsx` + `HomeContent.tsx` → yalnız korunan section key'lerini map'le
+- [x] `fetchHomeLayout.server.ts` → kaldırılan section'lara referans kalmasın
 
 ---
 
 ## Faz 4 — RTK endpoint'leri · `src/integrations/rtk/`
 
 **KALDIR (domain):**
-- [ ] `private/consultant_self.endpoints.ts`
-- [ ] `public/consultants.public`, `consultant_services.public`, `consultant_applications`
-- [ ] `public/horoscopes`, `horoscopes.public`, `credits.public`, `reviews.public`
-- [ ] `public/chat`, `bookings_public`, `subscriptions`, `orders`, `resources`, `popups`, `sliders`
+- [x] `private/consultant_self.endpoints.ts`
+- [x] `public/consultants.public`, `consultant_services.public`, `consultant_applications`
+- [x] `public/horoscopes`, `horoscopes.public`, `credits.public`, `reviews.public`
+- [x] `public/chat`, `bookings_public`, `subscriptions`, `orders`, `resources`, `popups`, `sliders`
 
 **KORU (jenerik):**
-- [ ] `baseApi`, `auth`, `health`, `banners`, `menu_items`, `footer_sections`, `faqs`,
+- [x] `baseApi`, `auth`, `health`, `banners`, `menu_items`, `footer_sections`, `faqs`,
       `custom_pages`, `contacts`, `newsletter_public`, `mail`, `storage_public`,
       `notifications`, `kvkk`, `geocode`
 
-- [ ] Silinen endpoint'leri RTK store/`baseApi` enjeksiyon listesinden çıkar
-- [ ] Bu endpoint'leri import eden bileşenler (zaten Faz 1-3'te silinmiş olmalı) — kalan varsa temizle
+- [x] Silinen endpoint'leri RTK store/`baseApi` enjeksiyon listesinden çıkar
+- [x] Bu endpoint'leri import eden bileşenler (zaten Faz 1-3'te silinmiş olmalı) — kalan varsa temizle
 
 ---
 
@@ -132,49 +136,49 @@
 ---
 
 ## Faz 6 — Routing & menü
-- [ ] `src/config/routes.ts` → `consultants`, `booking` kaldır; `home/about/blog/contact/
+- [x] `src/config/routes.ts` → `consultants`, `booking` kaldır; `home/about/blog/contact/
       faqs/legal/profile` kalsın
-- [ ] `src/config/pages/home-layout-components.ts` → korunan section key seti;
+- [x] `src/config/pages/home-layout-components.ts` → korunan section key seti;
       **admin_panel `src/config/home-layout-components.ts` ile birebir aynı** olmalı
-- [ ] `src/layout/header/` (`Header`, `HeaderClient`, `MegaMenuPanel`, `HeaderOffcanvas`)
+- [x] `src/layout/header/` (`Header`, `HeaderClient`, `MegaMenuPanel`, `HeaderOffcanvas`)
       → mega-menü astro kategorileri kaldır, nötr linkler
-- [ ] `src/layout/footer/Footer.tsx` → nötr linkler/metin
-- [ ] `src/layout/banner/` → nötr veya kaldır
+- [x] `src/layout/footer/Footer.tsx` → nötr linkler/metin
+- [x] `src/layout/banner/` → nötr veya kaldır
 
 ---
 
 ## Faz 7 — Marka & i18n & SEO
-- [ ] `src/lib/site-config.ts` + `src/config/pages/site-defaults.json` → `AppName` /
+- [x] `src/lib/site-config.ts` + `src/config/pages/site-defaults.json` → `AppName` /
       `NEXT_PUBLIC_APP_NAME`
-- [ ] i18n: statik locale JSON yok (DB/`site_settings` tabanlı) → backend zaten nötr;
+- [x] i18n: statik locale JSON yok (DB/`site_settings` tabanlı) → backend zaten nötr;
       kodda gömülü astro metinleri (`src/i18n/ui.ts`, `uiDb.ts`) varsa nötrle
-- [ ] `src/lib/zodiac/` (signs, celebrities, affirmations) → **KALDIR**
-- [ ] `src/features/` → `chat` (astro) KALDIR; `analytics`, `auth`, `profiles` KORU
-- [ ] `src/lib/og/` (OG görsel üretimi) → astro şablonları nötrle
-- [ ] SEO: `src/seo/` JSON-LD/şema → astro tipleri (Service/Person consultant) nötrle
-- [ ] Legal route tekrarları (TR/EN) → tek standarda indir (opsiyonel)
+- [x] `src/lib/zodiac/` (signs, celebrities, affirmations) → **KALDIR**
+- [x] `src/features/` → `chat` (astro) KALDIR; `analytics`, `auth`, `profiles` KORU
+- [x] `src/lib/og/` (OG görsel üretimi) → astro şablonları nötrle
+- [x] SEO: `src/seo/` JSON-LD/şema → astro tipleri (Service/Person consultant) nötrle
+- [x] Legal route tekrarları (TR/EN) → tek standarda indir (opsiyonel)
 
 ---
 
 ## Faz 8 — public/ varlıklar · `frontend/public/`
-- [ ] `logo/` → placeholder logo
-- [ ] `support_ai*.png/webp` (astro AI danışman görseli) → **KALDIR**
-- [ ] `banners/`, `icons/`, `img/` → astro görselleri kaldır/placeholder
-- [ ] `llms.txt` → AppName/nötr
-- [ ] `offline.html` → `AppName` (apply-brand kapsamında)
-- [ ] `favicon*` → nötr/placeholder (admin ile tutarlı)
+- [x] `logo/` → placeholder logo
+- [x] `support_ai*.png/webp` (astro AI danışman görseli) → **KALDIR**
+- [x] `banners/`, `icons/`, `img/` → astro görselleri kaldır/placeholder
+- [x] `llms.txt` → AppName/nötr
+- [x] `offline.html` → `AppName` (apply-brand kapsamında)
+- [x] `favicon*` → nötr/placeholder (admin ile tutarlı)
 
 ---
 
 ## Faz 9 — Doğrulama
-- [ ] `cd frontend && bun run build` → geçer
-- [ ] `bun run lint` → yeni hata yok
-- [ ] `bun run typecheck` → temiz
-- [ ] Açılan sayfalar (boş/placeholder): `/`, `/login`, `/register`, `/blog`, `/contact`,
+- [x] `cd frontend && bun run build` → geçer
+- [x] `bun run lint` → yeni hata yok
+- [x] `bun run typecheck` → temiz
+- [x] Açılan sayfalar (boş/placeholder): `/`, `/login`, `/register`, `/blog`, `/contact`,
       `/faqs`, `/terms`, `/privacy-policy`, `/profile`
-- [ ] Kaldırılan route'lar 404 / link kalmadı (header/footer/menu)
-- [ ] Backend uyumu: silinen endpoint'lere (consultant/booking/horoscope/credits) çağrı yok
-- [ ] `proje.json` notları + README "frontend boş taslak" güncel
+- [x] Kaldırılan route'lar 404 / link kalmadı (header/footer/menu)
+- [x] Backend uyumu: silinen endpoint'lere (consultant/booking/horoscope/credits) çağrı yok
+- [x] `proje.json` notları + README "frontend boş taslak" güncel
 
 ---
 

@@ -1,49 +1,73 @@
 {
   "tr": {
-    "eyebrow": "BİZİM SÖZÜMÜZ",
-    "title": "Neden <em>{{appName}}</em>?",
+    "eyebrow": "Temel ilkeler",
+    "title": "{{appName}} için <em>nötr</em> sözler",
     "promises": [
       {
         "num": "01",
-        "title": "İptal etmek üye olmaktan kolay",
-        "text": "Aboneliğinizi tek tıkla, hiçbir form doldurmadan veya bekleme süresi olmadan anında iptal edebilirsiniz. Şeffaflık ana ilkemizdir.",
-        "target": "ŞEFFAFLIK"
+        "title": "Markadan bağımsız",
+        "text": "Varsayılan metinler AppName tokenı ve env değerleriyle çalışır.",
+        "target": "MARKA"
       },
       {
         "num": "02",
-        "title": "Her yorum size özel",
-        "text": "Genel geçer yorumlar yerine, doğum haritanızın saniye hassasiyetindeki verilerinden beslenen kişisel rehberlik sunuyoruz.",
-        "target": "DERİNLİK"
+        "title": "Genişletilebilir",
+        "text": "Bileşen ve sayfa iskeleti yeni domain içerikleri için boş bırakılır.",
+        "target": "YAPI"
       },
       {
         "num": "03",
-        "title": "Telefon numaranız bizde yok",
-        "text": "Mahremiyetinize saygı duyuyoruz. Kayıt sırasında telefon numaranızı istemiyoruz, tüm iletişim uygulama içinden sağlanır.",
-        "target": "GİZLİLİK"
+        "title": "Sade başlangıç",
+        "text": "Ticaret ve proje özel akışlar varsayılan şablonda yer almaz.",
+        "target": "SADELİK"
       }
     ]
   },
   "en": {
-    "eyebrow": "OUR PROMISE",
-    "title": "Why <em>{{appName}}</em>?",
+    "eyebrow": "Principles",
+    "title": "<em>Neutral</em> promises for {{appName}}",
     "promises": [
       {
         "num": "01",
-        "title": "Cancelling is easier than joining",
-        "text": "You can cancel your subscription instantly with one click, without filling out any forms or waiting. Transparency is our core principle.",
-        "target": "TRANSPARENCY"
+        "title": "Brand independent",
+        "text": "Default copy works with the AppName token and environment values.",
+        "target": "BRAND"
       },
       {
         "num": "02",
-        "title": "Every reading is unique to you",
-        "text": "Instead of generic readings, we offer personal guidance fed by your birth chart data with second-level precision.",
-        "target": "DEPTH"
+        "title": "Extendable",
+        "text": "Components and page shells are ready for new domain content.",
+        "target": "STRUCTURE"
       },
       {
         "num": "03",
-        "title": "We don't have your phone number",
-        "text": "We respect your privacy. We don't ask for your phone number during registration; all communication is provided through the app.",
-        "target": "PRIVACY"
+        "title": "Simple start",
+        "text": "Commerce and project-specific flows are not part of the default template.",
+        "target": "SIMPLICITY"
+      }
+    ]
+  },
+  "de": {
+    "eyebrow": "Prinzipien",
+    "title": "<em>Neutrale</em> Grundlagen für {{appName}}",
+    "promises": [
+      {
+        "num": "01",
+        "title": "Markenunabhängig",
+        "text": "Standardtexte nutzen AppName-Token und Umgebungswerte.",
+        "target": "MARKE"
+      },
+      {
+        "num": "02",
+        "title": "Erweiterbar",
+        "text": "Komponenten und Seiten sind für neue Domain-Inhalte vorbereitet.",
+        "target": "STRUKTUR"
+      },
+      {
+        "num": "03",
+        "title": "Einfacher Start",
+        "text": "Commerce und projektspezifische Flows sind nicht Teil der Standardvorlage.",
+        "target": "EINFACH"
       }
     ]
   }

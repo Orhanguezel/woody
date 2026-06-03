@@ -2,7 +2,7 @@
   "name": "woody",
   "type": "template",
   "status": "active",
-  "description": "Woody ve Arkadaşları icin backend + frontend + admin panel",
+  "description": "Backend + frontend + admin panel iceren markadan bagimsiz uygulama sablonu",
   "apps": {
     "backend": "backend",
     "frontend": "frontend",
@@ -14,7 +14,8 @@
     "frontend": 3101
   },
   "notes": [
-    "Marka: Woody ve Arkadaşları (woody) — scripts/apply-brand.py",
+    "Frontend: bos taslak sablon; AppName/NEXT_PUBLIC_APP_NAME ile marka alir",
+    "Marka uygulama: scripts/apply-brand.py",
     "Yeni proje: bash scripts/init-project.sh --name \"...\" --slug \"...\"",
     "Sadece marka/metin: bash scripts/init-project.sh --name \"...\" --slug \"...\" --brand-only"
   ]

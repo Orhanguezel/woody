@@ -1,83 +1,110 @@
 {
   "tr": {
-    "eyebrow": "{{appName}} Manifestosu",
-    "title": "Danışmanlığı daha anlaşılır, güvenilir ve erişilebilir yapmak için buradayız.",
-    "lead": "{{appName}}; öğrenme koçluğu, kariyer ve iletişim odaklarını tek bir danışmanlık deneyiminde buluşturan bir platformdur.",
-    "founderTitle": "Kurucu Hikayesi",
+    "eyebrow": "{{appName}} hakkında",
+    "title": "Yeni projeler için sade ve genişletilebilir bir frontend şablonu.",
+    "lead": "{{appName}}, marka ve domain içeriği sonradan eklenecek şekilde hazırlanmış nötr bir web uygulaması iskeletidir.",
+    "founderTitle": "Başlangıç Noktası",
     "founderParagraphs": [
-      "{{appName}} fikri, dijital ürün deneyimi ile güvenilir rehberlik ihtiyacını bir araya getirme isteğinden doğdu.",
-      "Teknoloji burada amaç değil, doğru kişiyi doğru uzmanla buluşturan sakin bir altyapıdır."
+      "Bu şablon, tekrar kullanılabilir bir frontend temeli sağlamak için hazırlanmıştır.",
+      "Proje özel kararlar içerik, tasarım ve entegrasyon katmanlarında sonradan tamamlanır."
     ],
-    "methodologyTitle": "Metodoloji",
+    "methodologyTitle": "Yaklaşım",
     "methodologyParagraphs": [
-      "Yaklaşımımız veri-temelli gözlem ve insan odaklı yorumun dengesi üzerine kurulur.",
-      "İçeriklerimiz uygulanabilir adımlar sunar; korku veya kesin hüküm üretmez."
+      "Altyapı korunur; domain metinleri ve ticari akışlar varsayılan olarak boşaltılır.",
+      "Yeni proje, kendi bilgi mimarisi ve içerik kaynaklarıyla bu iskelet üzerine kurulur."
     ],
-    "experienceTitle": "Ekip ve Deneyim",
+    "experienceTitle": "Kapsam",
     "experienceParagraphs": [
-      "{{appName}} ekibi; yazılım geliştirme, ürün tasarımı, editoryal kalite ve kullanıcı deneyimi alanlarının birleşiminden oluşur.",
-      "Danışmanlarımız öğrenme koçluğu, kariyer rehberliği, iletişim desteği ve odak yönetimi gibi alanlarda uzmanlaşır."
+      "Ana sayfa, blog, iletişim, SSS, hesap, yasal sayfalar, tema ve SEO altyapısı korunur.",
+      "Marka adı env ve AppName tokenı üzerinden yönetilir."
     ],
     "differentiatorsTitle": "Neden {{appName}}?",
     "differentiators": [
-      { "title": "Şeffaf uzman seçimi", "body": "Profil, uzmanlık, paket ve değerlendirmeler görünürdür." },
-      { "title": "Bütünleşik seans akışı", "body": "Randevu, ödeme, hatırlatma ve iletişim tek akışta ilerler." },
-      { "title": "Sorumlu dil", "body": "İçerik dili farkındalık, seçenek ve kişisel sorumluluk odaklıdır." }
+      {
+        "title": "Nötr içerik",
+        "body": "Varsayılan metinler proje bağımsızdır."
+      },
+      {
+        "title": "Korunan iskelet",
+        "body": "Routing, auth, i18n ve tema altyapısı kullanılabilir durumdadır."
+      },
+      {
+        "title": "Kolay uyarlama",
+        "body": "Yeni domain içerikleri DB veya CMS üzerinden beslenebilir."
+      }
     ],
-    "authorBio": "{{appName}} içerikleri, kullanıcıların daha bilinçli karar almasına yardımcı olacak şekilde hazırlanır."
+    "authorBio": "{{appName}} içerikleri proje ekiplerinin kendi marka ve ürün kararlarıyla tamamlanacak şekilde hazırlanır."
   },
   "en": {
-    "eyebrow": "{{appName}} Manifesto",
-    "title": "We make guidance clearer, safer and easier to access.",
-    "lead": "{{appName}} brings learning coaching, career and communication guidance into one consultation platform.",
-    "founderTitle": "Founder Story",
+    "eyebrow": "About {{appName}}",
+    "title": "A simple and extendable frontend template for new projects.",
+    "lead": "{{appName}} is a neutral web app shell prepared for later brand and domain content.",
+    "founderTitle": "Starting Point",
     "founderParagraphs": [
-      "{{appName}} started with a simple idea: combine product quality with trustworthy guidance.",
-      "Technology is the quiet infrastructure that helps users and consultants meet clearly."
+      "This template provides a reusable frontend foundation.",
+      "Project-specific decisions are completed later in content, design, and integration layers."
     ],
-    "methodologyTitle": "Methodology",
+    "methodologyTitle": "Approach",
     "methodologyParagraphs": [
-      "Our method balances data-informed observation with human interpretation.",
-      "We prioritize practical next steps over fear-based or absolute claims."
+      "Infrastructure stays in place while domain copy and commerce flows are cleared by default.",
+      "A new project can build on this shell with its own information architecture and content sources."
     ],
-    "experienceTitle": "Team and Experience",
+    "experienceTitle": "Scope",
     "experienceParagraphs": [
-      "The {{appName}} team combines software, product design, editorial quality and user experience.",
-      "Consultants specialize in learning coaching, career guidance, communication support and focus management."
+      "Home, blog, contact, FAQ, account, legal pages, theme, and SEO foundations remain.",
+      "The brand name is managed through env and the AppName token."
     ],
     "differentiatorsTitle": "Why {{appName}}?",
     "differentiators": [
-      { "title": "Transparent consultant choice", "body": "Profiles, expertise, packages and ratings are visible before booking." },
-      { "title": "Integrated flow", "body": "Booking, payment, reminders and communication are handled in one calm flow." },
-      { "title": "Responsible language", "body": "Content focuses on awareness, options and personal responsibility." }
+      {
+        "title": "Neutral copy",
+        "body": "Default text is project independent."
+      },
+      {
+        "title": "Preserved shell",
+        "body": "Routing, auth, i18n, and theme foundations remain usable."
+      },
+      {
+        "title": "Easy adaptation",
+        "body": "New domain content can come from DB or CMS records."
+      }
     ],
-    "authorBio": "{{appName}} content helps people make calmer and better-informed decisions."
+    "authorBio": "{{appName}} content is prepared to be completed by project teams with their own brand and product decisions."
   },
   "de": {
-    "eyebrow": "{{appName}} Manifest",
-    "title": "Wir machen Beratung verständlicher, sicherer und leichter zugänglich.",
-    "lead": "{{appName}} verbindet Lerncoaching, Karriere- und Kommunikationsberatung in einer Plattform.",
-    "founderTitle": "Gründungsgeschichte",
+    "eyebrow": "Über {{appName}}",
+    "title": "Eine einfache und erweiterbare Frontend-Vorlage für neue Projekte.",
+    "lead": "{{appName}} ist eine neutrale Web-App-Struktur für spätere Marken- und Domain-Inhalte.",
+    "founderTitle": "Startpunkt",
     "founderParagraphs": [
-      "{{appName}} entstand aus der Idee, Produktqualität mit verlässlicher Beratung zu verbinden.",
-      "Technologie ist dabei eine ruhige Infrastruktur für klare Abläufe."
+      "Diese Vorlage bietet eine wiederverwendbare Frontend-Basis.",
+      "Projektspezifische Entscheidungen werden später in Inhalt, Design und Integration ergänzt."
     ],
-    "methodologyTitle": "Methodik",
+    "methodologyTitle": "Ansatz",
     "methodologyParagraphs": [
-      "Unser Ansatz verbindet datenbasierte Beobachtung mit menschlicher Interpretation.",
-      "Wir fokussieren praktikable nächste Schritte statt starrer Aussagen."
+      "Die Infrastruktur bleibt erhalten, Domain-Texte und Commerce-Flows werden standardmäßig geleert.",
+      "Ein neues Projekt kann mit eigener Informationsarchitektur und Inhaltsquellen darauf aufbauen."
     ],
-    "experienceTitle": "Team und Erfahrung",
+    "experienceTitle": "Umfang",
     "experienceParagraphs": [
-      "Das {{appName}} Team vereint Software, Produktdesign, redaktionelle Qualität und User Experience.",
-      "Berater fokussieren Lerncoaching, Karriere, Kommunikation und Fokus-Management."
+      "Home, Blog, Kontakt, FAQ, Konto, Rechtliches, Theme und SEO bleiben erhalten.",
+      "Der Markenname wird über Env und AppName-Token verwaltet."
     ],
     "differentiatorsTitle": "Warum {{appName}}?",
     "differentiators": [
-      { "title": "Transparente Beraterwahl", "body": "Profile, Expertise, Pakete und Bewertungen sind sichtbar." },
-      { "title": "Integrierter Ablauf", "body": "Termin, Zahlung, Erinnerung und Kommunikation laufen in einem Fluss." },
-      { "title": "Verantwortungsvolle Sprache", "body": "Inhalte fokussieren Bewusstsein, Optionen und Eigenverantwortung." }
+      {
+        "title": "Neutrale Texte",
+        "body": "Standardtexte sind projektunabhängig."
+      },
+      {
+        "title": "Erhaltene Struktur",
+        "body": "Routing, Auth, i18n und Theme bleiben nutzbar."
+      },
+      {
+        "title": "Einfache Anpassung",
+        "body": "Neue Inhalte können aus DB oder CMS kommen."
+      }
     ],
-    "authorBio": "{{appName}} Inhalte helfen, Entscheidungen ruhiger und klarer zu treffen."
+    "authorBio": "{{appName}} Inhalte sind dafür vorbereitet, von Projektteams mit eigenen Marken- und Produktentscheidungen ergänzt zu werden."
   }
 }

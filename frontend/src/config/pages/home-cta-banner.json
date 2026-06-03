@@ -1,20 +1,20 @@
 {
   "tr": {
-    "title": "İlk adımı atmaya hazır mısınız?",
-    "desc": "Danışmanınızla bugün buluşun. Randevu almak sadece birkaç dakikanızı alır.",
-    "cta": "Danışman Bul",
-    "secondary": "Nasıl çalışır?"
+    "title": "Şablonu projenize uyarlayın.",
+    "desc": "Bu alanı ürününüzün temel çağrısı, destek akışı veya iletişim bağlantısı için kullanın.",
+    "cta": "İletişim",
+    "secondary": "SSS"
   },
   "en": {
-    "title": "Ready to take the first step?",
-    "desc": "Connect with your consultant today. Booking takes just a few minutes.",
-    "cta": "Find a Consultant",
-    "secondary": "How does it work?"
+    "title": "Adapt the template to your project.",
+    "desc": "Use this area for your product call to action, support flow, or contact link.",
+    "cta": "Contact",
+    "secondary": "FAQ"
   },
   "de": {
-    "title": "Bereit für den ersten Schritt?",
-    "desc": "Treffen Sie noch heute Ihren Berater. Eine Buchung dauert nur wenige Minuten.",
-    "cta": "Berater finden",
-    "secondary": "Wie funktioniert es?"
+    "title": "Passen Sie die Vorlage an Ihr Projekt an.",
+    "desc": "Nutzen Sie diesen Bereich für Produkt-CTA, Support oder Kontakt.",
+    "cta": "Kontakt",
+    "secondary": "FAQ"
   }
 }

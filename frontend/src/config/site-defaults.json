@@ -4,9 +4,9 @@
     "titleTemplate": "%s | {{appName}}"
   },
   "brand": {
-    "appName": "Woody ve Arkadaşları",
-    "taglineTr": "Dijital öğrenme ve içerik",
-    "taglineEn": "Digital learning and content",
+    "appName": "AppName",
+    "taglineTr": "Nötr web uygulaması şablonu",
+    "taglineEn": "Neutral web application template",
     "themeColor": "#15803d",
     "themeColorDark": "#052e16",
     "wordMarkLine1": "{{appName}}",
@@ -25,9 +25,9 @@
   "seo": {
     "global": {
       "site_name": "{{appName}}",
-      "title_default": "{{appName}} — Dijital öğrenme ve içerik",
+      "title_default": "{{appName}} — Nötr web uygulaması şablonu",
       "title_template": "%s | {{appName}}",
-      "description": "{{appName}} ile eğitim içeriklerine, içeriklere ve güvenilir kaynaklara erişin.",
+      "description": "{{appName}} için nötr frontend şablonu.",
       "open_graph": {
         "type": "website",
         "images": [
@@ -105,15 +105,6 @@
         }
       },
       {
-        "id": "fb-learn",
-        "url": "/explore",
-        "label": {
-          "tr": "Keşfet",
-          "en": "Explore",
-          "de": "Entdecken"
-        }
-      },
-      {
         "id": "fb-blog",
         "url": "/blog",
         "label": {
@@ -123,21 +114,12 @@
         }
       },
       {
-        "id": "fb-karne",
-        "url": "/karne",
+        "id": "fb-faq",
+        "url": "/faqs",
         "label": {
-          "tr": "Karne",
-          "en": "Report card",
-          "de": "Zeugnis"
-        }
-      },
-      {
-        "id": "fb-about",
-        "url": "/about",
-        "label": {
-          "tr": "Hakkımızda",
-          "en": "About",
-          "de": "Über uns"
+          "tr": "SSS",
+          "en": "FAQ",
+          "de": "FAQ"
         }
       },
       {
@@ -152,22 +134,13 @@
     ],
     "footerFallbackSections": [
       {
-        "id": "fb-learn",
+        "id": "fb-content",
         "title": {
-          "tr": "Öğren",
-          "en": "Learn",
-          "de": "Lernen"
+          "tr": "İçerik",
+          "en": "Content",
+          "de": "Inhalt"
         },
         "items": [
-          {
-            "id": "fb-explore",
-            "url": "/explore",
-            "label": {
-              "tr": "Keşfet",
-              "en": "Explore",
-              "de": "Entdecken"
-            }
-          },
           {
             "id": "fb-blog",
             "url": "/blog",
@@ -197,12 +170,12 @@
         },
         "items": [
           {
-            "id": "fb-about",
-            "url": "/about",
+            "id": "fb-contact",
+            "url": "/contact",
             "label": {
-              "tr": "Hakkımızda",
-              "en": "About",
-              "de": "Über uns"
+              "tr": "İletişim",
+              "en": "Contact",
+              "de": "Kontakt"
             }
           },
           {
@@ -212,24 +185,6 @@
               "tr": "Editoryal Politika",
               "en": "Editorial Policy",
               "de": "Redaktionelle Richtlinie"
-            }
-          },
-          {
-            "id": "fb-karne",
-            "url": "/karne",
-            "label": {
-              "tr": "Karne",
-              "en": "Report card",
-              "de": "Zeugnis"
-            }
-          },
-          {
-            "id": "fb-contact",
-            "url": "/contact",
-            "label": {
-              "tr": "İletişim",
-              "en": "Contact",
-              "de": "Kontakt"
             }
           }
         ]
@@ -243,17 +198,17 @@
         },
         "items": [
           {
-            "id": "fb-kvkk",
-            "url": "/kvkk",
+            "id": "fb-terms",
+            "url": "/terms",
             "label": {
-              "tr": "KVKK",
-              "en": "Privacy (TR)",
-              "de": "Datenschutz (TR)"
+              "tr": "Kullanım Şartları",
+              "en": "Terms",
+              "de": "Nutzungsbedingungen"
             }
           },
           {
             "id": "fb-privacy",
-            "url": "/gizlilik",
+            "url": "/privacy-policy",
             "label": {
               "tr": "Gizlilik Politikası",
               "en": "Privacy Policy",
@@ -261,17 +216,8 @@
             }
           },
           {
-            "id": "fb-terms",
-            "url": "/kullanim-sartlari",
-            "label": {
-              "tr": "Kullanım Şartları",
-              "en": "Terms of Use",
-              "de": "Nutzungsbedingungen"
-            }
-          },
-          {
             "id": "fb-cookie",
-            "url": "/cerez-politikasi",
+            "url": "/cookie-policy",
             "label": {
               "tr": "Çerez Politikası",
               "en": "Cookie Policy",

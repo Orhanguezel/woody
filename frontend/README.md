@@ -2,6 +2,11 @@
 
 Next.js 16, RTK Query, coklu dil; tema ve metinler `site_settings` + `src/config/site-defaults.json` + `NEXT_PUBLIC_*` ile.
 
+Bu frontend markadan ve projeden bagimsiz bos taslak sablondur. App Router, i18n, auth,
+layout, SEO, RTK store ve tema altyapisi korunur; domain icerigi proje tarafinda DB,
+site ayarlari veya CMS kayitlariyla doldurulur. Varsayilan marka `AppName` tokeni ve
+`NEXT_PUBLIC_APP_NAME` uzerinden cozulur.
+
 ## Calistirma
 
 ```bash

@@ -2,127 +2,55 @@
   "tr": [
     {
       "id": "fallback-blog-1",
-      "title": "Öğrenme modülü seçerken nelere dikkat etmelisiniz?",
-      "slug": "ogrenme-modulu-secimi",
-      "summary": "Konu derinliği, süre ve geri bildirim döngüsü ile net bir öğrenme planı oluşturmanın kısa kontrol listesi.",
-      "featured_image": "/img/hero-bg.png",
+      "title": "Yeni frontend şablonunu uyarlama rehberi",
+      "slug": "frontend-sablonu-uyarlama",
+      "summary": "Marka, menü, içerik ve SEO alanlarını proje ihtiyaçlarına göre doldurmak için kısa rehber.",
+      "featured_image": "/img/placeholder.svg",
       "created_at": "2026-04-30T09:00:00.000Z"
     },
     {
       "id": "fallback-blog-2",
-      "title": "Danışman seçiminde güven sinyalleri",
-      "slug": "danisman-secimi-guven-sinyalleri",
-      "summary": "Profil tutarlılığı, değerlendirme örnekleri ve iletişim sınırlarıyla daha güvenli bir eşleşme.",
-      "featured_image": "/support_ai.webp",
+      "title": "İçerik yapısını planlarken kontrol listesi",
+      "slug": "icerik-yapisi-kontrol-listesi",
+      "summary": "Ana sayfa, blog, SSS ve yasal sayfalar için yalın bir başlangıç kontrol listesi.",
+      "featured_image": "/img/placeholder.svg",
       "created_at": "2026-04-23T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-3",
-      "title": "Etkili Çalışma Planı Nasıl Kurulur?",
-      "slug": "etkili-calisma-plani",
-      "summary": "Hedefe göre haftalık ve günlük planları sade bir çerçevede oluşturma rehberi.",
-      "featured_image": "/img/daily_reading.png",
-      "created_at": "2026-04-16T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-4",
-      "title": "Karar Verirken Netlik Kazanmak",
-      "slug": "karar-verirken-netlik",
-      "summary": "Kafa karışıklığını azaltmak ve öncelik belirlemek için uygulanabilir bir mini yöntem.",
-      "featured_image": "/img/hero-bg.png",
-      "created_at": "2026-04-09T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-5",
-      "title": "Dijital koçlukta sınır ve hedef netliği",
-      "slug": "dijital-kocluk-sinirlar",
-      "summary": "Görüntülü seanslarda net hedef, takip ritmi ve geri bildirim alışkanlıkları.",
-      "featured_image": "/img/daily_reading.png",
-      "created_at": "2026-04-02T09:00:00.000Z"
     }
   ],
   "en": [
     {
       "id": "fallback-blog-1",
-      "title": "How to choose a learning module that fits your pace",
-      "slug": "learning-module-fit",
-      "summary": "A short checklist for depth, duration, and feedback loops before you commit to a learning path.",
-      "featured_image": "/img/hero-bg.png",
+      "title": "Guide to adapting a new frontend template",
+      "slug": "adapting-frontend-template",
+      "summary": "A short guide for filling brand, menu, content, and SEO areas for your project.",
+      "featured_image": "/img/placeholder.svg",
       "created_at": "2026-04-30T09:00:00.000Z"
     },
     {
       "id": "fallback-blog-2",
-      "title": "Trust signals when picking a consultant",
-      "slug": "consultant-trust-signals",
-      "summary": "Profile consistency, review patterns, and communication boundaries for safer matching.",
-      "featured_image": "/support_ai.webp",
+      "title": "Checklist for planning content structure",
+      "slug": "content-structure-checklist",
+      "summary": "A lean starting checklist for home, blog, FAQ, and legal pages.",
+      "featured_image": "/img/placeholder.svg",
       "created_at": "2026-04-23T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-3",
-      "title": "How to Build an Effective Study Plan",
-      "slug": "effective-study-plan",
-      "summary": "A practical guide to structuring weekly and daily plans around your goals.",
-      "featured_image": "/img/daily_reading.png",
-      "created_at": "2026-04-16T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-4",
-      "title": "Decision Clarity in Uncertain Moments",
-      "slug": "decision-clarity",
-      "summary": "A compact framework to reduce noise and set clear priorities.",
-      "featured_image": "/img/hero-bg.png",
-      "created_at": "2026-04-09T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-5",
-      "title": "Boundaries and clarity in digital coaching",
-      "slug": "digital-coaching-boundaries",
-      "summary": "Goals, cadence, and feedback habits that make remote sessions more effective.",
-      "featured_image": "/img/daily_reading.png",
-      "created_at": "2026-04-02T09:00:00.000Z"
     }
   ],
   "de": [
     {
       "id": "fallback-blog-1",
-      "title": "Wie Sie ein Lernmodul mit dem richtigen Tempo wählen",
-      "slug": "lernmodul-tempo",
-      "summary": "Kurz-Checkliste zu Tiefe, Dauer und Feedback-Schleifen vor dem Start.",
-      "featured_image": "/img/hero-bg.png",
+      "title": "Leitfaden zur Anpassung einer Frontend-Vorlage",
+      "slug": "frontend-vorlage-anpassen",
+      "summary": "Kurzer Leitfaden für Marke, Menü, Inhalte und SEO im neuen Projekt.",
+      "featured_image": "/img/placeholder.svg",
       "created_at": "2026-04-30T09:00:00.000Z"
     },
     {
       "id": "fallback-blog-2",
-      "title": "Vertrauenssignale bei der Beraterauswahl",
-      "slug": "berater-vertrauen",
-      "summary": "Profilkonsistenz, Bewertungsmuster und Kommunikationsgrenzen für eine sicherere Auswahl.",
-      "featured_image": "/support_ai.webp",
+      "title": "Checkliste für die Inhaltsstruktur",
+      "slug": "inhaltsstruktur-checkliste",
+      "summary": "Eine schlanke Start-Checkliste für Home, Blog, FAQ und Rechtliches.",
+      "featured_image": "/img/placeholder.svg",
       "created_at": "2026-04-23T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-3",
-      "title": "Wie man einen effektiven Lernplan erstellt",
-      "slug": "effektiver-lernplan",
-      "summary": "Praktischer Leitfaden für Wochen- und Tagespläne auf Basis klarer Ziele.",
-      "featured_image": "/img/daily_reading.png",
-      "created_at": "2026-04-16T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-4",
-      "title": "Klarere Entscheidungen im Alltag",
-      "slug": "klarere-entscheidungen",
-      "summary": "Eine kurze Methode, um Prioritäten klar zu setzen und Fokus zu gewinnen.",
-      "featured_image": "/img/hero-bg.png",
-      "created_at": "2026-04-09T09:00:00.000Z"
-    },
-    {
-      "id": "fallback-blog-5",
-      "title": "Grenzen und Klarheit im digitalen Coaching",
-      "slug": "digitales-coaching-grenzen",
-      "summary": "Ziele, Rhythmus und Feedback für wirksamere Online-Sitzungen.",
-      "featured_image": "/img/daily_reading.png",
-      "created_at": "2026-04-02T09:00:00.000Z"
     }
   ]
 }
