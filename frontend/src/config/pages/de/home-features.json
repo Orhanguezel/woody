@@ -1,0 +1,48 @@
+{
+  "eyebrow": "Warum {{appName}}?",
+  "title": "Ein <em>neutraler</em> Startpunkt für Ihr Projekt.",
+  "features": [
+    {
+      "num": "I",
+      "title": "Erhaltene <em>App-Struktur</em>",
+      "body": "Routing, Layout, Theme, Auth und State bleiben für eine neue Marke bereit.",
+      "meta": [
+        "App Router",
+        "Layout",
+        "Theme"
+      ],
+      "settingKey": "ui_feature_structure_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Struktur",
+      "imageAlt": "Neutraler UI-Bereich"
+    },
+    {
+      "num": "II",
+      "title": "DB-basierte <em>Textbasis</em>",
+      "body": "Site-Einstellungen und Inhaltsquellen können Texte statt statischer Locale-Dateien liefern.",
+      "meta": [
+        "i18n",
+        "Einstellungen",
+        "Inhalt"
+      ],
+      "settingKey": "ui_feature_content_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Inhalt",
+      "imageAlt": "Inhaltsbereich"
+    },
+    {
+      "num": "III",
+      "title": "Generische <em>Seitengruppe</em>",
+      "body": "Home, Blog, Kontakt, FAQ, Konto und Rechtliches starten ohne Domain-Annahmen.",
+      "meta": [
+        "Blog",
+        "Kontakt",
+        "Konto"
+      ],
+      "settingKey": "ui_feature_pages_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Seiten",
+      "imageAlt": "Seitenvorlage"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "fallback-blog-1",
+    "title": "Guide to adapting a new frontend template",
+    "slug": "adapting-frontend-template",
+    "summary": "A short guide for filling brand, menu, content, and SEO areas for your project.",
+    "featured_image": "/img/placeholder.svg",
+    "created_at": "2026-04-30T09:00:00.000Z"
+  },
+  {
+    "id": "fallback-blog-2",
+    "title": "Checklist for planning content structure",
+    "slug": "content-structure-checklist",
+    "summary": "A lean starting checklist for home, blog, FAQ, and legal pages.",
+    "featured_image": "/img/placeholder.svg",
+    "created_at": "2026-04-23T09:00:00.000Z"
+  }
+]

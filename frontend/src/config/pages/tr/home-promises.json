@@ -1,0 +1,24 @@
+{
+  "eyebrow": "Temel ilkeler",
+  "title": "{{appName}} için <em>nötr</em> sözler",
+  "promises": [
+    {
+      "num": "01",
+      "title": "Markadan bağımsız",
+      "text": "Varsayılan metinler AppName tokenı ve env değerleriyle çalışır.",
+      "target": "MARKA"
+    },
+    {
+      "num": "02",
+      "title": "Genişletilebilir",
+      "text": "Bileşen ve sayfa iskeleti yeni domain içerikleri için boş bırakılır.",
+      "target": "YAPI"
+    },
+    {
+      "num": "03",
+      "title": "Sade başlangıç",
+      "text": "Ticaret ve proje özel akışlar varsayılan şablonda yer almaz.",
+      "target": "SADELİK"
+    }
+  ]
+}

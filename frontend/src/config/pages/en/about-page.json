@@ -1,0 +1,36 @@
+{
+  "eyebrow": "About {{appName}}",
+  "title": "A simple and extendable frontend template for new projects.",
+  "lead": "{{appName}} is a neutral web app shell prepared for later brand and domain content.",
+  "founderTitle": "Starting Point",
+  "founderParagraphs": [
+    "This template provides a reusable frontend foundation.",
+    "Project-specific decisions are completed later in content, design, and integration layers."
+  ],
+  "methodologyTitle": "Approach",
+  "methodologyParagraphs": [
+    "Infrastructure stays in place while domain copy and commerce flows are cleared by default.",
+    "A new project can build on this shell with its own information architecture and content sources."
+  ],
+  "experienceTitle": "Scope",
+  "experienceParagraphs": [
+    "Home, blog, contact, FAQ, account, legal pages, theme, and SEO foundations remain.",
+    "The brand name is managed through env and the AppName token."
+  ],
+  "differentiatorsTitle": "Why {{appName}}?",
+  "differentiators": [
+    {
+      "title": "Neutral copy",
+      "body": "Default text is project independent."
+    },
+    {
+      "title": "Preserved shell",
+      "body": "Routing, auth, i18n, and theme foundations remain usable."
+    },
+    {
+      "title": "Easy adaptation",
+      "body": "New domain content can come from DB or CMS records."
+    }
+  ],
+  "authorBio": "{{appName}} content is prepared to be completed by project teams with their own brand and product decisions."
+}

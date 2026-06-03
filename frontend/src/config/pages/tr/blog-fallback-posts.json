@@ -1,0 +1,18 @@
+[
+  {
+    "id": "fallback-blog-1",
+    "title": "Yeni frontend şablonunu uyarlama rehberi",
+    "slug": "frontend-sablonu-uyarlama",
+    "summary": "Marka, menü, içerik ve SEO alanlarını proje ihtiyaçlarına göre doldurmak için kısa rehber.",
+    "featured_image": "/img/placeholder.svg",
+    "created_at": "2026-04-30T09:00:00.000Z"
+  },
+  {
+    "id": "fallback-blog-2",
+    "title": "İçerik yapısını planlarken kontrol listesi",
+    "slug": "icerik-yapisi-kontrol-listesi",
+    "summary": "Ana sayfa, blog, SSS ve yasal sayfalar için yalın bir başlangıç kontrol listesi.",
+    "featured_image": "/img/placeholder.svg",
+    "created_at": "2026-04-23T09:00:00.000Z"
+  }
+]

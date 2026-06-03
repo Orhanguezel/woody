@@ -19,7 +19,7 @@ import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
 import { getPublicAppName } from '@/lib/site-config';
 import { injectAppName } from '@/lib/page-copy';
-import aboutPageCopy from '@/config/pages/about-page-copy.json';
+import aboutPageCopy from '@/config/pages/about-page.json';
 
 type AboutCopy = {
   eyebrow: string;

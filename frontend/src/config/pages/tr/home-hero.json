@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Boş taslak frontend",
+  "title": "{{appName}}",
+  "subtitle": "HAZIR · NÖTR",
+  "heroTitleLine1": "{{appName}}",
+  "heroTitleGradient": "taslak arayüz.",
+  "headline": "<em>Temiz başlangıç</em>, esnek sayfalar ve korunmuş altyapı<br/>— <strong>markanıza hazır nötr iskelet</strong>.",
+  "lead": "{{appName}}; içerik, üyelik, blog, iletişim ve yasal sayfalarıyla yeni projeler için sade bir başlangıç sunar.",
+  "tagline": "Marka, içerik ve ürün detaylarını kendi projenize göre doldurun.",
+  "socialProof": "App Router, i18n, auth, SEO, tema ve state altyapısı korunur.",
+  "metrics": [
+    {
+      "value": "App Router",
+      "label": "Modern yapı"
+    },
+    {
+      "value": "i18n",
+      "label": "DB tabanlı metin"
+    },
+    {
+      "value": "Auth",
+      "label": "Hazır hesap akışı"
+    }
+  ],
+  "showcaseTopic": "Şablon modülü",
+  "showcaseProgress": "Adım 1/3",
+  "showcaseQuestion": "Bu alan hangi proje için doldurulacak?",
+  "showcaseOptionA": "A) SaaS",
+  "showcaseOptionB": "B) İçerik sitesi",
+  "showcaseOptionC": "C) Portal",
+  "showcaseOptionD": "D) Özel uygulama",
+  "showcaseXpLabel": "UI",
+  "showcaseXpValue": "Ready",
+  "showcaseStreak": "3",
+  "showcaseStreakSuffix": "temel alan",
+  "showcaseStreakSub": "İçerik, hesap, iletişim",
+  "showcaseBadgeTitle": "Şablon hazır",
+  "showcaseBadgeSub": "Nötr başlangıç",
+  "showcaseXpGain": "Hazır",
+  "primaryCTA": "İletişime geç",
+  "secondaryCTA": "Blogu incele",
+  "scrollHint": "Aşağı kaydır"
+}

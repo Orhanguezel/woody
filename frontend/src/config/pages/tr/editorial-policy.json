@@ -1,0 +1,42 @@
+{
+  "title": "Editoryal Politika ve Metodoloji",
+  "description": "{{appName}} içeriklerinin nasıl hazırlandığını, yapay zekâ destekli taslağın nasıl kullanıldığını ve kalite ilkelerimizi açıklar.",
+  "back": "Hakkımızda sayfasına dön",
+  "authorRoleTitle": "Editoryal ve kalite süreci",
+  "authorExpertiseLabels": [
+    "Editoryal gözden geçirme",
+    "Öğrenme tasarımı",
+    "Erişilebilir dil"
+  ],
+  "credentialsNote": "İçerik kalitesi ve güncelleme süreçleri",
+  "sections": [
+    {
+      "title": "İçerik ilkemiz",
+      "paragraphs": [
+        "{{appName}} içerikleri kullanıcıya kesin hüküm vermek için değil; daha bilinçli seçim yapmasına ve uzman görüşmesine daha hazırlıklı gelmesine yardımcı olmak için hazırlanır.",
+        "Her içerikte sade dil, korku üretmeyen anlatım ve uygulanabilir bilgi önceliklidir. Bağımlılık yaratan, kesin felaket ya da mucize vadeden ifadeleri editoryal olarak uygun bulmayız."
+      ]
+    },
+    {
+      "title": "Yapay zekâ destekli taslağın şeffaflığı",
+      "paragraphs": [
+        "Bazı genel bilgilendirme içeriklerinde LLM destekli taslaklama kullanılabilir. Amaç otorite taklidi yapmak değil; başlıkları düzenlemek, metni daha okunabilir kılmak ve çok dilli yayını hızlandırmaktır.",
+        "Taslaklar {{appName}} editoryal sürecinden geçer: doğruluk, bağlam, erişilebilir dil ve etik sınırlar kontrol edilir."
+      ]
+    },
+    {
+      "title": "Öğrenme ve içerik metodolojisi",
+      "paragraphs": [
+        "Modüller ve konu akışları öğrenme bilimi ilkeleriyle uyumlu olacak şekilde yapılandırılır; kaynaklar güncellenir ve kullanıcı geri bildirimiyle iyileştirilir.",
+        "Kişiselleştirilmiş öneriler, kullanıcı tercihleri ve platform politikalarına göre şeffaf kurallarla sunulur."
+      ]
+    },
+    {
+      "title": "Kim gözden geçirir?",
+      "paragraphs": [
+        "İçerikler yayın öncesi editoryal kontrolden geçer. Kullanıcıya temas eden metinlerde tutarlılık, doğruluk ve güvenli dil önceliklidir.",
+        "Platform içerikleri genel bilgilendirme niteliğindedir; kişisel durumlar için ilgili uzmana başvurulmalıdır."
+      ]
+    }
+  ]
+}

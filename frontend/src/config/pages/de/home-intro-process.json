@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Ablauf",
+  "titleBefore": "So nutzen Sie ",
+  "titleAccent": "die Vorlage",
+  "lead": "Füllen Sie neutrale Seiten mit Marke, Inhalt und Produktentscheidungen.",
+  "steps": [
+    {
+      "icon": "bookOpen",
+      "title": "Marke definieren",
+      "desc": "AppName und Site-Einstellungen mit Projektwerten aktualisieren."
+    },
+    {
+      "icon": "playCircle",
+      "title": "Inhalte ergänzen",
+      "desc": "Home-Bereiche, Beiträge und FAQs aus DB oder CMS speisen."
+    },
+    {
+      "icon": "chartColumn",
+      "title": "Launch vorbereiten",
+      "desc": "SEO, Rechtstexte, Kontaktdaten und Validierung abschließen."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Leere Frontend-Vorlage",
+  "title": "{{appName}}",
+  "subtitle": "BEREIT · NEUTRAL",
+  "heroTitleLine1": "{{appName}}",
+  "heroTitleGradient": "Vorlagen-UI.",
+  "headline": "<em>Sauberer Start</em>, flexible Seiten und erhaltene Infrastruktur<br/>— <strong>eine neutrale Basis für Ihre Marke</strong>.",
+  "lead": "{{appName}} bietet einen einfachen Startpunkt mit Inhalt, Konto, Blog, Kontakt und Rechtlichem.",
+  "tagline": "Marke, Inhalte und Produktdetails projektbezogen ergänzen.",
+  "socialProof": "App Router, i18n, Auth, SEO, Theme und State bleiben erhalten.",
+  "metrics": [
+    {
+      "value": "App Router",
+      "label": "Moderne Struktur"
+    },
+    {
+      "value": "i18n",
+      "label": "DB-basierte Texte"
+    },
+    {
+      "value": "Auth",
+      "label": "Kontofluss"
+    }
+  ],
+  "showcaseTopic": "Vorlagenmodul",
+  "showcaseProgress": "Schritt 1/3",
+  "showcaseQuestion": "Welches Projekt beschreibt dieser Bereich?",
+  "showcaseOptionA": "A) SaaS",
+  "showcaseOptionB": "B) Inhaltsseite",
+  "showcaseOptionC": "C) Portal",
+  "showcaseOptionD": "D) Eigene App",
+  "showcaseXpLabel": "UI",
+  "showcaseXpValue": "Ready",
+  "showcaseStreak": "3",
+  "showcaseStreakSuffix": "Kernbereiche",
+  "showcaseStreakSub": "Inhalt, Konto, Kontakt",
+  "showcaseBadgeTitle": "Vorlage bereit",
+  "showcaseBadgeSub": "Neutraler Start",
+  "showcaseXpGain": "Bereit",
+  "primaryCTA": "Kontakt",
+  "secondaryCTA": "Blog lesen",
+  "scrollHint": "Nach unten"
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Editorial policy and methodology",
+  "description": "How {{appName}} prepares content, uses AI-assisted drafting, and applies quality standards.",
+  "back": "Back to About",
+  "authorRoleTitle": "Editorial quality process",
+  "authorExpertiseLabels": [
+    "Editorial review",
+    "Learning design",
+    "Accessible language"
+  ],
+  "credentialsNote": "Content quality and update practices",
+  "sections": [
+    {
+      "title": "Content principles",
+      "paragraphs": [
+        "{{appName}} content helps users prepare for informed choices and expert conversations, not to replace professional advice in regulated domains.",
+        "We prioritise plain language, non-coercive tone and practical insight. We reject dependency language and absolute predictions."
+      ]
+    },
+    {
+      "title": "Transparency on AI-assisted drafting",
+      "paragraphs": [
+        "Some educational drafts may use LLMs to structure topics and improve readability.",
+        "Drafts are reviewed for accuracy, context, accessibility and ethical boundaries before publishing."
+      ]
+    },
+    {
+      "title": "Learning methodology",
+      "paragraphs": [
+        "Modules follow learner-centred structure; sources are maintained and improved with feedback.",
+        "Personalised suggestions follow transparent rules aligned with platform policy."
+      ]
+    },
+    {
+      "title": "Review process",
+      "paragraphs": [
+        "Content is editorially reviewed before release. User-facing copy prioritises consistency, accuracy and trust.",
+        "Platform content is general information; consult a relevant professional for personal situations."
+      ]
+    }
+  ]
+}

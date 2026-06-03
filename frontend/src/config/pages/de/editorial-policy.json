@@ -1,0 +1,42 @@
+{
+  "title": "Redaktionelle Richtlinie und Methodik",
+  "description": "Wie {{appName}} Inhalte erstellt und KI-gestützte Entwürfe prüft.",
+  "back": "Zurück zu Über uns",
+  "authorRoleTitle": "Redaktion und Qualität",
+  "authorExpertiseLabels": [
+    "Lektorat",
+    "Lerndesign",
+    "Zugängliche Sprache"
+  ],
+  "credentialsNote": "Inhaltsqualität und Aktualisierung",
+  "sections": [
+    {
+      "title": "Grundsätze",
+      "paragraphs": [
+        "{{appName}} Inhalte unterstützen informierte Entscheidungen und Vorbereitung auf Beratung — kein Ersatz für regulierte Fachberatung.",
+        "Wir setzen auf klare Sprache, keine Angstkommunikation und praktische Orientierung."
+      ]
+    },
+    {
+      "title": "Transparenz zu KI",
+      "paragraphs": [
+        "Einige Entwürfe können LLM-unterstützt strukturiert werden.",
+        "Vor Veröffentlichung prüfen wir Genauigkeit, Kontext und ethische Grenzen."
+      ]
+    },
+    {
+      "title": "Lernmethodik",
+      "paragraphs": [
+        "Module sind lernerzentriert; Quellen werden gepflegt und verbessert.",
+        "Personalisierung folgt nachvollziehbaren Regeln."
+      ]
+    },
+    {
+      "title": "Prüfung",
+      "paragraphs": [
+        "Inhalte werden redaktionell geprüft. Profiltexte und Nutzer-Kommunikation priorisieren Vertrauen.",
+        "Einzelberatungen liegen in der Verantwortung der Expert:innen."
+      ]
+    }
+  ]
+}

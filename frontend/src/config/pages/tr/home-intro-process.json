@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Akış",
+  "titleBefore": "Şablonu ",
+  "titleAccent": "nasıl kullanırsınız?",
+  "lead": "Nötr sayfaları kendi marka, içerik ve ürün kararlarınızla doldurun.",
+  "steps": [
+    {
+      "icon": "bookOpen",
+      "title": "Markayı tanımla",
+      "desc": "AppName ve site ayarlarını proje değerlerinizle güncelleyin."
+    },
+    {
+      "icon": "playCircle",
+      "title": "İçeriği ekle",
+      "desc": "Ana sayfa bölümlerini, blogları ve SSS kayıtlarını DB veya CMS üzerinden besleyin."
+    },
+    {
+      "icon": "chartColumn",
+      "title": "Yayına hazırla",
+      "desc": "SEO, yasal metinler ve iletişim bilgilerini tamamlayıp doğrulama yapın."
+    }
+  ]
+}

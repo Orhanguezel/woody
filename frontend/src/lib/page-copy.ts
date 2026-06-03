@@ -3,6 +3,8 @@
  * Üretimde içerik DB/site_settings veya CMS API ile beslenmeli; JSON yalnızca fallback.
  */
 
+import { loadPageContent } from '@/config/pages/loader';
+
 type LocaleKey = 'tr' | 'en' | 'de';
 
 function pickLocale(locale: string): LocaleKey {
@@ -37,6 +39,10 @@ export async function getEditorialPolicyCopy(
   locale: string,
   appName: string,
 ): Promise<EditorialPolicyCopy> {
+  const copy = await loadPageContent<EditorialPolicyCopy>('editorial-policy', locale, { appName });
+  if (copy) return copy;
+
+  // Klasör dosyası bulunamazsa eski gömülü JSON'a düş (savunma amaçlı).
   const mod = await import('@/config/pages/editorial-policy.json');
   const raw = mod.default as Record<LocaleKey, EditorialPolicyCopy>;
   const k = pickLocale(locale);
@@ -68,6 +74,10 @@ export type HeroCopy = {
 };
 
 export async function getHomeHeroCopy(locale: string, appName: string): Promise<HeroCopy> {
+  const copy = await loadPageContent<HeroCopy>('home-hero', locale, { appName });
+  if (copy) return copy;
+
+  // Klasör dosyası bulunamazsa eski gömülü JSON'a düş (savunma amaçlı).
   const mod = await import('@/config/pages/home-hero.json');
   const raw = mod.default as Record<LocaleKey, HeroCopy>;
   const k = pickLocale(locale);

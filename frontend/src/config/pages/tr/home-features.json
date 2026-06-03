@@ -1,0 +1,48 @@
+{
+  "eyebrow": "Neden {{appName}}?",
+  "title": "Projeye göre şekillenen <em>nötr</em> bir başlangıç.",
+  "features": [
+    {
+      "num": "I",
+      "title": "Korunan <em>uygulama iskeleti</em>",
+      "body": "Routing, layout, tema, auth ve state yönetimi yeni marka için hazır kalır.",
+      "meta": [
+        "App Router",
+        "Layout",
+        "Tema"
+      ],
+      "settingKey": "ui_feature_structure_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "İskelet",
+      "imageAlt": "Nötr arayüz alanı"
+    },
+    {
+      "num": "II",
+      "title": "DB tabanlı <em>metin altyapısı</em>",
+      "body": "Yerel statik çeviri dosyaları yerine site ayarları ve içerik kaynakları kullanılabilir.",
+      "meta": [
+        "i18n",
+        "Site ayarları",
+        "İçerik"
+      ],
+      "settingKey": "ui_feature_content_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "İçerik",
+      "imageAlt": "İçerik alanı"
+    },
+    {
+      "num": "III",
+      "title": "Jenerik <em>sayfa seti</em>",
+      "body": "Ana sayfa, blog, iletişim, SSS, hesap ve yasal sayfalar domain bağımsız başlar.",
+      "meta": [
+        "Blog",
+        "İletişim",
+        "Hesap"
+      ],
+      "settingKey": "ui_feature_pages_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Sayfalar",
+      "imageAlt": "Sayfa şablonu"
+    }
+  ]
+}
