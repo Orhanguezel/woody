@@ -165,3 +165,8 @@ docs/
 
 # Claude Code lokal ayar
 .claude/
+
+# Worktree paylasim symlinkleri (kok)
+/node_modules
+/packages
+/docs
