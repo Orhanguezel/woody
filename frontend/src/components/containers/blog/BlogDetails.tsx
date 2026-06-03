@@ -30,8 +30,6 @@ import { localizePath } from '@/integrations/shared';
 import ImageLightboxModal, {
   type LightboxImage,
 } from '@/components/common/public/ImageLightboxModal';
-import ReviewForm from '@/components/common/public/ReviewForm';
-import ReviewList from '@/components/common/public/ReviewList';
 import ContactCtaCard from '@/components/common/public/ContactCtaCard';
 import SocialShare from '@/components/common/public/SocialShare';
 
@@ -475,29 +473,7 @@ export default function BlogDetails() {
 
               {/* Comments */}
               <div id="comments" className="mt-12">
-                <ReviewList
-                  targetType="blog"
-                  targetId={post.id}
-                  locale={locale}
-                  variant="comments"
-                  titleOverride={t.commentsTitle}
-                />
-
-                <div className="mt-8">
-                  <ReviewForm
-                    targetType="blog"
-                    targetId={post.id}
-                    locale={locale}
-                    initialOpen={false}
-                    showToggle
-                    titleOverride={t.leaveComment}
-                    hideRating
-                    commentLabelOverride={t.commentLabel}
-                    submitTextOverride={t.commentSubmit}
-                  />
-                </div>
-
-                <div className="mt-10">
+                <div>
                   <ContactCtaCard
                     title={t.contactCtaTitle}
                     description={t.contactCtaDesc}

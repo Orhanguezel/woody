@@ -8,13 +8,10 @@ const DEFAULT_LOCALE = 'tr';
 
 const STATIC_PAGES = [
   '',
-  '/consultants',
-  '/pricing',
   '/about',
   '/faqs',
   '/contact',
   '/blog',
-  '/explore',
   '/editorial-policy',
 ] as const;
 

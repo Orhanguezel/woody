@@ -48,7 +48,7 @@ export default function VerifyEmailPage() {
           'Verification failed';
         setMessage(msg);
       });
-  }, [token, confirm]);
+  }, [mode, token, confirm]);
 
   const titleText =
     locale === 'de'

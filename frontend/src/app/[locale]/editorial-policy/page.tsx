@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, graph } from '@/seo/jsonld';
-import AuthorBio from '@shared/shared-ui/content/AuthorBio';
 import { getEditorialPolicyCopy } from '@/lib/page-copy';
 import {
   getEditorialTeamName,
@@ -80,13 +79,12 @@ export default async function EditorialPolicyPage({ params }: Props) {
           ))}
         </div>
 
-        <AuthorBio
-          name={editorialName}
-          title={copy.authorRoleTitle}
-          bio={copy.description}
-          expertise={copy.authorExpertiseLabels}
-          certificates={[copy.credentialsNote]}
-        />
+        <section className="mt-10 rounded-2xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/45 p-6 md:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gm-gold)]">{copy.authorRoleTitle}</p>
+          <h2 className="mt-2 text-2xl font-semibold">{editorialName}</h2>
+          <p className="mt-4 leading-relaxed text-[var(--gm-text-dim)]">{copy.description}</p>
+          <p className="mt-4 text-sm text-[var(--gm-muted)]">{copy.credentialsNote}</p>
+        </section>
       </div>
     </main>
   );

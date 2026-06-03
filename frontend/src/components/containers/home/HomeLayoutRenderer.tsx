@@ -6,39 +6,20 @@ import BannerSlot from './BannerSlot';
 import type { HomeSection } from './fetchHomeLayout.server';
 
 import FeaturesNew from './FeaturesNew';
-import HybridModelSection from './HybridModelSection';
-import TransparencySection from './TransparencySection';
-import ConsultantsSection from './ConsultantsSection';
 import WelcomeBannerSection from './WelcomeBannerSection';
-import ExpertiseCategoriesSection from './ExpertiseCategoriesSection';
 import HomeIntroSection from './HomeIntroSection';
-import HomeTestimonialsSection from './HomeTestimonialsSection';
-import HomeBecomeConsultantBanner from './HomeBecomeConsultantBanner';
-import PremiumMembershipBanner from './PremiumMembershipBanner';
-import FirstSessionDiscountBanner from './FirstSessionDiscountBanner';
-import WelcomePremiumBanner from './WelcomePremiumBanner';
-import AppDownloadSection from './AppDownloadSection';
+import PromisesSection from './PromisesSection';
+import HomeCTABanner from './HomeCTABanner';
 
 // Yeni component eklemek için: import + bu map'e key ekle.
 const REGISTRY: Record<string, any> = {
   HeroNew,
   BannerSlot,
-  PromisesSection: HomeIntroSection,
+  PromisesSection,
   FeaturesNew,
-  HybridModelSection,
-  TransparencySection,
-  WaitlistSection: HomeBecomeConsultantBanner,
-  ZodiacGridSection: ExpertiseCategoriesSection,
-  ExpertiseCategoriesSection,
-  ConsultantsSection,
   HomeIntroSection,
   WelcomeBannerSection,
-  HomeTestimonialsSection,
-  HomeBecomeConsultantBanner,
-  PremiumMembershipBanner,
-  FirstSessionDiscountBanner,
-  WelcomePremiumBanner,
-  AppDownloadSection,
+  HomeCTABanner,
 };
 
 import { useSearchParams } from 'next/navigation';

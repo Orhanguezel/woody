@@ -38,10 +38,10 @@ export default function HomeCTABanner({ locale: explicitLocale }: { locale?: str
           {copy.desc}
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <Link href={localizePath(locale, '/consultants')} className="btn-premium">
+          <Link href={localizePath(locale, '/contact')} className="btn-premium">
             <span>{copy.cta}</span>
           </Link>
-          <Link href={localizePath(locale, '/how-it-works')} className="btn-outline-premium">
+          <Link href={localizePath(locale, '/faqs')} className="btn-outline-premium">
             {copy.secondary}
           </Link>
         </div>

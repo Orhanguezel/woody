@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import React from 'react';
 import HomeContent from '@/components/containers/home/HomeContent';
 
-import { normPath, absUrlJoin } from '@/integrations/shared';
+import { normPath } from '@/integrations/shared';
 import { buildMetadataFromSeo, fetchSeoObject, fetchSeoPageObject, mergeSeoPageIntoSeo } from '@/seo/server';
 
 export async function generateMetadata({

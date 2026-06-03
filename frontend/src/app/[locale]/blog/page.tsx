@@ -4,7 +4,6 @@ import React, { useMemo } from 'react';
 import Banner from '@/layout/banner/Breadcrum';
 import PublicBanner from '@/components/common/public/Banner';
 import BlogPageContent from '@/components/containers/blog/BlogPageContent';
-import Feedback from '@/components/containers/feedback/Feedback';
 import { LayoutSeoBridge } from '@/seo';
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { isValidUiText } from '@/integrations/shared';
@@ -100,9 +99,6 @@ export default function BlogPage() {
           <PublicBanner placement="blog_inline" variant="slim" count={1} dismissable />
         </section>
 
-        <section className="container mx-auto pb-16 px-4">
-          <Feedback />
-        </section>
       </div>
     </>
   );

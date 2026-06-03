@@ -43,9 +43,10 @@ export interface HomeSection {
 
 const DEFAULT_LAYOUT: HomeSection[] = [
   { id: 'home-hero', slug: 'hero', label: 'Hero', component_key: 'HeroNew', order_index: 10, is_active: 1, config: null },
-  { id: 'home-konular', slug: 'konular', label: 'Öne çıkan kategoriler', component_key: 'ZodiacGridSection', order_index: 20, is_active: 1, config: null },
-  { id: 'home-neden', slug: 'neden', label: `Neden ${getPublicAppName()}`, component_key: 'FeaturesNew', order_index: 30, is_active: 1, config: null },
+  { id: 'home-neden', slug: 'neden', label: `Neden ${getPublicAppName()}`, component_key: 'FeaturesNew', order_index: 20, is_active: 1, config: null },
+  { id: 'home-vaitler', slug: 'vaitler', label: 'Temel yapı', component_key: 'PromisesSection', order_index: 30, is_active: 1, config: null },
   { id: 'home-nasil', slug: 'nasil', label: 'Nasıl çalışır', component_key: 'HomeIntroSection', order_index: 40, is_active: 1, config: null },
+  { id: 'home-cta', slug: 'iletisim', label: 'İletişim', component_key: 'HomeCTABanner', order_index: 50, is_active: 1, config: null },
 ];
 
 function normalizeLayout(list: HomeSection[]): HomeSection[] {

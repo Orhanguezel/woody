@@ -8,7 +8,6 @@ import { buildMetadataFromSeo, fetchSeoObject, fetchCustomPagePublicBySlug } fro
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld';
 import FaqAccordion from '@/components/common/FaqAccordion';
-import AuthorBio from '@shared/shared-ui/content/AuthorBio';
 import { getEditorialTeamName, getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 
 type PageProps = {
@@ -123,16 +122,19 @@ export default async function BlogDetailsPage({ params }: PageProps) {
       <Banner title={title} />
       <BlogDetails />
       <FaqAccordion items={faqItems} title={locale === 'tr' ? 'Bu Yazı Hakkında Sorular' : 'Questions About This Article'} />
-      <AuthorBio
-        name={editorialName}
-        title={locale === 'tr' ? 'İçerik ve editoryal ekip' : 'Editorial team'}
-        bio={
-          locale === 'tr'
-            ? `${app} editörleri; öğrenme içeriklerini sade, sorumlu ve uygulanabilir bir dille hazırlar.`
-            : `${app} editors prepare learning content in clear, responsible, and practical language.`
-        }
-        expertise={locale === 'tr' ? ['İçerik', 'Öğrenme', 'Koçluk', 'Eğitim tasarımı'] : ['Content', 'Learning', 'Coaching', 'Learning design']}
-      />
+      <section className="container mx-auto px-4 pb-16">
+        <div className="rounded-2xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/55 p-6">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gm-gold)]">
+            {locale === 'tr' ? 'Editoryal ekip' : 'Editorial team'}
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold text-[var(--gm-text)]">{editorialName}</h2>
+          <p className="mt-3 text-[var(--gm-text-dim)]">
+            {locale === 'tr'
+              ? `${app} editörleri içerikleri sade, sorumlu ve uygulanabilir bir dille hazırlar.`
+              : `${app} editors prepare content in clear, responsible, and practical language.`}
+          </p>
+        </div>
+      </section>
     </>
   );
 }

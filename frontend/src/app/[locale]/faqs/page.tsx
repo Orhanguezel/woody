@@ -3,7 +3,6 @@
 import React, { useMemo } from 'react';
 import Banner from '@/layout/banner/Breadcrum';
 import FaqsPageContent from '@/components/containers/faqs/FaqsPageContent';
-import Feedback from '@/components/containers/feedback/Feedback';
 import { LayoutSeoBridge } from '@/seo';
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { isValidUiText } from '@/integrations/shared';
@@ -70,9 +69,6 @@ export default function FaqsPage() {
           <FaqsPageContent />
         </section>
 
-        <section className="container mx-auto pb-16 px-4">
-          <Feedback />
-        </section>
       </div>
     </>
   );

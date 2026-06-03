@@ -4,12 +4,11 @@ import React, { useState, FormEvent } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useConfirmPasswordResetMutation } from '@/integrations/rtk/hooks';
-import { useLocaleShort, useUiSection } from '@/i18n';
+import { useLocaleShort } from '@/i18n';
 import { localizePath, normalizeError } from '@/integrations/shared';
 
 export default function PasswordResetPage() {
   const locale = useLocaleShort();
-  const { ui } = useUiSection('ui_auth', locale as any);
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
 

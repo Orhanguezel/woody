@@ -75,7 +75,7 @@ export default async function RootLayout({
       name: getPublicAppName(),
       url: SITE_URL,
       publisherId: `${SITE_URL}/#org`,
-      searchUrlTemplate: `${SITE_URL}/${locale}/consultants?q={q}`,
+      searchUrlTemplate: `${SITE_URL}/${locale}/blog?q={q}`,
     }),
   ]);
 

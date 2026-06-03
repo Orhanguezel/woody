@@ -35,11 +35,11 @@ const Login: React.FC = () => {
   const searchParams = useSearchParams();
   const { ui } = useUiSection('ui_auth', locale as any);
 
-  // Login sonrası dönüş URL'i: ?next=/tr/booking?... → kullanıcı orijinal sayfasına döner
+  // Login sonrası dönüş URL'i: ?next=/tr/profile gibi güvenli yerel sayfalara döner.
   const nextHref = useMemo(() => {
     const raw = searchParams.get('next') || '';
     if (raw && raw.startsWith('/')) return raw;
-    return localizePath(locale, '/dashboard');
+    return localizePath(locale, '/profile');
   }, [searchParams, locale]);
   const hasExplicitNext = useMemo(() => {
     const raw = searchParams.get('next') || '';

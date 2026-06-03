@@ -102,7 +102,8 @@ export default function HeroNew({ locale = 'tr' }: { locale?: string }) {
     };
   }, [localeKey, app, word1, word2]);
 
-  const exploreHref = localizePath(locale, '/explore');
+  const primaryHref = localizePath(locale, '/contact');
+  const secondaryHref = localizePath(locale, '/blog');
 
   const avatarMid = copy.metrics[1]?.value ?? '14';
 
@@ -154,11 +155,11 @@ export default function HeroNew({ locale = 'tr' }: { locale?: string }) {
             />
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5 lg:justify-start">
-              <Link href={exploreHref} className="btn-hero-primary min-w-[200px]">
+              <Link href={primaryHref} className="btn-hero-primary min-w-[200px]">
                 {copy.primaryCTA}
                 <ArrowRight size={18} className="shrink-0" aria-hidden />
               </Link>
-              <Link href={exploreHref} className="btn-hero-secondary min-w-[200px]">
+              <Link href={secondaryHref} className="btn-hero-secondary min-w-[200px]">
                 {copy.secondaryCTA}
               </Link>
             </div>

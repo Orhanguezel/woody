@@ -21,11 +21,9 @@ type FallbackBlogPost = {
 };
 
 const BLOG_IMAGE_FALLBACKS: Record<string, string> = {
-  '/img/numerology_chart.png': '/img/hero-bg.png',
-  '/img/moon_phase.png': '/img/daily_reading.png',
-  '/img/retrograde_guide.png': '/img/hero-bg.png',
-  '/img/consultant_session.png': '/support_ai.webp',
-  '/img/ritual_journal.png': '/img/daily_reading.png',
+  '/img/module-chart.png': '/img/placeholder.svg',
+  '/img/guide-cover.png': '/img/placeholder.svg',
+  '/img/session-cover.png': '/img/placeholder.svg',
 };
 
 function normalizeBlogImage(src: string): string {
@@ -88,20 +86,20 @@ const BlogPageContent: React.FC = () => {
             {t(
               'ui_blog_hero_title',
               locale === 'tr'
-                ? 'Öğrenme, sembolik okumalar ve danışmanlık üzerine yazılar'
+                ? 'Şablon, içerik ve ürün notları'
                 : locale === 'de'
-                  ? 'Artikel zu Lernen, symbolischen Lesungen und Beratung'
-                  : 'Articles on learning, symbolic readings and consultation',
+                  ? 'Artikel zu Vorlage, Inhalt und Produkt'
+                  : 'Articles on templates, content, and product',
             )}
           </h1>
           <p className="text-base md:text-lg text-[var(--gm-text-dim)] max-w-2xl mx-auto leading-relaxed font-serif italic">
             {t(
               'ui_blog_hero_lead',
               locale === 'tr'
-                ? 'Uzman danışmanlardan ipuçları, rehberler ve sembolik bir dilden farkındalık notları.'
+                ? 'Yeni projenin içerik yapısını kurmaya yardımcı kısa notlar ve rehberler.'
                 : locale === 'de'
-                  ? 'Tipps, Anleitungen und reflektierende Notizen unserer Expertenberater.'
-                  : 'Tips, guides and reflective notes from our expert consultants.',
+                  ? 'Kurze Hinweise und Leitfäden für die Inhaltsstruktur neuer Projekte.'
+                  : 'Short notes and guides for shaping a new project content structure.',
             )}
           </p>
           <div className="mt-8 inline-flex items-center gap-3">

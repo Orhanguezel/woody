@@ -16,7 +16,6 @@ import { downgradeH1ToH2, pickPage, toCdnSrc } from '@/integrations/shared';
 
 // Helpers
 import { useLocaleShort, useUiSection } from '@/i18n';
-import AuthorBio from '@shared/shared-ui/content/AuthorBio';
 import { localizePath } from '@/integrations/shared';
 import { getPublicAppName } from '@/lib/site-config';
 import { injectAppName } from '@/lib/page-copy';
@@ -344,19 +343,11 @@ const AboutPageContent: React.FC = () => {
           </section>
 
           <div className="mt-12 rounded-3xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-7 md:p-10 shadow-[var(--gm-shadow-soft)]">
-            <AuthorBio
-              name="Murat Kısıkçılar"
-              title={
-                locale === 'tr'
-                  ? `${getPublicAppName()} Kurucusu`
-                  : locale === 'de'
-                    ? `Gründer von ${getPublicAppName()}`
-                    : `Founder of ${getPublicAppName()}`
-              }
-              bio={copy.authorBio}
-              expertise={['Product', 'Platform', 'Customer success']}
-              certificates={['Swiss Ephemeris', 'Rider-Waite-Smith']}
-            />
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gm-primary)]">
+              {locale === 'tr' ? 'Editoryal ekip' : locale === 'de' ? 'Redaktionsteam' : 'Editorial team'}
+            </p>
+            <h2 className="mt-2 text-2xl font-serif text-[var(--gm-text)]">{getPublicAppName()}</h2>
+            <p className="mt-4 text-base leading-relaxed text-[var(--gm-text-dim)]">{copy.authorBio}</p>
           </div>
 
           <div className="mt-10 text-center">

@@ -1,7 +1,6 @@
 'use client';
 
-import React, { Fragment, useMemo, useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+import React, { Fragment, useMemo, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Header from '../layout/header/Header';
 import type { PublicMenuItemDto } from '@/integrations/shared';
@@ -12,17 +11,7 @@ import AnalyticsScripts from '../features/analytics/AnalyticsScripts';
 import GAViewPages from '../features/analytics/GAViewPages';
 import CookieConsentBanner from '../layout/banner/CookieConsentBanner';
 import PwaRegistration from '../components/system/PwaRegistration';
-import DevPaymentCardBanner from '../components/dev/DevPaymentCardBanner';
 import { resetLayoutSeo } from '../seo';
-
-const SitePopups = dynamic(() => import('../layout/banner/SitePopups'), {
-  ssr: false,
-  loading: () => null,
-});
-const SupportBotWidget = dynamic(() => import('../components/containers/chat/SupportBotWidget'), {
-  ssr: false,
-  loading: () => null,
-});
 
 
 import { SplashScreen } from '../layout/SplashScreen';
@@ -42,24 +31,11 @@ export default function ClientLayout({
   
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [deferWidgets, setDeferWidgets] = useState(false);
 
   useEffect(() => {
      // Reset SEO store on route change
      resetLayoutSeo();
   }, [pathname, searchParams]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    if ('requestIdleCallback' in window) {
-      const id = window.requestIdleCallback(() => setDeferWidgets(true), { timeout: 2500 });
-      return () => window.cancelIdleCallback(id);
-    }
-
-    const id = globalThis.setTimeout(() => setDeferWidgets(true), 1800);
-    return () => globalThis.clearTimeout(id);
-  }, []);
 
   // Sync <html lang="..."> with current locale
   useEffect(() => {
@@ -150,13 +126,6 @@ export default function ClientLayout({
       <ScrollProgress />
 
       <CookieConsentBanner />
-      {deferWidgets && (
-        <>
-          <SitePopups />
-          <SupportBotWidget />
-        </>
-      )}
-      <DevPaymentCardBanner />
     </Fragment>
   );
 }

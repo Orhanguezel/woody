@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type React from 'react';
 
-import { normPath, absUrlJoin } from '@/integrations/shared';
+import { normPath } from '@/integrations/shared';
 import { buildMetadataFromSeo, fetchSeoObject, fetchSeoPageObject, mergeSeoPageIntoSeo } from '@/seo/server';
 
 export async function generateMetadata({
@@ -21,4 +21,3 @@ export async function generateMetadata({
 export default function FaqsLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-
