@@ -15,7 +15,7 @@ function pickLocale(locale: string): LocaleKey {
 }
 
 export function injectAppName(template: string, app: string): string {
-  return template.replace(/\{\{appName\}\}/g, app);
+  return template.replace(/\{\{appName\}\}/g, app).replace(/\bAppName\b/g, app);
 }
 
 /** JSON içinden locale dallanması */

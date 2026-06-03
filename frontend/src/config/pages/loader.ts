@@ -31,6 +31,9 @@ export const PAGE_LOCALES = [
 export type PageLocale = (typeof PAGE_LOCALES)[number];
 
 const PAGE_LOCALE_SET = new Set<string>(PAGE_LOCALES);
+const PAGE_LOCALE_BY_LOWER = new Map<string, PageLocale>(
+  PAGE_LOCALES.map((locale) => [locale.toLowerCase(), locale]),
+);
 
 /**
  * İstenen locale'i mevcut klasör adına eşler.
@@ -40,8 +43,11 @@ export function pickLocale(locale: string | undefined | null): PageLocale {
   if (!locale) return DEFAULT_PAGE_LOCALE;
   const normalized = locale.trim();
   if (PAGE_LOCALE_SET.has(normalized)) return normalized as PageLocale;
+  const exactCaseInsensitive = PAGE_LOCALE_BY_LOWER.get(normalized.toLowerCase());
+  if (exactCaseInsensitive) return exactCaseInsensitive;
   const short = normalized.split('-')[0]?.toLowerCase() ?? '';
-  if (PAGE_LOCALE_SET.has(short)) return short as PageLocale;
+  const shortMatch = PAGE_LOCALE_BY_LOWER.get(short);
+  if (shortMatch) return shortMatch;
   return DEFAULT_PAGE_LOCALE;
 }
 
