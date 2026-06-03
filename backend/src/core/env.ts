@@ -61,13 +61,6 @@ export const env = {
   STORAGE_DRIVER: (process.env.STORAGE_DRIVER || 'local').toLowerCase() as 'local' | 'cloudinary',
   LOCAL_STORAGE_ROOT: process.env.LOCAL_STORAGE_ROOT || '',
   LOCAL_STORAGE_BASE_URL: process.env.LOCAL_STORAGE_BASE_URL || '/uploads',
-
-  /** Opsiyonel icerik kok dizini (quiz/promote vb.); legacy: TARMINGO_ROOT */
-  QUIZ_CONTENT_ROOT: (process.env.QUIZ_CONTENT_ROOT || process.env.TARMINGO_ROOT || '').trim(),
-  /** promote sonrasi `node scripts/build-questions-js.mjs` calistir */
-  QUIZ_REBUILD_AFTER_PROMOTE: process.env.QUIZ_REBUILD_AFTER_PROMOTE === 'true',
-  /** questions.source_id: gonderi satiri ile carpimsiz tekil anahtar (unique subject_id ile) */
-  SUBMISSION_SOURCE_ID_BASE: parseEnvInt(process.env.SUBMISSION_SOURCE_ID_BASE, 8_000_000),
 } as const;
 
 export type AppEnv = typeof env;

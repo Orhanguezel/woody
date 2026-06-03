@@ -4,10 +4,7 @@ import type { FastifyInstance } from 'fastify';
 
 function checkSecurityDefaults() {
   const isProd = env.NODE_ENV === 'production';
-  const insecureJwt =
-    env.JWT_SECRET === 'targo-jwt-secret-change-in-production' ||
-    env.JWT_SECRET === 'project-jwt-secret-change-in-production' ||
-    env.JWT_SECRET.endsWith('-jwt-secret-change-in-production');
+  const insecureJwt = env.JWT_SECRET.endsWith('-jwt-secret-change-in-production');
   if (isProd && insecureJwt) {
     console.error('[GUVENLIK] JWT_SECRET varsayilan veya zayif sablon degeri! Production icin degistirin.');
     process.exit(1);

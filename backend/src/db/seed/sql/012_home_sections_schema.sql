@@ -26,7 +26,7 @@ DELETE FROM `home_sections` WHERE `component_key` = 'TrustSection';
 INSERT INTO `home_sections` (`id`, `slug`, `label`, `component_key`, `order_index`, `is_active`, `config`) VALUES
 ('home-hero', 'hero', 'Hero', 'HeroNew', 10, 1, NULL),
 ('home-konular', 'konular', 'Öne çıkan kategoriler', 'ZodiacGridSection', 20, 1, NULL),
-('home-neden', 'neden', 'Neden Woody ve Arkadaşları', 'FeaturesNew', 30, 1, NULL),
+('home-neden', 'neden', 'Neden AppName', 'FeaturesNew', 30, 1, NULL),
 ('home-nasil', 'nasil', 'Nasıl çalışır', 'HomeIntroSection', 40, 1, NULL),
 ('home-uygulama', 'uygulama', 'Mobil uygulama', 'AppDownloadSection', 60, 0, NULL)
 ON DUPLICATE KEY UPDATE

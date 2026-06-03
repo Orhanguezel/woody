@@ -86,7 +86,7 @@ INSERT INTO users (
   '{{ADMIN_ID}}',
   '{{ADMIN_EMAIL}}',
   '{{ADMIN_PASSWORD_HASH}}',
-  'Orhan Güzel',
+  'Admin',
   '+905551112233',
   1, 1,
   CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
@@ -99,7 +99,7 @@ ON DUPLICATE KEY UPDATE
   updated_at     = CURRENT_TIMESTAMP(3);
 
 INSERT INTO profiles (id, full_name, phone, created_at, updated_at)
-VALUES ('{{ADMIN_ID}}', 'Orhan Güzel', '+905551112233', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+VALUES ('{{ADMIN_ID}}', 'Admin', '+905551112233', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
 ON DUPLICATE KEY UPDATE
   full_name  = VALUES(full_name),
   phone      = VALUES(phone),
@@ -121,7 +121,7 @@ INSERT INTO users (
   '{{ADMIN2_ID}}',
   '{{ADMIN2_EMAIL}}',
   '{{ADMIN_PASSWORD_HASH}}',
-  'Atakan Sahin',
+  'Admin 2',
   NULL,
   1, 1,
   CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
@@ -134,7 +134,7 @@ ON DUPLICATE KEY UPDATE
   updated_at     = CURRENT_TIMESTAMP(3);
 
 INSERT INTO profiles (id, full_name, phone, created_at, updated_at)
-VALUES ('{{ADMIN2_ID}}', 'Atakan Sahin', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+VALUES ('{{ADMIN2_ID}}', 'Admin 2', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
 ON DUPLICATE KEY UPDATE
   full_name  = VALUES(full_name),
   phone      = VALUES(phone),
