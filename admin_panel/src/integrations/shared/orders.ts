@@ -3,8 +3,8 @@
 // Orders admin types + normalizers
 // =============================================================
 
-export type OrderStatus = 'pending' | 'processing' | 'completed' | 'cancelled' | 'refunded';
-export type PaymentStatus = 'unpaid' | 'paid' | 'failed' | 'refunded';
+export type OrderStatus = 'pending' | 'confirmed' | 'shipped' | 'completed' | 'cancelled';
+export type PaymentStatus = 'unpaid' | 'pending' | 'paid' | 'failed' | 'refunded';
 
 export type OrderAdminView = {
   id: string;
@@ -123,13 +123,13 @@ function toBool(v: unknown): boolean {
 
 function toOrderStatus(v: unknown): OrderStatus {
   const s = toStr(v);
-  if (['processing', 'completed', 'cancelled', 'refunded'].includes(s)) return s as OrderStatus;
+  if (['confirmed', 'shipped', 'completed', 'cancelled'].includes(s)) return s as OrderStatus;
   return 'pending';
 }
 
 function toPaymentStatus(v: unknown): PaymentStatus {
   const s = toStr(v);
-  if (['paid', 'failed', 'refunded'].includes(s)) return s as PaymentStatus;
+  if (['pending', 'paid', 'failed', 'refunded'].includes(s)) return s as PaymentStatus;
   return 'unpaid';
 }
 
@@ -137,16 +137,16 @@ export function normalizeOrderAdmin(raw: unknown): OrderAdminView {
   const r = (raw ?? {}) as Record<string, unknown>;
   return {
     id: toStr(r.id),
-    order_number: toStr(r.order_number),
+    order_number: toStr(r.order_number || r.payment_ref || r.id),
     status: toOrderStatus(r.status),
     payment_status: toPaymentStatus(r.payment_status),
-    total_amount: toStr(r.total_amount || '0.00') || '0.00',
-    currency: toStr(r.currency || 'EUR') || 'EUR',
-    transaction_id: toNullableStr(r.transaction_id),
-    user_id: toStr(r.user_id),
+    total_amount: toStr(r.total_amount || r.total || '0.00') || '0.00',
+    currency: toStr(r.currency || 'TRY') || 'TRY',
+    transaction_id: toNullableStr(r.transaction_id || r.payment_ref),
+    user_id: toStr(r.user_id || r.dealer_id),
     user_email: toNullableStr(r.user_email),
-    user_name: toNullableStr(r.user_name),
-    order_notes: toNullableStr(r.order_notes),
+    user_name: toNullableStr(r.user_name || r.dealer_name),
+    order_notes: toNullableStr(r.order_notes || r.notes),
     created_at: toNullableStr(r.created_at),
     updated_at: toNullableStr(r.updated_at),
   };
@@ -157,12 +157,12 @@ function normalizeOrderItem(raw: unknown): OrderItemView {
   return {
     id: toStr(r.id),
     order_id: toStr(r.order_id),
-    item_type: toStr(r.item_type || 'service'),
-    item_ref_id: toNullableStr(r.item_ref_id),
-    title: toStr(r.title),
+    item_type: toStr(r.item_type || 'product'),
+    item_ref_id: toNullableStr(r.item_ref_id || r.product_id),
+    title: toStr(r.title || r.product_title || r.product_id),
     quantity: toNum(r.quantity, 1),
-    price: toStr(r.price || '0.00') || '0.00',
-    currency: toStr(r.currency || 'EUR') || 'EUR',
+    price: toStr(r.price || r.unit_price || '0.00') || '0.00',
+    currency: toStr(r.currency || 'TRY') || 'TRY',
     options: toNullableStr(r.options),
     created_at: toNullableStr(r.created_at),
   };

@@ -10,8 +10,13 @@ import { useLocaleShort, useUiSection } from '@/i18n';
 import { isValidUiText, safeStr } from '@/integrations/shared';
 import { useListCustomPagesPublicQuery } from '@/integrations/rtk/hooks';
 import type { CustomPageDto } from '@/integrations/shared';
+import type { WoodyFallbackBlogPost } from './blog-loader.server';
 
-export default function WoodyBlogIndexClient() {
+export default function WoodyBlogIndexClient({
+  initialPosts = [],
+}: {
+  initialPosts?: WoodyFallbackBlogPost[];
+}) {
   const locale = useLocaleShort();
   const { ui } = useUiSection('ui_blog', locale as any);
 
@@ -62,7 +67,7 @@ export default function WoodyBlogIndexClient() {
 
       <div className="min-h-[50vh] bg-bg-primary">
         <section className="container mx-auto px-4 py-16">
-          <BlogPageContent />
+          <BlogPageContent initialPosts={initialPosts} />
         </section>
 
         <section className="container mx-auto px-4 pb-16">

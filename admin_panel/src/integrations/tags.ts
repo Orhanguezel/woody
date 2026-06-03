@@ -193,6 +193,12 @@ export const tags = [
   'HomeSections',
   'ConsultantApplication',
   'ConsultantApplications',
+  'School',
+  'Schools',
+  'SchoolUsers',
+  'DigitalAsset',
+  'DigitalAssets',
+  'SchoolContentAccess',
 ] as const;
 
 export type tag = typeof tags[number];

@@ -7,6 +7,7 @@ import { ChevronDown } from 'lucide-react';
 
 import HeaderOffcanvas from './HeaderOffcanvas';
 import MegaMenuPanel from './MegaMenuPanel';
+import { SiteLogo } from '@/layout/SiteLogo';
 import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
 import type { PublicMenuItemDto } from '@/integrations/shared';
 import { localizePath } from '@/integrations/shared';
@@ -17,8 +18,6 @@ import ThemeToggle from '@/components/system/ThemeToggle';
 import {
   getHeaderFallbackMenu,
   getPublicAppName,
-  getWordMarkLine1,
-  getWordMarkLine2,
 } from '@/lib/site-config';
 import { WOODY_LOCALES } from '@/components/woody/routes';
 
@@ -136,16 +135,13 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               : 'py-6 lg:py-8 bg-transparent'
             }`}
         >
-          {/* Brand Logo (Branded Text) */}
-          <Link href={homeHref} className="flex flex-col items-center no-underline group">
-            <span className="font-display font-semibold text-[16px] lg:text-[18px] tracking-[0.18em] text-[var(--gm-gold-deep)] transition-colors group-hover:text-[var(--gm-gold)]">
-              {getWordMarkLine1()}
-            </span>
-            {getWordMarkLine2() ? (
-              <span className="font-display text-[9px] lg:text-[10px] tracking-[0.32em] text-[var(--gm-text-dim)] mt-0.5">
-                {getWordMarkLine2()}
-              </span>
-            ) : null}
+          <Link href={homeHref} className="flex items-center no-underline group">
+            <SiteLogo
+              alt={resolvedBrand.name}
+              wrapperClassName="w-36 sm:w-44 lg:w-48"
+              className="max-h-14 object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}

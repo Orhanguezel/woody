@@ -6,6 +6,13 @@ import { registerSiteSettings, registerSiteSettingsAdmin } from '@shared/shared-
 import { registerMenuItems, registerMenuItemsAdmin } from '@shared/shared-backend/modules/menuItems';
 import { registerUserRoles } from '@shared/shared-backend/modules/userRoles';
 import { registerTheme, registerThemeAdmin } from '@shared/shared-backend/modules/theme';
+import { registerCategories, registerCategoriesAdmin } from '@shared/shared-backend/modules/categories';
+import { registerOrders, registerOrdersAdmin } from '@shared/shared-backend/modules/orders';
+import { registerBlog, registerBlogAdmin } from '@shared/shared-backend/modules/blog';
+import { registerSubCategories } from '@shared/shared-backend/modules/subcategories/router';
+import { registerSubCategoriesAdmin } from '@shared/shared-backend/modules/subcategories/admin.routes';
+import { registerProducts } from '@shared/shared-backend/modules/products/router';
+import { registerProductsAdmin } from '@shared/shared-backend/modules/products/admin.routes';
 import { registerFooterSectionsPublic, registerPopupsPublicStub } from '@/modules/footerStub';
 
 export async function registerSharedPublic(api: FastifyInstance) {
@@ -18,6 +25,11 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerUserRoles(api);
   await registerTheme(api);
   await registerProfiles(api);
+  await registerCategories(api);
+  await registerSubCategories(api);
+  await registerProducts(api);
+  await registerOrders(api);
+  await registerBlog(api);
 }
 
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
@@ -26,4 +38,9 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
   await registerUserAdmin(adminApi);
   await registerStorageAdmin(adminApi);
   await registerThemeAdmin(adminApi);
+  await registerCategoriesAdmin(adminApi);
+  await registerSubCategoriesAdmin(adminApi);
+  await registerProductsAdmin(adminApi);
+  await registerOrdersAdmin(adminApi);
+  await registerBlogAdmin(adminApi);
 }

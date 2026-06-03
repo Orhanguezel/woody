@@ -6,13 +6,11 @@
 // =============================================================
 
 import {
-  BarChart,
   Bell,
   Bot,
-  Calendar,
+  BookOpenText,
   Image as ImageIcon,
   Tag,
-  Clock,
   CreditCard,
   Database,
   FileSearch,
@@ -24,11 +22,10 @@ import {
   MessageSquare,
   Package,
   Receipt,
+  School,
   Send,
   Settings,
   Trash2,
-  Star,
-  UserCheck,
   Users,
   Menu as MenuIcon,
   type LucideIcon,
@@ -77,6 +74,9 @@ export type AdminNavItemKey =
   | 'chat'
   | 'wallet'
   | 'orders'
+  | 'products'
+  | 'blog'
+  | 'schools'
   | 'payment_settings'
   | 'announcements'
   | 'subscriptions'
@@ -110,6 +110,9 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
     items: [
       { key: 'dashboard', url: '/admin/dashboard', icon: LayoutDashboard },
       { key: 'users', url: '/admin/users', icon: Users },
+      { key: 'schools', url: '/admin/schools', icon: School },
+      { key: 'products', url: '/admin/products', icon: Package },
+      { key: 'blog', url: '/admin/blog', icon: BookOpenText },
       { key: 'orders', url: '/admin/orders', icon: Package },
       { key: 'subscriptions', url: '/admin/subscriptions', icon: CreditCard },
       { key: 'subscription_plans', url: '/admin/subscription-plans', icon: Receipt },
@@ -174,6 +177,9 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   support: 'Destek',
   chat: 'Chat & AI',
   orders: 'Siparişler',
+  products: 'Ürünler',
+  blog: 'Blog',
+  schools: 'Okullar',
   wallet: 'Cüzdan',
   payment_settings: 'Ödeme Ayarları',
   announcements: 'Duyurular',
@@ -198,7 +204,7 @@ export function buildAdminSidebarItems(
     // 1. Try copy.labels[group.key]
     // 2. Try t(`admin.sidebar.groups.${group.key}`)
     // 3. Fallback to empty (or key)
-    const tGroup = t ? t(`admin.sidebar.groups.${group.key}` as any) : '';
+    const tGroup = t ? t(`admin.sidebar.groups.${group.key}`) : '';
     const label =
       labels[group.key] || (tGroup && !tGroup.includes('admin.sidebar') ? tGroup : '') || '';
 
@@ -210,7 +216,7 @@ export function buildAdminSidebarItems(
         // 2. Try t(`admin.dashboard.items.${item.key}`)
         // 3. Fallback to FALLBACK_TITLES
         // 4. Fallback to key
-        const tItem = t ? t(`admin.dashboard.items.${item.key}` as any) : '';
+        const tItem = t ? t(`admin.dashboard.items.${item.key}`) : '';
         const title =
           items[item.key] ||
           (tItem && !tItem.includes('admin.dashboard') ? tItem : '') ||

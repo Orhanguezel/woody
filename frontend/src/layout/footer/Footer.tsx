@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import Link from 'next/link';
 
 import SocialLinks from '@/components/common/public/SocialLinks';
+import { SiteLogo } from '@/layout/SiteLogo';
 import { Apple, Play, ShieldCheck, Lock } from 'lucide-react';
 import {
   useGetSiteSettingByKeyQuery,
@@ -17,8 +18,6 @@ import { localizePath } from '@/integrations/shared';
 import {
   getCopyrightHolder,
   getFooterFallbackSections,
-  getWordMarkLine1,
-  getWordMarkLine2,
 } from '@/lib/site-config';
 
 const isExternalHref = (href: string) =>
@@ -119,15 +118,13 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           {/* Brand Info */}
           <div className="flex flex-col items-start text-center md:text-left">
-            <Link href={homeHref} className="flex flex-col items-start no-underline mb-8 group">
-              <span className="font-display font-semibold text-2xl tracking-[0.18em] text-[var(--gm-gold)] group-hover:text-[var(--gm-gold-light)] transition-colors">
-                {getWordMarkLine1()}
-              </span>
-              {getWordMarkLine2() ? (
-                <span className="font-display text-[10px] tracking-[0.32em] text-[var(--gm-gold-deep)] mt-1">
-                  {getWordMarkLine2()}
-                </span>
-              ) : null}
+            <Link href={homeHref} className="mb-8 flex items-start no-underline group">
+              <SiteLogo
+                variant="dark"
+                wrapperClassName="w-44"
+                className="max-h-20 object-contain"
+                priority={false}
+              />
             </Link>
             <p className="text-[var(--gm-text-dim)] font-light text-[15px] leading-relaxed mb-8 max-w-[260px]">
               {ui('ui_footer_tagline')}
