@@ -34,7 +34,6 @@ export * from './menu_items.types';
 export * from './newsletter.types';
 export * from './faqs.types';
 
-export * from './availability.types';
 export * from './chat.types';
 export * from './profiles';
 export * from './auth.types';
@@ -49,7 +48,6 @@ export * from './media';
 export * from './local';
 export * from './errors';
 export * from './localeDisplay';
-export * from './wallet.types';
 
 // =============================================================
 // END FILE

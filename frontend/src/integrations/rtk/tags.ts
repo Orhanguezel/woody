@@ -40,10 +40,6 @@ export const metahubTags = [
   'AuditAuthEvent',
   'AuditRequestLog',
   'AuditMetric',
-  'AvailabilityWH',
-  'AvailabilitySlots',
-  'AvailabilityCheck',
-  'WeeklyPlan',
 ] as const;
 
 export type MetahubTag = (typeof metahubTags)[number];
