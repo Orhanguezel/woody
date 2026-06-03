@@ -31,8 +31,8 @@
       {
         "title": "Kim gözden geçirir?",
         "paragraphs": [
-          "İçerikler yayın öncesi editoryal kontrolden geçer. Uzman profilleri ve kullanıcıya temas eden metinlerde tutarlılık, doğruluk ve güvenli dil önceliklidir.",
-          "Bire bir danışmanlık görüşmeleri ilgili uzmanın mesleki sorumluluğundadır; platform içerikleri genel bilgilendirme niteliğindedir."
+          "İçerikler yayın öncesi editoryal kontrolden geçer. Kullanıcıya temas eden metinlerde tutarlılık, doğruluk ve güvenli dil önceliklidir.",
+          "Platform içerikleri genel bilgilendirme niteliğindedir; kişisel durumlar için ilgili uzmana başvurulmalıdır."
         ]
       }
     ]
@@ -69,8 +69,8 @@
       {
         "title": "Review process",
         "paragraphs": [
-          "Content is editorially reviewed before release. Consultant profiles and user-facing copy prioritise consistency and trust.",
-          "One-to-one sessions remain the responsibility of the relevant professional; platform content is general information."
+          "Content is editorially reviewed before release. User-facing copy prioritises consistency, accuracy and trust.",
+          "Platform content is general information; consult a relevant professional for personal situations."
         ]
       }
     ]

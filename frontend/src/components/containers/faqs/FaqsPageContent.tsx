@@ -37,7 +37,7 @@ const FaqsPageContent: React.FC = () => {
   const intro = safeStr(
     t(
       'ui_faqs_intro',
-      `${app} danışmanlık seansları, randevu süreci ve genel işleyiş hakkında merak ettiğiniz cevapları bulun.`,
+      `${app} hakkında sıkça sorulan sorulara ve genel işleyişe dair cevapları bulun.`,
     ),
   );
 

@@ -439,7 +439,7 @@ export function articleEnhanced(input: {
 export const articleSchema = articleEnhanced;
 
 /**
- * Review schema — danışman yorum kartları için.
+ * Review schema — kullanıcı yorum kartları için.
  */
 export function review(input: {
   itemReviewedId?: string; // Person/Service @id reference

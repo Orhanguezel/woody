@@ -83,14 +83,14 @@ export default async function BlogDetailsPage({ params }: PageProps) {
       question: locale === 'tr' ? 'Bu içerik nasıl hazırlanıyor?' : 'How is this content prepared?',
       answer:
         locale === 'tr'
-          ? `${app} blog içerikleri editoryal kontrol, konu araştırması ve danışmanlık etiği ilkeleriyle hazırlanır.`
-          : `${app} blog content is prepared with editorial review, topic research and consultation ethics.`,
+          ? `${app} blog içerikleri editoryal kontrol ve konu araştırması ilkeleriyle hazırlanır.`
+          : `${app} blog content is prepared with editorial review and topic research.`,
     },
     {
-      question: locale === 'tr' ? 'Bu yazı kişisel danışmanlık yerine geçer mi?' : 'Does this article replace a personal consultation?',
+      question: locale === 'tr' ? 'Bu yazı profesyonel tavsiye yerine geçer mi?' : 'Does this article replace professional advice?',
       answer: locale === 'tr'
-        ? 'Hayır. Blog yazıları genel bilgilendirme sunar; kişisel harita, ilişki veya yaşam soruları için uzman danışmanlık daha uygundur.'
-        : 'No. Blog articles provide general information; expert consultation is better for personal chart, relationship or life questions.',
+        ? 'Hayır. Blog yazıları genel bilgilendirme sunar; kişisel durumlar için ilgili uzmana başvurmanız önerilir.'
+        : 'No. Blog articles provide general information; for personal situations consult a relevant professional.',
     },
   ];
 

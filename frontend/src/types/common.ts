@@ -106,112 +106,12 @@ export function getMultiLang(
   return obj.tr || obj.en || Object.values(obj)[0] || '—';
 }
 
-export type ZodiacSign =
-  | 'aries'
-  | 'taurus'
-  | 'gemini'
-  | 'cancer'
-  | 'leo'
-  | 'virgo'
-  | 'libra'
-  | 'scorpio'
-  | 'sagittarius'
-  | 'capricorn'
-  | 'aquarius'
-  | 'pisces';
-
-export type PlanetKey =
-  | 'sun'
-  | 'moon'
-  | 'mercury'
-  | 'venus'
-  | 'mars'
-  | 'jupiter'
-  | 'saturn'
-  | 'uranus'
-  | 'neptune'
-  | 'pluto';
-
-export interface PlanetPlacement {
-  key: PlanetKey;
-  name: string;
-  symbol: string;
-  longitude: number;
-  sign: ZodiacSign;
-  sign_label: string;
-  degree_in_sign: number;
-  house: number;
-  retrograde: boolean;
-}
-
-export interface ChartAspect {
-  type: 'conjunction' | 'sextile' | 'square' | 'trine' | 'opposition';
-  planet_a: PlanetKey;
-  planet_b: PlanetKey;
-  orb: number;
-  exact_angle: number;
-}
-
-export interface HouseCusp {
-  house: number;
-  longitude: number;
-  sign: ZodiacSign;
-  sign_label: string;
-  degree_in_sign: number;
-}
-
-export interface NatalChart {
-  planets: Record<PlanetKey, PlanetPlacement>;
-  houses: HouseCusp[];
-  ascendant: HouseCusp;
-  midheaven: HouseCusp;
-  aspects: ChartAspect[];
-}
-
-export interface BirthChart {
-  id: string;
-  name: string;
-  dob: string;
-  tob: string;
-  pob_lat: string;
-  pob_lng: string;
-  pob_label: string;
-  tz_offset: number;
-  chart_data: NatalChart;
-}
-
-export interface BirthChartCreateInput {
-  name: string;
-  dob: string;
-  tob: string;
-  pob_lat: number;
-  pob_lng: number;
-  pob_label: string;
-  tz_offset: number;
-}
-
 export interface GeocodeResult {
   q: string;
   lat: number;
   lng: number;
   label: string;
   source: 'cache' | 'nominatim';
-}
-
-export interface DailyReading {
-  id: string;
-  user_id: string;
-  chart_id: string;
-  reading_date: string;
-  content: string;
-  transits_snapshot?: unknown;
-  model_used?: string | null;
-}
-
-export interface DailyReadingResponse {
-  reading: DailyReading;
-  reused: boolean;
-  similarity_max: number;
 }
 
 export type BannerPlacement =
@@ -242,36 +142,4 @@ export interface Banner {
   placement: BannerPlacement;
   locale: string;
   priority: number;
-}
-
-export interface DailyHoroscope {
-  id: string;
-  date: string;
-  sign: ZodiacSign;
-  contentTr: string;
-  contentEn?: string | null;
-  moodScore: number;
-  luckyNumber: number;
-  luckyColor: string;
-}
-
-export interface SignInfo {
-  id: string;
-  kind: 'sign';
-  key1: ZodiacSign;
-  locale: string;
-  title: string;
-  content: string;
-  short_summary: string | null;
-  tone: string;
-  source: string | null;
-  author: string | null;
-  sections?: {
-    id: string;
-    kind: 'sign_section';
-    key1: ZodiacSign;
-    key2: string; // e.g. 'love', 'career'
-    title: string;
-    content: string;
-  }[];
 }

@@ -43,9 +43,9 @@ export default function ContactRoutePage() {
 
     const app = getPublicAppName();
     if (locale === 'tr')
-      return `${app} ile iletişime geçin: danışmanlık seansları ve sorularınız için bize ulaşın.`;
+      return `${app} ile iletişime geçin: soru ve talepleriniz için bize ulaşın.`;
     if (locale === 'de')
-      return `Kontaktieren Sie ${app}: Anfragen und Fragen zu unseren Beratungsangeboten.`;
+      return `Kontaktieren Sie ${app}: für Anfragen und Fragen erreichen Sie uns.`;
     return `Contact ${app}: reach us with questions about our consultation services.`;
   }, [ui, locale]);
 
