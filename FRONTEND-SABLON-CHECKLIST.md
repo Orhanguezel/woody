@@ -14,14 +14,15 @@
 ## Faz 0 — İlke & hazırlık
 - [ ] Çalışma dalı aç (örn. `frontend-sablon`), küçük commit'ler
 - [ ] `bun run build` ve `bun run lint` baseline'ı al (mevcut hatalar not edilsin)
-- [ ] Karar: ticaret (checkout/pricing) **şimdilik kaldırılsın mı** yoksa stub mı kalsın?
+- [x] **Karar (verildi): ticaret (checkout / pricing / booking-payment) ŞİMDİLİK KALDIRILACAK.**
+      Gerekince shared `orders`/`payments` ile geri eklenir.
 
 ---
 
 ## Faz 1 — Domain modüllerini kaldır (astro / danışman / fal / ticaret)
 **Route klasörleri** (`src/app/[locale]/`):
 - [ ] `explore/`, `pricing/`, `dashboard/`, `karne/`
-- [ ] `checkout/`, `checkout/[orderId]/` (ticaret kararı)
+- [ ] `checkout/`, `checkout/[orderId]/` (ticaret — kaldırılacak)
 - [ ] `me/consultant/`, `me/credits/`, `me/readings/` (hesap altı astro)
 - [ ] `profile/bookings/` (randevu domaini)
 
