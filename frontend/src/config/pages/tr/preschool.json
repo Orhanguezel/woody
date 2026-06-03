@@ -1,0 +1,74 @@
+{
+  "title": "{{appName}} Preschool Series",
+  "description": "{{appName}} Okul Serisi, kurumlara oyun temelli, planlı ve sürdürülebilir bir İngilizce eğitim altyapısı sunar.",
+  "eyebrow": "{{appName}} PRESCHOOL SERIES",
+  "hero": {
+    "eyebrow": "{{appName}} PRESCHOOL SERIES",
+    "title": "Preschool",
+    "description": "{{appName}} Okul Serisi, kurumlara oyun temelli, planlı ve sürdürülebilir bir İngilizce eğitim altyapısı sunar.",
+    "primaryCTA": "Demo Talep Et",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Fiyatları İncele",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Öğretmen ve Öğrenci Seti",
+      "title": "Okul Serisi iki ayrı setten oluşur",
+      "description": "Okul Serisi, Öğretmen Seti ve Öğrenci Seti olmak üzere iki ayrı setten oluşur. İçerikleri video anlatımlarıyla keşfedin. {{appName}} Preschool sisteminin uygulanabilmesi için kurum mevcudunun en az 30 öğrenci olması gerekmektedir. Öğretmen seti ayrıca ücretli olarak satılmaz. Anlaşma sağlanan kurumlara, öğrenci setleri ile birlikte ücretsiz olarak sunulur ve her sene yenilenir."
+    },
+    {
+      "eyebrow": "Seviyeler",
+      "title": "Serilerin İçeriklerini Video Anlatımlarıyla Keşfedin",
+      "description": "Okul Serisi dört seviyeden oluşur: Basic, Junior, Senior ve PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basic Level",
+          "description": "Temel kelimeler ve basit cümlelerle İngilizceye güçlü bir başlangıç sağlar."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior Level",
+          "description": "Çocukların cümle kurma ve kendini ifade etme becerilerini geliştirir."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior Level",
+          "description": "İngilizceyi daha akıcı kullanma ve anlama becerisi kazandırır."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO Level",
+          "description": "Okuma, yazma ve akademik İngilizce altyapısı oluşturur."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Keşfet",
+      "title": "Sistemi Yakından İnceleyin",
+      "items": [
+        {
+          "title": "{{appName}} Level Finder",
+          "description": "Öğrencinin yaşını, İngilizce seviyesini ve öğrenme durumunu belirleyerek en uygun {{appName}} seviyesini hızlı ve doğru şekilde tespit etmenizi sağlar. Birkaç kısa soruya verilen cevaplara göre öğrencinin hangi seviyeden başlaması gerektiğini net olarak önerir.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Library",
+          "description": "{{appName}} kitaplarını dijital ortamda inceleyebileceğiniz kütüphanedir. Tüm setleri detaylı şekilde görüntüleyebilir, içerikleri önceden inceleyerek sistem hakkında net fikir edinebilirsiniz.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "{{appName}} setlerinin güncel fiyatlarını inceleyebileceğiniz ve online sipariş verebileceğiniz alandır.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Preschool | Anaokulu İngilizce Eğitim Seti - Preschool English Program Turkey",
+    "description": "{{appName}} Preschool anaokulu İngilizce eğitim seti, 3-6 yaş çocuklar için oyun temelli okul öncesi İngilizce programı. Cambridge hazırlık sistemi ile preschool English curriculum. Öğretmen ve öğrenci setleri, anaokulu İngilizce müfredatı ve ders planı.",
+    "keywords": "anaokulu İngilizce eğitim seti, preschool English program Turkey, okul öncesi İngilizce seti, anaokulu için İngilizce programı, Cambridge hazırlık anaokulu, 3-6 yaş İngilizce programı, İngilizce eğitim serisi anaokulu"
+  }
+}

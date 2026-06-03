@@ -1,0 +1,26 @@
+{
+  "quoteWhatsApp": "905331570373",
+  "quoteMessage": "Merhaba, okul setlerinizin fiyat bilgisi hakkında bilgi almak istiyorum.\n\nŞehir:\nOkul Adı:\nÖğrenci Sayısı:\nLütfen dijital kataloğunuzla birlikte fiyat teklifinizi iletebilir misiniz?",
+  "categories": [
+    { "id": "okul-serisi", "name": "Okul Serisi", "description": "", "route": "/preschool" },
+    { "id": "atolye", "name": "Atölye Serisi", "description": "Atölye ve kurs merkezleri için", "route": "/workshop" },
+    { "id": "ozel-ders", "name": "Özel Ders Serisi", "description": "Ev ve özel ders öğretmenleri için", "route": "/home-tutor" }
+  ],
+  "products": [
+    { "id": 1, "category": "okul-serisi", "name": "Basic Level Set Öğrenci Seti", "description": "Başlangıç seviyesi", "price": "2250 TL'den başlayan fiyatlarla" },
+    { "id": 2, "category": "okul-serisi", "name": "Junior Level Set Öğrenci Seti", "description": "Gelişim seviyesi", "price": "2250 TL'den başlayan fiyatlarla" },
+    { "id": 3, "category": "okul-serisi", "name": "Senior Level Set Öğrenci Seti", "description": "İleri seviye", "price": "2250 TL'den başlayan fiyatlarla" },
+    { "id": 7, "category": "atolye", "name": "Atölye Basic", "description": "Başlangıç paketi", "price": "₺1.999" },
+    { "id": 8, "category": "atolye", "name": "Atölye Junior", "description": "Orta seviye", "price": "₺2.199" },
+    { "id": 9, "category": "atolye", "name": "Atölye Senior", "description": "İleri seviye", "price": "₺2.399" },
+    { "id": 10, "category": "atolye", "name": "Atölye PRO", "description": "Profesyonel", "price": "₺2.699" },
+    { "id": 11, "category": "atolye", "name": "Atölye Tam Set", "description": "Hepsi bir arada", "price": "₺7.999" },
+    { "id": 12, "category": "atolye", "name": "Dijital Materyal", "description": "Online erişim", "price": "₺499" },
+    { "id": 13, "category": "ozel-ders", "name": "Home Basic", "description": "Bireysel başlangıç", "price": "₺1.499" },
+    { "id": 14, "category": "ozel-ders", "name": "Home Junior", "description": "Bireysel gelişim", "price": "₺1.699" },
+    { "id": 15, "category": "ozel-ders", "name": "Home Senior", "description": "Bireysel ileri", "price": "₺1.899" },
+    { "id": 16, "category": "ozel-ders", "name": "Home PRO", "description": "Bireysel profesyonel", "price": "₺2.099" },
+    { "id": 17, "category": "ozel-ders", "name": "Özel Ders Paketi", "description": "4 seviye kampanyalı", "price": "₺5.999" },
+    { "id": 18, "category": "ozel-ders", "name": "Online Kütüphane", "description": "Dijital erişim", "price": "₺399" }
+  ]
+}

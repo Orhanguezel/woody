@@ -1,0 +1,38 @@
+{
+  "title": "{{appName}} Digital Library",
+  "description": "{{appName}} Digital Library is a digital library area where institutions can review the educational set content in advance.",
+  "eyebrow": "{{appName}} DIGITAL LIBRARY",
+  "hero": {
+    "eyebrow": "{{appName}} DIGITAL LIBRARY",
+    "title": "What Is {{appName}} Digital Library?",
+    "description": "{{appName}} Digital Library is a digital library area where institutions can review the educational set content in advance. Through this platform, both teacher and student books can be viewed in detail. By examining the units, content structure, and learning outcomes, you can clearly see how the system progresses. {{appName}} Digital Library offers institutions a transparent review opportunity before purchase and a chance to evaluate the entire education model clearly."
+  },
+  "sections": [
+    {
+      "eyebrow": "Levels",
+      "title": "Digital Library by Level",
+      "items": [
+        {
+          "badge": "Basic Level",
+          "title": "{{appName}} Digital Library – Basic Level",
+          "description": "The Basic Level Digital Library is a digital library area where beginner-level teacher and student books can be reviewed. Institutions can clearly evaluate the system by seeing the content structure and learning outcomes in advance."
+        },
+        {
+          "badge": "Junior Level",
+          "title": "{{appName}} Digital Library – Junior Level",
+          "description": "The Junior Level Digital Library is a digital library area where content that develops students' sentence-building and basic communication skills can be reviewed. Institutions can clearly see the progressing structure of the system by examining the teacher and student books at this level."
+        },
+        {
+          "badge": "Senior Level",
+          "title": "{{appName}} Digital Library – Senior Level",
+          "description": "The Senior Level Digital Library is a digital library area where advanced-level content — in which students communicate fluently and combine structures — can be reviewed. Institutions can evaluate the program's high-level outcomes and communication-focused structure by examining the teacher and student books."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Digital Library | Review the Education Set Content",
+    "description": "{{appName}} Digital Library is a digital library where institutions can transparently review teacher and student books before purchase. Basic, Junior, and Senior levels.",
+    "keywords": "woody digital library, digital library, preschool english book, teacher book, student book review"
+  }
+}

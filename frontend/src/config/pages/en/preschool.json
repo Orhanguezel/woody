@@ -1,0 +1,74 @@
+{
+  "title": "{{appName}} Preschool Series",
+  "description": "The {{appName}} Preschool Series offers institutions a play-based, structured, and sustainable English education infrastructure.",
+  "eyebrow": "{{appName}} PRESCHOOL SERIES",
+  "hero": {
+    "eyebrow": "{{appName}} PRESCHOOL SERIES",
+    "title": "Preschool",
+    "description": "The {{appName}} Preschool Series offers institutions a play-based, structured, and sustainable English education infrastructure.",
+    "primaryCTA": "Request a Demo",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "View Pricing",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Teacher and Student Set",
+      "title": "The Preschool Series consists of two separate sets",
+      "description": "The Preschool Series consists of two separate sets: the Teacher Set and the Student Set. Discover their content through video walkthroughs. The {{appName}} Preschool system requires a minimum of 30 students in the institution. The teacher set is not sold separately. It is provided free of charge along with student sets to contracted institutions and renewed annually."
+    },
+    {
+      "eyebrow": "Levels",
+      "title": "Discover the Series Content Through Video Walkthroughs",
+      "description": "The Preschool Series consists of four levels: Basic, Junior, Senior, and PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basic Level",
+          "description": "Provides a strong start to English with basic words and simple sentences."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior Level",
+          "description": "Develops children's ability to build sentences and express themselves."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior Level",
+          "description": "Builds the ability to use and understand English more fluently."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO Level",
+          "description": "Builds a foundation in reading, writing, and academic English."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explore",
+      "title": "Take a Closer Look at the System",
+      "items": [
+        {
+          "title": "{{appName}} Level Finder",
+          "description": "Quickly and accurately determines the most suitable {{appName}} level by assessing the student's age, English level, and learning status. Recommends which level the student should start from based on a few short questions.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Library",
+          "description": "A digital library where you can browse {{appName}} books. View all sets in detail and preview content to get a clear understanding of the system.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "An area where you can check current prices of {{appName}} sets and place online orders.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Preschool | Preschool English Learning Set - Preschool English Program Turkey",
+    "description": "{{appName}} Preschool English learning set: a play-based early childhood English program for children aged 3-6. Preschool English curriculum with a Cambridge preparation system. Teacher and student sets, preschool English curriculum and lesson plans.",
+    "keywords": "preschool English learning set, preschool English program Turkey, early childhood English set, English program for preschool, Cambridge preparation preschool, 3-6 age English program, preschool English series"
+  }
+}

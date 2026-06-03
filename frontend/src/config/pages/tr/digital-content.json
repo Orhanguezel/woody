@@ -1,0 +1,48 @@
+{
+  "title": "{{appName}} Digital World",
+  "description": "Welcome to {{appName}} Digital World — seviyelere göre Storyland, Movieland, Musicland ve Library içerikleri.",
+  "eyebrow": "DIGITAL CONTENT",
+  "hero": {
+    "eyebrow": "DIGITAL CONTENT",
+    "title": "Welcome to {{appName}} Digital World",
+    "description": "Seviyeni seç, ardından Storyland, Movieland, Musicland ve Library bölümlerini keşfet."
+  },
+  "sections": [
+    {
+      "eyebrow": "Level 1",
+      "title": "BASIC",
+      "items": [
+        { "title": "Storyland", "description": "16 interaktif video hikâye", "href": "/digital-content/basic/storyland" },
+        { "title": "Movieland", "description": "8 video", "href": "/digital-content/basic/movieland" },
+        { "title": "Musicland", "description": "8 şarkı", "href": "/digital-content/basic/musicland" },
+        { "title": "Library", "description": "Kitap içerikleri yakında eklenecek", "href": "/digital-content/basic/library" }
+      ]
+    },
+    {
+      "eyebrow": "Level 2",
+      "title": "JUNIOR",
+      "items": [
+        { "title": "Storyland", "description": "16 interaktif video hikâye", "href": "/digital-content/junior/storyland" },
+        { "title": "Movieland", "description": "8 video", "href": "/digital-content/junior/movieland" },
+        { "title": "Musicland", "description": "8 şarkı", "href": "/digital-content/junior/musicland" },
+        { "title": "Library", "description": "Kitap içerikleri yakında eklenecek", "href": "/digital-content/junior/library" }
+      ]
+    },
+    {
+      "eyebrow": "Level 3",
+      "title": "SENIOR",
+      "items": [
+        { "title": "Storyland", "description": "16 interaktif video hikâye", "href": "/digital-content/senior/storyland" },
+        { "title": "Movieland", "description": "8 video", "href": "/digital-content/senior/movieland" },
+        { "title": "Musicland", "description": "8 şarkı", "href": "/digital-content/senior/musicland" },
+        { "title": "Library", "description": "Kitap içerikleri yakında eklenecek", "href": "/digital-content/senior/library" }
+      ]
+    }
+  ],
+  "footnote": "Bu, Mina Yayınevi'nin dijital uygulamasıdır. Tüm hakları saklıdır.",
+  "seo": {
+    "title": "{{appName}} Digital World | Dijital İçerik Kütüphanesi",
+    "description": "{{appName}} dijital içerik dünyası: Basic, Junior ve Senior seviyeler için Storyland, Movieland, Musicland ve Library bölümleri.",
+    "keywords": "woody digital, dijital içerik, storyland, movieland, musicland, çocuk ingilizce video"
+  }
+}

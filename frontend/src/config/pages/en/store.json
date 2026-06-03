@@ -1,0 +1,54 @@
+{
+  "title": "{{appName}} Store",
+  "description": "Preschool English learning sets. An area where you can check current prices of {{appName}} sets and place online orders.",
+  "eyebrow": "{{appName}} STORE",
+  "hero": {
+    "eyebrow": "{{appName}} STORE",
+    "title": "{{appName}} Store",
+    "description": "Preschool English learning sets. An area where you can check current prices of {{appName}} sets and request a quote.",
+    "primaryCTA": "Get a Quote",
+    "primaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Preschool Series",
+      "title": "Preschool Series",
+      "items": [
+        { "title": "Basic Level Student Set", "description": "Beginner level", "price": "Starting from 2250 TL" },
+        { "title": "Junior Level Student Set", "description": "Development level", "price": "Starting from 2250 TL" },
+        { "title": "Senior Level Student Set", "description": "Advanced level", "price": "Starting from 2250 TL" }
+      ]
+    },
+    {
+      "eyebrow": "Workshop Series",
+      "title": "Workshop Series",
+      "description": "For workshops and course centers",
+      "items": [
+        { "title": "Workshop Basic", "description": "Starter package", "price": "₺1,999" },
+        { "title": "Workshop Junior", "description": "Intermediate level", "price": "₺2,199" },
+        { "title": "Workshop Senior", "description": "Advanced level", "price": "₺2,399" },
+        { "title": "Workshop PRO", "description": "Professional", "price": "₺2,699" },
+        { "title": "Workshop Full Set", "description": "All in one", "price": "₺7,999" },
+        { "title": "Digital Material", "description": "Online access", "price": "₺499" }
+      ]
+    },
+    {
+      "eyebrow": "Private Lesson Series",
+      "title": "Private Lesson Series",
+      "description": "For home and private lesson teachers",
+      "items": [
+        { "title": "Home Basic", "description": "Individual starter", "price": "₺1,499" },
+        { "title": "Home Junior", "description": "Individual development", "price": "₺1,699" },
+        { "title": "Home Senior", "description": "Individual advanced", "price": "₺1,899" },
+        { "title": "Home PRO", "description": "Individual professional", "price": "₺2,099" },
+        { "title": "Private Lesson Package", "description": "4 levels, discounted", "price": "₺5,999" },
+        { "title": "Online Library", "description": "Digital access", "price": "₺399" }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Store | Preschool English Learning Sets",
+    "description": "{{appName}} preschool English learning sets store. Current prices and quotes for Preschool Series, Workshop Series, and Private Lesson Series products.",
+    "keywords": "woody store, buy preschool english set, preschool english learning set price, english learning set store"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "title": "{{appName}} Workshop Series",
+  "description": "With the workshop series, children don't just listen to English; they play it, apply it, and live it. Offer a livelier and more effective learning process with {{appName}}.",
+  "eyebrow": "{{appName}} WORKSHOP SERIES",
+  "hero": {
+    "eyebrow": "{{appName}} WORKSHOP SERIES",
+    "title": "Workshop",
+    "description": "With the workshop series, children don't just listen to English; they play it, apply it, and live it. Offer a livelier and more effective learning process with {{appName}}.",
+    "primaryCTA": "Request a Demo",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "View Pricing",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Levels",
+      "title": "Discover the Series Content Through Video Walkthroughs",
+      "description": "The Workshop Series consists of two separate sets. Discover their content through video walkthroughs. The series has four levels: Basic, Junior, Senior, and PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basic Level",
+          "description": "Provides a strong start to English with basic words and simple sentences."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior Level",
+          "description": "Develops children's ability to build sentences and express themselves."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior Level",
+          "description": "Builds the ability to use and understand English more fluently."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO Level",
+          "description": "Builds a foundation in reading, writing, and academic English."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explore",
+      "title": "Take a Closer Look at the System",
+      "items": [
+        {
+          "title": "{{appName}} Digital Library",
+          "description": "A digital library where you can browse {{appName}} books. View all sets in detail and preview content to get a clear understanding of the system.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "An area where you can check current prices of {{appName}} sets and place online orders.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Workshop English Set | Workshop-Based Preschool English Education",
+    "description": "{{appName}} Workshop series: a workshop-based, hands-on preschool English learning set. 4 levels (Basic/Junior/Senior/PRO), with play- and drama-focused activities children learn English by living it.",
+    "keywords": "workshop english set, workshop-based english, preschool english workshop, woody workshop, hands-on english education"
+  }
+}

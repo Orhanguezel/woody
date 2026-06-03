@@ -1,0 +1,65 @@
+{
+  "title": "{{appName}} Academy",
+  "description": "{{appName}} Academy brings the student Cambridge certification process and the teacher development program (TKT) together under one roof.",
+  "eyebrow": "{{appName}} ACADEMY",
+  "hero": {
+    "eyebrow": "{{appName}} ACADEMY",
+    "title": "{{appName}} Academy",
+    "description": "{{appName}} Academy brings the student Cambridge certification process and the teacher development program (TKT) together under one roof."
+  },
+  "sections": [
+    {
+      "eyebrow": "Student",
+      "title": "Cambridge Certification Process",
+      "description": "In the {{appName}} Preschool system, after completing the Basic, Junior, and Senior series, students are enrolled in the {{appName}} Academy program. This stage is the critical period in which the student advances English to a higher level and prepares for the international certification process. Students who complete the {{appName}} Academy process earn the right to take Cambridge English exams. These exams measure Listening, Speaking, Reading, and Writing skills and assess the student's language level against international standards.",
+      "items": [
+        {
+          "title": "Education Model",
+          "description": "During the {{appName}} Academy process, lessons are conducted by {{appName}} Academy English teachers over an online platform. Students receive education through a one-on-one private lesson model supported by Pro Series physical materials.",
+          "features": [
+            "Student-specific progress is ensured",
+            "Gaps are filled quickly",
+            "Active participation and speaking practice increase",
+            "The learning process is individualized"
+          ]
+        },
+        {
+          "title": "Certification Process",
+          "description": "Students who complete the program take the Cambridge exam, receive their certificate when successful, and obtain an internationally recognized document. Result: {{appName}} Academy structures the post-graduation process, develops the student academically, and makes this progress tangible with a Cambridge certificate."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Teacher",
+      "title": "Development Program (TKT)",
+      "description": "Within the scope of {{appName}} Academy, all school teachers who use the {{appName}} system are automatically enrolled in the teacher development program. No separate application is needed for this program. Every teacher using the system participates directly and free of charge. The program is structured based on the internationally recognized Cambridge English TKT (Teaching Knowledge Test) model.",
+      "items": [
+        {
+          "title": "Cambridge TKT-Based Training Process",
+          "description": "In this process, teachers structure language teaching according to international standards.",
+          "features": [
+            "Learn language teaching methodologies",
+            "Apply play-based teaching techniques",
+            "Develop classroom management skills",
+            "Adopt a systematic lesson-planning approach"
+          ]
+        },
+        {
+          "title": "The Advantage the System Provides",
+          "description": "Teachers who complete the training program can take the Cambridge TKT exam and, when successful, receive their internationally recognized certificate.",
+          "features": [
+            "All teachers are automatically included in the system",
+            "Professional development is provided at no extra cost",
+            "Education quality becomes standardized across the institution",
+            "An internationally recognized development process is offered"
+          ]
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Academy | Cambridge Certification and Teacher Development Program",
+    "description": "{{appName}} Academy: a Cambridge English certification process for students and a Cambridge TKT-based development program for teachers. Internationally recognized certificates.",
+    "keywords": "woody academy, cambridge certificate, cambridge tkt, teacher development program, cambridge english exam, english teacher certificate"
+  }
+}

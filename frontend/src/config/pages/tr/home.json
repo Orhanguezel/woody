@@ -1,0 +1,46 @@
+{
+  "title": "Welcome To {{appName}} World",
+  "description": "{{appName}}, fiziksel materyalleri, İngilizce konuşan karakterleri, dijital içerikleri ve Cambridge yaklaşımını tek sistemde bir araya getiren okul öncesi İngilizce eğitim modelidir.",
+  "eyebrow": "Oyun Tabanlı Öğrenme",
+  "hero": {
+    "eyebrow": "Oyun Tabanlı Öğrenme",
+    "title": "Welcome To {{appName}} World",
+    "description": "{{appName}}, fiziksel materyalleri, İngilizce konuşan karakterleri, dijital içerikleri ve Cambridge yaklaşımını tek sistemde bir araya getiren okul öncesi İngilizce eğitim modelidir.",
+    "primaryCTA": "Okul Serisini İncele",
+    "primaryHref": "/preschool",
+    "secondaryCTA": "Demo Talep Et",
+    "secondaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Her Yaş İçin Uygun Setler",
+      "title": "Hangi {{appName}} Set Sizin İçin Uygun?",
+      "description": "Kurumunuza veya kullanım alanınıza en uygun {{appName}} setini seçin. Her set, farklı ihtiyaçlara göre özel olarak yapılandırılmıştır. Yapılandırılmış oyun, etkileşimli aktiviteler ve zengin dijital içerik ile dil becerileri geliştirir.",
+      "items": [
+        {
+          "badge": "Sınıflar İçin",
+          "title": "Okul Serisi",
+          "description": "Büyük sınıflar, okullar ve kreşler için geliştirilmiştir. Kalabalık gruplara uygun olarak içerikler ve oyunlar sınıf yönetimine göre yapılandırılmıştır. Tüm sınıfın aynı anda aktif katılım gösterebildiği bir uygulama modeli sunar.",
+          "href": "/preschool"
+        },
+        {
+          "badge": "Küçük Gruplar İçin",
+          "title": "Atölye Serisi",
+          "description": "3–5 kişilik küçük gruplar için tasarlanmıştır. İçerikler ve oyunlar daha yoğun etkileşim ve bireysel katılım sağlayacak şekilde düzenlenmiştir. Daha odaklı ve hızlı ilerleyen bir uygulama yapısı sunar.",
+          "href": "/workshop"
+        },
+        {
+          "badge": "Bireysel Kullanım",
+          "title": "Ev & Özel Ders",
+          "description": "1–2 kişilik bireysel kullanım için uygundur. İçerikler ve oyunlar tamamen birebir öğrenmeye göre uyarlanmıştır. Çocuğa özel ilerleme ve maksimum dikkat sağlar.",
+          "href": "/home-tutor"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Anaokulu İngilizce Eğitim Seti | Oyun Temelli Okul Öncesi İngilizce",
+    "description": "Okul öncesi İngilizce eğitim sistemi ile çocuklarınız eğlenerek öğrensin. Oyun temelli eğitim setleri, demo talep ve uygun fiyatlı paketler için hemen keşfedin.",
+    "keywords": "anaokulu İngilizce eğitim sistemi, oyun temelli okul öncesi İngilizce, anaokulu İngilizce eğitim seti, preschool English program Turkey, okul öncesi İngilizce eğitimi, Cambridge hazırlık sistemi, çocuklar için İngilizce eğitimi, 3-6 yaş İngilizce programı"
+  }
+}

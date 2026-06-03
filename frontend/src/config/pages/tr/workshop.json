@@ -1,0 +1,64 @@
+{
+  "title": "{{appName}} Workshop Series",
+  "description": "Atölye serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
+  "eyebrow": "{{appName}} WORKSHOP SERIES",
+  "hero": {
+    "eyebrow": "{{appName}} WORKSHOP SERIES",
+    "title": "Workshop",
+    "description": "Atölye serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
+    "primaryCTA": "Demo Talep Et",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Fiyatları İncele",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Seviyeler",
+      "title": "Serilerin İçeriklerini Video Anlatımlarıyla Keşfedin",
+      "description": "Atölye Serisi iki ayrı setten oluşur. İçerikleri video anlatımlarıyla keşfedin. Seriler dört seviyeden oluşur: Basic, Junior, Senior ve PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basic Level",
+          "description": "Temel kelimeler ve basit cümlelerle İngilizceye güçlü bir başlangıç sağlar."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior Level",
+          "description": "Çocukların cümle kurma ve kendini ifade etme becerilerini geliştirir."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior Level",
+          "description": "İngilizceyi daha akıcı kullanma ve anlama becerisi kazandırır."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO Level",
+          "description": "Okuma, yazma ve akademik İngilizce altyapısı oluşturur."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Keşfet",
+      "title": "Sistemi Yakından İnceleyin",
+      "items": [
+        {
+          "title": "{{appName}} Digital Library",
+          "description": "{{appName}} kitaplarını dijital ortamda inceleyebileceğiniz kütüphanedir. Tüm setleri detaylı şekilde görüntüleyebilir, içerikleri önceden inceleyerek sistem hakkında net fikir edinebilirsiniz.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "{{appName}} setlerinin güncel fiyatlarını inceleyebileceğiniz ve online sipariş verebileceğiniz alandır.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Workshop İngilizce Seti | Atölye Tabanlı Anaokulu İngilizce Eğitimi",
+    "description": "{{appName}} Workshop serisi: atölye tabanlı, uygulamalı anaokulu İngilizce eğitim seti. 4 seviye (Basic/Junior/Senior/PRO), oyun ve drama odaklı aktivitelerle çocuklar İngilizceyi yaşayarak öğrenir.",
+    "keywords": "workshop ingilizce seti, atölye tabanlı ingilizce, anaokulu ingilizce workshop, woody workshop, uygulamalı ingilizce eğitimi"
+  }
+}

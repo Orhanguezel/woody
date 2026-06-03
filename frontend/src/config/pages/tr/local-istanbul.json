@@ -1,0 +1,172 @@
+{
+  "title": "İstanbul Anaokulu İngilizce Eğitimi",
+  "description": "İstanbul'daki anaokulları için 3-6 yaş oyun temelli İngilizce eğitim sistemi: müfredat, materyal, öğretmen eğitimi, Cambridge YLE hazırlığı ve dijital içerik.",
+  "eyebrow": "KAPSAMLI REHBER · 2026",
+  "hero": {
+    "eyebrow": "KAPSAMLI REHBER · 2026",
+    "title": "İstanbul Anaokulu İngilizce Eğitimi",
+    "accentTitle": "Kapsamlı Rehber",
+    "description": "İstanbul'daki anaokulu yöneticileri ve öğretmenleri için 3-6 yaş grubunda İngilizce öğretiminin bilimsel temellerinden uygulamaya, ideal müfredattan doğru materyal seçimine kadar A'dan Z'ye rehber.",
+    "meta": ["📖 25 dk okuma", "Güncelleme: Şubat 2026", "{{appName}} Akademik Ekibi"]
+  },
+  "tableOfContents": [
+    { "id": "neden-onemli", "title": "Anaokulunda İngilizce Neden Önemli?" },
+    { "id": "ideal-yas", "title": "İdeal Başlama Yaşı: 3, 4 ve 5 Yaş Karşılaştırması" },
+    { "id": "yontemler", "title": "Etkili Öğretim Yöntemleri (Oyun Temelli, TPR, CLT)" },
+    { "id": "mufredat", "title": "Anaokulu İngilizce Müfredatı Nasıl Olmalı?" },
+    { "id": "materyaller", "title": "Doğru Materyal Nasıl Seçilir?" },
+    { "id": "ogretmen", "title": "Öğretmen Niteliği ve Eğitim Süreci" },
+    { "id": "cambridge", "title": "Cambridge YLE Hazırlığı ve Uluslararası Standartlar" },
+    { "id": "dijital", "title": "Dijital İçerik ve Teknoloji Entegrasyonu" },
+    { "id": "veli", "title": "Veli İletişimi ve Evde Destek" },
+    { "id": "hatalar", "title": "Yaygın Hatalar ve Kaçınılması Gerekenler" },
+    { "id": "sss", "title": "Sık Sorulan Sorular" }
+  ],
+  "sections": [
+    {
+      "id": "neden-onemli",
+      "eyebrow": "Bölüm 1",
+      "title": "Anaokulunda İngilizce Neden Önemli?",
+      "paragraphs": [
+        "3-6 yaş arası dönem, çocukların dil edinim kapasitesinin zirvede olduğu \"kritik dönem\" olarak adlandırılır. Bu yaş aralığındaki çocuklar, ana dillerini öğrendikleri doğal süreçle ikinci bir dili de aynı akıcılıkla edinebilirler.",
+        "Nörolojik avantaj: Bu dönemde beyindeki dil merkezleri (Broca ve Wernicke alanları) hala şekillenmekte; iki dilli çocuklar tek dilli çocuklara göre daha gelişmiş bilişsel esnekliğe, problem çözme becerisine ve yaratıcılığa sahiptir.",
+        "Akademik avantaj: Anaokulunda İngilizceye başlayan çocuklar, ilkokul ve ortaokulda İngilizce derslerinde belirgin şekilde başarılı oluyor; özgüvenleri yüksek, sınav kaygıları düşük oluyor."
+      ]
+    },
+    {
+      "id": "ideal-yas",
+      "eyebrow": "Bölüm 2",
+      "title": "İdeal Başlama Yaşı: 3, 4 ve 5 Yaş Karşılaştırması",
+      "table": {
+        "columns": ["Yaş", "Odak", "Haftalık Süre", "Beklenen Çıktı"],
+        "rows": [
+          { "age": "3 yaş (Level 1)", "focus": "Dinleme, taklit, temel kelime", "weekly": "2-3 saat", "output": "50-100 kelime, 10 kısa yönerge" },
+          { "age": "4 yaş (Level 2)", "focus": "Konuşma, kısa cümleler", "weekly": "3-4 saat", "output": "150-200 kelime, basit diyaloglar" },
+          { "age": "5 yaş (Level 3)", "focus": "Okuma, yazma, diyalog", "weekly": "4 saat", "output": "300+ kelime, Cambridge Starters hazırlık" },
+          { "age": "6 yaş (Level 4)", "focus": "İlkokula hazırlık", "weekly": "4-5 saat", "output": "500+ kelime, Cambridge Movers hazırlık" }
+        ]
+      },
+      "paragraphs": [
+        "Sonuç: En ideal başlangıç 3 yaştır. Ancak 4-5 yaşta başlayan çocuklar da Cambridge YLE Starters sınavlarına hazırlanacak seviyeye rahatlıkla ulaşabilir."
+      ]
+    },
+    {
+      "id": "yontemler",
+      "eyebrow": "Bölüm 3",
+      "title": "Etkili Öğretim Yöntemleri",
+      "items": [
+        { "title": "1. Oyun Temelli Öğrenme (Play-Based Learning)", "description": "Çocuklar en iyi oynarken öğrenir. Rol yapma, memory card oyunları, bingo, simon says gibi aktiviteler kelimeleri ve yapıları doğal bir ortamda pekiştirir." },
+        { "title": "2. TPR (Total Physical Response)", "description": "James Asher'ın geliştirdiği bu yöntemde, çocuklar duydukları İngilizce komutları hareketle yapar. \"Stand up\", \"touch your nose\", \"jump\" gibi komutlar hem kinestetik öğrenmeyi hem de anlamı bağlamsal olarak pekiştirir." },
+        { "title": "3. CLT (Communicative Language Teaching)", "description": "Dilin temel amacı iletişimdir. Gramer kuralları yerine, gerçek iletişim senaryolarında (mağazada alışveriş, restoranda sipariş, arkadaşla tanışma) kullanım öğretilir." }
+      ]
+    },
+    {
+      "id": "mufredat",
+      "title": "Anaokulu İngilizce Müfredatı Nasıl Olmalı?",
+      "paragraphs": ["İyi bir anaokulu İngilizce müfredatı şu kriterleri karşılamalı:"],
+      "list": [
+        "Tematik birimler: Aile, hayvanlar, renkler, sayılar, yiyecekler, vücut gibi çocukların günlük hayatına yakın konular",
+        "Spiral yaklaşım: Kelimeler her seviyede tekrar eder, her seferinde daha derinleşir",
+        "Dört beceri dengesi: Listening, Speaking, Reading (ileri seviye), pre-writing",
+        "Kültürlerarası farkındalık: İngiliz/Amerikan kültürünün unsurları",
+        "Fonetik farkındalık: Ses-harf ilişkisi (phonics) temeli",
+        "Ölçme & değerlendirme: Her ay \"Can-Do\" checklistleri"
+      ]
+    },
+    {
+      "id": "materyaller",
+      "title": "Doğru Materyal Nasıl Seçilir?",
+      "paragraphs": ["Bir anaokulu İngilizce eğitim seti satın alırken şu sorulara \"evet\" cevabı almalısınız:"],
+      "list": [
+        "Yaşa uygun mu? (3-4-5-6 yaş için ayrı seviyeler var mı?)",
+        "Öğretmen kılavuzu adım adım yönlendiriyor mu?",
+        "Dijital içerik (video, oyun, ses kaydı) dahil mi?",
+        "Cambridge YLE / uluslararası standartla uyumlu mu?",
+        "Öğretmen eğitimi sunuluyor mu?",
+        "Kullanıcı referansları ve başarı hikayeleri var mı?",
+        "Sonraki seviyelere geçiş sistemi mevcut mu?"
+      ],
+      "callout": { "title": "💡 İpucu", "description": "Demo seti mutlaka isteyin. 15 günlük deneme süresinde öğretmenlerinizin ve çocuklarınızın setle etkileşimini izleyin." }
+    },
+    {
+      "id": "ogretmen",
+      "title": "Öğretmen Niteliği ve Eğitim Süreci",
+      "paragraphs": ["Minimum seviye: B1 (Intermediate). İdeal olan B2+ seviyesidir. İyi bir anaokulu İngilizce eğitim seti, B1 seviyesindeki bir öğretmenin rahatlıkla kullanabileceği detaylı kılavuzlar sunar:"],
+      "list": [
+        "Adım adım ders planları (dakika dakika)",
+        "Türkçe açıklamalar ve telaffuz rehberi",
+        "Hazır diyalog ve örnek cümleler",
+        "Video tutorial desteği",
+        "WhatsApp destek grubu",
+        "Aylık webinar ve mentorluk"
+      ]
+    },
+    {
+      "id": "cambridge",
+      "eyebrow": "Bölüm 7",
+      "title": "Cambridge YLE Hazırlığı ve Uluslararası Standartlar",
+      "paragraphs": [
+        "Cambridge Young Learners English (YLE), 7-12 yaş grubu için tasarlanmış uluslararası geçerli sınavdır. 3 seviyeden oluşur: Starters, Movers, Flyers.",
+        "Anaokulunda Level 3 veya 4'ü tamamlayan çocuklar, Cambridge Starters sınavına rahatlıkla hazırlanır. Bu, hem çocuk için motive edici bir hedef oluşturur hem de ailelere somut bir başarı göstergesi sunar."
+      ]
+    },
+    {
+      "id": "dijital",
+      "title": "Dijital İçerik ve Teknoloji Entegrasyonu",
+      "paragraphs": ["Modern bir anaokulu İngilizce eğitim sistemi, sadece basılı materyallerle yetinmez. Dijital bileşenler müfredatın tamamlayıcısıdır:"],
+      "list": [
+        "Storyland: Hikaye anlatımı videoları (16 video)",
+        "Movieland: Tematik kısa filmler (8 video)",
+        "Interaktif oyunlar: Memory, matching, sıralama",
+        "Şarkılar ve karaoke: Fonetik ve ritim geliştirici",
+        "Dijital hikaye kitapları: Ses destekli okuma",
+        "Veli paneli: Gelişim takibi"
+      ]
+    },
+    {
+      "id": "veli",
+      "title": "Veli İletişimi ve Evde Destek",
+      "paragraphs": ["Çocuğun başarısı %50 oranında veli desteğine bağlıdır. İyi bir sistem, velilere:"],
+      "list": [
+        "Aylık gelişim raporu sunar",
+        "Evde yapılabilecek aktivite önerileri verir",
+        "Dijital içeriklere erişim sağlar",
+        "WhatsApp / e-posta bildirimleri gönderir",
+        "Sınıf içi fotoğraf ve videoları paylaşır (KVKK uyumlu)"
+      ]
+    },
+    {
+      "id": "hatalar",
+      "title": "Yaygın Hatalar ve Kaçınılması Gerekenler",
+      "mistakes": [
+        { "h": "❌ Dilbilgisi odaklı öğretim", "p": "Anaokulunda grammar kuralları öğretilmez. Doğal kullanım ile kazanım önceliklidir." },
+        { "h": "❌ Çok uzun ders süreleri", "p": "3-6 yaş çocukları maksimum 20-30 dakika odaklanır. 45 dk üzeri dersler verimsizdir." },
+        { "h": "❌ Çeviri yoluyla öğretim", "p": "Sürekli Türkçeye çevirmek, çocuğun İngilizceyi doğrudan anlamlandırmasını engeller." },
+        { "h": "❌ Yaşa uygun olmayan materyal", "p": "İlkokul için hazırlanmış setleri 3-4 yaş için kullanmak motivasyonu düşürür." },
+        { "h": "❌ Değerlendirme eksikliği", "p": "Düzenli Can-Do checklistleri yapılmazsa gelişim görünmez olur." }
+      ]
+    }
+  ],
+  "faq": [
+    { "question": "Anaokulunda İngilizce eğitimi kaç yaşında başlamalı?", "answer": "3 yaş, dil edinim kapasitesinin en yüksek olduğu dönemdir. Çocuklar bu yaşta ana dillerini öğrendikleri doğal süreçle ikinci bir dili de edinebilirler. Ancak 4-5 yaş da son derece uygun bir başlangıç dönemidir." },
+    { "question": "Haftada kaç saat İngilizce yeterli?", "answer": "3-6 yaş grubu için haftada 3-4 saat, kısa seanslar halinde (günde 30-45 dk) önerilir. Süreklilik, süreden daha önemlidir." },
+    { "question": "Hangi yöntem en etkili?", "answer": "Oyun temelli öğrenme (Play-Based Learning), TPR (Total Physical Response) ve CLT (Communicative Language Teaching) yaklaşımlarının bileşimi en etkili sonucu verir." },
+    { "question": "Türkçe öğretmen İngilizce dersini verebilir mi?", "answer": "Evet, B1+ seviyesindeki bir öğretmen, doğru materyal (adım adım öğretmen kılavuzu, telaffuz rehberi, video destek) ile bu dersleri başarıyla verebilir." },
+    { "question": "Cambridge YLE sınavı önemli mi?", "answer": "Uluslararası geçerliliği olan Cambridge YLE (Starters / Movers / Flyers) sınavları çocukların motivasyonunu artırır ve ölçülebilir bir hedef sunar. Zorunlu değildir ama güçlü bir avantajdır." }
+  ],
+  "relatedBlogs": [
+    { "slug": "anaokulu-ingilizce-nasil-ogretilir", "title": "Anaokulunda İngilizce Nasıl Öğretilir" },
+    { "slug": "oyun-temelli-ingilizce-egitimi", "title": "Oyun Temelli İngilizce Eğitimi" },
+    { "slug": "cambridge-yle-hazirlik", "title": "Cambridge YLE Sınavına Hazırlık Rehberi" },
+    { "slug": "3-yas-ingilizce-baslama", "title": "3 Yaşında İngilizceye Başlamak: Avantajları" }
+  ],
+  "cta": {
+    "title": "Okulunuz için {{appName}}'yi Keşfedin",
+    "description": "Bu rehberde anlattığımız tüm ilkelere uygun, 4 seviyeli kapsamlı sistem: {{appName}} ve Arkadaşları. Ücretsiz demo ile inceleyin."
+  },
+  "seo": {
+    "title": "İstanbul Anaokulu İngilizce Eğitimi Kapsamlı Rehber 2026 | 3-6 Yaş İçin",
+    "description": "İstanbul anaokulu İngilizce eğitiminde bilmeniz gereken her şey: ideal yaş, oyun temelli yöntemler, müfredat, materyal seçimi, öğretmen eğitimi, Cambridge YLE ve dijital içerik.",
+    "keywords": "istanbul anaokulu ingilizce eğitimi, okul öncesi ingilizce istanbul, 3-6 yaş ingilizce, anaokulu ingilizce müfredat, oyun temelli ingilizce eğitimi, cambridge yle hazırlık"
+  }
+}

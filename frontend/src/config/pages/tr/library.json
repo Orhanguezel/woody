@@ -1,0 +1,38 @@
+{
+  "title": "{{appName}} Digital Library",
+  "description": "{{appName}} Digital Library, kurumların eğitim seti içeriklerini önceden inceleyebileceği dijital bir kütüphane alanıdır.",
+  "eyebrow": "{{appName}} DIGITAL LIBRARY",
+  "hero": {
+    "eyebrow": "{{appName}} DIGITAL LIBRARY",
+    "title": "{{appName}} Digital Library Nedir?",
+    "description": "{{appName}} Digital Library, kurumların eğitim seti içeriklerini önceden inceleyebileceği dijital bir kütüphane alanıdır. Bu platform üzerinden hem öğretmen hem de öğrenci kitapları detaylı şekilde görüntülenebilir. Üniteler, içerik yapısı ve kazanımlar incelenerek sistemin nasıl ilerlediği net şekilde görülür. {{appName}} Digital Library, kurumlara satın alma öncesi şeffaf bir inceleme imkânı sunar ve eğitim modelinin tamamını net bir şekilde değerlendirme fırsatı sağlar."
+  },
+  "sections": [
+    {
+      "eyebrow": "Seviyeler",
+      "title": "Seviyelere Göre Dijital Kütüphane",
+      "items": [
+        {
+          "badge": "Basic Level",
+          "title": "{{appName}} Digital Library – Basic Level",
+          "description": "Basic Level Digital Library, başlangıç seviyesindeki öğretmen ve öğrenci kitaplarının incelenebileceği dijital kütüphane alanıdır. Kurumlar, içerik yapısını ve kazanımları önceden görerek sistemi net şekilde değerlendirebilir."
+        },
+        {
+          "badge": "Junior Level",
+          "title": "{{appName}} Digital Library – Junior Level",
+          "description": "Junior Level Digital Library, öğrencilerin cümle kurma ve temel iletişim becerilerini geliştirdiği içeriklerin incelenebileceği dijital kütüphane alanıdır. Kurumlar, bu seviyede yer alan öğretmen ve öğrenci kitaplarını inceleyerek sistemin ilerleyen yapısını net şekilde görebilir."
+        },
+        {
+          "badge": "Senior Level",
+          "title": "{{appName}} Digital Library – Senior Level",
+          "description": "Senior Level Digital Library, öğrencilerin akıcı iletişim kurduğu ve yapıları birleştirerek kullandığı ileri seviye içeriklerin incelenebileceği dijital kütüphane alanıdır. Kurumlar, öğretmen ve öğrenci kitaplarını inceleyerek programın üst düzey kazanımlarını ve iletişim odaklı yapısını değerlendirebilir."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Digital Library | Eğitim Seti İçeriklerini İnceleyin",
+    "description": "{{appName}} Digital Library, kurumların öğretmen ve öğrenci kitaplarını satın alma öncesi şeffaf şekilde inceleyebileceği dijital kütüphane. Basic, Junior ve Senior seviyeler.",
+    "keywords": "woody digital library, dijital kütüphane, anaokulu ingilizce kitap, öğretmen kitabı, öğrenci kitabı inceleme"
+  }
+}

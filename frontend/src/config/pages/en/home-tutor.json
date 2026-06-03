@@ -1,0 +1,69 @@
+{
+  "title": "{{appName}} Home Tutor",
+  "description": "Whether at home or at school, start your child's English journey with confidence. Enjoy a fun and effective learning experience with {{appName}}.",
+  "eyebrow": "{{appName}} PRESCHOOL SERIES",
+  "hero": {
+    "eyebrow": "{{appName}} PRESCHOOL SERIES",
+    "title": "Home & Tutor",
+    "description": "Whether at home or at school, start your child's English journey with confidence. Enjoy a fun and effective learning experience with {{appName}}.",
+    "primaryCTA": "Request a Demo",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Find Your Level",
+    "secondaryHref": "/level-finder"
+  },
+  "sections": [
+    {
+      "eyebrow": "Levels",
+      "title": "Discover the Series Content Through Video Walkthroughs",
+      "description": "The Home & Tutor series is suitable for 1–2 person individual use. Content and games are fully adapted for one-on-one learning. The series has four levels: Basic, Junior, Senior, and PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basic Level",
+          "description": "Provides a strong start to English with basic words and simple sentences."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior Level",
+          "description": "Develops children's ability to build sentences and express themselves."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior Level",
+          "description": "Builds the ability to use and understand English more fluently."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO Level",
+          "description": "Builds a foundation in reading, writing, and academic English."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explore",
+      "title": "Take a Closer Look at the System",
+      "items": [
+        {
+          "title": "Level Assessment System",
+          "description": "Quickly and accurately determines the most suitable {{appName}} level by assessing the student's age, English level, and learning status. Recommends which level the student should start from based on a few short questions.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Digital Library",
+          "description": "A digital library where you can browse {{appName}} books. View all sets in detail and preview content to get a clear understanding of the system.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "An area where you can check current prices of {{appName}} sets and place online orders.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Home Tutor English Set | Home & Private Lesson Preschool English Education",
+    "description": "{{appName}} Home Tutor: a preschool English learning set for home or private lessons. A 4-level (Basic/Junior/Senior/PRO) curriculum for parent + child use, digital content included.",
+    "keywords": "home tutor english, home private lesson english, preschool english home set, woody home tutor, children private lesson english"
+  }
+}

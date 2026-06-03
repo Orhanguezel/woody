@@ -1,0 +1,46 @@
+{
+  "title": "Welcome To {{appName}} World",
+  "description": "{{appName}} is a preschool English learning model that brings physical materials, English-speaking characters, digital content, and the Cambridge approach together in a single system.",
+  "eyebrow": "Play-Based Learning",
+  "hero": {
+    "eyebrow": "Play-Based Learning",
+    "title": "Welcome To {{appName}} World",
+    "description": "{{appName}} is a preschool English learning model that brings physical materials, English-speaking characters, digital content, and the Cambridge approach together in a single system.",
+    "primaryCTA": "Explore Preschool Series",
+    "primaryHref": "/preschool",
+    "secondaryCTA": "Request a Demo",
+    "secondaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Sets for All Ages",
+      "title": "Which {{appName}} Set Is for You?",
+      "description": "Choose the {{appName}} set that best fits your institution or use case. Each set is specially structured for different needs. It builds language skills through structured play, engaging activities, and rich digital content.",
+      "items": [
+        {
+          "badge": "For Classrooms",
+          "title": "Preschool Series",
+          "description": "Designed for large classrooms, schools, and kindergartens. Content and games are structured for classroom management, suitable for large groups. Offers a model where the entire class can actively participate simultaneously.",
+          "href": "/preschool"
+        },
+        {
+          "badge": "For Small Groups",
+          "title": "Workshop",
+          "description": "Designed for small groups of 3–5 people. Content and games are arranged for more intensive interaction and individual participation. Offers a more focused and fast-paced application structure.",
+          "href": "/workshop"
+        },
+        {
+          "badge": "Individual Use",
+          "title": "Home Tutor / Home Series",
+          "description": "Suitable for 1–2 person individual use. Content and games are fully adapted for one-on-one learning. Provides child-specific progress and maximum attention.",
+          "href": "/home-tutor"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Preschool English Learning Set | Play-Based Early Childhood English",
+    "description": "Let your children learn while having fun with a preschool English learning system. Discover play-based learning sets, demo requests, and affordable packages.",
+    "keywords": "preschool English program Turkey, play-based early childhood English, preschool English learning set, early childhood English education, Cambridge preparation system, English for children, 3-6 age English program"
+  }
+}

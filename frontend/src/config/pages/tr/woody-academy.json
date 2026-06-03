@@ -1,0 +1,65 @@
+{
+  "title": "{{appName}} Academy",
+  "description": "{{appName}} Academy, öğrenci Cambridge sertifika sürecini ve öğretmen gelişim programını (TKT) tek çatı altında toplar.",
+  "eyebrow": "{{appName}} ACADEMY",
+  "hero": {
+    "eyebrow": "{{appName}} ACADEMY",
+    "title": "{{appName}} Academy",
+    "description": "{{appName}} Academy, öğrenci Cambridge sertifika sürecini ve öğretmen gelişim programını (TKT) tek çatı altında toplar."
+  },
+  "sections": [
+    {
+      "eyebrow": "Öğrenci",
+      "title": "Cambridge Sertifika Süreci",
+      "description": "{{appName}} Preschool sisteminde öğrenciler, Basic, Junior ve Senior serilerini tamamladıktan sonra {{appName}} Academy programına dahil edilir. Bu aşama, öğrencinin İngilizceyi ileri seviyeye taşıdığı ve uluslararası sertifika sürecine hazırlandığı kritik dönemdir. {{appName}} Academy sürecini tamamlayan öğrenciler, Cambridge English sınavlarına girme hakkı elde eder. Bu sınavlar Dinleme, Konuşma, Okuma ve Yazma becerilerini ölçer ve öğrencinin dil seviyesini uluslararası standartlara göre değerlendirir.",
+      "items": [
+        {
+          "title": "Eğitim Modeli",
+          "description": "{{appName}} Academy sürecinde eğitimler, {{appName}} Academy İngilizce öğretmenleri tarafından online platform üzerinden yürütülür. Öğrenciler, Pro Serisi fiziksel materyaller ile desteklenen birebir özel ders modeli ile eğitim alır.",
+          "features": [
+            "Öğrenciye özel ilerleme sağlanır",
+            "Eksik alanlar hızlı şekilde tamamlanır",
+            "Aktif katılım ve konuşma pratiği artar",
+            "Öğrenme süreci bireyselleştirilir"
+          ]
+        },
+        {
+          "title": "Sertifika Süreci",
+          "description": "Programı tamamlayan öğrenciler Cambridge sınavına katılır, başarılı olduklarında sertifikalarını alır ve uluslararası geçerliliğe sahip bir belgeye sahip olur. Sonuç: {{appName}} Academy, mezuniyet sonrası süreci yapılandırır, öğrenciyi akademik olarak geliştirir ve bu gelişimi Cambridge sertifikası ile somut hale getirir."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Öğretmen",
+      "title": "Gelişim Programı (TKT)",
+      "description": "{{appName}} Academy kapsamında, {{appName}} sistemini kullanan tüm okul öğretmenleri otomatik olarak öğretmen gelişim programına dahil edilir. Bu program için ayrıca bir başvuruya gerek yoktur. Sistemi kullanan her öğretmen, sürece doğrudan ve ücretsiz şekilde katılım sağlar. Program, uluslararası geçerliliğe sahip Cambridge English TKT (Teaching Knowledge Test) modeli temel alınarak yapılandırılmıştır.",
+      "items": [
+        {
+          "title": "Cambridge TKT Temelli Eğitim Süreci",
+          "description": "Bu süreçte öğretmenler dil öğretimini uluslararası standartlara göre yapılandırır.",
+          "features": [
+            "Dil öğretim metodolojilerini öğrenir",
+            "Oyun temelli eğitim tekniklerini uygular",
+            "Sınıf yönetimi becerilerini geliştirir",
+            "Sistemli ders planlama yaklaşımını benimser"
+          ]
+        },
+        {
+          "title": "Sistemin Sağladığı Avantaj",
+          "description": "Eğitim programını tamamlayan öğretmenler Cambridge TKT sınavına katılabilir ve başarılı olduklarında uluslararası geçerliliğe sahip sertifikalarını alabilir.",
+          "features": [
+            "Tüm öğretmenler otomatik olarak sisteme dahil edilir",
+            "Ek maliyet olmadan profesyonel gelişim sağlanır",
+            "Eğitim kalitesi kurum genelinde standart hale gelir",
+            "Uluslararası geçerliliğe sahip bir gelişim süreci sunulur"
+          ]
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Academy | Cambridge Sertifika ve Öğretmen Gelişim Programı",
+    "description": "{{appName}} Academy: öğrenciler için Cambridge English sertifika süreci ve öğretmenler için Cambridge TKT temelli gelişim programı. Uluslararası geçerliliğe sahip sertifikalar.",
+    "keywords": "woody academy, cambridge sertifika, cambridge tkt, öğretmen gelişim programı, cambridge english sınavı, ingilizce öğretmen sertifikası"
+  }
+}
