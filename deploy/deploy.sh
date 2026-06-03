@@ -65,6 +65,9 @@ remote "mkdir -p '$DEPLOY_PATH'"
 rsync -avz --delete \
   --exclude='.git/' \
   --exclude='node_modules/' \
+  --exclude='/node_modules' \
+  --exclude='/packages' \
+  --exclude='/docs' \
   --exclude='.next/' \
   --exclude='dist/' \
   --exclude='.env' \

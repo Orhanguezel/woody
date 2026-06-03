@@ -185,10 +185,8 @@ function stubTicket(id: string, patch?: Record<string, unknown>) {
 export async function registerAdminPanelCommerceStubs(adminApi: FastifyInstance) {
   adminApi.get('/dashboard/analytics', dashboardAnalyticsStub);
 
-  adminApi.get('/orders', ordersListStub);
-  adminApi.get('/orders/:id', orderDetailStub);
-  adminApi.patch('/orders/:id', async (_req, reply) => reply.send({ success: true }));
-  adminApi.post('/orders/:id/refund', async (_req, reply) => reply.send({ success: true }));
+  // NOT: /orders* gercek `orders` modulune tasindi (Faz 2B) — stub kaldirildi
+  // (FST_ERR_DUPLICATED_ROUTE'u onlemek icin). ordersListStub/orderDetailStub artik kullanilmiyor.
 
   adminApi.get('/payment-gateways', async (_req, reply) => reply.send([]));
   adminApi.post('/payment-gateways', async (_req, reply) =>

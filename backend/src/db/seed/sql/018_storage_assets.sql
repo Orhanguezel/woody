@@ -36,3 +36,16 @@ CREATE TABLE IF NOT EXISTS `storage_assets` (
   KEY `idx_storage_created` (`created_at`),
   KEY `idx_provider_pubid`  (`provider_public_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ── Woody marka varlıkları (backend/uploads/brand/* → storage) ──────────────────
+INSERT INTO `storage_assets` (`id`,`name`,`bucket`,`path`,`folder`,`mime`,`size`,`url`,`provider`) VALUES
+('sa-woody-logo-primary-svg','logo-primary.svg','brand','brand/logo-primary.svg','brand','image/svg+xml',26742,'/uploads/brand/logo-primary.svg','local'),
+('sa-woody-logo-white-svg','logo-white.svg','brand','brand/logo-white.svg','brand','image/svg+xml',17691,'/uploads/brand/logo-white.svg','local'),
+('sa-woody-logo-dark-svg','logo-dark.svg','brand','brand/logo-dark.svg','brand','image/svg+xml',8865,'/uploads/brand/logo-dark.svg','local'),
+('sa-woody-logo-icon-svg','logo-icon.svg','brand','brand/logo-icon.svg','brand','image/svg+xml',2341,'/uploads/brand/logo-icon.svg','local'),
+('sa-woody-logo-primary-1024','logo-primary-1024.png','brand','brand/logo-primary-1024.png','brand','image/png',60199,'/uploads/brand/logo-primary-1024.png','local'),
+('sa-woody-logo-primary-512','logo-primary-512.png','brand','brand/logo-primary-512.png','brand','image/png',26062,'/uploads/brand/logo-primary-512.png','local'),
+('sa-woody-logo-white-1024','logo-white-1024.png','brand','brand/logo-white-1024.png','brand','image/png',36641,'/uploads/brand/logo-white-1024.png','local'),
+('sa-woody-favicon-512','favicon-512.png','brand','brand/favicon-512.png','brand','image/png',19317,'/uploads/brand/favicon-512.png','local'),
+('sa-woody-favicon-64','favicon-64.png','brand','brand/favicon-64.png','brand','image/png',2036,'/uploads/brand/favicon-64.png','local')
+ON DUPLICATE KEY UPDATE `url`=VALUES(`url`), `size`=VALUES(`size`), `mime`=VALUES(`mime`);
