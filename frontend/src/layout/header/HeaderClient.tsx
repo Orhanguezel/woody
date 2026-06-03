@@ -40,12 +40,12 @@ const isExternalHref = (href: string) =>
 
 const cleanHashLink = (href: string) => {
   if (!href) return href;
-  // Convert #about or /#about to /about
-  if (href.startsWith('#')) return `/${href.substring(1)}`;
-  if (href.startsWith('/#')) return `/${href.substring(2)}`;
-  // Handle case like referanslar#about -> /about (assuming it's a home page section)
-  if (href.includes('#')) return `/${href.split('#')[1]}`;
-  return href;
+  let clean = href;
+  if (clean.startsWith('#')) return `/${clean.substring(1)}`;
+  if (clean.startsWith('/#')) return `/${clean.substring(2)}`;
+  clean = clean.replace(/^\/(tr|en|de)(\/|$)/, '/');
+  if (clean.includes('#')) return `/${clean.split('#')[1]}`;
+  return clean === '' ? '/' : clean;
 };
 
 type HeaderClientBrand = {

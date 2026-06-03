@@ -144,7 +144,7 @@ export default function ShareCard({
     variant === 'insight'
       ? 'İçgörü kartım'
       : variant === 'session'
-        ? 'Seans özetim'
+        ? 'İşlem özetim'
         : variant === 'profile'
           ? 'Profil özetim'
           : variant === 'reflection'

@@ -51,7 +51,7 @@ export default function ContactPage() {
       tagline: safeStr(
         ui(
           'ui_contact_tagline',
-          'Sorularınız ve seans rezervasyon talepleriniz için mesaj gönderin. Ekibimiz kısa süre içinde size dönüş yapacaktır.',
+          'Sorularınız ve iletişim talepleriniz için mesaj gönderin. Ekibimiz kısa süre içinde size dönüş yapacaktır.',
         ),
       ),
 
@@ -65,7 +65,7 @@ export default function ContactPage() {
       messagePh: safeStr(ui('ui_contact_message_placeholder', 'Mesajınızı yazın...')),
 
       topicLabel: safeStr(ui('ui_contact_select_label', 'Konu')),
-      topicAppointment: safeStr(ui('ui_contact_service_cooling_towers', 'Randevu talebi')),
+      topicAppointment: safeStr(ui('ui_contact_service_cooling_towers', 'Destek talebi')),
       topicQuestion: safeStr(ui('ui_contact_service_maintenance', 'Soru / bilgi')),
       topicCollab: safeStr(ui('ui_contact_service_modernization', 'İşbirliği')),
       topicOther: safeStr(ui('ui_contact_service_other', 'Diğer')),

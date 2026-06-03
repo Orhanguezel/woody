@@ -109,7 +109,7 @@ export default function BlogDetails() {
         commentLabel: 'Yorumunuz',
         commentSubmit: 'Yorum gönder',
         contactCtaTitle: 'Sorunuz mu var?',
-        contactCtaDesc: 'Seanslar veya randevu ile ilgili sorularınız için bize ulaşabilirsiniz.',
+        contactCtaDesc: 'Sorularınız veya talepleriniz için bize ulaşabilirsiniz.',
         contactPhone: 'Telefon',
         contactWhatsapp: 'WhatsApp',
         contactForm: 'İletişim formu',
@@ -132,7 +132,7 @@ export default function BlogDetails() {
         commentSubmit: 'Kommentar senden',
         contactCtaTitle: 'Noch Fragen?',
         contactCtaDesc:
-          'Wenn Sie Fragen zur Sitzung oder zur Terminvereinbarung haben, kontaktieren Sie uns gern.',
+          'Wenn Sie Fragen haben, kontaktieren Sie uns gern.',
         contactPhone: 'Telefon',
         contactWhatsapp: 'WhatsApp',
         contactForm: 'Kontaktformular',
@@ -154,7 +154,7 @@ export default function BlogDetails() {
       commentSubmit: 'Post comment',
       contactCtaTitle: 'Have a question?',
       contactCtaDesc:
-        'If you have questions about a session or scheduling, feel free to contact us.',
+        'If you have any questions, feel free to contact us.',
       contactPhone: 'Phone',
       contactWhatsapp: 'WhatsApp',
       contactForm: 'Contact form',

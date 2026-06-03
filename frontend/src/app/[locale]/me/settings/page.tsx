@@ -92,8 +92,8 @@ export default function SettingsPage() {
 
             <div className="space-y-6">
                {[
-                 { key: 'push_notifications', label: 'Anlık Bildirimler (Push)', desc: 'Randevu hatırlatmaları ve sistem duyuruları.' },
-                 { key: 'email_notifications', label: 'E-posta Bildirimleri', desc: 'Randevu hatırlatmaları ve önemli güncellemeler.' },
+                 { key: 'push_notifications', label: 'Anlık Bildirimler (Push)', desc: 'Sistem bildirimleri ve önemli duyurular.' },
+                 { key: 'email_notifications', label: 'E-posta Bildirimleri', desc: 'Sistem güncellemeleri ve önemli hatırlatmalar.' },
                ].map((item) => (
                  <div key={item.key} className="flex items-center justify-between gap-8">
                     <div className="space-y-1">
