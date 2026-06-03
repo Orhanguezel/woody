@@ -10,6 +10,7 @@ import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
 import { getPublicAppName } from '@/lib/site-config';
 import blogFallbackPosts from '@/config/pages/blog-fallback-posts.json';
+import type { WoodyFallbackBlogPost } from '@/components/woody/blog-loader.server';
 
 type FallbackBlogPost = {
   id: string;
@@ -30,7 +31,9 @@ function normalizeBlogImage(src: string): string {
   return BLOG_IMAGE_FALLBACKS[src] || src;
 }
 
-const BlogPageContent: React.FC = () => {
+const BlogPageContent: React.FC<{ initialPosts?: WoodyFallbackBlogPost[] }> = ({
+  initialPosts = [],
+}) => {
   const app = getPublicAppName();
   const locale = useLocaleShort();
   const { ui } = useUiSection('ui_blog', locale as any);
@@ -46,10 +49,11 @@ const BlogPageContent: React.FC = () => {
   }, [data]);
 
   const renderedItems = useMemo(() => {
+    if (initialPosts.length > 0) return initialPosts;
     if (items.length > 0) return items;
     const raw = blogFallbackPosts as Record<string, FallbackBlogPost[]>;
     return raw[locale] || raw[locale.split('-')[0]] || raw.en || [];
-  }, [items, locale]);
+  }, [initialPosts, items, locale]);
 
   const blogListHref = useMemo(() => localizePath(locale, '/blog'), [locale]);
 
@@ -130,13 +134,17 @@ const BlogPageContent: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {renderedItems.map((post: any, i: number) => {
               const title = safeStr(post.title) || t('ui_blog_untitled', 'Untitled');
-              const summary = excerpt(safeStr(post.summary) || safeStr(post.content_html) || '', 120);
+              const summary = excerpt(
+                safeStr(post.summary) || safeStr(post.excerpt) || safeStr(post.content_html) || '',
+                120,
+              );
               const slug = safeStr(post.slug);
               const href = slug ? localizePath(locale, `/blog/${slug}`) : blogListHref;
-              const imgRaw = normalizeBlogImage(safeStr(post.featured_image));
+              const imgRaw = normalizeBlogImage(safeStr(post.featured_image) || safeStr(post.image_url));
               const imgSrc = imgRaw ? toCdnSrc(imgRaw, 600, 400, 'fill') || imgRaw : '';
-              const dateStr = post.created_at
-                ? new Date(post.created_at).toLocaleDateString(locale === 'de' ? 'de-DE' : locale === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+              const rawDate = safeStr(post.published_at) || safeStr(post.created_at);
+              const dateStr = rawDate
+                ? new Date(rawDate).toLocaleDateString(locale === 'de' ? 'de-DE' : locale === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })
                 : '';
 
               return (

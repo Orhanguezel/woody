@@ -16,6 +16,11 @@ function parseEnvList(v: string | undefined): string[] {
   return v.split(',').map(s => s.trim()).filter(Boolean);
 }
 
+function parseEnvBool(v: string | undefined, fallback = false): boolean {
+  if (v == null || v === '') return fallback;
+  return ['1', 'true', 'yes', 'on'].includes(v.toLowerCase());
+}
+
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3077';
 
 /** development: tarayıcıdan farklı portlar (admin 3096, frontend 3077, vb.) CORS’a otomatik eklenir */
@@ -57,6 +62,11 @@ export const env = {
 
   PUBLIC_URL: process.env.PUBLIC_URL ?? 'http://localhost:8086',
   FRONTEND_URL,
+
+  FEATURE_IYZICO_PAYMENT: parseEnvBool(process.env.FEATURE_IYZICO_PAYMENT, false),
+  IYZICO_API_KEY: process.env.IYZICO_API_KEY || '',
+  IYZICO_SECRET_KEY: process.env.IYZICO_SECRET_KEY || '',
+  IYZICO_BASE_URL: process.env.IYZICO_BASE_URL || 'https://sandbox-api.iyzipay.com',
 
   STORAGE_DRIVER: (process.env.STORAGE_DRIVER || 'local').toLowerCase() as 'local' | 'cloudinary',
   LOCAL_STORAGE_ROOT: process.env.LOCAL_STORAGE_ROOT || '',

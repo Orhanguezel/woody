@@ -1,0 +1,1 @@
+export { registerOrdersProjectAdmin } from './router';

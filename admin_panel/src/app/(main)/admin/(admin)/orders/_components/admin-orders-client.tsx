@@ -53,8 +53,8 @@ function fmtMoney(v: string | number, currency: string) {
   }).format(n);
 }
 
-const ORDER_STATUSES: OrderStatus[] = ['pending', 'processing', 'completed', 'cancelled', 'refunded'];
-const PAYMENT_STATUSES: PaymentStatus[] = ['unpaid', 'paid', 'failed', 'refunded'];
+const ORDER_STATUSES: OrderStatus[] = ['pending', 'confirmed', 'shipped', 'completed', 'cancelled'];
+const PAYMENT_STATUSES: PaymentStatus[] = ['unpaid', 'pending', 'paid', 'failed', 'refunded'];
 
 export default function AdminOrdersClient() {
   const t = useAdminT('admin.orders');
@@ -236,13 +236,13 @@ export default function AdminOrdersClient() {
                       <div className={cn(
                         "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] transition-all",
                         order.status === 'completed' ? 'bg-gm-success/10 text-gm-success border border-gm-success/20' :
-                        order.status === 'cancelled' || order.status === 'refunded' ? 'bg-gm-error/10 text-gm-error border border-gm-error/20' :
+                        order.status === 'cancelled' ? 'bg-gm-error/10 text-gm-error border border-gm-error/20' :
                         'bg-gm-warning/10 text-gm-warning border border-gm-warning/20'
                       )}>
                         <div className={cn(
                           "w-1 h-1 rounded-full",
                           order.status === 'completed' ? 'bg-gm-success' :
-                          order.status === 'cancelled' || order.status === 'refunded' ? 'bg-gm-error' :
+                          order.status === 'cancelled' ? 'bg-gm-error' :
                           'bg-gm-warning'
                         )} />
                         {order.status.toUpperCase()}

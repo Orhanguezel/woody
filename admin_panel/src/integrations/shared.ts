@@ -60,4 +60,7 @@ export * from '@/integrations/shared/telegram_inbound';
 export * from '@/integrations/shared/telegram_webhook';
 export * from '@/integrations/shared/chat';
 export * from '@/integrations/shared/wallet';
+export * from '@/integrations/shared/blog';
+export * from '@/integrations/shared/products';
 export * from '@/integrations/shared/orders';
+export * from '@/integrations/shared/schools';

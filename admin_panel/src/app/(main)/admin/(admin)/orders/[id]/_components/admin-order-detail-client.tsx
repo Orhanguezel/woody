@@ -69,8 +69,8 @@ function errMsg(err: unknown, fallback: string) {
   return e?.data?.error || e?.data?.message || e?.error || e?.message || fallback;
 }
 
-const ORDER_STATUSES: OrderStatus[] = ['pending', 'processing', 'completed', 'cancelled', 'refunded'];
-const PAYMENT_STATUSES: PaymentStatus[] = ['unpaid', 'paid', 'failed', 'refunded'];
+const ORDER_STATUSES: OrderStatus[] = ['pending', 'confirmed', 'shipped', 'completed', 'cancelled'];
+const PAYMENT_STATUSES: PaymentStatus[] = ['unpaid', 'pending', 'paid', 'failed', 'refunded'];
 
 export default function AdminOrderDetailClient() {
   const t = useAdminT('admin.orders');
@@ -181,7 +181,7 @@ export default function AdminOrderDetailClient() {
         </div>
 
         <div className="flex items-center gap-3">
-          {order.payment_status === 'paid' && order.status !== 'refunded' && (
+          {order.payment_status === 'paid' && order.status !== 'cancelled' && (
             <Button
               variant="outline"
               disabled={refundState.isLoading}

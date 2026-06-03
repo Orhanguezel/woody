@@ -10,6 +10,7 @@ import { articleSchema, breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld'
 import FaqAccordion from '@/components/common/FaqAccordion';
 import { getEditorialTeamName, getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 import { findFallbackBlogPost, loadFallbackBlogPosts } from '@/components/woody/blog-loader.server';
+import { loadDbBlogPost, loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
 import WoodyBlogFallbackDetail from '@/components/woody/WoodyBlogFallbackDetail';
 import { WOODY_LOCALES } from '@/components/woody/routes';
 
@@ -18,7 +19,9 @@ type PageProps = {
 };
 
 export async function generateStaticParams() {
-  const posts = await loadFallbackBlogPosts('tr');
+  const posts = await loadDbBlogPosts('tr').then((rows) =>
+    rows.length > 0 ? rows : loadFallbackBlogPosts('tr'),
+  );
   return WOODY_LOCALES.flatMap((locale) =>
     posts.map((post) => ({
       locale,
@@ -34,28 +37,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const pathname = normPath(`/blog/${slug || ''}`);
 
-  const [seo, page] = await Promise.all([
+  const [seo, dbPost] = await Promise.all([
     fetchSeoObject(locale),
-    slug ? fetchCustomPagePublicBySlug({ slug, locale }) : Promise.resolve(null),
+    slug ? loadDbBlogPost(slug, locale) : Promise.resolve(null),
   ]);
-  const fallbackPost = page ? null : await findFallbackBlogPost(slug, locale);
+  const page = dbPost ? null : await fetchCustomPagePublicBySlug({ slug, locale });
+  const fallbackPost = dbPost || page ? null : await findFallbackBlogPost(slug, locale);
 
   const base = await buildMetadataFromSeo(seo, { locale, pathname });
 
   const pageTitle =
-    safeStr(page?.meta_title) || safeStr(page?.title) || fallbackPost?.title || titleFromSlug(slug, 'Blog Detail');
+    safeStr(dbPost?.meta_title) ||
+    safeStr(dbPost?.title) ||
+    safeStr(page?.meta_title) ||
+    safeStr(page?.title) ||
+    fallbackPost?.title ||
+    titleFromSlug(slug, 'Blog Detail');
 
   const rawDesc =
     safeStr(page?.meta_description) ||
     safeStr(page?.summary) ||
     safeStr(page?.content_html) ||
     safeStr((page as any)?.content) ||
+    safeStr(dbPost?.meta_description) ||
+    safeStr(dbPost?.summary) ||
+    safeStr(dbPost?.content_html) ||
     safeStr(fallbackPost?.summary) ||
     '';
   const pageDescription = rawDesc ? excerpt(rawDesc, 180) : '';
 
   const imageRaw =
     safeStr(page?.featured_image) ||
+    safeStr(dbPost?.featured_image) ||
     safeStr(fallbackPost?.featured_image) ||
     (Array.isArray((page as any)?.images) ? safeStr((page as any).images[0]) : '');
 
@@ -83,18 +96,29 @@ export default async function BlogDetailsPage({ params }: PageProps) {
   const p = (await params) as { locale: string; slug: string };
   const locale = safeStr(p?.locale) || 'tr';
   const slug = safeStr(p?.slug);
-  const page = slug ? await fetchCustomPagePublicBySlug({ slug, locale }) : null;
-  const fallbackPost = page ? null : await findFallbackBlogPost(slug, locale);
-  const title = safeStr(page?.title) || fallbackPost?.title || titleFromSlug(slug, 'Blog Detail');
+  const dbPost = slug ? await loadDbBlogPost(slug, locale) : null;
+  const page = dbPost ? null : slug ? await fetchCustomPagePublicBySlug({ slug, locale }) : null;
+  const fallbackPost = dbPost || page ? null : await findFallbackBlogPost(slug, locale);
+  const title = safeStr(dbPost?.title) || safeStr(page?.title) || fallbackPost?.title || titleFromSlug(slug, 'Blog Detail');
   const description = excerpt(
-    safeStr(page?.summary) || safeStr(page?.content_html) || safeStr(page?.content) || safeStr(fallbackPost?.summary) || title,
+    safeStr(dbPost?.summary) ||
+      safeStr(dbPost?.content_html) ||
+      safeStr(page?.summary) ||
+      safeStr(page?.content_html) ||
+      safeStr(page?.content) ||
+      safeStr(fallbackPost?.summary) ||
+      title,
     180,
   );
   const app = getPublicAppName();
   const editorialName = getEditorialTeamName();
   const siteUrl = getPublicSiteOrigin();
   const pageUrl = `${siteUrl}/${locale}/blog/${encodeURIComponent(slug)}`;
-  const image = safeStr(page?.featured_image) || safeStr(fallbackPost?.featured_image) || (Array.isArray(page?.images) ? safeStr(page.images[0]) : '');
+  const image =
+    safeStr(dbPost?.featured_image) ||
+    safeStr(page?.featured_image) ||
+    safeStr(fallbackPost?.featured_image) ||
+    (Array.isArray(page?.images) ? safeStr(page.images[0]) : '');
   const faqItems = [
     {
       question: locale === 'tr' ? 'Bu içerik nasıl hazırlanıyor?' : 'How is this content prepared?',
@@ -125,8 +149,8 @@ export default async function BlogDetailsPage({ params }: PageProps) {
             headline: title,
             description,
             image: image ? absUrlJoin(siteUrl, image) : undefined,
-            datePublished: page?.created_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
-            dateModified: page?.updated_at || page?.created_at || fallbackPost?.updated_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
+            datePublished: dbPost?.created_at || page?.created_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
+            dateModified: dbPost?.updated_at || dbPost?.created_at || page?.updated_at || page?.created_at || fallbackPost?.updated_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
             author: { name: editorialName, url: `${siteUrl}/${locale}/about` },
             publisherId: `${siteUrl}/#org`,
             url: pageUrl,
@@ -137,7 +161,15 @@ export default async function BlogDetailsPage({ params }: PageProps) {
         ])}
       />
       {page || !fallbackPost ? <Banner title={title} /> : null}
-      {page ? <BlogDetails /> : fallbackPost ? <WoodyBlogFallbackDetail post={fallbackPost} locale={locale} /> : <BlogDetails />}
+      {dbPost ? (
+        <WoodyBlogFallbackDetail post={dbPost} locale={locale} />
+      ) : page ? (
+        <BlogDetails />
+      ) : fallbackPost ? (
+        <WoodyBlogFallbackDetail post={fallbackPost} locale={locale} />
+      ) : (
+        <BlogDetails />
+      )}
       <FaqAccordion items={faqItems} title={locale === 'tr' ? 'Bu Yazı Hakkında Sorular' : 'Questions About This Article'} />
       <section className="container mx-auto px-4 pb-16">
         <div className="rounded-2xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/55 p-6">
