@@ -1,0 +1,161 @@
+{
+  "title": "Foire aux questions",
+  "description": "Les questions les plus fréquemment posées sur l'enseignement préscolaire de l'anglais et le système {{appName}}.",
+  "eyebrow": "FAQ",
+  "hero": {
+    "eyebrow": "FAQ",
+    "title": "Foire aux questions",
+    "description": "Questions et réponses fréquemment posées sur l'enseignement préscolaire de l'anglais et le système {{appName}}."
+  },
+  "items": [
+    {
+      "question": "Pourquoi un ensemble d'enseignement préscolaire en anglais est-il nécessaire ?",
+      "problem": "Le plus gros problème dans les écoles maternelles est que les cours d'anglais varient d'un enseignant à l'autre et ne progressent pas selon un système standard.",
+      "solution": "{{appName}} propose un ensemble éducatif d'anglais planifié, basé sur le jeu et applicable pour les écoles maternelles, de sorte que les cours progressent systématiquement plutôt que aléatoirement.",
+      "answer": "{{appName}} propose un ensemble éducatif d'anglais planifié, basé sur le jeu et applicable pour les écoles maternelles, de sorte que les cours progressent systématiquement plutôt que aléatoirement."
+    },
+    {
+      "question": "Pourquoi l'enseignement préscolaire de l'anglais ne dure-t-il pas dans la plupart des établissements ?",
+      "problem": "Parce que de nombreux programmes progressent grâce à la mémorisation et que le jeu, la répétition et le support visuel adaptés à l’âge ne sont pas suffisamment utilisés.",
+      "solution": "{{appName}} soutient l'éducation préscolaire en anglais avec du jeu, du mouvement, de la répétition, des histoires et des chansons afin que l'enfant acquière la langue naturellement.",
+      "answer": "{{appName}} soutient l'éducation préscolaire en anglais avec du jeu, du mouvement, de la répétition, des histoires et des chansons afin que l'enfant acquière la langue naturellement."
+    },
+    {
+      "question": "Pourquoi les établissements ont-ils du mal à choisir un ensemble d'enseignement en anglais ?",
+      "problem": "Parce qu'il existe de nombreux contenus sur le marché, mais la plupart restent soit de simples livres, soit n'offrent pas à l'enseignant un flux de candidature clair.",
+      "solution": "{{appName}} ne fournit pas seulement du matériel ; il offre un système complet qui simplifie l'application aux enseignants et peut véritablement être utilisé en classe.",
+      "answer": "{{appName}} ne fournit pas seulement du matériel ; il offre un système complet qui simplifie l'application aux enseignants et peut véritablement être utilisé en classe."
+    },
+    {
+      "question": "Pourquoi un ensemble d'enseignement de l'anglais en maternelle devrait-il être différent ?",
+      "problem": "Le groupe d’âge préscolaire a une durée d’attention plus courte, donc un contenu plus dense et structuré de manière classique n’est pas efficace.",
+      "solution": "{{appName}} propose un système en anglais soutenu par des flux plus simples, plus visuels, plus dynamiques et plus courts pour les tranches d'âge plus jeunes.",
+      "answer": "{{appName}} propose un système en anglais soutenu par des flux plus simples, plus visuels, plus dynamiques et plus courts pour les tranches d'âge plus jeunes."
+    },
+    {
+      "question": "Quelle est la plus grande lacune dans les ensembles d’enseignement préscolaire de l’anglais ?",
+      "problem": "Dans de nombreuses séries, le système de répétition est faible. L'enfant voit un mot mais peut l'oublier s'il ne le répète pas suffisamment.",
+      "solution": "Dans {{appName}}, les mots et les structures apparaissent encore et encore dans les jeux, les histoires, les chansons et les activités, rendant l'apprentissage permanent.",
+      "answer": "Dans {{appName}}, les mots et les structures apparaissent encore et encore dans les jeux, les histoires, les chansons et les activités, rendant l'apprentissage permanent."
+    },
+    {
+      "question": "Pourquoi l’enseignement de l’anglais entre 3 et 6 ans nécessite-t-il une approche particulière ?",
+      "problem": "À cet âge, les enfants apprennent par l’expérience et non par les règles. Avec une mauvaise méthode, l’enfant peut se désintéresser de la leçon.",
+      "solution": "{{appName}} construit une structure spéciale adaptée à la capacité d'attention, au rythme d'apprentissage et au processus d'acquisition naturel des enfants âgés de 3 à 6 ans.",
+      "answer": "{{appName}} construit une structure spéciale adaptée à la capacité d'attention, au rythme d'apprentissage et au processus d'acquisition naturel des enfants âgés de 3 à 6 ans."
+    },
+    {
+      "question": "Quel est le plus gros problème dans les programmes d’enseignement de l’anglais pour les 3 ans ?",
+      "problem": "Le contenu destiné au groupe d’âge de 3 ans est souvent préparé de manière trop dense ou trop longue pour leur capacité d’attention.",
+      "solution": "{{appName}} rend le processus accessible aux 3 ans avec des activités plus courtes, plus amusantes, plus visuelles et plus axées sur le vocabulaire de base.",
+      "answer": "{{appName}} rend le processus accessible aux 3 ans avec des activités plus courtes, plus amusantes, plus visuelles et plus axées sur le vocabulaire de base."
+    },
+    {
+      "question": "Pourquoi un ensemble éducatif en anglais pour 4 ans doit-il être préparé avec soin ?",
+      "problem": "À 4 ans, l'enfant est très ouvert à l'imitation du langage mais apprend toujours par la répétition amusante plutôt que par la théorie intensive.",
+      "solution": "{{appName}} rend l'anglais plus naturel et plus fort avec des histoires, des jeux, des chansons et des flux de répétition adaptés au groupe de 4 ans.",
+      "answer": "{{appName}} rend l'anglais plus naturel et plus fort avec des histoires, des jeux, des chansons et des flux de répétition adaptés au groupe de 4 ans."
+    },
+    {
+      "question": "Quel problème apparaît dans les ensembles d'enseignement anglais à 5 ans ?",
+      "problem": "A cet âge l'enfant peut participer davantage, mais si le système est faible les structures apprises restent dispersées.",
+      "solution": "{{appName}} rassemble le vocabulaire, les modèles courts et l'utilisation active en classe de manière planifiée pour le groupe de 5 ans.",
+      "answer": "{{appName}} rassemble le vocabulaire, les modèles courts et l'utilisation active en classe de manière planifiée pour le groupe de 5 ans."
+    },
+    {
+      "question": "Pourquoi un ensemble éducatif en anglais dès 6 ans nécessite-t-il une structure plus solide ?",
+      "problem": "Un enfant qui atteint l’âge de 6 ans est prêt pour un flux linguistique plus ordonné, mais si la logique préscolaire est perdue, la leçon peut devenir ennuyeuse.",
+      "solution": "{{appName}} préserve à la fois la structure basée sur le jeu à l'âge de 6 ans et prépare l'enfant au niveau suivant avec un flux thématique plus fort.",
+      "answer": "{{appName}} préserve à la fois la structure basée sur le jeu à l'âge de 6 ans et prépare l'enfant au niveau suivant avec un flux thématique plus fort."
+    },
+    {
+      "question": "Pourquoi la question de savoir comment enseigner l’anglais à l’école maternelle est-elle si importante ?",
+      "problem": "Car avec une mauvaise réponse, la leçon cesse d’être un espace d’apprentissage naturel et se transforme en une leçon forcée pour l’enfant.",
+      "solution": "Dans {{appName}}, l'anglais est enseigné à travers le jeu, le mouvement, la répétition, les visuels, les histoires et les chansons. L'enfant apprend la langue en l'expérimentant.",
+      "answer": "Dans {{appName}}, l'anglais est enseigné à travers le jeu, le mouvement, la répétition, les visuels, les histoires et les chansons. L'enfant apprend la langue en l'expérimentant."
+    },
+    {
+      "question": "Pourquoi un plan de cours d'anglais préscolaire est-il nécessaire ?",
+      "problem": "Les cours non planifiés dépendent de l'énergie de l'enseignant et créent des différences de qualité d'un établissement à l'autre.",
+      "solution": "{{appName}} propose un déroulement de cours systématique qui guide l'enseignant, afin que le cours d'anglais progresse de manière plus contrôlée, efficace et professionnelle.",
+      "answer": "{{appName}} propose un déroulement de cours systématique qui guide l'enseignant, afin que le cours d'anglais progresse de manière plus contrôlée, efficace et professionnelle."
+    },
+    {
+      "question": "Pourquoi le programme d'anglais préscolaire ne s'installe-t-il pas dans de nombreuses écoles ?",
+      "problem": "Parce qu’il y a un programme mais pas d’application ; il y a du matériel mais pas de système.",
+      "solution": "{{appName}} ne laisse pas le programme comme une simple structure écrite. Cela en fait un modèle véritablement applicable en classe.",
+      "answer": "{{appName}} ne laisse pas le programme comme une simple structure écrite. Cela en fait un modèle véritablement applicable en classe."
+    },
+    {
+      "question": "Pourquoi les sujets d'anglais préscolaire doivent-ils être choisis correctement ?",
+      "problem": "Lorsque le choix des sujets s’éloigne du quotidien de l’enfant, l’apprentissage s’affaiblit.",
+      "solution": "{{appName}} présente des sujets fondamentaux qui ont une contrepartie dans la vie des enfants, dans un ordre adapté à leur âge, créant ainsi un apprentissage significatif.",
+      "answer": "{{appName}} présente des sujets fondamentaux qui ont une contrepartie dans la vie des enfants, dans un ordre adapté à leur âge, créant ainsi un apprentissage significatif."
+    },
+    {
+      "question": "Quelle est l’erreur la plus courante lors de la préparation d’un programme d’anglais préscolaire ?",
+      "problem": "Donner trop de sujets mais ne pas créer suffisamment d'espace de répétition et d'application.",
+      "solution": "{{appName}} progresse avec peu d'objectifs mais corrects. Le but n’est pas d’empiler les sujets, mais de construire une base solide.",
+      "answer": "{{appName}} progresse avec peu d'objectifs mais corrects. Le but n’est pas d’empiler les sujets, mais de construire une base solide."
+    },
+    {
+      "question": "Pourquoi un enseignement de l’anglais basé sur le jeu est-il nécessaire ?",
+      "problem": "Parce que les enfants apprennent mieux en jouant. Sans jeu, l’attention diminue et la participation diminue.",
+      "solution": "{{appName}} place l'enseignement de l'anglais par le jeu au centre du système, de sorte que l'enfant rejoint le cours de son plein gré, et non par la force.",
+      "answer": "{{appName}} place l'enseignement de l'anglais par le jeu au centre du système, de sorte que l'enfant rejoint le cours de son plein gré, et non par la force."
+    },
+    {
+      "question": "Pourquoi les histoires d’anglais préscolaire sont-elles importantes ?",
+      "problem": "Dans les systèmes sans histoires, l’enfant ne peut pas entendre la langue dans son contexte et l’apprentissage reste mécanique.",
+      "solution": "{{appName}} présente des mots et des structures en contexte à travers des histoires. L'enfant n'entend pas seulement l'anglais, il lui donne un sens.",
+      "answer": "{{appName}} présente des mots et des structures en contexte à travers des histoires. L'enfant n'entend pas seulement l'anglais, il lui donne un sens."
+    },
+    {
+      "question": "Pourquoi les histoires préscolaires en anglais sont-elles un outil efficace ?",
+      "problem": "Parce que lorsqu’un enfant apprend avec des personnages, des événements et des visuels, il se souvient plus fortement de la langue.",
+      "solution": "{{appName}} soutient le lien émotionnel de l'enfant et l'acquisition plus permanente du langage grâce à une structure d'histoire basée sur les personnages.",
+      "answer": "{{appName}} soutient le lien émotionnel de l'enfant et l'acquisition plus permanente du langage grâce à une structure d'histoire basée sur les personnages."
+    },
+    {
+      "question": "Pourquoi utiliser des chansons anglaises à l’école maternelle ?",
+      "problem": "Dans les systèmes sans chansons, les dimensions du rythme, de la répétition et du plaisir manquent.",
+      "solution": "{{appName}} fait des chansons anglaises une partie naturelle de la leçon, renforçant ainsi la prononciation, la répétition et l'énergie de la classe.",
+      "answer": "{{appName}} fait des chansons anglaises une partie naturelle de la leçon, renforçant ainsi la prononciation, la répétition et l'énergie de la classe."
+    },
+    {
+      "question": "Pourquoi les chansons anglaises préscolaires accélèrent-elles l’apprentissage ?",
+      "problem": "Parce que l’enfant répète plus facilement avec rythme et intériorise plus confortablement la langue.",
+      "solution": "{{appName}} utilise les chansons non seulement pour le plaisir, mais aussi comme un outil stratégique qui soutient l'apprentissage des langues.",
+      "answer": "{{appName}} utilise les chansons non seulement pour le plaisir, mais aussi comme un outil stratégique qui soutient l'apprentissage des langues."
+    },
+    {
+      "question": "Pourquoi l'anglais préscolaire préparatoire à Cambridge est-il important ?",
+      "problem": "Les parents et les institutions souhaitent désormais voir non seulement un cours d'anglais mais une base solide.",
+      "solution": "{{appName}} fournit une base sérieuse qui soutient la vision de préparation à Cambridge de l'institution en construisant une base solide dès le plus jeune âge.",
+      "answer": "{{appName}} fournit une base sérieuse qui soutient la vision de préparation à Cambridge de l'institution en construisant une base solide dès le plus jeune âge."
+    },
+    {
+      "question": "Qu'apporte un programme d'anglais préscolaire à Cambridge ?",
+      "problem": "Cela donne à l’institution une position académique plus forte et une plus grande confiance aux parents.",
+      "solution": "{{appName}} fait sortir le cours d'anglais de l'école d'un domaine d'activité ordinaire et le transforme en une structure plus corporative, plus forte et plus visible.",
+      "answer": "{{appName}} fait sortir le cours d'anglais de l'école d'un domaine d'activité ordinaire et le transforme en une structure plus corporative, plus forte et plus visible."
+    },
+    {
+      "question": "Pourquoi de nombreux systèmes dotés d’un ensemble d’enseignement en anglais ne sont-ils toujours pas à la hauteur ?",
+      "problem": "Parce que le matériel seul n’est pas la solution. Sans application, le matériel reste en rayon.",
+      "solution": "{{appName}} combine matériau et application. C'est pourquoi il propose non seulement un ensemble, mais un système éducatif fonctionnel.",
+      "answer": "{{appName}} combine matériau et application. C'est pourquoi il propose non seulement un ensemble, mais un système éducatif fonctionnel."
+    },
+    {
+      "question": "De quoi les établissements ont-ils le plus besoin en matière d’enseignement de l’anglais ?",
+      "problem": "Ils n’ont pas besoin de contenus dispersés, mais d’un modèle professionnel et durable qui donne confiance aux parents.",
+      "solution": "{{appName}} fournit à l'institution non seulement du matériel pédagogique en anglais, mais également un modèle éducatif solide, un flux d'enseignants plus clair et une présentation de l'anglais plus professionnelle.",
+      "answer": "{{appName}} fournit à l'institution non seulement du matériel pédagogique en anglais, mais également un modèle éducatif solide, un flux d'enseignants plus clair et une présentation de l'anglais plus professionnelle."
+    }
+  ],
+  "seo": {
+    "title": "Foire aux questions | {{appName}} Anglais préscolaire",
+    "description": "Questions fréquemment posées sur l'enseignement préscolaire de l'anglais, l'apprentissage par le jeu, la préparation à Cambridge et le système {{appName}}.",
+    "keywords": "FAQ sur l'anglais préscolaire, questions d'anglais sur la petite enfance, anglais basé sur le jeu, préparation à Cambridge préscolaire"
+  }
+}

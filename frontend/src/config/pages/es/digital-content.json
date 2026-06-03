@@ -1,0 +1,96 @@
+{
+  "title": "{{appName}} Mundo Digital",
+  "description": "Bienvenido a {{appName}} Digital World: contenido de Storyland, Movieland, Musicland y Biblioteca por nivel.",
+  "eyebrow": "DIGITAL CONTENT",
+  "hero": {
+    "eyebrow": "DIGITAL CONTENT",
+    "title": "Bienvenido al mundo digital {{appName}}",
+    "description": "Elija su nivel y luego explore las secciones Storyland, Movieland, Musicland y Biblioteca."
+  },
+  "sections": [
+    {
+      "eyebrow": "Nivel 1",
+      "title": "BASIC",
+      "items": [
+        {
+          "title": "tierra de cuentos",
+          "description": "16 historias en vídeo interactivas",
+          "href": "/digital-content/basic/storyland"
+        },
+        {
+          "title": "Tierra de cine",
+          "description": "8 vídeos",
+          "href": "/digital-content/basic/movieland"
+        },
+        {
+          "title": "Tierra de la música",
+          "description": "8 canciones",
+          "href": "/digital-content/basic/musicland"
+        },
+        {
+          "title": "Biblioteca",
+          "description": "Contenido del libro próximamente",
+          "href": "/digital-content/basic/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Nivel 2",
+      "title": "JUNIOR",
+      "items": [
+        {
+          "title": "tierra de cuentos",
+          "description": "16 historias en vídeo interactivas",
+          "href": "/digital-content/junior/storyland"
+        },
+        {
+          "title": "Tierra de cine",
+          "description": "8 vídeos",
+          "href": "/digital-content/junior/movieland"
+        },
+        {
+          "title": "Tierra de la música",
+          "description": "8 canciones",
+          "href": "/digital-content/junior/musicland"
+        },
+        {
+          "title": "Biblioteca",
+          "description": "Contenido del libro próximamente",
+          "href": "/digital-content/junior/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Nivel 3",
+      "title": "SENIOR",
+      "items": [
+        {
+          "title": "tierra de cuentos",
+          "description": "16 historias en vídeo interactivas",
+          "href": "/digital-content/senior/storyland"
+        },
+        {
+          "title": "Tierra de cine",
+          "description": "8 vídeos",
+          "href": "/digital-content/senior/movieland"
+        },
+        {
+          "title": "Tierra de la música",
+          "description": "8 canciones",
+          "href": "/digital-content/senior/musicland"
+        },
+        {
+          "title": "Biblioteca",
+          "description": "Contenido del libro próximamente",
+          "href": "/digital-content/senior/library"
+        }
+      ]
+    }
+  ],
+  "footnote": "Esta es una aplicación digital de Editorial Mina. Reservados todos los derechos.",
+  "seo": {
+    "title": "{{appName}} Mundo Digital | Biblioteca de contenidos digitales",
+    "description": "Mundo de contenido digital {{appName}}: secciones Storyland, Movieland, Musicland y Library para los niveles Básico, Junior y Senior.",
+    "keywords": "woody digital, contenido digital, storyland, movieland, musicland, video en inglés para niños"
+  }
+}

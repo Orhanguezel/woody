@@ -1,0 +1,74 @@
+{
+  "title": "Serie preescolar {{appName}}",
+  "description": "La serie preescolar {{appName}} ofrece a las instituciones una infraestructura educativa en inglés sostenible, estructurada y basada en el juego.",
+  "eyebrow": "SERIE PREESCOLAR {{appName}}",
+  "hero": {
+    "eyebrow": "SERIE PREESCOLAR {{appName}}",
+    "title": "Preescolar",
+    "description": "La serie preescolar {{appName}} ofrece a las instituciones una infraestructura educativa en inglés sostenible, estructurada y basada en el juego.",
+    "primaryCTA": "Solicitar una demostración",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Ver precios",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Conjunto de maestro y estudiante",
+      "title": "La serie preescolar consta de dos conjuntos separados.",
+      "description": "La Serie Preescolar consta de dos conjuntos separados: el Conjunto para Maestros y el Conjunto para Estudiantes. Descubra su contenido a través de tutoriales en vídeo. El sistema de Preescolar {{appName}} requiere un mínimo de 30 estudiantes en la institución. El juego de profesor no se vende por separado. Se proporciona de forma gratuita junto con los conjuntos de estudiantes a instituciones contratadas y se renueva anualmente."
+    },
+    {
+      "eyebrow": "Niveles",
+      "title": "Descubra el contenido de la serie a través de tutoriales en vídeo",
+      "description": "La Serie Preescolar consta de cuatro niveles: Básico, Junior, Senior y PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Nivel Básico",
+          "description": "Proporciona un buen comienzo en inglés con palabras básicas y oraciones simples."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Nivel Júnior",
+          "description": "Desarrolla la capacidad de los niños para construir oraciones y expresarse."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Nivel superior",
+          "description": "Desarrolla la capacidad de usar y comprender el inglés con mayor fluidez."
+        },
+        {
+          "badge": "PRO",
+          "title": "Nivel PRO",
+          "description": "Construye una base en lectura, escritura e inglés académico."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explorar",
+      "title": "Eche un vistazo más de cerca al sistema",
+      "items": [
+        {
+          "title": "Buscador de niveles {{appName}}",
+          "description": "Determina de forma rápida y precisa el nivel de {{appName}} más adecuado evaluando la edad, el nivel de inglés y el estado de aprendizaje del estudiante. Recomienda desde qué nivel debe comenzar el estudiante basándose en algunas preguntas breves.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "Biblioteca {{appName}}",
+          "description": "Una biblioteca digital donde puedes buscar libros de {{appName}}. Vea todos los conjuntos en detalle y obtenga una vista previa del contenido para obtener una comprensión clara del sistema.",
+          "href": "/library"
+        },
+        {
+          "title": "Tienda {{appName}}",
+          "description": "Un área donde podrás consultar los precios actuales de los sets {{appName}} y realizar pedidos online.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Preescolar | Set de aprendizaje de inglés preescolar - Programa de inglés preescolar Turquía",
+    "description": "{{appName}} Conjunto de aprendizaje de inglés preescolar: un programa de inglés para la primera infancia basado en el juego para niños de 3 a 6 años. Plan de estudios de inglés preescolar con sistema de preparación Cambridge. Conjuntos de profesores y alumnos, plan de estudios y planes de lecciones de inglés preescolar.",
+    "keywords": "conjunto de aprendizaje de inglés preescolar, programa de inglés preescolar Turquía, conjunto de inglés para la primera infancia, programa de inglés para preescolar, preescolar de preparación de Cambridge, programa de inglés de 3 a 6 años, serie de inglés preescolar"
+  }
+}

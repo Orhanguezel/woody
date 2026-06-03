@@ -1,0 +1,38 @@
+{
+  "title": "Bibliothèque numérique {{appName}}",
+  "description": "La bibliothèque numérique {{appName}} est une zone de bibliothèque numérique où les établissements peuvent consulter à l'avance le contenu de l'ensemble éducatif.",
+  "eyebrow": "BIBLIOTHÈQUE NUMÉRIQUE {{appName}}",
+  "hero": {
+    "eyebrow": "BIBLIOTHÈQUE NUMÉRIQUE {{appName}}",
+    "title": "Qu'est-ce que la bibliothèque numérique {{appName}} ?",
+    "description": "La bibliothèque numérique {{appName}} est une zone de bibliothèque numérique où les établissements peuvent consulter à l'avance le contenu de l'ensemble éducatif. Grâce à cette plateforme, les livres des enseignants et des élèves peuvent être consultés en détail. En examinant les unités, la structure du contenu et les résultats d’apprentissage, vous pouvez clairement voir comment le système progresse. La bibliothèque numérique {{appName}} offre aux établissements une opportunité d'examen transparente avant l'achat et une chance d'évaluer clairement l'ensemble du modèle éducatif."
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveaux",
+      "title": "Bibliothèque numérique par niveau",
+      "items": [
+        {
+          "badge": "Niveau de base",
+          "title": "Bibliothèque numérique {{appName}} – Niveau de base",
+          "description": "La bibliothèque numérique de niveau de base est une zone de bibliothèque numérique où les livres des enseignants et des élèves de niveau débutant peuvent être consultés. Les établissements peuvent clairement évaluer le système en voyant à l’avance la structure du contenu et les résultats d’apprentissage."
+        },
+        {
+          "badge": "Niveau junior",
+          "title": "Bibliothèque numérique {{appName}} – Niveau junior",
+          "description": "La bibliothèque numérique de niveau junior est un espace de bibliothèque numérique où le contenu qui développe les compétences de construction de phrases et de communication de base des élèves peut être révisé. Les établissements peuvent clairement voir la structure progressive du système en examinant les manuels des enseignants et des élèves à ce niveau."
+        },
+        {
+          "badge": "Niveau supérieur",
+          "title": "Bibliothèque numérique {{appName}} – Niveau senior",
+          "description": "La bibliothèque numérique de niveau senior est un espace de bibliothèque numérique où le contenu de niveau avancé – dans lequel les étudiants communiquent couramment et combinent des structures – peut être consulté. Les établissements peuvent évaluer les résultats de haut niveau du programme et sa structure axée sur la communication en examinant les manuels de l'enseignant et des étudiants."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Bibliothèque numérique | Examiner le contenu de l'ensemble éducatif",
+    "description": "La bibliothèque numérique {{appName}} est une bibliothèque numérique où les établissements peuvent examiner de manière transparente les livres des enseignants et des étudiants avant de les acheter. Niveaux de base, junior et senior.",
+    "keywords": "bibliothèque numérique boisée, bibliothèque numérique, livre anglais préscolaire, livre de l'enseignant, critique de livre d'élève"
+  }
+}

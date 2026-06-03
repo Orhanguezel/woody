@@ -1,0 +1,69 @@
+{
+  "title": "{{appName}} Tuteur à domicile",
+  "description": "Que ce soit à la maison ou à l'école, démarrez le parcours anglais de votre enfant en toute confiance. Profitez d'une expérience d'apprentissage amusante et efficace avec {{appName}}.",
+  "eyebrow": "SÉRIE {{appName}} PRÉSCOLAIRE",
+  "hero": {
+    "eyebrow": "SÉRIE {{appName}} PRÉSCOLAIRE",
+    "title": "Accueil et tuteur",
+    "description": "Que ce soit à la maison ou à l'école, démarrez le parcours anglais de votre enfant en toute confiance. Profitez d'une expérience d'apprentissage amusante et efficace avec {{appName}}.",
+    "primaryCTA": "Demander une démo",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Trouvez votre niveau",
+    "secondaryHref": "/level-finder"
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveaux",
+      "title": "Découvrez le contenu de la série à travers des vidéos pas à pas",
+      "description": "La série Home & Tutor convient à une utilisation individuelle par 1 à 2 personnes. Le contenu et les jeux sont entièrement adaptés pour un apprentissage individuel. La série comporte quatre niveaux : Basic, Junior, Senior et PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Niveau de base",
+          "description": "Fournit un bon début en anglais avec des mots de base et des phrases simples."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Niveau junior",
+          "description": "Développe la capacité des enfants à construire des phrases et à s'exprimer."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Niveau supérieur",
+          "description": "Développe la capacité d’utiliser et de comprendre l’anglais plus couramment."
+        },
+        {
+          "badge": "PRO",
+          "title": "Niveau PRO",
+          "description": "Construit une base en lecture, en écriture et en anglais académique."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explorer",
+      "title": "Examinez de plus près le système",
+      "items": [
+        {
+          "title": "Système d'évaluation de niveau",
+          "description": "Détermine rapidement et précisément le niveau {{appName}} le plus approprié en évaluant l'âge, le niveau d'anglais et l'état d'apprentissage de l'élève. Recommande le niveau à partir duquel l'étudiant doit commencer en fonction de quelques questions courtes.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "Bibliothèque numérique {{appName}}",
+          "description": "Une bibliothèque numérique où vous pouvez parcourir les livres {{appName}}. Affichez tous les ensembles en détail et prévisualisez le contenu pour avoir une compréhension claire du système.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Boutique",
+          "description": "Une zone où vous pouvez consulter les prix actuels des ensembles {{appName}} et passer des commandes en ligne.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Ensemble d'anglais pour tuteur à domicile | Cours à domicile et particuliers Éducation préscolaire en anglais",
+    "description": "{{appName}} Home Tutor : un kit d'apprentissage de l'anglais préscolaire pour des cours à domicile ou privés. Un cursus en 4 niveaux (Basic/Junior/Senior/PRO) à usage parent + enfant, contenu numérique inclus.",
+    "keywords": "tuteur à domicile anglais, cours particulier à domicile anglais, kit maison anglais préscolaire, tuteur à domicile woody, cours particulier enfants anglais"
+  }
+}

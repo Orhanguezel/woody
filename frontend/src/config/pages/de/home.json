@@ -1,0 +1,46 @@
+{
+  "title": "Willkommen in der {{appName}}-Welt",
+  "description": "{{appName}} ist ein Englisch-Lernmodell für Vorschulkinder, das physische Materialien, englischsprachige Charaktere, digitale Inhalte und den Cambridge-Ansatz in einem einzigen System vereint.",
+  "eyebrow": "Spielbasiertes Lernen",
+  "hero": {
+    "eyebrow": "Spielbasiertes Lernen",
+    "title": "Willkommen in der {{appName}}-Welt",
+    "description": "{{appName}} ist ein Englisch-Lernmodell für Vorschulkinder, das physische Materialien, englischsprachige Charaktere, digitale Inhalte und den Cambridge-Ansatz in einem einzigen System vereint.",
+    "primaryCTA": "Entdecken Sie die Vorschulserie",
+    "primaryHref": "/preschool",
+    "secondaryCTA": "Fordern Sie eine Demo an",
+    "secondaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Sets für alle Altersgruppen",
+      "title": "Welches {{appName}}-Set ist das Richtige für Sie?",
+      "description": "Wählen Sie das {{appName}}-Set, das am besten zu Ihrer Institution oder Ihrem Anwendungsfall passt. Jedes Set ist speziell für unterschiedliche Bedürfnisse strukturiert. Es baut Sprachkenntnisse durch strukturiertes Spielen, spannende Aktivitäten und reichhaltige digitale Inhalte auf.",
+      "items": [
+        {
+          "badge": "Für Klassenzimmer",
+          "title": "Vorschulreihe",
+          "description": "Konzipiert für große Klassenzimmer, Schulen und Kindergärten. Inhalte und Spiele sind für das Klassenzimmermanagement strukturiert und für große Gruppen geeignet. Bietet ein Modell, bei dem die gesamte Klasse gleichzeitig aktiv teilnehmen kann.",
+          "href": "/preschool"
+        },
+        {
+          "badge": "Für kleine Gruppen",
+          "title": "Werkstatt",
+          "description": "Konzipiert für kleine Gruppen von 3–5 Personen. Inhalte und Spiele werden für eine intensivere Interaktion und individuelle Beteiligung arrangiert. Bietet eine fokussiertere und schnellere Anwendungsstruktur.",
+          "href": "/workshop"
+        },
+        {
+          "badge": "Individuelle Nutzung",
+          "title": "Heimlehrer / Heimserie",
+          "description": "Geeignet für die individuelle Nutzung durch 1–2 Personen. Inhalte und Spiele sind vollständig auf das Lernen im Einzelunterricht abgestimmt. Bietet kindgerechten Fortschritt und maximale Aufmerksamkeit.",
+          "href": "/home-tutor"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Englisch-Lernset für Vorschulkinder | Spielbasiertes frühkindliches Englisch",
+    "description": "Lassen Sie Ihre Kinder mit einem Englisch-Lernsystem für Vorschulkinder lernen und dabei Spaß haben. Entdecken Sie spielerische Lernsets, Demo-Anfragen und günstige Pakete.",
+    "keywords": "Vorschul-Englischprogramm Türkei, spielerisches frühkindliches Englisch, Vorschul-Englisch-Lernset, frühkindliche Englischausbildung, Cambridge-Vorbereitungssystem, Englisch für Kinder, Englischprogramm im Alter von 3 bis 6 Jahren"
+  }
+}

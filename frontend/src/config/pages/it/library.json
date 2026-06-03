@@ -1,0 +1,38 @@
+{
+  "title": "{{appName}} Biblioteca digitale",
+  "description": "{{appName}} Digital Library è un'area della biblioteca digitale in cui le istituzioni possono visionare in anticipo i contenuti del set didattico.",
+  "eyebrow": "BIBLIOTECA DIGITALE {{appName}}",
+  "hero": {
+    "eyebrow": "BIBLIOTECA DIGITALE {{appName}}",
+    "title": "Cos'è la Biblioteca digitale {{appName}}?",
+    "description": "{{appName}} Digital Library è un'area della biblioteca digitale in cui le istituzioni possono visionare in anticipo i contenuti del set didattico. Attraverso questa piattaforma è possibile visualizzare in dettaglio sia i libri degli insegnanti che quelli degli studenti. Esaminando le unità, la struttura dei contenuti e i risultati dell'apprendimento, puoi vedere chiaramente come procede il sistema. {{appName}} Digital Library offre agli istituti un'opportunità di revisione trasparente prima dell'acquisto e la possibilità di valutare chiaramente l'intero modello educativo."
+  },
+  "sections": [
+    {
+      "eyebrow": "Livelli",
+      "title": "Biblioteca digitale per livello",
+      "items": [
+        {
+          "badge": "Livello base",
+          "title": "{{appName}} Biblioteca digitale – Livello Base",
+          "description": "La Biblioteca digitale di livello base è un'area della biblioteca digitale in cui è possibile rivedere i libri di insegnanti e studenti di livello principiante. Le istituzioni possono valutare chiaramente il sistema vedendo in anticipo la struttura dei contenuti e i risultati dell’apprendimento."
+        },
+        {
+          "badge": "Livello Junior",
+          "title": "Biblioteca digitale {{appName}} – Livello Junior",
+          "description": "La Biblioteca digitale di livello Junior è un'area della biblioteca digitale in cui è possibile rivedere i contenuti che sviluppano le capacità di costruzione delle frasi e di comunicazione di base degli studenti. Le istituzioni possono vedere chiaramente la struttura progressiva del sistema esaminando i libri degli insegnanti e degli studenti a questo livello."
+        },
+        {
+          "badge": "Livello senior",
+          "title": "Biblioteca digitale {{appName}} – Livello senior",
+          "description": "La Biblioteca digitale di livello senior è un'area della biblioteca digitale in cui è possibile rivedere i contenuti di livello avanzato, in cui gli studenti comunicano fluentemente e combinano strutture. Gli istituti possono valutare i risultati di alto livello del programma e la struttura incentrata sulla comunicazione esaminando i libri degli insegnanti e degli studenti."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Biblioteca digitale | Esamina il contenuto del set didattico",
+    "description": "{{appName}} Digital Library è una biblioteca digitale in cui le istituzioni possono rivedere in modo trasparente i libri di insegnanti e studenti prima dell'acquisto. Livelli Base, Junior e Senior.",
+    "keywords": "biblioteca digitale legnosa, biblioteca digitale, libro di inglese prescolare, libro dell'insegnante, recensione del libro dello studente"
+  }
+}

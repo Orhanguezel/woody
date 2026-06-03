@@ -1,0 +1,42 @@
+{
+  "title": "Redactioneel beleid en methodologie",
+  "description": "Hoe {{appName}} inhoud voorbereidt, AI-ondersteund opstellen gebruikt en kwaliteitsnormen toepast.",
+  "back": "Terug naar Over",
+  "authorRoleTitle": "Redactioneel kwaliteitsproces",
+  "authorExpertiseLabels": [
+    "Redactionele recensie",
+    "Ontwerp leren",
+    "Toegankelijke taal"
+  ],
+  "credentialsNote": "Inhoudskwaliteit en updatepraktijken",
+  "sections": [
+    {
+      "title": "Inhoudelijke principes",
+      "paragraphs": [
+        "De inhoud van {{appName}} helpt gebruikers zich voor te bereiden op weloverwogen keuzes en gesprekken met deskundigen, en vervangt niet professioneel advies in gereguleerde domeinen.",
+        "Wij geven prioriteit aan duidelijke taal, een niet-dwingende toon en praktisch inzicht. Wij verwerpen afhankelijkheidstaal en absolute voorspellingen."
+      ]
+    },
+    {
+      "title": "Transparantie over AI-ondersteund opstellen",
+      "paragraphs": [
+        "Sommige educatieve concepten kunnen LLM's gebruiken om onderwerpen te structureren en de leesbaarheid te verbeteren.",
+        "Concepten worden vóór publicatie beoordeeld op nauwkeurigheid, context, toegankelijkheid en ethische grenzen."
+      ]
+    },
+    {
+      "title": "Leermethodologie",
+      "paragraphs": [
+        "Modules volgen een leerlinggerichte structuur; bronnen worden onderhouden en verbeterd met feedback.",
+        "Gepersonaliseerde suggesties volgen transparante regels die zijn afgestemd op het platformbeleid."
+      ]
+    },
+    {
+      "title": "Beoordelingsproces",
+      "paragraphs": [
+        "De inhoud wordt redactioneel beoordeeld voordat deze wordt vrijgegeven. Bij gebruikersgerichte kopieën wordt prioriteit gegeven aan consistentie, nauwkeurigheid en vertrouwen.",
+        "Platforminhoud is algemene informatie; raadpleeg een relevante professional voor persoonlijke situaties."
+      ]
+    }
+  ]
+}

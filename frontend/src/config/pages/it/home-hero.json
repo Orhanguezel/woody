@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Inglese basato sul gioco",
+  "title": "{{appName}}",
+  "subtitle": "SCUOLA PRESCOLARE · VIAGGIO A CAMBRIDGE",
+  "heroTitleLine1": "{{appName}}",
+  "heroTitleGradient": "mondo.",
+  "headline": "<em>Inglese attraverso il gioco</em>, sicurezza attraverso le storie e continuità attraverso i contenuti digitali<br/>— <strong>Un sistema di apprendimento completo per le scuole dell'infanzia</strong>.",
+  "lead": "{{appName}} riunisce materiali fisici, personaggi di lingua inglese, contenuti digitali e l'approccio Cambridge in un unico sistema.",
+  "tagline": "Un modello di inglese prescolare tracciabile per scuole, insegnanti e famiglie.",
+  "socialProof": "Scuola materna, laboratorio, tutor domestico, biblioteca digitale e accademia confluiscono sotto lo stesso tetto.",
+  "metrics": [
+    {
+      "value": "3-6",
+      "label": "Fascia d'età"
+    },
+    {
+      "value": "4",
+      "label": "Livelli"
+    },
+    {
+      "value": "Cambridge",
+      "label": "Approccio preparatorio"
+    }
+  ],
+  "showcaseTopic": "Viaggio di livello",
+  "showcaseProgress": "Base → Junior → Senior → PRO",
+  "showcaseQuestion": "Quale serie è adatta alla tua istituzione?",
+  "showcaseOptionA": "A) Scuola dell'infanzia",
+  "showcaseOptionB": "B) Officina",
+  "showcaseOptionC": "C) Tutor domiciliare",
+  "showcaseOptionD": "D) Accademia",
+  "showcaseXpLabel": "Apprendimento",
+  "showcaseXpValue": "Attivo",
+  "showcaseStreak": "4",
+  "showcaseStreakSuffix": "livelli",
+  "showcaseStreakSub": "Base, Junior, Senior, PRO",
+  "showcaseBadgeTitle": "Dimostrazione pronta",
+  "showcaseBadgeSub": "Per le istituzioni",
+  "showcaseXpGain": "Inizio",
+  "primaryCTA": "Esplora la serie prescolare",
+  "secondaryCTA": "Richiedi una dimostrazione",
+  "scrollHint": "Scorrere verso il basso"
+}

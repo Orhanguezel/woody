@@ -1,0 +1,42 @@
+{
+  "title": "Politique éditoriale et méthodologie",
+  "description": "Comment {{appName}} prépare le contenu, utilise la rédaction assistée par l'IA et applique les normes de qualité.",
+  "back": "Retour à À propos",
+  "authorRoleTitle": "Processus de qualité éditoriale",
+  "authorExpertiseLabels": [
+    "Revue éditoriale",
+    "Conception de l'apprentissage",
+    "Langue accessible"
+  ],
+  "credentialsNote": "Qualité du contenu et pratiques de mise à jour",
+  "sections": [
+    {
+      "title": "Principes de contenu",
+      "paragraphs": [
+        "Le contenu de {{appName}} aide les utilisateurs à se préparer à des choix éclairés et à des conversations d'experts, et ne remplace pas les conseils professionnels dans les domaines réglementés.",
+        "Nous accordons la priorité à un langage simple, à un ton non coercitif et à une vision pratique. Nous rejetons le langage de la dépendance et les prédictions absolues."
+      ]
+    },
+    {
+      "title": "Transparence sur la rédaction assistée par IA",
+      "paragraphs": [
+        "Certaines versions pédagogiques peuvent utiliser des LLM pour structurer les sujets et améliorer la lisibilité.",
+        "Les brouillons sont examinés pour en vérifier l’exactitude, le contexte, l’accessibilité et les limites éthiques avant leur publication."
+      ]
+    },
+    {
+      "title": "Méthodologie d'apprentissage",
+      "paragraphs": [
+        "Les modules suivent une structure centrée sur l'apprenant ; les sources sont maintenues et améliorées grâce aux commentaires.",
+        "Les suggestions personnalisées suivent des règles transparentes alignées sur la politique de la plateforme."
+      ]
+    },
+    {
+      "title": "Processus de révision",
+      "paragraphs": [
+        "Le contenu est révisé éditorialement avant sa publication. La copie destinée à l'utilisateur donne la priorité à la cohérence, à l'exactitude et à la confiance.",
+        "Le contenu de la plateforme est une information générale ; consulter un professionnel compétent pour des situations personnelles."
+      ]
+    }
+  ]
+}

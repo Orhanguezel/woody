@@ -1,0 +1,131 @@
+{
+  "quoteWhatsApp": "905331570373",
+  "quoteMessage": "Hola, me gustaría obtener información sobre los precios de sus juegos escolares.\n\nCiudad:\nNombre de la escuela:\nNúmero de estudiantes:\n¿Podría compartir su cotización junto con su catálogo digital?",
+  "categories": [
+    {
+      "id": "okul-serisi",
+      "name": "Serie preescolar",
+      "description": "",
+      "route": "/preschool"
+    },
+    {
+      "id": "atolye",
+      "name": "Serie de talleres",
+      "description": "Para talleres y centros de cursos.",
+      "route": "/workshop"
+    },
+    {
+      "id": "ozel-ders",
+      "name": "Serie de lecciones privadas",
+      "description": "Para profesores de clases particulares y a domicilio",
+      "route": "/home-tutor"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "okul-serisi",
+      "name": "Conjunto de estudiantes de nivel básico",
+      "description": "Nivel principiante",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 2,
+      "category": "okul-serisi",
+      "name": "Conjunto de estudiantes de nivel junior",
+      "description": "Nivel de desarrollo",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 3,
+      "category": "okul-serisi",
+      "name": "Conjunto de estudiantes de nivel superior",
+      "description": "nivel avanzado",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 7,
+      "category": "atolie",
+      "name": "Taller Básico",
+      "description": "Paquete de inicio",
+      "price": "₺1,999"
+    },
+    {
+      "id": 8,
+      "category": "atolie",
+      "name": "Taller Junior",
+      "description": "nivel intermedio",
+      "price": "₺2,199"
+    },
+    {
+      "id": 9,
+      "category": "atolie",
+      "name": "Taller Senior",
+      "description": "nivel avanzado",
+      "price": "₺2,399"
+    },
+    {
+      "id": 10,
+      "category": "atolie",
+      "name": "Taller PRO",
+      "description": "Profesional",
+      "price": "₺2,699"
+    },
+    {
+      "id": 11,
+      "category": "atolie",
+      "name": "Conjunto completo del taller",
+      "description": "Todo en uno",
+      "price": "₺7,999"
+    },
+    {
+      "id": 12,
+      "category": "atolie",
+      "name": "Materiales digitales",
+      "description": "Acceso en línea",
+      "price": "₺499"
+    },
+    {
+      "id": 13,
+      "category": "ozel-ders",
+      "name": "Inicio Básico",
+      "description": "entrante individual",
+      "price": "₺1,499"
+    },
+    {
+      "id": 14,
+      "category": "ozel-ders",
+      "name": "Inicio Júnior",
+      "description": "Desarrollo individual",
+      "price": "₺1,699"
+    },
+    {
+      "id": 15,
+      "category": "ozel-ders",
+      "name": "Inicio Mayores",
+      "description": "individual avanzado",
+      "price": "₺1,899"
+    },
+    {
+      "id": 16,
+      "category": "ozel-ders",
+      "name": "Inicio PRO",
+      "description": "Profesional individual",
+      "price": "₺2,099"
+    },
+    {
+      "id": 17,
+      "category": "ozel-ders",
+      "name": "Paquete de lecciones privadas",
+      "description": "4 niveles, con descuento",
+      "price": "₺5,999"
+    },
+    {
+      "id": 18,
+      "category": "ozel-ders",
+      "name": "Biblioteca en línea",
+      "description": "Acceso digital",
+      "price": "₺399"
+    }
+  ]
+}

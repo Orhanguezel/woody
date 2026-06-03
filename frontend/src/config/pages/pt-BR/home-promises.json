@@ -1,0 +1,24 @@
+{
+  "eyebrow": "Principles",
+  "title": "<em>Neutral</em> promises for {{appName}}",
+  "promises": [
+    {
+      "num": "01",
+      "title": "Brand independent",
+      "text": "Default copy works with the AppName token and environment values.",
+      "target": "BRAND"
+    },
+    {
+      "num": "02",
+      "title": "Extendable",
+      "text": "Components and page shells are ready for new domain content.",
+      "target": "STRUCTURE"
+    },
+    {
+      "num": "03",
+      "title": "Simple start",
+      "text": "Commerce and project-specific flows are not part of the default template.",
+      "target": "SIMPLICITY"
+    }
+  ]
+}

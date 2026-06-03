@@ -1,0 +1,38 @@
+{
+  "title": "{{appName}} Digitale Bibliothek",
+  "description": "Die {{appName}} Digital Library ist ein digitaler Bibliotheksbereich, in dem Institutionen die Inhalte des Bildungssets vorab überprüfen können.",
+  "eyebrow": "{{appName}} DIGITALE BIBLIOTHEK",
+  "hero": {
+    "eyebrow": "{{appName}} DIGITALE BIBLIOTHEK",
+    "title": "Was ist die digitale Bibliothek {{appName}}?",
+    "description": "Die {{appName}} Digital Library ist ein digitaler Bibliotheksbereich, in dem Institutionen die Inhalte des Bildungssets vorab überprüfen können. Über diese Plattform können sowohl Lehrer- als auch Schülerbücher im Detail eingesehen werden. Durch die Untersuchung der Einheiten, der Inhaltsstruktur und der Lernergebnisse können Sie deutlich erkennen, wie sich das System entwickelt. Die {{appName}} Digital Library bietet Institutionen vor dem Kauf eine transparente Überprüfungsmöglichkeit und die Möglichkeit, das gesamte Bildungsmodell klar zu bewerten."
+  },
+  "sections": [
+    {
+      "eyebrow": "Ebenen",
+      "title": "Digitale Bibliothek nach Level",
+      "items": [
+        {
+          "badge": "Grundstufe",
+          "title": "{{appName}} Digitale Bibliothek – Grundstufe",
+          "description": "Die Basic Level Digital Library ist ein digitaler Bibliotheksbereich, in dem Lehr- und Schülerbücher für Anfänger eingesehen werden können. Institutionen können das System klar bewerten, indem sie die Inhaltsstruktur und Lernergebnisse im Voraus sehen."
+        },
+        {
+          "badge": "Junior-Level",
+          "title": "{{appName}} Digitale Bibliothek – Junior-Level",
+          "description": "Die Junior Level Digital Library ist ein digitaler Bibliotheksbereich, in dem Inhalte überprüft werden können, die den Satzbau und die grundlegenden Kommunikationsfähigkeiten der Schüler fördern. Institutionen können die fortschreitende Struktur des Systems klar erkennen, indem sie die Lehrer- und Schülerbücher auf dieser Ebene untersuchen."
+        },
+        {
+          "badge": "Oberstufe",
+          "title": "{{appName}} Digitale Bibliothek – Oberstufe",
+          "description": "Die Senior Level Digital Library ist ein digitaler Bibliotheksbereich, in dem Inhalte für Fortgeschrittene, in denen Schüler fließend kommunizieren und Strukturen kombinieren können, überprüft werden können. Institutionen können die hochwertigen Ergebnisse und die kommunikationsorientierte Struktur des Programms anhand der Lehr- und Schülerbücher beurteilen."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Digitale Bibliothek | Sehen Sie sich den Inhalt des Bildungssets an",
+    "description": "Die {{appName}} Digital Library ist eine digitale Bibliothek, in der Institutionen Lehrer- und Schülerbücher vor dem Kauf transparent überprüfen können. Basic-, Junior- und Senior-Level.",
+    "keywords": "Woody, digitale Bibliothek, digitale Bibliothek, englisches Vorschulbuch, Lehrerbuch, Buchrezension für Schüler"
+  }
+}

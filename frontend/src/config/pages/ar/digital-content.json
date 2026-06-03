@@ -1,0 +1,96 @@
+{
+  "title": "{{appName}} العالم الرقمي",
+  "description": "مرحبًا بك في {{appName}} Digital World - محتوى Storyland وMovieland وMusicland والمكتبة حسب المستوى.",
+  "eyebrow": "DIGITAL CONTENT",
+  "hero": {
+    "eyebrow": "DIGITAL CONTENT",
+    "title": "مرحبًا بك في عالم {{appName}} الرقمي",
+    "description": "اختر مستواك، ثم استكشف أقسام Storyland، وMovieland، وMusicland، والمكتبة."
+  },
+  "sections": [
+    {
+      "eyebrow": "المستوى 1",
+      "title": "BASIC",
+      "items": [
+        {
+          "title": "ستوريلاند",
+          "description": "16 قصة فيديو تفاعلية",
+          "href": "/digital-content/basic/storyland"
+        },
+        {
+          "title": "موفيلاند",
+          "description": "8 فيديوهات",
+          "href": "/digital-content/basic/movieland"
+        },
+        {
+          "title": "ميوزيك لاند",
+          "description": "8 أغاني",
+          "href": "/digital-content/basic/musicland"
+        },
+        {
+          "title": "مكتبة",
+          "description": "محتوى الكتاب قريبا",
+          "href": "/digital-content/basic/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "المستوى 2",
+      "title": "JUNIOR",
+      "items": [
+        {
+          "title": "ستوريلاند",
+          "description": "16 قصة فيديو تفاعلية",
+          "href": "/digital-content/junior/storyland"
+        },
+        {
+          "title": "موفيلاند",
+          "description": "8 فيديوهات",
+          "href": "/digital-content/junior/movieland"
+        },
+        {
+          "title": "ميوزيك لاند",
+          "description": "8 أغاني",
+          "href": "/digital-content/junior/musicland"
+        },
+        {
+          "title": "مكتبة",
+          "description": "محتوى الكتاب قريبا",
+          "href": "/digital-content/junior/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "المستوى 3",
+      "title": "SENIOR",
+      "items": [
+        {
+          "title": "ستوريلاند",
+          "description": "16 قصة فيديو تفاعلية",
+          "href": "/digital-content/senior/storyland"
+        },
+        {
+          "title": "موفيلاند",
+          "description": "8 فيديوهات",
+          "href": "/digital-content/senior/movieland"
+        },
+        {
+          "title": "ميوزيك لاند",
+          "description": "8 أغاني",
+          "href": "/digital-content/senior/musicland"
+        },
+        {
+          "title": "مكتبة",
+          "description": "محتوى الكتاب قريبا",
+          "href": "/digital-content/senior/library"
+        }
+      ]
+    }
+  ],
+  "footnote": "هذا هو التطبيق الرقمي لدار مينا للنشر. جميع الحقوق محفوظة.",
+  "seo": {
+    "title": "{{appName}} العالم الرقمي | مكتبة المحتوى الرقمي",
+    "description": "عالم المحتوى الرقمي {{appName}}: أقسام Storyland وMovieland وMusicland والمكتبة للمستويات الأساسية والصغار والمستويات العليا.",
+    "keywords": "وودي ديجيتال، محتوى رقمي، ستوري لاند، موفي لاند، ميوزيك لاند، فيديو إنجليزي للأطفال"
+  }
+}

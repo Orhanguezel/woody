@@ -1,0 +1,38 @@
+{
+  "title": "Biblioteca digital {{appName}}",
+  "description": "La Biblioteca Digital {{appName}} es un área de biblioteca digital donde las instituciones pueden revisar el contenido educativo con anticipación.",
+  "eyebrow": "BIBLIOTECA DIGITAL {{appName}}",
+  "hero": {
+    "eyebrow": "BIBLIOTECA DIGITAL {{appName}}",
+    "title": "¿Qué es la biblioteca digital {{appName}}?",
+    "description": "La Biblioteca Digital {{appName}} es un área de biblioteca digital donde las instituciones pueden revisar el contenido educativo con anticipación. A través de esta plataforma se pueden visualizar en detalle libros tanto de profesores como de alumnos. Al examinar las unidades, la estructura del contenido y los resultados del aprendizaje, podrá ver claramente cómo progresa el sistema. La biblioteca digital {{appName}} ofrece a las instituciones una oportunidad de revisión transparente antes de la compra y la posibilidad de evaluar claramente todo el modelo educativo."
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveles",
+      "title": "Biblioteca Digital por Nivel",
+      "items": [
+        {
+          "badge": "Nivel Básico",
+          "title": "Biblioteca Digital {{appName}} – Nivel Básico",
+          "description": "La Biblioteca Digital de Nivel Básico es un área de biblioteca digital donde se pueden revisar libros de maestros y estudiantes de nivel principiante. Las instituciones pueden evaluar claramente el sistema viendo de antemano la estructura del contenido y los resultados del aprendizaje."
+        },
+        {
+          "badge": "Nivel Júnior",
+          "title": "Biblioteca Digital {{appName}} – Nivel Junior",
+          "description": "La Biblioteca Digital de Nivel Junior es un área de biblioteca digital donde se puede revisar el contenido que desarrolla las habilidades básicas de comunicación y construcción de oraciones de los estudiantes. Las instituciones pueden ver claramente el progreso de la estructura del sistema al examinar los libros de profesores y estudiantes en este nivel."
+        },
+        {
+          "badge": "Nivel superior",
+          "title": "Biblioteca digital {{appName}} – Nivel superior",
+          "description": "La Biblioteca Digital de Nivel Superior es un área de biblioteca digital donde se puede revisar contenido de nivel avanzado, en el que los estudiantes se comunican con fluidez y combinan estructuras. Las instituciones pueden evaluar los resultados de alto nivel del programa y la estructura centrada en la comunicación examinando los libros de profesores y estudiantes."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Biblioteca digital {{appName}} | Revisar el contenido del conjunto educativo",
+    "description": "La biblioteca digital {{appName}} es una biblioteca digital donde las instituciones pueden revisar de forma transparente los libros de profesores y estudiantes antes de comprarlos. Niveles Básico, Junior y Senior.",
+    "keywords": "biblioteca digital woody, biblioteca digital, libro de inglés preescolar, libro de profesor, reseña de libro de estudiante"
+  }
+}

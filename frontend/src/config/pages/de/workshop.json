@@ -1,0 +1,64 @@
+{
+  "title": "{{appName}} Workshop-Reihe",
+  "description": "Mit der Workshop-Reihe hören Kinder nicht nur Englisch; Sie spielen es, wenden es an und leben es. Bieten Sie mit {{appName}} einen lebendigeren und effektiveren Lernprozess.",
+  "eyebrow": "{{appName}} WORKSHOP-REIHE",
+  "hero": {
+    "eyebrow": "{{appName}} WORKSHOP-REIHE",
+    "title": "Werkstatt",
+    "description": "Mit der Workshop-Reihe hören Kinder nicht nur Englisch; Sie spielen es, wenden es an und leben es. Bieten Sie mit {{appName}} einen lebendigeren und effektiveren Lernprozess.",
+    "primaryCTA": "Fordern Sie eine Demo an",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Preise anzeigen",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Ebenen",
+      "title": "Entdecken Sie den Inhalt der Serie anhand von Video-Komplettlösungen",
+      "description": "Die Workshop-Reihe besteht aus zwei separaten Sets. Entdecken Sie ihre Inhalte anhand von Video-Komplettlösungen. Die Serie umfasst vier Level: Basic, Junior, Senior und PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Grundstufe",
+          "description": "Bietet einen guten Einstieg in die englische Sprache mit einfachen Wörtern und einfachen Sätzen."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior-Level",
+          "description": "Fördert die Fähigkeit der Kinder, Sätze zu bilden und sich auszudrücken."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Oberstufe",
+          "description": "Fördert die Fähigkeit, Englisch flüssiger zu verwenden und zu verstehen."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO-Level",
+          "description": "Schafft eine Grundlage in Lesen, Schreiben und akademischem Englisch."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Erkunden",
+      "title": "Schauen Sie sich das System genauer an",
+      "items": [
+        {
+          "title": "{{appName}} Digitale Bibliothek",
+          "description": "Eine digitale Bibliothek, in der Sie {{appName}}-Bücher durchsuchen können. Sehen Sie sich alle Sets im Detail an und zeigen Sie den Inhalt in der Vorschau an, um ein klares Verständnis des Systems zu erhalten.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Ein Bereich, in dem Sie die aktuellen Preise der {{appName}}-Sets überprüfen und Online-Bestellungen aufgeben können.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Workshop-Englisch-Set | Workshopbasierter Englischunterricht im Vorschulalter",
+    "description": "{{appName}} Workshop-Reihe: ein Workshop-basiertes, praktisches Englisch-Lernset für Vorschulkinder. In 4 Stufen (Basic/Junior/Senior/PRO) mit spiel- und dramafokussierten Aktivitäten lernen Kinder Englisch, indem sie es leben.",
+    "keywords": "Workshop-Englisch-Set, Workshop-basiertes Englisch, Vorschul-Englisch-Workshop, Woody-Workshop, praktischer Englischunterricht"
+  }
+}

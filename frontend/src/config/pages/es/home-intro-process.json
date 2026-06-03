@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Flujo de aprendizaje",
+  "titleBefore": "como niños",
+  "titleAccent": "avanzar",
+  "lead": "Cada serie avanza con materiales, juegos, repetición y apoyo digital apropiados para la edad.",
+  "steps": [
+    {
+      "icon": "bookOpen",
+      "title": "Elige el nivel",
+      "desc": "Se selecciona Básico, Junior, Senior o PRO según la edad, la estructura del aula y los objetivos de aprendizaje."
+    },
+    {
+      "icon": "playCircle",
+      "title": "Aplicar a través del juego",
+      "desc": "En el aula se utilizan conjuntos para maestros, materiales para estudiantes, canciones e historias."
+    },
+    {
+      "icon": "chartColumn",
+      "title": "Continuar digitalmente",
+      "desc": "El flujo de biblioteca, contenido digital y academia lleva el aprendizaje a los procesos extraescolares."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Politica e metodologia editoriale",
+  "description": "In che modo {{appName}} prepara i contenuti, utilizza la redazione assistita dall'intelligenza artificiale e applica standard di qualità.",
+  "back": "Torna a Informazioni",
+  "authorRoleTitle": "Processo di qualità editoriale",
+  "authorExpertiseLabels": [
+    "Revisione editoriale",
+    "Progettazione dell'apprendimento",
+    "Lingua accessibile"
+  ],
+  "credentialsNote": "Qualità dei contenuti e pratiche di aggiornamento",
+  "sections": [
+    {
+      "title": "Principi di contenuto",
+      "paragraphs": [
+        "I contenuti di {{appName}} aiutano gli utenti a prepararsi a scelte informate e conversazioni tra esperti, non a sostituire la consulenza professionale in ambiti regolamentati.",
+        "Diamo priorità al linguaggio semplice, al tono non coercitivo e alla visione pratica. Rifiutiamo il linguaggio della dipendenza e le previsioni assolute."
+      ]
+    },
+    {
+      "title": "Trasparenza sulla redazione assistita dall'intelligenza artificiale",
+      "paragraphs": [
+        "Alcune bozze didattiche possono utilizzare LLM per strutturare argomenti e migliorare la leggibilità.",
+        "Le bozze vengono esaminate per verificarne l'accuratezza, il contesto, l'accessibilità e i limiti etici prima della pubblicazione."
+      ]
+    },
+    {
+      "title": "Metodologia di apprendimento",
+      "paragraphs": [
+        "I moduli seguono una struttura centrata sullo studente; le fonti vengono mantenute e migliorate con il feedback.",
+        "I suggerimenti personalizzati seguono regole trasparenti in linea con la politica della piattaforma."
+      ]
+    },
+    {
+      "title": "Processo di revisione",
+      "paragraphs": [
+        "Il contenuto viene revisionato dal punto di vista editoriale prima del rilascio. La copia rivolta all'utente privilegia la coerenza, l'accuratezza e l'affidabilità.",
+        "Il contenuto della piattaforma è un'informazione generale; consultare un professionista pertinente per situazioni personali."
+      ]
+    }
+  ]
+}

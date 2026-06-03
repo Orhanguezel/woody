@@ -1,0 +1,69 @@
+{
+  "title": "{{appName}} Home Tutor",
+  "description": "Seja em casa ou na escola, comece a jornada de inglês do seu filho com confiança. Tenha uma experiência de aprendizagem divertida e eficaz com {{appName}}.",
+  "eyebrow": "SÉRIE {{appName}} PARA EDUCAÇÃO INFANTIL",
+  "hero": {
+    "eyebrow": "SÉRIE {{appName}} PARA EDUCAÇÃO INFANTIL",
+    "title": "Casa e Professor Particular",
+    "description": "Seja em casa ou na escola, comece a jornada de inglês do seu filho com confiança. Tenha uma experiência de aprendizagem divertida e eficaz com {{appName}}.",
+    "primaryCTA": "Solicitar uma Demonstração",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Descubra Seu Nível",
+    "secondaryHref": "/level-finder"
+  },
+  "sections": [
+    {
+      "eyebrow": "Níveis",
+      "title": "Descubra o Conteúdo da Série por Meio de Apresentações em Vídeo",
+      "description": "A série Casa e Professor Particular é adequada para uso individual de 1 a 2 pessoas. O conteúdo e os jogos são totalmente adaptados para a aprendizagem individualizada. A série tem quatro níveis: Basic, Junior, Senior e PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basic Level",
+          "description": "Proporciona um começo sólido no inglês com palavras básicas e frases simples."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior Level",
+          "description": "Desenvolve a capacidade das crianças de construir frases e se expressar."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior Level",
+          "description": "Desenvolve a capacidade de usar e compreender o inglês de forma mais fluente."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO Level",
+          "description": "Constrói uma base em leitura, escrita e inglês acadêmico."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explorar",
+      "title": "Conheça o Sistema Mais de Perto",
+      "items": [
+        {
+          "title": "Sistema de Avaliação de Nível",
+          "description": "Determina de forma rápida e precisa o nível {{appName}} mais adequado, avaliando a idade, o nível de inglês e a situação de aprendizagem do aluno. Recomenda em qual nível o aluno deve começar com base em algumas perguntas curtas.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Digital Library",
+          "description": "Uma biblioteca digital onde você pode navegar pelos livros {{appName}}. Veja todos os conjuntos em detalhes e visualize o conteúdo para entender claramente o sistema.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Uma área onde você pode conferir os preços atuais dos conjuntos {{appName}} e fazer pedidos online.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Conjunto de Inglês Home Tutor | Educação de Inglês para Educação Infantil em Casa e Aulas Particulares",
+    "description": "{{appName}} Home Tutor: um conjunto de aprendizagem de inglês para educação infantil para uso em casa ou em aulas particulares. Um currículo de 4 níveis (Basic/Junior/Senior/PRO) para uso de pais e filhos, com conteúdo digital incluído.",
+    "keywords": "inglês home tutor, inglês aula particular em casa, conjunto de inglês para educação infantil em casa, woody home tutor, inglês aula particular para crianças"
+  }
+}

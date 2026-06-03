@@ -1,0 +1,74 @@
+{
+  "title": "Série préscolaire {{appName}}",
+  "description": "La série préscolaire {{appName}} offre aux établissements une infrastructure d'enseignement de l'anglais basée sur le jeu, structurée et durable.",
+  "eyebrow": "SÉRIE {{appName}} PRÉSCOLAIRE",
+  "hero": {
+    "eyebrow": "SÉRIE {{appName}} PRÉSCOLAIRE",
+    "title": "Préscolaire",
+    "description": "La série préscolaire {{appName}} offre aux établissements une infrastructure d'enseignement de l'anglais basée sur le jeu, structurée et durable.",
+    "primaryCTA": "Demander une démo",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Voir les prix",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Ensemble enseignant et étudiant",
+      "title": "La série préscolaire se compose de deux ensembles distincts",
+      "description": "La série préscolaire se compose de deux ensembles distincts : l’ensemble enseignant et l’ensemble étudiant. Découvrez leur contenu à travers des présentations vidéo. Le système {{appName}} Preschool nécessite un minimum de 30 élèves dans l'établissement. Le coffret enseignant n'est pas vendu séparément. Il est fourni gratuitement avec les ensembles étudiants aux établissements sous contrat et renouvelé chaque année."
+    },
+    {
+      "eyebrow": "Niveaux",
+      "title": "Découvrez le contenu de la série à travers des vidéos pas à pas",
+      "description": "La série préscolaire se compose de quatre niveaux : Basic, Junior, Senior et PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Niveau de base",
+          "description": "Fournit un bon début en anglais avec des mots de base et des phrases simples."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Niveau junior",
+          "description": "Développe la capacité des enfants à construire des phrases et à s'exprimer."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Niveau supérieur",
+          "description": "Développe la capacité d’utiliser et de comprendre l’anglais plus couramment."
+        },
+        {
+          "badge": "PRO",
+          "title": "Niveau PRO",
+          "description": "Construit une base en lecture, en écriture et en anglais académique."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explorer",
+      "title": "Examinez de plus près le système",
+      "items": [
+        {
+          "title": "{{appName}} Recherche de niveau",
+          "description": "Détermine rapidement et précisément le niveau {{appName}} le plus approprié en évaluant l'âge, le niveau d'anglais et l'état d'apprentissage de l'élève. Recommande le niveau à partir duquel l'étudiant doit commencer en fonction de quelques questions courtes.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "Bibliothèque {{appName}}",
+          "description": "Une bibliothèque numérique où vous pouvez parcourir les livres {{appName}}. Affichez tous les ensembles en détail et prévisualisez le contenu pour avoir une compréhension claire du système.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Boutique",
+          "description": "Une zone où vous pouvez consulter les prix actuels des ensembles {{appName}} et passer des commandes en ligne.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Préscolaire | Ensemble d'apprentissage de l'anglais préscolaire - Programme d'anglais préscolaire Turquie",
+    "description": "Ensemble d'apprentissage de l'anglais préscolaire {{appName}} : un programme d'anglais de la petite enfance basé sur le jeu pour les enfants âgés de 3 à 6 ans. Programme d'anglais préscolaire avec un système de préparation à Cambridge. Ensembles pour enseignants et élèves, programmes d'anglais préscolaires et plans de cours.",
+    "keywords": "ensemble d'apprentissage de l'anglais préscolaire, programme d'anglais préscolaire Turquie, ensemble d'anglais de la petite enfance, programme d'anglais pour préscolaire, préparation à Cambridge préscolaire, programme d'anglais pour 3-6 ans, série d'anglais préscolaire"
+  }
+}

@@ -1,41 +1,41 @@
 {
-  "title": "Redaktionelle Richtlinie und Methodik",
-  "description": "Wie {{appName}} Inhalte erstellt und KI-gestützte Entwürfe prüft.",
-  "back": "Zurück zu Über uns",
-  "authorRoleTitle": "Redaktion und Qualität",
+  "title": "Redaktionelle Politik und Methodik",
+  "description": "Wie {{appName}} Inhalte aufbereitet, KI-gestütztes Schreiben nutzt und Qualitätsstandards anwendet.",
+  "back": "Zurück zu „Info“.",
+  "authorRoleTitle": "Redaktioneller Qualitätsprozess",
   "authorExpertiseLabels": [
-    "Lektorat",
+    "Redaktionelle Rezension",
     "Lerndesign",
-    "Zugängliche Sprache"
+    "Barrierefreie Sprache"
   ],
-  "credentialsNote": "Inhaltsqualität und Aktualisierung",
+  "credentialsNote": "Inhaltsqualität und Aktualisierungspraktiken",
   "sections": [
     {
-      "title": "Grundsätze",
+      "title": "Inhaltliche Grundsätze",
       "paragraphs": [
-        "{{appName}} Inhalte unterstützen informierte Entscheidungen und Vorbereitung auf Beratung — kein Ersatz für regulierte Fachberatung.",
-        "Wir setzen auf klare Sprache, keine Angstkommunikation und praktische Orientierung."
+        "Der Inhalt von {{appName}} hilft Benutzern, sich auf fundierte Entscheidungen und Expertengespräche vorzubereiten, und ersetzt nicht die professionelle Beratung in regulierten Bereichen.",
+        "Wir legen Wert auf klare Sprache, einen nicht aufdringlichen Ton und praktische Einsicht. Wir lehnen Abhängigkeitssprache und absolute Vorhersagen ab."
       ]
     },
     {
-      "title": "Transparenz zu KI",
+      "title": "Transparenz zum KI-gestützten Entwurf",
       "paragraphs": [
-        "Einige Entwürfe können LLM-unterstützt strukturiert werden.",
-        "Vor Veröffentlichung prüfen wir Genauigkeit, Kontext und ethische Grenzen."
+        "Einige pädagogische Entwürfe verwenden möglicherweise LLMs, um Themen zu strukturieren und die Lesbarkeit zu verbessern.",
+        "Entwürfe werden vor der Veröffentlichung auf Richtigkeit, Kontext, Zugänglichkeit und ethische Grenzen überprüft."
       ]
     },
     {
       "title": "Lernmethodik",
       "paragraphs": [
-        "Module sind lernerzentriert; Quellen werden gepflegt und verbessert.",
-        "Personalisierung folgt nachvollziehbaren Regeln."
+        "Die Module folgen einer lernerzentrierten Struktur; Quellen werden durch Feedback gepflegt und verbessert.",
+        "Personalisierte Vorschläge folgen transparenten Regeln, die auf die Plattformrichtlinien abgestimmt sind."
       ]
     },
     {
-      "title": "Prüfung",
+      "title": "Überprüfungsprozess",
       "paragraphs": [
-        "Inhalte werden redaktionell geprüft. Profiltexte und Nutzer-Kommunikation priorisieren Vertrauen.",
-        "Einzelberatungen liegen in der Verantwortung der Expert:innen."
+        "Der Inhalt wird vor der Veröffentlichung redaktionell geprüft. Beim benutzerorientierten Kopieren stehen Konsistenz, Genauigkeit und Vertrauen im Vordergrund.",
+        "Bei den Plattforminhalten handelt es sich um allgemeine Informationen; Konsultieren Sie in persönlichen Situationen einen entsprechenden Fachmann."
       ]
     }
   ]

@@ -1,0 +1,131 @@
+{
+  "quoteWhatsApp": "905331570373",
+  "quoteMessage": "Bonjour, j'aimerais obtenir des informations sur les tarifs de vos sets scolaires.\n\nVille :\nNom de l'école :\nNombre d'étudiants :\nPourriez-vous s'il vous plaît partager votre devis avec votre catalogue numérique ?",
+  "categories": [
+    {
+      "id": "okul-serisi",
+      "name": "Série préscolaire",
+      "description": "",
+      "route": "/preschool"
+    },
+    {
+      "id": "atolye",
+      "name": "Série d'ateliers",
+      "description": "Pour ateliers et centres de cours",
+      "route": "/workshop"
+    },
+    {
+      "id": "ozel-ders",
+      "name": "Série de cours particuliers",
+      "description": "Pour les professeurs de cours à domicile et particuliers",
+      "route": "/home-tutor"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "okul-serisi",
+      "name": "Ensemble étudiant de niveau de base",
+      "description": "Niveau débutant",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 2,
+      "category": "okul-serisi",
+      "name": "Ensemble étudiant de niveau junior",
+      "description": "Niveau de développement",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 3,
+      "category": "okul-serisi",
+      "name": "Ensemble d'étudiants de niveau senior",
+      "description": "Niveau avancé",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 7,
+      "category": "atolye",
+      "name": "Atelier de base",
+      "description": "Forfait de démarrage",
+      "price": "₺1,999"
+    },
+    {
+      "id": 8,
+      "category": "atolye",
+      "name": "Atelier Junior",
+      "description": "Niveau intermédiaire",
+      "price": "₺2,199"
+    },
+    {
+      "id": 9,
+      "category": "atolye",
+      "name": "Atelier Sénior",
+      "description": "Niveau avancé",
+      "price": "₺2,399"
+    },
+    {
+      "id": 10,
+      "category": "atolye",
+      "name": "Atelier PRO",
+      "description": "Professionnel",
+      "price": "₺2,699"
+    },
+    {
+      "id": 11,
+      "category": "atolye",
+      "name": "Ensemble complet d'atelier",
+      "description": "Tout en un",
+      "price": "₺7,999"
+    },
+    {
+      "id": 12,
+      "category": "atolye",
+      "name": "Matériel numérique",
+      "description": "Accès en ligne",
+      "price": "₺499"
+    },
+    {
+      "id": 13,
+      "category": "ozel-ders",
+      "name": "Accueil Basique",
+      "description": "Entrée individuelle",
+      "price": "₺1,499"
+    },
+    {
+      "id": 14,
+      "category": "ozel-ders",
+      "name": "Accueil Junior",
+      "description": "Développement individuel",
+      "price": "₺1,699"
+    },
+    {
+      "id": 15,
+      "category": "ozel-ders",
+      "name": "Accueil Senior",
+      "description": "Individuel avancé",
+      "price": "₺1,899"
+    },
+    {
+      "id": 16,
+      "category": "ozel-ders",
+      "name": "Accueil PRO",
+      "description": "Professionnel individuel",
+      "price": "₺2,099"
+    },
+    {
+      "id": 17,
+      "category": "ozel-ders",
+      "name": "Forfait Cours Particuliers",
+      "description": "4 niveaux, à prix réduit",
+      "price": "₺5,999"
+    },
+    {
+      "id": 18,
+      "category": "ozel-ders",
+      "name": "Bibliothèque en ligne",
+      "description": "Accès numérique",
+      "price": "₺399"
+    }
+  ]
+}

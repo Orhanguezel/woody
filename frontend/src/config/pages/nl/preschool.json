@@ -1,0 +1,74 @@
+{
+  "title": "{{appName}} Preschool-serie",
+  "description": "De {{appName}} Preschool Series biedt instellingen een op spel gebaseerde, gestructureerde en duurzame Engelse onderwijsinfrastructuur.",
+  "eyebrow": "{{appName}} PRESCHOOL-SERIE",
+  "hero": {
+    "eyebrow": "{{appName}} PRESCHOOL-SERIE",
+    "title": "Peuter",
+    "description": "De {{appName}} Preschool Series biedt instellingen een op spel gebaseerde, gestructureerde en duurzame Engelse onderwijsinfrastructuur.",
+    "primaryCTA": "Vraag een demo aan",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Bekijk prijzen",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Leraar en leerlingset",
+      "title": "De Preschool Series bestaat uit twee losse sets",
+      "description": "De Preschool Series bestaat uit twee afzonderlijke sets: de Teacher Set en de Student Set. Ontdek hun inhoud via video-walkthroughs. Voor het {{appName}} Preschool-systeem zijn minimaal 30 leerlingen in de instelling vereist. De lerarenset wordt niet afzonderlijk verkocht. Het wordt samen met studentensets gratis verstrekt aan gecontracteerde instellingen en wordt jaarlijks verlengd."
+    },
+    {
+      "eyebrow": "Niveaus",
+      "title": "Ontdek de inhoud van de serie via video-walkthroughs",
+      "description": "De Preschool Series bestaat uit vier niveaus: Basic, Junior, Senior en PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basisniveau",
+          "description": "Biedt een sterke start van het Engels met basiswoorden en eenvoudige zinnen."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Juniorniveau",
+          "description": "Ontwikkelt het vermogen van kinderen om zinnen te vormen en zich uit te drukken."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior niveau",
+          "description": "Ontwikkelt het vermogen om Engels vloeiender te gebruiken en te begrijpen."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO-niveau",
+          "description": "Bouwt een basis in lezen, schrijven en academisch Engels."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Ontdekken",
+      "title": "Bekijk het systeem eens nader",
+      "items": [
+        {
+          "title": "{{appName}} Niveauzoeker",
+          "description": "Bepaalt snel en nauwkeurig het meest geschikte {{appName}}-niveau door de leeftijd, het Engelse niveau en de leerstatus van de student te beoordelen. Beveelt aan vanaf welk niveau de student moet beginnen op basis van een paar korte vragen.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}}-bibliotheek",
+          "description": "Een digitale bibliotheek waar u door {{appName}}-boeken kunt bladeren. Bekijk alle sets in detail en bekijk een voorbeeld van de inhoud om een ​​duidelijk inzicht te krijgen in het systeem.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Winkel",
+          "description": "Een gebied waar u de huidige prijzen van {{appName}}-sets kunt bekijken en online bestellingen kunt plaatsen.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Kleuterschool | Voorschoolse Engelse leerset - Voorschools Engels programma Turkije",
+    "description": "{{appName}} Voorschoolse Engelse leerset: een op spel gebaseerd Engels programma voor jonge kinderen voor kinderen van 3 tot 6 jaar. Curriculum Engels voorschools met een Cambridge-voorbereidingssysteem. Leraren- en studentensets, Engels curriculum en lesplannen voor de kleuterschool.",
+    "keywords": "voorschoolse Engelse leerset, voorschoolse Engelse programma Turkije, vroege kinderjaren Engelse set, Engels programma voor kleuterschool, Cambridge voorbereiding voorschoolse, 3-6 leeftijd Engels programma, voorschoolse Engelse serie"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "title": "{{appName}} Winkel",
+  "description": "Engelse leersets voor voorschoolse educatie. Een gebied waar u de huidige prijzen van {{appName}}-sets kunt bekijken en online bestellingen kunt plaatsen.",
+  "eyebrow": "{{appName}} WINKEL",
+  "hero": {
+    "eyebrow": "{{appName}} WINKEL",
+    "title": "{{appName}} Winkel",
+    "description": "Engelse leersets voor voorschoolse educatie. Een gebied waar u de huidige prijzen van {{appName}}-sets kunt bekijken en een offerte kunt aanvragen.",
+    "primaryCTA": "Ontvang een offerte",
+    "primaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Voorschoolse serie",
+      "title": "Voorschoolse serie",
+      "items": [
+        {
+          "title": "Basisniveau studentenset",
+          "description": "Beginnersniveau",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Studentenset op junior niveau",
+          "description": "Ontwikkelingsniveau",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Studentenset op senior niveau",
+          "description": "Gevorderd niveau",
+          "price": "Starting from 2250 TL"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Workshop-serie",
+      "title": "Workshop-serie",
+      "description": "Voor workshops en cursuscentra",
+      "items": [
+        {
+          "title": "Werkplaats Basis",
+          "description": "Startpakket",
+          "price": "₺1,999"
+        },
+        {
+          "title": "Werkplaats Junior",
+          "description": "Gemiddeld niveau",
+          "price": "₺2,199"
+        },
+        {
+          "title": "Werkplaats Senior",
+          "description": "Gevorderd niveau",
+          "price": "₺2,399"
+        },
+        {
+          "title": "Werkplaats PRO",
+          "description": "Professioneel",
+          "price": "₺2,699"
+        },
+        {
+          "title": "Werkplaats volledige set",
+          "description": "Alles in één",
+          "price": "₺7,999"
+        },
+        {
+          "title": "Digitaal materiaal",
+          "description": "Online-toegang",
+          "price": "₺499"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Privélessenserie",
+      "title": "Privélessenserie",
+      "description": "Voor thuis- en privélesleraren",
+      "items": [
+        {
+          "title": "Thuis Basis",
+          "description": "Individuele starter",
+          "price": "₺1,499"
+        },
+        {
+          "title": "Thuis Junior",
+          "description": "Individuele ontwikkeling",
+          "price": "₺1,699"
+        },
+        {
+          "title": "Thuis Senior",
+          "description": "Individueel gevorderd",
+          "price": "₺1,899"
+        },
+        {
+          "title": "Thuis PRO",
+          "description": "Individuele professional",
+          "price": "₺2,099"
+        },
+        {
+          "title": "Privélespakket",
+          "description": "4 niveaus, met korting",
+          "price": "₺5,999"
+        },
+        {
+          "title": "Onlinebibliotheek",
+          "description": "Digitale toegang",
+          "price": "₺399"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Winkel | Engelse leersets voor voorschoolse educatie",
+    "description": "{{appName}} winkel voor kleuterschool Engelse leersets. Huidige prijzen en offertes voor producten uit de Preschool Series, Workshop Series en Private Lesson Series.",
+    "keywords": "Woody winkel, voorschoolse Engelse set kopen, prijs voor voorschoolse Engelse leerset, winkel voor Engelse leerset"
+  }
+}

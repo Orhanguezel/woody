@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Flow",
+  "titleBefore": "How to use ",
+  "titleAccent": "the template",
+  "lead": "Fill neutral pages with your brand, content, and product decisions.",
+  "steps": [
+    {
+      "icon": "bookOpen",
+      "title": "Define the brand",
+      "desc": "Update AppName and site settings with project values."
+    },
+    {
+      "icon": "playCircle",
+      "title": "Add content",
+      "desc": "Feed home sections, posts, and FAQs from DB or CMS records."
+    },
+    {
+      "icon": "chartColumn",
+      "title": "Prepare launch",
+      "desc": "Complete SEO, legal copy, contact details, and validation."
+    }
+  ]
+}

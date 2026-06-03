@@ -1,0 +1,48 @@
+{
+  "eyebrow": "Perché {{appName}}?",
+  "title": "Rende l'inglese prescolare <em>strutturato</em> e pratico.",
+  "features": [
+    {
+      "num": "I",
+      "title": "<em>flusso della lezione</em> basato sul gioco",
+      "body": "Storie, canzoni, movimenti e ripetizioni aiutano i bambini a usare l'inglese in modo naturale in classe.",
+      "meta": [
+        "Storie",
+        "Canzoni",
+        "Giocare"
+      ],
+      "settingKey": "ui_feature_structure_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Flusso della lezione",
+      "imageAlt": "Lezione di inglese basata sul gioco"
+    },
+    {
+      "num": "II",
+      "title": "Set di materiali che <em>supporta gli insegnanti</em>",
+      "body": "I set di insegnanti e studenti creano un linguaggio applicativo standard all'interno dell'istituto.",
+      "meta": [
+        "Insegnante",
+        "Studente",
+        "Impostato"
+      ],
+      "settingKey": "ui_feature_content_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Materiale",
+      "imageAlt": "Materiali per insegnanti e studenti"
+    },
+    {
+      "num": "III",
+      "title": "Continuità attraverso <em>contenuti digitali</em>",
+      "body": "Libri, canzoni, video e flussi di account scolastici portano l'apprendimento oltre la classe.",
+      "meta": [
+        "Biblioteca",
+        "Conto scolastico",
+        "Seguito"
+      ],
+      "settingKey": "ui_feature_pages_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Digitale",
+      "imageAlt": "Contenuti di apprendimento digitale"
+    }
+  ]
+}

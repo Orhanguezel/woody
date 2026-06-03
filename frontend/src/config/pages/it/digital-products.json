@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "level": "basic",
+      "product": "storyland",
+      "title": "Storyland di base",
+      "description": "16 video storie interattive",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/basic/storyland"
+    },
+    {
+      "level": "basic",
+      "product": "movieland",
+      "title": "Movieland di base",
+      "description": "8 video",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/basic/movieland"
+    },
+    {
+      "level": "basic",
+      "product": "musicland",
+      "title": "Musica di base",
+      "description": "8 canzoni",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/basic/musicland"
+    },
+    {
+      "level": "basic",
+      "product": "library",
+      "title": "Libreria BASE",
+      "description": "Contenuto del libro in arrivo",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/basic/library"
+    },
+    {
+      "level": "junior",
+      "product": "storyland",
+      "title": "JUNIOR Storyland",
+      "description": "16 video storie interattive",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/junior/storyland"
+    },
+    {
+      "level": "junior",
+      "product": "movieland",
+      "title": "JUNIOR Movieland",
+      "description": "8 video",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/junior/movieland"
+    },
+    {
+      "level": "junior",
+      "product": "musicland",
+      "title": "JUNIOR Terra della Musica",
+      "description": "8 canzoni",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/junior/musicland"
+    },
+    {
+      "level": "junior",
+      "product": "library",
+      "title": "Biblioteca JUNIOR",
+      "description": "Contenuto del libro in arrivo",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/junior/library"
+    },
+    {
+      "level": "senior",
+      "product": "storyland",
+      "title": "SENIOR Storyland",
+      "description": "16 video storie interattive",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/senior/storyland"
+    },
+    {
+      "level": "senior",
+      "product": "movieland",
+      "title": "Movieland SENIOR",
+      "description": "8 video",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/senior/movieland"
+    },
+    {
+      "level": "senior",
+      "product": "musicland",
+      "title": "SENIOR Terra della Musica",
+      "description": "8 canzoni",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/senior/musicland"
+    },
+    {
+      "level": "senior",
+      "product": "library",
+      "title": "Biblioteca SENIOR",
+      "description": "Contenuto del libro in arrivo",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/senior/library"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "eyebrow": "اللغة الإنجليزية القائمة على اللعب",
+  "title": "{{appName}}",
+  "subtitle": "مرحلة ما قبل المدرسة · رحلة كامبريدج",
+  "heroTitleLine1": "{{appName}}",
+  "heroTitleGradient": "عالم.",
+  "headline": "<em> اللغة الإنجليزية من خلال اللعب </em> والثقة من خلال القصص والاستمرارية من خلال المحتوى الرقمي <br/> — <strong> نظام تعليمي كامل لمرحلة ما قبل المدرسة </strong>.",
+  "lead": "يجمع {{appName}} المواد المادية والشخصيات الناطقة باللغة الإنجليزية والمحتوى الرقمي ونهج كامبريدج معًا في نظام واحد.",
+  "tagline": "نموذج اللغة الإنجليزية لمرحلة ما قبل المدرسة يمكن تتبعه للمدارس والمعلمين والأسر.",
+  "socialProof": "مرحلة ما قبل المدرسة، ورشة العمل، المعلم المنزلي، المكتبة الرقمية، والأكاديمية تتدفق تحت سقف واحد.",
+  "metrics": [
+    {
+      "value": "3-6",
+      "label": "الفئة العمرية"
+    },
+    {
+      "value": "4",
+      "label": "المستويات"
+    },
+    {
+      "value": "Cambridge",
+      "label": "نهج التحضير"
+    }
+  ],
+  "showcaseTopic": "رحلة المستوى",
+  "showcaseProgress": "أساسي ← جونيور ← كبير ← محترف",
+  "showcaseQuestion": "ما هي السلسلة التي تناسب مؤسستك؟",
+  "showcaseOptionA": "أ) مرحلة ما قبل المدرسة",
+  "showcaseOptionB": "ب) ورشة عمل",
+  "showcaseOptionC": "ج) مدرس منزلي",
+  "showcaseOptionD": "د) الأكاديمية",
+  "showcaseXpLabel": "تعلُّم",
+  "showcaseXpValue": "نشيط",
+  "showcaseStreak": "4",
+  "showcaseStreakSuffix": "المستويات",
+  "showcaseStreakSub": "أساسي، جونيور، كبير، محترف",
+  "showcaseBadgeTitle": "التجريبي جاهز",
+  "showcaseBadgeSub": "للمؤسسات",
+  "showcaseXpGain": "يبدأ",
+  "primaryCTA": "استكشاف سلسلة ما قبل المدرسة",
+  "secondaryCTA": "طلب عرض توضيحي",
+  "scrollHint": "قم بالتمرير لأسفل"
+}

@@ -1,0 +1,64 @@
+{
+  "title": "Serie di seminari {{appName}}",
+  "description": "Con la serie di workshop, i bambini non si limitano ad ascoltare l'inglese; lo suonano, lo applicano e lo vivono. Offri un processo di apprendimento più vivace ed efficace con {{appName}}.",
+  "eyebrow": "SERIE DI WORKSHOP {{appName}}",
+  "hero": {
+    "eyebrow": "SERIE DI WORKSHOP {{appName}}",
+    "title": "Officina",
+    "description": "Con la serie di workshop, i bambini non si limitano ad ascoltare l'inglese; lo suonano, lo applicano e lo vivono. Offri un processo di apprendimento più vivace ed efficace con {{appName}}.",
+    "primaryCTA": "Richiedi una dimostrazione",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Visualizza i prezzi",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Livelli",
+      "title": "Scopri i contenuti della serie attraverso video tutorial",
+      "description": "La serie Workshop è composta da due set separati. Scopri i loro contenuti attraverso video tutorial. La serie ha quattro livelli: Base, Junior, Senior e PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Livello base",
+          "description": "Fornisce un buon inizio di inglese con parole di base e frasi semplici."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Livello Junior",
+          "description": "Sviluppa la capacità dei bambini di costruire frasi ed esprimersi."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Livello senior",
+          "description": "Sviluppa la capacità di usare e comprendere l'inglese in modo più fluente."
+        },
+        {
+          "badge": "PRO",
+          "title": "Livello PRO",
+          "description": "Costruisce le basi nella lettura, nella scrittura e nell'inglese accademico."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Esplorare",
+      "title": "Dai uno sguardo più da vicino al sistema",
+      "items": [
+        {
+          "title": "{{appName}} Biblioteca digitale",
+          "description": "Una biblioteca digitale dove sfogliare i libri {{appName}}. Visualizza tutti i set in dettaglio e visualizza l'anteprima dei contenuti per avere una chiara comprensione del sistema.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Un'area dove puoi controllare i prezzi attuali dei set {{appName}} ed effettuare ordini online.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Set inglese per seminari | Insegnamento dell'inglese in età prescolare basato su laboratori",
+    "description": "{{appName}} Serie di workshop: un set pratico per l'apprendimento dell'inglese in età prescolare basato su workshop. 4 livelli (Base/Junior/Senior/PRO), con attività incentrate sul gioco e sul teatro, i bambini imparano l'inglese vivendolo.",
+    "keywords": "set di inglese per workshop, inglese basato su workshop, workshop di inglese prescolare, workshop su legno, educazione pratica dell'inglese"
+  }
+}

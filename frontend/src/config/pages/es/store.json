@@ -1,0 +1,114 @@
+{
+  "title": "Tienda {{appName}}",
+  "description": "Conjuntos de aprendizaje de inglés preescolar. Un área donde podrás consultar los precios actuales de los sets {{appName}} y realizar pedidos online.",
+  "eyebrow": "TIENDA {{appName}}",
+  "hero": {
+    "eyebrow": "TIENDA {{appName}}",
+    "title": "Tienda {{appName}}",
+    "description": "Conjuntos de aprendizaje de inglés preescolar. Una zona donde podrás consultar los precios actuales de los conjuntos {{appName}} y solicitar presupuesto.",
+    "primaryCTA": "Obtenga una cotización",
+    "primaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Serie preescolar",
+      "title": "Serie preescolar",
+      "items": [
+        {
+          "title": "Conjunto de estudiantes de nivel básico",
+          "description": "Nivel principiante",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Conjunto de estudiantes de nivel junior",
+          "description": "Nivel de desarrollo",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Conjunto de estudiantes de nivel superior",
+          "description": "nivel avanzado",
+          "price": "Starting from 2250 TL"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Serie de talleres",
+      "title": "Serie de talleres",
+      "description": "Para talleres y centros de cursos.",
+      "items": [
+        {
+          "title": "Taller Básico",
+          "description": "Paquete de inicio",
+          "price": "₺1,999"
+        },
+        {
+          "title": "Taller Junior",
+          "description": "nivel intermedio",
+          "price": "₺2,199"
+        },
+        {
+          "title": "Taller Senior",
+          "description": "nivel avanzado",
+          "price": "₺2,399"
+        },
+        {
+          "title": "Taller PRO",
+          "description": "Profesional",
+          "price": "₺2,699"
+        },
+        {
+          "title": "Conjunto completo del taller",
+          "description": "Todo en uno",
+          "price": "₺7,999"
+        },
+        {
+          "title": "Materiales digitales",
+          "description": "Acceso en línea",
+          "price": "₺499"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Serie de lecciones privadas",
+      "title": "Serie de lecciones privadas",
+      "description": "Para profesores de clases particulares y a domicilio",
+      "items": [
+        {
+          "title": "Inicio Básico",
+          "description": "entrante individual",
+          "price": "₺1,499"
+        },
+        {
+          "title": "Inicio Júnior",
+          "description": "Desarrollo individual",
+          "price": "₺1,699"
+        },
+        {
+          "title": "Inicio Mayores",
+          "description": "individual avanzado",
+          "price": "₺1,899"
+        },
+        {
+          "title": "Inicio PRO",
+          "description": "Profesional individual",
+          "price": "₺2,099"
+        },
+        {
+          "title": "Paquete de lecciones privadas",
+          "description": "4 niveles, con descuento",
+          "price": "₺5,999"
+        },
+        {
+          "title": "Biblioteca en línea",
+          "description": "Acceso digital",
+          "price": "₺399"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Tienda {{appName}} | Conjuntos de aprendizaje de inglés preescolar",
+    "description": "Tienda de sets de aprendizaje de inglés preescolar {{appName}}. Precios y cotizaciones actuales para productos de la Serie Preescolar, Serie Taller y Serie de Lecciones Privadas.",
+    "keywords": "tienda woody, comprar set de inglés preescolar, precio de set de aprendizaje de inglés preescolar, tienda de set de aprendizaje de inglés"
+  }
+}

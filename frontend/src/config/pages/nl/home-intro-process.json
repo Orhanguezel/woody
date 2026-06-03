@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Leerstroom",
+  "titleBefore": "Hoe kinderen",
+  "titleAccent": "ga vooruit",
+  "lead": "Elke serie vordert met voor de leeftijd geschikte materialen, spel, herhaling en digitale ondersteuning.",
+  "steps": [
+    {
+      "icon": "bookOpen",
+      "title": "Kies het niveau",
+      "desc": "Basis, Junior, Senior of PRO worden geselecteerd op basis van leeftijd, klasstructuur en leerdoelen."
+    },
+    {
+      "icon": "playCircle",
+      "title": "Spelenderwijs toepassen",
+      "desc": "Lerarensets, leerlingmateriaal, liedjes en verhalen worden samen in de klas gebruikt."
+    },
+    {
+      "icon": "chartColumn",
+      "title": "Digitaal verder",
+      "desc": "De bibliotheek, de digitale inhoud en de academiestroom brengen het leren naar de naschoolse processen."
+    }
+  ]
+}

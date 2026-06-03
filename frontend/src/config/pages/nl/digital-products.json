@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "level": "basic",
+      "product": "storyland",
+      "title": "BASIS Verhalenland",
+      "description": "16 interactieve videoverhalen",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/basic/storyland"
+    },
+    {
+      "level": "basic",
+      "product": "movieland",
+      "title": "BASIS Movieland",
+      "description": "8 video's",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/basic/movieland"
+    },
+    {
+      "level": "basic",
+      "product": "musicland",
+      "title": "BASIS Muziekland",
+      "description": "8 nummers",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/basic/musicland"
+    },
+    {
+      "level": "basic",
+      "product": "library",
+      "title": "BASIS Bibliotheek",
+      "description": "Inhoud van het boek binnenkort beschikbaar",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/basic/library"
+    },
+    {
+      "level": "junior",
+      "product": "storyland",
+      "title": "JUNIOR Verhalenland",
+      "description": "16 interactieve videoverhalen",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/junior/storyland"
+    },
+    {
+      "level": "junior",
+      "product": "movieland",
+      "title": "JUNIOR Filmland",
+      "description": "8 video's",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/junior/movieland"
+    },
+    {
+      "level": "junior",
+      "product": "musicland",
+      "title": "JUNIOR Muziekland",
+      "description": "8 nummers",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/junior/musicland"
+    },
+    {
+      "level": "junior",
+      "product": "library",
+      "title": "JUNIOR-bibliotheek",
+      "description": "Inhoud van het boek binnenkort beschikbaar",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/junior/library"
+    },
+    {
+      "level": "senior",
+      "product": "storyland",
+      "title": "SENIOR Verhalenland",
+      "description": "16 interactieve videoverhalen",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/senior/storyland"
+    },
+    {
+      "level": "senior",
+      "product": "movieland",
+      "title": "SENIOR Filmland",
+      "description": "8 video's",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/senior/movieland"
+    },
+    {
+      "level": "senior",
+      "product": "musicland",
+      "title": "SENIOR Muziekland",
+      "description": "8 nummers",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/senior/musicland"
+    },
+    {
+      "level": "senior",
+      "product": "library",
+      "title": "SENIOR-bibliotheek",
+      "description": "Inhoud van het boek binnenkort beschikbaar",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/senior/library"
+    }
+  ]
+}

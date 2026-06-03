@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Flux d'apprentissage",
+  "titleBefore": "Comment les enfants",
+  "titleAccent": "avancer",
+  "lead": "Chaque série progresse avec du matériel, du jeu, de la répétition et un support numérique adaptés à l'âge.",
+  "steps": [
+    {
+      "icon": "bookOpen",
+      "title": "Choisissez le niveau",
+      "desc": "Basic, Junior, Senior ou PRO sont sélectionnés en fonction de l'âge, de la structure de la classe et des objectifs d'apprentissage."
+    },
+    {
+      "icon": "playCircle",
+      "title": "Postuler en jouant",
+      "desc": "Les ensembles pédagogiques, le matériel pédagogique, les chansons et les histoires sont utilisés ensemble en classe."
+    },
+    {
+      "icon": "chartColumn",
+      "title": "Continuer numériquement",
+      "desc": "La bibliothèque, le contenu numérique et le flux académique intègrent l’apprentissage aux processus parascolaires."
+    }
+  ]
+}

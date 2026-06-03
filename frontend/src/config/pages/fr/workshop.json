@@ -1,0 +1,64 @@
+{
+  "title": "Série d'ateliers {{appName}}",
+  "description": "Avec la série d'ateliers, les enfants n'écoutent pas seulement l'anglais ; ils le jouent, l'appliquent et le vivent. Offrez un processus d'apprentissage plus vivant et plus efficace avec {{appName}}.",
+  "eyebrow": "SÉRIE D'ATELIER {{appName}}",
+  "hero": {
+    "eyebrow": "SÉRIE D'ATELIER {{appName}}",
+    "title": "Atelier",
+    "description": "Avec la série d'ateliers, les enfants n'écoutent pas seulement l'anglais ; ils le jouent, l'appliquent et le vivent. Offrez un processus d'apprentissage plus vivant et plus efficace avec {{appName}}.",
+    "primaryCTA": "Demander une démo",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Voir les prix",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveaux",
+      "title": "Découvrez le contenu de la série à travers des vidéos pas à pas",
+      "description": "La série d'ateliers se compose de deux ensembles distincts. Découvrez leur contenu à travers des présentations vidéo. La série comporte quatre niveaux : Basic, Junior, Senior et PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Niveau de base",
+          "description": "Fournit un bon début en anglais avec des mots de base et des phrases simples."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Niveau junior",
+          "description": "Développe la capacité des enfants à construire des phrases et à s'exprimer."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Niveau supérieur",
+          "description": "Développe la capacité d’utiliser et de comprendre l’anglais plus couramment."
+        },
+        {
+          "badge": "PRO",
+          "title": "Niveau PRO",
+          "description": "Construit une base en lecture, en écriture et en anglais académique."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explorer",
+      "title": "Examinez de plus près le système",
+      "items": [
+        {
+          "title": "Bibliothèque numérique {{appName}}",
+          "description": "Une bibliothèque numérique où vous pouvez parcourir les livres {{appName}}. Affichez tous les ensembles en détail et prévisualisez le contenu pour avoir une compréhension claire du système.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Boutique",
+          "description": "Une zone où vous pouvez consulter les prix actuels des ensembles {{appName}} et passer des commandes en ligne.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Ensemble d'anglais d'atelier | Éducation préscolaire en anglais par ateliers",
+    "description": "Série d'ateliers {{appName}} : un ensemble d'apprentissage pratique de l'anglais préscolaire basé sur des ateliers. 4 niveaux (Basic/Junior/Senior/PRO), avec des activités axées sur le jeu et le théâtre, les enfants apprennent l'anglais en le vivant.",
+    "keywords": "ensemble d'anglais d'atelier, anglais en atelier, atelier d'anglais préscolaire, atelier boisé, enseignement pratique de l'anglais"
+  }
+}

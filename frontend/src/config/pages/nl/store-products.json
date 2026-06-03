@@ -1,0 +1,131 @@
+{
+  "quoteWhatsApp": "905331570373",
+  "quoteMessage": "Hallo, ik wil graag prijsinformatie ontvangen over uw schoolsets.\n\nStad:\nSchoolnaam:\nAantal studenten:\nKunt u uw prijsopgave samen met uw digitale catalogus delen?",
+  "categories": [
+    {
+      "id": "okul-serisi",
+      "name": "Voorschoolse serie",
+      "description": "",
+      "route": "/preschool"
+    },
+    {
+      "id": "atolye",
+      "name": "Workshop-serie",
+      "description": "Voor workshops en cursuscentra",
+      "route": "/workshop"
+    },
+    {
+      "id": "ozel-ders",
+      "name": "Privélessenserie",
+      "description": "Voor thuis- en privélesleraren",
+      "route": "/home-tutor"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "okul-serisi",
+      "name": "Basisniveau studentenset",
+      "description": "Beginnersniveau",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 2,
+      "category": "okul-serisi",
+      "name": "Studentenset op junior niveau",
+      "description": "Ontwikkelingsniveau",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 3,
+      "category": "okul-serisi",
+      "name": "Studentenset op senior niveau",
+      "description": "Gevorderd niveau",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 7,
+      "category": "atolie",
+      "name": "Werkplaats Basis",
+      "description": "Startpakket",
+      "price": "₺1,999"
+    },
+    {
+      "id": 8,
+      "category": "atolie",
+      "name": "Werkplaats Junior",
+      "description": "Gemiddeld niveau",
+      "price": "₺2,199"
+    },
+    {
+      "id": 9,
+      "category": "atolie",
+      "name": "Werkplaats Senior",
+      "description": "Gevorderd niveau",
+      "price": "₺2,399"
+    },
+    {
+      "id": 10,
+      "category": "atolie",
+      "name": "Werkplaats PRO",
+      "description": "Professioneel",
+      "price": "₺2,699"
+    },
+    {
+      "id": 11,
+      "category": "atolie",
+      "name": "Werkplaats volledige set",
+      "description": "Alles in één",
+      "price": "₺7,999"
+    },
+    {
+      "id": 12,
+      "category": "atolie",
+      "name": "Digitaal materiaal",
+      "description": "Online-toegang",
+      "price": "₺499"
+    },
+    {
+      "id": 13,
+      "category": "ozel-ders",
+      "name": "Thuis Basis",
+      "description": "Individuele starter",
+      "price": "₺1,499"
+    },
+    {
+      "id": 14,
+      "category": "ozel-ders",
+      "name": "Thuis Junior",
+      "description": "Individuele ontwikkeling",
+      "price": "₺1,699"
+    },
+    {
+      "id": 15,
+      "category": "ozel-ders",
+      "name": "Thuis Senior",
+      "description": "Individueel gevorderd",
+      "price": "₺1,899"
+    },
+    {
+      "id": 16,
+      "category": "ozel-ders",
+      "name": "Thuis PRO",
+      "description": "Individuele professional",
+      "price": "₺2,099"
+    },
+    {
+      "id": 17,
+      "category": "ozel-ders",
+      "name": "Privélespakket",
+      "description": "4 niveaus, met korting",
+      "price": "₺5,999"
+    },
+    {
+      "id": 18,
+      "category": "ozel-ders",
+      "name": "Onlinebibliotheek",
+      "description": "Digitale toegang",
+      "price": "₺399"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "level": "basic",
+      "product": "storyland",
+      "title": "БАЗОВЫЙ",
+      "description": "16 интерактивных видеоисторий",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/basic/storyland"
+    },
+    {
+      "level": "basic",
+      "product": "movieland",
+      "title": "БАЗОВЫЙ",
+      "description": "8 видео",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/basic/movieland"
+    },
+    {
+      "level": "basic",
+      "product": "musicland",
+      "title": "БАЗОВЫЙ Мюзиклэнд",
+      "description": "8 песен",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/basic/musicland"
+    },
+    {
+      "level": "basic",
+      "product": "library",
+      "title": "БАЗОВАЯ библиотека",
+      "description": "Содержание книги скоро появится",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/basic/library"
+    },
+    {
+      "level": "junior",
+      "product": "storyland",
+      "title": "ЮНИОР",
+      "description": "16 интерактивных видеоисторий",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/junior/storyland"
+    },
+    {
+      "level": "junior",
+      "product": "movieland",
+      "title": "ЮНИОР",
+      "description": "8 видео",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/junior/movieland"
+    },
+    {
+      "level": "junior",
+      "product": "musicland",
+      "title": "ЮНИОР Мюзиклэнд",
+      "description": "8 песен",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/junior/musicland"
+    },
+    {
+      "level": "junior",
+      "product": "library",
+      "title": "ЮНИОР Библиотека",
+      "description": "Содержание книги скоро появится",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/junior/library"
+    },
+    {
+      "level": "senior",
+      "product": "storyland",
+      "title": "СТАРШИЙ",
+      "description": "16 интерактивных видеоисторий",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/senior/storyland"
+    },
+    {
+      "level": "senior",
+      "product": "movieland",
+      "title": "СТАРШИЙ",
+      "description": "8 видео",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/senior/movieland"
+    },
+    {
+      "level": "senior",
+      "product": "musicland",
+      "title": "СТАРШИЙ Мюзиклэнд",
+      "description": "8 песен",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/senior/musicland"
+    },
+    {
+      "level": "senior",
+      "product": "library",
+      "title": "СТАРШАЯ библиотека",
+      "description": "Содержание книги скоро появится",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/senior/library"
+    }
+  ]
+}

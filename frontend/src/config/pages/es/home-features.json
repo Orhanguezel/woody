@@ -1,0 +1,48 @@
+{
+  "eyebrow": "¿Por qué {{appName}}?",
+  "title": "Hace que el inglés preescolar <em> sea estructurado</em> y práctico.",
+  "features": [
+    {
+      "num": "I",
+      "title": "Basado en el juego <em>flujo de la lección</em>",
+      "body": "Los cuentos, las canciones, el movimiento y la repetición ayudan a los niños a utilizar el inglés de forma natural en clase.",
+      "meta": [
+        "Historias",
+        "Canciones",
+        "Jugar"
+      ],
+      "settingKey": "ui_feature_structure_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Flujo de la lección",
+      "imageAlt": "Lección de inglés basada en el juego"
+    },
+    {
+      "num": "II",
+      "title": "Conjunto de materiales que <em> apoya a los profesores</em>",
+      "body": "Los conjuntos de profesores y estudiantes crean un lenguaje de aplicación estándar dentro de la institución.",
+      "meta": [
+        "Maestro",
+        "Alumno",
+        "Colocar"
+      ],
+      "settingKey": "ui_feature_content_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Material",
+      "imageAlt": "Materiales para profesores y alumnos."
+    },
+    {
+      "num": "III",
+      "title": "Continuidad a través de <em>contenidos digitales</em>",
+      "body": "Los libros, las canciones, los vídeos y los flujos de cuentas escolares llevan el aprendizaje más allá del aula.",
+      "meta": [
+        "Biblioteca",
+        "cuenta escolar",
+        "Hacer un seguimiento"
+      ],
+      "settingKey": "ui_feature_pages_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Digital",
+      "imageAlt": "Contenido de aprendizaje digital"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "title": "{{appName}} Цифровой мир",
+  "description": "Добро пожаловать в цифровой мир {{appName}} — контент Storyland, Movieland, Musicland и библиотеки по уровням.",
+  "eyebrow": "DIGITAL CONTENT",
+  "hero": {
+    "eyebrow": "DIGITAL CONTENT",
+    "title": "Добро пожаловать в цифровой мир {{appName}}",
+    "description": "Выберите свой уровень, а затем изучите разделы Storyland, Movieland, Musicland и Library."
+  },
+  "sections": [
+    {
+      "eyebrow": "Уровень 1",
+      "title": "BASIC",
+      "items": [
+        {
+          "title": "Сказочная страна",
+          "description": "16 интерактивных видеоисторий",
+          "href": "/digital-content/basic/storyland"
+        },
+        {
+          "title": "Мовиленд",
+          "description": "8 видео",
+          "href": "/digital-content/basic/movieland"
+        },
+        {
+          "title": "Музыкальная страна",
+          "description": "8 песен",
+          "href": "/digital-content/basic/musicland"
+        },
+        {
+          "title": "Библиотека",
+          "description": "Содержание книги скоро появится",
+          "href": "/digital-content/basic/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Уровень 2",
+      "title": "JUNIOR",
+      "items": [
+        {
+          "title": "Сказочная страна",
+          "description": "16 интерактивных видеоисторий",
+          "href": "/digital-content/junior/storyland"
+        },
+        {
+          "title": "Мовиленд",
+          "description": "8 видео",
+          "href": "/digital-content/junior/movieland"
+        },
+        {
+          "title": "Музыкальная страна",
+          "description": "8 песен",
+          "href": "/digital-content/junior/musicland"
+        },
+        {
+          "title": "Библиотека",
+          "description": "Содержание книги скоро появится",
+          "href": "/digital-content/junior/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Уровень 3",
+      "title": "SENIOR",
+      "items": [
+        {
+          "title": "Сказочная страна",
+          "description": "16 интерактивных видеоисторий",
+          "href": "/digital-content/senior/storyland"
+        },
+        {
+          "title": "Мовиленд",
+          "description": "8 видео",
+          "href": "/digital-content/senior/movieland"
+        },
+        {
+          "title": "Музыкальная страна",
+          "description": "8 песен",
+          "href": "/digital-content/senior/musicland"
+        },
+        {
+          "title": "Библиотека",
+          "description": "Содержание книги скоро появится",
+          "href": "/digital-content/senior/library"
+        }
+      ]
+    }
+  ],
+  "footnote": "Это цифровое приложение издательства Mina. Все права защищены.",
+  "seo": {
+    "title": "{{appName}} Цифровой мир | Библиотека цифрового контента",
+    "description": "Мир цифрового контента {{appName}}: разделы Storyland, Movieland, Musicland и Library для уровней Basic, Junior и Senior.",
+    "keywords": "Woody Digital, цифровой контент, сказочная страна, киноленд, музыкальная страна, детское английское видео"
+  }
+}

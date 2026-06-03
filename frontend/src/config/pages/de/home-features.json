@@ -1,48 +1,48 @@
 {
   "eyebrow": "Warum {{appName}}?",
-  "title": "Ein <em>neutraler</em> Startpunkt für Ihr Projekt.",
+  "title": "Es macht Englisch im Vorschulalter <em>strukturiert</em> und praktisch.",
   "features": [
     {
       "num": "I",
-      "title": "Erhaltene <em>App-Struktur</em>",
-      "body": "Routing, Layout, Theme, Auth und State bleiben für eine neue Marke bereit.",
+      "title": "Spielbasierter <em>Lektionsablauf</em>",
+      "body": "Geschichten, Lieder, Bewegungen und Wiederholungen helfen Kindern, Englisch im Unterricht auf natürliche Weise zu verwenden.",
       "meta": [
-        "App Router",
-        "Layout",
-        "Theme"
+        "Geschichten",
+        "Lieder",
+        "Spielen"
       ],
       "settingKey": "ui_feature_structure_image",
       "imageFallback": "/img/placeholder.svg",
-      "overlayLabel": "Struktur",
-      "imageAlt": "Neutraler UI-Bereich"
+      "overlayLabel": "Unterrichtsablauf",
+      "imageAlt": "Spielerischer Englischunterricht"
     },
     {
       "num": "II",
-      "title": "DB-basierte <em>Textbasis</em>",
-      "body": "Site-Einstellungen und Inhaltsquellen können Texte statt statischer Locale-Dateien liefern.",
+      "title": "Materialset, das Lehrer <em>unterstützt</em>",
+      "body": "Lehrer- und Schülersätze schaffen eine Standardanwendungssprache innerhalb der Institution.",
       "meta": [
-        "i18n",
-        "Einstellungen",
-        "Inhalt"
+        "Lehrer",
+        "Student",
+        "Satz"
       ],
       "settingKey": "ui_feature_content_image",
       "imageFallback": "/img/placeholder.svg",
-      "overlayLabel": "Inhalt",
-      "imageAlt": "Inhaltsbereich"
+      "overlayLabel": "Material",
+      "imageAlt": "Materialien für Lehrer und Schüler"
     },
     {
       "num": "III",
-      "title": "Generische <em>Seitengruppe</em>",
-      "body": "Home, Blog, Kontakt, FAQ, Konto und Rechtliches starten ohne Domain-Annahmen.",
+      "title": "Kontinuität durch <em>digitale Inhalte</em>",
+      "body": "Bücher, Lieder, Videos und Schulkontoabläufe tragen zum Lernen über das Klassenzimmer hinaus bei.",
       "meta": [
-        "Blog",
-        "Kontakt",
-        "Konto"
+        "Bibliothek",
+        "Schulkonto",
+        "Nachverfolgen"
       ],
       "settingKey": "ui_feature_pages_image",
       "imageFallback": "/img/placeholder.svg",
-      "overlayLabel": "Seiten",
-      "imageAlt": "Seitenvorlage"
+      "overlayLabel": "Digital",
+      "imageAlt": "Digitale Lerninhalte"
     }
   ]
 }

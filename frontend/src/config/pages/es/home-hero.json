@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Inglés basado en el juego",
+  "title": "{{appName}}",
+  "subtitle": "PREESCOLAR · VIAJE A CAMBRIDGE",
+  "heroTitleLine1": "{{appName}}",
+  "heroTitleGradient": "mundo.",
+  "headline": "<em>Inglés a través del juego</em>, confianza a través de historias y continuidad a través de contenido digital<br/>— <strong>Un completo sistema de aprendizaje para preescolares</strong>.",
+  "lead": "{{appName}} reúne materiales físicos, personajes de habla inglesa, contenido digital y el enfoque de Cambridge en un solo sistema.",
+  "tagline": "Un modelo de inglés preescolar rastreable para escuelas, profesores y familias.",
+  "socialProof": "Preescolar, taller, tutor a domicilio, biblioteca digital y academia fluyen bajo un mismo techo.",
+  "metrics": [
+    {
+      "value": "3-6",
+      "label": "rango de edad"
+    },
+    {
+      "value": "4",
+      "label": "Niveles"
+    },
+    {
+      "value": "Cambridge",
+      "label": "Enfoque de preparación"
+    }
+  ],
+  "showcaseTopic": "viaje de nivel",
+  "showcaseProgress": "Básico → Junior → Senior → PRO",
+  "showcaseQuestion": "¿Qué serie se adapta a su institución?",
+  "showcaseOptionA": "A) preescolar",
+  "showcaseOptionB": "B) Taller",
+  "showcaseOptionC": "C) Tutor a domicilio",
+  "showcaseOptionD": "D) Academia",
+  "showcaseXpLabel": "Aprendiendo",
+  "showcaseXpValue": "Activo",
+  "showcaseStreak": "4",
+  "showcaseStreakSuffix": "niveles",
+  "showcaseStreakSub": "Básico, Junior, Senior, PRO",
+  "showcaseBadgeTitle": "Demostración lista",
+  "showcaseBadgeSub": "Para instituciones",
+  "showcaseXpGain": "Comenzar",
+  "primaryCTA": "Explorar la serie preescolar",
+  "secondaryCTA": "Solicitar una demostración",
+  "scrollHint": "Desplácese hacia abajo"
+}

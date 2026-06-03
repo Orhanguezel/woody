@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "level": "basic",
+      "product": "storyland",
+      "title": "História BÁSICA",
+      "description": "16 histórias em vídeo interativas",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/basic/storyland"
+    },
+    {
+      "level": "basic",
+      "product": "movieland",
+      "title": "BÁSICO Movieland",
+      "description": "8 vídeos",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/basic/movieland"
+    },
+    {
+      "level": "basic",
+      "product": "musicland",
+      "title": "Música BÁSICA",
+      "description": "8 músicas",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/basic/musicland"
+    },
+    {
+      "level": "basic",
+      "product": "library",
+      "title": "Biblioteca BÁSICA",
+      "description": "Conteúdo do livro em breve",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/basic/library"
+    },
+    {
+      "level": "junior",
+      "product": "storyland",
+      "title": "JÚNIOR Storyland",
+      "description": "16 histórias em vídeo interativas",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/junior/storyland"
+    },
+    {
+      "level": "junior",
+      "product": "movieland",
+      "title": "JÚNIOR Movieland",
+      "description": "8 vídeos",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/junior/movieland"
+    },
+    {
+      "level": "junior",
+      "product": "musicland",
+      "title": "JÚNIOR Músicalândia",
+      "description": "8 músicas",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/junior/musicland"
+    },
+    {
+      "level": "junior",
+      "product": "library",
+      "title": "Biblioteca JÚNIOR",
+      "description": "Conteúdo do livro em breve",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/junior/library"
+    },
+    {
+      "level": "senior",
+      "product": "storyland",
+      "title": "SÉNIOR Storyland",
+      "description": "16 histórias em vídeo interativas",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/senior/storyland"
+    },
+    {
+      "level": "senior",
+      "product": "movieland",
+      "title": "SÊNIOR Movieland",
+      "description": "8 vídeos",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/senior/movieland"
+    },
+    {
+      "level": "senior",
+      "product": "musicland",
+      "title": "SÊNIOR Musicland",
+      "description": "8 músicas",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/senior/musicland"
+    },
+    {
+      "level": "senior",
+      "product": "library",
+      "title": "Biblioteca SÊNIOR",
+      "description": "Conteúdo do livro em breve",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/senior/library"
+    }
+  ]
+}
