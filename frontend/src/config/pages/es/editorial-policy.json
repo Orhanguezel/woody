@@ -1,0 +1,42 @@
+{
+  "title": "Política editorial y metodología",
+  "description": "Cómo {{appName}} prepara contenido, utiliza redacción asistida por IA y aplica estándares de calidad.",
+  "back": "Volver a Acerca de",
+  "authorRoleTitle": "Proceso de calidad editorial",
+  "authorExpertiseLabels": [
+    "Revisión editorial",
+    "Diseño de aprendizaje",
+    "Idioma accesible"
+  ],
+  "credentialsNote": "Calidad del contenido y prácticas de actualización.",
+  "sections": [
+    {
+      "title": "Principios de contenido",
+      "paragraphs": [
+        "El contenido de {{appName}} ayuda a los usuarios a prepararse para decisiones informadas y conversaciones con expertos, no para reemplazar el asesoramiento profesional en dominios regulados.",
+        "Priorizamos el lenguaje sencillo, el tono no coercitivo y la visión práctica. Rechazamos el lenguaje de dependencia y las predicciones absolutas."
+      ]
+    },
+    {
+      "title": "Transparencia en la redacción asistida por IA",
+      "paragraphs": [
+        "Algunos borradores educativos pueden utilizar LLM para estructurar temas y mejorar la legibilidad.",
+        "Los borradores se revisan para determinar su precisión, contexto, accesibilidad y límites éticos antes de publicarlos."
+      ]
+    },
+    {
+      "title": "Metodología de aprendizaje",
+      "paragraphs": [
+        "Los módulos siguen una estructura centrada en el alumno; Las fuentes se mantienen y mejoran con retroalimentación.",
+        "Las sugerencias personalizadas siguen reglas transparentes alineadas con la política de la plataforma."
+      ]
+    },
+    {
+      "title": "Proceso de revisión",
+      "paragraphs": [
+        "El contenido se revisa editorialmente antes de su lanzamiento. La copia de cara al usuario prioriza la coherencia, la precisión y la confianza.",
+        "El contenido de la plataforma es información general; Consulte a un profesional relevante para situaciones personales."
+      ]
+    }
+  ]
+}

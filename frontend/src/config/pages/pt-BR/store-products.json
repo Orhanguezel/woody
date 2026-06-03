@@ -1,0 +1,26 @@
+{
+  "quoteWhatsApp": "905331570373",
+  "quoteMessage": "Olá, gostaria de obter informações de preços sobre os conjuntos para escolas.\n\nCidade:\nNome da Escola:\nNúmero de Alunos:\nVocês poderiam compartilhar o orçamento junto com o catálogo digital?",
+  "categories": [
+    { "id": "okul-serisi", "name": "Série para Educação Infantil", "description": "", "route": "/preschool" },
+    { "id": "atolye", "name": "Série Workshop", "description": "Para workshops e centros de cursos", "route": "/workshop" },
+    { "id": "ozel-ders", "name": "Série de Aula Particular", "description": "Para professores de aulas em casa e particulares", "route": "/home-tutor" }
+  ],
+  "products": [
+    { "id": 1, "category": "okul-serisi", "name": "Conjunto do Aluno Basic Level", "description": "Nível iniciante", "price": "A partir de 2250 TL" },
+    { "id": 2, "category": "okul-serisi", "name": "Conjunto do Aluno Junior Level", "description": "Nível de desenvolvimento", "price": "A partir de 2250 TL" },
+    { "id": 3, "category": "okul-serisi", "name": "Conjunto do Aluno Senior Level", "description": "Nível avançado", "price": "A partir de 2250 TL" },
+    { "id": 7, "category": "atolye", "name": "Workshop Basic", "description": "Pacote inicial", "price": "₺1,999" },
+    { "id": 8, "category": "atolye", "name": "Workshop Junior", "description": "Nível intermediário", "price": "₺2,199" },
+    { "id": 9, "category": "atolye", "name": "Workshop Senior", "description": "Nível avançado", "price": "₺2,399" },
+    { "id": 10, "category": "atolye", "name": "Workshop PRO", "description": "Profissional", "price": "₺2,699" },
+    { "id": 11, "category": "atolye", "name": "Workshop Full Set", "description": "Tudo em um", "price": "₺7,999" },
+    { "id": 12, "category": "atolye", "name": "Material Digital", "description": "Acesso online", "price": "₺499" },
+    { "id": 13, "category": "ozel-ders", "name": "Home Basic", "description": "Iniciante individual", "price": "₺1,499" },
+    { "id": 14, "category": "ozel-ders", "name": "Home Junior", "description": "Desenvolvimento individual", "price": "₺1,699" },
+    { "id": 15, "category": "ozel-ders", "name": "Home Senior", "description": "Avançado individual", "price": "₺1,899" },
+    { "id": 16, "category": "ozel-ders", "name": "Home PRO", "description": "Profissional individual", "price": "₺2,099" },
+    { "id": 17, "category": "ozel-ders", "name": "Pacote de Aula Particular", "description": "4 níveis, com desconto", "price": "₺5,999" },
+    { "id": 18, "category": "ozel-ders", "name": "Online Library", "description": "Acesso digital", "price": "₺399" }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Over {{appName}}",
+  "title": "Een eenvoudige en uitbreidbare frontend-sjabloon voor nieuwe projecten.",
+  "lead": "{{appName}} is een neutrale webapp-shell die is voorbereid voor latere merk- en domeininhoud.",
+  "founderTitle": "Uitgangspunt",
+  "founderParagraphs": [
+    "Deze sjabloon biedt een herbruikbare frontend-basis.",
+    "Projectspecifieke beslissingen worden later genomen op het gebied van inhoud, ontwerp en integratie."
+  ],
+  "methodologyTitle": "Benadering",
+  "methodologyParagraphs": [
+    "De infrastructuur blijft op zijn plaats terwijl domeinkopieer- en handelsstromen standaard worden gewist.",
+    "Op deze schil kan een nieuw project voortbouwen met een eigen informatiearchitectuur en contentbronnen."
+  ],
+  "experienceTitle": "Domein",
+  "experienceParagraphs": [
+    "Home, blog, contact, FAQ, account, juridische pagina's, thema en SEO-fundamenten blijven bestaan.",
+    "De merknaam wordt beheerd via env en het token AppName."
+  ],
+  "differentiatorsTitle": "Waarom {{appName}}?",
+  "differentiators": [
+    {
+      "title": "Neutraal exemplaar",
+      "body": "De standaardtekst is projectonafhankelijk."
+    },
+    {
+      "title": "Bewaarde schelp",
+      "body": "Routing-, auth-, i18n- en themafundamenten blijven bruikbaar."
+    },
+    {
+      "title": "Gemakkelijke aanpassing",
+      "body": "Nieuwe domeininhoud kan afkomstig zijn van DB- of CMS-records."
+    }
+  ],
+  "authorBio": "{{appName}}-inhoud wordt voorbereid om te worden aangevuld door projectteams met hun eigen merk- en productbeslissingen."
+}

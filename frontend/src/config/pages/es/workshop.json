@@ -1,0 +1,64 @@
+{
+  "title": "Serie de talleres {{appName}}",
+  "description": "Con la serie de talleres, los niños no sólo escuchan inglés; lo juegan, lo aplican y lo viven. Ofrezca un proceso de aprendizaje más animado y eficaz con {{appName}}.",
+  "eyebrow": "SERIE DE TALLERES {{appName}}",
+  "hero": {
+    "eyebrow": "SERIE DE TALLERES {{appName}}",
+    "title": "Taller",
+    "description": "Con la serie de talleres, los niños no sólo escuchan inglés; lo juegan, lo aplican y lo viven. Ofrezca un proceso de aprendizaje más animado y eficaz con {{appName}}.",
+    "primaryCTA": "Solicitar una demostración",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Ver precios",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveles",
+      "title": "Descubra el contenido de la serie a través de tutoriales en vídeo",
+      "description": "La serie Workshop consta de dos conjuntos separados. Descubra su contenido a través de tutoriales en vídeo. La serie tiene cuatro niveles: Básico, Junior, Senior y PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Nivel Básico",
+          "description": "Proporciona un buen comienzo en inglés con palabras básicas y oraciones simples."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Nivel Júnior",
+          "description": "Desarrolla la capacidad de los niños para construir oraciones y expresarse."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Nivel superior",
+          "description": "Desarrolla la capacidad de usar y comprender el inglés con mayor fluidez."
+        },
+        {
+          "badge": "PRO",
+          "title": "Nivel PRO",
+          "description": "Construye una base en lectura, escritura e inglés académico."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explorar",
+      "title": "Eche un vistazo más de cerca al sistema",
+      "items": [
+        {
+          "title": "Biblioteca digital {{appName}}",
+          "description": "Una biblioteca digital donde puedes buscar libros de {{appName}}. Vea todos los conjuntos en detalle y obtenga una vista previa del contenido para obtener una comprensión clara del sistema.",
+          "href": "/library"
+        },
+        {
+          "title": "Tienda {{appName}}",
+          "description": "Un área donde podrás consultar los precios actuales de los sets {{appName}} y realizar pedidos online.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Taller de Inglés Set | Educación en inglés preescolar basada en talleres",
+    "description": "Serie de talleres {{appName}}: un conjunto práctico de aprendizaje de inglés preescolar basado en talleres. 4 niveles (Basic/Junior/Senior/PRO), con actividades centradas en el juego y el teatro, los niños aprenden inglés viviéndolo.",
+    "keywords": "set de taller de inglés, taller de inglés basado en, taller de inglés preescolar, taller de woody, educación práctica en inglés"
+  }
+}

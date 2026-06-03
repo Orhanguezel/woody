@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Spelend Engels",
+  "title": "ZZAPPNAAMTOKENZZ",
+  "subtitle": "PRESCHOOL · CAMBRIDGE REIS",
+  "heroTitleLine1": "ZZAPPNAAMTOKENZZ",
+  "heroTitleGradient": "wereld.",
+  "headline": "<em>Engels door middel van spel</em>, vertrouwen door verhalen en continuïteit door digitale inhoud<br/>— <strong>a compleet leersysteem voor kleuterscholen</strong>.",
+  "lead": "{{appName}} brengt fysiek materiaal, Engelssprekende karakters, digitale inhoud en de Cambridge-aanpak samen in één systeem.",
+  "tagline": "Een traceerbaar Engels model voor kleuters voor scholen, leraren en gezinnen.",
+  "socialProof": "Kleuterschool, werkplaats, thuisleraar, digitale bibliotheek en academie stromen onder één dak.",
+  "metrics": [
+    {
+      "value": "3-6",
+      "label": "Leeftijdscategorie"
+    },
+    {
+      "value": "4",
+      "label": "Niveaus"
+    },
+    {
+      "value": "Cambridge",
+      "label": "Voorbereidende aanpak"
+    }
+  ],
+  "showcaseTopic": "Niveau reis",
+  "showcaseProgress": "Basis → Junior → Senior → PRO",
+  "showcaseQuestion": "Welke serie past bij jouw instelling?",
+  "showcaseOptionA": "A) Kleuterschool",
+  "showcaseOptionB": "B) Werkplaats",
+  "showcaseOptionC": "C) Thuisleraar",
+  "showcaseOptionD": "D) Academie",
+  "showcaseXpLabel": "Leren",
+  "showcaseXpValue": "Actief",
+  "showcaseStreak": "4",
+  "showcaseStreakSuffix": "niveaus",
+  "showcaseStreakSub": "Basis, Junior, Senior, PRO",
+  "showcaseBadgeTitle": "Demo klaar",
+  "showcaseBadgeSub": "Voor instellingen",
+  "showcaseXpGain": "Begin",
+  "primaryCTA": "Ontdek de Preschool-serie",
+  "secondaryCTA": "Vraag een demo aan",
+  "scrollHint": "Scroll naar beneden"
+}

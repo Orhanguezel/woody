@@ -1,23 +1,23 @@
 {
-  "eyebrow": "Ablauf",
-  "titleBefore": "So nutzen Sie ",
-  "titleAccent": "die Vorlage",
-  "lead": "Füllen Sie neutrale Seiten mit Marke, Inhalt und Produktentscheidungen.",
+  "eyebrow": "Lernfluss",
+  "titleBefore": "Wie Kinder",
+  "titleAccent": "vorwärts gehen",
+  "lead": "Jede Serie wird mit altersgerechten Materialien, Spiel, Wiederholung und digitaler Unterstützung fortgesetzt.",
   "steps": [
     {
       "icon": "bookOpen",
-      "title": "Marke definieren",
-      "desc": "AppName und Site-Einstellungen mit Projektwerten aktualisieren."
+      "title": "Wählen Sie die Ebene",
+      "desc": "Je nach Alter, Klassenstruktur und Lernzielen wird Basic, Junior, Senior oder PRO ausgewählt."
     },
     {
       "icon": "playCircle",
-      "title": "Inhalte ergänzen",
-      "desc": "Home-Bereiche, Beiträge und FAQs aus DB oder CMS speisen."
+      "title": "Bewerben Sie sich spielerisch",
+      "desc": "Lehrersets, Schülermaterialien, Lieder und Geschichten werden gemeinsam im Klassenzimmer verwendet."
     },
     {
       "icon": "chartColumn",
-      "title": "Launch vorbereiten",
-      "desc": "SEO, Rechtstexte, Kontaktdaten und Validierung abschließen."
+      "title": "Digital weitermachen",
+      "desc": "Die Bibliothek, digitale Inhalte und der akademische Ablauf tragen das Lernen in außerschulische Prozesse ein."
     }
   ]
 }

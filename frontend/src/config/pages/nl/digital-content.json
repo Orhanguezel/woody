@@ -1,0 +1,96 @@
+{
+  "title": "{{appName}} Digitale wereld",
+  "description": "Welkom bij {{appName}} Digital World - Storyland-, Movieland-, Musicland- en bibliotheekinhoud per niveau.",
+  "eyebrow": "DIGITAL CONTENT",
+  "hero": {
+    "eyebrow": "DIGITAL CONTENT",
+    "title": "Welkom bij de digitale wereld {{appName}}",
+    "description": "Kies je niveau en verken vervolgens de secties Storyland, Movieland, Musicland en Library."
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveau 1",
+      "title": "BASIC",
+      "items": [
+        {
+          "title": "Verhalenland",
+          "description": "16 interactieve videoverhalen",
+          "href": "/digital-content/basic/storyland"
+        },
+        {
+          "title": "Filmland",
+          "description": "8 video's",
+          "href": "/digital-content/basic/movieland"
+        },
+        {
+          "title": "Muziekland",
+          "description": "8 nummers",
+          "href": "/digital-content/basic/musicland"
+        },
+        {
+          "title": "Bibliotheek",
+          "description": "Inhoud van het boek binnenkort beschikbaar",
+          "href": "/digital-content/basic/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Niveau 2",
+      "title": "JUNIOR",
+      "items": [
+        {
+          "title": "Verhalenland",
+          "description": "16 interactieve videoverhalen",
+          "href": "/digital-content/junior/storyland"
+        },
+        {
+          "title": "Filmland",
+          "description": "8 video's",
+          "href": "/digital-content/junior/movieland"
+        },
+        {
+          "title": "Muziekland",
+          "description": "8 nummers",
+          "href": "/digital-content/junior/musicland"
+        },
+        {
+          "title": "Bibliotheek",
+          "description": "Inhoud van het boek binnenkort beschikbaar",
+          "href": "/digital-content/junior/library"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Niveau 3",
+      "title": "SENIOR",
+      "items": [
+        {
+          "title": "Verhalenland",
+          "description": "16 interactieve videoverhalen",
+          "href": "/digital-content/senior/storyland"
+        },
+        {
+          "title": "Filmland",
+          "description": "8 video's",
+          "href": "/digital-content/senior/movieland"
+        },
+        {
+          "title": "Muziekland",
+          "description": "8 nummers",
+          "href": "/digital-content/senior/musicland"
+        },
+        {
+          "title": "Bibliotheek",
+          "description": "Inhoud van het boek binnenkort beschikbaar",
+          "href": "/digital-content/senior/library"
+        }
+      ]
+    }
+  ],
+  "footnote": "Dit is een digitale applicatie van Mina Publishing House. Alle rechten voorbehouden.",
+  "seo": {
+    "title": "{{appName}} Digitale wereld | Digitale inhoudsbibliotheek",
+    "description": "{{appName}} wereld van digitale inhoud: Storyland-, Movieland-, Musicland- en Bibliotheek-secties voor Basic-, Junior- en Senior-niveaus.",
+    "keywords": "Woody Digital, digitale inhoud, Storyland, Movieland, Musicland, Engelse kindervideo"
+  }
+}

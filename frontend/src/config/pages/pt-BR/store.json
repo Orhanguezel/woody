@@ -1,0 +1,54 @@
+{
+  "title": "{{appName}} Store",
+  "description": "Conjuntos de aprendizagem de inglês para educação infantil. Uma área onde você pode conferir os preços atuais dos conjuntos {{appName}} e fazer pedidos online.",
+  "eyebrow": "{{appName}} STORE",
+  "hero": {
+    "eyebrow": "{{appName}} STORE",
+    "title": "{{appName}} Store",
+    "description": "Conjuntos de aprendizagem de inglês para educação infantil. Uma área onde você pode conferir os preços atuais dos conjuntos {{appName}} e solicitar um orçamento.",
+    "primaryCTA": "Solicitar um Orçamento",
+    "primaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Série para Educação Infantil",
+      "title": "Série para Educação Infantil",
+      "items": [
+        { "title": "Conjunto do Aluno Basic Level", "description": "Nível iniciante", "price": "A partir de 2250 TL" },
+        { "title": "Conjunto do Aluno Junior Level", "description": "Nível de desenvolvimento", "price": "A partir de 2250 TL" },
+        { "title": "Conjunto do Aluno Senior Level", "description": "Nível avançado", "price": "A partir de 2250 TL" }
+      ]
+    },
+    {
+      "eyebrow": "Série Workshop",
+      "title": "Série Workshop",
+      "description": "Para workshops e centros de cursos",
+      "items": [
+        { "title": "Workshop Basic", "description": "Pacote inicial", "price": "₺1,999" },
+        { "title": "Workshop Junior", "description": "Nível intermediário", "price": "₺2,199" },
+        { "title": "Workshop Senior", "description": "Nível avançado", "price": "₺2,399" },
+        { "title": "Workshop PRO", "description": "Profissional", "price": "₺2,699" },
+        { "title": "Workshop Full Set", "description": "Tudo em um", "price": "₺7,999" },
+        { "title": "Material Digital", "description": "Acesso online", "price": "₺499" }
+      ]
+    },
+    {
+      "eyebrow": "Série de Aula Particular",
+      "title": "Série de Aula Particular",
+      "description": "Para professores de aulas em casa e particulares",
+      "items": [
+        { "title": "Home Basic", "description": "Iniciante individual", "price": "₺1,499" },
+        { "title": "Home Junior", "description": "Desenvolvimento individual", "price": "₺1,699" },
+        { "title": "Home Senior", "description": "Avançado individual", "price": "₺1,899" },
+        { "title": "Home PRO", "description": "Profissional individual", "price": "₺2,099" },
+        { "title": "Pacote de Aula Particular", "description": "4 níveis, com desconto", "price": "₺5,999" },
+        { "title": "Online Library", "description": "Acesso digital", "price": "₺399" }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Store | Conjuntos de Aprendizagem de Inglês para Educação Infantil",
+    "description": "Loja de conjuntos de aprendizagem de inglês {{appName}} para educação infantil. Preços atuais e orçamentos para os produtos da Série para Educação Infantil, Série Workshop e Série de Aula Particular.",
+    "keywords": "woody store, comprar conjunto de inglês para educação infantil, preço do conjunto de aprendizagem de inglês para educação infantil, loja de conjunto de aprendizagem de inglês"
+  }
+}

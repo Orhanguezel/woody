@@ -1,0 +1,46 @@
+{
+  "title": "Bem-vindo ao mundo de {{appName}}",
+  "description": "{{appName}} é um modelo de aprendizado de inglês para a educação infantil que reúne em um único sistema materiais físicos, personagens que falam inglês, conteúdo digital e a abordagem Cambridge.",
+  "eyebrow": "Aprendizagem baseada em brincadeiras",
+  "hero": {
+    "eyebrow": "Aprendizagem baseada em brincadeiras",
+    "title": "Bem-vindo ao mundo de {{appName}}",
+    "description": "{{appName}} é um modelo de aprendizado de inglês para a educação infantil que reúne em um único sistema materiais físicos, personagens que falam inglês, conteúdo digital e a abordagem Cambridge.",
+    "primaryCTA": "Conheça a Série Infantil",
+    "primaryHref": "/preschool",
+    "secondaryCTA": "Solicitar uma demonstração",
+    "secondaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Kits para todas as idades",
+      "title": "Qual kit {{appName}} é para você?",
+      "description": "Escolha o kit {{appName}} que melhor se adapta à sua instituição ou ao seu caso de uso. Cada kit é especialmente estruturado para diferentes necessidades. Desenvolve habilidades linguísticas por meio de brincadeiras estruturadas, atividades envolventes e conteúdo digital rico.",
+      "items": [
+        {
+          "badge": "Para salas de aula",
+          "title": "Série Infantil",
+          "description": "Desenvolvida para salas grandes, escolas e creches. O conteúdo e os jogos são estruturados para a gestão da sala e adequados a grupos grandes. Oferece um modelo em que toda a turma pode participar ativamente ao mesmo tempo.",
+          "href": "/preschool"
+        },
+        {
+          "badge": "Para grupos pequenos",
+          "title": "Oficina",
+          "description": "Desenvolvida para grupos pequenos de 3 a 5 pessoas. O conteúdo e os jogos são organizados para uma interação mais intensa e participação individual. Oferece uma estrutura de aplicação mais focada e ágil.",
+          "href": "/workshop"
+        },
+        {
+          "badge": "Uso individual",
+          "title": "Tutor em casa",
+          "description": "Adequado para uso individual de 1 a 2 pessoas. O conteúdo e os jogos são totalmente adaptados ao aprendizado individual. Proporciona progresso personalizado para a criança e atenção máxima.",
+          "href": "/home-tutor"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Kit de aprendizado de inglês para a educação infantil | Inglês lúdico na primeira infância",
+    "description": "Deixe seus filhos aprenderem se divertindo com um sistema de aprendizado de inglês para a educação infantil. Conheça kits lúdicos, solicitações de demonstração e pacotes acessíveis.",
+    "keywords": "inglês educação infantil, inglês lúdico, kit aprendizado inglês, inglês primeira infância, preparação cambridge, inglês para crianças, programa inglês 3-6 anos"
+  }
+}

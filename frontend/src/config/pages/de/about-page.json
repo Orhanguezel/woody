@@ -1,36 +1,36 @@
 {
   "eyebrow": "Über {{appName}}",
   "title": "Eine einfache und erweiterbare Frontend-Vorlage für neue Projekte.",
-  "lead": "{{appName}} ist eine neutrale Web-App-Struktur für spätere Marken- und Domain-Inhalte.",
-  "founderTitle": "Startpunkt",
+  "lead": "{{appName}} ist eine neutrale Web-App-Hülle, die für spätere Marken- und Domaininhalte vorbereitet ist.",
+  "founderTitle": "Ausgangspunkt",
   "founderParagraphs": [
-    "Diese Vorlage bietet eine wiederverwendbare Frontend-Basis.",
-    "Projektspezifische Entscheidungen werden später in Inhalt, Design und Integration ergänzt."
+    "Diese Vorlage bietet eine wiederverwendbare Frontend-Grundlage.",
+    "Projektspezifische Entscheidungen werden später in den Schichten Inhalt, Design und Integration abgeschlossen."
   ],
   "methodologyTitle": "Ansatz",
   "methodologyParagraphs": [
-    "Die Infrastruktur bleibt erhalten, Domain-Texte und Commerce-Flows werden standardmäßig geleert.",
-    "Ein neues Projekt kann mit eigener Informationsarchitektur und Inhaltsquellen darauf aufbauen."
+    "Die Infrastruktur bleibt bestehen, während domänenspezifische Texte und Commerce-Abläufe standardmäßig entfernt werden.",
+    "Ein neues Projekt kann auf dieser Hülle mit seiner eigenen Informationsarchitektur und seinen eigenen Inhaltsquellen aufbauen."
   ],
   "experienceTitle": "Umfang",
   "experienceParagraphs": [
-    "Home, Blog, Kontakt, FAQ, Konto, Rechtliches, Theme und SEO bleiben erhalten.",
-    "Der Markenname wird über Env und AppName-Token verwaltet."
+    "Grundlagen für Startseite, Blog, Kontakt, FAQ, Konto, Rechtsseiten, Theme und SEO bleiben erhalten.",
+    "Der Markenname wird über env und das AppName-Token verwaltet."
   ],
   "differentiatorsTitle": "Warum {{appName}}?",
   "differentiators": [
     {
       "title": "Neutrale Texte",
-      "body": "Standardtexte sind projektunabhängig."
+      "body": "Der Standardtext ist projektunabhängig."
     },
     {
-      "title": "Erhaltene Struktur",
-      "body": "Routing, Auth, i18n und Theme bleiben nutzbar."
+      "title": "Erhaltene Hülle",
+      "body": "Grundlagen für Routing, Auth, i18n und Theme bleiben nutzbar."
     },
     {
       "title": "Einfache Anpassung",
-      "body": "Neue Inhalte können aus DB oder CMS kommen."
+      "body": "Neue Domaininhalte können aus DB- oder CMS-Datensätzen stammen."
     }
   ],
-  "authorBio": "{{appName}} Inhalte sind dafür vorbereitet, von Projektteams mit eigenen Marken- und Produktentscheidungen ergänzt zu werden."
+  "authorBio": "{{appName}}-Inhalte sind so vorbereitet, dass sie von Projektteams mit ihren eigenen Marken- und Produktentscheidungen vervollständigt werden können."
 }

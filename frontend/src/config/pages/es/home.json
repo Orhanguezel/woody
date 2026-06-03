@@ -1,0 +1,46 @@
+{
+  "title": "Bienvenido al mundo {{appName}}",
+  "description": "{{appName}} es un modelo de aprendizaje de inglés preescolar que reúne materiales físicos, personajes de habla inglesa, contenido digital y el enfoque de Cambridge en un solo sistema.",
+  "eyebrow": "Aprendizaje basado en el juego",
+  "hero": {
+    "eyebrow": "Aprendizaje basado en el juego",
+    "title": "Bienvenido al mundo {{appName}}",
+    "description": "{{appName}} es un modelo de aprendizaje de inglés preescolar que reúne materiales físicos, personajes de habla inglesa, contenido digital y el enfoque de Cambridge en un solo sistema.",
+    "primaryCTA": "Explorar la serie preescolar",
+    "primaryHref": "/preschool",
+    "secondaryCTA": "Solicitar una demostración",
+    "secondaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Conjuntos para todas las edades",
+      "title": "¿Qué conjunto de {{appName}} es para ti?",
+      "description": "Elija el conjunto {{appName}} que mejor se adapte a su institución o caso de uso. Cada conjunto está especialmente estructurado para diferentes necesidades. Desarrolla habilidades lingüísticas a través de juegos estructurados, actividades interesantes y contenido digital enriquecido.",
+      "items": [
+        {
+          "badge": "Para aulas",
+          "title": "Serie preescolar",
+          "description": "Diseñado para aulas grandes, escuelas y guarderías. Los contenidos y juegos están estructurados para el manejo del aula, aptos para grupos grandes. Ofrece un modelo donde toda la clase puede participar activamente simultáneamente.",
+          "href": "/preschool"
+        },
+        {
+          "badge": "Para grupos pequeños",
+          "title": "Taller",
+          "description": "Diseñado para grupos pequeños de 3 a 5 personas. El contenido y los juegos están organizados para una interacción más intensiva y una participación individual. Ofrece una estructura de aplicación más enfocada y de ritmo rápido.",
+          "href": "/workshop"
+        },
+        {
+          "badge": "Uso individual",
+          "title": "Tutor en casa / Serie en casa",
+          "description": "Adecuado para uso individual de 1 a 2 personas. El contenido y los juegos están totalmente adaptados para el aprendizaje individualizado. Proporciona progreso específico para el niño y máxima atención.",
+          "href": "/home-tutor"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Set de aprendizaje de inglés preescolar | Inglés infantil basado en el juego",
+    "description": "Deja que tus hijos aprendan mientras se divierten con un sistema de aprendizaje de inglés preescolar. Descubra conjuntos de aprendizaje basados ​​en el juego, solicitudes de demostración y paquetes asequibles.",
+    "keywords": "Programa de inglés preescolar Turquía, inglés infantil basado en el juego, conjunto de aprendizaje de inglés preescolar, educación de inglés infantil, sistema de preparación Cambridge, inglés para niños, programa de inglés de 3 a 6 años"
+  }
+}

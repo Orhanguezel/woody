@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Informazioni su {{appName}}",
+  "title": "Un modello frontend semplice ed estensibile per nuovi progetti.",
+  "lead": "{{appName}} è una shell di app Web neutra preparata per contenuti successivi di marchi e domini.",
+  "founderTitle": "Punto di partenza",
+  "founderParagraphs": [
+    "Questo modello fornisce una base frontend riutilizzabile.",
+    "Le decisioni specifiche del progetto vengono completate successivamente nei livelli di contenuto, progettazione e integrazione."
+  ],
+  "methodologyTitle": "Approccio",
+  "methodologyParagraphs": [
+    "L'infrastruttura rimane attiva mentre la copia del dominio e i flussi commerciali vengono cancellati per impostazione predefinita.",
+    "Un nuovo progetto può basarsi su questo guscio con la propria architettura dell'informazione e fonti di contenuto."
+  ],
+  "experienceTitle": "Ambito",
+  "experienceParagraphs": [
+    "Rimangono home, blog, contatti, FAQ, account, pagine legali, tema e basi SEO.",
+    "Il nome del marchio è gestito tramite env e il token AppName."
+  ],
+  "differentiatorsTitle": "Perché {{appName}}?",
+  "differentiators": [
+    {
+      "title": "Copia neutra",
+      "body": "Il testo predefinito è indipendente dal progetto."
+    },
+    {
+      "title": "Conchiglia conservata",
+      "body": "Routing, autenticazione, i18n e le basi dei temi rimangono utilizzabili."
+    },
+    {
+      "title": "Adattamento facile",
+      "body": "Il nuovo contenuto del dominio può provenire da record DB o CMS."
+    }
+  ],
+  "authorBio": "Il contenuto di {{appName}} è preparato per essere completato dai team di progetto con le proprie decisioni su marchio e prodotto."
+}

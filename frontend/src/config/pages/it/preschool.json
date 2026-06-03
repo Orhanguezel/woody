@@ -1,0 +1,74 @@
+{
+  "title": "{{appName}} Serie prescolare",
+  "description": "La serie prescolare {{appName}} offre agli istituti un'infrastruttura educativa inglese basata sul gioco, strutturata e sostenibile.",
+  "eyebrow": "{{appName}} SERIE PRESCOLARE",
+  "hero": {
+    "eyebrow": "{{appName}} SERIE PRESCOLARE",
+    "title": "Prescolare",
+    "description": "La serie prescolare {{appName}} offre agli istituti un'infrastruttura educativa inglese basata sul gioco, strutturata e sostenibile.",
+    "primaryCTA": "Richiedi una dimostrazione",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Visualizza i prezzi",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Set insegnante e studente",
+      "title": "La serie prescolare è composta da due set separati",
+      "description": "La serie Preschool è composta da due set separati: il set insegnante e il set studente. Scopri i loro contenuti attraverso video tutorial. Il sistema prescolare {{appName}} richiede un minimo di 30 studenti nell'istituto. Il set insegnante non è venduto separatamente. Viene fornito gratuitamente insieme ai set di studenti alle istituzioni convenzionate e rinnovato ogni anno."
+    },
+    {
+      "eyebrow": "Livelli",
+      "title": "Scopri i contenuti della serie attraverso video tutorial",
+      "description": "La serie prescolare è composta da quattro livelli: Base, Junior, Senior e PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Livello base",
+          "description": "Fornisce un buon inizio di inglese con parole di base e frasi semplici."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Livello Junior",
+          "description": "Sviluppa la capacità dei bambini di costruire frasi ed esprimersi."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Livello senior",
+          "description": "Sviluppa la capacità di usare e comprendere l'inglese in modo più fluente."
+        },
+        {
+          "badge": "PRO",
+          "title": "Livello PRO",
+          "description": "Costruisce le basi nella lettura, nella scrittura e nell'inglese accademico."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Esplorare",
+      "title": "Dai uno sguardo più da vicino al sistema",
+      "items": [
+        {
+          "title": "{{appName}} Cerca livello",
+          "description": "Determina in modo rapido e accurato il livello {{appName}} più adatto valutando l'età dello studente, il livello di inglese e lo stato di apprendimento. Raccomanda da quale livello lo studente dovrebbe iniziare sulla base di alcune brevi domande.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Libreria",
+          "description": "Una biblioteca digitale dove sfogliare i libri {{appName}}. Visualizza tutti i set in dettaglio e visualizza l'anteprima dei contenuti per avere una chiara comprensione del sistema.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Un'area dove puoi controllare i prezzi attuali dei set {{appName}} ed effettuare ordini online.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Scuola dell'infanzia | Set per l'apprendimento dell'inglese in età prescolare - Programma di inglese in età prescolare Turchia",
+    "description": "{{appName}} Set per l'apprendimento dell'inglese prescolare: un programma di inglese per la prima infanzia basato sul gioco per bambini dai 3 ai 6 anni. Curriculum inglese prescolare con un sistema di preparazione Cambridge. Set per insegnanti e studenti, curriculum di inglese prescolare e programmi di lezioni.",
+    "keywords": "Set per l'apprendimento dell'inglese prescolare, programma di inglese prescolare Turchia, set di inglese per la prima infanzia, programma di inglese per la scuola materna, preparazione Cambridge per la scuola materna, programma di inglese per 3-6 anni, serie di inglese prescolare"
+  }
+}

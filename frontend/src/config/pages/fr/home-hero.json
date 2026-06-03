@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Anglais basé sur le jeu",
+  "title": "ZZAPPNOMTOKENZZ",
+  "subtitle": "PRÉSCOLAIRE · VOYAGE À CAMBRIDGE",
+  "heroTitleLine1": "ZZAPPNOMTOKENZZ",
+  "heroTitleGradient": "monde.",
+  "headline": "<em>L'anglais par le jeu</em>, la confiance à travers les histoires et la continuité grâce au contenu numérique<br/>— <strong>un système d'apprentissage complet pour les écoles maternelles</strong>.",
+  "lead": "{{appName}} rassemble des matériaux physiques, des personnages anglophones, du contenu numérique et l'approche de Cambridge dans un seul système.",
+  "tagline": "Un modèle d'anglais préscolaire traçable pour les écoles, les enseignants et les familles.",
+  "socialProof": "L'école maternelle, l'atelier, le tuteur à domicile, la bibliothèque numérique et l'académie fonctionnent sous un même toit.",
+  "metrics": [
+    {
+      "value": "3-6",
+      "label": "Tranche d'âge"
+    },
+    {
+      "value": "4",
+      "label": "Niveaux"
+    },
+    {
+      "value": "Cambridge",
+      "label": "Approche de préparation"
+    }
+  ],
+  "showcaseTopic": "Voyage de niveau",
+  "showcaseProgress": "Basique → Junior → Senior → PRO",
+  "showcaseQuestion": "Quelle série correspond à votre institution ?",
+  "showcaseOptionA": "A) École maternelle",
+  "showcaseOptionB": "B) Atelier",
+  "showcaseOptionC": "C) Tuteur à domicile",
+  "showcaseOptionD": "D) Académie",
+  "showcaseXpLabel": "Apprentissage",
+  "showcaseXpValue": "Actif",
+  "showcaseStreak": "4",
+  "showcaseStreakSuffix": "niveaux",
+  "showcaseStreakSub": "Basique, Junior, Senior, PRO",
+  "showcaseBadgeTitle": "Démo prête",
+  "showcaseBadgeSub": "Pour les établissements",
+  "showcaseXpGain": "Commencer",
+  "primaryCTA": "Explorez la série préscolaire",
+  "secondaryCTA": "Demander une démo",
+  "scrollHint": "Faites défiler vers le bas"
+}

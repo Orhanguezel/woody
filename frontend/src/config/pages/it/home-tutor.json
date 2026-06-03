@@ -1,0 +1,69 @@
+{
+  "title": "{{appName}} Tutor domestico",
+  "description": "A casa o a scuola, inizia il viaggio in inglese di tuo figlio con sicurezza. Goditi un'esperienza di apprendimento divertente ed efficace con {{appName}}.",
+  "eyebrow": "{{appName}} SERIE PRESCOLARE",
+  "hero": {
+    "eyebrow": "{{appName}} SERIE PRESCOLARE",
+    "title": "Casa e tutor",
+    "description": "A casa o a scuola, inizia il viaggio in inglese di tuo figlio con sicurezza. Goditi un'esperienza di apprendimento divertente ed efficace con {{appName}}.",
+    "primaryCTA": "Richiedi una dimostrazione",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Trova il tuo livello",
+    "secondaryHref": "/level-finder"
+  },
+  "sections": [
+    {
+      "eyebrow": "Livelli",
+      "title": "Scopri i contenuti della serie attraverso video tutorial",
+      "description": "La serie Home & Tutor è adatta per l'uso individuale da parte di 1–2 persone. Contenuti e giochi sono completamente adattati per l'apprendimento individuale. La serie ha quattro livelli: Base, Junior, Senior e PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Livello base",
+          "description": "Fornisce un buon inizio di inglese con parole di base e frasi semplici."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Livello Junior",
+          "description": "Sviluppa la capacità dei bambini di costruire frasi ed esprimersi."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Livello senior",
+          "description": "Sviluppa la capacità di usare e comprendere l'inglese in modo più fluente."
+        },
+        {
+          "badge": "PRO",
+          "title": "Livello PRO",
+          "description": "Costruisce le basi nella lettura, nella scrittura e nell'inglese accademico."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Esplorare",
+      "title": "Dai uno sguardo più da vicino al sistema",
+      "items": [
+        {
+          "title": "Sistema di valutazione del livello",
+          "description": "Determina in modo rapido e accurato il livello {{appName}} più adatto valutando l'età dello studente, il livello di inglese e lo stato di apprendimento. Raccomanda da quale livello lo studente dovrebbe iniziare sulla base di alcune brevi domande.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Biblioteca digitale",
+          "description": "Una biblioteca digitale dove sfogliare i libri {{appName}}. Visualizza tutti i set in dettaglio e visualizza l'anteprima dei contenuti per avere una chiara comprensione del sistema.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Un'area dove puoi controllare i prezzi attuali dei set {{appName}} ed effettuare ordini online.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Set di inglese per tutor domestico | Lezioni private e a domicilio Istruzione in inglese in età prescolare",
+    "description": "{{appName}} Home Tutor: un set per l'apprendimento dell'inglese in età prescolare per lezioni private o a casa. Un curriculum a 4 livelli (Basic/Junior/Senior/PRO) ad uso genitore + figlio, contenuti digitali inclusi.",
+    "keywords": "Tutor di inglese a casa, lezioni private di inglese a casa, set di inglese prescolare a casa, tutor di Woody a casa, lezioni private di inglese per bambini"
+  }
+}

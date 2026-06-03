@@ -1,0 +1,64 @@
+{
+  "title": "{{appName}} Workshopserie",
+  "description": "Met de workshopserie luisteren kinderen niet alleen naar Engels; ze spelen het, passen het toe en leven ernaar. Bied een levendiger en effectiever leerproces met {{appName}}.",
+  "eyebrow": "{{appName}} WORKSHOPSERIE",
+  "hero": {
+    "eyebrow": "{{appName}} WORKSHOPSERIE",
+    "title": "Werkplaats",
+    "description": "Met de workshopserie luisteren kinderen niet alleen naar Engels; ze spelen het, passen het toe en leven ernaar. Bied een levendiger en effectiever leerproces met {{appName}}.",
+    "primaryCTA": "Vraag een demo aan",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Bekijk prijzen",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveaus",
+      "title": "Ontdek de inhoud van de serie via video-walkthroughs",
+      "description": "De Workshop Serie bestaat uit twee losse sets. Ontdek hun inhoud via video-walkthroughs. De serie heeft vier niveaus: Basic, Junior, Senior en PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basisniveau",
+          "description": "Biedt een sterke start van het Engels met basiswoorden en eenvoudige zinnen."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Juniorniveau",
+          "description": "Ontwikkelt het vermogen van kinderen om zinnen te vormen en zich uit te drukken."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior niveau",
+          "description": "Ontwikkelt het vermogen om Engels vloeiender te gebruiken en te begrijpen."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO-niveau",
+          "description": "Bouwt een basis in lezen, schrijven en academisch Engels."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Ontdekken",
+      "title": "Bekijk het systeem eens nader",
+      "items": [
+        {
+          "title": "{{appName}} Digitale Bibliotheek",
+          "description": "Een digitale bibliotheek waar u door {{appName}}-boeken kunt bladeren. Bekijk alle sets in detail en bekijk een voorbeeld van de inhoud om een ​​duidelijk inzicht te krijgen in het systeem.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Winkel",
+          "description": "Een gebied waar u de huidige prijzen van {{appName}}-sets kunt bekijken en online bestellingen kunt plaatsen.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Workshop Engelse Set | Op workshops gebaseerd voorschools Engels onderwijs",
+    "description": "{{appName}} Workshopserie: een op workshops gebaseerde, praktische leerset voor voorschools Engels. 4 niveaus (Basic/Junior/Senior/PRO), met op spel en drama gerichte activiteiten, kinderen leren Engels door het te beleven.",
+    "keywords": "workshop Engelse set, workshop gebaseerd Engels, workshop Engels voorschools, workshop houtachtig, praktijkgericht Engels onderwijs"
+  }
+}

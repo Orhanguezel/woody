@@ -1,43 +1,43 @@
 {
-  "eyebrow": "Leere Frontend-Vorlage",
+  "eyebrow": "Spielbasiertes Englisch",
   "title": "{{appName}}",
-  "subtitle": "BEREIT · NEUTRAL",
+  "subtitle": "VORSCHULE · CAMBRIDGE-REISE",
   "heroTitleLine1": "{{appName}}",
-  "heroTitleGradient": "Vorlagen-UI.",
-  "headline": "<em>Sauberer Start</em>, flexible Seiten und erhaltene Infrastruktur<br/>— <strong>eine neutrale Basis für Ihre Marke</strong>.",
-  "lead": "{{appName}} bietet einen einfachen Startpunkt mit Inhalt, Konto, Blog, Kontakt und Rechtlichem.",
-  "tagline": "Marke, Inhalte und Produktdetails projektbezogen ergänzen.",
-  "socialProof": "App Router, i18n, Auth, SEO, Theme und State bleiben erhalten.",
+  "heroTitleGradient": "Welt.",
+  "headline": "<em>Englisch durch Spielen</em>, Selbstvertrauen durch Geschichten und Kontinuität durch digitale Inhalte<br/>— <strong>ein komplettes Lernsystem für Vorschulkinder</strong>.",
+  "lead": "{{appName}} vereint physische Materialien, englischsprachige Charaktere, digitale Inhalte und den Cambridge-Ansatz in einem System.",
+  "tagline": "Ein nachverfolgbares Vorschul-Englischmodell für Schulen, Lehrer und Familien.",
+  "socialProof": "Vorschule, Werkstatt, Heimlehrer, digitale Bibliothek und Akademie sind unter einem Dach vereint.",
   "metrics": [
     {
-      "value": "App Router",
-      "label": "Moderne Struktur"
+      "value": "3-6",
+      "label": "Altersspanne"
     },
     {
-      "value": "i18n",
-      "label": "DB-basierte Texte"
+      "value": "4",
+      "label": "Ebenen"
     },
     {
-      "value": "Auth",
-      "label": "Kontofluss"
+      "value": "Cambridge",
+      "label": "Vorbereitungsansatz"
     }
   ],
-  "showcaseTopic": "Vorlagenmodul",
-  "showcaseProgress": "Schritt 1/3",
-  "showcaseQuestion": "Welches Projekt beschreibt dieser Bereich?",
-  "showcaseOptionA": "A) SaaS",
-  "showcaseOptionB": "B) Inhaltsseite",
-  "showcaseOptionC": "C) Portal",
-  "showcaseOptionD": "D) Eigene App",
-  "showcaseXpLabel": "UI",
-  "showcaseXpValue": "Ready",
-  "showcaseStreak": "3",
-  "showcaseStreakSuffix": "Kernbereiche",
-  "showcaseStreakSub": "Inhalt, Konto, Kontakt",
-  "showcaseBadgeTitle": "Vorlage bereit",
-  "showcaseBadgeSub": "Neutraler Start",
-  "showcaseXpGain": "Bereit",
-  "primaryCTA": "Kontakt",
-  "secondaryCTA": "Blog lesen",
-  "scrollHint": "Nach unten"
+  "showcaseTopic": "Level-Reise",
+  "showcaseProgress": "Basic → Junior → Senior → PRO",
+  "showcaseQuestion": "Welche Serie passt zu Ihrer Institution?",
+  "showcaseOptionA": "A) Vorschule",
+  "showcaseOptionB": "B) Werkstatt",
+  "showcaseOptionC": "C) Heimlehrer",
+  "showcaseOptionD": "D) Akademie",
+  "showcaseXpLabel": "Lernen",
+  "showcaseXpValue": "Aktiv",
+  "showcaseStreak": "4",
+  "showcaseStreakSuffix": "Ebenen",
+  "showcaseStreakSub": "Basic, Junior, Senior, PRO",
+  "showcaseBadgeTitle": "Demo bereit",
+  "showcaseBadgeSub": "Für Institutionen",
+  "showcaseXpGain": "Start",
+  "primaryCTA": "Entdecken Sie die Vorschulserie",
+  "secondaryCTA": "Fordern Sie eine Demo an",
+  "scrollHint": "Scrollen Sie nach unten"
 }

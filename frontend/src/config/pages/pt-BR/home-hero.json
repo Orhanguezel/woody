@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Blank frontend template",
+  "title": "{{appName}}",
+  "subtitle": "READY · NEUTRAL",
+  "heroTitleLine1": "{{appName}}",
+  "heroTitleGradient": "template UI.",
+  "headline": "<em>A clean start</em>, flexible pages, and preserved infrastructure<br/>— <strong>a neutral shell ready for your brand</strong>.",
+  "lead": "{{appName}} provides a simple starting point with content, account, blog, contact, and legal pages.",
+  "tagline": "Fill brand, content, and product details for your project.",
+  "socialProof": "App Router, i18n, auth, SEO, theme, and state foundations remain in place.",
+  "metrics": [
+    {
+      "value": "App Router",
+      "label": "Modern structure"
+    },
+    {
+      "value": "i18n",
+      "label": "DB-driven copy"
+    },
+    {
+      "value": "Auth",
+      "label": "Account flow"
+    }
+  ],
+  "showcaseTopic": "Template module",
+  "showcaseProgress": "Step 1/3",
+  "showcaseQuestion": "Which project will this area describe?",
+  "showcaseOptionA": "A) SaaS",
+  "showcaseOptionB": "B) Content site",
+  "showcaseOptionC": "C) Portal",
+  "showcaseOptionD": "D) Custom app",
+  "showcaseXpLabel": "UI",
+  "showcaseXpValue": "Ready",
+  "showcaseStreak": "3",
+  "showcaseStreakSuffix": "core areas",
+  "showcaseStreakSub": "Content, account, contact",
+  "showcaseBadgeTitle": "Template ready",
+  "showcaseBadgeSub": "Neutral start",
+  "showcaseXpGain": "Ready",
+  "primaryCTA": "Contact us",
+  "secondaryCTA": "Read the blog",
+  "scrollHint": "Scroll down"
+}

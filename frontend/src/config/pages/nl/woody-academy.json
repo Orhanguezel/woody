@@ -1,0 +1,65 @@
+{
+  "title": "{{appName}} Academie",
+  "description": "{{appName}} Academy brengt het Cambridge-certificeringsproces voor studenten en het lerarenontwikkelingsprogramma (TKT) samen onder één dak.",
+  "eyebrow": "ZZAPPNAAMTOKENZZ ACADEMIE",
+  "hero": {
+    "eyebrow": "ZZAPPNAAMTOKENZZ ACADEMIE",
+    "title": "{{appName}} Academie",
+    "description": "{{appName}} Academy brengt het Cambridge-certificeringsproces voor studenten en het lerarenontwikkelingsprogramma (TKT) samen onder één dak."
+  },
+  "sections": [
+    {
+      "eyebrow": "Student",
+      "title": "Cambridge-certificeringsproces",
+      "description": "In het {{appName}} Preschool-systeem worden studenten, na voltooiing van de Basic-, Junior- en Senior-serie, ingeschreven voor het {{appName}} Academy-programma. Deze fase is de kritieke periode waarin de student het Engels naar een hoger niveau brengt en zich voorbereidt op het internationale certificeringsproces. Studenten die het {{appName}} Academy-proces voltooien, verdienen het recht om Cambridge English-examens af te leggen. Deze examens meten de luister-, spreek-, lees- en schrijfvaardigheid en beoordelen het taalniveau van de student aan de hand van internationale normen.",
+      "items": [
+        {
+          "title": "Onderwijsmodel",
+          "description": "Tijdens het {{appName}} Academy-proces worden lessen gegeven door docenten Engels van de {{appName}} Academy via een online platform. Studenten krijgen onderwijs via een één-op-één privélesmodel, ondersteund door fysiek materiaal uit de Pro Series.",
+          "features": [
+            "Er wordt gezorgd voor studentspecifieke voortgang",
+            "Gaten worden snel opgevuld",
+            "Actieve deelname en spreekoefeningen nemen toe",
+            "Het leerproces is geïndividualiseerd"
+          ]
+        },
+        {
+          "title": "Certificeringsproces",
+          "description": "Studenten die het programma voltooien, leggen het Cambridge-examen af, ontvangen hun certificaat als ze succesvol zijn en verkrijgen een internationaal erkend document. Resultaat: {{appName}} Academy structureert het post-afstudeerproces, ontwikkelt de student academisch en maakt deze vooruitgang tastbaar met een Cambridge certificaat."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Docent",
+      "title": "Ontwikkelingsprogramma (TKT)",
+      "description": "In het kader van de {{appName}} Academy worden alle schooldocenten die het {{appName}}-systeem gebruiken automatisch ingeschreven voor het lerarenontwikkelingsprogramma. Voor dit programma is geen aparte aanvraag nodig. Iedere docent die het systeem gebruikt, doet direct en kosteloos mee. Het programma is gestructureerd op basis van het internationaal erkende Cambridge English TKT-model (Teaching Knowledge Test).",
+      "items": [
+        {
+          "title": "Cambridge TKT-gebaseerd trainingsproces",
+          "description": "In dit proces structureren leraren het taalonderwijs volgens internationale normen.",
+          "features": [
+            "Leer methoden voor taalonderwijs",
+            "Pas op spel gebaseerde lestechnieken toe",
+            "Ontwikkel vaardigheden op het gebied van klassenmanagement",
+            "Hanteer een systematische lesplanningsaanpak"
+          ]
+        },
+        {
+          "title": "Het voordeel dat het systeem biedt",
+          "description": "Leraren die het trainingsprogramma voltooien, kunnen het Cambridge TKT-examen afleggen en, indien succesvol, hun internationaal erkende certificaat ontvangen.",
+          "features": [
+            "Alle docenten worden automatisch in het systeem opgenomen",
+            "Professionele ontwikkeling wordt aangeboden zonder extra kosten",
+            "De onderwijskwaliteit wordt binnen de instelling gestandaardiseerd",
+            "Er wordt een internationaal erkend ontwikkelingsproces aangeboden"
+          ]
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Academie | Cambridge-certificering en lerarenontwikkelingsprogramma",
+    "description": "{{appName}} Academy: een Cambridge English-certificeringsproces voor studenten en een op Cambridge TKT gebaseerd ontwikkelingsprogramma voor docenten. Internationaal erkende certificaten.",
+    "keywords": "woody academy, Cambridge certificaat, Cambridge tkt, lerarenontwikkelingsprogramma, Cambridge Engels examen, Engels lerarencertificaat"
+  }
+}

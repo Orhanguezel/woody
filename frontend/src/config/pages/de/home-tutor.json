@@ -1,0 +1,69 @@
+{
+  "title": "{{appName}} Heimlehrer",
+  "description": "Ob zu Hause oder in der Schule, beginnen Sie die Englischreise Ihres Kindes mit Zuversicht. Genießen Sie eine unterhaltsame und effektive Lernerfahrung mit {{appName}}.",
+  "eyebrow": "{{appName}} VORSCHULREIHE",
+  "hero": {
+    "eyebrow": "{{appName}} VORSCHULREIHE",
+    "title": "Zuhause & Nachhilfe",
+    "description": "Ob zu Hause oder in der Schule, beginnen Sie die Englischreise Ihres Kindes mit Zuversicht. Genießen Sie eine unterhaltsame und effektive Lernerfahrung mit {{appName}}.",
+    "primaryCTA": "Fordern Sie eine Demo an",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Finden Sie Ihr Niveau",
+    "secondaryHref": "/level-finder"
+  },
+  "sections": [
+    {
+      "eyebrow": "Ebenen",
+      "title": "Entdecken Sie den Inhalt der Serie anhand von Video-Komplettlösungen",
+      "description": "Die Home & Tutor-Serie ist für die individuelle Nutzung durch 1–2 Personen geeignet. Inhalte und Spiele sind vollständig auf das Lernen im Einzelunterricht abgestimmt. Die Serie umfasst vier Level: Basic, Junior, Senior und PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Grundstufe",
+          "description": "Bietet einen guten Einstieg in die englische Sprache mit einfachen Wörtern und einfachen Sätzen."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior-Level",
+          "description": "Fördert die Fähigkeit der Kinder, Sätze zu bilden und sich auszudrücken."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Oberstufe",
+          "description": "Fördert die Fähigkeit, Englisch flüssiger zu verwenden und zu verstehen."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO-Level",
+          "description": "Schafft eine Grundlage in Lesen, Schreiben und akademischem Englisch."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Erkunden",
+      "title": "Schauen Sie sich das System genauer an",
+      "items": [
+        {
+          "title": "Level-Bewertungssystem",
+          "description": "Bestimmt schnell und genau das am besten geeignete {{appName}}-Niveau, indem das Alter, das Englischniveau und der Lernstatus des Schülers beurteilt werden. Empfiehlt anhand einiger kurzer Fragen, mit welchem ​​Niveau der Schüler beginnen sollte.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Digitale Bibliothek",
+          "description": "Eine digitale Bibliothek, in der Sie {{appName}}-Bücher durchsuchen können. Sehen Sie sich alle Sets im Detail an und zeigen Sie den Inhalt in der Vorschau an, um ein klares Verständnis des Systems zu erhalten.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Ein Bereich, in dem Sie die aktuellen Preise der {{appName}}-Sets überprüfen und Online-Bestellungen aufgeben können.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Home Tutor Englisch-Set | Heim- und Privatunterricht im Vorschul-Englischunterricht",
+    "description": "{{appName}} Home Tutor: ein Englisch-Lernset für Vorschulkinder für den Heim- oder Privatunterricht. Ein 4-stufiger Lehrplan (Basic/Junior/Senior/PRO) für Eltern und Kinder, einschließlich digitaler Inhalte.",
+    "keywords": "Nachhilfe für Englisch zu Hause, Privatunterricht für Englisch zu Hause, Englisch-Set für Vorschulkinder, Woody-Nachhilfe für zu Hause, Privatunterricht für Kinder in Englisch"
+  }
+}

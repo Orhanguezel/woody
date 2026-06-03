@@ -1,0 +1,46 @@
+{
+  "title": "Benvenuto nel mondo {{appName}}",
+  "description": "{{appName}} è un modello di apprendimento dell'inglese in età prescolare che riunisce materiali fisici, personaggi di lingua inglese, contenuti digitali e l'approccio Cambridge in un unico sistema.",
+  "eyebrow": "Apprendimento basato sul gioco",
+  "hero": {
+    "eyebrow": "Apprendimento basato sul gioco",
+    "title": "Benvenuto nel mondo {{appName}}",
+    "description": "{{appName}} è un modello di apprendimento dell'inglese in età prescolare che riunisce materiali fisici, personaggi di lingua inglese, contenuti digitali e l'approccio Cambridge in un unico sistema.",
+    "primaryCTA": "Esplora la serie prescolare",
+    "primaryHref": "/preschool",
+    "secondaryCTA": "Richiedi una dimostrazione",
+    "secondaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Set per tutte le età",
+      "title": "Quale set {{appName}} è adatto a te?",
+      "description": "Scegli il set {{appName}} più adatto al tuo istituto o caso d'uso. Ogni set è appositamente strutturato per le diverse esigenze. Sviluppa competenze linguistiche attraverso il gioco strutturato, attività coinvolgenti e ricchi contenuti digitali.",
+      "items": [
+        {
+          "badge": "Per le aule",
+          "title": "Serie prescolare",
+          "description": "Progettato per aule di grandi dimensioni, scuole e asili. Contenuti e giochi sono strutturati per la gestione della classe, adatti a gruppi numerosi. Offre un modello in cui l'intera classe può partecipare attivamente contemporaneamente.",
+          "href": "/preschool"
+        },
+        {
+          "badge": "Per piccoli gruppi",
+          "title": "Officina",
+          "description": "Progettato per piccoli gruppi di 3-5 persone. Contenuti e giochi sono organizzati per un'interazione più intensa e una partecipazione individuale. Offre una struttura applicativa più mirata e veloce.",
+          "href": "/workshop"
+        },
+        {
+          "badge": "Uso individuale",
+          "title": "Tutor domestico / Serie domestica",
+          "description": "Adatto per uso individuale da 1 a 2 persone. Contenuti e giochi sono completamente adattati per l'apprendimento individuale. Fornisce progressi specifici per il bambino e la massima attenzione.",
+          "href": "/home-tutor"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Set per l'apprendimento dell'inglese in età prescolare | Inglese per la prima infanzia basato sul gioco",
+    "description": "Lascia che i tuoi figli imparino divertendosi con un sistema di apprendimento dell'inglese prescolare. Scopri set di apprendimento basati sul gioco, richieste di demo e pacchetti convenienti.",
+    "keywords": "Programma di inglese prescolare Turchia, inglese per la prima infanzia basato sul gioco, set di apprendimento dell'inglese prescolare, educazione inglese per la prima infanzia, sistema di preparazione Cambridge, inglese per bambini, programma di inglese per bambini dai 3 ai 6 anni"
+  }
+}

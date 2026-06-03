@@ -1,0 +1,38 @@
+{
+  "title": "{{appName}} Digital Library",
+  "description": "A {{appName}} Digital Library é uma área de biblioteca digital onde as instituições podem analisar previamente o conteúdo dos conjuntos educacionais.",
+  "eyebrow": "{{appName}} DIGITAL LIBRARY",
+  "hero": {
+    "eyebrow": "{{appName}} DIGITAL LIBRARY",
+    "title": "O que é a {{appName}} Digital Library?",
+    "description": "A {{appName}} Digital Library é uma área de biblioteca digital onde as instituições podem analisar previamente o conteúdo dos conjuntos educacionais. Por meio dessa plataforma, é possível visualizar em detalhes tanto os livros do professor quanto os do aluno. Ao examinar as unidades, a estrutura do conteúdo e os resultados de aprendizagem, você pode ver claramente como o sistema progride. A {{appName}} Digital Library oferece às instituições uma oportunidade de análise transparente antes da compra e a chance de avaliar todo o modelo educacional com clareza."
+  },
+  "sections": [
+    {
+      "eyebrow": "Níveis",
+      "title": "Biblioteca Digital por Nível",
+      "items": [
+        {
+          "badge": "Basic Level",
+          "title": "{{appName}} Digital Library – Basic Level",
+          "description": "A Biblioteca Digital do Basic Level é uma área de biblioteca digital onde os livros do professor e do aluno de nível iniciante podem ser analisados. As instituições podem avaliar claramente o sistema ao ver previamente a estrutura do conteúdo e os resultados de aprendizagem."
+        },
+        {
+          "badge": "Junior Level",
+          "title": "{{appName}} Digital Library – Junior Level",
+          "description": "A Biblioteca Digital do Junior Level é uma área de biblioteca digital onde é possível analisar o conteúdo que desenvolve a capacidade dos alunos de construir frases e as habilidades básicas de comunicação. As instituições podem ver claramente a estrutura progressiva do sistema ao examinar os livros do professor e do aluno deste nível."
+        },
+        {
+          "badge": "Senior Level",
+          "title": "{{appName}} Digital Library – Senior Level",
+          "description": "A Biblioteca Digital do Senior Level é uma área de biblioteca digital onde é possível analisar o conteúdo de nível avançado — no qual os alunos se comunicam fluentemente e combinam estruturas. As instituições podem avaliar os resultados de alto nível do programa e a estrutura voltada à comunicação ao examinar os livros do professor e do aluno."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Digital Library | Analise o Conteúdo do Conjunto Educacional",
+    "description": "A {{appName}} Digital Library é uma biblioteca digital onde as instituições podem analisar de forma transparente os livros do professor e do aluno antes da compra. Níveis Basic, Junior e Senior.",
+    "keywords": "woody digital library, biblioteca digital, livro de inglês para educação infantil, livro do professor, análise do livro do aluno"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Welkom bij de {{appName}}-wereld",
+  "description": "{{appName}} is een Engels leermodel voor kleuters dat fysieke materialen, Engelssprekende karakters, digitale inhoud en de Cambridge-aanpak samenbrengt in één systeem.",
+  "eyebrow": "Spelenderwijs leren",
+  "hero": {
+    "eyebrow": "Spelenderwijs leren",
+    "title": "Welkom bij de {{appName}}-wereld",
+    "description": "{{appName}} is een Engels leermodel voor kleuters dat fysieke materialen, Engelssprekende karakters, digitale inhoud en de Cambridge-aanpak samenbrengt in één systeem.",
+    "primaryCTA": "Ontdek de Preschool-serie",
+    "primaryHref": "/preschool",
+    "secondaryCTA": "Vraag een demo aan",
+    "secondaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Sets voor alle leeftijden",
+      "title": "Welke {{appName}}-set is voor jou?",
+      "description": "Kies de {{appName}}-set die het beste bij uw instelling of gebruikssituatie past. Elke set is speciaal ontworpen voor verschillende behoeften. Het bouwt taalvaardigheden op door gestructureerd spel, boeiende activiteiten en rijke digitale inhoud.",
+      "items": [
+        {
+          "badge": "Voor klaslokalen",
+          "title": "Voorschoolse serie",
+          "description": "Ontworpen voor grote klaslokalen, scholen en kleuterscholen. Inhoud en games zijn gestructureerd voor klasmanagement, geschikt voor grote groepen. Biedt een model waarbij de hele klas tegelijkertijd actief kan deelnemen.",
+          "href": "/preschool"
+        },
+        {
+          "badge": "Voor kleine groepen",
+          "title": "Werkplaats",
+          "description": "Ontworpen voor kleine groepen van 3-5 personen. Content en games zijn ingericht voor intensievere interactie en individuele participatie. Biedt een meer gerichte en snelle applicatiestructuur.",
+          "href": "/workshop"
+        },
+        {
+          "badge": "Individueel gebruik",
+          "title": "Thuisleraar / Thuisserie",
+          "description": "Geschikt voor individueel gebruik door 1-2 personen. Inhoud en games zijn volledig aangepast voor één-op-één leren. Biedt kindspecifieke voortgang en maximale aandacht.",
+          "href": "/home-tutor"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Voorschoolse Engelse leerset | Spelenderwijs Engels voor jonge kinderen",
+    "description": "Laat uw kinderen leren terwijl ze plezier hebben met een voorschools Engels leersysteem. Ontdek speelgebaseerde leersets, demo-aanvragen en betaalbare pakketten.",
+    "keywords": "Engels voorschools programma Turkije, spelend Engels voor jonge kinderen, Engels voorschoolse leerset, Engels voor jonge kinderen, Cambridge voorbereidingssysteem, Engels voor kinderen, Engels programma voor kinderen van 3 tot 6 jaar"
+  }
+}

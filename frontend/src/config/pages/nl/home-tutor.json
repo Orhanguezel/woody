@@ -1,0 +1,69 @@
+{
+  "title": "{{appName}} Thuisdocent",
+  "description": "Of u nu thuis of op school bent, begin met vertrouwen aan de Engelse reis van uw kind. Geniet van een leuke en effectieve leerervaring met {{appName}}.",
+  "eyebrow": "{{appName}} PRESCHOOL-SERIE",
+  "hero": {
+    "eyebrow": "{{appName}} PRESCHOOL-SERIE",
+    "title": "Thuis en docent",
+    "description": "Of u nu thuis of op school bent, begin met vertrouwen aan de Engelse reis van uw kind. Geniet van een leuke en effectieve leerervaring met {{appName}}.",
+    "primaryCTA": "Vraag een demo aan",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Vind uw niveau",
+    "secondaryHref": "/level-finder"
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveaus",
+      "title": "Ontdek de inhoud van de serie via video-walkthroughs",
+      "description": "De Home & Tutor-serie is geschikt voor individueel gebruik door 1-2 personen. Inhoud en games zijn volledig aangepast voor één-op-één leren. De serie heeft vier niveaus: Basic, Junior, Senior en PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basisniveau",
+          "description": "Biedt een sterke start van het Engels met basiswoorden en eenvoudige zinnen."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Juniorniveau",
+          "description": "Ontwikkelt het vermogen van kinderen om zinnen te vormen en zich uit te drukken."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior niveau",
+          "description": "Ontwikkelt het vermogen om Engels vloeiender te gebruiken en te begrijpen."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO-niveau",
+          "description": "Bouwt een basis in lezen, schrijven en academisch Engels."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Ontdekken",
+      "title": "Bekijk het systeem eens nader",
+      "items": [
+        {
+          "title": "Niveaubeoordelingssysteem",
+          "description": "Bepaalt snel en nauwkeurig het meest geschikte {{appName}}-niveau door de leeftijd, het Engelse niveau en de leerstatus van de student te beoordelen. Beveelt aan vanaf welk niveau de student moet beginnen op basis van een paar korte vragen.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Digitale Bibliotheek",
+          "description": "Een digitale bibliotheek waar u door {{appName}}-boeken kunt bladeren. Bekijk alle sets in detail en bekijk een voorbeeld van de inhoud om een ​​duidelijk inzicht te krijgen in het systeem.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Winkel",
+          "description": "Een gebied waar u de huidige prijzen van {{appName}}-sets kunt bekijken en online bestellingen kunt plaatsen.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Home Bijlesdocent Engels Set | Thuis- en privéles Engels voorschools onderwijs",
+    "description": "{{appName}} Home Tutor: een voorschoolse leerset voor Engels voor thuis- of privélessen. Een curriculum met 4 niveaus (Basic/Junior/Senior/PRO) voor gebruik door ouder en kind, inclusief digitale inhoud.",
+    "keywords": "thuisleraar Engels, privéles Engels aan huis, voorschoolse Engelse thuisset, Woody thuisleraar, privéles Engels voor kinderen"
+  }
+}

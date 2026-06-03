@@ -1,0 +1,36 @@
+{
+  "eyebrow": "À propos de {{appName}}",
+  "title": "Un modèle d'interface simple et extensible pour les nouveaux projets.",
+  "lead": "{{appName}} est un shell d'application Web neutre préparé pour le contenu ultérieur de la marque et du domaine.",
+  "founderTitle": "Point de départ",
+  "founderParagraphs": [
+    "Ce modèle fournit une base frontale réutilisable.",
+    "Les décisions spécifiques au projet sont prises ultérieurement dans les couches de contenu, de conception et d'intégration."
+  ],
+  "methodologyTitle": "Approche",
+  "methodologyParagraphs": [
+    "L'infrastructure reste en place tandis que la copie de domaine et les flux commerciaux sont effacés par défaut.",
+    "Un nouveau projet peut s'appuyer sur ce shell avec sa propre architecture d'informations et ses propres sources de contenu."
+  ],
+  "experienceTitle": "Portée",
+  "experienceParagraphs": [
+    "L'accueil, le blog, le contact, la FAQ, le compte, les pages juridiques, le thème et les fondations SEO restent.",
+    "Le nom de la marque est géré via env et le jeton AppName."
+  ],
+  "differentiatorsTitle": "Pourquoi {{appName}} ?",
+  "differentiators": [
+    {
+      "title": "Copie neutre",
+      "body": "Le texte par défaut est indépendant du projet."
+    },
+    {
+      "title": "Coquille conservée",
+      "body": "Les fondations de routage, d'authentification, i18n et thématiques restent utilisables."
+    },
+    {
+      "title": "Adaptation facile",
+      "body": "Le contenu du nouveau domaine peut provenir d'enregistrements DB ou CMS."
+    }
+  ],
+  "authorBio": "Le contenu de {{appName}} est préparé pour être complété par les équipes de projet avec leurs propres décisions en matière de marque et de produit."
+}

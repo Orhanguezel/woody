@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Flusso di apprendimento",
+  "titleBefore": "Come bambini",
+  "titleAccent": "andare avanti",
+  "lead": "Ogni serie progredisce con materiali adatti all'età, gioco, ripetizione e supporto digitale.",
+  "steps": [
+    {
+      "icon": "bookOpen",
+      "title": "Scegli il livello",
+      "desc": "Basic, Junior, Senior o PRO vengono selezionati in base all'età, alla struttura della classe e agli obiettivi di apprendimento."
+    },
+    {
+      "icon": "playCircle",
+      "title": "Applicare attraverso il gioco",
+      "desc": "I set dell'insegnante, i materiali degli studenti, le canzoni e le storie vengono utilizzati insieme in classe."
+    },
+    {
+      "icon": "chartColumn",
+      "title": "Continua in digitale",
+      "desc": "La biblioteca, i contenuti digitali e il flusso accademico trasportano l’apprendimento nei processi doposcuola."
+    }
+  ]
+}

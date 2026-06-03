@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "level": "basic",
+      "product": "storyland",
+      "title": "Historia BÁSICA",
+      "description": "16 historias en vídeo interactivas",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/basic/storyland"
+    },
+    {
+      "level": "basic",
+      "product": "movieland",
+      "title": "Tierra de cine BÁSICA",
+      "description": "8 vídeos",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/basic/movieland"
+    },
+    {
+      "level": "basic",
+      "product": "musicland",
+      "title": "Música BÁSICA",
+      "description": "8 canciones",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/basic/musicland"
+    },
+    {
+      "level": "basic",
+      "product": "library",
+      "title": "Biblioteca BÁSICA",
+      "description": "Contenido del libro próximamente",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/basic/library"
+    },
+    {
+      "level": "junior",
+      "product": "storyland",
+      "title": "JUNIOR Tierra de cuentos",
+      "description": "16 historias en vídeo interactivas",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/junior/storyland"
+    },
+    {
+      "level": "junior",
+      "product": "movieland",
+      "title": "Tierra de cine JUNIOR",
+      "description": "8 vídeos",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/junior/movieland"
+    },
+    {
+      "level": "junior",
+      "product": "musicland",
+      "title": "JUNIOR Tierra de la música",
+      "description": "8 canciones",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/junior/musicland"
+    },
+    {
+      "level": "junior",
+      "product": "library",
+      "title": "Biblioteca JUNIOR",
+      "description": "Contenido del libro próximamente",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/junior/library"
+    },
+    {
+      "level": "senior",
+      "product": "storyland",
+      "title": "Historia Senior",
+      "description": "16 historias en vídeo interactivas",
+      "count": 16,
+      "protected": true,
+      "color": "#F5C518",
+      "href": "/digital-content/senior/storyland"
+    },
+    {
+      "level": "senior",
+      "product": "movieland",
+      "title": "Cine senior",
+      "description": "8 vídeos",
+      "count": 8,
+      "protected": true,
+      "color": "#DC2626",
+      "href": "/digital-content/senior/movieland"
+    },
+    {
+      "level": "senior",
+      "product": "musicland",
+      "title": "SENIOR Tierra de la música",
+      "description": "8 canciones",
+      "count": 8,
+      "protected": false,
+      "color": "#6B21A8",
+      "href": "/digital-content/senior/musicland"
+    },
+    {
+      "level": "senior",
+      "product": "library",
+      "title": "Biblioteca MAYOR",
+      "description": "Contenido del libro próximamente",
+      "count": 0,
+      "protected": true,
+      "color": "#92400E",
+      "href": "/digital-content/senior/library"
+    }
+  ]
+}

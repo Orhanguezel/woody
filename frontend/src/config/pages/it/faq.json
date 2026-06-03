@@ -1,0 +1,161 @@
+{
+  "title": "Domande frequenti",
+  "description": "Le domande più frequenti sull'insegnamento dell'inglese in età prescolare e sul sistema {{appName}}.",
+  "eyebrow": "FAQ",
+  "hero": {
+    "eyebrow": "FAQ",
+    "title": "Domande frequenti",
+    "description": "Domande e risposte frequenti sull'insegnamento dell'inglese in età prescolare e sul sistema {{appName}}."
+  },
+  "items": [
+    {
+      "question": "Perché è necessario un set didattico di inglese in età prescolare?",
+      "problem": "Il problema più grande nelle scuole dell’infanzia è che le lezioni di inglese variano da insegnante a insegnante e non progrediscono secondo un sistema standard.",
+      "solution": "{{appName}} offre un set didattico di inglese pianificato, basato sul gioco e applicabile per le scuole dell'infanzia, in modo che le lezioni progrediscano in modo sistematico anziché casuale.",
+      "answer": "{{appName}} offre un set didattico di inglese pianificato, basato sul gioco e applicabile per le scuole dell'infanzia, in modo che le lezioni progrediscano in modo sistematico anziché casuale."
+    },
+    {
+      "question": "Perché l’insegnamento dell’inglese in età prescolare non dura nella maggior parte degli istituti?",
+      "problem": "Poiché molti programmi progrediscono attraverso la memorizzazione, il gioco, la ripetizione e il supporto visivo adeguati all'età non vengono utilizzati abbastanza.",
+      "solution": "{{appName}} supporta l'insegnamento dell'inglese in età prescolare con giochi, movimenti, ripetizioni, storie e canzoni in modo che il bambino acquisisca la lingua in modo naturale.",
+      "answer": "{{appName}} supporta l'insegnamento dell'inglese in età prescolare con giochi, movimenti, ripetizioni, storie e canzoni in modo che il bambino acquisisca la lingua in modo naturale."
+    },
+    {
+      "question": "Perché le istituzioni hanno difficoltà nella scelta del percorso formativo in inglese?",
+      "problem": "Perché ci sono molti contenuti sul mercato, ma la maggior parte rimane solo un libro o non offre all'insegnante un flusso di applicazione chiaro.",
+      "solution": "{{appName}} non si limita a fornire materiali; offre un sistema completo che semplifica l'applicazione da parte dell'insegnante e può essere realmente utilizzato in classe.",
+      "answer": "{{appName}} non si limita a fornire materiali; offre un sistema completo che semplifica l'applicazione da parte dell'insegnante e può essere realmente utilizzato in classe."
+    },
+    {
+      "question": "Perché un programma di educazione all’inglese per la scuola materna dovrebbe essere diverso?",
+      "problem": "La fascia di età della scuola materna ha una capacità di attenzione più breve, quindi contenuti più densi e strutturati in modo classico non sono efficienti.",
+      "solution": "{{appName}} offre un sistema inglese supportato da flussi più semplici, più visivi, più dinamici e più brevi per le fasce di età più giovani.",
+      "answer": "{{appName}} offre un sistema inglese supportato da flussi più semplici, più visivi, più dinamici e più brevi per le fasce di età più giovani."
+    },
+    {
+      "question": "Qual è il divario più grande nei set di istruzione in inglese in età prescolare?",
+      "problem": "In molti set il sistema di ripetizione è debole. Il bambino vede una parola ma può dimenticarla senza ripeterla abbastanza.",
+      "solution": "In {{appName}}, parole e strutture compaiono ripetutamente all'interno di giochi, storie, canzoni e attività, rendendo l'apprendimento permanente.",
+      "answer": "In {{appName}}, parole e strutture compaiono ripetutamente all'interno di giochi, storie, canzoni e attività, rendendo l'apprendimento permanente."
+    },
+    {
+      "question": "Perché l’insegnamento dell’inglese dai 3 ai 6 anni richiede un approccio speciale?",
+      "problem": "A questa età i bambini imparano attraverso l’esperienza, non attraverso le regole. Con il metodo sbagliato il bambino potrebbe disimpegnarsi dalla lezione.",
+      "solution": "{{appName}} costruisce una struttura speciale adatta alla capacità di attenzione, al ritmo di apprendimento e al naturale processo di acquisizione dei bambini dai 3 ai 6 anni.",
+      "answer": "{{appName}} costruisce una struttura speciale adatta alla capacità di attenzione, al ritmo di apprendimento e al naturale processo di acquisizione dei bambini dai 3 ai 6 anni."
+    },
+    {
+      "question": "Qual è il problema più grande nei set didattici in inglese a 3 anni?",
+      "problem": "I contenuti per la fascia di età di 3 anni sono spesso preparati in modo troppo denso o troppo lungo per la loro capacità di attenzione.",
+      "solution": "{{appName}} rende il processo accessibile a partire dai 3 anni con attività più brevi, più divertenti, più visive e più incentrate sul vocabolario di base.",
+      "answer": "{{appName}} rende il processo accessibile a partire dai 3 anni con attività più brevi, più divertenti, più visive e più incentrate sul vocabolario di base."
+    },
+    {
+      "question": "Perché un set didattico di inglese per bambini di 4 anni deve essere preparato con attenzione?",
+      "problem": "All'età di 4 anni il bambino è molto aperto all'imitazione del linguaggio, ma impara ancora attraverso la ripetizione divertente piuttosto che con la teoria intensiva.",
+      "solution": "{{appName}} rende l'inglese più naturale e più forte con storie, giochi, canzoni e flussi di ripetizione adatti alla fascia di età di 4 anni.",
+      "answer": "{{appName}} rende l'inglese più naturale e più forte con storie, giochi, canzoni e flussi di ripetizione adatti alla fascia di età di 4 anni."
+    },
+    {
+      "question": "Quale problema appare nei set di istruzione inglese di 5 anni?",
+      "problem": "A questa età il bambino può partecipare di più, ma se il sistema è debole le strutture apprese rimangono disperse.",
+      "solution": "{{appName}} riunisce vocabolario, schemi brevi e uso attivo in classe in modo pianificato per la fascia di età di 5 anni.",
+      "answer": "{{appName}} riunisce vocabolario, schemi brevi e uso attivo in classe in modo pianificato per la fascia di età di 5 anni."
+    },
+    {
+      "question": "Perché un insieme di istruzione inglese per bambini di 6 anni richiede una struttura più forte?",
+      "problem": "Un bambino che raggiunge i 6 anni è pronto per un flusso linguistico più ordinato, ma se si perde la logica prescolare la lezione può diventare noiosa.",
+      "solution": "{{appName}} preserva la struttura basata sul gioco all'età di 6 anni e prepara il bambino al livello successivo con un flusso di argomenti più forte.",
+      "answer": "{{appName}} preserva la struttura basata sul gioco all'età di 6 anni e prepara il bambino al livello successivo con un flusso di argomenti più forte."
+    },
+    {
+      "question": "Perché la domanda su come insegnare l'inglese in età prescolare è così importante?",
+      "problem": "Perché con la risposta sbagliata la lezione smette di essere uno spazio naturale di apprendimento e si trasforma in una lezione forzata per il bambino.",
+      "solution": "In {{appName}}, l'inglese viene insegnato attraverso il gioco, il movimento, la ripetizione, le immagini, le storie e le canzoni. Il bambino impara la lingua sperimentandola.",
+      "answer": "In {{appName}}, l'inglese viene insegnato attraverso il gioco, il movimento, la ripetizione, le immagini, le storie e le canzoni. Il bambino impara la lingua sperimentandola."
+    },
+    {
+      "question": "Perché è necessario un programma di lezioni di inglese prescolare?",
+      "problem": "Le lezioni non pianificate dipendono dall'energia dell'insegnante e creano differenze di qualità da un istituto all'altro.",
+      "solution": "{{appName}} offre un flusso di lezione sistematico che guida l'insegnante, quindi la lezione di inglese procede in modo più controllato, efficiente e professionale.",
+      "answer": "{{appName}} offre un flusso di lezione sistematico che guida l'insegnante, quindi la lezione di inglese procede in modo più controllato, efficiente e professionale."
+    },
+    {
+      "question": "Perché il programma di inglese prescolare non è diffuso in molte scuole?",
+      "problem": "Perché c'è un programma ma nessuna applicazione; ci sono materiali ma nessun sistema.",
+      "solution": "{{appName}} non lascia il programma come semplice struttura scritta. Lo trasforma in un modello che può essere realmente applicato in classe.",
+      "answer": "{{appName}} non lascia il programma come semplice struttura scritta. Lo trasforma in un modello che può essere realmente applicato in classe."
+    },
+    {
+      "question": "Perché gli argomenti di inglese prescolare devono essere scelti correttamente?",
+      "problem": "Quando la scelta degli argomenti è distante dalla vita quotidiana del bambino, l'apprendimento si indebolisce.",
+      "solution": "{{appName}} presenta argomenti fondamentali che hanno una controparte nella vita dei bambini, in un ordine appropriato all'età, creando un apprendimento significativo.",
+      "answer": "{{appName}} presenta argomenti fondamentali che hanno una controparte nella vita dei bambini, in un ordine appropriato all'età, creando un apprendimento significativo."
+    },
+    {
+      "question": "Qual è l’errore più comune quando si prepara un programma di inglese prescolare?",
+      "problem": "Dare troppi argomenti ma non creare abbastanza ripetizioni e spazio per le applicazioni.",
+      "solution": "{{appName}} procede con pochi ma corretti gol. Lo scopo non è accumulare argomenti, ma costruire basi solide.",
+      "answer": "{{appName}} procede con pochi ma corretti gol. Lo scopo non è accumulare argomenti, ma costruire basi solide."
+    },
+    {
+      "question": "Perché è necessaria un’istruzione inglese basata sul gioco?",
+      "problem": "Perché i bambini imparano meglio giocando. Senza gioco l’attenzione cala e la partecipazione diminuisce.",
+      "solution": "{{appName}} pone l'educazione inglese basata sul gioco al centro del sistema, in modo che il bambino partecipi alla lezione volontariamente, non forzatamente.",
+      "answer": "{{appName}} pone l'educazione inglese basata sul gioco al centro del sistema, in modo che il bambino partecipi alla lezione volontariamente, non forzatamente."
+    },
+    {
+      "question": "Perché le storie in inglese in età prescolare sono importanti?",
+      "problem": "Nei sistemi senza storie, il bambino non può sentire la lingua nel contesto e l’apprendimento rimane meccanico.",
+      "solution": "{{appName}} presenta parole e strutture nel contesto attraverso storie. Il bambino non si limita a sentire l'inglese, ma gli dà un senso.",
+      "answer": "{{appName}} presenta parole e strutture nel contesto attraverso storie. Il bambino non si limita a sentire l'inglese, ma gli dà un senso."
+    },
+    {
+      "question": "Perché le storie in inglese in età prescolare sono uno strumento efficace?",
+      "problem": "Perché quando un bambino impara insieme a personaggi, eventi e immagini, ricorda la lingua in modo più forte.",
+      "solution": "{{appName}} supporta il legame emotivo del bambino e l'acquisizione del linguaggio più permanente con una struttura della storia basata sui personaggi.",
+      "answer": "{{appName}} supporta il legame emotivo del bambino e l'acquisizione del linguaggio più permanente con una struttura della storia basata sui personaggi."
+    },
+    {
+      "question": "Perché le canzoni inglesi dovrebbero essere usate nella scuola materna?",
+      "problem": "Nei sistemi senza canzoni mancano le dimensioni del ritmo, della ripetizione e del divertimento.",
+      "solution": "{{appName}} rende le canzoni inglesi una parte naturale della lezione, rafforzando la pronuncia, la ripetizione e l'energia della classe.",
+      "answer": "{{appName}} rende le canzoni inglesi una parte naturale della lezione, rafforzando la pronuncia, la ripetizione e l'energia della classe."
+    },
+    {
+      "question": "Perché le canzoni inglesi in età prescolare accelerano l’apprendimento?",
+      "problem": "Perché il bambino ripete più facilmente con ritmo e interiorizza la lingua più comodamente.",
+      "solution": "{{appName}} utilizza le canzoni non solo per divertimento ma come strumento strategico che supporta l'apprendimento delle lingue.",
+      "answer": "{{appName}} utilizza le canzoni non solo per divertimento ma come strumento strategico che supporta l'apprendimento delle lingue."
+    },
+    {
+      "question": "Perché l’inglese prescolare per la preparazione al Cambridge è importante?",
+      "problem": "I genitori e le istituzioni ora vogliono vedere non solo una lezione di inglese ma una base solida.",
+      "solution": "{{appName}} fornisce una base seria che supporta la visione dell'istituto di preparazione al Cambridge costruendo una base solida fin dalla tenera età.",
+      "answer": "{{appName}} fornisce una base seria che supporta la visione dell'istituto di preparazione al Cambridge costruendo una base solida fin dalla tenera età."
+    },
+    {
+      "question": "Cosa comporta un programma di inglese prescolare Cambridge?",
+      "problem": "Ciò conferisce all’istituzione una posizione accademica più forte e una maggiore fiducia ai genitori.",
+      "solution": "{{appName}} trasforma le lezioni di inglese della scuola da un'area di attività ordinaria e la trasforma in una struttura più aziendale, più forte e più visibile.",
+      "answer": "{{appName}} trasforma le lezioni di inglese della scuola da un'area di attività ordinaria e la trasforma in una struttura più aziendale, più forte e più visibile."
+    },
+    {
+      "question": "Perché molti sistemi che prevedono un’istruzione inglese continuano a non essere all’altezza?",
+      "problem": "Perché il materiale da solo non è la soluzione. Senza applicazione il materiale resta sullo scaffale.",
+      "solution": "{{appName}} combina il materiale con l'applicazione. Ecco perché offre non solo un set, ma un sistema educativo funzionante.",
+      "answer": "{{appName}} combina il materiale con l'applicazione. Ecco perché offre non solo un set, ma un sistema educativo funzionante."
+    },
+    {
+      "question": "Di cosa hanno più bisogno le istituzioni nell’istruzione inglese?",
+      "problem": "Non hanno bisogno di contenuti sparsi, ma di un modello sostenibile e professionale che dia fiducia ai genitori.",
+      "solution": "{{appName}} fornisce all'istituto non solo materiale didattico in inglese, ma anche un forte modello educativo, un flusso di insegnanti più chiaro e una presentazione in inglese più professionale.",
+      "answer": "{{appName}} fornisce all'istituto non solo materiale didattico in inglese, ma anche un forte modello educativo, un flusso di insegnanti più chiaro e una presentazione in inglese più professionale."
+    }
+  ],
+  "seo": {
+    "title": "Domande frequenti | {{appName}} Inglese prescolare",
+    "description": "Domande frequenti sull'insegnamento dell'inglese in età prescolare, sull'apprendimento basato sul gioco, sulla preparazione a Cambridge e sul sistema {{appName}}.",
+    "keywords": "Domande frequenti sull'inglese prescolare, domande sull'inglese per la prima infanzia, inglese basato sul gioco, preparazione a Cambridge per la scuola materna"
+  }
+}

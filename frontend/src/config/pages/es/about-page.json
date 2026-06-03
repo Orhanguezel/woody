@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Acerca de {{appName}}",
+  "title": "Una plantilla de interfaz simple y extensible para nuevos proyectos.",
+  "lead": "{{appName}} es una aplicación web neutral preparada para contenido posterior de marca y dominio.",
+  "founderTitle": "Punto de partida",
+  "founderParagraphs": [
+    "Esta plantilla proporciona una base de interfaz reutilizable.",
+    "Las decisiones específicas del proyecto se completan más adelante en las capas de contenido, diseño e integración."
+  ],
+  "methodologyTitle": "Acercarse",
+  "methodologyParagraphs": [
+    "La infraestructura permanece en su lugar mientras la copia del dominio y los flujos comerciales se borran de forma predeterminada.",
+    "Un nuevo proyecto puede construir sobre este caparazón con su propia arquitectura de información y fuentes de contenido."
+  ],
+  "experienceTitle": "Alcance",
+  "experienceParagraphs": [
+    "Se conservan el inicio, el blog, el contacto, las preguntas frecuentes, la cuenta, las páginas legales, el tema y los fundamentos de SEO.",
+    "El nombre de la marca se gestiona a través de env y el token AppName."
+  ],
+  "differentiatorsTitle": "¿Por qué {{appName}}?",
+  "differentiators": [
+    {
+      "title": "copia neutra",
+      "body": "El texto predeterminado es independiente del proyecto."
+    },
+    {
+      "title": "Concha preservada",
+      "body": "Los fundamentos de enrutamiento, autenticación, i18n y temas siguen siendo utilizables."
+    },
+    {
+      "title": "Fácil adaptación",
+      "body": "El contenido del nuevo dominio puede provenir de registros DB o CMS."
+    }
+  ],
+  "authorBio": "El contenido de {{appName}} está preparado para ser completado por equipos de proyecto con sus propias decisiones de marca y producto."
+}

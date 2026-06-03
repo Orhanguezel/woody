@@ -1,24 +1,24 @@
 {
-  "eyebrow": "Prinzipien",
-  "title": "<em>Neutrale</em> Grundlagen für {{appName}}",
+  "eyebrow": "Unser Versprechen",
+  "title": "<em>Measured</em> und sicheres Lernen mit {{appName}}",
   "promises": [
     {
       "num": "01",
-      "title": "Markenunabhängig",
-      "text": "Standardtexte nutzen AppName-Token und Umgebungswerte.",
-      "target": "MARKE"
+      "title": "Altersgerecht",
+      "text": "Jede Ebene ist auf die Aufmerksamkeitsspanne, die Spielbedürfnisse und den Wiederholungsrhythmus von Kindern im Alter von 3 bis 6 Jahren ausgelegt.",
+      "target": "AGE"
     },
     {
       "num": "02",
-      "title": "Erweiterbar",
-      "text": "Komponenten und Seiten sind für neue Domain-Inhalte vorbereitet.",
-      "target": "STRUKTUR"
+      "title": "Praktisch für Lehrer",
+      "text": "Der Unterrichtsablauf gibt Lehrern einen klaren Weg und verringert Qualitätsunterschiede zwischen Institutionen.",
+      "target": "CLASS"
     },
     {
       "num": "03",
-      "title": "Einfacher Start",
-      "text": "Commerce und projektspezifische Flows sind nicht Teil der Standardvorlage.",
-      "target": "EINFACH"
+      "title": "Nachhaltig für Institutionen",
+      "text": "Physische Materialien, digitale Inhalte und der Akademiefluss bilden ein langfristiges Bildungsmodell.",
+      "target": "SCHOOL"
     }
   ]
 }

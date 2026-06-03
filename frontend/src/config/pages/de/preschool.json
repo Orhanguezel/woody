@@ -1,0 +1,74 @@
+{
+  "title": "{{appName}} Vorschulserie",
+  "description": "Die {{appName}} Preschool Series bietet Institutionen eine spielerische, strukturierte und nachhaltige Infrastruktur für den Englischunterricht.",
+  "eyebrow": "{{appName}} VORSCHULREIHE",
+  "hero": {
+    "eyebrow": "{{appName}} VORSCHULREIHE",
+    "title": "Vorschule",
+    "description": "Die {{appName}} Preschool Series bietet Institutionen eine spielerische, strukturierte und nachhaltige Infrastruktur für den Englischunterricht.",
+    "primaryCTA": "Fordern Sie eine Demo an",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Preise anzeigen",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Lehrer- und Schülerset",
+      "title": "Die Preschool-Serie besteht aus zwei separaten Sets",
+      "description": "Die Vorschulserie besteht aus zwei separaten Sets: dem Lehrerset und dem Schülerset. Entdecken Sie ihre Inhalte anhand von Video-Komplettlösungen. Das {{appName}}-Vorschulsystem erfordert eine Mindestanzahl von 30 Schülern in der Einrichtung. Das Lehrerset ist nicht separat erhältlich. Es wird Vertragseinrichtungen zusammen mit den Studentensets kostenlos zur Verfügung gestellt und jährlich erneuert."
+    },
+    {
+      "eyebrow": "Ebenen",
+      "title": "Entdecken Sie den Inhalt der Serie anhand von Video-Komplettlösungen",
+      "description": "Die Vorschulserie besteht aus vier Stufen: Basic, Junior, Senior und PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Grundstufe",
+          "description": "Bietet einen guten Einstieg in die englische Sprache mit einfachen Wörtern und einfachen Sätzen."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior-Level",
+          "description": "Fördert die Fähigkeit der Kinder, Sätze zu bilden und sich auszudrücken."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Oberstufe",
+          "description": "Fördert die Fähigkeit, Englisch flüssiger zu verwenden und zu verstehen."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO-Level",
+          "description": "Schafft eine Grundlage in Lesen, Schreiben und akademischem Englisch."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Erkunden",
+      "title": "Schauen Sie sich das System genauer an",
+      "items": [
+        {
+          "title": "{{appName}} Level-Finder",
+          "description": "Bestimmt schnell und genau das am besten geeignete {{appName}}-Niveau, indem das Alter, das Englischniveau und der Lernstatus des Schülers beurteilt werden. Empfiehlt anhand einiger kurzer Fragen, mit welchem ​​Niveau der Schüler beginnen sollte.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}}-Bibliothek",
+          "description": "Eine digitale Bibliothek, in der Sie {{appName}}-Bücher durchsuchen können. Sehen Sie sich alle Sets im Detail an und zeigen Sie den Inhalt in der Vorschau an, um ein klares Verständnis des Systems zu erhalten.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Ein Bereich, in dem Sie die aktuellen Preise der {{appName}}-Sets überprüfen und Online-Bestellungen aufgeben können.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Vorschule | Englisch-Lernset für Vorschulkinder - Englischprogramm für Vorschulkinder in der Türkei",
+    "description": "{{appName}} Vorschul-Englisch-Lernset: ein spielerisches frühkindliches Englischprogramm für Kinder im Alter von 3–6 Jahren. Englischlehrplan für Vorschulkinder mit einem Cambridge-Vorbereitungssystem. Lehrer- und Schülersets, Englischlehrplan für Vorschulkinder und Unterrichtspläne.",
+    "keywords": "Vorschul-Englisch-Lernset, Vorschul-Englischprogramm Türkei, frühkindliches Englisch-Set, Englischprogramm für Vorschulkinder, Cambridge-Vorbereitungsvorschule, Englischprogramm für 3-6-Jährige, Vorschul-Englischreihe"
+  }
+}

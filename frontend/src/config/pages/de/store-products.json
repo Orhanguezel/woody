@@ -1,0 +1,131 @@
+{
+  "quoteWhatsApp": "905331570373",
+  "quoteMessage": "Hallo, ich möchte Preisinformationen zu Ihren Schulsets erhalten.\n\nStadt:\nSchulname:\nAnzahl Studierende:\nKönnten Sie bitte Ihr Preisangebot zusammen mit Ihrem digitalen Katalog teilen?",
+  "categories": [
+    {
+      "id": "okul-serisi",
+      "name": "Vorschulreihe",
+      "description": "",
+      "route": "/preschool"
+    },
+    {
+      "id": "atolye",
+      "name": "Workshop-Reihe",
+      "description": "Für Werkstätten und Kurszentren",
+      "route": "/workshop"
+    },
+    {
+      "id": "ozel-ders",
+      "name": "Privatunterrichtsreihe",
+      "description": "Für Heim- und Privatunterrichtslehrer",
+      "route": "/home-tutor"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "okul-serisi",
+      "name": "Grundstufen-Schülerset",
+      "description": "Anfängerniveau",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 2,
+      "category": "okul-serisi",
+      "name": "Set für Schüler der Junior-Stufe",
+      "description": "Entwicklungsstand",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 3,
+      "category": "okul-serisi",
+      "name": "Set für Oberstufenschüler",
+      "description": "Fortgeschrittenes Niveau",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 7,
+      "category": "Atolye",
+      "name": "Workshop Basic",
+      "description": "Starterpaket",
+      "price": "₺1,999"
+    },
+    {
+      "id": 8,
+      "category": "Atolye",
+      "name": "Workshop Junior",
+      "description": "Mittelstufe",
+      "price": "₺2,199"
+    },
+    {
+      "id": 9,
+      "category": "Atolye",
+      "name": "Werkstatt-Senior",
+      "description": "Fortgeschrittenes Niveau",
+      "price": "₺2,399"
+    },
+    {
+      "id": 10,
+      "category": "Atolye",
+      "name": "Workshop PRO",
+      "description": "Professional",
+      "price": "₺2,699"
+    },
+    {
+      "id": 11,
+      "category": "Atolye",
+      "name": "Werkstatt-Komplettset",
+      "description": "Alles in einem",
+      "price": "₺7,999"
+    },
+    {
+      "id": 12,
+      "category": "Atolye",
+      "name": "Digitales Material",
+      "description": "Online-Zugriff",
+      "price": "₺499"
+    },
+    {
+      "id": 13,
+      "category": "ozel-ders",
+      "name": "Startseite Basic",
+      "description": "Einzelstarter",
+      "price": "₺1,499"
+    },
+    {
+      "id": 14,
+      "category": "ozel-ders",
+      "name": "Heim Junior",
+      "description": "Individuelle Entwicklung",
+      "price": "₺1,699"
+    },
+    {
+      "id": 15,
+      "category": "ozel-ders",
+      "name": "Heim-Senior",
+      "description": "Individuelle Fortgeschrittene",
+      "price": "₺1,899"
+    },
+    {
+      "id": 16,
+      "category": "ozel-ders",
+      "name": "Startseite PRO",
+      "description": "Individueller Profi",
+      "price": "₺2,099"
+    },
+    {
+      "id": 17,
+      "category": "ozel-ders",
+      "name": "Privatunterrichtspaket",
+      "description": "4 Ebenen, ermäßigt",
+      "price": "₺5,999"
+    },
+    {
+      "id": 18,
+      "category": "ozel-ders",
+      "name": "Online-Bibliothek",
+      "description": "Digitaler Zugang",
+      "price": "₺399"
+    }
+  ]
+}

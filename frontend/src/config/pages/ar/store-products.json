@@ -1,0 +1,131 @@
+{
+  "quoteWhatsApp": "905331570373",
+  "quoteMessage": "مرحبًا، أود الحصول على معلومات حول أسعار مجموعات مدرستك.\n\nالمدينة:\nاسم المدرسة:\nعدد الطلاب:\nهل يمكنك من فضلك مشاركة عرض الأسعار الخاص بك مع الكتالوج الرقمي الخاص بك؟",
+  "categories": [
+    {
+      "id": "okul-serisi",
+      "name": "سلسلة ما قبل المدرسة",
+      "description": "",
+      "route": "/preschool"
+    },
+    {
+      "id": "atolye",
+      "name": "سلسلة ورشة عمل",
+      "description": "لورش العمل ومراكز الدورات",
+      "route": "/workshop"
+    },
+    {
+      "id": "ozel-ders",
+      "name": "سلسلة الدروس الخصوصية",
+      "description": "لمعلمي الدروس المنزلية والخاصة",
+      "route": "/home-tutor"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "okul-serisi",
+      "name": "مجموعة طلاب المستوى الأساسي",
+      "description": "مستوى المبتدئين",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 2,
+      "category": "okul-serisi",
+      "name": "مجموعة طلاب المستوى المبتدئ",
+      "description": "مستوى التطوير",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 3,
+      "category": "okul-serisi",
+      "name": "مجموعة طلاب المستوى الأول",
+      "description": "المستوى المتقدم",
+      "price": "Starting from 2250 TL"
+    },
+    {
+      "id": 7,
+      "category": "أتولي",
+      "name": "ورشة عمل أساسية",
+      "description": "حزمة البداية",
+      "price": "₺1,999"
+    },
+    {
+      "id": 8,
+      "category": "أتولي",
+      "name": "ورشة جونيور",
+      "description": "المستوى المتوسط",
+      "price": "₺2,199"
+    },
+    {
+      "id": 9,
+      "category": "أتولي",
+      "name": "ورشة كبار",
+      "description": "المستوى المتقدم",
+      "price": "₺2,399"
+    },
+    {
+      "id": 10,
+      "category": "أتولي",
+      "name": "ورشة عمل للمحترفين",
+      "description": "احترافي",
+      "price": "₺2,699"
+    },
+    {
+      "id": 11,
+      "category": "أتولي",
+      "name": "ورشة عمل مجموعة كاملة",
+      "description": "الكل في واحد",
+      "price": "₺7,999"
+    },
+    {
+      "id": 12,
+      "category": "أتولي",
+      "name": "المواد الرقمية",
+      "description": "الوصول عبر الإنترنت",
+      "price": "₺499"
+    },
+    {
+      "id": 13,
+      "category": "ozel-ders",
+      "name": "الصفحة الرئيسية الأساسية",
+      "description": "بداية فردية",
+      "price": "₺1,499"
+    },
+    {
+      "id": 14,
+      "category": "ozel-ders",
+      "name": "الصفحة الرئيسية جونيور",
+      "description": "التنمية الفردية",
+      "price": "₺1,699"
+    },
+    {
+      "id": 15,
+      "category": "ozel-ders",
+      "name": "الصفحة الرئيسية كبار",
+      "description": "المتقدمة الفردية",
+      "price": "₺1,899"
+    },
+    {
+      "id": 16,
+      "category": "ozel-ders",
+      "name": "الصفحة الرئيسية للمحترفين",
+      "description": "المهنية الفردية",
+      "price": "₺2,099"
+    },
+    {
+      "id": 17,
+      "category": "ozel-ders",
+      "name": "باقة الدروس الخصوصية",
+      "description": "4 مستويات، مخفضة",
+      "price": "₺5,999"
+    },
+    {
+      "id": 18,
+      "category": "ozel-ders",
+      "name": "مكتبة على الانترنت",
+      "description": "الوصول الرقمي",
+      "price": "₺399"
+    }
+  ]
+}

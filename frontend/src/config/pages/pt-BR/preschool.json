@@ -1,0 +1,74 @@
+{
+  "title": "Série {{appName}} para Educação Infantil",
+  "description": "A Série {{appName}} para Educação Infantil oferece às instituições uma infraestrutura de ensino de inglês baseada em brincadeiras, estruturada e sustentável.",
+  "eyebrow": "SÉRIE {{appName}} PARA EDUCAÇÃO INFANTIL",
+  "hero": {
+    "eyebrow": "SÉRIE {{appName}} PARA EDUCAÇÃO INFANTIL",
+    "title": "Educação Infantil",
+    "description": "A Série {{appName}} para Educação Infantil oferece às instituições uma infraestrutura de ensino de inglês baseada em brincadeiras, estruturada e sustentável.",
+    "primaryCTA": "Solicitar uma Demonstração",
+    "primaryHref": "/demo-talep",
+    "secondaryCTA": "Ver Preços",
+    "secondaryHref": "/fiyat"
+  },
+  "sections": [
+    {
+      "eyebrow": "Conjunto do Professor e do Aluno",
+      "title": "A Série para Educação Infantil é composta por dois conjuntos distintos",
+      "description": "A Série para Educação Infantil é composta por dois conjuntos distintos: o Conjunto do Professor e o Conjunto do Aluno. Descubra seu conteúdo por meio de apresentações em vídeo. O sistema {{appName}} para Educação Infantil exige no mínimo 30 alunos na instituição. O conjunto do professor não é vendido separadamente. Ele é fornecido gratuitamente junto com os conjuntos dos alunos às instituições contratadas e renovado anualmente."
+    },
+    {
+      "eyebrow": "Níveis",
+      "title": "Descubra o Conteúdo da Série por Meio de Apresentações em Vídeo",
+      "description": "A Série para Educação Infantil é composta por quatro níveis: Basic, Junior, Senior e PRO.",
+      "items": [
+        {
+          "badge": "BASIC",
+          "title": "Basic Level",
+          "description": "Proporciona um começo sólido no inglês com palavras básicas e frases simples."
+        },
+        {
+          "badge": "JUNIOR",
+          "title": "Junior Level",
+          "description": "Desenvolve a capacidade das crianças de construir frases e se expressar."
+        },
+        {
+          "badge": "SENIOR",
+          "title": "Senior Level",
+          "description": "Desenvolve a capacidade de usar e compreender o inglês de forma mais fluente."
+        },
+        {
+          "badge": "PRO",
+          "title": "PRO Level",
+          "description": "Constrói uma base em leitura, escrita e inglês acadêmico."
+        }
+      ]
+    },
+    {
+      "eyebrow": "Explorar",
+      "title": "Conheça o Sistema Mais de Perto",
+      "items": [
+        {
+          "title": "{{appName}} Level Finder",
+          "description": "Determina de forma rápida e precisa o nível {{appName}} mais adequado, avaliando a idade, o nível de inglês e a situação de aprendizagem do aluno. Recomenda em qual nível o aluno deve começar com base em algumas perguntas curtas.",
+          "href": "/level-finder"
+        },
+        {
+          "title": "{{appName}} Library",
+          "description": "Uma biblioteca digital onde você pode navegar pelos livros {{appName}}. Veja todos os conjuntos em detalhes e visualize o conteúdo para entender claramente o sistema.",
+          "href": "/library"
+        },
+        {
+          "title": "{{appName}} Store",
+          "description": "Uma área onde você pode conferir os preços atuais dos conjuntos {{appName}} e fazer pedidos online.",
+          "href": "/store"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Educação Infantil | Conjunto de Aprendizagem de Inglês para Educação Infantil - Programa de Inglês para Educação Infantil na Turquia",
+    "description": "Conjunto de aprendizagem de inglês {{appName}} para Educação Infantil: um programa de inglês para a primeira infância baseado em brincadeiras, para crianças de 3 a 6 anos. Currículo de inglês para educação infantil com um sistema de preparação Cambridge. Conjuntos para professor e aluno, currículo de inglês para educação infantil e planos de aula.",
+    "keywords": "conjunto de aprendizagem de inglês para educação infantil, programa de inglês para educação infantil na Turquia, conjunto de inglês para primeira infância, programa de inglês para educação infantil, preparação Cambridge educação infantil, programa de inglês 3-6 anos, série de inglês para educação infantil"
+  }
+}

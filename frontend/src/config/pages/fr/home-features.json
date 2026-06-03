@@ -1,0 +1,48 @@
+{
+  "eyebrow": "Pourquoi {{appName}} ?",
+  "title": "Il rend l'anglais préscolaire <em>structuré</em> et pratique.",
+  "features": [
+    {
+      "num": "I",
+      "title": "Basé sur le jeu <em>Déroulement de la leçon</em>",
+      "body": "Les histoires, les chansons, le mouvement et la répétition aident les enfants à utiliser l'anglais naturellement en classe.",
+      "meta": [
+        "Histoires",
+        "Chansons",
+        "Jouer"
+      ],
+      "settingKey": "ui_feature_structure_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Déroulement de la leçon",
+      "imageAlt": "Cours d'anglais ludique"
+    },
+    {
+      "num": "II",
+      "title": "Ensemble de matériel que <em> prend en charge les enseignants</em>",
+      "body": "Les ensembles d'enseignants et d'étudiants créent un langage d'application standard au sein de l'établissement.",
+      "meta": [
+        "Professeur",
+        "Étudiant",
+        "Ensemble"
+      ],
+      "settingKey": "ui_feature_content_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Matériel",
+      "imageAlt": "Matériel pour enseignants et étudiants"
+    },
+    {
+      "num": "III",
+      "title": "Continuité grâce au contenu numérique <em></em>",
+      "body": "Les livres, les chansons, les vidéos et les flux de comptes scolaires permettent d’apprendre au-delà de la salle de classe.",
+      "meta": [
+        "Bibliothèque",
+        "Compte scolaire",
+        "Suivi"
+      ],
+      "settingKey": "ui_feature_pages_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Numérique",
+      "imageAlt": "Contenu d'apprentissage numérique"
+    }
+  ]
+}

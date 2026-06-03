@@ -1,0 +1,114 @@
+{
+  "title": "{{appName}} Store",
+  "description": "Englisch-Lernsets für Vorschulkinder. Ein Bereich, in dem Sie die aktuellen Preise der {{appName}}-Sets überprüfen und Online-Bestellungen aufgeben können.",
+  "eyebrow": "{{appName}} STORE",
+  "hero": {
+    "eyebrow": "{{appName}} STORE",
+    "title": "{{appName}} Store",
+    "description": "Englisch-Lernsets für Vorschulkinder. Ein Bereich, in dem Sie die aktuellen Preise der {{appName}}-Sets überprüfen und ein Angebot anfordern können.",
+    "primaryCTA": "Holen Sie sich ein Angebot",
+    "primaryHref": "/demo-talep"
+  },
+  "sections": [
+    {
+      "eyebrow": "Vorschulreihe",
+      "title": "Vorschulreihe",
+      "items": [
+        {
+          "title": "Grundstufen-Schülerset",
+          "description": "Anfängerniveau",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Set für Schüler der Junior-Stufe",
+          "description": "Entwicklungsstand",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Set für Oberstufenschüler",
+          "description": "Fortgeschrittenes Niveau",
+          "price": "Starting from 2250 TL"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Workshop-Reihe",
+      "title": "Workshop-Reihe",
+      "description": "Für Werkstätten und Kurszentren",
+      "items": [
+        {
+          "title": "Workshop Basic",
+          "description": "Starterpaket",
+          "price": "₺1,999"
+        },
+        {
+          "title": "Workshop Junior",
+          "description": "Mittelstufe",
+          "price": "₺2,199"
+        },
+        {
+          "title": "Werkstatt-Senior",
+          "description": "Fortgeschrittenes Niveau",
+          "price": "₺2,399"
+        },
+        {
+          "title": "Workshop PRO",
+          "description": "Professional",
+          "price": "₺2,699"
+        },
+        {
+          "title": "Werkstatt-Komplettset",
+          "description": "Alles in einem",
+          "price": "₺7,999"
+        },
+        {
+          "title": "Digitales Material",
+          "description": "Online-Zugriff",
+          "price": "₺499"
+        }
+      ]
+    },
+    {
+      "eyebrow": "Privatunterrichtsreihe",
+      "title": "Privatunterrichtsreihe",
+      "description": "Für Heim- und Privatunterrichtslehrer",
+      "items": [
+        {
+          "title": "Startseite Basic",
+          "description": "Einzelstarter",
+          "price": "₺1,499"
+        },
+        {
+          "title": "Heim Junior",
+          "description": "Individuelle Entwicklung",
+          "price": "₺1,699"
+        },
+        {
+          "title": "Heim-Senior",
+          "description": "Individuelle Fortgeschrittene",
+          "price": "₺1,899"
+        },
+        {
+          "title": "Startseite PRO",
+          "description": "Individueller Profi",
+          "price": "₺2,099"
+        },
+        {
+          "title": "Privatunterrichtspaket",
+          "description": "4 Ebenen, ermäßigt",
+          "price": "₺5,999"
+        },
+        {
+          "title": "Online-Bibliothek",
+          "description": "Digitaler Zugang",
+          "price": "₺399"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Store | Englisch-Lernsets für Vorschulkinder",
+    "description": "{{appName}} Shop für Englisch-Lernsets für Vorschulkinder. Aktuelle Preise und Angebote für Produkte der Vorschulserie, der Workshop-Serie und der Privatunterrichtsserie.",
+    "keywords": "Woody Store, Englisch-Set für Vorschulkinder kaufen, Preis für Englisch-Lernset für Vorschulkinder, Shop für Englisch-Lernset"
+  }
+}

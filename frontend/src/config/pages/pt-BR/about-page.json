@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Sobre {{appName}}",
+  "title": "Um modelo de frontend simples e extensível para novos projetos.",
+  "lead": "{{appName}} é um shell de aplicativo da web neutro preparado para conteúdo posterior de marca e domínio.",
+  "founderTitle": "Ponto de partida",
+  "founderParagraphs": [
+    "Este modelo fornece uma base de front-end reutilizável.",
+    "As decisões específicas do projeto são concluídas posteriormente nas camadas de conteúdo, design e integração."
+  ],
+  "methodologyTitle": "Abordagem",
+  "methodologyParagraphs": [
+    "A infraestrutura permanece funcionando enquanto a cópia do domínio e os fluxos comerciais são liberados por padrão.",
+    "Um novo projeto pode ser construído sobre esse shell com sua própria arquitetura de informação e fontes de conteúdo."
+  ],
+  "experienceTitle": "Escopo",
+  "experienceParagraphs": [
+    "Home, blog, contato, FAQ, conta, páginas jurídicas, tema e fundamentos de SEO permanecem.",
+    "O nome da marca é gerenciado por meio de env e do token AppName."
+  ],
+  "differentiatorsTitle": "Por que {{appName}}?",
+  "differentiators": [
+    {
+      "title": "Cópia neutra",
+      "body": "O texto padrão é independente do projeto."
+    },
+    {
+      "title": "Concha preservada",
+      "body": "As bases de roteamento, autenticação, i18n e tema permanecem utilizáveis."
+    },
+    {
+      "title": "Fácil adaptação",
+      "body": "O novo conteúdo do domínio pode vir de registros de banco de dados ou CMS."
+    }
+  ],
+  "authorBio": "O conteúdo {{appName}} é preparado para ser concluído por equipes de projeto com suas próprias marcas e decisões de produtos."
+}

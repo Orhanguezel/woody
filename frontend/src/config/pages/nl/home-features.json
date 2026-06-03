@@ -1,0 +1,48 @@
+{
+  "eyebrow": "Waarom {{appName}}?",
+  "title": "Het maakt voorschools Engels <em>gestructureerd</em> en praktisch.",
+  "features": [
+    {
+      "num": "I",
+      "title": "Speelgebaseerd <em>lesstroom</em>",
+      "body": "Verhalen, liedjes, beweging en herhaling helpen kinderen op natuurlijke wijze Engels te gebruiken in de klas.",
+      "meta": [
+        "Verhalen",
+        "Liedjes",
+        "Toneelstuk"
+      ],
+      "settingKey": "ui_feature_structure_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Lesstroom",
+      "imageAlt": "Spelgebaseerde Engelse les"
+    },
+    {
+      "num": "II",
+      "title": "Materialenset die <em>docenten</em> ondersteunt",
+      "body": "Docenten- en studentensets creëren een standaardtoepassingstaal binnen de instelling.",
+      "meta": [
+        "Docent",
+        "Student",
+        "Set"
+      ],
+      "settingKey": "ui_feature_content_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Materiaal",
+      "imageAlt": "Materiaal voor docenten en studenten"
+    },
+    {
+      "num": "III",
+      "title": "Continuïteit door <em>digitale inhoud</em>",
+      "body": "Boeken, liedjes, video's en schoolaccountstromen zorgen ervoor dat leren ook buiten het klaslokaal plaatsvindt.",
+      "meta": [
+        "Bibliotheek",
+        "Schoolrekening",
+        "Vervolg"
+      ],
+      "settingKey": "ui_feature_pages_image",
+      "imageFallback": "/img/placeholder.svg",
+      "overlayLabel": "Digitaal",
+      "imageAlt": "Digitale leerinhoud"
+    }
+  ]
+}

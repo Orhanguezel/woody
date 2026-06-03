@@ -1,0 +1,38 @@
+{
+  "title": "{{appName}} Digitale Bibliotheek",
+  "description": "{{appName}} Digitale Bibliotheek is een digitale bibliotheekruimte waar instellingen vooraf de educatieve set-inhoud kunnen bekijken.",
+  "eyebrow": "{{appName}} DIGITALE BIBLIOTHEEK",
+  "hero": {
+    "eyebrow": "{{appName}} DIGITALE BIBLIOTHEEK",
+    "title": "Wat is de digitale bibliotheek {{appName}}?",
+    "description": "{{appName}} Digitale Bibliotheek is een digitale bibliotheekruimte waar instellingen vooraf de educatieve set-inhoud kunnen bekijken. Via dit platform kunnen zowel docenten- als studentenboeken in detail worden bekeken. Door naar de eenheden, de inhoudsstructuur en de leerresultaten te kijken, kun je duidelijk zien hoe het systeem vordert. {{appName}} Digitale Bibliotheek biedt instellingen een transparante beoordelingsmogelijkheid vóór aankoop en een kans om het hele onderwijsmodel duidelijk te evalueren."
+  },
+  "sections": [
+    {
+      "eyebrow": "Niveaus",
+      "title": "Digitale Bibliotheek per niveau",
+      "items": [
+        {
+          "badge": "Basisniveau",
+          "title": "{{appName}} Digitale Bibliotheek – Basisniveau",
+          "description": "De Basisniveau Digitale Bibliotheek is een digitale bibliotheekruimte waar docenten- en studentenboeken op beginnersniveau kunnen worden beoordeeld. Instellingen kunnen het systeem duidelijk evalueren door vooraf de inhoudsstructuur en leerresultaten te zien."
+        },
+        {
+          "badge": "Juniorniveau",
+          "title": "{{appName}} Digitale Bibliotheek – Juniorniveau",
+          "description": "De Junior Level Digital Library is een digitale bibliotheekruimte waar inhoud kan worden beoordeeld die de zinsbouw en elementaire communicatieve vaardigheden van studenten ontwikkelt. Instellingen kunnen de voortschrijdende structuur van het systeem duidelijk zien door de boeken van docenten en studenten op dit niveau te onderzoeken."
+        },
+        {
+          "badge": "Senior niveau",
+          "title": "{{appName}} Digitale Bibliotheek – Senior niveau",
+          "description": "De Senior Level Digital Library is een digitale bibliotheekruimte waar inhoud op gevorderd niveau – waarin studenten vloeiend communiceren en structuren combineren – kan worden bekeken. Instellingen kunnen de resultaten op hoog niveau en de communicatiegerichte structuur van het programma evalueren door de boeken van docenten en studenten te onderzoeken."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "{{appName}} Digitale Bibliotheek | Bekijk de inhoud van de onderwijsset",
+    "description": "{{appName}} Digitale Bibliotheek is een digitale bibliotheek waar instellingen op transparante wijze boeken van docenten en studenten kunnen beoordelen voordat ze worden aangeschaft. Basis-, junior- en seniorniveau.",
+    "keywords": "Woody digitale bibliotheek, digitale bibliotheek, Engels voorschools boek, lerarenboek, boekbespreking voor studenten"
+  }
+}
