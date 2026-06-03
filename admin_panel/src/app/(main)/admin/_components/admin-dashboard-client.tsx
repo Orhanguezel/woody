@@ -80,7 +80,7 @@ export default function AdminDashboardClient() {
   }, [analytics?.totals]);
 
   return (
-    <div className="space-y-12 pb-24">
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div>
@@ -88,7 +88,7 @@ export default function AdminDashboardClient() {
             <span className="w-12 h-px bg-gm-gold" />
             <span className="text-gm-gold font-bold text-[10px] tracking-[0.3em] uppercase">Sistem Özeti</span>
           </div>
-          <h1 className="font-serif text-5xl text-foreground leading-tight tracking-tight">Dashboard</h1>
+          <h1 className="font-serif text-4xl text-gm-text leading-tight tracking-tight">Dashboard</h1>
           <p className="text-gm-muted text-lg mt-3 font-serif italic max-w-2xl leading-relaxed">
             Platform performansını ve büyüme verilerini anlık takip edin. Editorial bakış açısıyla verilerinizi yorumlayın.
           </p>
@@ -100,7 +100,7 @@ export default function AdminDashboardClient() {
               key={key}
               onClick={() => setRange(key)}
               className={`px-8 py-2.5 rounded-full text-[10px] font-bold tracking-[0.15em] uppercase transition-all duration-300 ${
-                range === key ? 'bg-gm-gold text-gm-bg shadow-lg shadow-gm-gold/20' : 'text-gm-muted hover:text-foreground hover:bg-gm-gold/5'
+                range === key ? 'bg-gm-gold text-gm-bg shadow-lg shadow-gm-gold/20' : 'text-gm-muted hover:text-gm-text hover:bg-gm-gold/5'
               }`}
             >
               {key === '7d' ? 'Haftalık' : key === '30d' ? 'Aylık' : '3 Aylık'}
@@ -138,7 +138,7 @@ export default function AdminDashboardClient() {
                 </div>
               </CardHeader>
               <CardContent className="p-8 pt-0">
-                <div className="text-4xl font-serif text-foreground tracking-tight group-hover:text-gm-gold transition-colors duration-500">{item.value}</div>
+                <div className="text-4xl font-serif text-gm-text tracking-tight group-hover:text-gm-gold transition-colors duration-500">{item.value}</div>
               </CardContent>
             </Card>
           ))
@@ -245,7 +245,7 @@ export default function AdminDashboardClient() {
                 <div className="flex items-center gap-4">
                    <div className="size-3 rounded-full bg-gm-gold shadow-[0_0_8px_rgba(212,175,55,0.3)]" />
                    <div>
-                    <div className="font-serif text-xl text-foreground group-hover:text-gm-gold transition-colors">{svc.service_name}</div>
+                    <div className="font-serif text-xl text-gm-text group-hover:text-gm-gold transition-colors">{svc.service_name}</div>
                     <div className="text-[9px] font-bold text-gm-muted uppercase tracking-[0.2em] mt-1.5 flex items-center gap-2">
                       <Calendar size={10} className="text-gm-primary" />
                       {svc.bookings_total} Randevu

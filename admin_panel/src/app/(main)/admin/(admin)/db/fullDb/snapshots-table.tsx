@@ -109,23 +109,26 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
   };
 
   return (
-    <Card className="border-none shadow-sm">
+    <Card className="border-gm-border-soft bg-gm-surface/30 rounded-[20px] shadow-none">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 py-4">
-        <CardTitle className="flex items-center gap-2 font-semibold text-sm">
-          <History className="size-4 text-primary" />
+        <CardTitle className="flex items-center gap-2 font-serif text-gm-text font-semibold text-sm">
+          <History className="size-4 text-gm-gold" />
           {t("title")}
         </CardTitle>
         <div className="flex items-center gap-3">
           {busy && (
-            <Badge variant="secondary" className="h-6 animate-pulse gap-1.5 font-normal text-[10px]">
+            <Badge
+              variant="secondary"
+              className="bg-gm-bg-deep text-gm-text border-gm-border-soft h-6 animate-pulse gap-1.5 font-normal text-[10px]"
+            >
               <Loader2 className="size-3 animate-spin" />
               {t("processing")}
             </Badge>
           )}
-          <span className="text-muted-foreground text-xs">
-            {t("total")} <strong className="ml-1 text-foreground">{rows.length}</strong>
+          <span className="text-gm-muted text-xs">
+            {t("total")} <strong className="ml-1 text-gm-text">{rows.length}</strong>
           </span>
-          <Button variant="ghost" size="icon-sm" onClick={refetch} disabled={busy}>
+          <Button variant="ghost" size="icon-sm" className="rounded-full" onClick={refetch} disabled={busy}>
             <RefreshCw className={cn("size-3.5", busy && "animate-spin")} />
           </Button>
         </div>
@@ -135,16 +138,24 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
         {/* Desktop View */}
         <div className="hidden xl:block">
           <Table>
-            <TableHeader className="bg-muted/50">
-              <TableRow>
-                <TableHead className="w-[60px] text-[11px] uppercase tracking-wider">{t("columns.index")}</TableHead>
-                <TableHead className="w-[280px] text-[11px] uppercase tracking-wider">
+            <TableHeader className="bg-gm-surface/40">
+              <TableRow className="border-gm-border-soft">
+                <TableHead className="w-[60px] text-[11px] uppercase tracking-wider text-gm-muted">
+                  {t("columns.index")}
+                </TableHead>
+                <TableHead className="w-[280px] text-[11px] uppercase tracking-wider text-gm-muted">
                   {t("columns.labelNote")}
                 </TableHead>
-                <TableHead className="text-[11px] uppercase tracking-wider">{t("columns.file")}</TableHead>
-                <TableHead className="w-[180px] text-[11px] uppercase tracking-wider">{t("columns.created")}</TableHead>
-                <TableHead className="w-[100px] text-[11px] uppercase tracking-wider">{t("columns.size")}</TableHead>
-                <TableHead className="w-[200px] text-right text-[11px] uppercase tracking-wider">
+                <TableHead className="text-[11px] uppercase tracking-wider text-gm-muted">
+                  {t("columns.file")}
+                </TableHead>
+                <TableHead className="w-[180px] text-[11px] uppercase tracking-wider text-gm-muted">
+                  {t("columns.created")}
+                </TableHead>
+                <TableHead className="w-[100px] text-[11px] uppercase tracking-wider text-gm-muted">
+                  {t("columns.size")}
+                </TableHead>
+                <TableHead className="w-[200px] text-right text-[11px] uppercase tracking-wider text-gm-muted">
                   {t("columns.actions")}
                 </TableHead>
               </TableRow>
@@ -152,27 +163,26 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
             <TableBody>
               {hasData ? (
                 rows.map((s, idx) => (
-                  <TableRow key={s.id || idx}>
-                    <TableCell className="text-muted-foreground text-xs">{idx + 1}</TableCell>
+                  <TableRow key={s.id || idx} className="border-gm-border-soft hover:bg-gm-surface/30">
+                    <TableCell className="text-gm-muted text-xs">{idx + 1}</TableCell>
                     <TableCell>
-                      <div className="max-w-[260px] truncate font-medium text-xs" title={s.label || ""}>
-                        {s.label || <span className="font-normal text-muted-foreground italic">{t("noLabel")}</span>}
+                      <div className="max-w-[260px] truncate font-medium text-xs text-gm-text" title={s.label || ""}>
+                        {s.label || <span className="font-normal text-gm-muted italic">{t("noLabel")}</span>}
                       </div>
-                      <div
-                        className="mt-0.5 max-w-[260px] truncate text-[11px] text-muted-foreground"
-                        title={s.note || ""}
-                      >
+                      <div className="mt-0.5 max-w-[260px] truncate text-[11px] text-gm-muted" title={s.note || ""}>
                         {s.note || t("noNote")}
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex max-w-[300px] flex-col gap-0.5">
                         <div className="flex items-center gap-1.5 truncate" title={s.filename || undefined}>
-                          <FileText className="size-3 shrink-0 text-muted-foreground" />
-                          <code className="truncate rounded bg-muted/50 px-1 text-[11px]">{s.filename}</code>
+                          <FileText className="size-3 shrink-0 text-gm-muted" />
+                          <code className="truncate rounded bg-gm-bg-deep text-gm-text px-1 text-[11px]">
+                            {s.filename}
+                          </code>
                         </div>
                         <div
-                          className="flex items-center gap-1.5 truncate text-[10px] text-muted-foreground/70"
+                          className="flex items-center gap-1.5 truncate text-[10px] text-gm-muted/70"
                           title={s.id || undefined}
                         >
                           <span className="shrink-0 font-bold uppercase opacity-50">ID:</span>
@@ -180,14 +190,16 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="text-muted-foreground text-xs">{formatDate(s.created_at)}</TableCell>
-                    <TableCell className="font-medium text-xs">{formatSize(s.size_bytes ?? null)}</TableCell>
+                    <TableCell className="text-gm-muted text-xs">{formatDate(s.created_at)}</TableCell>
+                    <TableCell className="font-medium text-xs text-gm-text">
+                      {formatSize(s.size_bytes ?? null)}
+                    </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-7 border-green-500/20 text-[11px] hover:bg-green-500/10 hover:text-green-600 dark:hover:text-green-400"
+                          className="rounded-full h-7 border-gm-success/30 text-[11px] hover:bg-gm-success/10 hover:text-gm-success"
                           disabled={busy}
                           onClick={() => handleRestore(s)}
                         >
@@ -196,7 +208,7 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-7 border-destructive/20 text-[11px] hover:bg-destructive/10 hover:text-destructive"
+                          className="rounded-full h-7 border-gm-error/20 text-[11px] hover:bg-gm-error/10 hover:text-gm-error"
                           disabled={busy}
                           onClick={() => handleDelete(s)}
                         >
@@ -208,15 +220,15 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
-                  <TableCell colSpan={6} className="h-32 text-center text-muted-foreground text-xs italic">
+                <TableRow className="border-gm-border-soft">
+                  <TableCell colSpan={6} className="h-32 text-center text-gm-muted text-xs italic">
                     {loading ? t("loading") : t("noData")}
                   </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
-          <div className="border-t bg-muted/10 px-4 py-2 text-[10px] text-muted-foreground italic">
+          <div className="border-t border-gm-border-soft bg-gm-bg-deep px-4 py-2 text-[10px] text-gm-muted italic">
             {t("scrollNote")}
           </div>
         </div>
@@ -224,23 +236,25 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
         {/* Mobile View */}
         <div className="space-y-3 p-3 xl:hidden">
           {!hasData && !loading ? (
-            <div className="flex h-24 items-center justify-center text-muted-foreground text-xs italic">
-              {t("noData")}
-            </div>
+            <div className="flex h-24 items-center justify-center text-gm-muted text-xs italic">{t("noData")}</div>
           ) : loading && !hasData ? (
-            <div className="flex h-24 items-center justify-center text-muted-foreground text-xs italic">
-              {t("loading")}
-            </div>
+            <div className="flex h-24 items-center justify-center text-gm-muted text-xs italic">{t("loading")}</div>
           ) : (
             <div className="grid gap-3">
               {rows.map((s, idx) => (
-                <div key={s.id || idx} className="space-y-4 rounded-lg border bg-card/50 p-4">
+                <div
+                  key={s.id || idx}
+                  className="space-y-4 rounded-[20px] border border-gm-border-soft bg-gm-surface/30 p-4"
+                >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="outline" className="h-5 font-mono text-[10px]">
                         #{idx + 1}
                       </Badge>
-                      <Badge variant="secondary" className="h-5 gap-1 font-normal text-[10px]">
+                      <Badge
+                        variant="secondary"
+                        className="bg-gm-bg-deep text-gm-text border-gm-border-soft h-5 gap-1 font-normal text-[10px]"
+                      >
                         <HardDrive className="size-2.5 opacity-60" />
                         {formatSize(s.size_bytes ?? null)}
                       </Badge>
@@ -253,6 +267,7 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
                       <Button
                         variant="secondary"
                         size="icon-sm"
+                        className="rounded-full"
                         disabled={busy}
                         onClick={() => handleRestore(s)}
                         title={t("restore")}
@@ -262,6 +277,7 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
                       <Button
                         variant="destructive"
                         size="icon-sm"
+                        className="rounded-full"
                         disabled={busy}
                         onClick={() => handleDelete(s)}
                         title={t("delete")}
@@ -272,32 +288,30 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
                   </div>
 
                   <div className="space-y-1">
-                    <div className="wrap-break-word font-semibold text-sm leading-tight">
-                      {s.label || (
-                        <span className="font-normal text-muted-foreground text-xs italic">{t("noLabel")}</span>
-                      )}
+                    <div className="wrap-break-word font-semibold text-sm leading-tight text-gm-text">
+                      {s.label || <span className="font-normal text-gm-muted text-xs italic">{t("noLabel")}</span>}
                     </div>
-                    <div className="wrap-break-word text-muted-foreground text-xs leading-snug">
-                      {s.note || t("noNote")}
-                    </div>
+                    <div className="wrap-break-word text-gm-muted text-xs leading-snug">{s.note || t("noNote")}</div>
                   </div>
 
-                  <div className="mt-3 grid grid-cols-1 gap-2 border-t pt-3">
+                  <div className="mt-3 grid grid-cols-1 gap-2 border-t border-gm-border-soft pt-3">
                     <div className="space-y-1">
-                      <div className="font-bold text-[10px] text-muted-foreground uppercase tracking-wider">
+                      <div className="font-bold text-[10px] text-gm-muted uppercase tracking-wider">
                         {t("columns.file")}
                       </div>
-                      <code className="block break-all rounded bg-muted/40 p-1.5 text-[11px]">{s.filename || "-"}</code>
+                      <code className="block break-all rounded bg-gm-bg-deep text-gm-text p-1.5 text-[11px]">
+                        {s.filename || "-"}
+                      </code>
                     </div>
                     <div className="space-y-1">
-                      <div className="font-bold text-[10px] text-muted-foreground uppercase tracking-wider">ID</div>
+                      <div className="font-bold text-[10px] text-gm-muted uppercase tracking-wider">ID</div>
                       <code className="block break-all text-[11px] opacity-80">{s.id}</code>
                     </div>
                   </div>
                 </div>
               ))}
               {loading && hasData && (
-                <div className="animate-pulse py-2 text-center text-muted-foreground text-xs">{t("loading")}</div>
+                <div className="animate-pulse py-2 text-center text-gm-muted text-xs">{t("loading")}</div>
               )}
             </div>
           )}

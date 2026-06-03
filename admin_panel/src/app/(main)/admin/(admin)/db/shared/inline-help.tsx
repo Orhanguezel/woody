@@ -47,10 +47,15 @@ export const InlineHelp: React.FC<InlineHelpProps> = ({ title = "Açıklama", ch
   }, [open, close]);
 
   return (
-    <span ref={rootRef} className={`d-inline-block ${className ?? ""}`}>
-      <button type="button" className="btn btn-link ms-1 p-0 text-decoration-none" title={title} onClick={toggle}>
+    <span ref={rootRef} className={`inline-block ${className ?? ""}`}>
+      <button
+        type="button"
+        className="inline-flex items-center ml-1 p-0 text-gm-muted hover:text-gm-gold transition-colors"
+        title={title}
+        onClick={toggle}
+      >
         <span
-          className="d-inline-flex justify-content-center rounded-circle border align-items-center"
+          className="inline-flex justify-center items-center rounded-full border border-gm-border-soft text-gm-muted"
           style={{ width: 18, height: 18, fontSize: 12, userSelect: "none" }}
         >
           ?
@@ -59,12 +64,12 @@ export const InlineHelp: React.FC<InlineHelpProps> = ({ title = "Açıklama", ch
 
       {open ? (
         <div className="mt-2">
-          <div className="alert alert-light mb-0 border py-2">
-            <div className="d-flex justify-content-between gap-2 align-items-start">
-              <div className="fw-semibold small">{title}</div>
+          <div className="rounded-2xl border border-gm-border-soft bg-gm-surface backdrop-blur-sm shadow-xl px-3 py-2">
+            <div className="flex justify-between gap-2 items-start">
+              <div className="font-semibold text-xs text-gm-text">{title}</div>
               <button
                 type="button"
-                className="btn btn-sm btn-outline-secondary"
+                className="inline-flex items-center justify-center rounded-full border border-gm-border-soft text-gm-muted hover:bg-gm-surface/40 hover:text-gm-text"
                 onClick={close}
                 aria-label={t("admin.db.help.closeButton")}
                 title={t("admin.db.help.closeButton")}
@@ -74,9 +79,9 @@ export const InlineHelp: React.FC<InlineHelpProps> = ({ title = "Açıklama", ch
               </button>
             </div>
 
-            <div className="small mt-1 text-muted">{children}</div>
+            <div className="text-xs mt-1 text-gm-muted">{children}</div>
 
-            <div className="mt-2 text-muted" style={{ fontSize: 11 }}>
+            <div className="mt-2 text-gm-muted" style={{ fontSize: 11 }}>
               {t("admin.db.help.closeHint")}
             </div>
           </div>

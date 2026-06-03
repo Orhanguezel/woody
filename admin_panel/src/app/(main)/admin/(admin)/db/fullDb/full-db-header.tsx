@@ -74,27 +74,25 @@ export const FullDbHeader: React.FC<FullDbHeaderProps> = ({ onChanged }) => {
   };
 
   return (
-    <Card className="border-none bg-muted/20 shadow-none">
+    <Card className="bg-gm-surface/30 border-gm-border-soft rounded-[20px] shadow-none">
       <CardContent className="p-4">
         <div className="flex flex-col justify-between gap-6 lg:flex-row">
           {/* Snapshot Creation Section */}
           <div className="flex-1 space-y-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <Database className="size-4 text-primary" />
-                <h5 className="font-semibold text-sm">{t("title")}</h5>
+                <Database className="size-4 text-gm-gold" />
+                <h5 className="font-serif text-gm-text font-semibold text-sm">{t("title")}</h5>
               </div>
-              <p className="text-muted-foreground text-xs">{t("description")}</p>
+              <p className="text-gm-muted text-xs">{t("description")}</p>
             </div>
 
             <div className="grid grid-cols-1 items-end gap-3 sm:grid-cols-12">
               <div className="space-y-1.5 sm:col-span-5">
-                <Label className="text-[11px] text-muted-foreground/70 uppercase tracking-wider">
-                  {t("snapshotLabel")}
-                </Label>
+                <Label className="text-[11px] text-gm-muted/70 uppercase tracking-wider">{t("snapshotLabel")}</Label>
                 <Input
                   type="text"
-                  className="h-8 bg-background text-xs"
+                  className="h-8 bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl focus-visible:ring-gm-gold/50 text-xs"
                   placeholder={t("snapshotPlaceholder")}
                   value={label}
                   onChange={(e) => setLabel(e.target.value)}
@@ -102,12 +100,10 @@ export const FullDbHeader: React.FC<FullDbHeaderProps> = ({ onChanged }) => {
                 />
               </div>
               <div className="space-y-1.5 sm:col-span-5">
-                <Label className="text-[11px] text-muted-foreground/70 uppercase tracking-wider">
-                  {t("noteLabel")}
-                </Label>
+                <Label className="text-[11px] text-gm-muted/70 uppercase tracking-wider">{t("noteLabel")}</Label>
                 <Input
                   type="text"
-                  className="h-8 bg-background text-xs"
+                  className="h-8 bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl focus-visible:ring-gm-gold/50 text-xs"
                   placeholder={t("notePlaceholder")}
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
@@ -118,7 +114,7 @@ export const FullDbHeader: React.FC<FullDbHeaderProps> = ({ onChanged }) => {
                 <Button
                   size="sm"
                   variant="default"
-                  className="h-8 w-full text-xs"
+                  className="h-8 w-full rounded-full text-xs"
                   disabled={busy}
                   onClick={handleCreateSnapshot}
                 >
@@ -136,19 +132,19 @@ export const FullDbHeader: React.FC<FullDbHeaderProps> = ({ onChanged }) => {
           </div>
 
           <Separator className="lg:hidden" />
-          <div className="hidden w-px self-stretch bg-border/50 lg:block" />
+          <div className="hidden w-px self-stretch bg-gm-border-soft lg:block" />
 
           {/* Export Section */}
           <div className="space-y-4 lg:w-72">
             <div className="space-y-1">
-              <h6 className="font-semibold text-xs">{t("downloadTitle")}</h6>
-              <p className="text-[11px] text-muted-foreground">{t("downloadDesc")}</p>
+              <h6 className="font-serif text-gm-text font-semibold text-xs">{t("downloadTitle")}</h6>
+              <p className="text-[11px] text-gm-muted">{t("downloadDesc")}</p>
             </div>
             <div className="flex flex-wrap gap-2 pt-1">
               <Button
                 size="sm"
                 variant="outline"
-                className="h-8 min-w-[100px] flex-1 text-xs"
+                className="h-8 min-w-[100px] flex-1 rounded-full text-xs"
                 disabled={busy}
                 onClick={handleExportSql}
               >
@@ -162,7 +158,7 @@ export const FullDbHeader: React.FC<FullDbHeaderProps> = ({ onChanged }) => {
               <Button
                 size="sm"
                 variant="outline"
-                className="h-8 min-w-[100px] flex-1 text-xs"
+                className="h-8 min-w-[100px] flex-1 rounded-full text-xs"
                 disabled={busy}
                 onClick={handleExportJson}
               >

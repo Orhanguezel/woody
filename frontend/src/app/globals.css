@@ -3,7 +3,7 @@
 @theme {
   /* Tema tokenları: runtime tokensToCSS -> --gm-* */
 
-  /* Tailwind `gold-*` sınıf adları korunur; değerler yeşil skala (seed ile uyumlu). */
+  /* Tailwind `gold-*` sınıf adları korunur; değerler Woody sarı/amber skalasıdır. */
   --color-gold-50:  var(--gm-gold-50);
   --color-gold-100: var(--gm-gold-100);
   --color-gold-200: var(--gm-gold-200);
@@ -78,10 +78,14 @@
   --color-warning: var(--gm-warning);
   --color-error:   var(--gm-error);
   --color-info:    var(--gm-info);
+  --color-level-basic:  var(--level-basic, #2196F3);
+  --color-level-junior: var(--level-junior, #F5C518);
+  --color-level-senior: var(--level-senior, #E91E90);
+  --color-level-pro:    var(--level-pro, #D32F2F);
 
-  --font-sans:    var(--gm-font-sans, var(--font-pj), 'Plus Jakarta Sans', system-ui, sans-serif);
+  --font-sans:    var(--gm-font-sans, var(--font-inter), Inter, system-ui, sans-serif);
   --font-serif:   var(--gm-font-serif, var(--font-source-serif), Georgia, 'Times New Roman', serif);
-  --font-display: var(--gm-font-display, var(--font-pj), 'Plus Jakarta Sans', system-ui, sans-serif);
+  --font-display: var(--gm-font-display, var(--font-fredoka), Fredoka, system-ui, sans-serif);
 }
 
 /* ─── SHADOWS (LIGHT) ─── */

@@ -61,11 +61,11 @@ export const ModuleTabs: React.FC<ModuleTabsProps> = ({ adminSkip }) => {
   }, [moduleKey]);
 
   return (
-    <Card className="border-none shadow-none">
+    <Card className="border-none shadow-none bg-transparent">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 px-0 pt-0 pb-4">
         <div className="space-y-1">
-          <CardTitle className="font-semibold text-sm">{t("title")}</CardTitle>
-          <CardDescription className="text-xs">{t("selected", { module: headerText })}</CardDescription>
+          <CardTitle className="font-semibold text-sm font-serif text-gm-text">{t("title")}</CardTitle>
+          <CardDescription className="text-xs text-gm-muted">{t("selected", { module: headerText })}</CardDescription>
         </div>
 
         <Select
@@ -78,12 +78,12 @@ export const ModuleTabs: React.FC<ModuleTabsProps> = ({ adminSkip }) => {
           }}
           disabled={adminSkip}
         >
-          <SelectTrigger className="h-8 w-48 text-xs">
+          <SelectTrigger className="h-8 w-48 text-xs bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-gm-surface border-gm-border-soft">
             {MODULE_OPTIONS.map((k) => (
-              <SelectItem key={k} value={k} className="text-xs">
+              <SelectItem key={k} value={k} className="text-xs text-gm-text">
                 {k}
               </SelectItem>
             ))}
@@ -93,18 +93,34 @@ export const ModuleTabs: React.FC<ModuleTabsProps> = ({ adminSkip }) => {
 
       <CardContent className="px-0">
         <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="w-full">
-          <TabsList className="mb-4 h-9">
-            <TabsTrigger value="export" className="px-3 text-xs" disabled={adminSkip}>
+          <TabsList className="mb-4 h-9 bg-gm-surface/30 border border-gm-border-soft rounded-full p-1 backdrop-blur-sm">
+            <TabsTrigger
+              value="export"
+              className="px-3 text-xs rounded-full data-[state=active]:bg-gm-gold data-[state=active]:text-gm-bg"
+              disabled={adminSkip}
+            >
               {t("tabs.export")}
             </TabsTrigger>
-            <TabsTrigger value="import" className="px-3 text-xs" disabled={adminSkip}>
+            <TabsTrigger
+              value="import"
+              className="px-3 text-xs rounded-full data-[state=active]:bg-gm-gold data-[state=active]:text-gm-bg"
+              disabled={adminSkip}
+            >
               {t("tabs.import")}
             </TabsTrigger>
-            <TabsTrigger value="validate" className="px-3 text-xs" disabled={adminSkip}>
+            <TabsTrigger
+              value="validate"
+              className="px-3 text-xs rounded-full data-[state=active]:bg-gm-gold data-[state=active]:text-gm-bg"
+              disabled={adminSkip}
+            >
               {t("tabs.validate")}
             </TabsTrigger>
             {showUiTab && (
-              <TabsTrigger value="ui" className="px-3 text-xs" disabled={adminSkip}>
+              <TabsTrigger
+                value="ui"
+                className="px-3 text-xs rounded-full data-[state=active]:bg-gm-gold data-[state=active]:text-gm-bg"
+                disabled={adminSkip}
+              >
                 {t("tabs.ui")}
               </TabsTrigger>
             )}

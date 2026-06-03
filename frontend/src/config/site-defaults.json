@@ -1,19 +1,19 @@
 {
   "rootLayout": {
-    "titleDefault": "{{appName}} — Dijital öğrenme ve içerik",
+    "titleDefault": "{{appName}} — Çocuklar için İngilizce ve dijital öğrenme",
     "titleTemplate": "%s | {{appName}}"
   },
   "brand": {
-    "appName": "AppName",
-    "taglineTr": "Nötr web uygulaması şablonu",
-    "taglineEn": "Neutral web application template",
-    "themeColor": "#15803d",
-    "themeColorDark": "#052e16",
+    "appName": "Woody ve Arkadaşları",
+    "taglineTr": "Çocuklar için İngilizce, hikaye ve dijital öğrenme deneyimi",
+    "taglineEn": "English, stories, and digital learning for children",
+    "themeColor": "#2196F3",
+    "themeColorDark": "#0B1F3A",
     "wordMarkLine1": "{{appName}}",
     "wordMarkLine2": "",
     "shortName": "{{appName}}",
     "copyrightHolder": "{{appName}}",
-    "defaultLogoAlt": "Site logo"
+    "defaultLogoAlt": "Woody ve Arkadaşları logo"
   },
   "site": {
     "originFallback": "http://localhost:3077",
@@ -25,9 +25,9 @@
   "seo": {
     "global": {
       "site_name": "{{appName}}",
-      "title_default": "{{appName}} — Nötr web uygulaması şablonu",
+      "title_default": "{{appName}} — Çocuklar için İngilizce ve dijital öğrenme",
       "title_template": "%s | {{appName}}",
-      "description": "{{appName}} için nötr frontend şablonu.",
+      "description": "{{appName}} okul öncesi İngilizce, atölye, ev öğretmeni ve dijital içerik deneyimlerini sunar.",
       "open_graph": {
         "type": "website",
         "images": [
@@ -47,37 +47,37 @@
     },
     "siteMetaByLocale": {
       "tr": {
-        "title": "{{appName}} — Dijital öğrenme ve içerik platformu",
-        "description": "Konu bazlı içerikler, ilerleme takibi ve güvenilir kaynaklarla öğrenmeyi sürdürün.",
-        "keywords": "{{appName}}, eğitim, dijital öğrenme, içerik, online"
+        "title": "{{appName}} — Çocuklar için İngilizce ve dijital öğrenme",
+        "description": "Okul öncesi İngilizce, atölyeler, ev öğretmeni, akademi, kütüphane ve dijital içeriklerle çocuklar için öğrenme deneyimi.",
+        "keywords": "{{appName}}, okul öncesi İngilizce, çocuk İngilizce, dijital içerik, hikaye"
       },
       "en": {
-        "title": "{{appName}} — Digital learning and content",
-        "description": "Structured topics, progress tracking, and trusted educational content.",
-        "keywords": "{{appName}}, education, digital learning, online content"
+        "title": "{{appName}} — English and digital learning for children",
+        "description": "Preschool English, workshops, home tutoring, academy, library, and digital learning content for children.",
+        "keywords": "{{appName}}, preschool English, children English, digital content, story"
       },
       "de": {
-        "title": "{{appName}} — Digitales Lernen und Inhalte",
-        "description": "Themenbasierte Inhalte, Fortschritt und vertrauenswürdige Lernressourcen.",
-        "keywords": "{{appName}}, bildung, digitales lernen, online-inhalte"
+        "title": "{{appName}} — Englisch und digitales Lernen für Kinder",
+        "description": "Vorschulenglisch, Workshops, Nachhilfe, Akademie, Bibliothek und digitale Lerninhalte für Kinder.",
+        "keywords": "{{appName}}, vorschulenglisch, kinder englisch, digitale inhalte"
       }
     },
     "localeDescriptionFallback": {
-      "tr": "{{appName}} — Eğitim içerikleri ve güvenilir dijital öğrenme deneyimi.",
-      "en": "{{appName}} — Educational content and a trusted digital learning experience.",
-      "de": "{{appName}} — Bildungsinhalte und ein vertrauenswürdiges digitales Lernerlebnis."
+      "tr": "{{appName}} — Çocuklar için İngilizce ve güvenilir dijital öğrenme deneyimi.",
+      "en": "{{appName}} — English and trusted digital learning for children.",
+      "de": "{{appName}} — Englisch und vertrauenswürdiges digitales Lernen für Kinder."
     },
     "htmlMetaDescriptionByLocale": {
-      "tr": "{{appName}} — Dijital öğrenme, içerik ve kullanıcı odaklı deneyim.",
-      "en": "{{appName}} — Digital learning, content, and a user-focused experience.",
-      "de": "{{appName}} — Digitales Lernen, Inhalte und nutzerzentrierte Erfahrung."
+      "tr": "{{appName}} — Okul öncesi İngilizce, atölye ve dijital içerik deneyimi.",
+      "en": "{{appName}} — Preschool English, workshops, and digital content.",
+      "de": "{{appName}} — Vorschulenglisch, Workshops und digitale Inhalte."
     }
   },
   "jsonLd": {
     "organizationDescription": {
-      "tr": "Dijital öğrenme ve içerik platformu.",
-      "en": "Digital learning and content platform.",
-      "de": "Digitale Lern- und Inhaltsplattform."
+      "tr": "Çocuklar için İngilizce ve dijital öğrenme platformu.",
+      "en": "English and digital learning platform for children.",
+      "de": "Englisch- und digitale Lernplattform für Kinder."
     },
     "placeholderSameAs": []
   },
@@ -90,7 +90,7 @@
     "descriptionKey": "manifest.description",
     "name": "{{appName}}",
     "shortName": "{{appName}}",
-    "description": "Dijital öğrenme ve içerik platformu.",
+    "description": "Çocuklar için İngilizce ve dijital öğrenme platformu.",
     "startLocalePath": "/tr"
   },
   "navigation": {
@@ -105,42 +105,77 @@
         }
       },
       {
-        "id": "fb-blog",
-        "url": "/blog",
+        "id": "fb-preschool",
+        "url": "/preschool",
         "label": {
-          "tr": "Blog",
-          "en": "Blog",
-          "de": "Blog"
+          "tr": "Anaokulu",
+          "en": "Preschool",
+          "de": "Vorschule"
         }
       },
       {
-        "id": "fb-faq",
-        "url": "/faqs",
+        "id": "fb-academy",
+        "url": "/woody-academy",
         "label": {
-          "tr": "SSS",
-          "en": "FAQ",
-          "de": "FAQ"
+          "tr": "Akademi",
+          "en": "Academy",
+          "de": "Akademie"
         }
       },
       {
-        "id": "fb-contact",
-        "url": "/contact",
+        "id": "fb-digital",
+        "url": "/digital-content",
         "label": {
-          "tr": "İletişim",
-          "en": "Contact",
-          "de": "Kontakt"
+          "tr": "Dijital İçerik",
+          "en": "Digital Content",
+          "de": "Digitale Inhalte"
         }
-      }
-    ],
-    "footerFallbackSections": [
+      },
       {
-        "id": "fb-content",
-        "title": {
-          "tr": "İçerik",
-          "en": "Content",
-          "de": "Inhalt"
+        "id": "fb-store",
+        "url": "/store",
+        "label": {
+          "tr": "Mağaza",
+          "en": "Store",
+          "de": "Shop"
+        }
+      },
+      {
+        "id": "fb-more",
+        "url": "",
+        "label": {
+          "tr": "Keşfet",
+          "en": "Explore",
+          "de": "Entdecken"
         },
-        "items": [
+        "children": [
+          {
+            "id": "fb-workshop",
+            "url": "/workshop",
+            "label": {
+              "tr": "Atölye",
+              "en": "Workshop",
+              "de": "Workshop"
+            }
+          },
+          {
+            "id": "fb-home-tutor",
+            "url": "/home-tutor",
+            "label": {
+              "tr": "Ev Öğretmeni",
+              "en": "Home Tutor",
+              "de": "Hauslehrer"
+            }
+          },
+          {
+            "id": "fb-library",
+            "url": "/library",
+            "label": {
+              "tr": "Kütüphane",
+              "en": "Library",
+              "de": "Bibliothek"
+            }
+          },
           {
             "id": "fb-blog",
             "url": "/blog",
@@ -151,12 +186,106 @@
             }
           },
           {
-            "id": "fb-faq",
-            "url": "/faqs",
+            "id": "fb-contact",
+            "url": "/contact",
             "label": {
-              "tr": "SSS",
-              "en": "FAQ",
-              "de": "FAQ"
+              "tr": "İletişim",
+              "en": "Contact",
+              "de": "Kontakt"
+            }
+          }
+        ]
+      }
+    ],
+    "footerFallbackSections": [
+      {
+        "id": "fb-programs",
+        "title": {
+          "tr": "Programlar",
+          "en": "Programs",
+          "de": "Programme"
+        },
+        "items": [
+          {
+            "id": "fb-preschool",
+            "url": "/preschool",
+            "label": {
+              "tr": "Anaokulu",
+              "en": "Preschool",
+              "de": "Vorschule"
+            }
+          },
+          {
+            "id": "fb-workshop",
+            "url": "/workshop",
+            "label": {
+              "tr": "Atölye",
+              "en": "Workshop",
+              "de": "Workshop"
+            }
+          },
+          {
+            "id": "fb-home-tutor",
+            "url": "/home-tutor",
+            "label": {
+              "tr": "Ev Öğretmeni",
+              "en": "Home Tutor",
+              "de": "Hauslehrer"
+            }
+          },
+          {
+            "id": "fb-academy",
+            "url": "/woody-academy",
+            "label": {
+              "tr": "Woody Academy",
+              "en": "Woody Academy",
+              "de": "Woody Academy"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fb-content",
+        "title": {
+          "tr": "İçerik",
+          "en": "Content",
+          "de": "Inhalt"
+        },
+        "items": [
+          {
+            "id": "fb-library",
+            "url": "/library",
+            "label": {
+              "tr": "Kütüphane",
+              "en": "Library",
+              "de": "Bibliothek"
+            }
+          },
+          {
+            "id": "fb-digital",
+            "url": "/digital-content",
+            "label": {
+              "tr": "Dijital İçerik",
+              "en": "Digital Content",
+              "de": "Digitale Inhalte"
+            }
+          },
+          {
+            "id": "fb-store",
+            "url": "/store",
+            "label": {
+              "tr": "Mağaza",
+              "en": "Store",
+              "de": "Shop"
+            }
+          },
+          {
+            "id": "fb-blog",
+            "url": "/blog",
+            "label": {
+              "tr": "Blog",
+              "en": "Blog",
+              "de": "Blog"
             }
           }
         ]
@@ -164,11 +293,20 @@
       {
         "id": "fb-company",
         "title": {
-          "tr": "Şirket",
+          "tr": "Kurumsal",
           "en": "Company",
           "de": "Unternehmen"
         },
         "items": [
+          {
+            "id": "fb-local",
+            "url": "/lokal/istanbul-anaokulu-ingilizce-egitimi",
+            "label": {
+              "tr": "İstanbul Anaokulu İngilizce",
+              "en": "Istanbul Preschool English",
+              "de": "Istanbul Vorschulenglisch"
+            }
+          },
           {
             "id": "fb-contact",
             "url": "/contact",
@@ -179,12 +317,12 @@
             }
           },
           {
-            "id": "fb-editorial",
-            "url": "/editorial-policy",
+            "id": "fb-faq",
+            "url": "/faqs",
             "label": {
-              "tr": "Editoryal Politika",
-              "en": "Editorial Policy",
-              "de": "Redaktionelle Richtlinie"
+              "tr": "SSS",
+              "en": "FAQ",
+              "de": "FAQ"
             }
           }
         ]

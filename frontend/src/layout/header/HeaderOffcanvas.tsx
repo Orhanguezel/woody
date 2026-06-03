@@ -13,7 +13,8 @@ import { useListMenuItemsQuery, useGetSiteSettingByKeyQuery } from '@/integratio
 import type { PublicMenuItemDto } from '@/integrations/shared';
 import { useUiSection } from '@/i18n';
 import { useAuthStore } from '@/features/auth/auth.store';
-import { getPublicAppName } from '@/lib/site-config';
+import { getHeaderFallbackMenu, getPublicAppName } from '@/lib/site-config';
+import { WOODY_LOCALES } from '@/components/woody/routes';
 
 export type SimpleBrand = {
   name: string;
@@ -34,12 +35,24 @@ type MenuItemWithChildren = PublicMenuItemDto & {
   children?: MenuItemWithChildren[];
 };
 
+type FallbackMenuItem = {
+  id: string;
+  url?: string;
+  label: Record<string, string>;
+  children?: FallbackMenuItem[];
+};
+
+const FALLBACK_MENU = getHeaderFallbackMenu() as FallbackMenuItem[];
+
 const cleanHashLink = (href: string) => {
   if (!href) return href;
+  let clean = href;
   if (href.startsWith('#')) return `/${href.substring(1)}`;
   if (href.startsWith('/#')) return `/${href.substring(2)}`;
-  if (href.includes('#')) return `/${href.split('#')[1]}`;
-  return href;
+  const localePattern = WOODY_LOCALES.map((loc) => loc.replace('-', '\\-')).join('|');
+  clean = clean.replace(new RegExp(`^\\/(${localePattern})(\\/|$)`, 'i'), '/');
+  if (clean.includes('#')) return `/${clean.split('#')[1]}`;
+  return clean;
 };
 
 const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand, locale: localeProp }) => {
@@ -94,8 +107,15 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
     const sortRecursive = (items: MenuItemWithChildren[]): MenuItemWithChildren[] =>
       items.slice().sort((a, b) => ((a as any)?.order_num ?? 0) - ((b as any)?.order_num ?? 0))
         .map((it) => ({ ...it, children: it.children ? sortRecursive(it.children as MenuItemWithChildren[]) : undefined }));
-    return sortRecursive(list);
-  }, [menuData]);
+    if (list.length) return sortRecursive(list);
+    const mapItem = (item: FallbackMenuItem): MenuItemWithChildren => ({
+      id: item.id,
+      url: item.url ?? '',
+      title: item.label[resolvedLocale] || item.label.tr || item.label.en,
+      ...(item.children?.length ? { children: item.children.map(mapItem) } : {}),
+    } as MenuItemWithChildren);
+    return FALLBACK_MENU.map(mapItem);
+  }, [menuData, resolvedLocale]);
 
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
   useEffect(() => { if (!open) setOpenSubmenus({}); }, [open]);

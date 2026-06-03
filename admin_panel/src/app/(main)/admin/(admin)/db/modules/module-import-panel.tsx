@@ -95,12 +95,12 @@ export const ModuleImportPanel: React.FC<ModuleImportPanelProps> = ({ module, di
   };
 
   return (
-    <Card className="bg-muted/30">
+    <Card className="bg-gm-surface/30 border-gm-border-soft rounded-[20px] shadow-none">
       <CardContent className="space-y-4 p-4">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
           <div className="space-y-1">
-            <div className="font-semibold text-sm">{t("title")}</div>
-            <div className="text-muted-foreground text-xs">{t("description", { module })}</div>
+            <div className="font-serif text-gm-text font-semibold text-sm">{t("title")}</div>
+            <div className="text-gm-muted text-xs">{t("description", { module })}</div>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox
@@ -116,11 +116,19 @@ export const ModuleImportPanel: React.FC<ModuleImportPanelProps> = ({ module, di
         </div>
 
         <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="w-full">
-          <TabsList className="mb-4 h-8">
-            <TabsTrigger value="text" className="h-7 px-3 text-xs" disabled={busy}>
+          <TabsList className="mb-4 h-8 bg-gm-surface/30 border border-gm-border-soft rounded-full p-1">
+            <TabsTrigger
+              value="text"
+              className="h-7 px-3 text-xs rounded-full data-[state=active]:bg-gm-gold data-[state=active]:text-gm-bg"
+              disabled={busy}
+            >
               {t("tabs.text")}
             </TabsTrigger>
-            <TabsTrigger value="file" className="h-7 px-3 text-xs" disabled={busy}>
+            <TabsTrigger
+              value="file"
+              className="h-7 px-3 text-xs rounded-full data-[state=active]:bg-gm-gold data-[state=active]:text-gm-bg"
+              disabled={busy}
+            >
               {t("tabs.file")}
             </TabsTrigger>
           </TabsList>
@@ -129,10 +137,10 @@ export const ModuleImportPanel: React.FC<ModuleImportPanelProps> = ({ module, di
             <form onSubmit={handleSubmitText} className="space-y-4">
               <div className="space-y-2">
                 <Label className="text-xs">
-                  {t("text.label")} <span className="text-destructive">*</span>
+                  {t("text.label")} <span className="text-gm-error">*</span>
                 </Label>
                 <Textarea
-                  className="min-h-[160px] font-mono text-xs"
+                  className="min-h-[160px] font-mono text-xs bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl focus-visible:ring-gm-gold/50"
                   value={sqlText}
                   onChange={(e) => setSqlText(e.target.value)}
                   placeholder={t("text.placeholder")}
@@ -151,7 +159,13 @@ export const ModuleImportPanel: React.FC<ModuleImportPanelProps> = ({ module, di
                     Dry run
                   </Label>
                 </div>
-                <Button type="submit" size="sm" variant="destructive" disabled={busy} className="h-8 text-xs">
+                <Button
+                  type="submit"
+                  size="sm"
+                  variant="destructive"
+                  disabled={busy}
+                  className="h-8 text-xs rounded-full"
+                >
                   {isLoading && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
                   {isLoading ? t("importing") : t("applyButton")}
                 </Button>
@@ -163,18 +177,24 @@ export const ModuleImportPanel: React.FC<ModuleImportPanelProps> = ({ module, di
             <form onSubmit={handleSubmitFile} className="space-y-4">
               <div className="space-y-2">
                 <Label className="text-xs">
-                  {t("file.label")} <span className="text-destructive">*</span>
+                  {t("file.label")} <span className="text-gm-error">*</span>
                 </Label>
                 <Input
                   key={fileInputKey}
                   type="file"
-                  className="flex h-8 items-center text-xs"
+                  className="flex h-8 items-center text-xs bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl focus-visible:ring-gm-gold/50"
                   accept=".sql,.gz,.sql.gz"
                   onChange={(e) => setFile(e.target.files?.[0] || null)}
                   disabled={busy}
                 />
               </div>
-              <Button type="submit" size="sm" variant="destructive" disabled={busy} className="h-8 text-xs">
+              <Button
+                type="submit"
+                size="sm"
+                variant="destructive"
+                disabled={busy}
+                className="h-8 text-xs rounded-full"
+              >
                 {isLoading && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
                 {isLoading ? t("importing") : t("importButton")}
               </Button>

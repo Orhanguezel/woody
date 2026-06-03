@@ -28,8 +28,8 @@ export default function MailSettingsPage() {
         </p>
       </div>
 
-      {/* SMTP ayar kartı (site-settings ile ortak bileşen) */}
-      <SmtpSettingsTab locale="tr" />
+      {/* SMTP ayar kartı (site-settings ile ortak bileşen, kart başlığı gizli) */}
+      <SmtpSettingsTab locale="tr" showHeader={false} />
     </div>
   );
 }

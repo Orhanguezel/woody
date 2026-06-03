@@ -13,10 +13,16 @@ type CtaBannerCopy = {
   secondary: string;
 };
 
-export default function HomeCTABanner({ locale: explicitLocale }: { locale?: string }) {
+export default function HomeCTABanner({
+  locale: explicitLocale,
+  copy: copyOverride,
+}: {
+  locale?: string;
+  copy?: CtaBannerCopy;
+}) {
   const locale = useLocaleShort(explicitLocale) || 'tr';
   const raw = homeCtaBanner as Record<string, CtaBannerCopy>;
-  const copy = raw[locale] || raw[locale.split('-')[0]] || raw.tr;
+  const copy = copyOverride || raw[locale] || raw[locale.split('-')[0]] || raw.tr;
 
   return (
     <section

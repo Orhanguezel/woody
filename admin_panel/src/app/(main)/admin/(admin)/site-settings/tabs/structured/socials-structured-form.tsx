@@ -1,18 +1,18 @@
-
 // =============================================================
 // FILE: src/components/admin/site-settings/structured/SocialsStructuredForm.tsx
 // =============================================================
 
 "use client";
 
-import React from "react";
+import type React from "react";
+
 import { z } from "zod";
+
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useAdminTranslations } from "@/i18n";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
-
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 
 export const socialsSchema = z
   .object({
@@ -62,8 +62,7 @@ export const SocialsStructuredForm: React.FC<SocialsStructuredFormProps> = ({
   const adminLocale = usePreferencesStore((s) => s.adminLocale);
   const t = useAdminTranslations(adminLocale || undefined);
 
-  const s =
-    (seed || { instagram: "", facebook: "", linkedin: "", youtube: "", x: "" }) as SocialsFormState;
+  const s = (seed || { instagram: "", facebook: "", linkedin: "", youtube: "", x: "" }) as SocialsFormState;
   const form = socialsObjToForm(value, s);
 
   const fields = [
@@ -85,15 +84,20 @@ export const SocialsStructuredForm: React.FC<SocialsStructuredFormProps> = ({
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {fields.map(([k, label]) => (
           <div className="space-y-2" key={k}>
-            <Label htmlFor={`social-${k}`} className="text-sm">{label}</Label>
+            <Label
+              htmlFor={`social-${k}`}
+              className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+            >
+              {label}
+            </Label>
             <Input
               id={`social-${k}`}
-              className="h-8"
+              className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               value={(form as any)[k] || ""}
               onChange={(e) => onChange({ ...(form as any), [k]: e.target.value })}
               disabled={disabled}
             />
-            {errors?.[k] && <p className="text-xs text-destructive">{errors[k]}</p>}
+            {errors?.[k] && <p className="text-xs text-gm-error">{errors[k]}</p>}
           </div>
         ))}
       </div>

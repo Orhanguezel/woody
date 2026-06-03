@@ -91,12 +91,12 @@ export const HelpHint: React.FC<HelpHintProps> = ({
   return (
     <span
       ref={rootRef}
-      className={`d-inline-flex position-relative align-items-center ${className}`}
+      className={`inline-flex relative items-center ${className}`}
       style={{ verticalAlign: "middle" }}
     >
       <button
         type="button"
-        className="btn btn-link ms-1 p-0 text-decoration-none"
+        className="inline-flex items-center ml-1 p-0 text-gm-muted hover:text-gm-gold transition-colors"
         aria-expanded={open}
         aria-controls={collapseId}
         title={title}
@@ -104,7 +104,7 @@ export const HelpHint: React.FC<HelpHintProps> = ({
         style={{ lineHeight: 1 }}
       >
         <span
-          className="d-inline-flex justify-content-center rounded-circle border align-items-center"
+          className="inline-flex justify-center items-center rounded-full border border-gm-border-soft text-gm-muted"
           style={{
             width: 18,
             height: 18,
@@ -120,7 +120,7 @@ export const HelpHint: React.FC<HelpHintProps> = ({
         <div
           id={collapseId}
           ref={popoverRef}
-          className="position-absolute"
+          className="absolute"
           style={{
             zIndex: 1050,
             top: "100%",
@@ -132,13 +132,13 @@ export const HelpHint: React.FC<HelpHintProps> = ({
           role="dialog"
           aria-label={title}
         >
-          <div className="card border shadow-sm">
-            <div className="card-body py-2">
-              <div className="d-flex justify-content-between mb-1 gap-2 align-items-start">
-                <div className="fw-semibold small">{title}</div>
+          <div className="rounded-2xl border border-gm-border-soft bg-gm-surface backdrop-blur-sm shadow-xl">
+            <div className="px-3 py-2">
+              <div className="flex justify-between mb-1 gap-2 items-start">
+                <div className="font-semibold text-xs text-gm-text">{title}</div>
                 <button
                   type="button"
-                  className="btn btn-sm btn-outline-secondary"
+                  className="inline-flex items-center justify-center rounded-full border border-gm-border-soft text-gm-muted hover:bg-gm-surface/40 hover:text-gm-text"
                   onClick={close}
                   aria-label={t("admin.db.help.closeButton")}
                   title={t("admin.db.help.closeButton")}
@@ -152,7 +152,7 @@ export const HelpHint: React.FC<HelpHintProps> = ({
               </div>
 
               <div
-                className="small text-muted"
+                className="text-xs text-gm-muted"
                 style={{
                   maxHeight: 220,
                   overflow: "auto",
@@ -161,7 +161,7 @@ export const HelpHint: React.FC<HelpHintProps> = ({
                 {children}
               </div>
 
-              <div className="mt-2 text-muted" style={{ fontSize: 11 }}>
+              <div className="mt-2 text-gm-muted" style={{ fontSize: 11 }}>
                 {t("admin.db.help.closeHint")}
               </div>
             </div>

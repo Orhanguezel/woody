@@ -35,15 +35,17 @@ function pickLocaleKey(locale: string): LocaleKey {
 export default function FeaturesNew({
   locale = 'tr',
   imageUrls,
+  copy: copyOverride,
 }: {
   locale?: string;
   /** HomeContent sunucuda doldurur; yoksa imageFallback kullanılır. */
   imageUrls?: string[];
+  copy?: FeaturesLocale;
 }) {
   const app = getPublicAppName();
   const lk = pickLocaleKey(locale);
   const raw = homeFeatures as Record<LocaleKey, FeaturesLocale>;
-  const base = raw[lk] || raw.en;
+  const base = copyOverride || raw[lk] || raw.en;
   const copy = useMemo(
     () => ({
       eyebrow: injectAppName(base.eyebrow, app),

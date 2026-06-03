@@ -645,7 +645,7 @@ export default function AdminAuditClient() {
   const anyLoading = reqLoading || authLoading || metricsLoading || geoLoading || isClearing;
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* ---- HEADER ---- */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div>
@@ -653,7 +653,7 @@ export default function AdminAuditClient() {
             <span className="w-12 h-px bg-gm-gold" />
             <span className="text-gm-gold font-bold text-[10px] tracking-[0.3em] uppercase">Sistem Güvenliği</span>
           </div>
-          <h1 className="font-serif text-5xl text-foreground leading-tight tracking-tight">{t('header.title')}</h1>
+          <h1 className="font-serif text-4xl text-gm-text leading-tight tracking-tight">{t('header.title')}</h1>
           <p className="text-gm-muted text-lg mt-3 font-serif italic max-w-2xl leading-relaxed">
             {t('header.description')}
           </p>

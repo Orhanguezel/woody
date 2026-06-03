@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 // =============================================================
 // FILE: src/components/admin/site-settings/SiteSettingsHeader.tsx
@@ -8,34 +8,21 @@
 // - Locale select disabled on global tabs
 // =============================================================
 
-import * as React from 'react';
-import { Search, RefreshCcw } from 'lucide-react';
-import { useAdminTranslations } from '@/i18n';
-import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
+import type * as React from "react";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { RefreshCcw, Search } from "lucide-react";
 
-export type SettingsTab =
-  | 'list'
-  | 'global_list'
-  | 'general'
-  | 'seo'
-  | 'smtp'
-  | 'cloudinary'
-  | 'brand_media'
-  | 'api';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAdminTranslations } from "@/i18n";
+import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
+
+export type SettingsTab = "list" | "global_list" | "general" | "seo" | "smtp" | "cloudinary" | "brand_media" | "api";
 
 export type LocaleOption = {
   value: string;
@@ -59,23 +46,21 @@ export type SiteSettingsHeaderProps = {
   localesLoading?: boolean;
 };
 
-type SettingsScope = 'localized' | 'global' | 'mixed';
+type SettingsScope = "localized" | "global" | "mixed";
 
 const TAB_ITEMS: { id: SettingsTab; scope: SettingsScope }[] = [
-  { id: 'list', scope: 'mixed' },
-  { id: 'global_list', scope: 'global' },
-  { id: 'general', scope: 'localized' },
-  { id: 'seo', scope: 'localized' },
-  { id: 'smtp', scope: 'global' },
-  { id: 'cloudinary', scope: 'global' },
-  { id: 'brand_media', scope: 'global' },
-  { id: 'api', scope: 'global' },
+  { id: "list", scope: "mixed" },
+  { id: "global_list", scope: "global" },
+  { id: "general", scope: "localized" },
+  { id: "seo", scope: "localized" },
+  { id: "smtp", scope: "global" },
+  { id: "cloudinary", scope: "global" },
+  { id: "brand_media", scope: "global" },
+  { id: "api", scope: "global" },
 ];
 
 function isGlobalTab(t: SettingsTab) {
-  return (
-    t === 'global_list' || t === 'smtp' || t === 'cloudinary' || t === 'brand_media' || t === 'api'
-  );
+  return t === "global_list" || t === "smtp" || t === "cloudinary" || t === "brand_media" || t === "api";
 }
 
 export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
@@ -99,10 +84,8 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
     <div className="space-y-6">
       {/* Title (UsersListClient style) */}
       <div className="space-y-1">
-        <h1 className="text-lg font-semibold">{t('admin.siteSettings.title')}</h1>
-        <p className="text-sm text-muted-foreground">
-          {t('admin.siteSettings.description')}
-        </p>
+        <h1 className="text-lg font-semibold">{t("admin.siteSettings.title")}</h1>
+        <p className="text-sm text-muted-foreground">{t("admin.siteSettings.description")}</p>
       </div>
 
       {/* Tabs (no bootstrap) */}
@@ -110,14 +93,14 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
         <TabsList className="flex flex-wrap justify-start">
           {TAB_ITEMS.map((tab) => (
             <TabsTrigger key={tab.id} value={tab.id}>
-              {tab.id === 'list' ? t('admin.siteSettings.tabs.list') : null}
-              {tab.id === 'global_list' ? t('admin.siteSettings.tabs.globalList') : null}
-              {tab.id === 'general' ? t('admin.siteSettings.tabs.general') : null}
-              {tab.id === 'seo' ? t('admin.siteSettings.tabs.seo') : null}
-              {tab.id === 'smtp' ? t('admin.siteSettings.tabs.smtp') : null}
-              {tab.id === 'cloudinary' ? t('admin.siteSettings.tabs.cloudinary') : null}
-              {tab.id === 'brand_media' ? t('admin.siteSettings.tabs.brandMedia') : null}
-              {tab.id === 'api' ? t('admin.siteSettings.tabs.api') : null}
+              {tab.id === "list" ? t("admin.siteSettings.tabs.list") : null}
+              {tab.id === "global_list" ? t("admin.siteSettings.tabs.globalList") : null}
+              {tab.id === "general" ? t("admin.siteSettings.tabs.general") : null}
+              {tab.id === "seo" ? t("admin.siteSettings.tabs.seo") : null}
+              {tab.id === "smtp" ? t("admin.siteSettings.tabs.smtp") : null}
+              {tab.id === "cloudinary" ? t("admin.siteSettings.tabs.cloudinary") : null}
+              {tab.id === "brand_media" ? t("admin.siteSettings.tabs.brandMedia") : null}
+              {tab.id === "api" ? t("admin.siteSettings.tabs.api") : null}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -128,18 +111,16 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
         <CardHeader className="gap-2">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-1">
-              <CardTitle className="text-base">{t('admin.siteSettings.filters.title')}</CardTitle>
-              <CardDescription>{t('admin.siteSettings.filters.description')}</CardDescription>
+              <CardTitle className="text-base">{t("admin.siteSettings.filters.title")}</CardTitle>
+              <CardDescription>{t("admin.siteSettings.filters.description")}</CardDescription>
             </div>
 
             <div className="flex items-center gap-2">
               {isGlobalTab(activeTab) ? (
-                <Badge variant="secondary">{t('admin.siteSettings.badges.global')}</Badge>
+                <Badge variant="secondary">{t("admin.siteSettings.badges.global")}</Badge>
               ) : null}
-              {!isGlobalTab(activeTab) && locale ? (
-                <Badge variant="secondary">{locale}</Badge>
-              ) : null}
-              {loading ? <Badge variant="outline">{t('admin.siteSettings.messages.loading')}</Badge> : null}
+              {!isGlobalTab(activeTab) && locale ? <Badge variant="secondary">{locale}</Badge> : null}
+              {loading ? <Badge variant="outline">{t("admin.siteSettings.messages.loading")}</Badge> : null}
             </div>
           </div>
         </CardHeader>
@@ -147,14 +128,14 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
         <CardContent className="space-y-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
             <div className="flex-1 space-y-2">
-              <Label htmlFor="site-settings-q">{t('admin.siteSettings.filters.search')}</Label>
+              <Label htmlFor="site-settings-q">{t("admin.siteSettings.filters.search")}</Label>
               <div className="relative">
                 <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   id="site-settings-q"
                   value={search}
                   onChange={(e) => onSearchChange(e.target.value)}
-                  placeholder={t('admin.siteSettings.filters.searchPlaceholder')}
+                  placeholder={t("admin.siteSettings.filters.searchPlaceholder")}
                   className="pl-9"
                   disabled={loading}
                 />
@@ -162,18 +143,14 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
             </div>
 
             <div className="w-full space-y-2 lg:w-56">
-              <Label>{t('admin.siteSettings.filters.language')}</Label>
-              <Select
-                value={locale || ''}
-                onValueChange={(v) => onLocaleChange(v)}
-                disabled={localeDisabled}
-              >
+              <Label>{t("admin.siteSettings.filters.language")}</Label>
+              <Select value={locale || ""} onValueChange={(v) => onLocaleChange(v)} disabled={localeDisabled}>
                 <SelectTrigger>
                   <SelectValue
                     placeholder={
                       localeDisabled
-                        ? t('admin.siteSettings.filters.globalPlaceholder')
-                        : t('admin.siteSettings.filters.selectLanguage')
+                        ? t("admin.siteSettings.filters.globalPlaceholder")
+                        : t("admin.siteSettings.filters.selectLanguage")
                     }
                   />
                 </SelectTrigger>
@@ -188,7 +165,7 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
 
               {localeDisabled ? (
                 <div className="text-xs text-muted-foreground">
-                  {t('admin.siteSettings.filters.languageDisabledNote')}
+                  {t("admin.siteSettings.filters.languageDisabledNote")}
                 </div>
               ) : null}
             </div>
@@ -199,7 +176,7 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
                 variant="ghost"
                 onClick={onRefresh}
                 disabled={loading}
-                title={t('admin.siteSettings.filters.refreshButton')}
+                title={t("admin.siteSettings.filters.refreshButton")}
               >
                 <RefreshCcw className="size-4" />
               </Button>
@@ -211,4 +188,4 @@ export const SiteSettingsHeader: React.FC<SiteSettingsHeaderProps> = ({
   );
 };
 
-SiteSettingsHeader.displayName = 'SiteSettingsHeader';
+SiteSettingsHeader.displayName = "SiteSettingsHeader";

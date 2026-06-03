@@ -3,6 +3,7 @@
 import React from 'react';
 import { fetchHomeLayout, fetchFeaturesNewImageUrls } from './fetchHomeLayout.server';
 import HomeLayoutRenderer from './HomeLayoutRenderer';
+import { loadPageContent } from '@/config/pages/loader';
 
 type Props = { locale?: string };
 
@@ -10,11 +11,39 @@ export default async function HomeContent({ locale }: Props) {
   const layout = await fetchHomeLayout();
   const loc = (locale || 'tr').trim();
   const needsFeatureImages = layout.some((s) => s.component_key === 'FeaturesNew');
-  const featuresImageUrls = needsFeatureImages ? await fetchFeaturesNewImageUrls(loc) : undefined;
+  const [
+    featuresImageUrls,
+    heroCopy,
+    promisesCopy,
+    featuresCopy,
+    introCopy,
+    welcomeCopy,
+    ctaCopy,
+  ] = await Promise.all([
+    needsFeatureImages ? fetchFeaturesNewImageUrls(loc) : Promise.resolve(undefined),
+    loadPageContent('home-hero', loc),
+    loadPageContent('home-promises', loc),
+    loadPageContent('home-features', loc),
+    loadPageContent('home-intro-process', loc),
+    loadPageContent('home-welcome-banner', loc),
+    loadPageContent('home-cta-banner', loc),
+  ]);
 
   return (
     <main className="flex flex-col w-full bg-[var(--gm-bg)]">
-      <HomeLayoutRenderer layout={layout} locale={locale} featuresImageUrls={featuresImageUrls} />
+      <HomeLayoutRenderer
+        layout={layout}
+        locale={locale}
+        featuresImageUrls={featuresImageUrls}
+        homeCopies={{
+          HeroNew: heroCopy,
+          PromisesSection: promisesCopy,
+          FeaturesNew: featuresCopy,
+          HomeIntroSection: introCopy,
+          WelcomeBannerSection: welcomeCopy,
+          HomeCTABanner: ctaCopy,
+        }}
+      />
     </main>
   );
 }

@@ -21,15 +21,21 @@ type WelcomeBannerLocale = {
   titleTemplate: string;
 };
 
-export default function WelcomeBannerSection({ locale: explicitLocale }: { locale?: string }) {
+export default function WelcomeBannerSection({
+  locale: explicitLocale,
+  copy: copyOverride,
+}: {
+  locale?: string;
+  copy?: WelcomeBannerLocale;
+}) {
   const locale = useLocaleShort(explicitLocale) || 'tr';
   const app = getPublicAppName();
   const copy = useMemo((): WelcomeCopy => {
     const raw = homeWelcomeBanner as Record<string, WelcomeBannerLocale>;
-    const base = raw[locale] || raw[locale.split('-')[0]] || raw.tr;
+    const base = copyOverride || raw[locale] || raw[locale.split('-')[0]] || raw.tr;
     const title = base.titleTemplate.replace(/\{\{appName\}\}/g, app.replace(/\s+/g, '').toUpperCase());
     return { title, subtitle: base.subtitle, cta: base.cta, link: base.link };
-  }, [app, locale]);
+  }, [app, locale, copyOverride]);
 
   return (
     <section className="py-24 px-6 md:py-32 overflow-hidden bg-[var(--gm-bg-deep)] border-y border-[var(--gm-border-soft)] relative">

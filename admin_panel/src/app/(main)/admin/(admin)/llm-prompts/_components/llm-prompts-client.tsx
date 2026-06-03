@@ -48,18 +48,37 @@ export default function LlmPromptsClient() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold italic font-display text-gm-primary">LLM Prompts</h1>
-          <p className="text-sm text-muted-foreground">Manage AI model configurations, prompts, and hyper-parameters.</p>
+    <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* Header — gm-theme standardı */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-px bg-gm-gold" />
+            <span className="text-gm-gold font-bold text-[10px] tracking-[0.2em] uppercase">Yapay Zeka</span>
+          </div>
+          <h1 className="font-serif text-4xl text-gm-text flex items-center gap-3">
+            <Bot className="w-7 h-7 text-gm-gold" />
+            LLM Prompts
+          </h1>
+          <p className="text-gm-muted text-sm font-serif italic opacity-70">
+            Manage AI model configurations, prompts, and hyper-parameters.
+          </p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={() => query.refetch()} disabled={query.isFetching}>
+
+        <div className="flex items-center gap-3 bg-gm-surface/20 px-6 py-4 rounded-[24px] border border-gm-border-soft backdrop-blur-sm shadow-lg">
+          <Button
+            variant="outline"
+            onClick={() => query.refetch()}
+            disabled={query.isFetching}
+            className="rounded-full border-gm-border-soft px-6 h-12 hover:bg-gm-surface transition-all font-bold tracking-widest uppercase text-[10px]"
+          >
             <RefreshCcw className={`mr-2 size-4${query.isFetching ? ' animate-spin' : ''}`} />
             Refresh
           </Button>
-          <Button size="sm" asChild className="bg-gm-primary hover:bg-gm-primary-dark">
+          <Button
+            asChild
+            className="rounded-full bg-gm-gold text-gm-bg hover:bg-gm-gold-light h-12 px-6 font-bold tracking-widest uppercase text-[10px] shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all"
+          >
             <Link href="/admin/llm-prompts/new">
               <Plus className="mr-2 size-4" />
               New Prompt
@@ -80,7 +99,7 @@ export default function LlmPromptsClient() {
         </div>
       </div>
 
-      <Card className="border-gm-border-soft bg-gm-surface/50 backdrop-blur-sm">
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
         <CardContent className="p-0">
           <Table>
             <TableHeader className="bg-gm-surface-high/50">

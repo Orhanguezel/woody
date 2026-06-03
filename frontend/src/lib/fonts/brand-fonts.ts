@@ -1,10 +1,18 @@
-import { IBM_Plex_Mono, Plus_Jakarta_Sans, Source_Serif_4 } from 'next/font/google';
+import { Fredoka, IBM_Plex_Mono, Inter, Source_Serif_4 } from 'next/font/google';
 
-export const fontSans = Plus_Jakarta_Sans({
+export const fontSans = Inter({
   subsets: ['latin', 'latin-ext'],
-  variable: '--font-pj',
+  variable: '--font-inter',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
+  fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+});
+
+export const fontDisplay = Fredoka({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-fredoka',
+  display: 'swap',
+  weight: ['500', '600', '700'],
   fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
 });
 
@@ -28,4 +36,4 @@ export const fontMono = IBM_Plex_Mono({
 });
 
 export const brandFontVariableClassName =
-  `${fontSans.variable} ${fontSerif.variable} ${fontMono.variable}`.trim();
+  `${fontSans.variable} ${fontDisplay.variable} ${fontSerif.variable} ${fontMono.variable}`.trim();

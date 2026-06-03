@@ -1,10 +1,18 @@
 /** @type {import('next').NextConfig} */
+// Path-mount (tek domain altinda /admin): ADMIN_ASSET_PREFIX set edilince
+// statik asset'ler bu prefix altindan servis edilir (frontend ile /_next cakismaz).
+// Bos birakilirsa (local dev / subdomain) hicbir sey degismez.
+const ASSET_PREFIX = (process.env.ADMIN_ASSET_PREFIX || '').replace(/\/+$/, '');
+
 const nextConfig = {
   reactCompiler: true,
   compiler: { removeConsole: process.env.NODE_ENV === 'production' },
+  ...(ASSET_PREFIX ? { assetPrefix: ASSET_PREFIX } : {}),
 
   // ✅ Image optimization config
   images: {
+    // Path-mount'ta /_next/image frontend'e dusmesin diye optimizasyonu kapat.
+    ...(ASSET_PREFIX ? { unoptimized: true } : {}),
     remotePatterns: [
       {
         protocol: 'https',

@@ -3,7 +3,7 @@
 // FINAL — Admin Site Settings Page (App Router)
 // =============================================================
 
-import AdminSiteSettingsClient from './_components/admin-site_settings-client';
+import AdminSiteSettingsClient from "./_components/admin-site_settings-client";
 
 export default function Page() {
   return <AdminSiteSettingsClient />;

@@ -19,7 +19,11 @@ import {
 import { toBool } from "@/integrations/shared";
 
 function StatusBadge({ ok }: { ok: boolean }) {
-  return ok ? <Badge>Aktif</Badge> : <Badge variant="destructive">Eksik</Badge>;
+  return ok ? (
+    <Badge className="bg-gm-gold text-gm-bg border-transparent">Aktif</Badge>
+  ) : (
+    <Badge className="bg-gm-error/15 text-gm-error border-gm-error/30">Eksik</Badge>
+  );
 }
 
 export function LiveKitTab() {
@@ -73,48 +77,78 @@ export function LiveKitTab() {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardHeader className="bg-gm-surface/40 p-8 border-b border-gm-border-soft flex flex-row items-start justify-between gap-4 space-y-0">
           <div className="space-y-1">
-            <CardTitle className="flex items-center gap-2 text-base">
-              <RadioTower className="size-4" />
+            <CardTitle className="font-serif text-2xl text-gm-text flex items-center gap-2">
+              <RadioTower className="size-4 text-gm-gold" />
               LiveKit Durumu
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-gm-muted font-serif italic opacity-80">
               LiveKit değerleri backend .env dosyasından okunur. Secret alanlar admin panelde sadece maskeleme ve
               yapılandırma durumu olarak gösterilir.
             </CardDescription>
           </div>
-          <Button type="button" variant="outline" size="sm" onClick={() => refetch()} disabled={busy}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => refetch()}
+            disabled={busy}
+            className="rounded-full border-gm-border-soft hover:bg-gm-surface/40 hover:text-gm-text text-[10px] font-bold tracking-widest uppercase"
+          >
             <RefreshCcw className="mr-2 size-4" />
             Yenile
           </Button>
         </CardHeader>
-        <CardContent className="space-y-5">
+        <CardContent className="p-8 space-y-5">
           <div className="flex flex-wrap items-center gap-2">
             <StatusBadge ok={Boolean(data?.configured)} />
-            <Badge variant="outline">
+            <Badge className="border-gm-gold/30 bg-gm-gold/5 text-gm-gold">
               Aktif oda: {data?.active_rooms === null || data?.active_rooms === undefined ? "-" : data.active_rooms}
             </Badge>
-            {data?.rooms_error ? <Badge variant="destructive">Room API hata</Badge> : null}
+            {data?.rooms_error ? (
+              <Badge className="bg-gm-error/15 text-gm-error border-gm-error/30">Room API hata</Badge>
+            ) : null}
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label>LIVEKIT_URL</Label>
-              <Input value={data?.livekit_url ?? ""} readOnly />
-            </div>
-            <div className="space-y-2">
-              <Label>LIVEKIT_API_KEY</Label>
-              <Input value={data?.api_key_masked ?? ""} readOnly />
-            </div>
-            <div className="space-y-2">
-              <Label>Webhook Signing Key</Label>
-              <Input value={data?.webhook_signing_key_configured ? "Tanımlı" : "Eksik"} readOnly />
-            </div>
-            <div className="space-y-2">
-              <Label>Aktif Oda Sayısı</Label>
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block">
+                LIVEKIT_URL
+              </Label>
               <Input
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
+                value={data?.livekit_url ?? ""}
+                readOnly
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block">
+                LIVEKIT_API_KEY
+              </Label>
+              <Input
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
+                value={data?.api_key_masked ?? ""}
+                readOnly
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block">
+                Webhook Signing Key
+              </Label>
+              <Input
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
+                value={data?.webhook_signing_key_configured ? "Tanımlı" : "Eksik"}
+                readOnly
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block">
+                Aktif Oda Sayısı
+              </Label>
+              <Input
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
                 value={
                   data?.active_rooms === null || data?.active_rooms === undefined ? "-" : String(data.active_rooms)
                 }
@@ -124,29 +158,36 @@ export function LiveKitTab() {
           </div>
 
           {data?.rooms_error ? (
-            <div className="rounded-md border border-destructive/30 bg-destructive/10 p-3 text-destructive text-sm">
+            <div className="rounded-2xl border border-gm-error/30 bg-gm-error/10 p-3 text-gm-error text-sm">
               {data.rooms_error}
             </div>
           ) : null}
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardHeader className="bg-gm-surface/40 p-8 border-b border-gm-border-soft flex flex-row items-start justify-between gap-4 space-y-0">
           <div className="space-y-1">
-            <CardTitle className="text-base">Video Görüşme Özelliği</CardTitle>
-            <CardDescription>
+            <CardTitle className="font-serif text-2xl text-gm-text">Video Görüşme Özelliği</CardTitle>
+            <CardDescription className="text-gm-muted font-serif italic opacity-80">
               `feature_video_enabled` ile video akışı global olarak açılır/kapatılır. Sistem sadece bu bayrağın true
               olduğu durumlarda video akışını aktive etmeye hazırdır.
             </CardDescription>
           </div>
-          <Button type="button" variant="outline" size="sm" onClick={() => refetchFeature()} disabled={featureBusy}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => refetchFeature()}
+            disabled={featureBusy}
+            className="rounded-full border-gm-border-soft hover:bg-gm-surface/40 hover:text-gm-text text-[10px] font-bold tracking-widest uppercase"
+          >
             <RefreshCcw className="mr-2 size-4" />
             {featureBusy ? "Yükleniyor..." : "Yenile"}
           </Button>
         </CardHeader>
-        <CardContent className="space-y-4">
-          {featureBusy ? <div className="text-muted-foreground text-sm">Ayar yükleniyor...</div> : null}
+        <CardContent className="p-8 space-y-4">
+          {featureBusy ? <div className="text-gm-muted text-sm">Ayar yükleniyor...</div> : null}
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
               <Checkbox
@@ -155,20 +196,33 @@ export function LiveKitTab() {
                 onCheckedChange={handleFeatureToggle}
                 disabled={featureBusy}
               />
-              <Label htmlFor="feature-video-enabled" className="text-sm">
+              <Label htmlFor="feature-video-enabled" className="text-sm text-gm-text">
                 Video görüşmeleri aktif
               </Label>
             </div>
-            <Button type="button" onClick={saveFeatureEnabled} disabled={featureBusy || !featureChanged}>
+            <Button
+              type="button"
+              onClick={saveFeatureEnabled}
+              disabled={featureBusy || !featureChanged}
+              className="rounded-full bg-gm-gold text-gm-bg hover:bg-gm-gold-light h-12 px-8 text-[10px] font-bold tracking-widest uppercase transition-all"
+            >
               {isSavingFeature ? "Kaydediliyor..." : "Kaydet"}
             </Button>
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Badge variant={featureVideoEnabled ? "default" : "outline"}>
+            <Badge
+              className={
+                featureVideoEnabled
+                  ? "bg-gm-gold text-gm-bg border-transparent"
+                  : "border-gm-gold/30 bg-gm-gold/5 text-gm-gold"
+              }
+            >
               {featureVideoEnabled ? "Aktif" : "Pasif"}
             </Badge>
-            <Badge variant="secondary">Kayıtlı değer: {featureVideoEnabled ? "1" : "0"}</Badge>
+            <Badge className="bg-gm-bg-deep text-gm-text border-gm-border-soft">
+              Kayıtlı değer: {featureVideoEnabled ? "1" : "0"}
+            </Badge>
           </div>
         </CardContent>
       </Card>

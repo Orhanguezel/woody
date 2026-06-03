@@ -1,105 +1,59 @@
-'use client';
+import type { Metadata } from 'next';
 
-import React, { useMemo } from 'react';
-import Banner from '@/layout/banner/Breadcrum';
-import PublicBanner from '@/components/common/public/Banner';
-import BlogPageContent from '@/components/containers/blog/BlogPageContent';
-import { LayoutSeoBridge } from '@/seo';
-import { useLocaleShort, useUiSection } from '@/i18n';
-import { isValidUiText } from '@/integrations/shared';
-import { useListCustomPagesPublicQuery } from '@/integrations/rtk/hooks';
-import type { CustomPageDto } from '@/integrations/shared';
-import { safeStr } from '@/integrations/shared';
+import WoodyBlogIndexClient from '@/components/woody/WoodyBlogIndexClient';
+import JsonLd from '@/seo/JsonLd';
+import { breadcrumbSchema, graph, itemList } from '@/seo/jsonld';
+import { buildPageMetadata } from '@/seo/serverMetadata';
+import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
+import { loadFallbackBlogPosts } from '@/components/woody/blog-loader.server';
 
-export default function BlogPage() {
-  const locale = useLocaleShort();
-  const { ui } = useUiSection('ui_blog', locale as any);
+type Props = { params: Promise<{ locale: string }> };
 
-  // -----------------------------
-  // Banner title (UI)
-  // -----------------------------
-  const bannerTitle = useMemo(() => {
-    const key = 'ui_blog_page_title';
-    const v = safeStr(ui(key, 'Blog'));
-    return isValidUiText(v, key) ? v : 'Blog';
-  }, [ui]);
-
-  // -----------------------------
-  // Blog custom pages (meta override için: ilk published kayıt)
-  // PERF: limit küçük
-  // -----------------------------
-  const { data: blogData } = useListCustomPagesPublicQuery({
-    module_key: 'blog',
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata({
     locale,
-    limit: 5,
-    sort: 'created_at',
-    orderDir: 'asc',
+    pageKey: 'blog',
+    pathname: '/blog',
+    fallback: {
+      title: locale === 'tr' ? 'Blog' : 'Blog',
+      description:
+        locale === 'tr'
+          ? 'Woody ve Arkadaşları blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
+          : 'Woody ve Arkadaşları blog posts on children English and digital learning.',
+    },
   });
+}
 
-  const primary = useMemo<CustomPageDto | null>(() => {
-    const items = (blogData?.items ?? []) as any[];
-    if (!Array.isArray(items) || items.length === 0) return null;
-
-    for (const it of items) {
-      if (it && it.is_published) return it as CustomPageDto;
-    }
-    return null;
-  }, [blogData?.items]);
-
-  // -----------------------------
-  // Page SEO (override only what you need)
-  // -----------------------------
-  const pageTitle = useMemo(() => {
-    const key = 'ui_blog_meta_title';
-    const v = safeStr(ui(key, ''));
-    if (isValidUiText(v, key)) return v;
-
-    const mt = safeStr(primary?.meta_title);
-    if (mt) return mt;
-
-    const t = safeStr(primary?.title);
-    if (t) return t;
-
-    return bannerTitle || 'Blog';
-  }, [ui, primary?.meta_title, primary?.title, bannerTitle]);
-
-  const pageDescription = useMemo(() => {
-    const key = 'ui_blog_meta_description';
-    const v = safeStr(ui(key, ''));
-    if (isValidUiText(v, key)) return v;
-
-    const md = safeStr(primary?.meta_description);
-    if (md) return md;
-
-    return '';
-  }, [ui, primary]);
-
-  const ogImageOverride = useMemo(() => {
-    // Just basic handling
-    return undefined;
-  }, []);
+export default async function BlogPage({ params }: Props) {
+  const { locale } = await params;
+  const posts = await loadFallbackBlogPosts(locale);
+  const siteUrl = getPublicSiteOrigin();
+  const app = getPublicAppName();
+  const pageUrl = `${siteUrl}/${locale}/blog`;
 
   return (
     <>
-      <LayoutSeoBridge
-        title={pageTitle}
-        description={pageDescription}
-        ogImage={ogImageOverride}
-        noindex={false}
+      <JsonLd
+        id="woody-blog-list"
+        data={graph([
+          breadcrumbSchema([
+            { name: app, item: `${siteUrl}/${locale}` },
+            { name: 'Blog', item: pageUrl },
+          ]),
+          itemList({
+            url: pageUrl,
+            name: 'Blog',
+            items: posts.map((post, index) => ({
+              name: post.title,
+              url: `${pageUrl}/${encodeURIComponent(post.slug)}`,
+              image: post.featured_image,
+              position: index + 1,
+            })),
+          }),
+        ])}
       />
-
-      <Banner title={bannerTitle} />
-
-      <div className="bg-bg-primary min-h-[50vh]">
-        <section className="container mx-auto py-16 px-4">
-          <BlogPageContent />
-        </section>
-
-        <section className="container mx-auto pb-16 px-4">
-          <PublicBanner placement="blog_inline" variant="slim" count={1} dismissable />
-        </section>
-
-      </div>
+      <WoodyBlogIndexClient />
     </>
   );
 }

@@ -135,11 +135,11 @@ export const FullDbImportPanel: React.FC = () => {
   };
 
   return (
-    <Card className="border-none shadow-none">
-      <CardHeader className="flex flex-row items-center justify-between bg-muted/20 py-4">
+    <Card className="border-none shadow-none bg-transparent">
+      <CardHeader className="flex flex-row items-center justify-between bg-gm-surface/30 py-4">
         <div className="flex items-center gap-2">
-          <Upload className="size-4 text-primary" />
-          <CardTitle className="flex items-center gap-2 font-semibold text-sm">
+          <Upload className="size-4 text-gm-gold" />
+          <CardTitle className="flex items-center gap-2 font-serif text-gm-text font-semibold text-sm">
             {t("title")}
             <HelpHint icon="question" title={t("helpTitle")} align="start">
               <HelpBlock headline={t("helpHeadline")}>
@@ -158,7 +158,10 @@ export const FullDbImportPanel: React.FC = () => {
         </div>
 
         {busy && (
-          <Badge variant="secondary" className="h-6 animate-pulse gap-1.5 font-normal text-[10px]">
+          <Badge
+            variant="secondary"
+            className="bg-gm-bg-deep text-gm-text border-gm-border-soft h-6 animate-pulse gap-1.5 font-normal text-[10px]"
+          >
             <Loader2 className="size-3 animate-spin" />
             {t("processing")}
           </Badge>
@@ -166,7 +169,7 @@ export const FullDbImportPanel: React.FC = () => {
       </CardHeader>
 
       <CardContent className="space-y-4 p-4">
-        <div className="flex items-start gap-3 rounded-lg border border-destructive/10 bg-destructive/5 p-3 text-destructive">
+        <div className="flex items-start gap-3 rounded-lg border border-gm-error/20 bg-gm-error/10 p-3 text-gm-error">
           <AlertCircle className="mt-0.5 size-4 shrink-0" />
           <p className="text-xs leading-relaxed">
             <strong className="font-bold">{t("dangerLabel")}</strong> {t("warning")}
@@ -193,7 +196,7 @@ export const FullDbImportPanel: React.FC = () => {
             <form onSubmit={handleSubmitText} className="space-y-4">
               <div className="space-y-2">
                 <Label className="flex items-center gap-2 text-xs">
-                  {t("text.label")} <span className="text-destructive">*</span>
+                  {t("text.label")} <span className="text-gm-error">*</span>
                   <HelpHint icon="question" title={t("text.helpTitle")}>
                     <HelpBlock headline={t("text.helpHeadline")}>
                       <ul className="ml-4 list-disc space-y-1 text-xs">
@@ -205,7 +208,7 @@ export const FullDbImportPanel: React.FC = () => {
                   </HelpHint>
                 </Label>
                 <Textarea
-                  className="min-h-[200px] bg-muted/10 font-mono text-xs"
+                  className="min-h-[200px] bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl focus-visible:ring-gm-gold/50 font-mono text-xs"
                   value={sqlText}
                   onChange={(e) => setSqlText(e.target.value)}
                   placeholder={t("text.placeholder")}
@@ -260,7 +263,7 @@ export const FullDbImportPanel: React.FC = () => {
                 size="sm"
                 variant="destructive"
                 disabled={busy}
-                className="h-8 min-w-[120px] text-xs"
+                className="h-8 min-w-[120px] rounded-full text-xs"
               >
                 {isImportingText ? t("buttons.importing") : t("buttons.apply")}
               </Button>
@@ -271,7 +274,7 @@ export const FullDbImportPanel: React.FC = () => {
             <form onSubmit={handleSubmitUrl} className="space-y-4">
               <div className="space-y-2">
                 <Label className="flex items-center gap-2 text-xs">
-                  {t("url.label")} <span className="text-destructive">*</span>
+                  {t("url.label")} <span className="text-gm-error">*</span>
                   <HelpHint icon="question" title={t("url.helpTitle")}>
                     <HelpBlock headline={t("url.helpHeadline")}>
                       <ul className="ml-4 list-disc space-y-1 text-xs">
@@ -284,7 +287,7 @@ export const FullDbImportPanel: React.FC = () => {
                 </Label>
                 <Input
                   type="url"
-                  className="h-8 bg-muted/10 text-xs"
+                  className="h-8 bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl focus-visible:ring-gm-gold/50 text-xs"
                   placeholder={t("url.placeholder")}
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
@@ -339,7 +342,7 @@ export const FullDbImportPanel: React.FC = () => {
                 size="sm"
                 variant="destructive"
                 disabled={busy}
-                className="h-8 min-w-[120px] text-xs"
+                className="h-8 min-w-[120px] rounded-full text-xs"
               >
                 {isImportingUrl ? t("buttons.importing") : t("buttons.importFromUrl")}
               </Button>
@@ -350,7 +353,7 @@ export const FullDbImportPanel: React.FC = () => {
             <form onSubmit={handleSubmitFile} className="space-y-4">
               <div className="space-y-2">
                 <Label className="flex items-center gap-2 text-xs">
-                  {t("file.label")} <span className="text-destructive">*</span>
+                  {t("file.label")} <span className="text-gm-error">*</span>
                   <HelpHint icon="question" title={t("file.helpTitle")}>
                     <HelpBlock headline={t("file.helpHeadline")}>
                       <ul className="ml-4 list-disc space-y-1 text-xs">
@@ -365,18 +368,18 @@ export const FullDbImportPanel: React.FC = () => {
                   <Input
                     key={fileInputKey}
                     type="file"
-                    className="flex h-9 cursor-pointer items-center bg-muted/10 text-xs"
+                    className="flex h-9 cursor-pointer items-center bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl focus-visible:ring-gm-gold/50 text-xs"
                     accept=".sql,.gz,.sql.gz"
                     onChange={(e) => setFile(e.target.files?.[0] || null)}
                     disabled={busy}
                   />
                   {file && (
-                    <div className="fade-in slide-in-from-top-1 flex animate-in items-center gap-2 text-[10px] text-muted-foreground">
+                    <div className="fade-in slide-in-from-top-1 flex animate-in items-center gap-2 text-[10px] text-gm-muted">
                       <FileText className="size-3" />
-                      {t("file.selected")} <code className="font-bold text-primary">{file.name}</code>
+                      {t("file.selected")} <code className="font-bold text-gm-gold">{file.name}</code>
                     </div>
                   )}
-                  <p className="text-[10px] text-muted-foreground/70 italic">
+                  <p className="text-[10px] text-gm-muted/70 italic">
                     <strong className="mr-1 font-bold opacity-100">{t("admin.common.note")}:</strong>
                     {t("file.note")}
                   </p>
@@ -408,7 +411,7 @@ export const FullDbImportPanel: React.FC = () => {
                 size="sm"
                 variant="destructive"
                 disabled={busy}
-                className="h-8 min-w-[120px] text-xs"
+                className="h-8 min-w-[120px] rounded-full text-xs"
               >
                 {isImportingFile ? t("buttons.importing") : t("buttons.importFromFile")}
               </Button>

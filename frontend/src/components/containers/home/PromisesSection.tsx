@@ -8,10 +8,10 @@ type PromisesCopy = {
   promises: { num: string; title: string; text: string; target: string }[];
 };
 
-export default function PromisesSection({ locale = 'tr' }: { locale?: string }) {
+export default function PromisesSection({ locale = 'tr', copy: copyOverride }: { locale?: string; copy?: PromisesCopy }) {
   const appName = getPublicAppName();
   const raw = homePromises as Record<string, PromisesCopy>;
-  const copy = raw[locale] || raw[locale.split('-')[0]] || raw.tr;
+  const copy = copyOverride || raw[locale] || raw[locale.split('-')[0]] || raw.tr;
   const titleHtml = copy.title.replace(/\{\{appName\}\}/g, appName);
 
   return (

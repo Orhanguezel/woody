@@ -76,13 +76,13 @@ export const SiteSettingsUiPanel: React.FC<SiteSettingsUiPanelProps> = ({ disabl
   };
 
   return (
-    <Card className="bg-muted/30">
+    <Card className="bg-gm-surface/30 border-gm-border-soft rounded-[20px] shadow-none">
       <CardContent className="space-y-4 p-4">
         {/* Header + Download */}
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
           <div className="space-y-1">
-            <div className="font-semibold text-sm">{t("title")}</div>
-            <div className="text-muted-foreground text-xs">{t("description")}</div>
+            <div className="font-serif text-gm-text font-semibold text-sm">{t("title")}</div>
+            <div className="text-gm-muted text-xs">{t("description")}</div>
             {data && (
               <Badge variant="outline" className="mt-1 h-5 text-[10px]">
                 {data.count} key ({data.fromLocale})
@@ -92,12 +92,12 @@ export const SiteSettingsUiPanel: React.FC<SiteSettingsUiPanelProps> = ({ disabl
 
           <div className="flex items-center gap-2">
             <Select value={exportLocale} onValueChange={setExportLocale} disabled={busy}>
-              <SelectTrigger className="h-8 w-20 text-xs">
+              <SelectTrigger className="h-8 w-20 text-xs bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-gm-surface border-gm-border-soft">
                 {LOCALES.map((l) => (
-                  <SelectItem key={l} value={l} className="text-xs">
+                  <SelectItem key={l} value={l} className="text-xs text-gm-text">
                     {l}
                   </SelectItem>
                 ))}
@@ -108,7 +108,7 @@ export const SiteSettingsUiPanel: React.FC<SiteSettingsUiPanelProps> = ({ disabl
               variant="outline"
               onClick={handleDownloadJson}
               disabled={busy || !data?.items}
-              className="h-8 shrink-0 text-xs"
+              className="h-8 shrink-0 text-xs rounded-full"
             >
               {isLoading || isFetching ? (
                 <Loader2 className="mr-2 size-3.5 animate-spin" />
@@ -127,12 +127,12 @@ export const SiteSettingsUiPanel: React.FC<SiteSettingsUiPanelProps> = ({ disabl
           <div className="space-y-2">
             <Label className="text-xs">{t("sourceLocale")}</Label>
             <Select value={sourceLocale} onValueChange={setSourceLocale} disabled={busy}>
-              <SelectTrigger className="h-8 text-xs">
+              <SelectTrigger className="h-8 text-xs bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-gm-surface border-gm-border-soft">
                 {LOCALES.map((l) => (
-                  <SelectItem key={l} value={l} className="text-xs">
+                  <SelectItem key={l} value={l} className="text-xs text-gm-text">
                     {l}
                   </SelectItem>
                 ))}
@@ -143,12 +143,12 @@ export const SiteSettingsUiPanel: React.FC<SiteSettingsUiPanelProps> = ({ disabl
           <div className="space-y-2">
             <Label className="text-xs">{t("targetLocale")}</Label>
             <Select value={targetLocale} onValueChange={setTargetLocale} disabled={busy}>
-              <SelectTrigger className="h-8 text-xs">
+              <SelectTrigger className="h-8 text-xs bg-gm-bg-deep border-gm-border-soft text-gm-text rounded-xl">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-gm-surface border-gm-border-soft">
                 {LOCALES.map((l) => (
-                  <SelectItem key={l} value={l} className="text-xs">
+                  <SelectItem key={l} value={l} className="text-xs text-gm-text">
                     {l}
                   </SelectItem>
                 ))}
@@ -187,7 +187,7 @@ export const SiteSettingsUiPanel: React.FC<SiteSettingsUiPanelProps> = ({ disabl
             variant="secondary"
             onClick={handleBootstrap}
             disabled={busy}
-            className="ml-auto h-8 w-full border-none bg-yellow-500 text-black text-xs hover:bg-yellow-600 sm:w-auto"
+            className="ml-auto h-8 w-full border-none rounded-full bg-gm-gold text-gm-bg text-xs hover:bg-gm-gold-light sm:w-auto"
           >
             {isBootstrapping ? <Loader2 className="mr-2 size-3.5 animate-spin" /> : <Zap className="mr-2 size-3.5" />}
             {isBootstrapping ? t("applying") : t("bootstrapButton")}

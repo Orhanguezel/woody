@@ -1,10 +1,10 @@
-# AppName
+# Woody ve Arkadaşları
 
 > Sablon proje: cok dilli web sitesi, yonetim paneli ve REST API. Marka ve metinler `NEXT_PUBLIC_*`, `site-defaults.json` ve veritabani `site_settings` uzerinden yapilandirilir.
 
 ## Business Info
 
-- Name: AppName (yerel kurulumda scripts/apply-brand.py ile degistirilir)
+- Name: Woody ve Arkadaşları
 - Type: Kurumsal web + icerik + hesap akisi sablonu
 - Languages: Turkish (default), English, German (yapilandirmaya bagli)
 - API: `/api/v1` altinda Fastify tabanli REST
@@ -19,3 +19,44 @@
 
 - Canonical brand strings come from environment and database seeds, not from this file alone.
 - After cloning the template, run `bash scripts/init-project.sh --name "..." --slug "..."` then seed the database from `backend/src/db/seed/`.
+# Woody ve Arkadaşları
+
+Woody ve Arkadaşları için SSR sayfa yapısı, SEO şemaları ve çok dilli URL haritası bu dosyada özetlenir.
+
+## Ana URL'ler
+
+- /tr
+- /tr/preschool
+- /tr/workshop
+- /tr/home-tutor
+- /tr/woody-academy
+- /tr/library
+- /tr/store
+- /tr/digital-content
+- /tr/lokal/istanbul-anaokulu-ingilizce-egitimi
+- /tr/blog
+- /tr/contact
+- /tr/faqs
+
+## Dijital ürün URL kalıbı
+
+- /tr/digital-content/basic/storyland
+- /tr/digital-content/basic/movieland
+- /tr/digital-content/basic/musicland
+- /tr/digital-content/basic/library
+- /tr/digital-content/junior/storyland
+- /tr/digital-content/junior/movieland
+- /tr/digital-content/junior/musicland
+- /tr/digital-content/junior/library
+- /tr/digital-content/senior/storyland
+- /tr/digital-content/senior/movieland
+- /tr/digital-content/senior/musicland
+- /tr/digital-content/senior/library
+
+## Dil yapısı
+
+Aktif hedef diller: tr, en, de, ar, fr, ru, es, it, nl, pt-br. Varsayılan dil tr, x-default Türkçe canonical'a döner. Yerel İstanbul sayfası yalnızca tr dilinde yayınlanır.
+
+## Bot erişimi
+
+Arama motorları ve AI crawler'ları genel içerik sayfalarına erişebilir. Admin, API, _next ve kullanıcı ayar alanları robots.txt içinde dışlanır.

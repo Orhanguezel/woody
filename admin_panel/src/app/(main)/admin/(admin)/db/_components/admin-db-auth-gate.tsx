@@ -37,11 +37,11 @@ export const AdminDbAuthGate: React.FC<AdminDbAuthGateProps> = ({ children }) =>
   // Loading state
   if (statusLoading || !statusData) {
     return (
-      <div className="space-y-6">
-        <Card className="border-none shadow-sm">
+      <div className="space-y-10 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
           <CardContent className="flex min-h-[300px] flex-col items-center justify-center py-12">
-            <Loader2 className="mb-4 size-8 animate-spin text-primary" />
-            <p className="animate-pulse font-medium text-sm">{t("auth.loading")}</p>
+            <Loader2 className="mb-4 size-8 animate-spin text-gm-gold" />
+            <p className="animate-pulse font-serif italic text-sm text-gm-muted">{t("auth.loading")}</p>
           </CardContent>
         </Card>
       </div>

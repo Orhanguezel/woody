@@ -15,8 +15,8 @@ export const THEME_PRESET_OPTIONS = [
     label: "Orman",
     value: "default",
     primary: {
-      light: "oklch(0.723 0.192 149.58)",
-      dark: "oklch(0.792 0.18 150.04)",
+      light: "var(--logo-coral)",
+      dark: "var(--logo-coral-medium)",
     },
   },
   {
@@ -25,6 +25,22 @@ export const THEME_PRESET_OPTIONS = [
     primary: {
       light: "oklch(0.6489 0.237 26.9728)",
       dark: "oklch(0.7044 0.1872 23.1858)",
+    },
+  },
+  {
+    label: "Lavanta",
+    value: "lavanta",
+    primary: {
+      light: "oklch(0.55 0.18 300)",
+      dark: "oklch(0.72 0.15 300)",
+    },
+  },
+  {
+    label: "Okyanus",
+    value: "okyanus",
+    primary: {
+      light: "oklch(0.58 0.13 215.5)",
+      dark: "oklch(0.7 0.12 210)",
     },
   },
   {
@@ -44,19 +60,35 @@ export const THEME_PRESET_OPTIONS = [
     },
   },
   {
-    label: "Okyanus",
-    value: "okyanus",
+    label: "Woody Akademi",
+    value: "woody-akademi",
     primary: {
-      light: "oklch(0.58 0.13 215.5)",
-      dark: "oklch(0.7 0.12 210)",
+      light: "oklch(0.36 0.105 252)",
+      dark: "oklch(0.72 0.15 250)",
     },
   },
   {
-    label: "Lavanta",
-    value: "lavanta",
+    label: "Woody Güneş",
+    value: "woody-gunes",
     primary: {
-      light: "oklch(0.55 0.18 300)",
-      dark: "oklch(0.72 0.15 300)",
+      light: "oklch(0.75 0.19 47)",
+      dark: "oklch(0.8 0.17 47)",
+    },
+  },
+  {
+    label: "Woody Klasik",
+    value: "woody-klasik",
+    primary: {
+      light: "oklch(0.646 0.174 250)",
+      dark: "oklch(0.72 0.15 250)",
+    },
+  },
+  {
+    label: "Woody Neşe",
+    value: "woody-nese",
+    primary: {
+      light: "oklch(0.63 0.21 328)",
+      dark: "oklch(0.7 0.19 328)",
     },
   },
 ] as const;

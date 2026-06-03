@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 // =============================================================
 // FILE: src/components/admin/site-settings/tabs/CloudinarySettingsTab.tsx
@@ -8,61 +8,60 @@
 // - Keeps existing RTK logic (list/update/diag)
 // =============================================================
 
-import * as React from 'react';
-import { toast } from 'sonner';
-import { useAdminTranslations } from '@/i18n';
-import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
+import * as React from "react";
 
+import { toast } from "sonner";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useAdminTranslations } from "@/i18n";
 import {
+  useLazyDiagCloudinaryAdminQuery,
   useListSiteSettingsAdminQuery,
   useUpdateSiteSettingAdminMutation,
-  useLazyDiagCloudinaryAdminQuery,
-} from '@/integrations/hooks';
-
-import type { SiteSetting } from '@/integrations/shared';
-
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+} from "@/integrations/hooks";
+import type { SiteSetting } from "@/integrations/shared";
+import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
 
 export type CloudinarySettingsTabProps = {
   locale: string; // UI badge için dursun
 };
 
 const STORAGE_KEYS = [
-  'storage_driver',
-  'storage_local_root',
-  'storage_local_base_url',
-  'storage_cdn_public_base',
-  'storage_public_api_base',
-  'cloudinary_cloud_name',
-  'cloudinary_api_key',
-  'cloudinary_api_secret',
-  'cloudinary_folder',
-  'cloudinary_unsigned_preset',
+  "storage_driver",
+  "storage_local_root",
+  "storage_local_base_url",
+  "storage_cdn_public_base",
+  "storage_public_api_base",
+  "cloudinary_cloud_name",
+  "cloudinary_api_key",
+  "cloudinary_api_secret",
+  "cloudinary_folder",
+  "cloudinary_unsigned_preset",
 ] as const;
 
 type StorageKey = (typeof STORAGE_KEYS)[number];
 type StorageForm = Record<StorageKey, string>;
 
 const EMPTY_FORM: StorageForm = {
-  storage_driver: '',
-  storage_local_root: '',
-  storage_local_base_url: '',
-  storage_cdn_public_base: '',
-  storage_public_api_base: '',
-  cloudinary_cloud_name: '',
-  cloudinary_api_key: '',
-  cloudinary_api_secret: '',
-  cloudinary_folder: '',
-  cloudinary_unsigned_preset: '',
+  storage_driver: "",
+  storage_local_root: "",
+  storage_local_base_url: "",
+  storage_cdn_public_base: "",
+  storage_public_api_base: "",
+  cloudinary_cloud_name: "",
+  cloudinary_api_key: "",
+  cloudinary_api_secret: "",
+  cloudinary_folder: "",
+  cloudinary_unsigned_preset: "",
 };
 
 function valueToString(v: unknown): string {
-  if (v === null || v === undefined) return '';
-  if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') return String(v);
+  if (v === null || v === undefined) return "";
+  if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") return String(v);
   try {
     return JSON.stringify(v);
   } catch {
@@ -77,12 +76,7 @@ function toMap(settings?: any) {
 }
 
 function errMsg(err: any, fallback: string): string {
-  return (
-    err?.data?.error?.message ||
-    err?.data?.message ||
-    err?.message ||
-    fallback
-  );
+  return err?.data?.error?.message || err?.data?.message || err?.message || fallback;
 }
 
 export const CloudinarySettingsTab: React.FC<CloudinarySettingsTabProps> = ({ locale }) => {
@@ -98,8 +92,7 @@ export const CloudinarySettingsTab: React.FC<CloudinarySettingsTabProps> = ({ lo
 
   const [updateSetting, { isLoading: isSaving }] = useUpdateSiteSettingAdminMutation();
 
-  const [runDiag, { data: diagResult, isFetching: isTesting, error: diagError }] =
-    useLazyDiagCloudinaryAdminQuery();
+  const [runDiag, { data: diagResult, isFetching: isTesting, error: diagError }] = useLazyDiagCloudinaryAdminQuery();
 
   const [form, setForm] = React.useState<StorageForm>(EMPTY_FORM);
 
@@ -125,12 +118,12 @@ export const CloudinarySettingsTab: React.FC<CloudinarySettingsTabProps> = ({ lo
 
     try {
       for (const key of STORAGE_KEYS) {
-        await updateSetting({ key, locale: '*', value: form[key].trim() }).unwrap();
+        await updateSetting({ key, locale: "*", value: form[key].trim() }).unwrap();
       }
-      toast.success(t('admin.siteSettings.cloudinary.saved'));
+      toast.success(t("admin.siteSettings.cloudinary.saved"));
       await refetch();
     } catch (err: any) {
-      toast.error(errMsg(err, t('admin.siteSettings.messages.error')));
+      toast.error(errMsg(err, t("admin.siteSettings.messages.error")));
     }
   };
 
@@ -141,29 +134,29 @@ export const CloudinarySettingsTab: React.FC<CloudinarySettingsTabProps> = ({ lo
       const res = await runDiag().unwrap();
       if (res?.ok) {
         toast.success(
-          t('admin.siteSettings.cloudinary.testSuccess', {
+          t("admin.siteSettings.cloudinary.testSuccess", {
             cloud: res.cloud,
-            publicId: res.uploaded?.public_id || ''
-          })
+            publicId: res.uploaded?.public_id || "",
+          }),
         );
       } else {
-        toast.error(t('admin.siteSettings.cloudinary.testFailedConsole'));
+        toast.error(t("admin.siteSettings.cloudinary.testFailedConsole"));
         // eslint-disable-next-line no-console
-        console.error('Cloudinary diag (unexpected response):', res);
+        console.error("Cloudinary diag (unexpected response):", res);
       }
     } catch (err: any) {
       // eslint-disable-next-line no-console
-      console.error('Cloudinary diag error:', err);
+      console.error("Cloudinary diag error:", err);
 
       const status = err?.status;
       const data = err?.data as any;
 
       if (status === 501) {
         const reason = data?.reason;
-        if (reason === 'driver_is_local') {
-          toast.error(t('admin.siteSettings.cloudinary.testFailedLocal'));
+        if (reason === "driver_is_local") {
+          toast.error(t("admin.siteSettings.cloudinary.testFailedLocal"));
         } else {
-          toast.error(t('admin.siteSettings.cloudinary.testFailedConfig'));
+          toast.error(t("admin.siteSettings.cloudinary.testFailedConfig"));
         }
         return;
       }
@@ -171,12 +164,8 @@ export const CloudinarySettingsTab: React.FC<CloudinarySettingsTabProps> = ({ lo
       if (status === 502) {
         const step = data?.step;
         const msg =
-          data?.error?.msg ||
-          data?.error?.message ||
-          data?.message ||
-          err?.message ||
-          'Cloudinary test failed.';
-        toast.error(t('admin.siteSettings.cloudinary.testFailedStep', { step: step || 'unknown', message: msg }));
+          data?.error?.msg || data?.error?.message || data?.message || err?.message || "Cloudinary test failed.";
+        toast.error(t("admin.siteSettings.cloudinary.testFailedStep", { step: step || "unknown", message: msg }));
         return;
       }
 
@@ -185,172 +174,254 @@ export const CloudinarySettingsTab: React.FC<CloudinarySettingsTabProps> = ({ lo
           data?.error?.message ||
           data?.message ||
           err?.message ||
-          t('admin.siteSettings.messages.error')
+          t("admin.siteSettings.messages.error"),
       );
     }
   };
 
   const lastTestInfo = React.useMemo(() => {
-    if (isTesting) return t('admin.siteSettings.cloudinary.testInfoTesting');
-    if (diagResult?.ok) return t('admin.siteSettings.cloudinary.testInfoSuccess', { cloud: diagResult.cloud });
-    if (diagError) return t('admin.siteSettings.cloudinary.testInfoError');
-    return t('admin.siteSettings.cloudinary.testInfo');
+    if (isTesting) return t("admin.siteSettings.cloudinary.testInfoTesting");
+    if (diagResult?.ok) return t("admin.siteSettings.cloudinary.testInfoSuccess", { cloud: diagResult.cloud });
+    if (diagError) return t("admin.siteSettings.cloudinary.testInfoError");
+    return t("admin.siteSettings.cloudinary.testInfo");
   }, [isTesting, diagResult, diagError, t]);
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader className="gap-2">
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardHeader className="bg-gm-surface/40 p-8 border-b border-gm-border-soft gap-2">
           <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-1">
-              <CardTitle className="text-base">{t('admin.siteSettings.cloudinary.title')}</CardTitle>
-              <CardDescription>
-                {t('admin.siteSettings.cloudinary.description')}
+              <CardTitle className="font-serif text-2xl text-gm-text">
+                {t("admin.siteSettings.cloudinary.title")}
+              </CardTitle>
+              <CardDescription className="text-gm-muted font-serif italic opacity-80">
+                {t("admin.siteSettings.cloudinary.description")}
               </CardDescription>
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary">
-                {t('admin.siteSettings.cloudinary.badge', { locale: locale || '—' })}
+              <Badge className="bg-gm-bg-deep text-gm-text border-gm-border-soft">
+                {t("admin.siteSettings.cloudinary.badge", { locale: locale || "—" })}
               </Badge>
 
-              <Button type="button" variant="outline" onClick={() => refetch()} disabled={busy}>
-                {t('admin.siteSettings.actions.refresh')}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => refetch()}
+                disabled={busy}
+                className="rounded-full border-gm-border-soft hover:bg-gm-surface/40 hover:text-gm-text text-[10px] font-bold tracking-widest uppercase"
+              >
+                {t("admin.siteSettings.actions.refresh")}
               </Button>
 
-              {busy ? <Badge variant="outline">{t('admin.siteSettings.messages.loading')}</Badge> : null}
+              {busy ? (
+                <Badge className="border-gm-gold/30 bg-gm-gold/5 text-gm-gold">
+                  {t("admin.siteSettings.messages.loading")}
+                </Badge>
+              ) : null}
             </div>
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-6">
+        <CardContent className="p-8 space-y-6">
           {/* Form grid */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-2">
-              <Label htmlFor="storage_driver">{t('admin.siteSettings.cloudinary.storageDriver')}</Label>
+              <Label
+                htmlFor="storage_driver"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.storageDriver")}
+              </Label>
               <Input
                 id="storage_driver"
                 value={form.storage_driver}
-                onChange={(e) => handleChange('storage_driver', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.storageDriverPlaceholder')}
+                onChange={(e) => handleChange("storage_driver", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.storageDriverPlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
-              <p className="text-xs text-muted-foreground">
-                {t('admin.siteSettings.cloudinary.storageDriverHelp')}
-              </p>
+              <p className="text-xs text-gm-muted">{t("admin.siteSettings.cloudinary.storageDriverHelp")}</p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="storage_local_root">{t('admin.siteSettings.cloudinary.localRoot')}</Label>
+              <Label
+                htmlFor="storage_local_root"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.localRoot")}
+              </Label>
               <Input
                 id="storage_local_root"
                 value={form.storage_local_root}
-                onChange={(e) => handleChange('storage_local_root', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.localRootPlaceholder')}
+                onChange={(e) => handleChange("storage_local_root", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.localRootPlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="storage_local_base_url">{t('admin.siteSettings.cloudinary.localBaseUrl')}</Label>
+              <Label
+                htmlFor="storage_local_base_url"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.localBaseUrl")}
+              </Label>
               <Input
                 id="storage_local_base_url"
                 value={form.storage_local_base_url}
-                onChange={(e) => handleChange('storage_local_base_url', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.localBaseUrlPlaceholder')}
+                onChange={(e) => handleChange("storage_local_base_url", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.localBaseUrlPlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2 md:col-span-2 lg:col-span-1">
-              <Label htmlFor="storage_cdn_public_base">{t('admin.siteSettings.cloudinary.cdnPublicBase')}</Label>
+              <Label
+                htmlFor="storage_cdn_public_base"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.cdnPublicBase")}
+              </Label>
               <Input
                 id="storage_cdn_public_base"
                 value={form.storage_cdn_public_base}
-                onChange={(e) => handleChange('storage_cdn_public_base', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.cdnPublicBasePlaceholder')}
+                onChange={(e) => handleChange("storage_cdn_public_base", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.cdnPublicBasePlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2 md:col-span-2 lg:col-span-2">
-              <Label htmlFor="storage_public_api_base">{t('admin.siteSettings.cloudinary.publicApiBase')}</Label>
+              <Label
+                htmlFor="storage_public_api_base"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.publicApiBase")}
+              </Label>
               <Input
                 id="storage_public_api_base"
                 value={form.storage_public_api_base}
-                onChange={(e) => handleChange('storage_public_api_base', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.publicApiBasePlaceholder')}
+                onChange={(e) => handleChange("storage_public_api_base", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.publicApiBasePlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="cloudinary_cloud_name">{t('admin.siteSettings.cloudinary.cloudName')}</Label>
+              <Label
+                htmlFor="cloudinary_cloud_name"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.cloudName")}
+              </Label>
               <Input
                 id="cloudinary_cloud_name"
                 value={form.cloudinary_cloud_name}
-                onChange={(e) => handleChange('cloudinary_cloud_name', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.cloudNamePlaceholder')}
+                onChange={(e) => handleChange("cloudinary_cloud_name", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.cloudNamePlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="cloudinary_api_key">{t('admin.siteSettings.cloudinary.apiKey')}</Label>
+              <Label
+                htmlFor="cloudinary_api_key"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.apiKey")}
+              </Label>
               <Input
                 id="cloudinary_api_key"
                 value={form.cloudinary_api_key}
-                onChange={(e) => handleChange('cloudinary_api_key', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.apiKeyPlaceholder')}
+                onChange={(e) => handleChange("cloudinary_api_key", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.apiKeyPlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="cloudinary_api_secret">{t('admin.siteSettings.cloudinary.apiSecret')}</Label>
+              <Label
+                htmlFor="cloudinary_api_secret"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.apiSecret")}
+              </Label>
               <Input
                 id="cloudinary_api_secret"
                 value={form.cloudinary_api_secret}
-                onChange={(e) => handleChange('cloudinary_api_secret', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.apiSecretPlaceholder')}
+                onChange={(e) => handleChange("cloudinary_api_secret", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.apiSecretPlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2 md:col-span-1 lg:col-span-1">
-              <Label htmlFor="cloudinary_folder">{t('admin.siteSettings.cloudinary.folder')}</Label>
+              <Label
+                htmlFor="cloudinary_folder"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.folder")}
+              </Label>
               <Input
                 id="cloudinary_folder"
                 value={form.cloudinary_folder}
-                onChange={(e) => handleChange('cloudinary_folder', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.folderPlaceholder')}
+                onChange={(e) => handleChange("cloudinary_folder", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.folderPlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
 
             <div className="space-y-2 md:col-span-1 lg:col-span-2">
-              <Label htmlFor="cloudinary_unsigned_preset">{t('admin.siteSettings.cloudinary.unsignedPreset')}</Label>
+              <Label
+                htmlFor="cloudinary_unsigned_preset"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                {t("admin.siteSettings.cloudinary.unsignedPreset")}
+              </Label>
               <Input
                 id="cloudinary_unsigned_preset"
                 value={form.cloudinary_unsigned_preset}
-                onChange={(e) => handleChange('cloudinary_unsigned_preset', e.target.value)}
-                placeholder={t('admin.siteSettings.cloudinary.unsignedPresetPlaceholder')}
+                onChange={(e) => handleChange("cloudinary_unsigned_preset", e.target.value)}
+                placeholder={t("admin.siteSettings.cloudinary.unsignedPresetPlaceholder")}
                 disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm text-gm-text transition-all"
               />
             </div>
           </div>
 
           {/* Footer actions */}
-          <div className="flex flex-col gap-3 border-t pt-4 lg:flex-row lg:items-center lg:justify-between">
-            <p className="text-sm text-muted-foreground">{lastTestInfo}</p>
+          <div className="flex flex-col gap-3 border-t border-gm-border-soft pt-4 lg:flex-row lg:items-center lg:justify-between">
+            <p className="text-sm text-gm-muted">{lastTestInfo}</p>
 
             <div className="flex flex-wrap gap-2">
-              <Button type="button" variant="outline" disabled={busy} onClick={handleTest}>
-                {isTesting ? t('admin.siteSettings.cloudinary.testing') : t('admin.siteSettings.cloudinary.testButton')}
+              <Button
+                type="button"
+                variant="outline"
+                disabled={busy}
+                onClick={handleTest}
+                className="rounded-full border-gm-border-soft hover:bg-gm-surface/40 hover:text-gm-text text-[10px] font-bold tracking-widest uppercase"
+              >
+                {isTesting ? t("admin.siteSettings.cloudinary.testing") : t("admin.siteSettings.cloudinary.testButton")}
               </Button>
 
-              <Button type="button" variant="default" disabled={busy} onClick={handleSave}>
-                {isSaving ? t('admin.siteSettings.actions.saving') : t('admin.siteSettings.actions.save')}
+              <Button
+                type="button"
+                variant="default"
+                disabled={busy}
+                onClick={handleSave}
+                className="rounded-full bg-gm-gold text-gm-bg hover:bg-gm-gold-light h-12 px-8 text-[10px] font-bold tracking-widest uppercase transition-all"
+              >
+                {isSaving ? t("admin.siteSettings.actions.saving") : t("admin.siteSettings.actions.save")}
               </Button>
             </div>
           </div>
@@ -360,4 +431,4 @@ export const CloudinarySettingsTab: React.FC<CloudinarySettingsTabProps> = ({ lo
   );
 };
 
-CloudinarySettingsTab.displayName = 'CloudinarySettingsTab';
+CloudinarySettingsTab.displayName = "CloudinarySettingsTab";

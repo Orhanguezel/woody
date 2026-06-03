@@ -128,6 +128,10 @@ export function tokensToCSS(tokens: DesignTokens): string {
 --gm-warning:${cssValue(c.warning)};
 --gm-error:${cssValue(c.error)};
 --gm-info:${cssValue(c.info)};
+--level-basic:${cssValue(c.level_basic || c.info || c.brand_primary)};
+--level-junior:${cssValue(c.level_junior || c.brand_accent || c.brand_secondary)};
+--level-senior:${cssValue(c.level_senior || '#E91E90')};
+--level-pro:${cssValue(c.level_pro || c.error || '#D32F2F')};
 --gm-font-display:${cssValue(t.font_display)};
 --gm-font-serif:${cssValue(t.font_serif)};
 --gm-font-sans:${cssValue(t.font_sans)};

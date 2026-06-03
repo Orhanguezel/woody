@@ -54,7 +54,7 @@ function pickLocaleKey(locale: string): LocaleKey {
   return 'tr';
 }
 
-export default function HeroNew({ locale = 'tr' }: { locale?: string }) {
+export default function HeroNew({ locale = 'tr', copy: copyOverride }: { locale?: string; copy?: HeroJson }) {
   const app = getPublicAppName();
   const word1 = getWordMarkLine1();
   const word2 = getWordMarkLine2();
@@ -62,7 +62,7 @@ export default function HeroNew({ locale = 'tr' }: { locale?: string }) {
 
   const copy = useMemo(() => {
     const raw = homeHero as Record<LocaleKey, HeroJson>;
-    const base = raw[localeKey] || raw.en;
+    const base = copyOverride || raw[localeKey] || raw.en;
     const inj = (s: string) => injectAppName(s, app);
     const metrics = (base.metrics ?? []).map((m) => ({
       value: inj(m.value),
@@ -100,7 +100,7 @@ export default function HeroNew({ locale = 'tr' }: { locale?: string }) {
       showcaseBadgeSub: inj(base.showcaseBadgeSub ?? ''),
       showcaseXpGain: inj(base.showcaseXpGain ?? '+20 XP'),
     };
-  }, [localeKey, app, word1, word2]);
+  }, [localeKey, app, word1, word2, copyOverride]);
 
   const primaryHref = localizePath(locale, '/contact');
   const secondaryHref = localizePath(locale, '/blog');

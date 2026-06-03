@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next';
 import { fetchSetting } from '@/i18n/server';
 import { getManifestPwaStrings, getManifestStartUrl } from '@/lib/site-config';
 
-const FALLBACK_BG = '#FAF6EF';
-const FALLBACK_THEME = '#C9A961';
+const FALLBACK_BG = '#F7FBFF';
+const FALLBACK_THEME = '#2196F3';
 
 async function readBrandColors(): Promise<{ bg: string; theme: string }> {
   try {
@@ -36,15 +36,15 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
         type: 'image/svg+xml',
       },
       {
-        src: '/favicon/icon-192.png',
+        src: '/favicon/icon-192.svg',
         sizes: '192x192',
-        type: 'image/png',
+        type: 'image/svg+xml',
         purpose: 'maskable',
       },
       {
-        src: '/favicon/icon-512.png',
+        src: '/favicon/icon-512.svg',
         sizes: '512x512',
-        type: 'image/png',
+        type: 'image/svg+xml',
         purpose: 'maskable',
       },
       {

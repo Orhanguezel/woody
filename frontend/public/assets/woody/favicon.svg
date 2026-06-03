@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Rounded orange background - Woody brand color -->
+  <rect width="64" height="64" rx="14" fill="#FF6A00"/>
+  <!-- Subtle gradient overlay -->
+  <rect width="64" height="64" rx="14" fill="url(#g)"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB800" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FF6A00" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- W letter -->
+  <text x="32" y="44"
+        font-family="'Fredoka','Comic Sans MS',sans-serif"
+        font-size="40"
+        font-weight="900"
+        text-anchor="middle"
+        fill="#FFFFFF"
+        stroke="#0B1F3A"
+        stroke-width="1.5"
+        paint-order="stroke">W</text>
+</svg>

@@ -22,7 +22,9 @@ export async function createApp() {
   const { default: buildFastify } =
     (await import('fastify')) as unknown as { default: typeof import('fastify').default };
 
-  const app = buildFastify({ logger: loggerConfig }) as FastifyInstance;
+  // trustProxy: nginx/Cloudflare arkasinda gercek istemci IP'si (X-Forwarded-For) kullanilsin.
+  // Yoksa req.ip her zaman 127.0.0.1 (nginx) olur ve tum istemciler tek rate-limit kovasini paylasir → 429.
+  const app = buildFastify({ logger: loggerConfig, trustProxy: true }) as FastifyInstance;
 
   await app.register(cors, {
     origin: parseCorsOrigins(env.CORS_ORIGIN),
@@ -46,7 +48,7 @@ export async function createApp() {
     cookie: { cookieName: 'access_token', signed: false },
   });
 
-  await app.register(rateLimit, { max: 100, timeWindow: '1 minute' });
+  await app.register(rateLimit, { max: 300, timeWindow: '1 minute' });
 
   await app.register(authPlugin);
   await app.register(mysqlPlugin);

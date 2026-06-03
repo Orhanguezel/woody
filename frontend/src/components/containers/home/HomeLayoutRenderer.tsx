@@ -30,9 +30,10 @@ interface Props {
   locale?: string;
   /** FeaturesNew için sunucuda önceden çekilen görsel URL’leri */
   featuresImageUrls?: string[];
+  homeCopies?: Record<string, unknown>;
 }
 
-export default function HomeLayoutRenderer({ layout, locale, featuresImageUrls }: Props) {
+export default function HomeLayoutRenderer({ layout, locale, featuresImageUrls, homeCopies }: Props) {
   const searchParams = useSearchParams();
   const sectionParam = searchParams.get('section');
 
@@ -78,6 +79,7 @@ export default function HomeLayoutRenderer({ layout, locale, featuresImageUrls }
               locale={locale}
               label={section.label}
               config={section.config}
+              copy={homeCopies?.[section.component_key]}
               {...(section.component_key === 'FeaturesNew' && featuresImageUrls?.length
                 ? { imageUrls: featuresImageUrls }
                 : {})}

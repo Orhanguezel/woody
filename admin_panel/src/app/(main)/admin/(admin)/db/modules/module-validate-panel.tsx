@@ -29,12 +29,12 @@ export const ModuleValidatePanel: React.FC<ModuleValidatePanelProps> = ({ module
   const ok = res?.ok;
 
   return (
-    <Card className="bg-muted/30">
+    <Card className="bg-gm-surface/30 border-gm-border-soft rounded-[20px] shadow-none">
       <CardContent className="space-y-4 p-4">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
           <div className="space-y-1">
-            <div className="font-semibold text-sm">{t("title")}</div>
-            <div className="text-muted-foreground text-xs">{t("description")}</div>
+            <div className="font-serif text-gm-text font-semibold text-sm">{t("title")}</div>
+            <div className="text-gm-muted text-xs">{t("description")}</div>
           </div>
 
           <Button
@@ -42,7 +42,7 @@ export const ModuleValidatePanel: React.FC<ModuleValidatePanelProps> = ({ module
             variant="outline"
             onClick={handleRun}
             disabled={disabled || busy}
-            className="h-8 shrink-0 text-xs"
+            className="h-8 shrink-0 text-xs rounded-full"
           >
             {busy && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
             {busy ? t("checking") : t("checkButton")}
@@ -51,13 +51,13 @@ export const ModuleValidatePanel: React.FC<ModuleValidatePanelProps> = ({ module
 
         <div className="mt-2">
           {!data ? (
-            <div className="text-muted-foreground text-xs italic">{t("noResult")}</div>
+            <div className="text-gm-muted text-xs italic">{t("noResult")}</div>
           ) : (
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Badge
                   variant={ok ? "outline" : "destructive"}
-                  className={ok ? "h-6 border-green-500/50 bg-green-500/10 text-green-600 dark:text-green-400" : "h-6"}
+                  className={ok ? "h-6 border-gm-success/30 bg-gm-success/10 text-gm-success" : "h-6"}
                 >
                   {ok ? (
                     <>
@@ -72,13 +72,14 @@ export const ModuleValidatePanel: React.FC<ModuleValidatePanelProps> = ({ module
                   )}
                 </Badge>
                 <span className="text-xs">
-                  {t("module")} <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[11px]">{module}</code>
+                  {t("module")}{" "}
+                  <code className="rounded bg-gm-bg-deep px-1.5 py-0.5 font-mono text-[11px]">{module}</code>
                 </span>
               </div>
 
               {/* Missing tables */}
               {!!res?.tables?.missing?.length && (
-                <div className="space-y-2 rounded-md border border-destructive/20 bg-destructive/10 p-3 text-destructive">
+                <div className="space-y-2 rounded-md border border-gm-error/20 bg-gm-error/10 p-3 text-gm-error">
                   <div className="flex items-center gap-2 font-semibold text-xs">
                     <AlertCircle className="size-3.5" />
                     {t("errors")}
@@ -88,9 +89,7 @@ export const ModuleValidatePanel: React.FC<ModuleValidatePanelProps> = ({ module
                       <li key={tbl}>
                         <code className="font-mono">{tbl}</code>
                         {res.suggestions?.[tbl]?.length ? (
-                          <span className="ml-2 text-muted-foreground">
-                            (did you mean: {res.suggestions[tbl].join(", ")}?)
-                          </span>
+                          <span className="ml-2 text-gm-muted">(did you mean: {res.suggestions[tbl].join(", ")}?)</span>
                         ) : null}
                       </li>
                     ))}
@@ -100,14 +99,14 @@ export const ModuleValidatePanel: React.FC<ModuleValidatePanelProps> = ({ module
 
               {/* Present tables */}
               {!!res?.tables?.present?.length && (
-                <div className="space-y-2 rounded-md border border-green-500/20 bg-green-500/10 p-3 text-green-700 dark:text-green-400">
+                <div className="space-y-2 rounded-md border border-gm-success/30 bg-gm-success/10 p-3 text-gm-success">
                   <div className="flex items-center gap-2 font-semibold text-xs">
                     <CheckCircle2 className="size-3.5" />
                     Mevcut tablolar ({res.tables.present.length})
                   </div>
                   <div className="mt-1 flex flex-wrap gap-1.5">
                     {res.tables.present.map((tbl: string) => (
-                      <code key={tbl} className="rounded bg-green-500/10 px-1.5 py-0.5 font-mono text-[11px]">
+                      <code key={tbl} className="rounded bg-gm-success/10 px-1.5 py-0.5 font-mono text-[11px]">
                         {tbl}
                       </code>
                     ))}
@@ -116,16 +115,15 @@ export const ModuleValidatePanel: React.FC<ModuleValidatePanelProps> = ({ module
               )}
 
               {/* Summary */}
-              <div className="flex flex-wrap gap-x-6 gap-y-2 border-t pt-2 text-[11px] text-muted-foreground">
+              <div className="flex flex-wrap gap-x-6 gap-y-2 border-t border-gm-border-soft pt-2 text-[11px] text-gm-muted">
                 <div>
-                  {t("declaredTables")}{" "}
-                  <strong className="text-foreground">{res?.tables?.expected?.length ?? 0}</strong>
+                  {t("declaredTables")} <strong className="text-gm-text">{res?.tables?.expected?.length ?? 0}</strong>
                 </div>
                 <div>
-                  Mevcut: <strong className="text-foreground">{res?.tables?.present?.length ?? 0}</strong>
+                  Mevcut: <strong className="text-gm-text">{res?.tables?.present?.length ?? 0}</strong>
                 </div>
                 <div>
-                  Eksik: <strong className="text-foreground">{res?.tables?.missing?.length ?? 0}</strong>
+                  Eksik: <strong className="text-gm-text">{res?.tables?.missing?.length ?? 0}</strong>
                 </div>
               </div>
             </div>

@@ -30,12 +30,12 @@ function pickLocaleKey(locale: string): LocaleKey {
   return 'tr';
 }
 
-export default function HomeIntroSection({ locale = 'tr' }: { locale?: string }) {
+export default function HomeIntroSection({ locale = 'tr', copy: copyOverride }: { locale?: string; copy?: Bundle }) {
   const copy = useMemo(() => {
     const lk = pickLocaleKey(locale);
     const raw = processJson as Record<LocaleKey, Bundle>;
-    return raw[lk] || raw.tr;
-  }, [locale]);
+    return copyOverride || raw[lk] || raw.tr;
+  }, [locale, copyOverride]);
 
   return (
     <section className="py-32 bg-[var(--gm-bg-deep)] border-y border-[var(--gm-border-soft)] relative overflow-hidden">

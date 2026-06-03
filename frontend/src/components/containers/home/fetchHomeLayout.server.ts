@@ -4,6 +4,7 @@ import { getServerApiBase } from '@/i18n/apiBase.server';
 import { fetchSetting } from '@/i18n/server';
 import homeFeatures from '@/config/pages/home-features.json';
 import { getPublicAppName } from '@/lib/site-config';
+import { injectAppName } from '@/lib/page-copy';
 
 function pickLocaleKeyForFeatures(locale: string): 'tr' | 'en' | 'de' {
   const k = locale.split('-')[0]?.toLowerCase();
@@ -50,8 +51,13 @@ const DEFAULT_LAYOUT: HomeSection[] = [
 ];
 
 function normalizeLayout(list: HomeSection[]): HomeSection[] {
+  const appName = getPublicAppName();
   return [...list]
     .filter((s) => Number(s.is_active) === 1)
+    .map((section) => ({
+      ...section,
+      label: injectAppName(section.label, appName),
+    }))
     .sort((a, b) => a.order_index - b.order_index);
 }
 

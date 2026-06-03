@@ -13,8 +13,8 @@ export type HelpBlockProps = {
 export const HelpBlock: React.FC<HelpBlockProps> = ({ headline, children }) => {
   return (
     <div>
-      {headline ? <div className="fw-semibold small mb-1">{headline}</div> : null}
-      <div className="small text-muted">{children}</div>
+      {headline ? <div className="font-semibold text-xs mb-1 text-gm-text">{headline}</div> : null}
+      <div className="text-xs text-gm-muted">{children}</div>
     </div>
   );
 };

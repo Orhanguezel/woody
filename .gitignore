@@ -161,3 +161,7 @@ packages/
 # Backend yuklemeleri — runtime icerigi, repoya girmez (.gitkeep haric)
 backend/uploads/*
 !backend/uploads/.gitkeep
+docs/
+
+# Claude Code lokal ayar
+.claude/

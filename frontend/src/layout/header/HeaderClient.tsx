@@ -20,6 +20,7 @@ import {
   getWordMarkLine1,
   getWordMarkLine2,
 } from '@/lib/site-config';
+import { WOODY_LOCALES } from '@/components/woody/routes';
 
 // Menu API boş gelirse src/config/site-defaults.json (navigation.headerFallbackMenu)
 type FallbackMenuItem = {
@@ -43,7 +44,8 @@ const cleanHashLink = (href: string) => {
   let clean = href;
   if (clean.startsWith('#')) return `/${clean.substring(1)}`;
   if (clean.startsWith('/#')) return `/${clean.substring(2)}`;
-  clean = clean.replace(/^\/(tr|en|de)(\/|$)/, '/');
+  const localePattern = WOODY_LOCALES.map((loc) => loc.replace('-', '\\-')).join('|');
+  clean = clean.replace(new RegExp(`^\\/(${localePattern})(\\/|$)`, 'i'), '/');
   if (clean.includes('#')) return `/${clean.split('#')[1]}`;
   return clean === '' ? '/' : clean;
 };

@@ -9,6 +9,10 @@
 @import "../styles/presets/tangerine.css";
 @import "../styles/presets/okyanus.css";
 @import "../styles/presets/lavanta.css";
+@import "../styles/presets/woody-klasik.css";
+@import "../styles/presets/woody-gunes.css";
+@import "../styles/presets/woody-nese.css";
+@import "../styles/presets/woody-akademi.css";
 
 /* Brand colors */
 :root {

@@ -141,8 +141,8 @@ export function getDefaultTokenBranding(): DesignTokens['branding'] {
     tagline_en:
       process.env.NEXT_PUBLIC_BRAND_TAGLINE_EN?.trim() ||
       String(siteDefaults.brand.taglineEn || '').trim(),
-    logo_url: '',
-    favicon_url: '',
+    logo_url: '/logo/logo.svg',
+    favicon_url: '/favicon.svg',
     theme_color: themeColor,
     theme_color_dark: themeColorDark,
     og_image_url: '',

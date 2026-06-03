@@ -24,6 +24,53 @@ function imageHostsFromSiteUrl() {
   }
 }
 
+const LOCALE_ROUTE_GROUP = 'tr|en|de|ar|fr|ru|es|it|nl|pt-br';
+
+const securityHeaders = [
+  {
+    key: 'Content-Security-Policy',
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
+      "style-src 'self' 'unsafe-inline' https:",
+      "img-src 'self' data: blob: http: https:",
+      "font-src 'self' data: https:",
+      "connect-src 'self' http: https: ws: wss:",
+      "media-src 'self' blob: http: https:",
+      "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+      'upgrade-insecure-requests',
+    ].join('; '),
+  },
+  {
+    key: 'Referrer-Policy',
+    value: 'strict-origin-when-cross-origin',
+  },
+  {
+    key: 'Permissions-Policy',
+    value: 'camera=(), microphone=(), geolocation=(), payment=(self), fullscreen=(self)',
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
+  },
+  {
+    key: 'X-Frame-Options',
+    value: 'SAMEORIGIN',
+  },
+  ...(process.env.NODE_ENV === 'production'
+    ? [
+        {
+          key: 'Strict-Transport-Security',
+          value: 'max-age=31536000; includeSubDomains; preload',
+        },
+      ]
+    : []),
+];
+
 const nextConfig = {
   turbopack: {},
   reactStrictMode: true,
@@ -107,20 +154,28 @@ const nextConfig = {
 
     return [
       {
-        source: '/:locale(tr|en|de)',
+        source: '/:path*',
+        headers: securityHeaders,
+      },
+      {
+        source: `/:locale(${LOCALE_ROUTE_GROUP})`,
         headers: staticContentCache,
       },
       {
         source:
-          '/:locale(tr|en|de)/:page(about|blog|explore|consultants|tarot|numeroloji|yildizname|kahve-fali|ruya-tabiri|faqs|editorial-policy|contact|pricing|become-consultant|booking|login|register|dashboard)',
+          `/:locale(${LOCALE_ROUTE_GROUP})/:page(preschool|workshop|home-tutor|woody-academy|library|blog|store|digital-content|faqs|editorial-policy|contact|terms|privacy-policy|cookie-policy|kvkk)`,
         headers: staticContentCache,
       },
       {
-        source: '/:locale(tr|en|de)/blog/:path*',
+        source: `/:locale(${LOCALE_ROUTE_GROUP})/blog/:path*`,
         headers: staticContentCache,
       },
       {
-        source: '/:locale(tr|en|de)/consultants/:path*',
+        source: `/:locale(${LOCALE_ROUTE_GROUP})/store/:path*`,
+        headers: staticContentCache,
+      },
+      {
+        source: `/:locale(${LOCALE_ROUTE_GROUP})/digital-content/:path*`,
         headers: staticContentCache,
       },
     ];

@@ -3,7 +3,7 @@ const SHELL = `${VERSION}-shell`;
 const STATIC = `${VERSION}-static`;
 const PAGE = `${VERSION}-page`;
 const OFFLINE = '/offline.html';
-const SHELL_ASSETS = [OFFLINE, '/favicon.svg', '/favicon/apple-touch-icon.svg', '/favicon/icon-192.png', '/favicon/icon-512.png'];
+const SHELL_ASSETS = [OFFLINE, '/favicon.svg', '/favicon/apple-touch-icon.svg', '/favicon/icon-192.svg', '/favicon/icon-512.svg'];
 const STATIC_RE = /\.(?:avif|webp|png|jpe?g|svg|gif|ico|woff2?|ttf|otf)$/i;
 const SKIP_RE = /\/api\/|\/site_settings|\/_next\//;
 

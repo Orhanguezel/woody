@@ -40,6 +40,10 @@ export interface DesignTokenColors {
   warning: string;
   error: string;
   info: string;
+  level_basic?: string;
+  level_junior?: string;
+  level_senior?: string;
+  level_pro?: string;
   // Dark theme variantları (opsiyonel — yoksa CSS [data-theme="dark"] bloğu fallback'e düşer)
   bg_base_dark?: string;
   bg_deep_dark?: string;

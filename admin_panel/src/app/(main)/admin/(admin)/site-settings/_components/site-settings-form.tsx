@@ -1,26 +1,27 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
-import { Save, Trash2, Code2, LayoutTemplate } from 'lucide-react';
+import * as React from "react";
 
-import type { SiteSetting, SettingValue } from '@/integrations/shared';
-import { AdminImageUploadField } from '@/app/(main)/admin/_components/common/AdminImageUploadField';
-import { useAdminT } from '@/app/(main)/admin/_components/common/useAdminT';
-import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
-import { cn } from '@/lib/utils';
+import { useRouter } from "next/navigation";
 
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Textarea } from '@/components/ui/textarea';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Code2, LayoutTemplate, Save, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+
+import { AdminImageUploadField } from "@/app/(main)/admin/_components/common/AdminImageUploadField";
+import { useAdminT } from "@/app/(main)/admin/_components/common/useAdminT";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import type { SettingValue, SiteSetting } from "@/integrations/shared";
+import { cn } from "@/lib/utils";
+import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
 
 /* ----------------------------- types ----------------------------- */
 
-export type SiteSettingsFormMode = 'structured' | 'raw';
+export type SiteSettingsFormMode = "structured" | "raw";
 
 export type SiteSettingsFormProps = {
   settingKey: string;
@@ -61,14 +62,13 @@ export type SiteSettingsFormProps = {
 
 export function coerceSettingValue(input: any): any {
   if (input === null || input === undefined) return input;
-  if (typeof input === 'object') return input;
+  if (typeof input === "object") return input;
 
-  if (typeof input === 'string') {
+  if (typeof input === "string") {
     const s = input.trim();
     if (!s) return input;
 
-    const looksJson =
-      (s.startsWith('{') && s.endsWith('}')) || (s.startsWith('[') && s.endsWith(']'));
+    const looksJson = (s.startsWith("{") && s.endsWith("}")) || (s.startsWith("[") && s.endsWith("]"));
 
     if (!looksJson) return input;
 
@@ -86,12 +86,12 @@ function prettyStringify(v: any) {
   try {
     return JSON.stringify(v ?? {}, null, 2);
   } catch {
-    return '';
+    return "";
   }
 }
 
 function parseRawOrString(text: string): SettingValue {
-  const trimmed = (text ?? '').trim();
+  const trimmed = (text ?? "").trim();
   if (!trimmed) return null;
 
   try {
@@ -102,12 +102,7 @@ function parseRawOrString(text: string): SettingValue {
 }
 
 function errMsg(err: any, fallback: string): string {
-  return (
-    err?.data?.error?.message ||
-    err?.data?.message ||
-    err?.message ||
-    fallback
-  );
+  return err?.data?.error?.message || err?.data?.message || err?.message || fallback;
 }
 
 /* ----------------------------- component ----------------------------- */
@@ -117,7 +112,7 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
   locale,
   row,
   disabled,
-  initialMode = 'structured',
+  initialMode = "structured",
   onSave,
   onDelete,
   renderStructured,
@@ -125,53 +120,49 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
   imageUpload,
 }) => {
   const router = useRouter();
-  const t = useAdminT('admin.siteSettings');
+  const t = useAdminT("admin.siteSettings");
   const adminLocale = usePreferencesStore((s) => s.adminLocale);
 
-  const canStructured = typeof renderStructured === 'function';
+  const canStructured = typeof renderStructured === "function";
 
   // Mode
   const [mode, setMode] = React.useState<SiteSettingsFormMode>(
-    initialMode === 'structured' && !canStructured ? 'raw' : initialMode,
+    initialMode === "structured" && !canStructured ? "raw" : initialMode,
   );
 
   // structured
   const [structuredValue, setStructuredValue] = React.useState<any>({});
 
   // raw
-  const [rawText, setRawText] = React.useState<string>('');
+  const [rawText, setRawText] = React.useState<string>("");
 
   const coercedInitial = React.useMemo(() => coerceSettingValue(row?.value), [row?.value]);
 
   // sync on key/locale/row change
   React.useEffect(() => {
     setStructuredValue(coercedInitial ?? {});
-    if (typeof row?.value === 'string') setRawText(row.value ?? '');
+    if (typeof row?.value === "string") setRawText(row.value ?? "");
     else setRawText(prettyStringify(coercedInitial));
   }, [coercedInitial, row?.value, settingKey, locale]);
 
   // guard: if structured renderer missing, force raw
   React.useEffect(() => {
-    if (mode === 'structured' && !canStructured) setMode('raw');
+    if (mode === "structured" && !canStructured) setMode("raw");
   }, [mode, canStructured]);
 
-  const openLibraryHref = imageUpload?.openLibraryHref ?? '/admin/storage';
-  const onOpenLibraryClick =
-    imageUpload?.onOpenLibraryClick ?? (() => router.push(openLibraryHref));
+  const openLibraryHref = imageUpload?.openLibraryHref ?? "/admin/storage";
+  const onOpenLibraryClick = imageUpload?.onOpenLibraryClick ?? (() => router.push(openLibraryHref));
 
   const handleSave = async () => {
     if (disabled) return;
 
     try {
-      const valueToSave: SettingValue =
-        mode === 'raw' ? parseRawOrString(rawText) : (structuredValue as any);
+      const valueToSave: SettingValue = mode === "raw" ? parseRawOrString(rawText) : (structuredValue as any);
 
       await onSave({ key: settingKey, locale, value: valueToSave });
-      toast.success(t('form.saved', null, 'Ayar kaydedildi.'));
+      toast.success(t("form.saved", null, "Ayar kaydedildi."));
     } catch (err: any) {
-      toast.error(
-        errMsg(err, t('form.saveError', null, 'Kaydedilirken hata oluştu.'))
-      );
+      toast.error(errMsg(err, t("form.saveError", null, "Kaydedilirken hata oluştu.")));
     }
   };
 
@@ -179,17 +170,15 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
     if (!onDelete || disabled) return;
 
     const ok = window.confirm(
-      t('form.deleteConfirm', { key: settingKey, locale }, 'Bu ayarı silmek istediğinize emin misiniz?')
+      t("form.deleteConfirm", { key: settingKey, locale }, "Bu ayarı silmek istediğinize emin misiniz?"),
     );
     if (!ok) return;
 
     try {
       await onDelete({ key: settingKey, locale });
-      toast.success(t('form.deleted', null, 'Ayar silindi.'));
+      toast.success(t("form.deleted", null, "Ayar silindi."));
     } catch (err: any) {
-      toast.error(
-        errMsg(err, t('form.deleteError', null, 'Silinirken hata oluştu.'))
-      );
+      toast.error(errMsg(err, t("form.deleteError", null, "Silinirken hata oluştu.")));
     }
   };
 
@@ -199,41 +188,53 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-2">
             <CardTitle className="font-serif text-2xl flex items-center gap-3">
-              <span className="text-gm-text">{t('form.title', null, 'Ayar Düzenle')}</span>
-              <code className="text-gm-gold bg-gm-gold/10 px-3 py-1.5 rounded-xl text-lg font-mono border border-gm-gold/20 shadow-sm">{settingKey}</code>
-              {locale && locale !== '*' ? (
-                <Badge variant="outline" className="border-gm-gold/30 bg-gm-gold/5 text-gm-gold px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">{locale}</Badge>
+              <span className="text-gm-text">{t("form.title", null, "Ayar Düzenle")}</span>
+              <code className="text-gm-gold bg-gm-gold/10 px-3 py-1.5 rounded-xl text-lg font-mono border border-gm-gold/20 shadow-sm">
+                {settingKey}
+              </code>
+              {locale && locale !== "*" ? (
+                <Badge
+                  variant="outline"
+                  className="border-gm-gold/30 bg-gm-gold/5 text-gm-gold px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]"
+                >
+                  {locale}
+                </Badge>
               ) : (
-                <Badge variant="outline" className="border-gm-muted/30 bg-gm-muted/5 text-gm-muted px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">GLOBAL</Badge>
+                <Badge
+                  variant="outline"
+                  className="border-gm-muted/30 bg-gm-muted/5 text-gm-muted px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]"
+                >
+                  GLOBAL
+                </Badge>
               )}
             </CardTitle>
             <CardDescription className="text-gm-muted font-serif italic opacity-80">
-              {t('form.description', null, 'Bu ayarın değerini yapılandırın.')}
+              {t("form.description", null, "Bu ayarın değerini yapılandırın.")}
             </CardDescription>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             {onDelete ? (
-              <Button 
-                type="button" 
-                variant="outline" 
-                onClick={handleDelete} 
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleDelete}
                 disabled={disabled}
                 className="rounded-full border-gm-error/30 text-gm-error hover:bg-gm-error/10 hover:text-gm-error h-12 px-6 text-[10px] font-bold tracking-widest uppercase transition-all"
               >
                 <Trash2 className="mr-2 size-4" />
-                {t('admin.common.delete', null, 'Sil')}
+                {t("admin.common.delete", null, "Sil")}
               </Button>
             ) : null}
 
-            <Button 
-              type="button" 
-              onClick={handleSave} 
+            <Button
+              type="button"
+              onClick={handleSave}
               disabled={disabled}
               className="rounded-full bg-gm-gold text-gm-bg hover:bg-gm-gold-light h-12 px-8 text-[10px] font-bold tracking-widest uppercase shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all"
             >
               <Save className="mr-2 size-4" />
-              {t('admin.common.save', null, 'Kaydet')}
+              {t("admin.common.save", null, "Kaydet")}
             </Button>
           </div>
         </div>
@@ -241,21 +242,21 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
         {/* Mode tabs */}
         <Tabs value={mode} onValueChange={(v) => setMode(v as SiteSettingsFormMode)} className="w-full sm:w-auto">
           <TabsList className="bg-gm-bg-deep/50 p-1.5 border border-gm-border-soft rounded-2xl">
-            <TabsTrigger 
-              value="structured" 
+            <TabsTrigger
+              value="structured"
               disabled={!canStructured || !!disabled}
               className="rounded-xl data-[state=active]:bg-gm-surface data-[state=active]:text-gm-gold data-[state=active]:shadow-lg text-[10px] font-bold uppercase tracking-[0.1em] px-6 py-2.5 transition-all flex items-center gap-2"
             >
               <LayoutTemplate className="size-3.5" />
-              {t('form.modes.structured', null, 'Görsel Editör')}
+              {t("form.modes.structured", null, "Görsel Editör")}
             </TabsTrigger>
-            <TabsTrigger 
-              value="raw" 
+            <TabsTrigger
+              value="raw"
               disabled={!!disabled}
               className="rounded-xl data-[state=active]:bg-gm-surface data-[state=active]:text-gm-gold data-[state=active]:shadow-lg text-[10px] font-bold uppercase tracking-[0.1em] px-6 py-2.5 transition-all flex items-center gap-2"
             >
               <Code2 className="size-3.5" />
-              {t('form.modes.raw', null, 'Ham JSON/Metin')}
+              {t("form.modes.raw", null, "Ham JSON/Metin")}
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -265,12 +266,12 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
         {showImageUpload ? (
           <div className="bg-gm-surface/30 p-6 rounded-3xl border border-gm-border-soft">
             <AdminImageUploadField
-              label={imageUpload?.label ?? t('form.imageLabel', null, 'Görsel')}
+              label={imageUpload?.label ?? t("form.imageLabel", null, "Görsel")}
               helperText={imageUpload?.helperText}
-              bucket={imageUpload?.bucket ?? 'public'}
-              folder={imageUpload?.folder ?? 'site-media'}
+              bucket={imageUpload?.bucket ?? "public"}
+              folder={imageUpload?.folder ?? "site-media"}
               metadata={imageUpload?.metadata}
-              value={(imageUpload?.value ?? '') as any}
+              value={(imageUpload?.value ?? "") as any}
               onChange={(url) => imageUpload?.onChange?.(url)}
               disabled={disabled}
               openLibraryHref={openLibraryHref}
@@ -279,7 +280,7 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
           </div>
         ) : null}
 
-        {mode === 'structured' ? (
+        {mode === "structured" ? (
           canStructured ? (
             <div className="space-y-4 animate-in fade-in duration-500">
               {renderStructured?.({
@@ -292,16 +293,26 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
             </div>
           ) : (
             <Alert className="bg-gm-warning/10 border-gm-warning/30 text-gm-warning rounded-2xl">
-              <AlertTitle className="font-serif">{t('form.structuredMissingTitle', null, 'Görsel Editör Yok')}</AlertTitle>
+              <AlertTitle className="font-serif">
+                {t("form.structuredMissingTitle", null, "Görsel Editör Yok")}
+              </AlertTitle>
               <AlertDescription className="opacity-80">
-                {t('form.structuredMissingDesc', null, 'Bu ayar için görsel editör mevcut değil. Lütfen Ham JSON/Metin sekmesini kullanın.')}
+                {t(
+                  "form.structuredMissingDesc",
+                  null,
+                  "Bu ayar için görsel editör mevcut değil. Lütfen Ham JSON/Metin sekmesini kullanın.",
+                )}
               </AlertDescription>
             </Alert>
           )
         ) : (
           <div className="space-y-4 animate-in fade-in duration-500">
             <div className="text-sm text-gm-muted font-serif italic">
-              {t('form.rawHelp', null, 'Ham veriyi doğrudan düzenleyebilirsiniz. Geçerli bir JSON kullanmaya özen gösterin.')}
+              {t(
+                "form.rawHelp",
+                null,
+                "Ham veriyi doğrudan düzenleyebilirsiniz. Geçerli bir JSON kullanmaya özen gösterin.",
+              )}
             </div>
 
             <Textarea
@@ -311,12 +322,12 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
               disabled={disabled}
               spellCheck={false}
               className="font-mono text-sm leading-relaxed bg-gm-bg-deep border-gm-border-soft rounded-2xl p-6 focus:ring-gm-gold/50 focus:border-gm-gold/50 text-gm-text shadow-inner transition-all resize-y"
-              placeholder={t('form.rawPlaceholder', null, '{"key": "value"}')}
+              placeholder={t("form.rawPlaceholder", null, '{"key": "value"}')}
             />
 
             <div className="text-[10px] text-gm-muted uppercase tracking-[0.1em] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-gm-gold/50" />
-              {t('form.rawTip', null, 'Not: JSON parse edilemezse ham metin olarak kaydedilir.')}
+              {t("form.rawTip", null, "Not: JSON parse edilemezse ham metin olarak kaydedilir.")}
             </div>
           </div>
         )}
@@ -325,4 +336,4 @@ export const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({
   );
 };
 
-SiteSettingsForm.displayName = 'SiteSettingsForm';
+SiteSettingsForm.displayName = "SiteSettingsForm";

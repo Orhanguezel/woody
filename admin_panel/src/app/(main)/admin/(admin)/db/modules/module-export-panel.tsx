@@ -37,11 +37,11 @@ export const ModuleExportPanel: React.FC<ModuleExportPanelProps> = ({ module, di
   };
 
   return (
-    <Card className="bg-muted/30">
+    <Card className="bg-gm-surface/30 border-gm-border-soft rounded-[20px] shadow-none">
       <CardContent className="flex flex-col justify-between gap-4 p-4 sm:flex-row sm:items-center">
         <div className="space-y-1">
-          <div className="font-semibold text-sm">{t("title")}</div>
-          <div className="text-muted-foreground text-xs">{t("description", { module })}</div>
+          <div className="font-semibold text-sm font-serif text-gm-text">{t("title")}</div>
+          <div className="text-gm-muted text-xs">{t("description", { module })}</div>
         </div>
 
         <div className="flex items-center gap-4">
@@ -61,7 +61,7 @@ export const ModuleExportPanel: React.FC<ModuleExportPanelProps> = ({ module, di
             variant="outline"
             onClick={handleExport}
             disabled={disabled || isLoading}
-            className="h-8 text-xs"
+            className="h-8 text-xs rounded-full border-gm-border-soft hover:bg-gm-surface/40"
           >
             {isLoading ? <Loader2 className="mr-2 h-3 w-3 animate-spin" /> : <Download className="mr-2 h-3 w-3" />}
             {isLoading ? t("preparing") : t("downloadButton")}

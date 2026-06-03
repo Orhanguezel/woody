@@ -3,7 +3,7 @@
 // FINAL — App Router wrapper (params Promise safe)
 // =============================================================
 
-import SiteSettingsDetailClient from '../_components/admin-site_settings-detail-client';
+import SiteSettingsDetailClient from "../_components/admin-site_settings-detail-client";
 
 type Params = { id: string };
 
