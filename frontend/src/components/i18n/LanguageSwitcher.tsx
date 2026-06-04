@@ -53,7 +53,7 @@ export default function LanguageSwitcher() {
 
   return (
     <nav aria-label="Language switcher">
-      <ul className="list-inline m-0">
+      <ul className="m-0 grid list-none grid-cols-2 gap-1 p-0">
         {activeLocales.map((l) => {
           const code = normLocaleTag(l);
           const isCurrent = !!code && code === current;
@@ -63,7 +63,11 @@ export default function LanguageSwitcher() {
               <button
                 type="button"
                 onClick={() => switchLocale(router, asPath, code, activeLocales)}
-                className="bg-transparent border-0 p-0 cursor-pointer"
+                className={`min-h-8 w-full cursor-pointer rounded-md border px-2 text-xs font-bold uppercase tracking-[0.08em] transition ${
+                  isCurrent
+                    ? 'border-[var(--gm-primary)] bg-[var(--gm-primary)] text-[var(--gm-surface)]'
+                    : 'border-[var(--gm-border-soft)] bg-transparent text-[var(--gm-text)] hover:border-[var(--gm-primary)]'
+                }`}
                 aria-current={isCurrent ? 'true' : undefined}
                 aria-label={`Switch language to ${code.toUpperCase()}`}
               >

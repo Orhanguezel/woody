@@ -13,18 +13,25 @@ import type { CustomPageDto } from '@/integrations/shared';
 import type { WoodyFallbackBlogPost } from './blog-loader.server';
 
 export default function WoodyBlogIndexClient({
+  activeCategory,
+  bannerTitleOverride,
+  forceInitialPosts = false,
   initialPosts = [],
 }: {
+  activeCategory?: string;
+  bannerTitleOverride?: string;
+  forceInitialPosts?: boolean;
   initialPosts?: WoodyFallbackBlogPost[];
 }) {
   const locale = useLocaleShort();
   const { ui } = useUiSection('ui_blog', locale as any);
 
   const bannerTitle = useMemo(() => {
+    if (bannerTitleOverride) return bannerTitleOverride;
     const key = 'ui_blog_page_title';
     const value = safeStr(ui(key, 'Blog'));
     return isValidUiText(value, key) ? value : 'Blog';
-  }, [ui]);
+  }, [bannerTitleOverride, ui]);
 
   const { data: blogData } = useListCustomPagesPublicQuery({
     module_key: 'blog',
@@ -67,7 +74,11 @@ export default function WoodyBlogIndexClient({
 
       <div className="min-h-[50vh] bg-bg-primary">
         <section className="container mx-auto px-4 py-16">
-          <BlogPageContent initialPosts={initialPosts} />
+          <BlogPageContent
+            activeCategory={activeCategory}
+            forceInitialPosts={forceInitialPosts}
+            initialPosts={initialPosts}
+          />
         </section>
 
         <section className="container mx-auto px-4 pb-16">

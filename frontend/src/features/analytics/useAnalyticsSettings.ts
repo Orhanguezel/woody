@@ -9,6 +9,12 @@
 import { useMemo } from 'react';
 import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
 import { useLocaleShort } from '@/i18n';
+import {
+  getDefaultFacebookPixelId,
+  getDefaultGa4MeasurementId,
+  getDefaultGoogleSiteVerification,
+  getDefaultGtmContainerId,
+} from '@/lib/site-config';
 
 function coerceId(v: unknown): string {
   return String(v ?? '').trim();
@@ -33,13 +39,13 @@ export function useAnalyticsSettings() {
   const ga4Id = useMemo(() => {
     const db = coerceId((ga as any)?.value);
     const env = coerceId(process.env.NEXT_PUBLIC_GA_ID); // optional fallback
-    return db || env;
+    return db || env || getDefaultGa4MeasurementId();
   }, [ga]);
 
   const gtmId = useMemo(() => {
     const db = coerceId((gtm as any)?.value);
     const env = coerceId(process.env.NEXT_PUBLIC_GTM_ID); // optional fallback
-    return db || env;
+    return db || env || getDefaultGtmContainerId();
   }, [gtm]);
 
   const {
@@ -57,11 +63,11 @@ export function useAnalyticsSettings() {
   const facebookPixelId = useMemo(() => {
     const db = coerceId((fbPixel as any)?.value);
     const env = coerceId(process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID);
-    return db || env;
+    return db || env || getDefaultFacebookPixelId();
   }, [fbPixel]);
 
   const googleSiteVerification = useMemo(() => {
-    return coerceId((gscVerification as any)?.value);
+    return coerceId((gscVerification as any)?.value) || getDefaultGoogleSiteVerification();
   }, [gscVerification]);
 
   const isLoading = gaLoading || gtmLoading || gaFetching || gtmFetching || fbPixelLoading || fbPixelFetching || gscLoading || gscFetching;

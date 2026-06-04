@@ -8,6 +8,7 @@ import { fetchDesignTokens } from '@/lib/tokens/fetchTokens.server';
 import { detectThemeMode } from '@/lib/tokens/detectThemeMode';
 import {
   getDefaultTokenBranding,
+  getDefaultBingSiteVerification,
   getHtmlMetaDescriptionForLocale,
   getPublicSiteOrigin,
   getRootLayoutTitleDefault,
@@ -67,6 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
     process.env.BING_SITE_VERIFICATION ||
     process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ||
     bingVerification?.value ||
+    getDefaultBingSiteVerification() ||
     '',
   ).trim();
 

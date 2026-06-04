@@ -141,8 +141,8 @@ export function getDefaultTokenBranding(): DesignTokens['branding'] {
     tagline_en:
       process.env.NEXT_PUBLIC_BRAND_TAGLINE_EN?.trim() ||
       String(siteDefaults.brand.taglineEn || '').trim(),
-    logo_url: '/logo/logo.svg',
-    favicon_url: '/favicon.svg',
+    logo_url: '/uploads/brand/logo-primary.svg',
+    favicon_url: '/uploads/brand/favicon-512.png',
     theme_color: themeColor,
     theme_color_dark: themeColorDark,
     og_image_url: '',
@@ -173,6 +173,88 @@ export function getPlaceholderSameAsUrls(): string[] {
   }
   const raw = siteDefaults as { jsonLd?: { placeholderSameAs?: string[] } };
   return Array.isArray(raw.jsonLd?.placeholderSameAs) ? raw.jsonLd.placeholderSameAs : [];
+}
+
+function getSiteDefaultsRecord<T extends Record<string, unknown>>(key: string): T {
+  const raw = siteDefaults as unknown as Record<string, unknown>;
+  const value = raw[key];
+  return value && typeof value === 'object' && !Array.isArray(value) ? (value as T) : ({} as T);
+}
+
+export type PublicContactInfo = {
+  address?: {
+    addressCountry?: string;
+    addressLocality?: string;
+    addressRegion?: string;
+    postalCode?: string;
+    streetAddress?: string;
+  };
+  businessHours?: string[];
+  companyName?: string;
+  email?: string;
+  phone?: string;
+  phones?: string[];
+  whatsapp?: string;
+  whatsappNumber?: string;
+};
+
+export function getDefaultContactInfo(): PublicContactInfo {
+  const contact = getSiteDefaultsRecord<Record<string, unknown>>('contact');
+  const phones = Array.isArray(contact.phones)
+    ? contact.phones.map((phone) => String(phone).trim()).filter(Boolean)
+    : [];
+  const address =
+    contact.address && typeof contact.address === 'object' && !Array.isArray(contact.address)
+      ? (contact.address as PublicContactInfo['address'])
+      : undefined;
+  const businessHours = Array.isArray(contact.businessHours)
+    ? contact.businessHours.map((hours) => String(hours).trim()).filter(Boolean)
+    : [];
+
+  return {
+    address,
+    businessHours,
+    companyName: String(contact.companyName || '').trim() || getPublicAppName(),
+    email: String(contact.email || '').trim(),
+    phone: String(contact.phone || phones[0] || '').trim(),
+    phones,
+    whatsapp: String(contact.whatsapp || '').trim(),
+    whatsappNumber: String(contact.whatsappNumber || contact.whatsapp || '').trim(),
+  };
+}
+
+export function getDefaultSocialUrls(): Record<string, string> {
+  const socials = getSiteDefaultsRecord<Record<string, unknown>>('socials');
+  return Object.fromEntries(
+    Object.entries(socials)
+      .map(([key, value]) => [key, String(value ?? '').trim()])
+      .filter(([, value]) => /^https?:\/\//i.test(value)),
+  );
+}
+
+export function getDefaultGa4MeasurementId(): string {
+  const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
+  return String(analytics.ga4MeasurementId || '').trim();
+}
+
+export function getDefaultGtmContainerId(): string {
+  const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
+  return String(analytics.gtmContainerId || '').trim();
+}
+
+export function getDefaultFacebookPixelId(): string {
+  const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
+  return String(analytics.facebookPixelId || '').trim();
+}
+
+export function getDefaultGoogleSiteVerification(): string {
+  const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
+  return String(analytics.googleSiteVerification || '').trim();
+}
+
+export function getDefaultBingSiteVerification(): string {
+  const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
+  return String(analytics.bingSiteVerification || '').trim();
 }
 
 /** Kamu API kökü: `/api/v1` (env veya site-defaults + normalize). */

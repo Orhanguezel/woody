@@ -3,7 +3,7 @@
 import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Languages } from 'lucide-react';
 
 import HeaderOffcanvas from './HeaderOffcanvas';
 import MegaMenuPanel from './MegaMenuPanel';
@@ -14,12 +14,12 @@ import { localizePath } from '@/integrations/shared';
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { useAuthStore } from '@/features/auth/auth.store';
 import { IconUser } from '@/components/ui/icons';
-import ThemeToggle from '@/components/system/ThemeToggle';
 import {
   getHeaderFallbackMenu,
   getPublicAppName,
 } from '@/lib/site-config';
 import { WOODY_LOCALES } from '@/components/woody/routes';
+import LanguageSwitcher from '@/components/i18n/LanguageSwitcher';
 
 // Menu API boş gelirse src/config/site-defaults.json (navigation.headerFallbackMenu)
 type FallbackMenuItem = {
@@ -30,6 +30,16 @@ type FallbackMenuItem = {
 };
 
 const FALLBACK_MENU: FallbackMenuItem[] = getHeaderFallbackMenu() as FallbackMenuItem[];
+
+const REFERENCE_NAV = [
+  { id: 'ref-home', url: '/', labels: { tr: 'HOME', en: 'HOME', de: 'HOME' } },
+  { id: 'ref-store', url: '/store', labels: { tr: 'WOODY STORE', en: 'WOODY STORE', de: 'WOODY STORE' } },
+  { id: 'ref-preschool', url: '/preschool', labels: { tr: 'OKUL', en: 'SCHOOL', de: 'SCHULE' } },
+  { id: 'ref-workshop', url: '/workshop', labels: { tr: 'ATÖLYE', en: 'WORKSHOP', de: 'WORKSHOP' } },
+  { id: 'ref-home-tutor', url: '/home-tutor', labels: { tr: 'EV & ÖZEL DERS', en: 'HOME & PRIVATE LESSON', de: 'ZUHAUSE & EINZELUNTERRICHT' } },
+  { id: 'ref-academy', url: '/woody-academy', labels: { tr: 'WOODY ACADEMY', en: 'WOODY ACADEMY', de: 'WOODY ACADEMY' } },
+  { id: 'ref-blog', url: '/blog', labels: { tr: 'BLOG', en: 'BLOG', de: 'BLOG' } },
+] as const;
 
 type MenuItemWithChildren = PublicMenuItemDto & {
   children?: MenuItemWithChildren[];
@@ -48,6 +58,10 @@ const cleanHashLink = (href: string) => {
   if (clean.includes('#')) return `/${clean.split('#')[1]}`;
   return clean === '' ? '/' : clean;
 };
+
+function flattenMenu(items: MenuItemWithChildren[]): MenuItemWithChildren[] {
+  return items.flatMap((item) => [item, ...flattenMenu(item.children ?? [])]);
+}
 
 type HeaderClientBrand = {
   name: string;
@@ -96,8 +110,21 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
   // kullanılır. RTK Query çağrısı yok — server/client farkını tamamen ortadan kaldırır.
   // (Menü değişiklikleri admin'den sayfa yenilenmesiyle yansır; revalidate: 60sn.)
   const headerMenuItems: MenuItemWithChildren[] = useMemo(() => {
+    const mapReference = (sourceItems: MenuItemWithChildren[]): MenuItemWithChildren[] => {
+      const flat = flattenMenu(sourceItems);
+      return REFERENCE_NAV.map((ref, index) => {
+        const apiItem = flat.find((item) => cleanHashLink(String(item.url || '')) === ref.url);
+        return {
+          id: apiItem?.id || ref.id,
+          url: ref.url,
+          title: ref.labels[locale as keyof typeof ref.labels] || ref.labels.en,
+          order_num: (index + 1) * 10,
+        } as MenuItemWithChildren;
+      });
+    };
+
     if (initialMenuItems && initialMenuItems.length > 0) {
-      return initialMenuItems.slice().sort((a, b) => ((a as any)?.order_num ?? 0) - ((b as any)?.order_num ?? 0)) as MenuItemWithChildren[];
+      return mapReference(initialMenuItems.slice().sort((a, b) => ((a as any)?.order_num ?? 0) - ((b as any)?.order_num ?? 0)) as MenuItemWithChildren[]);
     }
     // initialMenuItems boş ise (SSR fetch başarısız) — varsayılan linkleri locale'e göre üret
     const mapItem = (m: FallbackMenuItem): MenuItemWithChildren => ({
@@ -108,7 +135,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
         ? { children: m.children.map(mapItem) as MenuItemWithChildren[] }
         : {}),
     } as MenuItemWithChildren);
-    return FALLBACK_MENU.map(mapItem);
+    return mapReference(FALLBACK_MENU.map(mapItem));
   }, [locale, initialMenuItems]);
 
   useEffect(() => {
@@ -120,7 +147,6 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   const homeHref = localizePath(locale, '/');
-  const contactHref = localizePath(locale, '/contact');
   const profileHref = localizePath(locale, '/profile');
 
   return (
@@ -145,8 +171,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-12">
-            <ul className="flex gap-8 list-none m-0 p-0 items-center">
+          <div className="hidden lg:flex items-center gap-8">
+            <ul className="flex gap-5 list-none m-0 p-0 items-center">
               {headerMenuItems.map((item) => {
                 const rawUrl = (item.url || '') as string;
                 const label = item.title || 'Link';
@@ -181,17 +207,35 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
 
                 return (
                   <li key={item.id}>
-                    <Link href={href} className="font-serif text-[13px] font-normal tracking-[0.05em] text-[var(--gm-text)] hover:text-[var(--gm-gold-deep)] transition-colors relative group">
+                    <Link
+                      href={href}
+                      className={
+                        cleanHashLink(rawUrl) === '/store'
+                          ? 'inline-flex min-h-10 items-center rounded-md bg-[var(--gm-gold-deep)] px-4 py-2 text-[12px] font-black tracking-[0.08em] text-[var(--gm-surface)] shadow-[var(--gm-shadow-soft)] transition hover:-translate-y-0.5'
+                          : 'font-serif text-[13px] font-bold tracking-[0.08em] text-[var(--gm-text)] hover:text-[var(--gm-gold-deep)] transition-colors relative group'
+                      }
+                    >
                       {label}
-                      <span className="absolute bottom-[-4px] left-0 w-0 h-[1px] bg-[var(--gm-gold)] transition-all duration-300 group-hover:w-full" />
+                      {cleanHashLink(rawUrl) !== '/store' ? (
+                        <span className="absolute bottom-[-4px] left-0 w-0 h-[1px] bg-[var(--gm-gold)] transition-all duration-300 group-hover:w-full" />
+                      ) : null}
                     </Link>
                   </li>
                 );
               })}
             </ul>
 
-            <div className="flex items-center gap-6">
-              <ThemeToggle />
+            <div className="flex items-center gap-4">
+              <details className="group/lang relative">
+                <summary className="flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-md border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/70 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--gm-text)]">
+                  <Languages className="size-4 text-[var(--gm-primary)]" aria-hidden />
+                  {ui('ui_header_language', locale === 'tr' ? 'Dil' : 'Language')}
+                  <ChevronDown className="size-3 transition group-open/lang:rotate-180" aria-hidden />
+                </summary>
+                <div className="absolute right-0 top-full mt-2 min-w-44 rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-3 shadow-[var(--gm-shadow-card)]">
+                  <LanguageSwitcher />
+                </div>
+              </details>
               {isAuthenticated && (
                 <Link
                   href={profileHref}
@@ -202,27 +246,19 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
                   {locale === 'tr' ? 'Profil' : 'Profile'}
                 </Link>
               )}
-              <Link href={contactHref} className="btn-premium py-2.5 px-6 text-[12px]">
-                {ui('ui_header_cta', locale === 'tr' ? 'İLETİŞİM' : 'CONTACT')}
-              </Link>
-
-              {/* Hamburger Toggle */}
-              <button
-                type="button"
-                aria-label={locale === 'tr' ? 'Menüyü aç' : 'Open menu'}
-                className="flex flex-col gap-1.5 cursor-pointer group"
-                onClick={() => setOpen(true)}
-              >
-                <span className="w-6 h-[1px] bg-[var(--gm-gold)] transition-all group-hover:w-8" />
-                <span className="w-8 h-[1px] bg-[var(--gm-gold)]" />
-                <span className="w-6 h-[1px] bg-[var(--gm-gold)] ml-auto transition-all group-hover:w-8" />
-              </button>
             </div>
           </div>
 
           {/* Mobile Right */}
           <div className="flex lg:hidden items-center gap-3">
-            <ThemeToggle />
+            <details className="group/lang relative">
+              <summary className="flex cursor-pointer list-none items-center rounded-md border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/70 p-2 text-[var(--gm-text)]">
+                <Languages className="size-4" aria-hidden />
+              </summary>
+              <div className="absolute right-0 top-full mt-2 min-w-40 rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-3 shadow-[var(--gm-shadow-card)]">
+                <LanguageSwitcher />
+              </div>
+            </details>
             {isAuthenticated && (
               <Link href={localizePath(locale, '/profile')} className="p-2 text-[var(--gm-text)]">
                 <IconUser className="w-5 h-5" />
@@ -294,9 +330,6 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               );
             })}
           </ul>
-          <Link href={contactHref} className="btn-premium w-full max-w-xs text-center" onClick={() => setMobileOpen(false)}>
-            {ui('ui_header_cta', locale === 'tr' ? 'İLETİŞİM' : 'CONTACT')}
-          </Link>
         </div>
       </header>
     </Fragment>
