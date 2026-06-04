@@ -161,11 +161,11 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               : 'py-6 lg:py-8 bg-transparent'
             }`}
         >
-          <Link href={homeHref} className="flex items-center no-underline group">
+          <Link href={homeHref} className="flex shrink-0 items-center no-underline group">
             <SiteLogo
               alt={resolvedBrand.name}
-              wrapperClassName="w-36 sm:w-44 lg:w-48"
-              className="max-h-14 object-contain"
+              wrapperClassName="!w-auto h-10 lg:h-12"
+              className="!w-auto h-full object-contain"
               priority
             />
           </Link>
