@@ -9,7 +9,7 @@ import { getPublicSiteOrigin } from '@/lib/site-config';
 
 const BASE_URL = getPublicSiteOrigin();
 
-const COMMON_DISALLOW = ['/api/', '/admin/', '/_next/', '/me/'];
+const COMMON_DISALLOW = ['/api/', '/admin/', '/me/', '/*/me/', '/*/profile/', '/*/school/assets'];
 
 /** AI crawler bot listesi — explicit allow ile site içeriğine erişim onaylanır. */
 const AI_BOTS = [

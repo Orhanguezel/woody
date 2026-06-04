@@ -36,6 +36,10 @@ export type DigitalAssetView = {
   level: SchoolLevel | null;
   product: WoodyProduct | null;
   is_active: boolean;
+  storage_mime: string | null;
+  storage_name: string | null;
+  storage_path: string | null;
+  storage_url: string | null;
   created_at: string | null;
   updated_at: string | null;
 };
@@ -50,6 +54,10 @@ export type SchoolContentAccessView = {
   level: SchoolLevel | null;
   product: WoodyProduct | null;
   storage_asset_id: string | null;
+  storage_mime: string | null;
+  storage_name: string | null;
+  storage_path: string | null;
+  storage_url: string | null;
   is_active: boolean;
 };
 
@@ -144,6 +152,10 @@ export function normalizeDigitalAsset(raw: unknown): DigitalAssetView {
     title: toStr(r.title),
     asset_type: toAssetType(r.asset_type),
     storage_asset_id: toNullableStr(r.storage_asset_id),
+    storage_mime: toNullableStr(r.storage_mime),
+    storage_name: toNullableStr(r.storage_name),
+    storage_path: toNullableStr(r.storage_path),
+    storage_url: toNullableStr(r.storage_url),
     level: toLevel(r.level),
     product: toProduct(r.product),
     is_active: toBool(r.is_active),
@@ -164,6 +176,10 @@ export function normalizeSchoolContentAccess(raw: unknown): SchoolContentAccessV
     level: toLevel(r.level),
     product: toProduct(r.product),
     storage_asset_id: toNullableStr(r.storage_asset_id),
+    storage_mime: toNullableStr(r.storage_mime),
+    storage_name: toNullableStr(r.storage_name),
+    storage_path: toNullableStr(r.storage_path),
+    storage_url: toNullableStr(r.storage_url),
     is_active: toBool(r.is_active),
   };
 }

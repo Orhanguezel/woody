@@ -6,6 +6,7 @@ import {
   getDefaultContactInfo,
   getLocaleDescriptionFallback,
   getPublicAppName,
+  getPublicLogoUrl,
   getPublicSiteOrigin,
 } from '@/lib/site-config';
 
@@ -17,6 +18,7 @@ export default async function ContactRoutePage({ params }: Props) {
   const app = getPublicAppName();
   const contact = getDefaultContactInfo();
   const pageUrl = `${siteUrl}/${locale}/contact`;
+  const logoUrl = new URL(getPublicLogoUrl(), siteUrl).toString();
 
   return (
     <>
@@ -45,7 +47,7 @@ export default async function ContactRoutePage({ params }: Props) {
                   },
                 }
               : {}),
-            logo: `${siteUrl}/favicon.svg`,
+            logo: logoUrl,
             areaServed: locale === 'tr' ? 'Türkiye' : 'Turkey',
           }),
         ])}

@@ -30,6 +30,26 @@ export const UI_FALLBACK_EN = {
   ui_generic_error: 'An unexpected error occurred.',
   ui_loading: 'Loading...',
   ui_footer_tagline: 'Digital learning, content, and a focused user experience.',
+  cc_aria_close: 'Close',
+  cc_banner_aria_close: 'Close',
+  cc_banner_aria_region: 'Cookie consent',
+  cc_banner_btn_accept: 'Accept All',
+  cc_banner_btn_reject: 'Reject All',
+  cc_banner_btn_settings: 'Cookie Settings',
+  cc_banner_desc:
+    'We use cookies to improve your experience and optionally analyze traffic.',
+  cc_banner_link_policy: 'Cookie Policy',
+  cc_banner_title: 'Cookies',
+  cc_btn_cancel: 'Cancel',
+  cc_btn_save: 'Save',
+  cc_desc_analytics: 'Helps us understand traffic and performance.',
+  cc_desc_necessary: 'Required for core functions such as session, security, and language preference.',
+  cc_description:
+    'You can choose which cookie categories you allow. Necessary cookies are always enabled.',
+  cc_label_analytics: 'Analytics',
+  cc_label_necessary: 'Necessary',
+  cc_pill_on: 'On',
+  cc_title: 'Cookie Settings',
 } as const;
 
 export type UIKey = keyof typeof UI_FALLBACK_EN;

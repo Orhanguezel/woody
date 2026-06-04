@@ -171,9 +171,13 @@ export async function registerSchoolsAdmin(app: FastifyInstance) {
   app.get('/digital-assets', async () => {
     const [rows] = await pool.execute(
       `
-        SELECT id, title, asset_type, storage_asset_id, level, product, is_active, created_at, updated_at
-          FROM digital_assets
-         ORDER BY created_at DESC
+        SELECT da.id, da.title, da.asset_type, da.storage_asset_id, da.level, da.product,
+               da.is_active, da.created_at, da.updated_at,
+               sa.name AS storage_name, sa.path AS storage_path, sa.mime AS storage_mime,
+               sa.url AS storage_url
+          FROM digital_assets da
+          LEFT JOIN storage_assets sa ON sa.id = da.storage_asset_id
+         ORDER BY da.created_at DESC
       `,
     );
     return rows;
@@ -243,9 +247,12 @@ export async function registerSchoolsAdmin(app: FastifyInstance) {
     const [rows] = await pool.execute(
       `
         SELECT sca.id, sca.school_id, sca.digital_asset_id, sca.granted_at,
-               da.title, da.asset_type, da.level, da.product, da.storage_asset_id, da.is_active
+               da.title, da.asset_type, da.level, da.product, da.storage_asset_id, da.is_active,
+               sa.name AS storage_name, sa.path AS storage_path, sa.mime AS storage_mime,
+               sa.url AS storage_url
           FROM school_content_access sca
           INNER JOIN digital_assets da ON da.id = sca.digital_asset_id
+          LEFT JOIN storage_assets sa ON sa.id = da.storage_asset_id
          WHERE sca.school_id = ?
          ORDER BY sca.granted_at DESC
       `,
@@ -288,16 +295,41 @@ export async function registerSchoolsPublic(app: FastifyInstance) {
     const [rows] = await pool.execute(
       `
         SELECT da.id, da.title, da.asset_type, da.level, da.product, da.storage_asset_id,
+               sa.name AS storage_name, sa.path AS storage_path, sa.mime AS storage_mime,
+               sa.url AS storage_url,
                su.school_id, s.name AS school_name, sca.granted_at
           FROM school_users su
           INNER JOIN schools s ON s.id = su.school_id AND s.is_active = 1
           INNER JOIN school_content_access sca ON sca.school_id = su.school_id
           INNER JOIN digital_assets da ON da.id = sca.digital_asset_id AND da.is_active = 1
+          LEFT JOIN storage_assets sa ON sa.id = da.storage_asset_id
          WHERE su.user_id = ?
          ORDER BY da.level ASC, da.product ASC, da.title ASC
       `,
       [userId],
     );
     return rows;
+  });
+
+  app.get('/school/assets/:id/file', { preHandler: [requireAuth] }, async (req, reply) => {
+    const userId = requireUserId(req);
+    const { id } = req.params as { id: string };
+    const [rows] = await pool.execute(
+      `
+        SELECT sa.url
+          FROM school_users su
+          INNER JOIN schools s ON s.id = su.school_id AND s.is_active = 1
+          INNER JOIN school_content_access sca ON sca.school_id = su.school_id
+          INNER JOIN digital_assets da ON da.id = sca.digital_asset_id AND da.is_active = 1
+          INNER JOIN storage_assets sa ON sa.id = da.storage_asset_id
+         WHERE su.user_id = ? AND da.id = ?
+         LIMIT 1
+      `,
+      [userId, id],
+    );
+    const row = Array.isArray(rows) ? (rows[0] as { url?: string } | undefined) : undefined;
+    const url = typeof row?.url === 'string' ? row.url.trim() : '';
+    if (!url) return reply.code(404).send({ error: { message: 'asset_not_found' } });
+    return reply.redirect(url);
   });
 }

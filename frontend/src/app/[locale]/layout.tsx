@@ -16,6 +16,7 @@ import {
   getPlaceholderSameAsUrls,
   getPublicApiBaseUrl,
   getPublicAppName,
+  getPublicLogoUrl,
   getPublicSiteOrigin,
 } from '@/lib/site-config';
 
@@ -48,6 +49,7 @@ export async function generateMetadata({
 }
 
 const SITE_URL = getPublicSiteOrigin();
+const SITE_LOGO_URL = new URL(getPublicLogoUrl(), SITE_URL).toString();
 const BRAND_SAME_AS = Array.from(
   new Set([...getPlaceholderSameAsUrls(), ...Object.values(getDefaultSocialUrls())]),
 );
@@ -69,7 +71,7 @@ export default async function RootLayout({
       id: `${SITE_URL}/#org`,
       name: getPublicAppName(),
       url: SITE_URL,
-      logo: `${SITE_URL}/favicon.svg`,
+      logo: SITE_LOGO_URL,
       sameAs: BRAND_SAME_AS,
       description: getOrgJsonLdDescription(locale),
       ...(contact.phone ? { telephone: contact.phone } : {}),

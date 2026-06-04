@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   FileText,
   GraduationCap,
+  LinkIcon,
   Plus,
   RefreshCcw,
   Save,
@@ -55,6 +56,7 @@ import {
   useDeleteDigitalAssetAdminMutation,
   useDeleteSchoolAdminMutation,
   useGrantSchoolContentAccessAdminMutation,
+  useListAssetsAdminQuery,
   useListDigitalAssetsAdminQuery,
   useListSchoolContentAccessAdminQuery,
   useListSchoolsAdminQuery,
@@ -154,8 +156,10 @@ function ActiveBadge({ active }: { active: boolean }) {
 export default function AdminSchoolsClient() {
   const schoolsQ = useListSchoolsAdminQuery();
   const assetsQ = useListDigitalAssetsAdminQuery();
+  const storageQ = useListAssetsAdminQuery({ limit: 100, sort: 'created_at', order: 'desc' });
   const schools = schoolsQ.data ?? [];
   const assets = assetsQ.data ?? [];
+  const storageAssets = storageQ.data?.items ?? [];
 
   const [selectedSchoolId, setSelectedSchoolId] = React.useState('');
   const selectedSchool = schools.find((school) => school.id === selectedSchoolId) ?? null;
@@ -357,17 +361,18 @@ export default function AdminSchoolsClient() {
           onClick={() => {
             schoolsQ.refetch();
             assetsQ.refetch();
+            storageQ.refetch();
             if (selectedSchoolId) {
               usersQ.refetch();
               accessQ.refetch();
             }
           }}
-          disabled={schoolsQ.isFetching || assetsQ.isFetching}
+          disabled={schoolsQ.isFetching || assetsQ.isFetching || storageQ.isFetching}
         >
           <RefreshCcw
             className={cn(
               'mr-2 size-4',
-              (schoolsQ.isFetching || assetsQ.isFetching) && 'animate-spin',
+              (schoolsQ.isFetching || assetsQ.isFetching || storageQ.isFetching) && 'animate-spin',
             )}
           />
           Yenile
@@ -663,6 +668,17 @@ export default function AdminSchoolsClient() {
                                 {access.title}
                               </div>
                               <div className="text-muted-foreground text-xs">{access.asset_type}</div>
+                              {access.storage_url ? (
+                                <a
+                                  href={access.storage_url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="mt-1 inline-flex items-center gap-1 text-sky-700 text-xs hover:underline"
+                                >
+                                  <LinkIcon className="size-3" />
+                                  Dosyayı aç
+                                </a>
+                              ) : null}
                             </TableCell>
                             <TableCell>{access.level ?? '-'}</TableCell>
                             <TableCell>{access.product ?? '-'}</TableCell>
@@ -701,7 +717,7 @@ export default function AdminSchoolsClient() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="grid gap-4 lg:grid-cols-[1.4fr_160px_160px_160px_1fr_auto]">
+          <div className="grid gap-4 lg:grid-cols-[1.4fr_160px_160px_160px_minmax(220px,1fr)_auto]">
             <Input
               value={assetForm.title}
               onChange={(event) => setAssetForm((prev) => ({ ...prev, title: event.target.value }))}
@@ -760,13 +776,27 @@ export default function AdminSchoolsClient() {
                 ))}
               </SelectContent>
             </Select>
-            <Input
-              value={assetForm.storage_asset_id}
-              onChange={(event) =>
-                setAssetForm((prev) => ({ ...prev, storage_asset_id: event.target.value }))
+            <Select
+              value={assetForm.storage_asset_id || 'none'}
+              onValueChange={(value) =>
+                setAssetForm((prev) => ({
+                  ...prev,
+                  storage_asset_id: value === 'none' ? '' : value,
+                }))
               }
-              placeholder="Storage asset ID"
-            />
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Storage dosyası seç" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">Dosya yok</SelectItem>
+                {storageAssets.map((asset) => (
+                  <SelectItem key={asset.id} value={asset.id}>
+                    {asset.name || asset.path || asset.id}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <div className="flex items-center gap-2">
               <Switch
                 checked={assetForm.is_active}
@@ -822,7 +852,20 @@ export default function AdminSchoolsClient() {
                   <TableRow key={asset.id}>
                     <TableCell>
                       <div className="font-medium">{asset.title}</div>
-                      <div className="text-muted-foreground text-xs">{asset.storage_asset_id ?? '-'}</div>
+                      <div className="text-muted-foreground text-xs">
+                        {asset.storage_name || asset.storage_path || asset.storage_asset_id || '-'}
+                      </div>
+                      {asset.storage_url ? (
+                        <a
+                          href={asset.storage_url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mt-1 inline-flex items-center gap-1 text-sky-700 text-xs hover:underline"
+                        >
+                          <LinkIcon className="size-3" />
+                          Dosyayı aç
+                        </a>
+                      ) : null}
                     </TableCell>
                     <TableCell>{asset.asset_type}</TableCell>
                     <TableCell>{asset.level ?? '-'}</TableCell>

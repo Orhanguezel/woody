@@ -7,6 +7,7 @@
 export * from './public/auth.endpoints';
 
 export * from './public/storage_public.endpoints';
+export * from './public/school_assets.endpoints';
 export * from './public/kvkk.endpoints';
 
 

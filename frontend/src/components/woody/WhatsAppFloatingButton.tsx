@@ -31,7 +31,7 @@ export default function WhatsAppFloatingButton({ locale: localeProp }: { locale?
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"
-      className="fixed right-5 bottom-5 z-[900] inline-flex size-14 items-center justify-center rounded-full bg-[var(--gm-success)] text-[var(--gm-surface)] shadow-[var(--gm-shadow-card)] transition hover:-translate-y-1"
+      className="fixed left-5 bottom-5 z-[900] inline-flex size-14 items-center justify-center rounded-full bg-[var(--gm-success)] text-[var(--gm-surface)] shadow-[var(--gm-shadow-card)] transition hover:-translate-y-1"
     >
       <MessageCircle className="size-7" aria-hidden />
     </a>
