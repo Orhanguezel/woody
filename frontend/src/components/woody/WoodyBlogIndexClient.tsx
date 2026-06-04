@@ -85,6 +85,8 @@ export default function WoodyBlogIndexClient({
         {/* Breadcrumb / hero — akademi sayfasi deseni: ortalanmis Woody Blog logosu + geri linki */}
         <section className="mt-[72px] bg-white py-8 md:py-10">
           <div className="mx-auto flex max-w-[600px] flex-col items-center justify-center gap-4 px-6">
+            {/* Gorsel logo + SEO/erisilebilirlik icin gorunmez tek h1 */}
+            <h1 className="sr-only">{title}</h1>
             <Image
               src={BLOG_LOGO}
               alt={title}
