@@ -21,26 +21,44 @@
           "badge": "Für Klassenzimmer",
           "title": "Vorschulreihe",
           "description": "Konzipiert für große Klassenzimmer, Schulen und Kindergärten. Inhalte und Spiele sind für das Klassenzimmermanagement strukturiert und für große Gruppen geeignet. Bietet ein Modell, bei dem die gesamte Klasse gleichzeitig aktiv teilnehmen kann.",
+          "features": [
+            "Für große Klassenzimmer, Schulen und Kindergärten",
+            "Inhalte und Spiele strukturiert für das Klassenzimmermanagement",
+            "Aktive Teilnahme der ganzen Klasse auf einmal"
+          ],
+          "cta": "Entdecken Sie die Vorschulserie",
           "href": "/preschool"
         },
         {
           "badge": "Für kleine Gruppen",
           "title": "Werkstatt",
           "description": "Konzipiert für kleine Gruppen von 3–5 Personen. Inhalte und Spiele werden für eine intensivere Interaktion und individuelle Beteiligung arrangiert. Bietet eine fokussiertere und schnellere Anwendungsstruktur.",
+          "features": [
+            "Für kleine Gruppen von 3–5 Personen",
+            "Intensive Interaktion und individuelle Beteiligung",
+            "Eine fokussiertere und schnellere Struktur"
+          ],
+          "cta": "Entdecken Sie die Workshop-Serie",
           "href": "/workshop"
         },
         {
           "badge": "Individuelle Nutzung",
           "title": "Heimlehrer / Heimserie",
           "description": "Geeignet für die individuelle Nutzung durch 1–2 Personen. Inhalte und Spiele sind vollständig auf das Lernen im Einzelunterricht abgestimmt. Bietet kindgerechten Fortschritt und maximale Aufmerksamkeit.",
+          "features": [
+            "Für die individuelle Nutzung durch 1–2 Personen",
+            "Inhalte abgestimmt auf das Lernen im Einzelunterricht",
+            "Kindgerechter Fortschritt und maximale Aufmerksamkeit"
+          ],
+          "cta": "Entdecken Sie die Heimserie",
           "href": "/home-tutor"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Englisch-Lernset für Vorschulkinder | Spielbasiertes frühkindliches Englisch",
-    "description": "Lassen Sie Ihre Kinder mit einem Englisch-Lernsystem für Vorschulkinder lernen und dabei Spaß haben. Entdecken Sie spielerische Lernsets, Demo-Anfragen und günstige Pakete.",
+    "title": "{{appName}} und Freunde | Vorschul-Englisch",
+    "description": "Englisch-Lernsets für Vorschulkinder, digitale Inhalte und eine Support-Plattform für Lehrkräfte.",
     "keywords": "Vorschul-Englischprogramm Türkei, spielerisches frühkindliches Englisch, Vorschul-Englisch-Lernset, frühkindliche Englischausbildung, Cambridge-Vorbereitungssystem, Englisch für Kinder, Englischprogramm im Alter von 3 bis 6 Jahren"
   }
 }

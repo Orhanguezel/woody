@@ -1,36 +1,36 @@
 {
   "eyebrow": "Acerca de {{appName}}",
-  "title": "Una plantilla de interfaz simple y extensible para nuevos proyectos.",
-  "lead": "{{appName}} es una aplicación web neutral preparada para contenido posterior de marca y dominio.",
+  "title": "Un sistema educativo que combina el inglés preescolar con juegos, cuentos y contenidos digitales.",
+  "lead": "{{appName}} es un modelo completo que hace que el aprendizaje del inglés preescolar sea planificado y sostenible para jardines de infantes, maestros y familias.",
   "founderTitle": "Punto de partida",
   "founderParagraphs": [
-    "Esta plantilla proporciona una base de interfaz reutilizable.",
-    "Las decisiones específicas del proyecto se completan más adelante en las capas de contenido, diseño e integración."
+    "{{appName}} tiene como objetivo que los niños no sólo escuchen inglés, sino que lo experimenten a través del juego, el movimiento, las canciones y los cuentos.",
+    "Brinda a las instituciones un flujo de docentes, materiales para estudiantes, contenido digital y proceso académico en un solo modelo."
   ],
-  "methodologyTitle": "Acercarse",
+  "methodologyTitle": "Enfoque de aprendizaje",
   "methodologyParagraphs": [
-    "La infraestructura permanece en su lugar mientras la copia del dominio y los flujos comerciales se borran de forma predeterminada.",
-    "Un nuevo proyecto puede construir sobre este caparazón con su propia arquitectura de información y fuentes de contenido."
+    "Los niveles Básico, Junior, Senior y PRO progresan con repeticiones, apoyo visual y actividades en el aula apropiadas para la edad.",
+    "Las series Preescolar, Taller y Tutor en el hogar brindan flujos separados para diferentes escenarios institucionales y de uso."
   ],
   "experienceTitle": "Alcance",
   "experienceParagraphs": [
-    "Se conservan el inicio, el blog, el contacto, las preguntas frecuentes, la cuenta, las páginas legales, el tema y los fundamentos de SEO.",
-    "El nombre de la marca se gestiona a través de env y el token AppName."
+    "Los conjuntos físicos, la biblioteca digital, la cuenta escolar y el contenido de la academia respaldan el aprendizaje sostenible.",
+    "El objetivo es crear una experiencia de inglés que los profesores puedan aplicar, los niños puedan unirse y las instituciones puedan realizar un seguimiento."
   ],
   "differentiatorsTitle": "¿Por qué {{appName}}?",
   "differentiators": [
     {
-      "title": "copia neutra",
-      "body": "El texto predeterminado es independiente del proyecto."
+      "title": "Contenido apropiado para la edad",
+      "body": "Ofrece niveles estructurados en torno a la capacidad de atención y el ritmo de aprendizaje de niños de 3 a 6 años."
     },
     {
-      "title": "Concha preservada",
-      "body": "Los fundamentos de enrutamiento, autenticación, i18n y temas siguen siendo utilizables."
+      "title": "Un flujo que apoya a los docentes",
+      "body": "Los conjuntos de profesores y las actividades en el aula hacen que las lecciones sean más estándar y prácticas."
     },
     {
-      "title": "Fácil adaptación",
-      "body": "El contenido del nuevo dominio puede provenir de registros DB o CMS."
+      "title": "Continuidad digital",
+      "body": "Los libros, las canciones, los vídeos y los flujos de cuentas escolares llevan el aprendizaje más allá del aula."
     }
   ],
-  "authorBio": "El contenido de {{appName}} está preparado para ser completado por equipos de proyecto con sus propias decisiones de marca y producto."
+  "authorBio": "El contenido de {{appName}} está preparado para brindarles a los niños una experiencia de inglés segura, alegre y práctica."
 }

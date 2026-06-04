@@ -1,65 +1,65 @@
 {
-  "title": "{{appName}} Academy",
-  "description": "A {{appName}} Academy reúne o processo de certificação Cambridge do aluno e o programa de desenvolvimento de professores (TKT) sob o mesmo teto.",
-  "eyebrow": "{{appName}} ACADEMY",
+  "title": "Academia {{appName}}",
+  "description": "A {{appName}} Academy reúne o processo de certificação de estudantes Cambridge e o programa de desenvolvimento de professores (TKT) sob o mesmo teto.",
+  "eyebrow": "ACADEMIA {{appName}}",
   "hero": {
-    "eyebrow": "{{appName}} ACADEMY",
-    "title": "{{appName}} Academy",
-    "description": "A {{appName}} Academy reúne o processo de certificação Cambridge do aluno e o programa de desenvolvimento de professores (TKT) sob o mesmo teto."
+    "eyebrow": "ACADEMIA {{appName}}",
+    "title": "Academia {{appName}}",
+    "description": "A {{appName}} Academy reúne o processo de certificação de estudantes Cambridge e o programa de desenvolvimento de professores (TKT) sob o mesmo teto."
   },
   "sections": [
     {
-      "eyebrow": "Aluno",
+      "eyebrow": "Estudante",
       "title": "Processo de Certificação Cambridge",
-      "description": "No sistema {{appName}} para Educação Infantil, após concluir as séries Basic, Junior e Senior, os alunos são matriculados no programa {{appName}} Academy. Esta etapa é o período crítico em que o aluno leva o inglês a um nível superior e se prepara para o processo de certificação internacional. Os alunos que concluem o processo {{appName}} Academy conquistam o direito de prestar os exames Cambridge English. Esses exames avaliam as habilidades de Listening, Speaking, Reading e Writing e medem o nível de idioma do aluno de acordo com os padrões internacionais.",
+      "description": "No sistema Pré-escolar {{appName}}, após a conclusão das séries Básica, Júnior e Sênior, os alunos são matriculados no programa Academia {{appName}}. Esta etapa é o período crítico em que o aluno avança o inglês para um nível superior e se prepara para o processo de certificação internacional. Os alunos que concluírem o processo da {{appName}} Academy ganham o direito de fazer os exames Cambridge English. Esses exames medem as habilidades de compreensão auditiva, fala, leitura e escrita e avaliam o nível linguístico do aluno em relação aos padrões internacionais.",
       "items": [
         {
-          "title": "Modelo de Educação",
-          "description": "Durante o processo {{appName}} Academy, as aulas são conduzidas por professores de inglês da {{appName}} Academy em uma plataforma online. Os alunos recebem educação por meio de um modelo de aula particular individualizada, apoiado por materiais físicos da Pro Series.",
+          "title": "Modelo Educacional",
+          "description": "Durante o processo da {{appName}} Academy, as aulas são ministradas pelos professores de inglês da {{appName}} Academy em uma plataforma online. Os alunos recebem educação por meio de um modelo de aula particular individual, apoiado por materiais físicos da Pro Series.",
           "features": [
-            "Garante-se o progresso específico de cada aluno",
+            "O progresso específico do aluno é garantido",
             "As lacunas são preenchidas rapidamente",
-            "A participação ativa e a prática de fala aumentam",
+            "A participação ativa e a prática de conversação aumentam",
             "O processo de aprendizagem é individualizado"
           ]
         },
         {
           "title": "Processo de Certificação",
-          "description": "Os alunos que concluem o programa prestam o exame Cambridge, recebem seu certificado quando são aprovados e obtêm um documento reconhecido internacionalmente. Resultado: a {{appName}} Academy estrutura o processo pós-formatura, desenvolve o aluno academicamente e torna esse progresso tangível com um certificado Cambridge."
+          "description": "Os alunos que concluem o programa fazem o exame Cambridge, recebem seu certificado quando são aprovados e obtêm um documento reconhecido internacionalmente. Resultado: A {{appName}} Academy estrutura o processo de pós-graduação, desenvolve o aluno academicamente e torna esse progresso tangível com um certificado Cambridge."
         }
       ]
     },
     {
       "eyebrow": "Professor",
       "title": "Programa de Desenvolvimento (TKT)",
-      "description": "No âmbito da {{appName}} Academy, todos os professores das escolas que usam o sistema {{appName}} são automaticamente matriculados no programa de desenvolvimento de professores. Nenhuma inscrição separada é necessária para esse programa. Todo professor que usa o sistema participa diretamente e gratuitamente. O programa é estruturado com base no modelo Cambridge English TKT (Teaching Knowledge Test), reconhecido internacionalmente.",
+      "description": "No âmbito da Academia {{appName}}, todos os professores das escolas que utilizam o sistema {{appName}} estão automaticamente inscritos no programa de desenvolvimento de professores. Nenhum aplicativo separado é necessário para este programa. Cada professor que utiliza o sistema participa direta e gratuitamente. O programa está estruturado com base no modelo Cambridge English TKT (Teaching Knowledge Test), reconhecido internacionalmente.",
       "items": [
         {
-          "title": "Processo de Formação Baseado no Cambridge TKT",
-          "description": "Nesse processo, os professores estruturam o ensino de idiomas de acordo com os padrões internacionais.",
+          "title": "Processo de treinamento baseado em Cambridge TKT",
+          "description": "Neste processo, os professores estruturam o ensino de línguas de acordo com padrões internacionais.",
           "features": [
-            "Aprendem metodologias de ensino de idiomas",
-            "Aplicam técnicas de ensino baseadas em brincadeiras",
-            "Desenvolvem habilidades de gestão de sala de aula",
-            "Adotam uma abordagem sistemática de planejamento de aulas"
+            "Aprenda metodologias de ensino de idiomas",
+            "Aplicar técnicas de ensino baseadas em brincadeiras",
+            "Desenvolver habilidades de gerenciamento de sala de aula",
+            "Adote uma abordagem sistemática de planejamento de aulas"
           ]
         },
         {
-          "title": "A Vantagem que o Sistema Oferece",
-          "description": "Os professores que concluem o programa de formação podem prestar o exame Cambridge TKT e, quando aprovados, recebem seu certificado reconhecido internacionalmente.",
+          "title": "A vantagem que o sistema oferece",
+          "description": "Os professores que concluírem o programa de treinamento podem fazer o exame Cambridge TKT e, quando aprovados, receber seu certificado reconhecido internacionalmente.",
           "features": [
             "Todos os professores são incluídos automaticamente no sistema",
-            "O desenvolvimento profissional é oferecido sem custo adicional",
-            "A qualidade da educação se padroniza em toda a instituição",
-            "É oferecido um processo de desenvolvimento reconhecido internacionalmente"
+            "O desenvolvimento profissional é fornecido sem custo extra",
+            "A qualidade da educação torna-se padronizada em toda a instituição",
+            "Um processo de desenvolvimento reconhecido internacionalmente é oferecido"
           ]
         }
       ]
     }
   ],
   "seo": {
-    "title": "{{appName}} Academy | Certificação Cambridge e Programa de Desenvolvimento de Professores",
-    "description": "{{appName}} Academy: um processo de certificação Cambridge English para alunos e um programa de desenvolvimento baseado no Cambridge TKT para professores. Certificados reconhecidos internacionalmente.",
-    "keywords": "woody academy, certificado cambridge, cambridge tkt, programa de desenvolvimento de professores, exame cambridge english, certificado de professor de inglês"
+    "title": "Academia {{appName}} | Certificação Cambridge e Programa de Desenvolvimento de Professores",
+    "description": "{{appName}} Academy: um processo de certificação Cambridge English para estudantes e um programa de desenvolvimento baseado em Cambridge TKT para professores. Certificados reconhecidos internacionalmente.",
+    "keywords": "woody academy, certificado de cambridge, cambridge tkt, programa de desenvolvimento de professores, exame de inglês de cambridge, certificado de professor de inglês"
   }
 }

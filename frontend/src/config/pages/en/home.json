@@ -21,26 +21,44 @@
           "badge": "For Classrooms",
           "title": "Preschool Series",
           "description": "Designed for large classrooms, schools, and kindergartens. Content and games are structured for classroom management, suitable for large groups. Offers a model where the entire class can actively participate simultaneously.",
+          "features": [
+            "For large classrooms, schools, and kindergartens",
+            "Content and games structured for classroom management",
+            "Active participation of the whole class at once"
+          ],
+          "cta": "Explore Preschool Series",
           "href": "/preschool"
         },
         {
           "badge": "For Small Groups",
           "title": "Workshop",
           "description": "Designed for small groups of 3–5 people. Content and games are arranged for more intensive interaction and individual participation. Offers a more focused and fast-paced application structure.",
+          "features": [
+            "For small groups of 3–5 people",
+            "Intensive interaction and individual participation",
+            "A more focused and fast-paced structure"
+          ],
+          "cta": "Explore Workshop Series",
           "href": "/workshop"
         },
         {
           "badge": "Individual Use",
           "title": "Home Tutor / Home Series",
           "description": "Suitable for 1–2 person individual use. Content and games are fully adapted for one-on-one learning. Provides child-specific progress and maximum attention.",
+          "features": [
+            "For 1–2 person individual use",
+            "Content adapted for one-on-one learning",
+            "Child-specific progress and maximum attention"
+          ],
+          "cta": "Explore Home Series",
           "href": "/home-tutor"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Preschool English Learning Set | Play-Based Early Childhood English",
-    "description": "Let your children learn while having fun with a preschool English learning system. Discover play-based learning sets, demo requests, and affordable packages.",
+    "title": "{{appName}} and Friends | Preschool English",
+    "description": "Preschool English learning sets, digital content, and teacher support platform.",
     "keywords": "preschool English program Turkey, play-based early childhood English, preschool English learning set, early childhood English education, Cambridge preparation system, English for children, 3-6 age English program"
   }
 }

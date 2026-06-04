@@ -1,36 +1,36 @@
 {
   "eyebrow": "About {{appName}}",
-  "title": "A simple and extendable frontend template for new projects.",
-  "lead": "{{appName}} is a neutral web app shell prepared for later brand and domain content.",
+  "title": "An education system that combines preschool English with play, stories, and digital content.",
+  "lead": "{{appName}} is a complete model that makes preschool English learning planned and sustainable for kindergartens, teachers, and families.",
   "founderTitle": "Starting Point",
   "founderParagraphs": [
-    "This template provides a reusable frontend foundation.",
-    "Project-specific decisions are completed later in content, design, and integration layers."
+    "{{appName}} aims for children not only to hear English, but to experience it through play, movement, songs, and stories.",
+    "It gives institutions a teacher flow, student materials, digital content, and academy process in one model."
   ],
-  "methodologyTitle": "Approach",
+  "methodologyTitle": "Learning Approach",
   "methodologyParagraphs": [
-    "Infrastructure stays in place while domain copy and commerce flows are cleared by default.",
-    "A new project can build on this shell with its own information architecture and content sources."
+    "Basic, Junior, Senior, and PRO levels progress with age-appropriate repetition, visual support, and classroom activities.",
+    "Preschool, Workshop, and Home Tutor series provide separate flows for different institutional and usage scenarios."
   ],
   "experienceTitle": "Scope",
   "experienceParagraphs": [
-    "Home, blog, contact, FAQ, account, legal pages, theme, and SEO foundations remain.",
-    "The brand name is managed through env and the AppName token."
+    "Physical sets, the digital library, school account, and academy content support sustainable learning.",
+    "The goal is to build an English experience that teachers can apply, children can join, and institutions can track."
   ],
   "differentiatorsTitle": "Why {{appName}}?",
   "differentiators": [
     {
-      "title": "Neutral copy",
-      "body": "Default text is project independent."
+      "title": "Age-appropriate content",
+      "body": "It offers levels structured around the attention span and learning rhythm of children aged 3-6."
     },
     {
-      "title": "Preserved shell",
-      "body": "Routing, auth, i18n, and theme foundations remain usable."
+      "title": "A flow that supports teachers",
+      "body": "Teacher sets and classroom activities make lessons more standard and practical."
     },
     {
-      "title": "Easy adaptation",
-      "body": "New domain content can come from DB or CMS records."
+      "title": "Digital continuity",
+      "body": "Books, songs, videos, and school account flows carry learning beyond the classroom."
     }
   ],
-  "authorBio": "{{appName}} content is prepared to be completed by project teams with their own brand and product decisions."
+  "authorBio": "{{appName}} content is prepared to give children a safe, cheerful, and practical English experience."
 }

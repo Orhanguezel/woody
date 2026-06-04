@@ -1,54 +1,114 @@
 {
-  "title": "{{appName}} Store",
-  "description": "Conjuntos de aprendizagem de inglês para educação infantil. Uma área onde você pode conferir os preços atuais dos conjuntos {{appName}} e fazer pedidos online.",
-  "eyebrow": "{{appName}} STORE",
+  "title": "Loja",
+  "description": "Conjuntos de aprendizagem de inglês pré-escolar. Uma área onde você pode verificar os preços atuais dos conjuntos {{appName}} e fazer pedidos online.",
+  "eyebrow": "LOJA {{appName}}",
   "hero": {
-    "eyebrow": "{{appName}} STORE",
-    "title": "{{appName}} Store",
-    "description": "Conjuntos de aprendizagem de inglês para educação infantil. Uma área onde você pode conferir os preços atuais dos conjuntos {{appName}} e solicitar um orçamento.",
-    "primaryCTA": "Solicitar um Orçamento",
+    "eyebrow": "LOJA {{appName}}",
+    "title": "Loja",
+    "description": "Conjuntos de aprendizagem de inglês pré-escolar. Uma área onde você pode consultar os preços atuais dos conjuntos {{appName}} e solicitar um orçamento.",
+    "primaryCTA": "Obtenha uma cotação",
     "primaryHref": "/demo-talep"
   },
   "sections": [
     {
-      "eyebrow": "Série para Educação Infantil",
-      "title": "Série para Educação Infantil",
+      "eyebrow": "Série pré-escolar",
+      "title": "Série pré-escolar",
       "items": [
-        { "title": "Conjunto do Aluno Basic Level", "description": "Nível iniciante", "price": "A partir de 2250 TL" },
-        { "title": "Conjunto do Aluno Junior Level", "description": "Nível de desenvolvimento", "price": "A partir de 2250 TL" },
-        { "title": "Conjunto do Aluno Senior Level", "description": "Nível avançado", "price": "A partir de 2250 TL" }
+        {
+          "title": "Conjunto de Alunos de Nível Básico",
+          "description": "Nível iniciante",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Conjunto de alunos de nível júnior",
+          "description": "Nível de desenvolvimento",
+          "price": "Starting from 2250 TL"
+        },
+        {
+          "title": "Conjunto de alunos de nível sênior",
+          "description": "Nível avançado",
+          "price": "Starting from 2250 TL"
+        }
       ]
     },
     {
-      "eyebrow": "Série Workshop",
-      "title": "Série Workshop",
-      "description": "Para workshops e centros de cursos",
+      "eyebrow": "Série de workshops",
+      "title": "Série de workshops",
+      "description": "Para oficinas e centros de cursos",
       "items": [
-        { "title": "Workshop Basic", "description": "Pacote inicial", "price": "₺1,999" },
-        { "title": "Workshop Junior", "description": "Nível intermediário", "price": "₺2,199" },
-        { "title": "Workshop Senior", "description": "Nível avançado", "price": "₺2,399" },
-        { "title": "Workshop PRO", "description": "Profissional", "price": "₺2,699" },
-        { "title": "Workshop Full Set", "description": "Tudo em um", "price": "₺7,999" },
-        { "title": "Material Digital", "description": "Acesso online", "price": "₺499" }
+        {
+          "title": "Oficina Básica",
+          "description": "Pacote inicial",
+          "price": "₺1,999"
+        },
+        {
+          "title": "Oficina Júnior",
+          "description": "Nível intermediário",
+          "price": "₺2,199"
+        },
+        {
+          "title": "Oficina Sênior",
+          "description": "Nível avançado",
+          "price": "₺2,399"
+        },
+        {
+          "title": "Oficina PRO",
+          "description": "Profissional",
+          "price": "₺2,699"
+        },
+        {
+          "title": "Conjunto completo de oficina",
+          "description": "Tudo em um",
+          "price": "₺7,999"
+        },
+        {
+          "title": "Materiais Digitais",
+          "description": "Acesso on-line",
+          "price": "₺499"
+        }
       ]
     },
     {
-      "eyebrow": "Série de Aula Particular",
-      "title": "Série de Aula Particular",
-      "description": "Para professores de aulas em casa e particulares",
+      "eyebrow": "Série de aulas particulares",
+      "title": "Série de aulas particulares",
+      "description": "Para professores domiciliares e particulares",
       "items": [
-        { "title": "Home Basic", "description": "Iniciante individual", "price": "₺1,499" },
-        { "title": "Home Junior", "description": "Desenvolvimento individual", "price": "₺1,699" },
-        { "title": "Home Senior", "description": "Avançado individual", "price": "₺1,899" },
-        { "title": "Home PRO", "description": "Profissional individual", "price": "₺2,099" },
-        { "title": "Pacote de Aula Particular", "description": "4 níveis, com desconto", "price": "₺5,999" },
-        { "title": "Online Library", "description": "Acesso digital", "price": "₺399" }
+        {
+          "title": "Início Básico",
+          "description": "Iniciante individual",
+          "price": "₺1,499"
+        },
+        {
+          "title": "Início Júnior",
+          "description": "Desenvolvimento individual",
+          "price": "₺1,699"
+        },
+        {
+          "title": "Início Sênior",
+          "description": "Individual avançado",
+          "price": "₺1,899"
+        },
+        {
+          "title": "Início PRO",
+          "description": "Profissional individual",
+          "price": "₺2,099"
+        },
+        {
+          "title": "Pacote de aula particular",
+          "description": "4 níveis, com desconto",
+          "price": "₺5,999"
+        },
+        {
+          "title": "Biblioteca on-line",
+          "description": "Acesso digital",
+          "price": "₺399"
+        }
       ]
     }
   ],
   "seo": {
-    "title": "{{appName}} Store | Conjuntos de Aprendizagem de Inglês para Educação Infantil",
-    "description": "Loja de conjuntos de aprendizagem de inglês {{appName}} para educação infantil. Preços atuais e orçamentos para os produtos da Série para Educação Infantil, Série Workshop e Série de Aula Particular.",
-    "keywords": "woody store, comprar conjunto de inglês para educação infantil, preço do conjunto de aprendizagem de inglês para educação infantil, loja de conjunto de aprendizagem de inglês"
+    "title": "Loja | Conjuntos de aprendizagem {{appName}}",
+    "description": "Loja de conjuntos de aprendizagem de inglês pré-escolar {{appName}}. Preços e cotações atuais para produtos de séries pré-escolares, séries de workshops e séries de aulas particulares.",
+    "keywords": "loja woody, comprar conjunto de inglês pré-escolar, preço do conjunto de aprendizagem de inglês pré-escolar, loja de conjunto de aprendizagem de inglês"
   }
 }

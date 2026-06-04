@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} ve Arkadaşları",
+  "description": "Okul öncesi İngilizce eğitiminde oyun temelli ve sistemli öğrenme modeli.",
+  "columns": {
+    "corporate": {
+      "title": "Kurumsal",
+      "links": [
+        { "label": "Fiyat & Paketler", "href": "/fiyat" },
+        { "label": "Ücretsiz Demo Talep", "href": "/demo-talep" },
+        { "label": "Sık Sorulan Sorular", "href": "/sss" },
+        { "label": "Anaokulu İngilizce Rehberi", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "İletişim"
+    },
+    "follow": {
+      "title": "Bizi Takip Edin"
+    }
+  },
+  "career": {
+    "label": "{{appName}} Academy Kariyer",
+    "cta": "Öğretmen Başvurusu"
+  },
+  "copyright": "© 2026 {{appName}} ve Arkadaşları. Tüm hakları saklıdır."
+}

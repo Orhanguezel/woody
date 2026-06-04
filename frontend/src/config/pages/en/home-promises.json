@@ -1,24 +1,24 @@
 {
-  "eyebrow": "Principles",
-  "title": "<em>Neutral</em> promises for {{appName}}",
+  "eyebrow": "Our Promise",
+  "title": "<em>Measured</em> and safe learning with {{appName}}",
   "promises": [
     {
       "num": "01",
-      "title": "Brand independent",
-      "text": "Default copy works with the AppName token and environment values.",
-      "target": "BRAND"
+      "title": "Age-appropriate",
+      "text": "Each level is designed around the attention span, play needs, and repetition rhythm of children aged 3-6.",
+      "target": "AGE"
     },
     {
       "num": "02",
-      "title": "Extendable",
-      "text": "Components and page shells are ready for new domain content.",
-      "target": "STRUCTURE"
+      "title": "Practical for teachers",
+      "text": "The lesson flow gives teachers a clear path and reduces quality differences between institutions.",
+      "target": "CLASS"
     },
     {
       "num": "03",
-      "title": "Simple start",
-      "text": "Commerce and project-specific flows are not part of the default template.",
-      "target": "SIMPLICITY"
+      "title": "Sustainable for institutions",
+      "text": "Physical materials, digital content, and the academy flow build a long-term education model.",
+      "target": "SCHOOL"
     }
   ]
 }

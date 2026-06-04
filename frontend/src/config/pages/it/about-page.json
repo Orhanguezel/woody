@@ -1,36 +1,36 @@
 {
   "eyebrow": "Informazioni su {{appName}}",
-  "title": "Un modello frontend semplice ed estensibile per nuovi progetti.",
-  "lead": "{{appName}} è una shell di app Web neutra preparata per contenuti successivi di marchi e domini.",
+  "title": "Un sistema educativo che combina l’inglese prescolare con il gioco, le storie e i contenuti digitali.",
+  "lead": "{{appName}} è un modello completo che rende l'apprendimento dell'inglese in età prescolare pianificato e sostenibile per asili, insegnanti e famiglie.",
   "founderTitle": "Punto di partenza",
   "founderParagraphs": [
-    "Questo modello fornisce una base frontend riutilizzabile.",
-    "Le decisioni specifiche del progetto vengono completate successivamente nei livelli di contenuto, progettazione e integrazione."
+    "{{appName}} mira a far sì che i bambini non solo ascoltino l'inglese, ma lo sperimentino attraverso il gioco, il movimento, le canzoni e le storie.",
+    "Offre agli istituti il ​​flusso degli insegnanti, i materiali per gli studenti, i contenuti digitali e il processo accademico in un unico modello."
   ],
-  "methodologyTitle": "Approccio",
+  "methodologyTitle": "Approccio all'apprendimento",
   "methodologyParagraphs": [
-    "L'infrastruttura rimane attiva mentre la copia del dominio e i flussi commerciali vengono cancellati per impostazione predefinita.",
-    "Un nuovo progetto può basarsi su questo guscio con la propria architettura dell'informazione e fonti di contenuto."
+    "I livelli Basic, Junior, Senior e PRO progrediscono con ripetizioni adeguate all'età, supporto visivo e attività in classe.",
+    "Le serie Preschool, Workshop e Home Tutor forniscono flussi separati per diversi scenari istituzionali e di utilizzo."
   ],
   "experienceTitle": "Ambito",
   "experienceParagraphs": [
-    "Rimangono home, blog, contatti, FAQ, account, pagine legali, tema e basi SEO.",
-    "Il nome del marchio è gestito tramite env e il token AppName."
+    "I set fisici, la biblioteca digitale, l’account scolastico e i contenuti accademici supportano l’apprendimento sostenibile.",
+    "L’obiettivo è costruire un’esperienza inglese che gli insegnanti possano applicare, i bambini possano partecipare e le istituzioni possano monitorare."
   ],
   "differentiatorsTitle": "Perché {{appName}}?",
   "differentiators": [
     {
-      "title": "Copia neutra",
-      "body": "Il testo predefinito è indipendente dal progetto."
+      "title": "Contenuti adatti all'età",
+      "body": "Offre livelli strutturati sulla capacità di attenzione e sul ritmo di apprendimento dei bambini dai 3 ai 6 anni."
     },
     {
-      "title": "Conchiglia conservata",
-      "body": "Routing, autenticazione, i18n e le basi dei temi rimangono utilizzabili."
+      "title": "Un flusso che supporta gli insegnanti",
+      "body": "I set degli insegnanti e le attività in classe rendono le lezioni più standard e pratiche."
     },
     {
-      "title": "Adattamento facile",
-      "body": "Il nuovo contenuto del dominio può provenire da record DB o CMS."
+      "title": "Continuità digitale",
+      "body": "Libri, canzoni, video e flussi di account scolastici portano l'apprendimento oltre la classe."
     }
   ],
-  "authorBio": "Il contenuto di {{appName}} è preparato per essere completato dai team di progetto con le proprie decisioni su marchio e prodotto."
+  "authorBio": "Il contenuto di {{appName}} è preparato per offrire ai bambini un'esperienza inglese sicura, allegra e pratica."
 }

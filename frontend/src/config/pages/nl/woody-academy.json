@@ -1,9 +1,9 @@
 {
   "title": "{{appName}} Academie",
   "description": "{{appName}} Academy brengt het Cambridge-certificeringsproces voor studenten en het lerarenontwikkelingsprogramma (TKT) samen onder één dak.",
-  "eyebrow": "ZZAPPNAAMTOKENZZ ACADEMIE",
+  "eyebrow": "{{appName}} ACADEMIE",
   "hero": {
-    "eyebrow": "ZZAPPNAAMTOKENZZ ACADEMIE",
+    "eyebrow": "{{appName}} ACADEMIE",
     "title": "{{appName}} Academie",
     "description": "{{appName}} Academy brengt het Cambridge-certificeringsproces voor studenten en het lerarenontwikkelingsprogramma (TKT) samen onder één dak."
   },

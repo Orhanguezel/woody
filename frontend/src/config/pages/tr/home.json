@@ -21,26 +21,44 @@
           "badge": "Sınıflar İçin",
           "title": "Okul Serisi",
           "description": "Büyük sınıflar, okullar ve kreşler için geliştirilmiştir. Kalabalık gruplara uygun olarak içerikler ve oyunlar sınıf yönetimine göre yapılandırılmıştır. Tüm sınıfın aynı anda aktif katılım gösterebildiği bir uygulama modeli sunar.",
+          "features": [
+            "Büyük sınıflar, okullar ve kreşler için",
+            "Sınıf yönetimine göre yapılandırılmış içerik ve oyunlar",
+            "Tüm sınıfın aynı anda aktif katılımı"
+          ],
+          "cta": "Okul Serisini İncele",
           "href": "/preschool"
         },
         {
           "badge": "Küçük Gruplar İçin",
           "title": "Atölye Serisi",
           "description": "3–5 kişilik küçük gruplar için tasarlanmıştır. İçerikler ve oyunlar daha yoğun etkileşim ve bireysel katılım sağlayacak şekilde düzenlenmiştir. Daha odaklı ve hızlı ilerleyen bir uygulama yapısı sunar.",
+          "features": [
+            "3–5 kişilik küçük gruplar için",
+            "Yoğun etkileşim ve bireysel katılım",
+            "Daha odaklı ve hızlı ilerleyen yapı"
+          ],
+          "cta": "Atölye Serisini İncele",
           "href": "/workshop"
         },
         {
           "badge": "Bireysel Kullanım",
           "title": "Ev & Özel Ders",
           "description": "1–2 kişilik bireysel kullanım için uygundur. İçerikler ve oyunlar tamamen birebir öğrenmeye göre uyarlanmıştır. Çocuğa özel ilerleme ve maksimum dikkat sağlar.",
+          "features": [
+            "1–2 kişilik bireysel kullanım için",
+            "Birebir öğrenmeye göre uyarlanmış içerik",
+            "Çocuğa özel ilerleme ve maksimum dikkat"
+          ],
+          "cta": "Ev Serisini İncele",
           "href": "/home-tutor"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Anaokulu İngilizce Eğitim Seti | Oyun Temelli Okul Öncesi İngilizce",
-    "description": "Okul öncesi İngilizce eğitim sistemi ile çocuklarınız eğlenerek öğrensin. Oyun temelli eğitim setleri, demo talep ve uygun fiyatlı paketler için hemen keşfedin.",
+    "title": "{{appName}} ve Arkadaşları | Okul Öncesi İngilizce",
+    "description": "Okul öncesi İngilizce eğitim setleri, dijital içerikler ve öğretmen destek platformu.",
     "keywords": "anaokulu İngilizce eğitim sistemi, oyun temelli okul öncesi İngilizce, anaokulu İngilizce eğitim seti, preschool English program Turkey, okul öncesi İngilizce eğitimi, Cambridge hazırlık sistemi, çocuklar için İngilizce eğitimi, 3-6 yaş İngilizce programı"
   }
 }

@@ -21,26 +21,44 @@
           "badge": "Per le aule",
           "title": "Serie prescolare",
           "description": "Progettato per aule di grandi dimensioni, scuole e asili. Contenuti e giochi sono strutturati per la gestione della classe, adatti a gruppi numerosi. Offre un modello in cui l'intera classe può partecipare attivamente contemporaneamente.",
+          "features": [
+            "Per aule di grandi dimensioni, scuole e asili",
+            "Contenuti e giochi strutturati per la gestione della classe",
+            "Partecipazione attiva dell'intera classe contemporaneamente"
+          ],
+          "cta": "Esplora la serie prescolare",
           "href": "/preschool"
         },
         {
           "badge": "Per piccoli gruppi",
           "title": "Officina",
           "description": "Progettato per piccoli gruppi di 3-5 persone. Contenuti e giochi sono organizzati per un'interazione più intensa e una partecipazione individuale. Offre una struttura applicativa più mirata e veloce.",
+          "features": [
+            "Per piccoli gruppi di 3-5 persone",
+            "Interazione intensa e partecipazione individuale",
+            "Una struttura più mirata e veloce"
+          ],
+          "cta": "Esplora la serie Officina",
           "href": "/workshop"
         },
         {
           "badge": "Uso individuale",
           "title": "Tutor domestico / Serie domestica",
           "description": "Adatto per uso individuale da 1 a 2 persone. Contenuti e giochi sono completamente adattati per l'apprendimento individuale. Fornisce progressi specifici per il bambino e la massima attenzione.",
+          "features": [
+            "Per uso individuale da 1 a 2 persone",
+            "Contenuti adattati per l'apprendimento individuale",
+            "Progressi specifici per il bambino e massima attenzione"
+          ],
+          "cta": "Esplora la serie domestica",
           "href": "/home-tutor"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Set per l'apprendimento dell'inglese in età prescolare | Inglese per la prima infanzia basato sul gioco",
-    "description": "Lascia che i tuoi figli imparino divertendosi con un sistema di apprendimento dell'inglese prescolare. Scopri set di apprendimento basati sul gioco, richieste di demo e pacchetti convenienti.",
+    "title": "{{appName}} e Amici | Inglese per la prima infanzia",
+    "description": "Set per l'apprendimento dell'inglese in età prescolare, contenuti digitali e piattaforma di supporto per insegnanti.",
     "keywords": "Programma di inglese prescolare Turchia, inglese per la prima infanzia basato sul gioco, set di apprendimento dell'inglese prescolare, educazione inglese per la prima infanzia, sistema di preparazione Cambridge, inglese per bambini, programma di inglese per bambini dai 3 ai 6 anni"
   }
 }

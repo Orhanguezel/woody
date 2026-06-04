@@ -1,0 +1,80 @@
+{
+  "title": "الانتقال إلى نظام شهادات كامبريدج للغة الإنجليزية مع {{appName}}",
+  "eyebrow": "لماذا {{appName}}؟",
+  "description": "نموذج تعليمي منظم وقائم على اللعب يعرّف الأطفال على تعليم اللغة الإنجليزية وفق معايير دولية في سن مبكرة.",
+  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "imageAlt": "شخصيات {{appName}}",
+  "certifications": [
+    {
+      "name": "Cambridge English",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+    },
+    {
+      "name": "British Side",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+    },
+    {
+      "name": "{{appName}} Academy",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+    }
+  ],
+  "sections": [
+    {
+      "title": "لماذا {{appName}}؟",
+      "items": [
+        {
+          "title": "برنامج شهادة كامبريدج",
+          "description": "يحصل الطلاب على شهادة Cambridge English المعترف بها في أكثر من 160 دولة"
+        },
+        {
+          "title": "تعلّم قائم على اللعب بنسبة 100%",
+          "description": "مع 8 ألعاب نشطة كل أسبوع، تُبنى عملية التعلم بالكامل على اللعب"
+        },
+        {
+          "title": "شخصيات ناطقة بالإنجليزية فريدة لكل وحدة",
+          "description": "تظهر شخصية مختلفة في كل وحدة؛ ويتعلم الطفل اللغة من خلال التفاعل مع الشخصية"
+        },
+        {
+          "title": "تكامل المنصة الرقمية",
+          "description": "يقدم تجربة تعلم متعددة الجوانب مع قصص إنجليزية على Storyland، وأغانٍ خاصة بكل وحدة على Musicland، وأفلام للشخصيات على Movieland"
+        },
+        {
+          "title": "تجربة تعلّم نشطة مع أكثر من 40 لعبة",
+          "description": "يصبح الطفل شخصًا يلعب ويتعلم، وليس مجرد مشاهد"
+        },
+        {
+          "title": "خطة دروس شهرية وأسبوعية مفصلة",
+          "description": "إرشاد للمعلم ساعة بساعة وخطوة بخطوة"
+        },
+        {
+          "title": "متطلبات تحضير بنسبة 0%",
+          "description": "يفتحه المعلم ويطبقه مباشرة"
+        },
+        {
+          "title": "كل أسبوع: 8 ألعاب صفية + Worksheet + Craft",
+          "description": "كل أسبوع، يتم تنفيذ إنتاج فردي باستخدام Worksheet وCraft بعد 8 ألعاب مختلفة"
+        },
+        {
+          "title": "نظام تقييم Checkpoint",
+          "description": "القياس والمتابعة في نهاية كل وحدة"
+        },
+        {
+          "title": "كتاب الفهم Story Book",
+          "description": "يستمع الطفل إلى القصة ويعبّر عن فهمه بالملصقات"
+        },
+        {
+          "title": "نظام ملف الأعمال في نهاية الفصل",
+          "description": "ناتج ملموس لأولياء الأمور"
+        },
+        {
+          "title": "منصة واحدة – كل المحتوى",
+          "description": "نظام متكامل مادي + رقمي"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "لماذا {{appName}}؟ | الانتقال إلى نظام شهادات كامبريدج للغة الإنجليزية",
+    "description": "مع {{appName}}، يلتقي الأطفال بتعليم اللغة الإنجليزية وفق معايير دولية في سن مبكرة. برنامج شهادة كامبريدج، وتعلّم قائم على اللعب بنسبة 100%، وتكامل المنصة الرقمية."
+  }
+}

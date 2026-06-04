@@ -1,36 +1,36 @@
 {
   "eyebrow": "Over {{appName}}",
-  "title": "Een eenvoudige en uitbreidbare frontend-sjabloon voor nieuwe projecten.",
-  "lead": "{{appName}} is een neutrale webapp-shell die is voorbereid voor latere merk- en domeininhoud.",
+  "title": "Een onderwijssysteem dat voorschools Engels combineert met spel, verhalen en digitale inhoud.",
+  "lead": "{{appName}} is een compleet model dat het leren van Engels in de kleuterklas gepland en duurzaam maakt voor kleuterscholen, leraren en gezinnen.",
   "founderTitle": "Uitgangspunt",
   "founderParagraphs": [
-    "Deze sjabloon biedt een herbruikbare frontend-basis.",
-    "Projectspecifieke beslissingen worden later genomen op het gebied van inhoud, ontwerp en integratie."
+    "{{appName}} streeft ernaar dat kinderen niet alleen Engels horen, maar het ook ervaren door middel van spel, beweging, liedjes en verhalen.",
+    "Het geeft instellingen een lerarenstroom, studentenmateriaal, digitale inhoud en academieproces in één model."
   ],
-  "methodologyTitle": "Benadering",
+  "methodologyTitle": "Leren aanpak",
   "methodologyParagraphs": [
-    "De infrastructuur blijft op zijn plaats terwijl domeinkopieer- en handelsstromen standaard worden gewist.",
-    "Op deze schil kan een nieuw project voortbouwen met een eigen informatiearchitectuur en contentbronnen."
+    "Basis-, Junior-, Senior- en PRO-niveaus vorderen met voor de leeftijd geschikte herhaling, visuele ondersteuning en klassikale activiteiten.",
+    "De Preschool-, Workshop- en Home Tutor-series bieden afzonderlijke stromen voor verschillende institutionele en gebruiksscenario's."
   ],
   "experienceTitle": "Domein",
   "experienceParagraphs": [
-    "Home, blog, contact, FAQ, account, juridische pagina's, thema en SEO-fundamenten blijven bestaan.",
-    "De merknaam wordt beheerd via env en het token AppName."
+    "Fysieke sets, de digitale bibliotheek, het schoolaccount en de inhoud van de academie ondersteunen duurzaam leren.",
+    "Het doel is om een ​​Engelse ervaring op te bouwen die leraren kunnen toepassen, kinderen kunnen meedoen en instellingen kunnen volgen."
   ],
   "differentiatorsTitle": "Waarom {{appName}}?",
   "differentiators": [
     {
-      "title": "Neutraal exemplaar",
-      "body": "De standaardtekst is projectonafhankelijk."
+      "title": "Voor de leeftijd geschikte inhoud",
+      "body": "Het biedt niveaus die zijn gestructureerd rond de aandachtsspanne en het leerritme van kinderen van 3 tot 6 jaar."
     },
     {
-      "title": "Bewaarde schelp",
-      "body": "Routing-, auth-, i18n- en themafundamenten blijven bruikbaar."
+      "title": "Een stroom die leraren ondersteunt",
+      "body": "Lerarensets en klassikale activiteiten maken de lessen standaarder en praktischer."
     },
     {
-      "title": "Gemakkelijke aanpassing",
-      "body": "Nieuwe domeininhoud kan afkomstig zijn van DB- of CMS-records."
+      "title": "Digitale continuïteit",
+      "body": "Boeken, liedjes, video's en schoolaccountstromen zorgen ervoor dat leren ook buiten het klaslokaal plaatsvindt."
     }
   ],
-  "authorBio": "{{appName}}-inhoud wordt voorbereid om te worden aangevuld door projectteams met hun eigen merk- en productbeslissingen."
+  "authorBio": "De inhoud van {{appName}} is samengesteld om kinderen een veilige, vrolijke en praktische Engelse ervaring te bieden."
 }

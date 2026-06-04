@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} en Vrienden",
+  "description": "Een op spel gebaseerd en systematisch leermodel voor Engels onderwijs op de kleuterschool.",
+  "columns": {
+    "corporate": {
+      "title": "Zakelijk",
+      "links": [
+        { "label": "Prijzen & Pakketten", "href": "/fiyat" },
+        { "label": "Gratis demo aanvragen", "href": "/demo-talep" },
+        { "label": "Veelgestelde vragen", "href": "/sss" },
+        { "label": "Gids voor Engels op de kleuterschool", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "follow": {
+      "title": "Volg ons"
+    }
+  },
+  "career": {
+    "label": "{{appName}} Academy Carrières",
+    "cta": "Sollicitatie als leerkracht"
+  },
+  "copyright": "© 2026 {{appName}} en Vrienden. Alle rechten voorbehouden."
+}

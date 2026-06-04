@@ -21,26 +21,44 @@
           "badge": "Para aulas",
           "title": "Serie preescolar",
           "description": "Diseñado para aulas grandes, escuelas y guarderías. Los contenidos y juegos están estructurados para el manejo del aula, aptos para grupos grandes. Ofrece un modelo donde toda la clase puede participar activamente simultáneamente.",
+          "features": [
+            "Para aulas grandes, escuelas y guarderías",
+            "Contenido y juegos estructurados para el manejo del aula",
+            "Participación activa de toda la clase a la vez"
+          ],
+          "cta": "Explorar la serie preescolar",
           "href": "/preschool"
         },
         {
           "badge": "Para grupos pequeños",
           "title": "Taller",
           "description": "Diseñado para grupos pequeños de 3 a 5 personas. El contenido y los juegos están organizados para una interacción más intensiva y una participación individual. Ofrece una estructura de aplicación más enfocada y de ritmo rápido.",
+          "features": [
+            "Para grupos pequeños de 3 a 5 personas",
+            "Interacción intensiva y participación individual",
+            "Una estructura más enfocada y de ritmo rápido"
+          ],
+          "cta": "Explorar la serie de taller",
           "href": "/workshop"
         },
         {
           "badge": "Uso individual",
           "title": "Tutor en casa / Serie en casa",
           "description": "Adecuado para uso individual de 1 a 2 personas. El contenido y los juegos están totalmente adaptados para el aprendizaje individualizado. Proporciona progreso específico para el niño y máxima atención.",
+          "features": [
+            "Para uso individual de 1 a 2 personas",
+            "Contenido adaptado para el aprendizaje individualizado",
+            "Progreso específico para el niño y máxima atención"
+          ],
+          "cta": "Explorar la serie en casa",
           "href": "/home-tutor"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Set de aprendizaje de inglés preescolar | Inglés infantil basado en el juego",
-    "description": "Deja que tus hijos aprendan mientras se divierten con un sistema de aprendizaje de inglés preescolar. Descubra conjuntos de aprendizaje basados ​​en el juego, solicitudes de demostración y paquetes asequibles.",
+    "title": "{{appName}} y sus Amigos | Inglés preescolar",
+    "description": "Sets de aprendizaje de inglés preescolar, contenido digital y plataforma de apoyo para docentes.",
     "keywords": "Programa de inglés preescolar Turquía, inglés infantil basado en el juego, conjunto de aprendizaje de inglés preescolar, educación de inglés infantil, sistema de preparación Cambridge, inglés para niños, programa de inglés de 3 a 6 años"
   }
 }

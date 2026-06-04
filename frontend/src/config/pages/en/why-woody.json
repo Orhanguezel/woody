@@ -1,0 +1,80 @@
+{
+  "title": "Transition to the Cambridge English Certification System with {{appName}}",
+  "eyebrow": "Why {{appName}}?",
+  "description": "A structured, play-based learning model that introduces children to internationally standardized English education at an early age.",
+  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "imageAlt": "{{appName}} characters",
+  "certifications": [
+    {
+      "name": "Cambridge English",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+    },
+    {
+      "name": "British Side",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+    },
+    {
+      "name": "{{appName}} Academy",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Why {{appName}}?",
+      "items": [
+        {
+          "title": "Cambridge Certification Program",
+          "description": "Students earn a Cambridge English certificate recognized in more than 160 countries"
+        },
+        {
+          "title": "100% Play-Based Learning",
+          "description": "With 8 active games each week, the learning process is built entirely on play"
+        },
+        {
+          "title": "English-Speaking Characters Unique to Each Unit",
+          "description": "A different character takes the stage in each unit; the child learns the language by interacting with the character"
+        },
+        {
+          "title": "Digital Platform Integration",
+          "description": "Offers a multi-faceted learning experience with English stories on Storyland, unit-specific songs on Musicland, and character films on Movieland"
+        },
+        {
+          "title": "Active Learning Experience with 40+ Toys",
+          "description": "The child becomes someone who plays and learns, not just watches"
+        },
+        {
+          "title": "Detailed Monthly and Weekly Lesson Plan",
+          "description": "Hour-by-hour, step-by-step teacher guidance"
+        },
+        {
+          "title": "0% Preparation Requirement",
+          "description": "The teacher opens it and applies it directly"
+        },
+        {
+          "title": "Each Week: 8 In-Class Games + Worksheet + Craft",
+          "description": "Each week, individual production is carried out with a worksheet and craft following 8 different games"
+        },
+        {
+          "title": "Checkpoint Assessment System",
+          "description": "End-of-unit measurement and tracking"
+        },
+        {
+          "title": "Story Book Comprehension Book",
+          "description": "The child listens to the story and expresses comprehension with stickers"
+        },
+        {
+          "title": "End-of-Term Portfolio System",
+          "description": "A tangible output for parents"
+        },
+        {
+          "title": "One Platform – All Content",
+          "description": "Integrated physical + digital system"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Why {{appName}}? | Transition to the Cambridge English Certification System",
+    "description": "With {{appName}}, children meet internationally standardized English education at an early age. Cambridge certification program, 100% play-based learning, and digital platform integration."
+  }
+}

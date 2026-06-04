@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} и друзья",
+  "description": "Игровая и системная модель обучения для дошкольного образования по английскому языку.",
+  "columns": {
+    "corporate": {
+      "title": "Компания",
+      "links": [
+        { "label": "Цены и пакеты", "href": "/fiyat" },
+        { "label": "Запрос бесплатной демонстрации", "href": "/demo-talep" },
+        { "label": "Часто задаваемые вопросы", "href": "/sss" },
+        { "label": "Руководство по английскому для дошкольников", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Блог", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "Контакты"
+    },
+    "follow": {
+      "title": "Подписывайтесь на нас"
+    }
+  },
+  "career": {
+    "label": "Карьера в {{appName}} Academy",
+    "cta": "Заявка для учителей"
+  },
+  "copyright": "© 2026 {{appName}} и друзья. Все права защищены."
+}

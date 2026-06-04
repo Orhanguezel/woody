@@ -1,0 +1,80 @@
+{
+  "title": "{{appName}} ile Cambridge English Sertifika Sistemine Geçiş",
+  "eyebrow": "Neden {{appName}}?",
+  "description": "Çocukları erken yaşta uluslararası standartta İngilizce eğitimle buluşturan, yapılandırılmış ve oyun temelli öğrenme modeli.",
+  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "imageAlt": "{{appName}} karakterleri",
+  "certifications": [
+    {
+      "name": "Cambridge English",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+    },
+    {
+      "name": "British Side",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+    },
+    {
+      "name": "{{appName}} Academy",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Neden {{appName}}?",
+      "items": [
+        {
+          "title": "Cambridge Sertifika Programı",
+          "description": "Öğrenciler, 160'tan fazla ülkede geçerli Cambridge English sertifikası alır"
+        },
+        {
+          "title": "%100 Oyun Temelli Öğrenme",
+          "description": "Her hafta 8 aktif oyunla öğrenme süreci tamamen oyun üzerine kurulur"
+        },
+        {
+          "title": "Her Üniteye Özel İngilizce Konuşan Karakterler",
+          "description": "Her ünitede farklı bir karakter sahneye çıkar; çocuk dili karakterle etkileşime girerek öğrenir"
+        },
+        {
+          "title": "Dijital Platform Entegrasyonu",
+          "description": "Storyland'de İngilizce hikâyeler, Musicland'de üniteye özel şarkılar, Movieland'de karakter filmleri ile çoklu öğrenme deneyimi sunar"
+        },
+        {
+          "title": "40+ Oyuncakla Aktif Öğrenme Deneyimi",
+          "description": "Çocuk izleyen değil, oynayan ve öğrenen olur"
+        },
+        {
+          "title": "Aylık ve Haftalık Detaylı Ders Planı",
+          "description": "Saat saat, adım adım öğretmen yönlendirmesi"
+        },
+        {
+          "title": "%0 Hazırlık Gereksinimi",
+          "description": "Öğretmen açar ve direkt uygular"
+        },
+        {
+          "title": "Her Hafta: 8 Sınıf İçi Oyun + Worksheet + Craft",
+          "description": "Her hafta 8 farklı oyunun ardından worksheet ve craft ile bireysel üretim gerçekleştirilir"
+        },
+        {
+          "title": "Checkpoint Değerlendirme Sistemi",
+          "description": "Ünite sonu ölçme ve takip"
+        },
+        {
+          "title": "Story Book Comprehension Kitabı",
+          "description": "Çocuk hikâyeyi dinler ve stickerlarla anladığını ifade eder"
+        },
+        {
+          "title": "Dönem Sonu Portfolyo Sistemi",
+          "description": "Velilere somut çıktı"
+        },
+        {
+          "title": "Tek Platform – Tüm İçerik",
+          "description": "Fiziksel + dijital entegre sistem"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Neden {{appName}}? | Cambridge English Sertifika Sistemine Geçiş",
+    "description": "{{appName}} ile çocuklar erken yaşta uluslararası standartta İngilizce eğitimle buluşur. Cambridge sertifika programı, %100 oyun temelli öğrenme ve dijital platform entegrasyonu."
+  }
+}

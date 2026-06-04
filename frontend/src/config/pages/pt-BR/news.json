@@ -1,0 +1,49 @@
+{
+  "title": "Novidades {{appName}}",
+  "eyebrow": "Novidades {{appName}}",
+  "items": [
+    {
+      "id": 1,
+      "order": 1,
+      "title": "Acordo assinado em toda a Alemanha",
+      "description": "Foi assinado com a Don Bosco Medien, uma rede de distribuição e marketing de livros, um acordo que abrange os direitos de uso e venda de todo o conteúdo pertencente a {{appName}} e Amigos em toda a Alemanha.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+    },
+    {
+      "id": 2,
+      "order": 2,
+      "title": "Acordo assinado em toda a Rússia",
+      "description": "Foi assinado com a Prosveshcheniye Publishers um acordo que abrange os direitos de uso e venda de todo o conteúdo pertencente a {{appName}} e Amigos em toda a Rússia.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+    },
+    {
+      "id": 3,
+      "order": 3,
+      "title": "Processo de certificação Cambridge lançado",
+      "description": "O processo de certificação Cambridge foi lançado oficialmente em parceria com a British Side.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+    },
+    {
+      "id": 4,
+      "order": 4,
+      "title": "As escolas estão se transformando em mini campi Cambridge",
+      "description": "Em parceria com a British Side, estamos transformando escolas em mini campi Cambridge.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "fitImage": true
+    },
+    {
+      "id": 5,
+      "order": 5,
+      "title": "Conheça o sistema de ensino Cambridge",
+      "description": "Conheça a abordagem internacional para o ensino de inglês na pré-escola.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+    },
+    {
+      "id": 6,
+      "order": 6,
+      "title": "Agora também somos uma gráfica!",
+      "description": "Produzimos conteúdo mais forte e crescemos livremente.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+    }
+  ]
+}

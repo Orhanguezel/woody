@@ -1,23 +1,23 @@
 {
-  "eyebrow": "Flow",
-  "titleBefore": "How to use ",
-  "titleAccent": "the template",
-  "lead": "Fill neutral pages with your brand, content, and product decisions.",
+  "eyebrow": "Fluxo de aprendizagem",
+  "titleBefore": "Como as crianças",
+  "titleAccent": "seguir em frente",
+  "lead": "Cada série progride com materiais apropriados à idade, brincadeiras, repetições e suporte digital.",
   "steps": [
     {
       "icon": "bookOpen",
-      "title": "Define the brand",
-      "desc": "Update AppName and site settings with project values."
+      "title": "Escolha o nível",
+      "desc": "Básico, Júnior, Sênior ou PRO são selecionados de acordo com a idade, estrutura da sala de aula e objetivos de aprendizagem."
     },
     {
       "icon": "playCircle",
-      "title": "Add content",
-      "desc": "Feed home sections, posts, and FAQs from DB or CMS records."
+      "title": "Inscreva-se através do jogo",
+      "desc": "Conjuntos do professor, materiais dos alunos, músicas e histórias são usados ​​juntos na sala de aula."
     },
     {
       "icon": "chartColumn",
-      "title": "Prepare launch",
-      "desc": "Complete SEO, legal copy, contact details, and validation."
+      "title": "Continuar digitalmente",
+      "desc": "A biblioteca, o conteúdo digital e o fluxo da academia transportam a aprendizagem para os processos extracurriculares."
     }
   ]
 }

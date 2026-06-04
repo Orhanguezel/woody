@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} وأصدقاؤه",
+  "description": "نموذج تعليمي قائم على اللعب ومنهجي لتعليم اللغة الإنجليزية في مرحلة ما قبل المدرسة.",
+  "columns": {
+    "corporate": {
+      "title": "الشركة",
+      "links": [
+        { "label": "الأسعار والباقات", "href": "/fiyat" },
+        { "label": "طلب عرض توضيحي مجاني", "href": "/demo-talep" },
+        { "label": "الأسئلة الشائعة", "href": "/sss" },
+        { "label": "دليل اللغة الإنجليزية لمرحلة ما قبل المدرسة", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "المدونة", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "تواصل معنا"
+    },
+    "follow": {
+      "title": "تابعنا"
+    }
+  },
+  "career": {
+    "label": "وظائف أكاديمية {{appName}}",
+    "cta": "تقديم طلب للمعلمين"
+  },
+  "copyright": "© 2026 {{appName}} وأصدقاؤه. جميع الحقوق محفوظة."
+}

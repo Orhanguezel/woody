@@ -1,6 +1,6 @@
 {
-  "title": "Adapt the template to your project.",
-  "desc": "Use this area for your product call to action, support flow, or contact link.",
-  "cta": "Contact",
+  "title": "Vamos escolher a série {{appName}} certa para sua instituição.",
+  "desc": "Compartilhe a estrutura da sua sala de aula, número de alunos e metas; esclareceremos o fluxo de Pré-escola, Workshop ou Home Tutor que mais se adapta a você.",
+  "cta": "Solicite uma demonstração",
   "secondary": "FAQ"
 }

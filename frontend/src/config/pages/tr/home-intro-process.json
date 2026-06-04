@@ -1,23 +1,23 @@
 {
-  "eyebrow": "Akış",
-  "titleBefore": "Şablonu ",
-  "titleAccent": "nasıl kullanırsınız?",
-  "lead": "Nötr sayfaları kendi marka, içerik ve ürün kararlarınızla doldurun.",
+  "eyebrow": "Öğrenme Akışı",
+  "titleBefore": "Çocuklar ",
+  "titleAccent": "nasıl ilerler?",
+  "lead": "Her seri, çocuğun seviyesine uygun materyal, oyun, tekrar ve dijital destekle planlı şekilde ilerler.",
   "steps": [
     {
       "icon": "bookOpen",
-      "title": "Markayı tanımla",
-      "desc": "AppName ve site ayarlarını proje değerlerinizle güncelleyin."
+      "title": "Seviyeyi belirle",
+      "desc": "Yaş, sınıf yapısı ve öğrenme hedeflerine göre Basic, Junior, Senior veya PRO seviyesi seçilir."
     },
     {
       "icon": "playCircle",
-      "title": "İçeriği ekle",
-      "desc": "Ana sayfa bölümlerini, blogları ve SSS kayıtlarını DB veya CMS üzerinden besleyin."
+      "title": "Oyunla uygula",
+      "desc": "Öğretmen seti, öğrenci materyalleri, şarkılar ve hikayeler sınıf içinde birlikte kullanılır."
     },
     {
       "icon": "chartColumn",
-      "title": "Yayına hazırla",
-      "desc": "SEO, yasal metinler ve iletişim bilgilerini tamamlayıp doğrulama yapın."
+      "title": "Dijitalle sürdür",
+      "desc": "Kütüphane, dijital içerik ve akademi akışı öğrenmeyi okul sonrası süreçlere taşır."
     }
   ]
 }
