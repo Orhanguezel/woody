@@ -62,7 +62,28 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
   const contact = (contactInfoSetting?.value ?? {}) as Record<string, unknown>;
   const phone = String(contact.phone || contact.gsm || contact.whatsapp || '').trim();
   const email = String(contact.email || '').trim();
-  const address = String(contact.address || contact.addressLine || '').trim();
+  // Adres string olabilir ya da {full|line|formatted|street,city...} objesi olabilir → güvenli çıkar ([object Object] bug'ı)
+  const addrRaw = (contact.address ?? contact.addressLine ?? '') as unknown;
+  const address = (
+    typeof addrRaw === 'string'
+      ? addrRaw
+      : addrRaw && typeof addrRaw === 'object'
+        ? String(
+            (addrRaw as Record<string, unknown>).full ||
+              (addrRaw as Record<string, unknown>).formatted ||
+              (addrRaw as Record<string, unknown>).line ||
+              (addrRaw as Record<string, unknown>).text ||
+              [
+                (addrRaw as Record<string, unknown>).street,
+                (addrRaw as Record<string, unknown>).district,
+                (addrRaw as Record<string, unknown>).city,
+              ]
+                .filter(Boolean)
+                .join(', ') ||
+              '',
+          )
+        : ''
+  ).trim();
   const homeHref = localizePath(locale, '/');
 
   return (

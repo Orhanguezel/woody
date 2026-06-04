@@ -211,7 +211,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
                       href={href}
                       className={
                         cleanHashLink(rawUrl) === '/store'
-                          ? 'inline-flex min-h-10 items-center rounded-md bg-[var(--gm-gold-deep)] px-4 py-2 text-[12px] font-black tracking-[0.08em] text-[var(--gm-surface)] shadow-[var(--gm-shadow-soft)] transition hover:-translate-y-0.5'
+                          ? 'inline-flex min-h-10 items-center rounded-md bg-[var(--gm-gold)] px-4 py-2 text-[12px] font-black tracking-[0.08em] text-[var(--gm-surface)] shadow-[var(--gm-shadow-soft)] transition hover:-translate-y-0.5 hover:bg-[var(--gm-gold-dim)]'
                           : 'font-serif text-[13px] font-bold tracking-[0.08em] text-[var(--gm-text)] hover:text-[var(--gm-gold-deep)] transition-colors relative group'
                       }
                     >

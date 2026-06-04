@@ -1,10 +1,10 @@
 {
-  "title": "Welcome To {{appName}} World",
+  "title": "Welcome To Woody World",
   "description": "{{appName}} is a preschool English learning model that brings physical materials, English-speaking characters, digital content, and the Cambridge approach together in a single system.",
   "eyebrow": "Play-Based Learning",
   "hero": {
     "eyebrow": "Play-Based Learning",
-    "title": "Welcome To {{appName}} World",
+    "title": "Welcome To Woody World",
     "description": "{{appName}} is a preschool English learning model that brings physical materials, English-speaking characters, digital content, and the Cambridge approach together in a single system.",
     "primaryCTA": "Explore Preschool Series",
     "primaryHref": "/preschool",
