@@ -1,6 +1,6 @@
 import JsonLd from '@/seo/JsonLd';
 import WoodyFallback from '@/components/woody/WoodyFallback';
-import WoodyPage from '@/components/woody/WoodyPage';
+import WoodyAcademyPageClient from '@/components/woody/academy/WoodyAcademyPageClient';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
 
@@ -22,7 +22,7 @@ export default async function WoodyAcademyPage({ params }: Props) {
   return (
     <>
       <JsonLd id="woody-academy" data={woodyPageGraph({ locale, pathname: PATHNAME, content, schemaType: 'EducationalOrganization' })} />
-      <WoodyPage content={content} locale={locale} />
+      <WoodyAcademyPageClient content={content} locale={locale} />
     </>
   );
 }

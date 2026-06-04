@@ -7,28 +7,28 @@
       "order": 1,
       "title": "توقيع اتفاقية تشمل جميع أنحاء ألمانيا",
       "description": "تم توقيع اتفاقية تغطي حقوق استخدام وبيع جميع المحتوى الخاص بـ {{appName}} وأصدقاؤه في جميع أنحاء ألمانيا مع Don Bosco Medien، وهي شبكة لتوزيع وتسويق الكتب.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+      "image": "/media/woody/reference/q3w780z7_1.png"
     },
     {
       "id": 2,
       "order": 2,
       "title": "توقيع اتفاقية تشمل جميع أنحاء روسيا",
       "description": "تم توقيع اتفاقية تغطي حقوق استخدام وبيع جميع المحتوى الخاص بـ {{appName}} وأصدقاؤه في جميع أنحاء روسيا مع Prosveshcheniye Publishers.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+      "image": "/media/woody/reference/796xqghe_2.png"
     },
     {
       "id": 3,
       "order": 3,
       "title": "إطلاق عملية شهادة كامبريدج",
       "description": "تم إطلاق عملية شهادة كامبريدج رسميًا بالشراكة مع British Side.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+      "image": "/media/woody/reference/xmex01in_Woody%20(7).png"
     },
     {
       "id": 4,
       "order": 4,
       "title": "المدارس تتحول إلى حرم كامبريدج مصغرة",
       "description": "بالشراكة مع British Side، نقوم بتحويل المدارس إلى حرم كامبريدج مصغرة.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "image": "/media/woody/reference/881wsvif_rekant.png",
       "fitImage": true
     },
     {
@@ -36,14 +36,14 @@
       "order": 5,
       "title": "اكتشف نظام تعليم كامبريدج",
       "description": "تعرّف على النهج الدولي لتعليم اللغة الإنجليزية في مرحلة ما قبل المدرسة.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+      "video": "/media/woody/reference/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
     },
     {
       "id": 6,
       "order": 6,
       "title": "الآن أصبحنا دار طباعة أيضًا!",
       "description": "ننتج محتوى أقوى وننمو بحرية.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+      "video": "/media/woody/reference/b69zuql4_Ads%C4%B1z%20(1080%20x%201350%20piksel)%20kopyas%C4%B1%20kopyas%C4%B1%20(4).mp4"
     }
   ]
 }

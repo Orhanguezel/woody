@@ -74,6 +74,7 @@ rsync -avz --delete \
   --exclude='.env.local' \
   --exclude='.secrets/' \
   --exclude='backend/uploads/' \
+  --exclude='frontend/public/media/' \
   --exclude='_referans/' \
   --exclude='*.log' \
   --exclude='*.tsbuildinfo' \
@@ -90,6 +91,15 @@ cd "$DEPLOY_PATH"
 $BUN_BIN install --frozen-lockfile || $BUN_BIN install
 BASH
 ok "Bagimliliklar kuruldu"
+
+# ─── 2b. Referans medyasını CDN'den DOĞRUDAN sunucuya indir (git/rsync'te yok) ────
+say "Medya cekiliyor (CDN → VPS, fetch-media.sh)"
+remote_sh <<BASH
+set -uo pipefail
+cd "$DEPLOY_PATH"
+bash deploy/fetch-media.sh || echo "UYARI: bazı medya indirilemedi (tekrar deploy ile denenir)"
+BASH
+ok "Medya hazir"
 
 start_app() {
   local suffix="$1" port="$2"

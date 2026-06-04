@@ -7,28 +7,28 @@
       "order": 1,
       "title": "Accord signé dans toute l'Allemagne",
       "description": "Un accord couvrant les droits d'utilisation et de vente de tous les contenus appartenant à {{appName}} et ses Amis dans toute l'Allemagne a été signé avec Don Bosco Medien, un réseau de distribution et de commercialisation de livres.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+      "image": "/media/woody/reference/q3w780z7_1.png"
     },
     {
       "id": 2,
       "order": 2,
       "title": "Accord signé dans toute la Russie",
       "description": "Un accord couvrant les droits d'utilisation et de vente de tous les contenus appartenant à {{appName}} et ses Amis dans toute la Russie a été signé avec Prosveshcheniye Publishers.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+      "image": "/media/woody/reference/796xqghe_2.png"
     },
     {
       "id": 3,
       "order": 3,
       "title": "Lancement du processus de certification Cambridge",
       "description": "Le processus de certification Cambridge a été officiellement lancé en partenariat avec British Side.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+      "image": "/media/woody/reference/xmex01in_Woody%20(7).png"
     },
     {
       "id": 4,
       "order": 4,
       "title": "Les écoles se transforment en mini-campus Cambridge",
       "description": "En partenariat avec British Side, nous transformons les écoles en mini-campus Cambridge.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "image": "/media/woody/reference/881wsvif_rekant.png",
       "fitImage": true
     },
     {
@@ -36,14 +36,14 @@
       "order": 5,
       "title": "Découvrez le système éducatif Cambridge",
       "description": "Découvrez l'approche internationale de l'enseignement de l'anglais au préscolaire.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+      "video": "/media/woody/reference/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
     },
     {
       "id": 6,
       "order": 6,
       "title": "Désormais, nous sommes aussi une maison d'édition !",
       "description": "Nous produisons des contenus plus solides et nous nous développons librement.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+      "video": "/media/woody/reference/b69zuql4_Ads%C4%B1z%20(1080%20x%201350%20piksel)%20kopyas%C4%B1%20kopyas%C4%B1%20(4).mp4"
     }
   ]
 }

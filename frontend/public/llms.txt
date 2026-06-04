@@ -9,12 +9,14 @@ Woody ve Arkadaslari; okul oncesi Ingilizce, hikaye temelli egitim setleri, atol
 - Atolye programi: /tr/workshop
 - Ev ve ozel ders: /tr/home-tutor
 - Woody Academy: /tr/woody-academy
+- Seviye bulucu: /tr/level-finder
 - Kutuphane: /tr/library
 - Magaza: /tr/store
 - Dijital icerik: /tr/digital-content
 - Blog: /tr/blog
 - Iletisim: /tr/contact
 - SSS: /tr/faqs
+- Istanbul yerel rehber: /tr/lokal/istanbul-anaokulu-ingilizce-egitimi
 
 ## Diller
 
@@ -27,3 +29,11 @@ Sitede Organization, EducationalOrganization, Product, Article, FAQPage, LocalBu
 ## Bot erisimi
 
 Arama motorlari ve AI crawler'lari genel icerik sayfalarina erisebilir. Admin, API ve kullaniciya ozel hesap/okul alanlari robots.txt ile dislanir.
+
+## Iletisim
+
+- Telefon: +90 324 358 0373
+- WhatsApp: +90 533 157 0373
+- E-posta: minayayinevi@gmail.com
+- Instagram: https://www.instagram.com/woodyandfriends_official/
+- YouTube: https://www.youtube.com/@Woodyvearkadaslari

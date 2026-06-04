@@ -115,6 +115,11 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
           opacity: 1;
           transform: translateY(-1px);
         }
+        .app-social__a:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 2px color-mix(in srgb, var(--gm-primary) 35%, transparent),
+            0 0 0 4px var(--gm-surface);
+        }
 
         .app-social--sm .app-social__a {
           width: 34px;

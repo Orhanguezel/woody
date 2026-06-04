@@ -381,16 +381,16 @@ export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingP
                           <Label className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block">
                             {t("admin.siteSettings.seo.inline.googlePreview", null, "Google Önizleme")}
                           </Label>
-                          <div className="rounded-[20px] border border-gm-border-soft bg-[#202124] p-5 shadow-inner">
+                          <div className="serp-preview-google rounded-[20px] border border-gm-border-soft p-5 shadow-inner">
                             <div className="space-y-1.5">
-                              <p className="text-[11px] text-[#dadce0] truncate font-sans">
+                              <p className="serp-preview-google__url truncate font-sans text-[11px]">
                                 {previewDomain} › {locale}
                                 {cfg.path === "/" ? "" : cfg.path}
                               </p>
-                              <p className="text-[18px] text-[#8ab4f8] truncate font-sans hover:underline cursor-pointer">
+                              <p className="serp-preview-google__title cursor-pointer truncate font-sans text-[18px] hover:underline">
                                 {page.title || t("admin.siteSettings.seo.inline.siteName", null, defaultSiteLabel)}
                               </p>
-                              <p className="text-[13px] text-[#bdc1c6] line-clamp-2 leading-snug font-sans">
+                              <p className="serp-preview-google__desc line-clamp-2 font-sans text-[13px] leading-snug">
                                 {page.description ||
                                   t("admin.siteSettings.seo.inline.noDescription", null, "Henüz açıklama girilmedi.")}
                               </p>

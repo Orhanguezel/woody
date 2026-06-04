@@ -7,6 +7,8 @@ import { buildPageMetadata } from '@/seo/serverMetadata';
 import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 import { loadFallbackBlogPosts } from '@/components/woody/blog-loader.server';
 import { loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
+import { loadPageContent } from '@/config/pages/loader';
+import type { WoodyBlogFaqItem } from '@/components/woody/WoodyBlogIndexClient';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -28,7 +30,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
-  const dbPosts = await loadDbBlogPosts(locale);
+  const [dbPosts, faq] = await Promise.all([
+    loadDbBlogPosts(locale),
+    loadPageContent<{ items?: WoodyBlogFaqItem[] }>('faq', locale),
+  ]);
   const posts = dbPosts.length > 0 ? dbPosts : await loadFallbackBlogPosts(locale);
   const siteUrl = getPublicSiteOrigin();
   const app = getPublicAppName();
@@ -55,7 +60,7 @@ export default async function BlogPage({ params }: Props) {
           }),
         ])}
       />
-      <WoodyBlogIndexClient initialPosts={posts} />
+      <WoodyBlogIndexClient initialPosts={posts} faqItems={faq?.items ?? []} />
     </>
   );
 }

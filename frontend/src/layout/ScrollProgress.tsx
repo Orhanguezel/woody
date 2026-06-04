@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { IconChevronUp } from "@/components/ui/icons";
+import { FOCUS_RING } from "@/lib/a11y";
 
 const CIRCUMFERENCE = 308.66; // 2πr (r≈49)
 
@@ -47,7 +48,7 @@ function ScrollProgress() {
 
   return (
     <button
-      className={`fixed right-5 bottom-5 z-50 grid place-items-center w-11 h-11 bg-sand-900 border border-gold-400/20 shadow-gold rounded-full transition-all duration-300 hover:scale-110 hover:border-gold-400/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/40 ${
+      className={`fixed right-5 bottom-5 z-50 grid h-11 w-11 place-items-center rounded-full border border-[var(--gm-border-soft)] bg-[var(--gm-bg-deep)] shadow-[var(--gm-shadow-soft)] transition-all duration-300 hover:scale-110 hover:border-[var(--gm-primary)]/40 ${FOCUS_RING} ${
         progress > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
       }`}
       onClick={onClick}

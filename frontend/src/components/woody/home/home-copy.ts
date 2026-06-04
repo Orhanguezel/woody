@@ -5,6 +5,8 @@ export type WoodyNewsItem = {
   summary: string;
   date: string;
   image?: string;
+  video?: string;
+  fitImage?: boolean;
   href?: string;
 };
 
@@ -30,6 +32,27 @@ export const NEWS_IMAGES = [
   '/assets/woody/sections/news-2.webp',
   '/assets/woody/sections/news-rekant.webp',
   '/assets/woody/sections/news-woody7.webp',
+] as const;
+
+export const SET_SERIES_MEDIA = [
+  {
+    accent: 'var(--level-junior)',
+    image: '/media/woody/reference/n8vryl38_6.png',
+    ribbonTr: 'OKUL SERISI',
+    ribbonEn: 'SCHOOL SERIES',
+  },
+  {
+    accent: 'var(--gm-success)',
+    image: '/media/woody/reference/7q4grria_7.png',
+    ribbonTr: 'ATOLYE SERISI',
+    ribbonEn: 'WORKSHOP SERIES',
+  },
+  {
+    accent: '#9B59B6',
+    image: '/media/woody/reference/exdjhy2v_8.png',
+    ribbonTr: 'EV OZEL DERS SERISI',
+    ribbonEn: 'HOME TUTOR SERIES',
+  },
 ] as const;
 
 export const FALLBACK_WHY_ITEMS: WoodyWhyItem[] = [
@@ -129,6 +152,8 @@ export function getNewsItems(content: WoodyPageContent | null): WoodyNewsItem[] 
       summary: card.description || '',
       date: card.badge || '',
       image: card.image || NEWS_IMAGES[index % NEWS_IMAGES.length],
+      video: card.video,
+      fitImage: card.fitImage,
       href: card.href,
     }));
   }
@@ -139,6 +164,8 @@ export function getNewsItems(content: WoodyPageContent | null): WoodyNewsItem[] 
       summary: item.description || '',
       date: item.badge || '',
       image: item.image || NEWS_IMAGES[index % NEWS_IMAGES.length],
+      video: item.video,
+      fitImage: item.fitImage,
       href: item.href,
     }));
   }

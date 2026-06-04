@@ -482,6 +482,24 @@
     background: color-mix(in srgb, var(--gm-gold-50) 92%, transparent);
   }
 
+  /* Premium CTA + CMS/legal link focus (a11y cila) */
+  .btn-premium:focus-visible,
+  .btn-outline-premium:focus-visible,
+  .btn-hero-primary:focus-visible,
+  .btn-hero-secondary:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--gm-primary) 38%, transparent),
+      0 0 0 4px var(--gm-bg, var(--color-bg-primary));
+  }
+
+  .cms-html a:focus-visible,
+  .prose a:focus-visible {
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--gm-primary) 35%, transparent);
+  }
+
   .hero-metric-card {
     padding: 18px;
     border-radius: 22px;

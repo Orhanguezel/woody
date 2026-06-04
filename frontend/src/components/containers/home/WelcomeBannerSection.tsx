@@ -57,7 +57,7 @@ export default function WelcomeBannerSection({
             />
             <Link href={copy.link} className="btn-premium group shadow-soft py-4 px-10">
               {copy.cta}
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
           </div>
 

@@ -1,5 +1,4 @@
-import { buildMetadataFromSeo, fetchSeoObject, fetchSeoPageObject, mergeSeoPageIntoSeo } from '@/seo/server';
-import { normPath } from '@/integrations/shared';
+import { buildPageMetadata } from '@/seo/server';
 import type { Metadata } from 'next';
 import type React from 'react';
 
@@ -10,11 +9,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  let seo = await fetchSeoObject(locale);
-  const pageSeo = await fetchSeoPageObject(locale, 'contact');
-  seo = mergeSeoPageIntoSeo(seo, pageSeo);
-
-  return buildMetadataFromSeo(seo, { locale, pathname: normPath('/contact') });
+  return buildPageMetadata({
+    locale,
+    pageKey: 'contact',
+    pathname: '/contact',
+    fallback: {
+      title: locale === 'tr' ? 'İletişim' : 'Contact',
+      description:
+        locale === 'tr'
+          ? 'Woody ve Arkadaşları ile iletişime geçin.'
+          : 'Contact Woody and Friends.',
+    },
+  });
 }
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {

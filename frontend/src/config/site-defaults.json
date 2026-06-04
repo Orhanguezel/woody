@@ -7,7 +7,7 @@
     "appName": "Woody ve Arkadaşları",
     "taglineTr": "Çocuklar için İngilizce, hikaye ve dijital öğrenme deneyimi",
     "taglineEn": "English, stories, and digital learning for children",
-    "themeColor": "#2196F3",
+    "themeColor": "#FF6A00",
     "themeColorDark": "#0B1F3A",
     "wordMarkLine1": "{{appName}}",
     "wordMarkLine2": "",
@@ -33,7 +33,10 @@
     },
     "businessHours": []
   },
-  "socials": {},
+  "socials": {
+    "instagram": "https://www.instagram.com/woodyandfriends_official/",
+    "youtube": "https://www.youtube.com/@Woodyvearkadaslari"
+  },
   "analytics": {
     "ga4MeasurementId": "G-0D7LYLF51K",
     "gtmContainerId": "dogaadmin",

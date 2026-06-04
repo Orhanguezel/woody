@@ -72,9 +72,9 @@ CREATE TABLE IF NOT EXISTS `sub_category_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `categories` (`id`, `module_key`, `image_url`, `alt`, `icon`, `is_active`, `is_featured`, `display_order`) VALUES
-('21111111-1111-4111-8111-000000000001', 'store', '/assets/woody/store-books.svg', 'Woody hikaye kitapları', 'BookOpen', 1, 1, 10),
-('21111111-1111-4111-8111-000000000002', 'store', '/assets/woody/store-cards.svg', 'Woody etkinlik kartları', 'Layers', 1, 1, 20),
-('21111111-1111-4111-8111-000000000003', 'store', '/assets/woody/store-sets.svg', 'Woody öğrenme setleri', 'Package', 1, 1, 30)
+('21111111-1111-4111-8111-000000000001', 'store', '/assets/woody/store-books.svg', 'Woody Okul Serisi', 'BookOpen', 1, 1, 10),
+('21111111-1111-4111-8111-000000000002', 'store', '/assets/woody/store-cards.svg', 'Woody Atölye Serisi', 'Layers', 1, 1, 20),
+('21111111-1111-4111-8111-000000000003', 'store', '/assets/woody/store-sets.svg', 'Woody Özel Ders Serisi', 'Package', 1, 1, 30)
 ON DUPLICATE KEY UPDATE
   `module_key` = VALUES(`module_key`),
   `image_url` = VALUES(`image_url`),
@@ -85,12 +85,12 @@ ON DUPLICATE KEY UPDATE
   `display_order` = VALUES(`display_order`);
 
 INSERT INTO `category_i18n` (`category_id`, `locale`, `name`, `slug`, `description`, `alt`, `meta_title`, `meta_description`) VALUES
-('21111111-1111-4111-8111-000000000001', 'tr', 'Hikaye Kitapları', 'hikaye-kitaplari', 'Okul öncesi İngilizce için hikaye odaklı basılı ürünler.', 'Woody hikaye kitapları', 'Woody hikaye kitapları', 'Çocuklar için İngilizce hikaye kitapları.'),
-('21111111-1111-4111-8111-000000000001', 'en', 'Story Books', 'story-books', 'Story-led printed products for preschool English.', 'Woody story books', 'Woody story books', 'English story books for children.'),
-('21111111-1111-4111-8111-000000000002', 'tr', 'Etkinlik Kartları', 'etkinlik-kartlari', 'Sınıf, ev ve atölye çalışmaları için kart setleri.', 'Woody etkinlik kartları', 'Woody etkinlik kartları', 'Çocuklar için İngilizce etkinlik kartları.'),
-('21111111-1111-4111-8111-000000000002', 'en', 'Activity Cards', 'activity-cards', 'Card sets for classroom, home, and workshop use.', 'Woody activity cards', 'Woody activity cards', 'English activity cards for children.'),
-('21111111-1111-4111-8111-000000000003', 'tr', 'Öğrenme Setleri', 'ogrenme-setleri', 'Kitap, kart ve destek materyallerinden oluşan setler.', 'Woody öğrenme setleri', 'Woody öğrenme setleri', 'Woody İngilizce öğrenme setleri.'),
-('21111111-1111-4111-8111-000000000003', 'en', 'Learning Sets', 'learning-sets', 'Sets made of books, cards, and support materials.', 'Woody learning sets', 'Woody learning sets', 'Woody English learning sets.')
+('21111111-1111-4111-8111-000000000001', 'tr', 'Okul Serisi', 'okul-serisi', 'Okul öncesi kurumlar için Woody öğrenci setleri.', 'Woody Okul Serisi', 'Woody Okul Serisi', 'Anaokulları için Woody okul serisi öğrenci setleri.'),
+('21111111-1111-4111-8111-000000000001', 'en', 'Preschool Series', 'preschool-series', 'Woody student sets for preschool institutions.', 'Woody Preschool Series', 'Woody Preschool Series', 'Woody Preschool Series student sets for schools.'),
+('21111111-1111-4111-8111-000000000002', 'tr', 'Atölye Serisi', 'atolye-serisi', 'Atölye ve kurs merkezleri için Woody setleri.', 'Woody Atölye Serisi', 'Woody Atölye Serisi', 'Atölye ve kurslar için Woody İngilizce setleri.'),
+('21111111-1111-4111-8111-000000000002', 'en', 'Workshop Series', 'workshop-series', 'Woody sets for workshops and course centers.', 'Woody Workshop Series', 'Woody Workshop Series', 'Woody English sets for workshops and courses.'),
+('21111111-1111-4111-8111-000000000003', 'tr', 'Özel Ders Serisi', 'ozel-ders-serisi', 'Ev ve özel ders öğretmenleri için Woody setleri.', 'Woody Özel Ders Serisi', 'Woody Özel Ders Serisi', 'Ev ve özel ders için Woody İngilizce setleri.'),
+('21111111-1111-4111-8111-000000000003', 'en', 'Private Lesson Series', 'private-lesson-series', 'Woody sets for home and private lesson teachers.', 'Woody Private Lesson Series', 'Woody Private Lesson Series', 'Woody English sets for home and private lessons.')
 ON DUPLICATE KEY UPDATE
   `name` = VALUES(`name`),
   `description` = VALUES(`description`),
@@ -112,12 +112,12 @@ ON DUPLICATE KEY UPDATE
   `display_order` = VALUES(`display_order`);
 
 INSERT INTO `sub_category_i18n` (`sub_category_id`, `locale`, `name`, `slug`, `description`) VALUES
-('21211111-1111-4111-8111-000000000001', 'tr', 'Basic Seviye', 'basic-seviye', 'Basic seviye için hikaye ve okuma ürünleri.'),
-('21211111-1111-4111-8111-000000000001', 'en', 'Basic Level', 'basic-level', 'Story and reading products for the Basic level.'),
-('21211111-1111-4111-8111-000000000002', 'tr', 'Sınıf Etkinlikleri', 'sinif-etkinlikleri', 'Öğretmenlerin sınıfta kullanabileceği kart ürünleri.'),
-('21211111-1111-4111-8111-000000000002', 'en', 'Classroom Activities', 'classroom-activities', 'Card products teachers can use in class.'),
-('21211111-1111-4111-8111-000000000003', 'tr', 'Başlangıç Setleri', 'baslangic-setleri', 'Woody dünyasına giriş için karma öğrenme setleri.'),
-('21211111-1111-4111-8111-000000000003', 'en', 'Starter Sets', 'starter-sets', 'Mixed learning sets for entering the Woody world.')
+('21211111-1111-4111-8111-000000000001', 'tr', 'Öğrenci Setleri', 'ogrenci-setleri', 'Okul Serisi Basic, Junior ve Senior öğrenci setleri.'),
+('21211111-1111-4111-8111-000000000001', 'en', 'Student Sets', 'student-sets', 'Preschool Series Basic, Junior and Senior student sets.'),
+('21211111-1111-4111-8111-000000000002', 'tr', 'Atölye Paketleri', 'atolye-paketleri', 'Atölye ve kurs merkezlerine yönelik paketler.'),
+('21211111-1111-4111-8111-000000000002', 'en', 'Workshop Packages', 'workshop-packages', 'Packages for workshops and course centers.'),
+('21211111-1111-4111-8111-000000000003', 'tr', 'Özel Ders Paketleri', 'ozel-ders-paketleri', 'Ev ve özel ders öğretmenlerine yönelik paketler.'),
+('21211111-1111-4111-8111-000000000003', 'en', 'Private Lesson Packages', 'private-lesson-packages', 'Packages for home and private lesson teachers.')
 ON DUPLICATE KEY UPDATE
   `name` = VALUES(`name`),
   `description` = VALUES(`description`);

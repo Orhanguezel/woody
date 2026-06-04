@@ -9,6 +9,7 @@ import { useLocaleContext } from '@/i18n';
 import { getAdminAppName } from '@/lib/admin-brand';
 import type { AdminBrandingConfig } from '@/config/app-config';
 import { DEFAULT_BRANDING } from '@/config/app-config';
+import { FOCUS_RING } from '@/lib/a11y';
 
 function LoginFormFallback() {
   return (
@@ -37,6 +38,7 @@ export function LoginClient({ branding }: { branding: AdminBrandingConfig }) {
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] hover:scale-110"
           style={{ backgroundImage: `url("${bgUrl.replace(/"/g, '')}")` }}
+          aria-hidden
         />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[var(--brand-cream)]" />
 
@@ -76,7 +78,8 @@ export function LoginClient({ branding }: { branding: AdminBrandingConfig }) {
                 <Link
                   prefetch={false}
                   href="#"
-                  className="text-[var(--brand-gold)] font-bold hover:opacity-80 transition-opacity"
+                  className={`rounded-sm font-bold text-[var(--brand-gold)] transition-opacity hover:opacity-80 ${FOCUS_RING}`}
+                  aria-label={t('admin.auth.login.contactAdmin')}
                 >
                   {t('admin.auth.login.contactAdmin')}
                 </Link>

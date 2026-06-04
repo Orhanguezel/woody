@@ -15,6 +15,7 @@ import { normalizeFaq, safeStr } from '@/integrations/shared';
 
 // i18n
 import { useLocaleShort, useUiSection } from '@/i18n';
+import { FOCUS_RING } from '@/lib/a11y';
 import { getPublicAppName } from '@/lib/site-config';
 
 const FaqsPageContent: React.FC = () => {
@@ -153,7 +154,7 @@ const FaqsPageContent: React.FC = () => {
                   <h2>
                     <button
                       type="button"
-                      className={`w-full text-left px-6 py-5 flex justify-between items-center font-bold text-lg md:text-xl transition-colors ${
+                      className={`flex w-full items-center justify-between px-6 py-5 text-left text-lg font-bold transition-colors md:text-xl ${FOCUS_RING} ${
                         isOpen ? 'text-brand-primary' : 'text-text-primary hover:text-brand-primary'
                       }`}
                       aria-expanded={isOpen}

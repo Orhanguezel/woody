@@ -24,11 +24,12 @@ CREATE TABLE IF NOT EXISTS `home_sections` (
 DELETE FROM `home_sections` WHERE `component_key` = 'TrustSection';
 
 INSERT INTO `home_sections` (`id`, `slug`, `label`, `component_key`, `order_index`, `is_active`, `config`) VALUES
-('home-hero', 'hero', 'Hero', 'HeroNew', 10, 1, NULL),
-('home-konular', 'konular', 'Öne çıkan kategoriler', 'ZodiacGridSection', 20, 1, NULL),
-('home-neden', 'neden', 'Neden AppName', 'FeaturesNew', 30, 1, NULL),
-('home-nasil', 'nasil', 'Nasıl çalışır', 'HomeIntroSection', 40, 1, NULL),
-('home-uygulama', 'uygulama', 'Mobil uygulama', 'AppDownloadSection', 60, 0, NULL)
+('home-hero', 'hero', 'Hero', 'WoodyHomeHero', 10, 1, NULL),
+('home-gray-banner', 'gray-banner', 'Ogrenme Vurgulari', 'WoodyGrayBanner', 20, 1, NULL),
+('home-setler', 'setler', 'Woody Setleri', 'WoodySetZigzag', 30, 1, NULL),
+('home-sertifikalar', 'sertifikalar', 'Sertifikalar', 'CertificationSection', 40, 1, NULL),
+('home-neden', 'neden', 'Neden AppName', 'WoodyWhyCambridge', 50, 1, NULL),
+('home-yenilikler', 'yenilikler', 'Woody Yenilikler', 'WoodyNewsCarousel', 60, 1, NULL)
 ON DUPLICATE KEY UPDATE
   `label` = VALUES(`label`),
   `component_key` = VALUES(`component_key`),

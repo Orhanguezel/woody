@@ -104,7 +104,7 @@ export function CustomCssTab() {
             value={cssValue}
             onChange={(e) => setCssValue(e.target.value)}
             placeholder="body { background: #000; }"
-            className="min-h-[400px] font-mono text-[13px] leading-relaxed bg-[#1e1e1e] border-gm-border-soft rounded-[24px] p-6 focus:ring-gm-gold/50 focus:border-gm-gold/50 text-[#d4d4d4] transition-all resize-y shadow-inner"
+            className="code-editor-surface min-h-[400px] resize-y rounded-[24px] border-gm-border-soft p-6 font-mono text-[13px] leading-relaxed shadow-inner transition-all focus:border-gm-gold/50 focus:ring-gm-gold/50"
             disabled={busy}
             spellCheck={false}
           />

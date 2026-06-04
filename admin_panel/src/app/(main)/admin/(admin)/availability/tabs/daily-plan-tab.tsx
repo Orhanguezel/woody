@@ -312,7 +312,7 @@ function DbPlanTable(props: {
                     <TableCell className="text-nowrap">
                       {isActive ? (
                         available ? (
-                          <Badge className="bg-emerald-100 text-emerald-700">{t('availability.daily.statusOpen')}</Badge>
+                          <Badge className="bg-primary/10 text-primary">{t('availability.daily.statusOpen')}</Badge>
                         ) : (
                           <Badge className="bg-yellow-100 text-yellow-700">{t('availability.daily.statusFull')}</Badge>
                         )

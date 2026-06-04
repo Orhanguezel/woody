@@ -13,12 +13,17 @@ export const KNOWN_RTL = new Set([
 export const isRTL = (l: string) => KNOWN_RTL.has(String(l || "").toLowerCase());
 
 export function normLocaleTag(x: unknown): string {
-  return String(x || '')
+  const normalized = String(x || '')
     .toLowerCase()
     .trim()
-    .replace('_', '-')
-    .split('-')[0]
-    .trim();
+    .replace('_', '-');
+  const parts = normalized
+    .split('-')
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (!parts.length) return '';
+  const tag = parts.slice(0, 2).join('-');
+  return tag === 'pt' ? 'pt-br' : tag;
 }
 
 /** order-preserving dedupe */
@@ -152,12 +157,7 @@ export function pickFromCookie(cookieLocale: string | undefined, active: string[
 export type RuntimeLocale = string;
 
 function toShortLocale(v: unknown): string {
-  return String(v || '')
-    .trim()
-    .toLowerCase()
-    .replace('_', '-')
-    .split('-')[0]
-    .trim();
+  return normLocaleTag(v);
 }
 
 function splitPath(asPath: string) {
@@ -176,8 +176,8 @@ function buildActiveSet(activeLocales?: string[]) {
 }
 
 function looksLikeLocale(seg: string): boolean {
-  const s = toShortLocale(seg);
-  return /^[a-z]{2}$/.test(s) || /^[a-z]{3}$/.test(s);
+  const s = normLocaleTag(seg);
+  return /^[a-z]{2,3}(?:-[a-z]{2})?$/.test(s);
 }
 
 /**
@@ -331,13 +331,9 @@ export function normLocaleShort(l: unknown, fallback = FALLBACK_LOCALE): string 
     .trim()
     .toLowerCase()
     .replace('_', '-');
-  const short = (v.split('-')[0] || '').trim();
-  const fb = String(fallback || '')
-    .trim()
-    .toLowerCase()
-    .replace('_', '-')
-    .split('-')[0];
-  return short || fb || FALLBACK_LOCALE;
+  const tag = normLocaleTag(v);
+  const fb = normLocaleTag(fallback);
+  return tag || fb || FALLBACK_LOCALE;
 }
 
 /** Path normalizasyonu: başında / olsun; kök dışı ise sonda / olmasın */

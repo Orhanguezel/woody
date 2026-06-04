@@ -6,8 +6,22 @@
 import React, { useMemo } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
+import { FOCUS_RING } from '@/lib/a11y';
 import { useActiveLocales, switchLocale } from '@/i18n';
 import { normLocaleTag } from '@/integrations/shared';
+
+const FLAGS: Record<string, string> = {
+  tr: '🇹🇷',
+  en: '🇬🇧',
+  de: '🇩🇪',
+  ar: '🇸🇦',
+  fr: '🇫🇷',
+  ru: '🇷🇺',
+  es: '🇪🇸',
+  it: '🇮🇹',
+  nl: '🇳🇱',
+  'pt-br': '🇧🇷',
+};
 
 function firstPathSeg(asPath?: string): string {
   const p = String(asPath || '/').trim();
@@ -63,7 +77,7 @@ export default function LanguageSwitcher() {
               <button
                 type="button"
                 onClick={() => switchLocale(router, asPath, code, activeLocales)}
-                className={`min-h-8 w-full cursor-pointer rounded-md border px-2 text-xs font-bold uppercase tracking-[0.08em] transition ${
+                className={`flex min-h-8 w-full cursor-pointer items-center gap-2 rounded-md border px-2 text-xs font-bold uppercase tracking-[0.08em] transition ${FOCUS_RING} ${
                   isCurrent
                     ? 'border-[var(--gm-primary)] bg-[var(--gm-primary)] text-[var(--gm-surface)]'
                     : 'border-[var(--gm-border-soft)] bg-transparent text-[var(--gm-text)] hover:border-[var(--gm-primary)]'
@@ -71,7 +85,8 @@ export default function LanguageSwitcher() {
                 aria-current={isCurrent ? 'true' : undefined}
                 aria-label={`Switch language to ${code.toUpperCase()}`}
               >
-                {code.toUpperCase()}
+                <span className="text-base leading-none" aria-hidden>{FLAGS[code] || '🌐'}</span>
+                <span>{code.toUpperCase()}</span>
               </button>
             </li>
           );

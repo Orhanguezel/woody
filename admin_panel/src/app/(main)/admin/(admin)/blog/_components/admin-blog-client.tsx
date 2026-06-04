@@ -148,7 +148,7 @@ function StatusBadge({ status, active }: { status: string; active: boolean }) {
       variant="outline"
       className={cn(
         'rounded-md border px-2 py-0.5 text-[11px]',
-        published ? 'border-emerald-400/40 text-emerald-700' : 'border-slate-300 text-slate-500',
+        published ? 'border-primary/40 text-primary' : 'border-slate-300 text-slate-500',
       )}
     >
       {published ? 'Yayında' : active ? 'Taslak' : 'Pasif'}
@@ -255,7 +255,7 @@ export default function AdminBlogClient() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="space-y-2">
           <div className="flex items-center gap-2 font-semibold text-muted-foreground text-xs uppercase">
-            <BookOpenText className="size-4 text-emerald-600" />
+            <BookOpenText className="size-4 text-primary" />
             Woody İçerik
           </div>
           <h1 className="font-semibold text-3xl text-foreground tracking-normal">Blog</h1>
@@ -458,7 +458,7 @@ export default function AdminBlogClient() {
         <Card className="rounded-lg">
           <CardHeader className="gap-4 md:flex-row md:items-center md:justify-between">
             <CardTitle className="flex items-center gap-2 text-lg">
-              <CheckCircle2 className="size-5 text-emerald-600" />
+              <CheckCircle2 className="size-5 text-primary" />
               Yazılar
             </CardTitle>
             <div className="flex w-full gap-2 md:w-auto">

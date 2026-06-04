@@ -7,28 +7,28 @@
       "order": 1,
       "title": "Подписано соглашение по всей Германии",
       "description": "С компанией Don Bosco Medien, сетью по распространению и маркетингу книг, подписано соглашение, охватывающее права на использование и продажу всего контента {{appName}} и друзья по всей Германии.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+      "image": "/media/woody/reference/q3w780z7_1.png"
     },
     {
       "id": 2,
       "order": 2,
       "title": "Подписано соглашение по всей России",
       "description": "С издательством «Просвещение» подписано соглашение, охватывающее права на использование и продажу всего контента {{appName}} и друзья по всей России.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+      "image": "/media/woody/reference/796xqghe_2.png"
     },
     {
       "id": 3,
       "order": 3,
       "title": "Запущен процесс сертификации Cambridge",
       "description": "Процесс сертификации Cambridge официально запущен в партнерстве с British Side.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+      "image": "/media/woody/reference/xmex01in_Woody%20(7).png"
     },
     {
       "id": 4,
       "order": 4,
       "title": "Школы превращаются в мини-кампусы Cambridge",
       "description": "В партнерстве с British Side мы превращаем школы в мини-кампусы Cambridge.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "image": "/media/woody/reference/881wsvif_rekant.png",
       "fitImage": true
     },
     {
@@ -36,14 +36,14 @@
       "order": 5,
       "title": "Откройте для себя образовательную систему Cambridge",
       "description": "Познакомьтесь с международным подходом к обучению английскому языку в дошкольном возрасте.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+      "video": "/media/woody/reference/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
     },
     {
       "id": 6,
       "order": 6,
       "title": "Теперь мы еще и типография!",
       "description": "Мы создаем более сильный контент и свободно растем.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+      "video": "/media/woody/reference/b69zuql4_Ads%C4%B1z%20(1080%20x%201350%20piksel)%20kopyas%C4%B1%20kopyas%C4%B1%20(4).mp4"
     }
   ]
 }

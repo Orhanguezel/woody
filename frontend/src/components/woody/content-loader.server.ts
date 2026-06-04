@@ -19,6 +19,8 @@ export type WoodyCard = {
   description?: string;
   href?: string;
   image?: string;
+  video?: string;
+  fitImage?: boolean;
   price?: string | number;
   currency?: string;
   features?: string[];
@@ -40,6 +42,8 @@ export type WoodyPageContent = {
   title: string;
   description?: string;
   eyebrow?: string;
+  image?: string;
+  imageAlt?: string;
   hero?: {
     eyebrow?: string;
     title?: string;
@@ -98,6 +102,8 @@ function normalizeCard(raw: unknown): WoodyCard | null {
     description: appInject(asString(raw.description) || asString(raw.summary)),
     href: asString(raw.href) || asString(raw.url),
     image: asString(raw.image) || asString(raw.imageUrl),
+    video: asString(raw.video) || asString(raw.videoUrl),
+    fitImage: raw.fitImage === true,
     price: typeof raw.price === 'number' || typeof raw.price === 'string' ? raw.price : undefined,
     currency: asString(raw.currency) || asString(raw.priceCurrency),
     features: asStringArray(raw.features),
@@ -181,6 +187,8 @@ export async function loadWoodyPageContent(key: string, locale: string): Promise
       asString(raw.description) || asString(hero.description) || asString(hero.subtitle),
     ),
     eyebrow: appInject(asString(raw.eyebrow) || asString(hero.eyebrow)),
+    image: asString(raw.image) || asString(raw.imageUrl),
+    imageAlt: appInject(asString(raw.imageAlt)),
     hero: {
       eyebrow: appInject(asString(hero.eyebrow)),
       title: appInject(asString(hero.title) || title),

@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next';
 import { fetchSetting } from '@/i18n/server';
 import { getManifestPwaStrings, getManifestStartUrl } from '@/lib/site-config';
 
-const FALLBACK_BG = '#F7FBFF';
-const FALLBACK_THEME = '#2196F3';
+const FALLBACK_BG = '#FFFFFF';
+const FALLBACK_THEME = '#FF6A00';
 
 async function readBrandColors(): Promise<{ bg: string; theme: string }> {
   try {

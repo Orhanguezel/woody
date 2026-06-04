@@ -7,28 +7,28 @@
       "order": 1,
       "title": "Accordo firmato in tutta la Germania",
       "description": "È stato firmato con Don Bosco Medien, una rete di distribuzione e marketing di libri, un accordo che copre i diritti di utilizzo e di vendita di tutti i contenuti appartenenti a {{appName}} e Amici in tutta la Germania.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+      "image": "/media/woody/reference/q3w780z7_1.png"
     },
     {
       "id": 2,
       "order": 2,
       "title": "Accordo firmato in tutta la Russia",
       "description": "È stato firmato con Prosveshcheniye Publishers un accordo che copre i diritti di utilizzo e di vendita di tutti i contenuti appartenenti a {{appName}} e Amici in tutta la Russia.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+      "image": "/media/woody/reference/796xqghe_2.png"
     },
     {
       "id": 3,
       "order": 3,
       "title": "Avviato il processo di certificazione Cambridge",
       "description": "Il processo di certificazione Cambridge è stato ufficialmente avviato in collaborazione con British Side.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+      "image": "/media/woody/reference/xmex01in_Woody%20(7).png"
     },
     {
       "id": 4,
       "order": 4,
       "title": "Le scuole si stanno trasformando in mini campus Cambridge",
       "description": "In collaborazione con British Side, stiamo trasformando le scuole in mini campus Cambridge.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "image": "/media/woody/reference/881wsvif_rekant.png",
       "fitImage": true
     },
     {
@@ -36,14 +36,14 @@
       "order": 5,
       "title": "Scopri il sistema educativo Cambridge",
       "description": "Conosci l'approccio internazionale all'educazione inglese in età prescolare.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+      "video": "/media/woody/reference/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
     },
     {
       "id": 6,
       "order": 6,
       "title": "Ora siamo anche una tipografia!",
       "description": "Produciamo contenuti più solidi e cresciamo liberamente.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+      "video": "/media/woody/reference/b69zuql4_Ads%C4%B1z%20(1080%20x%201350%20piksel)%20kopyas%C4%B1%20kopyas%C4%B1%20(4).mp4"
     }
   ]
 }

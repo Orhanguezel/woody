@@ -121,45 +121,66 @@ function ColorRow({
 }
 
 function PreviewCard({ form }: { form: TokenForm }) {
+  const { colors, typography, shadows, radius, branding } = form;
+  const primary = colors.brand_primary;
+  const onPrimaryText = colors.bg_surface;
+
   return (
-    <Card className="bg-[#f7fee7] border-[#16a34a]/20 rounded-[32px] overflow-hidden p-8 shadow-[0_20px_50px_rgba(22,101,52,0.12)]">
+    <Card
+      className="overflow-hidden rounded-[32px] border p-8 [--preview-primary:var(--primary)]"
+      style={
+        {
+          backgroundColor: colors.bg_base,
+          borderColor: `color-mix(in srgb, ${primary} 20%, transparent)`,
+          boxShadow: shadows.card,
+          '--preview-primary': primary,
+        } as React.CSSProperties
+      }
+    >
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-px bg-[#16a34a]" />
+          <div className="h-px w-8" style={{ backgroundColor: primary }} />
           <span
-            className="text-[#16a34a] font-bold text-[9px] tracking-[0.3em] uppercase"
-            style={{ fontFamily: form.typography.font_sans }}
+            className="text-[9px] font-bold uppercase tracking-[0.3em]"
+            style={{ color: primary, fontFamily: typography.font_sans }}
           >
             Önizleme
           </span>
         </div>
-        <h3 className="text-3xl text-[#14532d]" style={{ fontFamily: form.typography.font_display }}>
-          {form.branding.app_name}
+        <h3
+          className="text-3xl"
+          style={{ color: colors.text_primary, fontFamily: typography.font_display }}
+        >
+          {branding.app_name}
         </h3>
-        <p className="text-lg text-[#4A4238] italic leading-relaxed" style={{ fontFamily: form.typography.font_serif }}>
-          "{form.branding.tagline}"
+        <p
+          className="text-lg italic leading-relaxed"
+          style={{ color: colors.text_secondary, fontFamily: typography.font_serif }}
+        >
+          &quot;{branding.tagline}&quot;
         </p>
         <div className="flex flex-wrap gap-3 pt-4">
           <Button
             style={{
-              backgroundColor: form.colors.brand_primary,
-              color: "#ecfdf5",
-              borderRadius: form.radius.pill,
-              fontFamily: form.typography.font_sans,
+              backgroundColor: primary,
+              color: onPrimaryText,
+              borderRadius: radius.pill,
+              fontFamily: typography.font_sans,
+              boxShadow: shadows.glow_primary,
             }}
-            className="px-8 font-bold tracking-widest uppercase text-[10px] border-none shadow-[0_10px_20px_rgba(22,163,74,0.2)] hover:scale-105 transition-transform"
+            className="border-none px-8 text-[10px] font-bold uppercase tracking-widest transition-transform hover:scale-105"
           >
             Randevu Al
           </Button>
           <Button
             variant="outline"
             style={{
-              borderColor: form.colors.brand_primary,
-              color: "#14532d",
-              borderRadius: form.radius.pill,
-              fontFamily: form.typography.font_sans,
+              borderColor: primary,
+              color: colors.text_primary,
+              borderRadius: radius.pill,
+              fontFamily: typography.font_sans,
             }}
-            className="px-8 font-bold tracking-widest uppercase text-[10px] bg-transparent hover:bg-[#16a34a]/5 transition-colors"
+            className="bg-transparent px-8 text-[10px] font-bold uppercase tracking-widest transition-colors hover:bg-[color-mix(in_srgb,var(--preview-primary)_5%,transparent)]"
           >
             Profil
           </Button>
@@ -393,7 +414,7 @@ export const DesignTokensTab: React.FC = () => {
           {/* Typography */}
           <section className="space-y-6">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-[#7B5EA7]/10 flex items-center justify-center text-[#7B5EA7]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-600 dark:text-violet-400">
                 <Type size={20} />
               </div>
               <div>
@@ -423,7 +444,7 @@ export const DesignTokensTab: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <section className="space-y-6">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 rounded-2xl bg-[#4CAF6E]/10 flex items-center justify-center text-[#4CAF6E]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                   <MousePointer2 size={20} />
                 </div>
                 <h4 className="font-serif text-xl text-gm-text">Köşe Yuvarlama</h4>
@@ -446,7 +467,7 @@ export const DesignTokensTab: React.FC = () => {
 
             <section className="space-y-6">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 rounded-2xl bg-[#F0A030]/10 flex items-center justify-center text-[#F0A030]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-700 dark:text-amber-400">
                   <Box size={20} />
                 </div>
                 <h4 className="font-serif text-xl text-gm-text">Gölgeler</h4>

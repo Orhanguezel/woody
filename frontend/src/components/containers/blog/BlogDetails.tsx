@@ -25,6 +25,7 @@ import { safeStr,toCdnSrc, stripPresentationAttrs, extractImgSrcListFromHtml} fr
 // i18n
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
+import { FOCUS_RING } from '@/lib/a11y';
 
 // Lightbox
 import ImageLightboxModal, {
@@ -313,7 +314,7 @@ export default function BlogDetails() {
     return (
       <div className="py-20 text-center bg-bg-primary min-h-[50vh] flex flex-col items-center justify-center">
         <h3 className="text-xl font-bold text-text-primary mb-4">{t.notFound}</h3>
-        <Link href={blogListHref} className="text-brand-primary font-bold hover:underline">
+        <Link href={blogListHref} className={`rounded-sm font-bold text-brand-primary hover:underline ${FOCUS_RING}`}>
           {t.backToList}
         </Link>
       </div>
@@ -338,7 +339,7 @@ export default function BlogDetails() {
                         const href = localizePath(locale, `/blog/${b.slug}`);
                         return (
                           <li key={b.id}>
-                            <Link href={href} className="group block">
+                            <Link href={href} className={`group block rounded-sm ${FOCUS_RING}`}>
                               <h4 className="font-medium text-text-primary group-hover:text-brand-primary transition-colors leading-snug mb-1">
                                 {b.title}
                               </h4>
@@ -362,7 +363,7 @@ export default function BlogDetails() {
               <div className="mb-8">
                 <Link
                   href={blogListHref}
-                  className="inline-flex items-center text-text-muted hover:text-brand-primary transition-colors text-sm font-normal uppercase tracking-[0.15em] group mb-6"
+                  className={`group mb-6 inline-flex items-center rounded-sm text-sm font-normal uppercase tracking-[0.15em] text-text-muted transition-colors hover:text-brand-primary ${FOCUS_RING}`}
                 >
                   <span className="mr-2 group-hover:-translate-x-1 transition-transform">←</span>{' '}
                   {t.backToList}
@@ -404,9 +405,10 @@ export default function BlogDetails() {
                     onClick={toggleLike}
                     className={[
                       'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors',
+                      FOCUS_RING,
                       liked
-                        ? 'bg-brand-primary text-white border-brand-primary'
-                        : 'bg-bg-secondary text-text-primary border-border-light hover:bg-bg-card-hover',
+                        ? 'border-brand-primary bg-brand-primary text-white'
+                        : 'border-border-light bg-bg-secondary text-text-primary hover:bg-bg-card-hover',
                     ].join(' ')}
                     aria-pressed={liked}
                   >
@@ -416,7 +418,7 @@ export default function BlogDetails() {
 
                   <a
                     href="#comments"
-                    className="inline-flex items-center gap-2 rounded-full border border-border-light bg-bg-secondary px-4 py-2 text-sm font-semibold text-text-primary hover:bg-bg-card-hover transition-colors"
+                    className={`inline-flex items-center gap-2 rounded-full border border-border-light bg-bg-secondary px-4 py-2 text-sm font-semibold text-text-primary transition-colors hover:bg-bg-card-hover ${FOCUS_RING}`}
                   >
                     <span aria-hidden="true">💬</span>
                     <span>{t.commentsTitle}</span>
@@ -442,16 +444,19 @@ export default function BlogDetails() {
                         setActiveIdx(i);
                         setLightboxOpen(true);
                       }}
-                      className={`relative w-24 h-16 rounded-md overflow-hidden shrink-0 border-2 transition-all ${
+                      className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-md border-2 transition-all ${FOCUS_RING} ${
                         i === activeIdx
                           ? 'border-brand-primary'
                           : 'border-transparent opacity-70 hover:opacity-100'
                       }`}
                       type="button"
+                      aria-label={`${t.galleryTitle} ${i + 1}`}
+                      aria-current={i === activeIdx ? 'true' : undefined}
                     >
                       <Image
                         src={(img.thumb || img.raw) as any}
-                        alt="thumb"
+                        alt=""
+                        aria-hidden
                         fill
                         className="object-cover"
                       />

@@ -34,7 +34,7 @@
     { "question": "Kurumlar İngilizce eğitiminde en çok neye ihtiyaç duyuyor?", "problem": "Dağınık içerik değil; sürdürülebilir, profesyonel ve veliye güven veren bir modele ihtiyaç duyuyorlar.", "solution": "{{appName}}, kuruma yalnızca İngilizce öğretim materyali değil, güçlü bir eğitim modeli, daha net öğretmen akışı ve daha profesyonel bir İngilizce sunumu kazandırır.", "answer": "{{appName}}, kuruma yalnızca İngilizce öğretim materyali değil, güçlü bir eğitim modeli, daha net öğretmen akışı ve daha profesyonel bir İngilizce sunumu kazandırır." }
   ],
   "seo": {
-    "title": "Sık Sorulan Sorular | {{appName}} Anaokulu İngilizce",
+    "title": "Sık Sorulan Sorular",
     "description": "Anaokulu İngilizce eğitimi, oyun temelli öğrenme, Cambridge hazırlık ve {{appName}} sistemi hakkında sık sorulan sorular.",
     "keywords": "anaokulu ingilizce sss, okul öncesi ingilizce sorular, oyun temelli ingilizce, cambridge hazırlık anaokulu"
   }

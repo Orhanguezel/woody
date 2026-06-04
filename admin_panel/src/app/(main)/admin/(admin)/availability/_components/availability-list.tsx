@@ -79,7 +79,7 @@ export const AvailabilityList: React.FC<AvailabilityListProps> = ({ items, loadi
   const statusBadge = (r: ResourceAdminListItemDto) => {
     const active = toActiveBool((r as any).is_active);
     return active ? (
-      <Badge className="bg-emerald-100 text-emerald-700">{t('availability.filters.statusActive')}</Badge>
+      <Badge className="bg-primary/10 text-primary">{t('availability.filters.statusActive')}</Badge>
     ) : (
       <Badge variant="secondary">{t('availability.filters.statusInactive')}</Badge>
     );

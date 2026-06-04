@@ -80,7 +80,7 @@ export function SplashScreen({
 
         {/* Brand Identity */}
         <div className="text-center space-y-3 px-6 animate-[fadeIn_1s_ease-out_forwards]">
-          <h1 
+          <p
             className="text-4xl md:text-5xl lg:text-6xl tracking-[0.1em] font-display uppercase"
             style={{ 
               color: 'var(--gm-gold)',
@@ -88,7 +88,7 @@ export function SplashScreen({
             }}
           >
             {resolvedCompany}
-          </h1>
+          </p>
           
           <div 
             className="h-px w-24 mx-auto" 

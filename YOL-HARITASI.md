@@ -7,6 +7,12 @@
 
 Oluşturulma: 2026-06-02 · Stack: `sablon_proje` (Next.js 16 + Fastify + Tailwind v4 + next-intl)
 
+> **🟢 GÜNCEL DURUM (2026-06-04):** Ana teknik inşa (Faz 1–2) **bitti**. Detaylı görev takibi
+> [`WOODY-REFERANS-PARITE-CEKLIST.md`](WOODY-REFERANS-PARITE-CEKLIST.md)'de (Faz 0–9 ☑, 10–11 ◐, 12 gate).
+> Bu dosya üst-seviye **devralma/canlı geçiş** yol haritasıdır. Kalanlar: **deploy + canlı doğrulama +
+> opsiyonel performans (video transcode)**. DNS kontrolü **teyitli** (İHS panelinden A kayıtları
+> 2026-06-04'te değiştirildi — bkz. Faz 0/Bölüm 1).
+
 ---
 
 ## 0. Özet — neden yeniden inşa?
@@ -25,12 +31,14 @@ GEO Skoru: **40/100** (detay: `geo-seo-claude/Woody-ve-Arkadaslari-GEO-SEO-Rapor
 
 Geliştiriciye ulaşamadığımız için devralmanın **tek kaldıracı domain'i yönlendirebilmek.**
 
-- [ ] **Domain registrar'ı kim?** (büyük ihtimalle İHS — müşterinin İHS hesabı var)
-- [ ] Müşteri registrar panelinde **nameserver / DNS kaydını değiştirebiliyor mu?**
-- [ ] Evet ise → siteyi yeni sunucumuza bağımsız taşıyabiliriz (geliştiriciye gerek yok). ✅
-- [ ] Hayır ise → önce domain kontrolünü almak gerekir (registrar'a kimlikle başvuru).
+- [x] **Domain registrar'ı kim?** → **İHS Telekom** (NS: dijkstra/knuth.ihsdns.com). Cloudflare değil.
+- [x] Müşteri registrar panelinde **nameserver / DNS kaydını değiştirebiliyor mu?** → **EVET, teyitli.**
+      2026-06-04'te İHS DNS Zone panelinden apex+www A kayıtları başarıyla değiştirildi (InterServer
+      askıya alınınca GitHub Pages'e yönlendirildi). Panel erişimi: `minayayinevi@gmail.com`.
+- [x] Evet → siteyi yeni sunucumuza **bağımsız taşıyabiliriz** (geliştiriciye gerek yok). ✅
+- [~] Hayır senaryosu geçersiz (kontrol bizde).
 
-**Bu madde netleşmeden Faz 3'e (deploy/geçiş) geçilmez.** Kod geliştirme (Faz 1-2) paralel sürebilir.
+**✅ ÖN KOŞUL SAĞLANDI** → Faz 3 (deploy/geçiş) için DNS engeli yok; tek A kaydı değişimiyle VPS'e geçilir.
 
 ---
 
@@ -38,7 +46,7 @@ Geliştiriciye ulaşamadığımız için devralmanın **tek kaldıracı domain'i
 
 | Varlık | Kimde olmalı | Durum |
 |---|---|---|
-| Domain + DNS | Müşteri (registrar paneli) | ❓ teyit edilecek |
+| Domain + DNS | Müşteri (İHS paneli) | ✅ teyit edildi (2026-06-04 A kaydı değiştirildi) |
 | Google Search Console | Müşteri (`minayayinevi@gmail.com`) | ✅ var |
 | Google Analytics 4 (`G-0D7LYLF51K`) | Müşteri | ✅ var |
 | Google Tag Manager (`dogaadmin`) | Müşteri | ✅ var |
@@ -67,38 +75,41 @@ Bu proje `sablon_proje` şablonundan kuruldu (`frontend/ backend/ admin_panel/` 
 
 ## 4. Fazlar
 
-### Faz 1 — İçerik & varlık çıkarma (reverse-engineer)
-- [ ] Canlı siteden **tüm içeriği** çıkar: 43 sayfa (12 ürün dahil), metinler, görseller
-- [ ] **Source map**'ten (`_referans/.../main.5ff4dee7.js.map`) güncel React bileşenlerini
-      ve veri yapısını geri oku → Mayıs sürümünü kurtar
-- [ ] Nisan repo'dan tasarım + `translations.js` çevirilerini al
-- [ ] **Çıktı:** içerik envanteri + "neyi taşıyoruz / neyi yeniden kuruyoruz" listesi
-- [ ] **Store/ödeme tespiti:** gerçek ödeme/sipariş var mı? Hangi entegrasyon? (en büyük risk)
+### Faz 1 — İçerik & varlık çıkarma (reverse-engineer) — ✅ BİTTİ
+- [x] Canlı siteden **tüm içeriği** çıkar: 43 sayfa (12 ürün dahil), metinler, görseller
+- [x] **Source map**'ten (`_referans/.../main.5ff4dee7.js.map`) güncel React bileşenlerini
+      ve veri yapısını geri oku → Mayıs sürümü kurtarıldı (`_referans/_extracted/`)
+- [x] Nisan repo'dan tasarım + `translations.js` çevirilerini al
+- [x] **Çıktı:** içerik + medya envanteri (`MEDYA-ENVANTERI.md`, 88 medya) hazır
+- [~] **Store/ödeme tespiti:** ⚠ AÇIK — gerçek ödeme/sipariş akışı **müşteri tarafında kesinleştirilmeli**
+      (entegrasyon kararı bekliyor; en büyük risk)
 
-### Faz 2 — Yeni mimari (Next.js inşa)
-- [ ] next-intl ile 10 dil route yapısı + tam hreflang (tr/en/de/ar/fr/ru/es/it/nl/pt-BR + x-default)
-- [ ] URL'leri **birebir koru:** `/tr/store`, `/tr/digital-content/basic/storyland` …
-- [ ] Sayfa şablonları: anasayfa, preschool, workshop, home-tutor, woody-academy, library,
-      blog, store, digital-content + 12 ürün + lokal
-- [ ] Route bazlı meta + **JSON-LD**: Organization, EducationalOrganization,
+### Faz 2 — Yeni mimari (Next.js inşa) — ✅ BİTTİ
+- [x] 10 dil route yapısı + tam hreflang (tr/en/de/ar/fr/ru/es/it/nl/pt-br + x-default); `pt`→`pt-br` fix
+- [x] URL'leri **birebir koru:** `/tr/store`, `/tr/digital-content/basic/storyland` …
+- [x] Sayfa şablonları: anasayfa, preschool, workshop, home-tutor, woody-academy, library,
+      blog, store, digital-content + 12 ürün + lokal + level-finder
+- [x] Route bazlı meta + **JSON-LD**: Organization, EducationalOrganization,
       **Product+offers**, **Article+author** (blog), **FAQPage**, BreadcrumbList, LocalBusiness
-- [ ] Tasarımı taşı (repo zaten shadcn/Radix — uyumlu)
-- [ ] Backend API (Fastify): ürün/blog/içerik; admin_panel'den yönetim
-- [ ] **Gerçek `llms.txt`** (statik, düz metin)
+- [x] Tasarımı taşı (shadcn/Radix + referans tema token'ları)
+- [x] Backend API (Fastify): ürün/blog/içerik; admin_panel'den yönetim
+- [x] **Gerçek `llms.txt`** (statik, düz metin) + sitemap + robots
+- [x] **Build kontrolleri:** frontend/admin/backend `bun run build` temiz; `seo:schema` temiz
 
-### Faz 3 — Deploy & kesintisiz geçiş
-- [ ] Yeni host: kendi VPS (guezelwebdesign tarzı) veya Vercel (SSR uyumlu)
-- [ ] **301 redirect haritası** (URL değişeni varsa — yoksa gerek yok)
-- [ ] DNS'i yeni host'a yönlendir (Faz 1'in ön koşulu sağlanınca)
-- [ ] GA4 + GTM taşı (`G-0D7LYLF51K`, `dogaadmin`)
-- [ ] SSL, güvenlik başlıkları (HSTS, CSP, Permissions-Policy)
-- [ ] DNS email: DMARC `p=quarantine` + `rua`, SPF `-all`
+### Faz 3 — Deploy & kesintisiz geçiş — ◐ BEKLEMEDE (gate: Orhan onayı)
+- [ ] Yeni host: kendi VPS (`46.202.194.115`) → `deploy/deploy.sh` (hazır)  ⏸ gate
+- [~] **301 redirect haritası** — URL'ler birebir korundu → gerek yok (yoklanacak)
+- [ ] DNS'i yeni host'a yönlendir — ✅ ön koşul sağlandı; tek A kaydı değişimi  ⏸ gate
+- [~] GA4 + GTM taşı (`G-0D7LYLF51K`, `dogaadmin`) — config repoda var; canlı deploy sonrası **doğrulanacak**
+- [x] Güvenlik başlıkları (**HSTS, CSP, Permissions-Policy**) — repo tarafı eklendi; SSL canlıda
+- [ ] DNS email: DMARC `p=quarantine` + `rua`, SPF `-all` — **repo dışı**, İHS DNS panelinde yapılacak
 
-### Faz 4 — Doğrulama (GEO raporunu kapat)
-- [ ] Search Console URL Inspection → SSR teyidi (içerik render ediliyor mu)
-- [ ] Googlebot/GPTBot user-agent testi → artık içerik görünüyor mu
-- [ ] Schema validator + Lighthouse (Performance/SEO/Best Practices)
-- [ ] Rapordaki tüm bulguları tek tek kapat → yeni GEO skoru ölç
+### Faz 4 — Doğrulama (GEO raporunu kapat) — ◐ CANLI ORTAM GEREKLİ
+- [ ] Search Console URL Inspection → SSR teyidi (canlıda)
+- [ ] Googlebot/GPTBot/ClaudeBot user-agent testi → içerik görünüyor mu (canlıda)
+- [x] Schema validator (`seo:schema` temiz) · [ ] Lighthouse/CWV (canlıda ölçülecek)
+- [ ] Rapordaki bulguları kapat → yeni GEO skoru ölç (canlıda)
+- [~] ⚠ **Performans ön-iş:** 255MB video transcode (→ web mp4/webm + poster) deploy/CWV öncesi önerilir
 
 ---
 

@@ -8,6 +8,7 @@ import type { ContactCreatePayload } from '@/integrations/shared';
 import { safeStr, isValidEmail} from '@/integrations/shared';
 
 import { localizePath } from '@/integrations/shared';
+import { AUTH_FIELD_CLS, FOCUS_RING } from '@/lib/a11y';
 
 type ContactFormTranslations = {
   formTitle: string;
@@ -53,8 +54,7 @@ const TOPIC_MAP: Record<TopicKey, keyof ContactFormTranslations> = {
   other: 'topicOther',
 };
 
-const INPUT_CLS =
-  'w-full px-4 py-3 rounded-lg border bg-bg-primary text-text-primary focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20';
+const INPUT_CLS = `${AUTH_FIELD_CLS} rounded-lg`;
 const INPUT_ERR = 'border-error/60';
 const INPUT_OK = 'border-border-light';
 
@@ -156,7 +156,7 @@ export default function ContactForm({ locale, t }: Props) {
   };
 
   const inputCls = (field?: 'firstName' | 'phone' | 'email' | 'message') =>
-    `${INPUT_CLS} ${field && hasError(field) ? INPUT_ERR : INPUT_OK}`;
+    `${INPUT_CLS} ${FOCUS_RING} ${field && hasError(field) ? INPUT_ERR : INPUT_OK}`;
 
   return (
     <div className="bg-bg-secondary shadow-soft border border-border-light p-6 md:p-8">
@@ -303,13 +303,13 @@ export default function ContactForm({ locale, t }: Props) {
             />
             <span>
               {t.termsPrefix}{' '}
-              <a className="text-brand-primary hover:underline" href={privacyHref}>
+              <a className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`} href={privacyHref}>
                 {t.terms}
               </a>
               {t.conditions && (
                 <>
                   {' / '}
-                  <a className="text-brand-primary hover:underline" href={termsHref}>
+                  <a className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`} href={termsHref}>
                     {t.conditions}
                   </a>
                 </>
@@ -325,7 +325,7 @@ export default function ContactForm({ locale, t }: Props) {
           <button
             type="submit"
             disabled={isLoading}
-            className="inline-flex items-center justify-center w-full md:w-auto px-8 py-4 bg-brand-primary text-text-on-dark font-normal uppercase tracking-[0.2em] hover:bg-brand-hover transition-all duration-300 shadow-soft rounded-sm disabled:opacity-60"
+            className={`inline-flex w-full items-center justify-center rounded-sm bg-brand-primary px-8 py-4 font-normal uppercase tracking-[0.2em] text-text-on-dark shadow-soft transition-all duration-300 hover:bg-brand-hover disabled:opacity-60 md:w-auto ${FOCUS_RING}`}
           >
             {isLoading ? t.sending : t.submit}
           </button>

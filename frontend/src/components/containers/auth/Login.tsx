@@ -23,6 +23,7 @@ import SocialLoginButtons from '@/components/auth/SocialLoginButtons';
 // i18n
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
+import { AUTH_FIELD_CLS, FOCUS_RING } from '@/lib/a11y';
 import { getSampleEmailPlaceholder } from '@/lib/site-config';
 
 function trimSlash(x: string) {
@@ -128,7 +129,7 @@ const Login: React.FC = () => {
               {ui('login_lead', 'Hesabınıza giriş yapın veya yeni bir hesap oluşturun.')}{' '}
               <Link
                 href={registerHref}
-                className="text-brand-primary font-bold hover:text-brand-hover transition-colors"
+                className={`rounded-sm font-bold text-brand-primary transition-colors hover:text-brand-hover ${FOCUS_RING}`}
               >
                 {ui('login_register_link', 'Hesap oluştur')}
               </Link>
@@ -157,7 +158,7 @@ const Login: React.FC = () => {
               <input
                 id="login-email"
                 type="email"
-                className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                 placeholder={ui(
                   'login_email_placeholder',
                   getSampleEmailPlaceholder(locale),
@@ -177,7 +178,7 @@ const Login: React.FC = () => {
               <input
                 id="login-password"
                 type="password"
-                className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                 placeholder={ui('login_password_placeholder', 'Şifreniz')}
                 autoComplete="current-password"
                 value={password}
@@ -192,7 +193,7 @@ const Login: React.FC = () => {
                 <input
                   id="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-brand-primary focus:ring-brand-primary border-border-medium rounded cursor-pointer accent-brand-primary"
+                  className={`h-4 w-4 cursor-pointer rounded border-border-medium text-brand-primary accent-brand-primary ${FOCUS_RING}`}
                   disabled={isLoading}
                 />
                 <label
@@ -204,7 +205,7 @@ const Login: React.FC = () => {
               </div>
               <Link
                 href={forgotPasswordHref}
-                className="text-sm text-brand-primary hover:text-brand-hover hover:underline transition-all"
+                className={`rounded-sm text-sm text-brand-primary transition-all hover:text-brand-hover hover:underline ${FOCUS_RING}`}
               >
                 {ui('login_forgot_password', 'Şifremi unuttum?')}
               </Link>
@@ -212,7 +213,7 @@ const Login: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-brand-primary text-text-on-dark font-bold py-3.5 px-4 rounded-sm hover:bg-brand-hover transition-all duration-300 shadow-soft hover:shadow-medium disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center uppercase tracking-widest text-sm"
+              className={`flex w-full items-center justify-center rounded-sm bg-brand-primary px-4 py-3.5 text-sm font-bold uppercase tracking-widest text-text-on-dark shadow-soft transition-all duration-300 hover:bg-brand-hover hover:shadow-medium disabled:cursor-not-allowed disabled:opacity-70 ${FOCUS_RING}`}
               disabled={isLoading}
             >
               {loginState.isLoading
@@ -239,7 +240,7 @@ const Login: React.FC = () => {
                {ui('login_no_account', 'Hesabınız yok mu?')}{' '}
                <Link
                  href={registerHref}
-                 className="text-brand-primary font-bold hover:text-brand-hover hover:underline transition-all"
+                 className={`rounded-sm font-bold text-brand-primary transition-all hover:text-brand-hover hover:underline ${FOCUS_RING}`}
                >
                  {ui('login_register_cta', 'Buradan kayıt olun')}
                </Link>

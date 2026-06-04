@@ -1,7 +1,7 @@
 import JsonLd from '@/seo/JsonLd';
 import WoodyFallback from '@/components/woody/WoodyFallback';
-import WoodyPage from '@/components/woody/WoodyPage';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
+import WorkshopPageClient from '@/components/woody/workshop/WorkshopPageClient';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
 
 const PAGE_KEY = 'workshop';
@@ -22,7 +22,7 @@ export default async function WorkshopPage({ params }: Props) {
   return (
     <>
       <JsonLd id="woody-workshop" data={woodyPageGraph({ locale, pathname: PATHNAME, content })} />
-      <WoodyPage content={content} locale={locale} />
+      <WorkshopPageClient content={content} locale={locale} />
     </>
   );
 }

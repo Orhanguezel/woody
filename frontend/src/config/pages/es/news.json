@@ -7,28 +7,28 @@
       "order": 1,
       "title": "Acuerdo firmado en toda Alemania",
       "description": "Se ha firmado con Don Bosco Medien, una red de distribución y comercialización de libros, un acuerdo que cubre los derechos de uso y venta de todo el contenido perteneciente a {{appName}} y sus Amigos en toda Alemania.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+      "image": "/media/woody/reference/q3w780z7_1.png"
     },
     {
       "id": 2,
       "order": 2,
       "title": "Acuerdo firmado en toda Rusia",
       "description": "Se ha firmado con Prosveshcheniye Publishers un acuerdo que cubre los derechos de uso y venta de todo el contenido perteneciente a {{appName}} y sus Amigos en toda Rusia.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+      "image": "/media/woody/reference/796xqghe_2.png"
     },
     {
       "id": 3,
       "order": 3,
       "title": "Se ha lanzado el proceso de certificación Cambridge",
       "description": "El proceso de certificación Cambridge se ha lanzado oficialmente en colaboración con British Side.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+      "image": "/media/woody/reference/xmex01in_Woody%20(7).png"
     },
     {
       "id": 4,
       "order": 4,
       "title": "Las escuelas se están transformando en mini campus de Cambridge",
       "description": "En colaboración con British Side, estamos transformando las escuelas en mini campus de Cambridge.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "image": "/media/woody/reference/881wsvif_rekant.png",
       "fitImage": true
     },
     {
@@ -36,14 +36,14 @@
       "order": 5,
       "title": "Descubre el sistema educativo Cambridge",
       "description": "Conozca el enfoque internacional de la educación de inglés en preescolar.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+      "video": "/media/woody/reference/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
     },
     {
       "id": 6,
       "order": 6,
       "title": "¡Ahora también somos una imprenta!",
       "description": "Producimos contenido más sólido y crecemos con libertad.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+      "video": "/media/woody/reference/b69zuql4_Ads%C4%B1z%20(1080%20x%201350%20piksel)%20kopyas%C4%B1%20kopyas%C4%B1%20(4).mp4"
     }
   ]
 }

@@ -2,20 +2,20 @@
   "title": "Passez au système de certification Cambridge English avec {{appName}}",
   "eyebrow": "Pourquoi {{appName}} ?",
   "description": "Un modèle d'apprentissage structuré et basé sur le jeu qui initie les enfants dès leur plus jeune âge à une éducation à l'anglais conforme aux normes internationales.",
-  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "image": "/media/woody/reference/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
   "imageAlt": "Personnages {{appName}}",
   "certifications": [
     {
       "name": "Cambridge English",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+      "image": "/media/woody/reference/0ljulhkj_8.png"
     },
     {
       "name": "British Side",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+      "image": "/media/woody/reference/1lah28n2_7.png"
     },
     {
       "name": "{{appName}} Academy",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+      "image": "/media/woody/reference/22mg24ku_9.png"
     }
   ],
   "sections": [

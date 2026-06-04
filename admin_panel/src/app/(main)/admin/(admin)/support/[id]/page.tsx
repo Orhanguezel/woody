@@ -53,11 +53,13 @@ export default function SupportTicketDetailPage() {
     }
   };
 
-  if (ticketLoading) return (
-    <div className="flex items-center justify-center min-h-[400px]">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#16a34a]"></div>
-    </div>
-  );
+  if (ticketLoading) {
+    return (
+      <div className="flex min-h-[400px] items-center justify-center" role="status" aria-live="polite" aria-label="Yükleniyor">
+        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" aria-hidden />
+      </div>
+    );
+  }
   
   if (!ticket) return (
     <div className="p-20 text-center font-serif italic text-muted-foreground opacity-50">
@@ -70,13 +72,19 @@ export default function SupportTicketDetailPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
         <div className="flex items-start gap-6">
-          <Button variant="ghost" size="icon" onClick={() => router.back()} className="rounded-full hover:bg-[#16a34a]/10 mt-1">
-            <ArrowLeft className="size-5" />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => router.back()}
+            className="mt-1 rounded-full hover:bg-primary/10"
+            aria-label="Geri dön"
+          >
+            <ArrowLeft className="size-5" aria-hidden />
           </Button>
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest ${
-                ticket.status === 'closed' ? 'bg-muted text-muted-foreground' : 'bg-[#16a34a]/10 text-[#16a34a]'
+                ticket.status === 'closed' ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
               }`}>
                 {ticket.status.replace('_', ' ').toUpperCase()}
               </div>
@@ -92,7 +100,7 @@ export default function SupportTicketDetailPage() {
             onClick={handleToggle}
             className={cn(
               "rounded-full px-8 h-11 font-bold tracking-widest uppercase text-[10px]",
-              ticket.status === 'closed' ? "border-[#16a34a]/30 text-[#16a34a]" : "border-muted text-muted-foreground"
+              ticket.status === 'closed' ? 'border-primary/30 text-primary' : 'border-muted text-muted-foreground'
             )}
           >
             {ticket.status === 'closed' ? 'TALEBİ YENİDEN AÇ' : 'TALEBİ KAPAT'}
@@ -126,7 +134,7 @@ export default function SupportTicketDetailPage() {
           {/* Replies */}
           <div className="space-y-6">
             <div className="flex items-center gap-4 px-6">
-              <MessageSquare className="text-[#16a34a]" size={16} />
+              <MessageSquare className="text-primary" size={16} aria-hidden />
               <span className="text-[10px] font-bold text-muted-foreground tracking-[0.2em] uppercase">Konuşma Geçmişi</span>
             </div>
 
@@ -141,7 +149,7 @@ export default function SupportTicketDetailPage() {
                   className={cn(
                     "rounded-[32px] overflow-hidden transition-all duration-500",
                     reply.is_admin 
-                      ? "bg-[#16a34a]/5 border-[#16a34a]/20 ml-12" 
+                      ? 'ml-12 border-primary/20 bg-primary/5'
                       : "bg-card border-border/40 mr-12 shadow-sm"
                   )}
                 >
@@ -149,7 +157,7 @@ export default function SupportTicketDetailPage() {
                     <div className="flex items-center gap-3">
                       <div className={cn(
                         "w-8 h-8 rounded-xl flex items-center justify-center",
-                        reply.is_admin ? "bg-[#16a34a] text-[#ecfdf5]" : "bg-muted text-muted-foreground"
+                        reply.is_admin ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
                       )}>
                         {reply.is_admin ? <Shield size={14} /> : <User size={14} />}
                       </div>
@@ -173,26 +181,28 @@ export default function SupportTicketDetailPage() {
 
           {/* Reply Form */}
           {ticket.status !== 'closed' && (
-            <Card className="bg-card border-[#16a34a]/30 rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(22,163,74,0.06)]">
-              <div className="p-6 border-b border-[#16a34a]/10 bg-[#16a34a]/5 flex items-center gap-3">
-                <ShieldCheck className="text-[#16a34a]" size={16} />
-                <span className="text-[10px] font-bold text-[#16a34a] tracking-[0.2em] uppercase">Resmi Yanıt Oluştur</span>
+            <Card className="overflow-hidden rounded-[32px] border-primary/30 bg-card shadow-sm">
+              <div className="flex items-center gap-3 border-b border-primary/10 bg-primary/5 p-6">
+                <ShieldCheck className="text-primary" size={16} aria-hidden />
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Resmi Yanıt Oluştur</span>
               </div>
               <CardContent className="p-8">
-                <Textarea 
-                  placeholder="Kullanıcıya iletilecek yanıtı buraya yazın..." 
-                  className="min-h-[160px] bg-transparent border-none p-0 focus-visible:ring-0 text-base font-serif italic leading-relaxed placeholder:text-muted-foreground/30"
+                <Textarea
+                  placeholder="Kullanıcıya iletilecek yanıtı buraya yazın..."
+                  aria-label="Destek yanıtı"
+                  className="min-h-[160px] border-none bg-transparent p-0 font-serif text-base italic leading-relaxed placeholder:text-muted-foreground/30 focus-visible:ring-2 focus-visible:ring-ring/50"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
               </CardContent>
               <div className="p-6 bg-muted/10 border-t border-border/30 flex justify-end">
-                <Button 
-                  onClick={handleSend} 
-                  disabled={isSending || !message.trim()} 
-                  className="bg-[#16a34a] text-[#ecfdf5] hover:bg-[#16a34a]/90 rounded-full px-10 h-11 font-bold tracking-widest uppercase shadow-[0_10px_20px_rgba(22,163,74,0.2)]"
+                <Button
+                  onClick={handleSend}
+                  disabled={isSending || !message.trim()}
+                  className="h-11 rounded-full px-10 font-bold uppercase tracking-widest"
+                  aria-busy={isSending}
                 >
-                  <Send className="mr-2 size-4" />
+                  <Send className="mr-2 size-4" aria-hidden />
                   YANITI GÖNDER
                 </Button>
               </div>
@@ -229,13 +239,15 @@ export default function SupportTicketDetailPage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-[10px] font-bold text-muted-foreground tracking-widest uppercase flex items-center gap-2">
-                    <AlertCircle size={12} className="text-[#16a34a]" /> Öncelik
+                    <AlertCircle size={12} className="text-primary" aria-hidden /> Öncelik
                   </span>
                   <Badge variant="outline" className={cn(
                     "rounded-full px-4 border-none font-bold text-[9px] tracking-widest uppercase",
-                    ticket.priority === 'urgent' ? "bg-[#E55B4D]/10 text-[#E55B4D]" :
-                    ticket.priority === 'high' ? "bg-[#F0A030]/10 text-[#F0A030]" :
-                    "bg-[#16a34a]/10 text-[#16a34a]"
+                    ticket.priority === 'urgent'
+                      ? 'bg-destructive/10 text-destructive'
+                      : ticket.priority === 'high'
+                        ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400'
+                        : 'bg-primary/10 text-primary'
                   )}>
                     {ticket.priority.toUpperCase()}
                   </Badge>
@@ -243,14 +255,14 @@ export default function SupportTicketDetailPage() {
 
                 <div className="flex justify-between items-center">
                   <span className="text-[10px] font-bold text-muted-foreground tracking-widest uppercase flex items-center gap-2">
-                    <Calendar size={12} className="text-[#16a34a]" /> Oluşturulma
+                    <Calendar size={12} className="text-primary" aria-hidden /> Oluşturulma
                   </span>
                   <span className="font-mono text-xs">{format(new Date(ticket.created_at), 'dd.MM.yyyy')}</span>
                 </div>
 
                 <div className="flex justify-between items-center">
                   <span className="text-[10px] font-bold text-muted-foreground tracking-widest uppercase flex items-center gap-2">
-                    <Clock size={12} className="text-[#16a34a]" /> Son Güncelleme
+                    <Clock size={12} className="text-primary" aria-hidden /> Son Güncelleme
                   </span>
                   <span className="font-mono text-xs">{format(new Date(ticket.updated_at), 'dd.MM.yyyy')}</span>
                 </div>
@@ -258,8 +270,8 @@ export default function SupportTicketDetailPage() {
             </div>
           </Card>
 
-          <div className="p-8 rounded-[32px] bg-[#16a34a]/5 border border-[#16a34a]/20">
-            <h4 className="font-serif text-lg mb-2 italic text-[#16a34a]">Moderatör Notu</h4>
+          <div className="rounded-[32px] border border-primary/20 bg-primary/5 p-8">
+            <h4 className="mb-2 font-serif text-lg italic text-primary">Moderatör Notu</h4>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Bu talep üzerinden yapılan tüm yazışmalar kullanıcıya anlık bildirim olarak gönderilmektedir. Lütfen yanıtlarınızda kurumunuzun onaylı iletişim tonunu koruyun.
             </p>

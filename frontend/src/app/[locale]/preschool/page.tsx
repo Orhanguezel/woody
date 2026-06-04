@@ -1,7 +1,7 @@
 import JsonLd from '@/seo/JsonLd';
 import WoodyFallback from '@/components/woody/WoodyFallback';
-import WoodyPage from '@/components/woody/WoodyPage';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
+import PreschoolPageClient from '@/components/woody/preschool/PreschoolPageClient';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
 
 const PAGE_KEY = 'preschool';
@@ -22,7 +22,7 @@ export default async function PreschoolPage({ params }: Props) {
   return (
     <>
       <JsonLd id="woody-preschool" data={woodyPageGraph({ locale, pathname: PATHNAME, content, schemaType: 'EducationalOrganization' })} />
-      <WoodyPage content={content} locale={locale} />
+      <PreschoolPageClient content={content} locale={locale} />
     </>
   );
 }

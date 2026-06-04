@@ -155,6 +155,10 @@ _referans/
 # lokalde bulunur ama woody reposunda tracklenmez. Kurulum: bu repoyu packages/ olarak klonla.
 packages/
 
+# Referans medya (video/ses/görsel) — 1.2GB, GitHub 100MB dosya limitini aşar.
+# Git'te DEĞİL; VPS'e deploy/deploy.sh rsync'i ile gider (dosya sisteminden). storage_assets seed URL'leri map'li.
+frontend/public/media/
+
 # Deploy sirlari — VPS credentials, SSH bilgileri (asla commit edilmez)
 .secrets/
 

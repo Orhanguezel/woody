@@ -34,7 +34,7 @@ ON DUPLICATE KEY UPDATE `value` = VALUES(`value`);
 -- Tema seed'lerinden sonra Woody Klasik tokenlarının aktif kalmasını garanti eder.
 INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 ('ss-active-theme', 'active_theme_preset', '*', 'woody-klasik'),
-('ss-woody-design-tokens', 'design_tokens', '*', '{"version":"2","colors":{"brand_primary":"#2196F3","brand_primary_dark":"#0B5CAD","brand_primary_light":"#8ED1FF","brand_secondary":"#FF6A00","brand_secondary_dim":"#C94F00","brand_secondary_light":"#FFB800","brand_accent":"#F5C518","bg_base":"#F7FBFF","bg_deep":"#EAF6FF","bg_surface":"#FFFFFF","bg_surface_high":"#FFF7DA","text_primary":"#0B1F3A","text_secondary":"#244B72","text_muted":"#61748C","text_muted_soft":"#8A9AAF","border":"rgba(33,150,243,0.24)","border_soft":"rgba(33,150,243,0.12)","success":"#2ECC71","warning":"#FFB800","error":"#D32F2F","info":"#2196F3","level_basic":"#2196F3","level_junior":"#F5C518","level_senior":"#E91E90","level_pro":"#D32F2F","bg_base_dark":"#07182C","bg_deep_dark":"#04101F","bg_surface_dark":"#0B1F3A","bg_surface_high_dark":"#12365F","text_primary_dark":"#F7FBFF","text_secondary_dark":"#D8EAFF","text_muted_dark":"#A8C4DF"},"typography":{"font_display":"var(--font-fredoka), var(--font-inter), system-ui, sans-serif","font_serif":"var(--font-source-serif), Georgia, serif","font_sans":"var(--font-inter), system-ui, sans-serif","font_mono":"var(--font-ibm-mono), ui-monospace, monospace","base_size":"16px"},"radius":{"xs":"4px","sm":"8px","md":"12px","lg":"16px","xl":"24px","pill":"9999px"},"shadows":{"soft":"0 2px 20px rgba(33,150,243,0.10)","card":"0 8px 40px rgba(11,31,58,0.12)","glow_primary":"0 0 60px rgba(33,150,243,0.18)","glow_gold":"0 0 34px rgba(245,197,24,0.22)"},"branding":{"app_name":"Woody ve Arkadaşları","tagline":"Çocuklar için İngilizce, hikaye ve dijital öğrenme deneyimi","tagline_en":"English, stories, and digital learning for children","logo_url":"/uploads/brand/logo-primary.svg","favicon_url":"/uploads/brand/favicon-512.png","theme_color":"#2196F3","theme_color_dark":"#0B1F3A","og_image_url":"/img/og-default.jpg"}}')
+('ss-woody-design-tokens', 'design_tokens', '*', '{"version":"2","colors":{"brand_primary":"#FF6A00","brand_primary_dark":"#E85C00","brand_primary_light":"#FFB800","brand_secondary":"#2196F3","brand_secondary_dim":"#0B5CAD","brand_secondary_light":"#8ED1FF","brand_accent":"#F5C518","gold_50":"#FFF9E6","gold_100":"#FFF0B7","gold_200":"#FFE280","gold_300":"#FFD24B","gold_400":"#FFC233","gold_500":"#F5C518","gold_600":"#D6A700","gold_700":"#AA7F00","gold_800":"#765600","gold_900":"#463400","sand_50":"#FFFFFF","sand_100":"#F7F7F7","sand_200":"#ECECEC","sand_300":"#D6D6D6","sand_400":"#B8B8B8","sand_500":"#777777","sand_600":"#555555","sand_700":"#333333","sand_800":"#161616","sand_900":"#0A0A0A","bg_base":"#FFFFFF","bg_deep":"#F7F7F7","bg_surface":"#FFFFFF","bg_surface_high":"#FFF9E6","text_primary":"#0A0A0A","text_secondary":"#0B1F3A","text_muted":"#555555","text_muted_soft":"#777777","border":"rgba(10,10,10,0.16)","border_soft":"rgba(10,10,10,0.08)","success":"#2ECC71","warning":"#FFB800","error":"#D32F2F","info":"#2196F3","level_basic":"#2196F3","level_junior":"#F5C518","level_senior":"#E91E90","level_pro":"#D32F2F","bg_base_dark":"#0B1F3A","bg_deep_dark":"#061224","bg_surface_dark":"#0B1F3A","bg_surface_high_dark":"#12365F","text_primary_dark":"#FFFFFF","text_secondary_dark":"#D8EAFF","text_muted_dark":"#A8C4DF"},"typography":{"font_display":"var(--font-fredoka), var(--font-inter), system-ui, sans-serif","font_serif":"var(--font-source-serif), Georgia, serif","font_sans":"var(--font-inter), system-ui, sans-serif","font_mono":"var(--font-ibm-mono), ui-monospace, monospace","base_size":"16px"},"radius":{"xs":"4px","sm":"6px","md":"8px","lg":"12px","xl":"16px","pill":"9999px"},"shadows":{"soft":"0 2px 20px rgba(10,10,10,0.06)","card":"0 8px 40px rgba(10,10,10,0.10)","glow_primary":"0 0 60px rgba(255,106,0,0.18)","glow_gold":"0 0 34px rgba(245,197,24,0.22)"},"branding":{"app_name":"Woody ve Arkadaşları","tagline":"Okul öncesi İngilizce eğitiminde oyun temelli ve sistemli öğrenme modeli.","tagline_en":"A play-based and structured preschool English learning model.","logo_url":"/uploads/brand/logo-primary.svg","favicon_url":"/uploads/brand/favicon-512.png","theme_color":"#FF6A00","theme_color_dark":"#0B1F3A","og_image_url":"/img/og-default.jpg"}}')
 ON DUPLICATE KEY UPDATE `value` = VALUES(`value`);
 
 INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
@@ -53,7 +53,14 @@ INSERT INTO `menu_items` (`id`, `parent_id`, `type`, `location`, `order_num`, `i
 ('11111111-1111-4111-8111-000000000008', NULL, 'custom', 'header', 80, 0),
 ('11111111-1111-4111-8111-000000000009', NULL, 'custom', 'header', 90, 0),
 ('11111111-1111-4111-8111-000000000010', NULL, 'custom', 'header', 100, 0),
-('11111111-1111-4111-8111-000000000011', NULL, 'custom', 'header', 110, 0)
+('11111111-1111-4111-8111-000000000011', NULL, 'custom', 'header', 110, 0),
+('11111111-1111-4111-8111-000000000201', NULL, 'custom', 'footer', 10, 1),
+('11111111-1111-4111-8111-000000000202', NULL, 'custom', 'footer', 20, 1),
+('11111111-1111-4111-8111-000000000203', NULL, 'custom', 'footer', 30, 1),
+('11111111-1111-4111-8111-000000000204', NULL, 'custom', 'footer', 40, 1),
+('11111111-1111-4111-8111-000000000205', NULL, 'custom', 'footer', 50, 1),
+('11111111-1111-4111-8111-000000000206', NULL, 'custom', 'footer', 60, 1),
+('11111111-1111-4111-8111-000000000207', NULL, 'custom', 'footer', 70, 1)
 ON DUPLICATE KEY UPDATE `parent_id` = VALUES(`parent_id`), `order_num` = VALUES(`order_num`), `is_active` = VALUES(`is_active`);
 
 INSERT INTO `menu_items_i18n` (`id`, `menu_item_id`, `locale`, `title`, `url`) VALUES
@@ -78,7 +85,21 @@ INSERT INTO `menu_items_i18n` (`id`, `menu_item_id`, `locale`, `title`, `url`) V
 ('22222222-2222-4222-8222-000000000108', '11111111-1111-4111-8111-000000000008', 'en', 'Home Tutor', '/home-tutor'),
 ('22222222-2222-4222-8222-000000000109', '11111111-1111-4111-8111-000000000009', 'en', 'Library', '/library'),
 ('22222222-2222-4222-8222-000000000110', '11111111-1111-4111-8111-000000000010', 'en', 'Blog', '/blog'),
-('22222222-2222-4222-8222-000000000111', '11111111-1111-4111-8111-000000000011', 'en', 'Contact', '/contact')
+('22222222-2222-4222-8222-000000000111', '11111111-1111-4111-8111-000000000011', 'en', 'Contact', '/contact'),
+('22222222-2222-4222-8222-000000000201', '11111111-1111-4111-8111-000000000201', 'tr', 'Okul', '/preschool'),
+('22222222-2222-4222-8222-000000000202', '11111111-1111-4111-8111-000000000202', 'tr', 'Atölye', '/workshop'),
+('22222222-2222-4222-8222-000000000203', '11111111-1111-4111-8111-000000000203', 'tr', 'Ev & Özel Ders', '/home-tutor'),
+('22222222-2222-4222-8222-000000000204', '11111111-1111-4111-8111-000000000204', 'tr', 'Woody Academy', '/woody-academy'),
+('22222222-2222-4222-8222-000000000205', '11111111-1111-4111-8111-000000000205', 'tr', 'Kütüphane', '/library'),
+('22222222-2222-4222-8222-000000000206', '11111111-1111-4111-8111-000000000206', 'tr', 'Woody Store', '/store'),
+('22222222-2222-4222-8222-000000000207', '11111111-1111-4111-8111-000000000207', 'tr', 'Blog', '/blog'),
+('22222222-2222-4222-8222-000000000301', '11111111-1111-4111-8111-000000000201', 'en', 'School', '/preschool'),
+('22222222-2222-4222-8222-000000000302', '11111111-1111-4111-8111-000000000202', 'en', 'Workshop', '/workshop'),
+('22222222-2222-4222-8222-000000000303', '11111111-1111-4111-8111-000000000203', 'en', 'Home & Private Lesson', '/home-tutor'),
+('22222222-2222-4222-8222-000000000304', '11111111-1111-4111-8111-000000000204', 'en', 'Woody Academy', '/woody-academy'),
+('22222222-2222-4222-8222-000000000305', '11111111-1111-4111-8111-000000000205', 'en', 'Library', '/library'),
+('22222222-2222-4222-8222-000000000306', '11111111-1111-4111-8111-000000000206', 'en', 'Woody Store', '/store'),
+('22222222-2222-4222-8222-000000000307', '11111111-1111-4111-8111-000000000207', 'en', 'Blog', '/blog')
 ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `url` = VALUES(`url`);
 
 INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES

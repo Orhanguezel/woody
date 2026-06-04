@@ -5,7 +5,7 @@ import { Providers } from '../providers';
 import ClientLayout from '../ClientLayout';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import ScrollAnchorFixer from '@/components/common/ScrollAnchorFixer';
-import { buildMetadataFromSeo, fetchSeoObject, fetchSeoPageObject, mergeSeoPageIntoSeo } from '@/seo/server';
+import { buildPageMetadata } from '@/seo/server';
 import JsonLd from '@/seo/JsonLd';
 import { graph, org, website } from '@/seo/jsonld';
 import type { PublicMenuItemDto } from '@/integrations/shared';
@@ -41,11 +41,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const [seo, homeSeo] = await Promise.all([
-    fetchSeoObject(locale),
-    fetchSeoPageObject(locale, 'home'),
-  ]);
-  return await buildMetadataFromSeo(mergeSeoPageIntoSeo(seo, homeSeo), { locale, pathname: '/' });
+  return buildPageMetadata({
+    locale,
+    pageKey: 'home',
+    pathname: '/',
+    fallback: {
+      title: locale === 'tr' ? 'Woody ve Arkadaşları | Okul Öncesi İngilizce' : 'Woody and Friends | Preschool English',
+      description:
+        locale === 'tr'
+          ? 'Okul öncesi İngilizce eğitim setleri, dijital içerikler ve öğretmen destek platformu.'
+          : 'Preschool English learning sets, digital content, and teacher support platform.',
+    },
+  });
 }
 
 const SITE_URL = getPublicSiteOrigin();

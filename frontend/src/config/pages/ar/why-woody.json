@@ -2,20 +2,20 @@
   "title": "الانتقال إلى نظام شهادات كامبريدج للغة الإنجليزية مع {{appName}}",
   "eyebrow": "لماذا {{appName}}؟",
   "description": "نموذج تعليمي منظم وقائم على اللعب يعرّف الأطفال على تعليم اللغة الإنجليزية وفق معايير دولية في سن مبكرة.",
-  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "image": "/media/woody/reference/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
   "imageAlt": "شخصيات {{appName}}",
   "certifications": [
     {
       "name": "Cambridge English",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+      "image": "/media/woody/reference/0ljulhkj_8.png"
     },
     {
       "name": "British Side",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+      "image": "/media/woody/reference/1lah28n2_7.png"
     },
     {
       "name": "{{appName}} Academy",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+      "image": "/media/woody/reference/22mg24ku_9.png"
     }
   ],
   "sections": [

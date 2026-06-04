@@ -13,6 +13,7 @@ import { useListMenuItemsQuery, useGetSiteSettingByKeyQuery } from '@/integratio
 import type { PublicMenuItemDto } from '@/integrations/shared';
 import { useUiSection } from '@/i18n';
 import { useAuthStore } from '@/features/auth/auth.store';
+import { FOCUS_RING } from '@/lib/a11y';
 import { getHeaderFallbackMenu, getPublicAppName } from '@/lib/site-config';
 import { WOODY_LOCALES } from '@/components/woody/routes';
 
@@ -43,6 +44,16 @@ type FallbackMenuItem = {
 };
 
 const FALLBACK_MENU = getHeaderFallbackMenu() as FallbackMenuItem[];
+
+const REFERENCE_NAV = [
+  { id: 'ref-home', url: '/', labels: { tr: 'HOME', en: 'HOME', de: 'HOME' } },
+  { id: 'ref-store', url: '/store', labels: { tr: 'WOODY STORE', en: 'WOODY STORE', de: 'WOODY STORE' } },
+  { id: 'ref-preschool', url: '/preschool', labels: { tr: 'OKUL', en: 'SCHOOL', de: 'SCHULE' } },
+  { id: 'ref-workshop', url: '/workshop', labels: { tr: 'ATÖLYE', en: 'WORKSHOP', de: 'WORKSHOP' } },
+  { id: 'ref-home-tutor', url: '/home-tutor', labels: { tr: 'EV & ÖZEL DERS', en: 'HOME & PRIVATE LESSON', de: 'ZUHAUSE & EINZELUNTERRICHT' } },
+  { id: 'ref-academy', url: '/woody-academy', labels: { tr: 'WOODY ACADEMY', en: 'WOODY ACADEMY', de: 'WOODY ACADEMY' } },
+  { id: 'ref-blog', url: '/blog', labels: { tr: 'BLOG', en: 'BLOG', de: 'BLOG' } },
+] as const;
 
 const cleanHashLink = (href: string) => {
   if (!href) return href;
@@ -104,17 +115,39 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
   const headerMenuItems: MenuItemWithChildren[] = useMemo(() => {
     const raw = menuData as any;
     const list: MenuItemWithChildren[] = Array.isArray(raw) ? raw : Array.isArray(raw?.items) ? raw.items : [];
+    const isPublicAuthMenuItem = (item: MenuItemWithChildren) => {
+      const rawUrl = cleanHashLink(String(item.url || (item as any).href || '')).toLowerCase();
+      const title = String(item.title || (item as any).label || '').toLowerCase();
+      return /(^|\/)(login|register|logout|auth)(\/|$)/.test(rawUrl)
+        || /\b(login|register|registrieren|anmelden|sign in|sign up)\b/i.test(title)
+        || /\b(giriş|kayıt|çıkış)\b/i.test(title);
+    };
+    const filterPublicMenu = (items: MenuItemWithChildren[]): MenuItemWithChildren[] =>
+      items
+        .filter((item) => !isPublicAuthMenuItem(item))
+        .map((item) => ({
+          ...item,
+          children: item.children?.length ? filterPublicMenu(item.children as MenuItemWithChildren[]) : undefined,
+        }));
     const sortRecursive = (items: MenuItemWithChildren[]): MenuItemWithChildren[] =>
-      items.slice().sort((a, b) => ((a as any)?.order_num ?? 0) - ((b as any)?.order_num ?? 0))
+      filterPublicMenu(items).slice().sort((a, b) => ((a as any)?.order_num ?? 0) - ((b as any)?.order_num ?? 0))
         .map((it) => ({ ...it, children: it.children ? sortRecursive(it.children as MenuItemWithChildren[]) : undefined }));
-    if (list.length) return sortRecursive(list);
     const mapItem = (item: FallbackMenuItem): MenuItemWithChildren => ({
       id: item.id,
       url: item.url ?? '',
       title: item.label[resolvedLocale] || item.label.tr || item.label.en,
       ...(item.children?.length ? { children: item.children.map(mapItem) } : {}),
     } as MenuItemWithChildren);
-    return FALLBACK_MENU.map(mapItem);
+    const source = list.length ? sortRecursive(list) : filterPublicMenu(FALLBACK_MENU.map(mapItem));
+    return REFERENCE_NAV.map((ref, index) => {
+      const apiItem = source.find((item) => cleanHashLink(String(item.url || '')) === ref.url);
+      return {
+        id: apiItem?.id || ref.id,
+        url: apiItem?.url || ref.url,
+        title: ref.labels[resolvedLocale as keyof typeof ref.labels] || ref.labels.en,
+        order_num: apiItem?.order_num ?? (index + 1) * 10,
+      } as MenuItemWithChildren;
+    });
   }, [menuData, resolvedLocale]);
 
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
@@ -137,8 +170,11 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
     if (!hasChildren) {
       return (
         <li key={id} className="border-b border-border-light last:border-0">
-          <Link href={localizePath(resolvedLocale, cleanHashLink(item.url || '#'))} onClick={onClose}
-            className="block py-3.5 text-text-primary hover:text-brand-primary font-normal text-[0.95rem] transition-colors">
+          <Link
+            href={localizePath(resolvedLocale, cleanHashLink(item.url || '#'))}
+            onClick={onClose}
+            className={`block rounded-md py-3.5 font-normal text-[0.95rem] text-text-primary transition-colors hover:text-brand-primary ${FOCUS_RING}`}
+          >
             {item.title || rawUrl}
           </Link>
         </li>
@@ -147,11 +183,21 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
 
     return (
       <li key={id} className="border-b border-border-light last:border-0">
-        <button type="button" onClick={() => toggleSubmenu(id)} aria-expanded={isOpen}
-          className={`flex items-center justify-between w-full py-3.5 text-left font-normal text-[0.95rem] transition-colors ${isOpen ? 'text-brand-primary' : 'text-text-primary hover:text-brand-primary'}`}>
+        <button
+          type="button"
+          onClick={() => toggleSubmenu(id)}
+          aria-expanded={isOpen}
+          className={`flex w-full items-center justify-between rounded-md py-3.5 text-left font-normal text-[0.95rem] transition-colors ${FOCUS_RING} ${isOpen ? 'text-brand-primary' : 'text-text-primary hover:text-brand-primary'}`}
+        >
           <span>{item.title || rawUrl}</span>
-          <svg className={`w-3 h-3 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-            fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <svg
+            className={`h-3 w-3 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            aria-hidden
+          >
             <path d="M6 9l6 6 6-6" />
           </svg>
         </button>
@@ -164,8 +210,6 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
     );
   };
 
-  const loginHref = localizePath(resolvedLocale, '/login');
-  const registerHref = localizePath(resolvedLocale, '/register');
   const profileHref = localizePath(resolvedLocale, '/profile');
   const logoutHref = localizePath(resolvedLocale, '/logout');
   const { isAuthenticated } = useAuthStore();
@@ -174,14 +218,19 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
     <>
       {/* Overlay */}
       <div
-        className={`fixed inset-0 bg-black/70 z-[10000] transition-opacity duration-300 ${open ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
-        onClick={onClose} aria-hidden="true"
+        className={`fixed inset-0 z-[10000] bg-black/70 transition-opacity duration-300 ${open ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0'}`}
+        onClick={onClose}
+        aria-hidden={!open}
       />
 
       {/* Panel */}
       <div
         className={`fixed right-0 top-0 h-full w-full max-w-md bg-bg-primary z-[10001] shadow-medium transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'} overflow-y-auto border-l border-border-light`}
-        tabIndex={-1} aria-modal="true" role="dialog" aria-label="Navigation"
+        tabIndex={-1}
+        aria-modal="true"
+        role="dialog"
+        aria-hidden={!open}
+        aria-label={resolvedLocale === 'tr' ? 'Mobil menü' : 'Mobile navigation'}
       >
         <div className="h-full overflow-y-auto p-8">
           <div className="flex flex-col h-full">
@@ -189,8 +238,12 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
             <div className="flex justify-between items-center mb-10">
               <SiteLogo variant="light" alt={effectiveBrand.name}
                 wrapperClassName="w-16! h-16! max-w-16!" className="w-16! h-16! max-w-16! rounded-full object-cover border border-brand-primary/60" />
-              <button type="button" onClick={onClose} aria-label={ui('ui_header_close', 'Close')}
-                className="w-10 h-10 flex items-center justify-center rounded-full border border-border-light text-text-muted hover:text-brand-primary hover:border-brand-primary transition-all">
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label={ui('ui_header_close', 'Close')}
+                className={`flex h-10 w-10 items-center justify-center rounded-full border border-border-light text-text-muted transition-all hover:border-brand-primary hover:text-brand-primary ${FOCUS_RING}`}
+              >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -204,8 +257,13 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
                 <span>{ui('ui_header_language', 'Sprache')}</span>
               </label>
               <div className="relative">
-                <select id="lang-offcanvas" value={resolvedLocale} onChange={onLangChange} disabled={localesLoading}
-                  className="w-full p-3 border border-border-light bg-bg-card text-text-primary text-sm focus:outline-none focus:border-brand-primary appearance-none cursor-pointer transition-colors">
+                <select
+                  id="lang-offcanvas"
+                  value={resolvedLocale}
+                  onChange={onLangChange}
+                  disabled={localesLoading}
+                  className={`w-full cursor-pointer appearance-none border border-border-light bg-bg-card p-3 text-sm text-text-primary transition-colors focus:border-brand-primary focus:outline-none ${FOCUS_RING}`}
+                >
                   {activeLocales.map((loc) => (
                     <option key={loc} value={loc}>{getLanguageLabel(loc, String(loc).toUpperCase())}</option>
                   ))}
@@ -219,7 +277,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
             </div>
 
             {/* Menu */}
-            <nav className="mb-8 flex-1">
+            <nav className="mb-8 flex-1" aria-label={resolvedLocale === 'tr' ? 'Menü' : 'Menu'}>
               <ul className="flex flex-col">
                 {headerMenuItems.map((it) => renderMenuItem(it, 0))}
                 {isMenuLoading && (
@@ -228,41 +286,32 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
               </ul>
             </nav>
 
-            {/* Auth */}
-            <div className="grid grid-cols-2 gap-3 mb-8">
-              {isAuthenticated ? (
-                <>
-                  <Link href={profileHref} onClick={onClose}
-                    className="flex items-center justify-center gap-2 px-4 py-3 border border-border-light text-sm font-normal text-text-primary hover:text-brand-primary hover:border-brand-primary transition-all">
-                    <IconUserPlus size={16} />
-                    <span>{ui('ui_header_profile', 'Profil')}</span>
-                  </Link>
-                  <Link href={logoutHref} onClick={onClose}
-                    className="flex items-center justify-center gap-2 px-4 py-3 bg-brand-primary text-bg-primary text-sm font-medium hover:bg-brand-hover transition-all">
-                    <IconLogIn size={16} />
-                    <span>{ui('ui_header_logout', 'Logout')}</span>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link href={loginHref} onClick={onClose}
-                    className="flex items-center justify-center gap-2 px-4 py-3 border border-border-light text-sm font-normal text-text-primary hover:text-brand-primary hover:border-brand-primary transition-all">
-                    <IconLogIn size={16} />
-                    <span>{ui('ui_header_login', 'Login')}</span>
-                  </Link>
-                  <Link href={registerHref} onClick={onClose}
-                    className="flex items-center justify-center gap-2 px-4 py-3 bg-brand-primary text-bg-primary text-sm font-medium hover:bg-brand-hover transition-all">
-                    <IconUserPlus size={16} />
-                    <span>{ui('ui_header_register', 'Registrieren')}</span>
-                  </Link>
-                </>
-              )}
-            </div>
+            {/* Auth — yalnızca giriş yapılmış kullanıcıya göster (referans header'da auth linki yok) */}
+            {isAuthenticated && (
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                <Link
+                  href={profileHref}
+                  onClick={onClose}
+                  className={`flex items-center justify-center gap-2 rounded-md border border-border-light px-4 py-3 text-sm font-normal text-text-primary transition-all hover:border-brand-primary hover:text-brand-primary ${FOCUS_RING}`}
+                >
+                  <IconUserPlus size={16} />
+                  <span>{ui('ui_header_profile', 'Profil')}</span>
+                </Link>
+                <Link
+                  href={logoutHref}
+                  onClick={onClose}
+                  className={`flex items-center justify-center gap-2 rounded-md bg-brand-primary px-4 py-3 text-sm font-medium text-bg-primary transition-all hover:bg-brand-hover ${FOCUS_RING}`}
+                >
+                  <IconLogIn size={16} />
+                  <span>{ui('ui_header_logout', resolvedLocale === 'tr' ? 'Çıkış' : 'Sign out')}</span>
+                </Link>
+              </div>
+            )}
 
             {/* Contact */}
             <div className="mt-auto pt-6 border-t border-border-light">
               <p className="text-[0.72rem] tracking-[0.15em] uppercase text-brand-primary mb-4">
-                {ui('ui_header_contact_info', 'Kontakt')}
+                {ui('ui_header_contact_info', resolvedLocale === 'tr' ? 'İletişim' : 'Contact')}
               </p>
               <ul className="space-y-4">
                 {effectiveBrand.website && (
@@ -270,8 +319,12 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
                     <div className="w-10 h-10 rounded-full border border-border-light flex items-center justify-center text-text-muted mr-4 group-hover:border-brand-primary group-hover:text-brand-primary transition-all">
                       <IconGlobe size={16} />
                     </div>
-                    <Link target="_blank" href={effectiveBrand.website}
-                      className="text-sm text-text-secondary hover:text-brand-primary transition-colors">
+                    <Link
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={effectiveBrand.website}
+                      className={`rounded-md text-sm text-text-secondary transition-colors hover:text-brand-primary ${FOCUS_RING}`}
+                    >
                       {webHost}
                     </Link>
                   </li>
@@ -281,8 +334,11 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
                     <div className="w-10 h-10 rounded-full border border-border-light flex items-center justify-center text-text-muted mr-4 group-hover:border-brand-primary group-hover:text-brand-primary transition-all">
                       <IconPhone size={16} />
                     </div>
-                    <Link href={safePhone ? `tel:${safePhone}` : localizePath(resolvedLocale, '/contact')}
-                      className="text-sm text-text-secondary hover:text-brand-primary transition-colors">
+                    <Link
+                      href={safePhone ? `tel:${safePhone}` : localizePath(resolvedLocale, '/contact')}
+                      className={`rounded-md text-sm text-text-secondary transition-colors hover:text-brand-primary ${FOCUS_RING}`}
+                      aria-label={resolvedLocale === 'tr' ? `Telefon: ${effectiveBrand.phone}` : `Phone: ${effectiveBrand.phone}`}
+                    >
                       {effectiveBrand.phone}
                     </Link>
                   </li>
@@ -292,8 +348,11 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
                     <div className="w-10 h-10 rounded-full border border-border-light flex items-center justify-center text-text-muted mr-4 group-hover:border-brand-primary group-hover:text-brand-primary transition-all">
                       <IconMail size={16} />
                     </div>
-                    <Link href={`mailto:${effectiveBrand.email}`}
-                      className="text-sm text-text-secondary hover:text-brand-primary transition-colors">
+                    <Link
+                      href={`mailto:${effectiveBrand.email}`}
+                      className={`rounded-md text-sm text-text-secondary transition-colors hover:text-brand-primary ${FOCUS_RING}`}
+                      aria-label={resolvedLocale === 'tr' ? `E-posta: ${effectiveBrand.email}` : `Email: ${effectiveBrand.email}`}
+                    >
                       {effectiveBrand.email}
                     </Link>
                   </li>

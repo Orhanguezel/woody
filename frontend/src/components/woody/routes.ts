@@ -18,6 +18,7 @@ export const WOODY_PAGE_ROUTES: WoodyRouteDefinition[] = [
   { key: 'workshop', path: '/workshop', kind: 'page', priority: 0.85 },
   { key: 'home-tutor', path: '/home-tutor', kind: 'page', priority: 0.85 },
   { key: 'woody-academy', path: '/woody-academy', kind: 'page', priority: 0.9 },
+  { key: 'level-finder', path: '/level-finder', kind: 'page', priority: 0.85 },
   { key: 'library', path: '/library', kind: 'page', priority: 0.85 },
   { key: 'blog', path: '/blog', kind: 'blog', priority: 0.75 },
   { key: 'store', path: '/store', kind: 'listing', priority: 0.8 },

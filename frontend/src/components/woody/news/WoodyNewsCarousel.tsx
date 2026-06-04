@@ -1,18 +1,13 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { CalendarDays } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+import { FOCUS_RING } from '@/lib/a11y';
+
 import type { WoodyNewsItem } from '../home/home-copy';
-import { NEWS_IMAGES, localizeHomeHref } from '../home/home-copy';
+import { NEWS_IMAGES } from '../home/home-copy';
 
 export default function WoodyNewsCarousel({
   items,
@@ -21,60 +16,163 @@ export default function WoodyNewsCarousel({
   items: WoodyNewsItem[];
   locale: string;
 }) {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const cardWidth = window.matchMedia('(min-width: 768px)').matches ? 280 : 260;
+      setActiveIndex(Math.max(0, Math.min(items.length - 1, Math.round(container.scrollLeft / cardWidth))));
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [items.length]);
+
   if (!items.length) return null;
 
-  return (
-    <section className="bg-[var(--gm-surface)] py-16 lg:py-24">
-      <div className="container">
-        <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[var(--gm-primary)]">
-              {locale === 'tr' ? 'Woody Yenilikler' : 'Woody News'}
-            </p>
-            <h2 className="mt-3 text-balance font-display text-[clamp(2rem,5vw,4rem)] font-extrabold leading-[1] text-[var(--gm-text)]">
-              {locale === 'tr' ? 'Woody dünyasından haberler' : 'News from the Woody world'}
-            </h2>
-          </div>
-        </div>
+  const scrollToCard = (index: number) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = window.matchMedia('(min-width: 768px)').matches ? 280 : 260;
+    const nextIndex = (index + items.length) % items.length;
+    container.scrollTo({ left: cardWidth * nextIndex, behavior: 'smooth' });
+    setActiveIndex(nextIndex);
+  };
 
-        <Carousel opts={{ align: 'start', loop: items.length > 2 }} className="px-0 md:px-10">
-          <CarouselContent>
-            {items.map((item, index) => (
-              <CarouselItem key={item.title} className="md:basis-1/2 xl:basis-1/3">
-                <article className="h-full overflow-hidden rounded-xl border border-[var(--gm-border-soft)] bg-[var(--gm-bg)] shadow-[var(--gm-shadow-soft)]">
-                  <div className="relative aspect-[16/10] bg-[var(--gm-bg-deep)]">
-                    <Image
-                      src={item.image || NEWS_IMAGES[index % NEWS_IMAGES.length]}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
-                    />
+  const title = locale === 'tr' ? 'Woody Yenilikler' : 'Woody News';
+  const previous = locale === 'tr' ? 'Onceki haber' : 'Previous update';
+  const next = locale === 'tr' ? 'Sonraki haber' : 'Next update';
+  const close = locale === 'tr' ? 'Videoyu kapat' : 'Close video';
+
+  return (
+    <section className="w-full bg-gradient-to-b from-white to-gray-50 py-16 md:py-20">
+      <div className="mx-auto mb-10 max-w-[1400px] px-6 md:px-12">
+        <h2 className="text-center text-[28px] font-bold text-text-secondary md:text-[36px] lg:text-[42px]">
+          {title}
+        </h2>
+        <div className="mx-auto mt-4 h-1 w-20 bg-gradient-to-r from-brand-primary-light to-brand-primary" />
+      </div>
+
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-12">
+        <button
+          type="button"
+          onClick={() => scrollToCard(activeIndex - 1)}
+          className={`absolute left-0 top-1/2 z-20 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-lg transition hover:scale-110 hover:shadow-xl md:flex ${FOCUS_RING}`}
+          aria-label={previous}
+        >
+          <ChevronLeft className="size-6" aria-hidden />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => scrollToCard(activeIndex + 1)}
+          className={`absolute right-0 top-1/2 z-20 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-lg transition hover:scale-110 hover:shadow-xl md:flex ${FOCUS_RING}`}
+          aria-label={next}
+        >
+          <ChevronRight className="size-6" aria-hidden />
+        </button>
+
+        <div
+          ref={scrollRef}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((item, index) => {
+            const isActive = index === activeIndex;
+            const image = item.image || NEWS_IMAGES[index % NEWS_IMAGES.length];
+            return (
+              <button
+                type="button"
+                key={`${item.title}-${index}`}
+                onClick={() => (item.video ? setSelectedVideo(item.video) : scrollToCard(index))}
+                className={`w-[240px] shrink-0 snap-center cursor-pointer text-left transition duration-300 ease-out md:w-[260px] ${FOCUS_RING}`}
+                style={{
+                  transform: isActive ? 'scale(1)' : 'scale(0.88)',
+                  opacity: isActive ? 1 : 0.65,
+                  zIndex: isActive ? 10 : 1,
+                }}
+              >
+                <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg">
+                  <div className="relative aspect-[3/4] w-full bg-gray-100">
+                    {item.video ? (
+                      <>
+                        <video
+                          src={item.video}
+                          className="absolute inset-0 size-full object-contain"
+                          muted
+                          playsInline
+                          preload="metadata"
+                        />
+                        <span className="absolute inset-0 flex items-center justify-center bg-black/30">
+                          <span className="flex size-16 items-center justify-center rounded-full bg-white/90 text-gray-900">
+                            <Play className="ml-1 size-7" fill="currentColor" aria-hidden />
+                          </span>
+                        </span>
+                      </>
+                    ) : (
+                      <Image
+                        src={image}
+                        alt={item.title}
+                        fill
+                        sizes="260px"
+                        className={item.fitImage ? 'object-contain p-2' : 'object-cover'}
+                      />
+                    )}
                   </div>
-                  <div className="p-6">
-                    {item.date ? (
-                      <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[var(--gm-muted)]">
-                        <CalendarDays className="size-4" aria-hidden />
-                        {item.date}
-                      </p>
-                    ) : null}
-                    <h3 className="mt-3 text-xl font-bold text-[var(--gm-text)]">{item.title}</h3>
-                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-[var(--gm-text-dim)]">{item.summary}</p>
-                    <Link
-                      href={localizeHomeHref(locale, item.href || '/blog')}
-                      className="mt-5 inline-flex text-sm font-bold uppercase tracking-[0.14em] text-[var(--gm-primary)]"
-                    >
-                      {locale === 'tr' ? 'Devamını oku' : 'Read more'}
-                    </Link>
+
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="line-clamp-2 text-[13px] font-bold leading-tight text-text-secondary md:text-[14px]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 line-clamp-3 text-[11px] leading-relaxed text-gray-600 md:text-[12px]">
+                      {item.summary}
+                    </p>
                   </div>
                 </article>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden border-[var(--gm-border)] bg-[var(--gm-bg)] text-[var(--gm-text)] md:inline-flex" />
-          <CarouselNext className="hidden border-[var(--gm-border)] bg-[var(--gm-bg)] text-[var(--gm-text)] md:inline-flex" />
-        </Carousel>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 flex justify-center gap-2 md:hidden">
+          {items.map((item, index) => (
+            <button
+              key={`${item.title}-dot`}
+              type="button"
+              onClick={() => scrollToCard(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === activeIndex ? 'w-6 bg-brand-primary-light' : 'w-2 bg-gray-300'
+              } ${FOCUS_RING}`}
+              aria-label={`${title} ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
+
+      {selectedVideo ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <div className="relative w-full max-w-xl" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setSelectedVideo(null)}
+              className={`absolute -top-12 right-0 text-white transition hover:text-gray-300 ${FOCUS_RING}`}
+              aria-label={close}
+            >
+              <X className="size-8" aria-hidden />
+            </button>
+            <div className="aspect-[9/16] overflow-hidden rounded-lg bg-black">
+              <video src={selectedVideo} controls autoPlay className="size-full object-contain" />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

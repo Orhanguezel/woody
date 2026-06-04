@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import type React from 'react';
 
-import { normPath } from '@/integrations/shared';
-import { buildMetadataFromSeo, fetchSeoObject, fetchSeoPageObject, mergeSeoPageIntoSeo } from '@/seo/server';
+import { buildPageMetadata } from '@/seo/server';
 
 export async function generateMetadata({
   params,
@@ -11,11 +10,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  let seo = await fetchSeoObject(locale);
-  const pageSeo = await fetchSeoPageObject(locale, 'blog');
-  seo = mergeSeoPageIntoSeo(seo, pageSeo);
-
-  return buildMetadataFromSeo(seo, { locale, pathname: normPath('/blog') });
+  return buildPageMetadata({
+    locale,
+    pageKey: 'blog',
+    pathname: '/blog',
+    fallback: {
+      title: 'Blog',
+      description:
+        locale === 'tr'
+          ? 'Woody ve Arkadaşları blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
+          : 'Woody and Friends blog posts on children English and digital learning.',
+    },
+  });
 }
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

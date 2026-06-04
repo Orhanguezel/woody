@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { FOCUS_RING } from '@/lib/a11y';
 import { localizePath } from '@/integrations/shared';
 import type { WoodyFallbackBlogPost } from './blog-loader.server';
 
@@ -25,7 +26,7 @@ export default function WoodyBlogFallbackDetail({
         <div className="container max-w-4xl">
           <Link
             href={localizePath(locale, '/blog')}
-            className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--gm-gold-deep)]"
+            className={`rounded-sm text-sm font-semibold uppercase tracking-[0.16em] text-[var(--gm-gold-deep)] ${FOCUS_RING}`}
           >
             {locale === 'tr' ? 'Bloga dön' : 'Back to blog'}
           </Link>

@@ -2,20 +2,20 @@
   "title": "Stap over op het Cambridge English-certificeringssysteem met {{appName}}",
   "eyebrow": "Waarom {{appName}}?",
   "description": "Een gestructureerd, op spel gebaseerd leermodel dat kinderen op jonge leeftijd kennis laat maken met internationaal gestandaardiseerd Engels onderwijs.",
-  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "image": "/media/woody/reference/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
   "imageAlt": "{{appName}}-karakters",
   "certifications": [
     {
       "name": "Cambridge English",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+      "image": "/media/woody/reference/0ljulhkj_8.png"
     },
     {
       "name": "British Side",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+      "image": "/media/woody/reference/1lah28n2_7.png"
     },
     {
       "name": "{{appName}} Academy",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+      "image": "/media/woody/reference/22mg24ku_9.png"
     }
   ],
   "sections": [

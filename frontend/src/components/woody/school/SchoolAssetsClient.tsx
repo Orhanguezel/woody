@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Download, FileText, Lock, RefreshCcw } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import { FOCUS_RING } from '@/lib/a11y';
 import { useLocaleShort } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
 import { useListMySchoolAssetsQuery } from '@/integrations/rtk/hooks';
@@ -59,7 +60,7 @@ export default function SchoolAssetsClient() {
             </p>
             <Link
               href={localizePath(locale, '/login')}
-              className="mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--gm-primary)] px-5 font-bold text-[var(--gm-surface)]"
+              className={`mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--gm-primary)] px-5 font-bold text-[var(--gm-surface)] ${FOCUS_RING}`}
             >
               {locale === 'tr' ? 'Giriş yap' : 'Sign in'}
             </Link>
@@ -113,7 +114,8 @@ export default function SchoolAssetsClient() {
                 </dl>
                 <a
                   href={`/api/v1/school/assets/${encodeURIComponent(asset.id)}/file`}
-                  className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[var(--gm-primary)] px-5 font-bold text-[var(--gm-surface)]"
+                  className={`mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[var(--gm-primary)] px-5 font-bold text-[var(--gm-surface)] ${FOCUS_RING}`}
+                  aria-label={locale === 'tr' ? `${asset.title} dosyasını aç` : `Open ${asset.title} file`}
                 >
                   <Download className="size-5" aria-hidden />
                   {locale === 'tr' ? 'Dosyayı aç' : 'Open file'}

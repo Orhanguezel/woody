@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { useConfirmPasswordResetMutation } from '@/integrations/rtk/hooks';
 import { useLocaleShort } from '@/i18n';
 import { localizePath, normalizeError } from '@/integrations/shared';
+import { AUTH_FIELD_CLS, FOCUS_RING } from '@/lib/a11y';
 
 export default function PasswordResetPage() {
   const locale = useLocaleShort();
@@ -43,7 +44,7 @@ export default function PasswordResetPage() {
             </p>
             <Link
               href={localizePath(locale, '/forgot-password')}
-              className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all text-sm"
+              className={`inline-block rounded-sm bg-brand-primary px-6 py-3 text-sm font-bold text-text-on-dark transition-all hover:bg-brand-hover ${FOCUS_RING}`}
             >
               {locale === 'de' ? 'Neuen Link anfordern' : locale === 'tr' ? 'Yeni Bağlantı Talep Et' : 'Request New Link'}
             </Link>
@@ -79,7 +80,7 @@ export default function PasswordResetPage() {
             </p>
             <Link
               href={loginHref}
-              className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all text-sm uppercase tracking-widest"
+              className={`inline-block rounded-sm bg-brand-primary px-6 py-3 text-sm font-bold uppercase tracking-widest text-text-on-dark transition-all hover:bg-brand-hover ${FOCUS_RING}`}
             >
               {locale === 'de' ? 'Zum Login' : locale === 'tr' ? 'Giriş Yap' : 'Sign In'}
             </Link>
@@ -174,7 +175,7 @@ export default function PasswordResetPage() {
               <input
                 id="new-password"
                 type="password"
-                className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                 placeholder="••••••••"
                 autoComplete="new-password"
                 value={password}
@@ -192,7 +193,7 @@ export default function PasswordResetPage() {
               <input
                 id="confirm-password"
                 type="password"
-                className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                 placeholder="••••••••"
                 autoComplete="new-password"
                 value={confirmPwd}
@@ -205,7 +206,7 @@ export default function PasswordResetPage() {
 
             <button
               type="submit"
-              className="w-full bg-brand-primary text-text-on-dark font-bold py-3.5 px-4 rounded-sm hover:bg-brand-hover transition-all duration-300 shadow-soft hover:shadow-medium disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center uppercase tracking-widest text-sm"
+              className={`flex w-full items-center justify-center rounded-sm bg-brand-primary px-4 py-3.5 text-sm font-bold uppercase tracking-widest text-text-on-dark shadow-soft transition-all duration-300 hover:bg-brand-hover hover:shadow-medium disabled:cursor-not-allowed disabled:opacity-70 ${FOCUS_RING}`}
               disabled={isLoading}
             >
               {isLoading
@@ -217,7 +218,7 @@ export default function PasswordResetPage() {
           <div className="mt-8 text-center">
             <Link
               href={loginHref}
-              className="text-sm text-text-secondary hover:text-brand-primary transition-all"
+              className={`rounded-sm text-sm text-text-secondary transition-all hover:text-brand-primary ${FOCUS_RING}`}
             >
               {locale === 'de' ? '← Zurück zum Login' : locale === 'tr' ? '← Giriş Sayfasına Dön' : '← Back to Login'}
             </Link>

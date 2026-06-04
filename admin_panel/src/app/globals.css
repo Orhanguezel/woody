@@ -286,3 +286,33 @@ html {
 .disable-transitions * {
   transition: none !important;
 }
+
+/* Custom auth / brand links outside shadcn (a11y cila) */
+a.focus-brand:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+}
+
+/* Admin-only: Google SERP önizleme (gerçek arama sonucu renkleri, site teması değil) */
+.serp-preview-google {
+  --serp-bg: #202124;
+  --serp-url: #dadce0;
+  --serp-title: #8ab4f8;
+  --serp-desc: #bdc1c6;
+  background-color: var(--serp-bg);
+}
+.serp-preview-google__url {
+  color: var(--serp-url);
+}
+.serp-preview-google__title {
+  color: var(--serp-title);
+}
+.serp-preview-google__desc {
+  color: var(--serp-desc);
+}
+
+/* Admin-only: CSS editör yüzeyi */
+.code-editor-surface {
+  background-color: var(--gm-bg-deep, var(--muted));
+  color: var(--gm-text, var(--foreground));
+}

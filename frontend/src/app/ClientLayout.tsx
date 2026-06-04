@@ -17,6 +17,7 @@ import { resetLayoutSeo } from '../seo';
 import { SplashScreen } from '../layout/SplashScreen';
 import { getPublicAppName } from '@/lib/site-config';
 import WhatsAppFloatingButton from '@/components/woody/WhatsAppFloatingButton';
+import StickyStoreButton from '@/components/woody/StickyStoreButton';
 
 export default function ClientLayout({
   children,
@@ -124,6 +125,7 @@ export default function ClientLayout({
       </main>
 
       <FooterTwo locale={locale} />
+      <StickyStoreButton locale={locale} />
       <WhatsAppFloatingButton locale={locale} />
       <ScrollProgress />
 

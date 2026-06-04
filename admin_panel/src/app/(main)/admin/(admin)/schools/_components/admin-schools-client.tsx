@@ -145,7 +145,7 @@ function ActiveBadge({ active }: { active: boolean }) {
       variant="outline"
       className={cn(
         'rounded-md border px-2 py-0.5 text-[11px]',
-        active ? 'border-emerald-400/40 text-emerald-700' : 'border-slate-300 text-slate-500',
+        active ? 'border-primary/40 text-primary' : 'border-slate-300 text-slate-500',
       )}
     >
       {active ? 'Aktif' : 'Pasif'}

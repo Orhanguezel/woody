@@ -3,6 +3,8 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { CheckCircle2, CreditCard, Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
+import { FOCUS_RING } from '@/lib/a11y';
+
 import type { StoreProduct } from './types';
 
 type CartLine = {
@@ -165,7 +167,8 @@ export default function WoodyStoreClient({
                 <button
                   type="button"
                   onClick={() => add(product)}
-                  className="inline-flex min-h-10 items-center gap-2 rounded-md bg-[var(--gm-primary)] px-4 py-2 font-semibold text-[var(--gm-surface)]"
+                  className={`inline-flex min-h-10 items-center gap-2 rounded-md bg-[var(--gm-primary)] px-4 py-2 font-semibold text-[var(--gm-surface)] ${FOCUS_RING}`}
+                  aria-label={`${product.title} — sepete ekle`}
                 >
                   <ShoppingCart className="size-4" aria-hidden />
                   Sepete ekle
@@ -198,7 +201,7 @@ export default function WoodyStoreClient({
                     <button
                       type="button"
                       onClick={() => change(line.product.id, -1)}
-                      className="grid size-8 place-items-center rounded-md border border-[var(--gm-border)]"
+                      className={`grid size-8 place-items-center rounded-md border border-[var(--gm-border)] ${FOCUS_RING}`}
                       aria-label="Azalt"
                     >
                       <Minus className="size-4" aria-hidden />
@@ -207,7 +210,7 @@ export default function WoodyStoreClient({
                     <button
                       type="button"
                       onClick={() => change(line.product.id, 1)}
-                      className="grid size-8 place-items-center rounded-md border border-[var(--gm-border)]"
+                      className={`grid size-8 place-items-center rounded-md border border-[var(--gm-border)] ${FOCUS_RING}`}
                       aria-label="Artır"
                     >
                       <Plus className="size-4" aria-hidden />
@@ -215,7 +218,7 @@ export default function WoodyStoreClient({
                     <button
                       type="button"
                       onClick={() => change(line.product.id, -99)}
-                      className="grid size-8 place-items-center rounded-md border border-[var(--gm-border)]"
+                      className={`grid size-8 place-items-center rounded-md border border-[var(--gm-border)] ${FOCUS_RING}`}
                       aria-label="Kaldır"
                     >
                       <Trash2 className="size-4" aria-hidden />
@@ -236,16 +239,16 @@ export default function WoodyStoreClient({
           </div>
 
           <form className="mt-5 space-y-3" onSubmit={submit}>
-            <input name="name" required placeholder="Ad Soyad" className="w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2" />
-            <input name="email" required type="email" placeholder="E-posta" className="w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2" />
-            <input name="phone" placeholder="Telefon" className="w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2" />
-            <input name="city" placeholder="Şehir" className="w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2" />
-            <textarea name="address" required placeholder="Adres" rows={3} className="w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2" />
-            <textarea name="notes" placeholder="Sipariş notu" rows={2} className="w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2" />
+            <input name="name" required placeholder="Ad Soyad" aria-label="Ad Soyad" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="email" required type="email" placeholder="E-posta" aria-label="E-posta" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="phone" placeholder="Telefon" aria-label="Telefon" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="city" placeholder="Şehir" aria-label="Şehir" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <textarea name="address" required placeholder="Adres" aria-label="Adres" rows={3} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <textarea name="notes" placeholder="Sipariş notu" aria-label="Sipariş notu" rows={2} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
             <button
               type="submit"
               disabled={busy || !cart.length}
-              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-[var(--gm-secondary)] px-5 py-3 font-semibold text-[var(--gm-surface)] disabled:cursor-not-allowed disabled:opacity-50"
+              className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-[var(--gm-secondary)] px-5 py-3 font-semibold text-[var(--gm-surface)] disabled:cursor-not-allowed disabled:opacity-50 ${FOCUS_RING}`}
             >
               <CreditCard className="size-4" aria-hidden />
               {busy ? 'Hazırlanıyor' : 'Iyzipay ile öde'}

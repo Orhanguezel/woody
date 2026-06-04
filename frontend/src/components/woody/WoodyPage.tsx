@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
+import { FOCUS_RING } from '@/lib/a11y';
+
 import type { WoodyCard, WoodyPageContent } from './content-loader.server';
 
 function cardHref(card: WoodyCard, locale: string) {
@@ -51,7 +53,7 @@ function CardGrid({ cards, locale }: { cards: WoodyCard[]; locale: string }) {
         );
 
         return href ? (
-          <Link key={`${card.title}-${href}`} href={href} className="block h-full">
+          <Link key={`${card.title}-${href}`} href={href} className={`block h-full rounded-lg ${FOCUS_RING}`}>
             {body}
           </Link>
         ) : (
@@ -89,7 +91,7 @@ export default function WoodyPage({ content, locale }: { content: WoodyPageConte
                 {hero?.primaryCTA && hero.primaryHref ? (
                   <Link
                     href={hero.primaryHref.startsWith('/') ? `/${locale}${hero.primaryHref}` : hero.primaryHref}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[var(--gm-primary)] px-5 py-3 font-semibold text-[var(--gm-surface)] shadow-[var(--gm-shadow-soft)]"
+                    className={`inline-flex min-h-11 items-center gap-2 rounded-md bg-[var(--gm-primary)] px-5 py-3 font-semibold text-[var(--gm-surface)] shadow-[var(--gm-shadow-soft)] ${FOCUS_RING}`}
                   >
                     {hero.primaryCTA}
                     <ArrowRight className="size-4" aria-hidden />
@@ -98,7 +100,7 @@ export default function WoodyPage({ content, locale }: { content: WoodyPageConte
                 {hero?.secondaryCTA && hero.secondaryHref ? (
                   <Link
                     href={hero.secondaryHref.startsWith('/') ? `/${locale}${hero.secondaryHref}` : hero.secondaryHref}
-                    className="inline-flex min-h-11 items-center rounded-md border border-[var(--gm-border)] px-5 py-3 font-semibold text-[var(--gm-text)]"
+                    className={`inline-flex min-h-11 items-center rounded-md border border-[var(--gm-border)] px-5 py-3 font-semibold text-[var(--gm-text)] ${FOCUS_RING}`}
                   >
                     {hero.secondaryCTA}
                   </Link>
@@ -148,7 +150,9 @@ export default function WoodyPage({ content, locale }: { content: WoodyPageConte
             <div className="space-y-4">
               {content.faq.map((item) => (
                 <details key={item.question} className="rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-5">
-                  <summary className="cursor-pointer font-semibold text-[var(--gm-text)]">{item.question}</summary>
+                  <summary className={`cursor-pointer rounded-md font-semibold text-[var(--gm-text)] ${FOCUS_RING}`}>
+                    {item.question}
+                  </summary>
                   <p className="mt-3 leading-7 text-[var(--gm-text-dim)]">{item.answer}</p>
                 </details>
               ))}

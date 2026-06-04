@@ -15,6 +15,7 @@ import CookieSettingsModal, { type ConsentState } from './CookieSettingsModal';
 // i18n + UI (STANDARD)
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
+import { FOCUS_RING } from '@/lib/a11y';
 import { getCookieConsentStorageKey } from '@/lib/site-config';
 
 // DB
@@ -373,7 +374,7 @@ export default function CookieConsentBanner() {
         <div className="mx-auto max-w-5xl rounded-2xl bg-bg-card/95 backdrop-blur-md border border-border-light shadow-medium p-5 sm:p-6 relative">
           <button
             type="button"
-            className="absolute right-3 top-3 w-9 h-9 rounded-full border border-border-light text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors"
+            className={`absolute right-3 top-3 h-9 w-9 rounded-full border border-border-light text-text-secondary transition-colors hover:bg-bg-card hover:text-text-primary ${FOCUS_RING}`}
             onClick={showRejectAll ? onRejectAll : () => setOpenSettings(true)}
             aria-label={ariaClose}
             title={ariaClose}
@@ -388,7 +389,7 @@ export default function CookieConsentBanner() {
               </p>
               <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                 {descText}{' '}
-                <Link className="text-brand-primary font-bold hover:underline" href={policyHref}>
+                <Link className={`rounded-sm font-bold text-brand-primary hover:underline ${FOCUS_RING}`} href={policyHref}>
                   {policyLabel}
                 </Link>
               </p>
@@ -397,7 +398,7 @@ export default function CookieConsentBanner() {
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-end">
               <button
                 type="button"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-border-light text-sm font-bold text-text-primary hover:bg-bg-card transition-colors"
+                className={`inline-flex items-center justify-center rounded-lg border border-border-light px-4 py-2.5 text-sm font-bold text-text-primary transition-colors hover:bg-bg-card ${FOCUS_RING}`}
                 onClick={() => setOpenSettings(true)}
               >
                 {btnSettings}
@@ -406,7 +407,7 @@ export default function CookieConsentBanner() {
               {showRejectAll ? (
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-brand-primary/30 text-sm font-bold text-brand-primary hover:bg-brand-primary/5 transition-colors"
+                  className={`inline-flex items-center justify-center rounded-lg border border-brand-primary/30 px-4 py-2.5 text-sm font-bold text-brand-primary transition-colors hover:bg-brand-primary/5 ${FOCUS_RING}`}
                   onClick={onRejectAll}
                 >
                   {btnReject}
@@ -415,7 +416,7 @@ export default function CookieConsentBanner() {
 
               <button
                 type="button"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-brand-primary text-bg-primary text-sm font-bold hover:bg-brand-hover transition-colors shadow-sm"
+                className={`inline-flex items-center justify-center rounded-lg bg-brand-primary px-4 py-2.5 text-sm font-bold text-bg-primary shadow-sm transition-colors hover:bg-brand-hover ${FOCUS_RING}`}
                 onClick={onAcceptAll}
               >
                 {btnAccept}

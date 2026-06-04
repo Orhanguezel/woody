@@ -11,6 +11,8 @@ import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 import JsonLd from '@/seo/JsonLd';
 import { breadcrumbSchema, graph, itemList } from '@/seo/jsonld';
 import { buildPageMetadata } from '@/seo/serverMetadata';
+import { loadPageContent } from '@/config/pages/loader';
+import type { WoodyBlogFaqItem } from '@/components/woody/WoodyBlogIndexClient';
 
 type Props = { params: Promise<{ category: string; locale: string }> };
 
@@ -96,7 +98,10 @@ export default async function BlogCategoryPage({ params }: Props) {
   const category = decodeCategory(rawCategory);
   if (!isBlogCategory(category)) notFound();
 
-  const dbPosts = await loadDbBlogPosts(locale, category);
+  const [dbPosts, faq] = await Promise.all([
+    loadDbBlogPosts(locale, category),
+    loadPageContent<{ items?: WoodyBlogFaqItem[] }>('faq', locale),
+  ]);
   const posts = dbPosts.length > 0 ? dbPosts : await loadFallbackBlogPostsByCategory(locale, category);
   const siteUrl = getPublicSiteOrigin();
   const app = getPublicAppName();
@@ -130,6 +135,7 @@ export default async function BlogCategoryPage({ params }: Props) {
         bannerTitleOverride={`${title} | Blog`}
         forceInitialPosts
         initialPosts={posts}
+        faqItems={faq?.items ?? []}
       />
     </>
   );

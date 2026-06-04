@@ -169,17 +169,20 @@ export function LoginForm() {
           )}
         />
 
-        <Button 
-          className="w-full bg-[var(--brand-gold)] hover:bg-[var(--brand-gold-strong)] text-[var(--brand-ink)] font-bold py-6 rounded-xl shadow-lg hover:shadow-glow-primary transition-all duration-300" 
-          type="submit" 
+        <Button
+          className="w-full rounded-xl bg-[var(--brand-gold)] py-6 font-bold text-[var(--brand-ink)] shadow-lg transition-all duration-300 hover:bg-[var(--brand-gold-strong)] hover:shadow-glow-primary"
+          type="submit"
           disabled={isBusy}
+          aria-busy={isBusy}
         >
           {isBusy ? (
-            <div className="flex items-center gap-2">
-              <span className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--brand-ink)] border-t-transparent" />
+            <div className="flex items-center gap-2" role="status" aria-live="polite">
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--brand-ink)] border-t-transparent" aria-hidden />
               {t('admin.auth.login.loggingIn')}
             </div>
-          ) : t('admin.auth.login.loginButton')}
+          ) : (
+            t('admin.auth.login.loginButton')
+          )}
         </Button>
       </form>
     </Form>

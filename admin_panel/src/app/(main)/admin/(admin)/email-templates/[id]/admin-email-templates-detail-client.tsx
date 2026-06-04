@@ -591,7 +591,10 @@ export default function AdminEmailTemplatesDetailClient({ id }: { id: string }) 
                   <div className="rounded-md border bg-white">
                     <iframe
                       title="Email Preview"
-                      srcDoc={formData.content || '<p style="color:#999;padding:20px;">No content</p>'}
+                      srcDoc={
+                        formData.content ||
+                        '<p style="color:var(--color-muted-foreground,oklch(0.552 0.016 285.938));padding:20px;">No content</p>'
+                      }
                       className="w-full border-0"
                       style={{ minHeight: showPreview ? 420 : 300 }}
                       sandbox=""

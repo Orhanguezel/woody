@@ -7,28 +7,28 @@
       "order": 1,
       "title": "Almanya Genelinde Anlaşma İmzalandı",
       "description": "Don Bosco Medien, kitap dağıtım ve pazarlama ağı ile Almanya genelinde {{appName}} ve Arkadaşları'na ait tüm içeriklerin kullanım ve satış haklarını kapsayan anlaşma imzalandı.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+      "image": "/media/woody/reference/q3w780z7_1.png"
     },
     {
       "id": 2,
       "order": 2,
       "title": "Rusya Genelinde Anlaşma İmzalandı",
       "description": "Prosveshcheniye Publishers ile Rusya genelinde {{appName}} ve Arkadaşları'na ait tüm içeriklerin kullanım ve satış haklarını kapsayan anlaşma imzalandı.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+      "image": "/media/woody/reference/796xqghe_2.png"
     },
     {
       "id": 3,
       "order": 3,
       "title": "Cambridge Sertifikasyon Süreci Başlatıldı",
       "description": "British Side iş ortaklığıyla Cambridge sertifikasyon süreci resmi olarak başlatılmıştır.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+      "image": "/media/woody/reference/xmex01in_Woody%20(7).png"
     },
     {
       "id": 4,
       "order": 4,
       "title": "Okullar Mini Cambridge Kampüslerine Dönüşüyor",
       "description": "British Side iş ortaklığı ile okulları mini Cambridge kampüslerine dönüştürüyoruz.",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "image": "/media/woody/reference/881wsvif_rekant.png",
       "fitImage": true
     },
     {
@@ -36,14 +36,14 @@
       "order": 5,
       "title": "Cambridge Eğitim Sistemini Keşfedin",
       "description": "Okul öncesi İngilizce eğitimde uluslararası yaklaşımı tanıyın.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+      "video": "/media/woody/reference/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
     },
     {
       "id": 6,
       "order": 6,
       "title": "Artık Matbaayız da!",
       "description": "Daha güçlü içerikler üretiyor, özgürce gelişiyoruz.",
-      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+      "video": "/media/woody/reference/b69zuql4_Ads%C4%B1z%20(1080%20x%201350%20piksel)%20kopyas%C4%B1%20kopyas%C4%B1%20(4).mp4"
     }
   ]
 }

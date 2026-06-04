@@ -8,6 +8,7 @@ import { safeStr, safeJson } from '@/integrations/shared';
 import { useLocaleShort, useUiSection } from '@/i18n';
 
 import ContactForm from './ContactForm';
+import { FOCUS_RING } from '@/lib/a11y';
 import { getPublicAppName } from '@/lib/site-config';
 
 // ── Types ──
@@ -153,7 +154,7 @@ export default function ContactPage() {
                 {primaryPhone && (
                   <div>
                     <strong className="text-text-primary">{t.phone}:</strong>{' '}
-                    <a className="text-brand-primary hover:underline" href={`tel:${primaryPhone}`}>
+                    <a className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`} href={`tel:${primaryPhone}`} aria-label={`${t.phone}: ${primaryPhone}`}>
                       {primaryPhone}
                     </a>
                   </div>
@@ -162,7 +163,7 @@ export default function ContactPage() {
                 {emailTo && (
                   <div>
                     <strong className="text-text-primary">{t.email}:</strong>{' '}
-                    <a className="text-brand-primary hover:underline" href={buildMailto(emailTo)}>
+                    <a className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`} href={buildMailto(emailTo)} aria-label={`${t.email}: ${emailTo}`}>
                       {emailTo}
                     </a>
                   </div>

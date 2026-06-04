@@ -250,7 +250,7 @@ export function RegisterForm() {
           )}
         />
 
-        <Button className="w-full" type="submit" disabled={isBusy}>
+        <Button className="w-full" type="submit" disabled={isBusy} aria-busy={isBusy}>
           {isBusy
             ? t('admin.auth.register.creatingAccount')
             : t('admin.auth.register.registerButton')}

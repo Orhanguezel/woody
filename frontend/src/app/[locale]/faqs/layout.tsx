@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import type React from 'react';
 
-import { normPath } from '@/integrations/shared';
-import { buildMetadataFromSeo, fetchSeoObject, fetchSeoPageObject, mergeSeoPageIntoSeo } from '@/seo/server';
+import { buildPageMetadata } from '@/seo/server';
 
 export async function generateMetadata({
   params,
@@ -11,11 +10,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  let seo = await fetchSeoObject(locale);
-  const pageSeo = await fetchSeoPageObject(locale, 'faqs');
-  seo = mergeSeoPageIntoSeo(seo, pageSeo);
-
-  return buildMetadataFromSeo(seo, { locale, pathname: normPath('/faqs') });
+  return buildPageMetadata({
+    locale,
+    pageKey: 'faqs',
+    pathname: '/faqs',
+    fallback: {
+      title: locale === 'tr' ? 'Sık Sorulan Sorular' : 'Frequently Asked Questions',
+      description:
+        locale === 'tr'
+          ? 'Woody ve Arkadaşları hakkında sık sorulan sorular.'
+          : 'Frequently asked questions about Woody and Friends.',
+    },
+  });
 }
 
 export default function FaqsLayout({ children }: { children: React.ReactNode }) {

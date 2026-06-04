@@ -9,6 +9,7 @@
 import React, { useEffect, useId, useMemo, useState } from 'react';
 
 // i18n + UI (STANDARD)
+import { FOCUS_RING } from '@/lib/a11y';
 import { useLocaleShort, useUiSection } from '@/i18n';
 
 export type ConsentState = {
@@ -285,7 +286,7 @@ export default function CookieSettingsModal({
 
           <button
             type="button"
-            className="shrink-0 w-9 h-9 rounded-full border border-border-light text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors"
+            className={`h-9 w-9 shrink-0 rounded-full border border-border-light text-text-secondary transition-colors hover:bg-bg-card hover:text-text-primary ${FOCUS_RING}`}
             onClick={onClose}
             aria-label={finalAriaClose}
             title={finalAriaClose}
@@ -313,15 +314,15 @@ export default function CookieSettingsModal({
               <p className="mt-1 text-sm text-text-secondary leading-relaxed">{finalDescAnalytics}</p>
             </div>
 
-            <label className="shrink-0 inline-flex items-center gap-3 select-none">
+            <label className={`inline-flex shrink-0 select-none items-center gap-3 rounded-md ${FOCUS_RING}`}>
               <span className="sr-only">{finalLabelAnalytics}</span>
               <input
                 type="checkbox"
                 checked={analytics}
                 onChange={(e) => setAnalytics(e.target.checked)}
-                className="sr-only peer"
+                className="peer sr-only"
               />
-              <span className="relative w-12 h-7 rounded-full bg-sand-300 peer-checked:bg-brand-primary transition-colors border border-border-medium peer-checked:border-brand-primary">
+              <span className="relative h-7 w-12 rounded-full border border-border-medium bg-sand-300 transition-colors peer-checked:border-brand-primary peer-checked:bg-brand-primary peer-focus-visible:ring-2 peer-focus-visible:ring-brand-primary/35">
                 <span className="absolute top-0.5 left-0.5 w-6 h-6 bg-bg-card shadow-sm transition-transform peer-checked:translate-x-5" />
               </span>
             </label>
@@ -331,7 +332,7 @@ export default function CookieSettingsModal({
         <div className="p-6 pt-0 flex flex-col sm:flex-row gap-3 sm:justify-end">
           <button
             type="button"
-            className="inline-flex justify-center items-center px-4 py-2.5 rounded-lg border border-border-light text-sm font-bold text-text-primary hover:bg-bg-card transition-colors"
+            className={`inline-flex items-center justify-center rounded-lg border border-border-light px-4 py-2.5 text-sm font-bold text-text-primary transition-colors hover:bg-bg-card ${FOCUS_RING}`}
             onClick={onClose}
           >
             {finalBtnCancel}
@@ -339,7 +340,7 @@ export default function CookieSettingsModal({
 
           <button
             type="button"
-            className="inline-flex justify-center items-center px-4 py-2.5 rounded-lg bg-brand-primary text-bg-primary text-sm font-bold hover:bg-brand-hover transition-colors shadow-sm"
+            className={`inline-flex items-center justify-center rounded-lg bg-brand-primary px-4 py-2.5 text-sm font-bold text-bg-primary shadow-sm transition-colors hover:bg-brand-hover ${FOCUS_RING}`}
             onClick={() => onSave(nextState)}
           >
             {finalBtnSave}

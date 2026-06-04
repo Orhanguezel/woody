@@ -2,14 +2,15 @@
 
 import React, { useMemo } from 'react';
 import Link from 'next/link';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MessageCircle, Phone } from 'lucide-react';
 
 import SocialLinks from '@/components/common/public/SocialLinks';
 import { SiteLogo } from '@/layout/SiteLogo';
-import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
+import { useGetSiteSettingByKeyQuery, useListMenuItemsQuery } from '@/integrations/rtk/hooks';
 import { useLocaleShort, useUiSection } from '@/i18n';
-import { localizePath } from '@/integrations/shared';
-import { getCopyrightHolder } from '@/lib/site-config';
+import { localizePath, type PublicMenuItemDto } from '@/integrations/shared';
+import { FOCUS_RING } from '@/lib/a11y';
+import { getCopyrightHolder, getDefaultSocialUrls } from '@/lib/site-config';
 
 type FooterLink = {
   id: string;
@@ -29,16 +30,20 @@ const cleanHashLink = (href: string) => {
   return href;
 };
 
-function footerLinks(locale: string): FooterLink[] {
+function fallbackFooterLinks(locale: string): FooterLink[] {
   return [
-    { id: 'school', url: '/preschool', title: locale === 'tr' ? 'Okul' : 'School' },
+    { id: 'preschool', url: '/preschool', title: locale === 'tr' ? 'Okul' : 'School' },
     { id: 'workshop', url: '/workshop', title: locale === 'tr' ? 'Atölye' : 'Workshop' },
     { id: 'home-tutor', url: '/home-tutor', title: locale === 'tr' ? 'Ev & Özel Ders' : 'Home & Private Lesson' },
     { id: 'academy', url: '/woody-academy', title: 'Woody Academy' },
+    { id: 'library', url: '/library', title: locale === 'tr' ? 'Kütüphane' : 'Library' },
     { id: 'store', url: '/store', title: 'Woody Store' },
     { id: 'blog', url: '/blog', title: 'Blog' },
   ];
 }
+
+const normalizePhone = (value: string) => value.replace(/\s+/g, '');
+const normalizeWhatsApp = (value: string) => value.replace(/[^\d]/g, '');
 
 const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
   const fallbackLocale = useLocaleShort();
@@ -48,99 +53,91 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
   const { data: companyBrandSetting } = useGetSiteSettingByKeyQuery({ key: 'company_brand', locale });
   const { data: contactInfoSetting } = useGetSiteSettingByKeyQuery({ key: 'contact_info', locale });
   const { data: socialsSetting } = useGetSiteSettingByKeyQuery({ key: 'socials', locale });
+  const { data: footerMenuData } = useListMenuItemsQuery({
+    location: 'footer',
+    is_active: true,
+    locale,
+    nested: true,
+  });
 
   const { socials } = useMemo(() => {
-    const brandVal = (companyBrandSetting?.value ?? {}) as any;
+    const brandVal = (companyBrandSetting?.value ?? {}) as Record<string, unknown>;
     const socialsVal = (socialsSetting?.value ?? {}) as Record<string, string>;
     const mergedSocials: Record<string, string> = {
+      ...getDefaultSocialUrls(),
       ...(brandVal.socials as Record<string, string> | undefined),
       ...socialsVal,
     };
     return { socials: mergedSocials };
   }, [companyBrandSetting?.value, socialsSetting?.value]);
 
+  const menuItems: FooterLink[] = useMemo(() => {
+    const raw = footerMenuData as unknown as { items?: PublicMenuItemDto[] } | PublicMenuItemDto[] | undefined;
+    const list = Array.isArray(raw) ? raw : Array.isArray(raw?.items) ? raw.items : [];
+    if (!list.length) return fallbackFooterLinks(locale);
+    return list
+      .slice()
+      .sort((a, b) => ((a as any)?.order_num ?? 0) - ((b as any)?.order_num ?? 0))
+      .map((item) => ({
+        id: String(item.id),
+        url: item.url || item.href || '#',
+        title: item.title || item.slug || 'Link',
+      }));
+  }, [footerMenuData, locale]);
+
   const contact = (contactInfoSetting?.value ?? {}) as Record<string, unknown>;
-  const phone = String(contact.phone || contact.gsm || contact.whatsapp || '').trim();
+  const phones = Array.isArray(contact.phones)
+    ? contact.phones.map((item) => String(item).trim()).filter(Boolean)
+    : [];
+  const phone = String(contact.phone || phones[0] || '').trim();
+  const secondPhone = String(phones[1] || contact.whatsapp || '').trim();
+  const whatsapp = String(contact.whatsappNumber || contact.whatsapp || secondPhone || phone).trim();
   const email = String(contact.email || '').trim();
-  // Adres string olabilir ya da {full|line|formatted|street,city...} objesi olabilir → güvenli çıkar ([object Object] bug'ı)
-  const addrRaw = (contact.address ?? contact.addressLine ?? '') as unknown;
-  const address = (
-    typeof addrRaw === 'string'
-      ? addrRaw
-      : addrRaw && typeof addrRaw === 'object'
-        ? String(
-            (addrRaw as Record<string, unknown>).full ||
-              (addrRaw as Record<string, unknown>).formatted ||
-              (addrRaw as Record<string, unknown>).line ||
-              (addrRaw as Record<string, unknown>).text ||
-              [
-                (addrRaw as Record<string, unknown>).street,
-                (addrRaw as Record<string, unknown>).district,
-                (addrRaw as Record<string, unknown>).city,
-              ]
-                .filter(Boolean)
-                .join(', ') ||
-              '',
-          )
-        : ''
-  ).trim();
+  const whatsappHref = whatsapp
+    ? `https://wa.me/${normalizeWhatsApp(whatsapp)}`
+    : 'https://wa.me/905331570373';
   const homeHref = localizePath(locale, '/');
 
   return (
-    <footer className="border-t border-[var(--gm-border-soft)] bg-[var(--gm-bg)] py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-14 rounded-xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-6 shadow-[var(--gm-shadow-soft)] md:flex md:items-center md:justify-between md:gap-8">
+    <footer className="bg-gray-900 py-16 text-white lg:py-20">
+      <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-3">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--gm-primary)]">
-              Woody Academy
-            </p>
-            <h2 className="mt-2 text-2xl font-bold text-[var(--gm-text)]">
-              {locale === 'tr' ? 'Woody Academy Kariyer' : 'Woody Academy Careers'}
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--gm-text-dim)]">
-              {locale === 'tr'
-                ? 'Öğretmen gelişim programları ve okul iş birlikleri hakkında bilgi almak için bizimle iletişime geçin.'
-                : 'Contact us for teacher development programs and school partnerships.'}
-            </p>
-          </div>
-          <Link
-            href={localizePath(locale, '/contact')}
-            className="mt-5 inline-flex rounded-md bg-[var(--gm-primary)] px-5 py-3 font-bold text-[var(--gm-surface)] md:mt-0"
-          >
-            {locale === 'tr' ? 'İletişime Geç' : 'Contact Us'}
-          </Link>
-        </div>
-
-        <div className="mb-16 grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-4">
-          <div className="flex flex-col items-start text-left">
-            <Link href={homeHref} className="mb-8 flex items-start no-underline">
+            <Link
+              href={homeHref}
+              className={`mb-6 flex items-start no-underline rounded-md ${FOCUS_RING}`}
+              aria-label={locale === 'tr' ? 'Ana sayfa' : 'Home'}
+            >
               <SiteLogo
-                variant="dark"
+                variant="light"
                 wrapperClassName="w-44"
-                className="max-h-20 object-contain"
+                className="max-h-20 object-contain brightness-0 invert"
                 priority={false}
               />
             </Link>
-            <p className="max-w-[280px] text-[15px] font-light leading-relaxed text-[var(--gm-text-dim)]">
+            <h3 className="mb-4 font-display text-[28px] font-bold text-white md:text-[32px]">
+              {locale === 'tr' ? 'Woody ve Arkadaşları' : 'Woody and Friends'}
+            </h3>
+            <p className="max-w-[320px] text-[14px] leading-relaxed text-gray-400">
               {ui(
                 'ui_footer_tagline',
                 locale === 'tr'
-                  ? 'Okul öncesi İngilizce eğitiminde oyun temelli, hikaye destekli ve dijital içerikle sürdürülebilir öğrenme deneyimi.'
-                  : 'A play-based, story-supported, and digitally sustainable preschool English learning experience.',
+                  ? 'Okul öncesi İngilizce eğitiminde oyun temelli ve sistemli öğrenme modeli.'
+                  : 'A play-based and structured preschool English learning model.',
               )}
             </p>
           </div>
 
           <div>
-            <div className="mb-8 font-display text-[11px] uppercase tracking-[0.32em] text-[var(--gm-gold-deep)]">
+            <h4 className="mb-6 text-[16px] font-semibold tracking-wide text-white">
               {locale === 'tr' ? 'Kurumsal' : 'Corporate'}
-            </div>
-            <ul className="m-0 list-none space-y-4 p-0">
-              {footerLinks(locale).map((item) => (
+            </h4>
+            <ul className="m-0 list-none space-y-3 p-0">
+              {menuItems.map((item) => (
                 <li key={item.id}>
                   <Link
                     href={isExternalHref(item.url) ? item.url : localizePath(locale, cleanHashLink(item.url))}
-                    className="font-serif text-[16px] italic text-[var(--gm-text-dim)] transition-colors hover:text-[var(--gm-gold)]"
+                    className={`rounded-md text-[14px] text-gray-400 transition-colors hover:text-white ${FOCUS_RING}`}
                   >
                     {item.title}
                   </Link>
@@ -150,59 +147,103 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
           </div>
 
           <div>
-            <div className="mb-8 font-display text-[11px] uppercase tracking-[0.32em] text-[var(--gm-gold-deep)]">
+            <h4 className="mb-6 text-[16px] font-semibold tracking-wide text-white">
               {locale === 'tr' ? 'İletişim' : 'Contact'}
-            </div>
-            <ul className="m-0 list-none space-y-4 p-0 text-[var(--gm-text-dim)]">
+            </h4>
+            <ul className="m-0 list-none space-y-4 p-0 text-[14px] text-gray-400">
               {phone ? (
                 <li className="flex gap-3">
-                  <Phone className="mt-1 size-4 shrink-0 text-[var(--gm-primary)]" aria-hidden />
-                  <a href={`tel:${phone.replace(/\s+/g, '')}`} className="hover:text-[var(--gm-gold)]">
+                  <Phone className="mt-0.5 size-[18px] shrink-0" aria-hidden />
+                  <a
+                    href={`tel:${normalizePhone(phone)}`}
+                    className={`rounded-md hover:text-white ${FOCUS_RING}`}
+                    aria-label={locale === 'tr' ? `Telefon: ${phone}` : `Phone: ${phone}`}
+                  >
                     {phone}
                   </a>
                 </li>
               ) : null}
+              {secondPhone ? (
+                <li className="flex gap-3">
+                  <Phone className="mt-0.5 size-[18px] shrink-0" aria-hidden />
+                  <a
+                    href={`tel:${normalizePhone(secondPhone)}`}
+                    className={`rounded-md hover:text-white ${FOCUS_RING}`}
+                    aria-label={locale === 'tr' ? `Telefon: ${secondPhone}` : `Phone: ${secondPhone}`}
+                  >
+                    {secondPhone}
+                  </a>
+                </li>
+              ) : null}
+              <li className="flex gap-3">
+                <MessageCircle className="mt-0.5 size-[18px] shrink-0" aria-hidden />
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`rounded-md hover:text-[var(--gm-success)] ${FOCUS_RING}`}
+                  aria-label={locale === 'tr' ? 'WhatsApp ile iletişime geçin' : 'Contact us on WhatsApp'}
+                >
+                  {locale === 'tr' ? 'WhatsApp ile iletişime geçin' : 'Contact us on WhatsApp'}
+                </a>
+              </li>
               {email ? (
                 <li className="flex gap-3">
-                  <Mail className="mt-1 size-4 shrink-0 text-[var(--gm-primary)]" aria-hidden />
-                  <a href={`mailto:${email}`} className="hover:text-[var(--gm-gold)]">
+                  <Mail className="mt-0.5 size-[18px] shrink-0" aria-hidden />
+                  <a
+                    href={`mailto:${email}`}
+                    className={`rounded-md hover:text-white ${FOCUS_RING}`}
+                    aria-label={locale === 'tr' ? `E-posta: ${email}` : `Email: ${email}`}
+                  >
                     {email}
                   </a>
                 </li>
               ) : null}
-              {address ? (
-                <li className="flex gap-3">
-                  <MapPin className="mt-1 size-4 shrink-0 text-[var(--gm-primary)]" aria-hidden />
-                  <span>{address}</span>
-                </li>
-              ) : null}
-              {!phone && !email && !address ? (
-                <li>
-                  <Link href={localizePath(locale, '/contact')} className="hover:text-[var(--gm-gold)]">
-                    {locale === 'tr' ? 'İletişim formu' : 'Contact form'}
-                  </Link>
-                </li>
-              ) : null}
             </ul>
-          </div>
 
-          <div>
-            <div className="mb-8 font-display text-[11px] uppercase tracking-[0.32em] text-[var(--gm-gold-deep)]">
+            <h4 className="mb-4 mt-8 text-[16px] font-semibold tracking-wide text-white">
               {locale === 'tr' ? 'Bizi Takip Edin' : 'Follow Us'}
-            </div>
+            </h4>
             <SocialLinks socials={socials} size="sm" />
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-8 border-t border-[var(--gm-border-soft)] pt-8 text-[11px] uppercase tracking-[0.1em] text-[var(--gm-muted)] md:flex-row">
+        <div className="mb-8 mt-6">
+          <a
+            href="https://wa.me/905331570373?text=Merhaba%2C%20Woody%20Academy%20%C3%B6%C4%9Fretmen%20ba%C5%9Fvurusu%20yapmak%20istiyorum."
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`group mx-auto block max-w-[600px] rounded-lg bg-white/5 p-4 text-center no-underline transition-all duration-300 hover:bg-white/10 ${FOCUS_RING}`}
+            aria-label={locale === 'tr' ? 'Woody Academy öğretmen başvurusu' : 'Woody Academy teacher application'}
+          >
+            <p className="mb-1 text-[12px] text-gray-400 md:text-[13px]">Woody Academy Kariyer</p>
+            <p className="flex items-center justify-center gap-1 text-[13px] font-medium text-white md:text-[14px]">
+              <span>{locale === 'tr' ? 'Öğretmen Başvurusu' : 'Teacher Application'}</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
+                →
+              </span>
+            </p>
+          </a>
+        </div>
+
+        <div className="mb-6 h-px w-full bg-white/40" />
+
+        <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-500 md:flex-row">
           <p>
-            &copy; {new Date().getFullYear()} {getCopyrightHolder()}. {ui('ui_footer_rights', 'TÜM HAKLARI SAKLIDIR.')}
+            &copy; {new Date().getFullYear()} {getCopyrightHolder()}.{' '}
+            {ui('ui_footer_rights', locale === 'tr' ? 'TÜM HAKLARI SAKLIDIR.' : 'ALL RIGHTS RESERVED.')}
           </p>
-          <div className="flex gap-6">
-            <Link href={localizePath(locale, '/editorial-policy')} className="transition-colors hover:text-[var(--gm-gold)]">
-              {locale === 'tr' ? 'EDİTORYAL POLİTİKA' : locale === 'de' ? 'REDAKTIONELLE RICHTLINIE' : 'EDITORIAL POLICY'}
+          <div className="flex gap-6 text-[11px] uppercase tracking-[0.1em]">
+            <Link href={localizePath(locale, '/editorial-policy')} className={`rounded-md transition-colors hover:text-white ${FOCUS_RING}`}>
+              {locale === 'tr' ? 'EDİTORYAL POLİTİKA' : 'EDITORIAL POLICY'}
             </Link>
-            <a href="https://guezelwebdesign.com" target="_blank" rel="noopener" className="transition-colors hover:text-[var(--gm-gold)]">
+            <a
+              href="https://guezelwebdesign.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`rounded-md transition-colors hover:text-white ${FOCUS_RING}`}
+              aria-label="Designed by Guezel Web Design"
+            >
               DESIGNED BY GUEZELWEB
             </a>
           </div>

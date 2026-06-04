@@ -8,6 +8,7 @@ import { useListCustomPagesPublicQuery } from '@/integrations/rtk/hooks';
 import { safeStr, toCdnSrc, excerpt, formatDate } from '@/integrations/shared';
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
+import { FOCUS_RING } from '@/lib/a11y';
 
 export default function BlogHomeSection({ locale: explicitLocale }: { locale?: string }) {
   const locale = useLocaleShort(explicitLocale);
@@ -109,7 +110,7 @@ export default function BlogHomeSection({ locale: explicitLocale }: { locale?: s
                     )}
 
                     <h2 className="font-serif text-xl font-light leading-[1.3] mb-3 text-text-primary group-hover:text-brand-primary transition-colors">
-                      <Link href={href} className="no-underline">
+                      <Link href={href} className={`no-underline rounded-sm ${FOCUS_RING}`}>
                         {titleText}
                       </Link>
                     </h2>
@@ -123,7 +124,7 @@ export default function BlogHomeSection({ locale: explicitLocale }: { locale?: s
                     <div className="pt-4 border-t border-border-light">
                       <Link
                         href={href}
-                        className="text-[0.78rem] tracking-[0.15em] uppercase text-brand-primary hover:text-brand-hover transition-colors inline-flex items-center gap-2 no-underline"
+                        className={`inline-flex items-center gap-2 rounded-sm text-[0.78rem] uppercase tracking-[0.15em] text-brand-primary no-underline transition-colors hover:text-brand-hover ${FOCUS_RING}`}
                       >
                         {readMore}
                         <span className="sr-only">: {titleText}</span>
@@ -143,7 +144,7 @@ export default function BlogHomeSection({ locale: explicitLocale }: { locale?: s
 
         {/* View all button */}
         <div className="text-center mt-12">
-          <Link href={blogHref} className="btn-outline-premium">
+          <Link href={blogHref} className={`btn-outline-premium ${FOCUS_RING}`}>
             {viewAll}
           </Link>
         </div>

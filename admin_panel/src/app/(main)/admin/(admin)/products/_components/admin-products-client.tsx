@@ -173,7 +173,7 @@ function ActiveBadge({ active }: { active: boolean }) {
       variant="outline"
       className={cn(
         'rounded-md border px-2 py-0.5 text-[11px]',
-        active ? 'border-emerald-400/40 text-emerald-700' : 'border-slate-300 text-slate-500',
+        active ? 'border-primary/40 text-primary' : 'border-slate-300 text-slate-500',
       )}
     >
       {active ? 'Aktif' : 'Pasif'}
@@ -700,7 +700,7 @@ export default function AdminProductsClient() {
             </Table>
 
             <div className="flex items-start gap-2 rounded-lg border bg-muted/30 p-3 text-muted-foreground text-sm">
-              <CheckCircle2 className="mt-0.5 size-4 text-emerald-600" />
+              <CheckCircle2 className="mt-0.5 size-4 text-primary" />
               Ürün görselleri URL veya storage asset entegrasyonu ile güncellenebilir; gerçek upload için
               storage ekranı ayrı kalır.
             </div>

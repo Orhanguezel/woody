@@ -2,20 +2,20 @@
   "title": "Transition to the Cambridge English Certification System with {{appName}}",
   "eyebrow": "Why {{appName}}?",
   "description": "A structured, play-based learning model that introduces children to internationally standardized English education at an early age.",
-  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "image": "/media/woody/reference/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
   "imageAlt": "{{appName}} characters",
   "certifications": [
     {
       "name": "Cambridge English",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+      "image": "/media/woody/reference/0ljulhkj_8.png"
     },
     {
       "name": "British Side",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+      "image": "/media/woody/reference/1lah28n2_7.png"
     },
     {
       "name": "{{appName}} Academy",
-      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+      "image": "/media/woody/reference/22mg24ku_9.png"
     }
   ],
   "sections": [

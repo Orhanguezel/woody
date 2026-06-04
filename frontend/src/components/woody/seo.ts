@@ -21,6 +21,12 @@ function parsePrice(value: string | number | undefined): number {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function absolutize(url: string | undefined, siteUrl: string): string | undefined {
+  if (!url) return undefined;
+  if (/^https?:\/\//i.test(url)) return url;
+  return `${siteUrl}${url.startsWith('/') ? url : `/${url}`}`;
+}
+
 export async function woodyMetadata(args: {
   locale: string;
   pageKey: string;
@@ -98,7 +104,7 @@ export function woodyProductGraph(args: {
     product({
       name: args.item.title,
       description: args.item.description,
-      image: args.item.image,
+      image: absolutize(args.item.image, siteUrl),
       brand: app,
       offers: Number.isFinite(price) && price > 0
         ? {
@@ -110,4 +116,56 @@ export function woodyProductGraph(args: {
         : undefined,
     }),
   ]);
+}
+
+export function woodyStoreListingGraph(args: {
+  locale: string;
+  pathname: string;
+  content: WoodyPageContent;
+  items: Array<{
+    title?: string;
+    name?: string;
+    description?: string;
+    image?: string;
+    price?: string | number;
+    currency?: string;
+    slug?: string;
+    id?: string | number;
+  }>;
+}) {
+  const siteUrl = getPublicSiteOrigin();
+  const app = getPublicAppName();
+  const pageUrl = `${siteUrl}/${args.locale}${args.pathname}`;
+  const nodes = [
+    breadcrumbSchema([
+      { name: app, item: `${siteUrl}/${args.locale}` },
+      { name: args.content.title, item: pageUrl },
+    ]),
+  ];
+
+  for (const item of args.items) {
+    const name = item.title || item.name;
+    if (!name) continue;
+    const price = parsePrice(item.price);
+    const itemUrl = item.slug ? `${siteUrl}/${args.locale}/store/${encodeURIComponent(item.slug)}` : pageUrl;
+    nodes.push(
+      product({
+        name,
+        description: item.description,
+        image: absolutize(item.image, siteUrl),
+        sku: String(item.id || item.slug || name),
+        brand: app,
+        offers: price > 0
+          ? {
+              price,
+              priceCurrency: item.currency || 'TRY',
+              availability: 'https://schema.org/InStock',
+              url: itemUrl,
+            }
+          : undefined,
+      }),
+    );
+  }
+
+  return graph(nodes);
 }

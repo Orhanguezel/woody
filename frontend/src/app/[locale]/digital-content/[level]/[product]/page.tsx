@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import JsonLd from '@/seo/JsonLd';
-import WoodyPage from '@/components/woody/WoodyPage';
+import DigitalContentDetailClient from '@/components/woody/digital-content/DigitalContentDetailClient';
 import { findWoodyDigitalProduct } from '@/components/woody/content-loader.server';
 import { WOODY_DIGITAL_LEVELS, WOODY_DIGITAL_PRODUCTS, WOODY_LOCALES } from '@/components/woody/routes';
 import { woodyMetadata, woodyProductGraph } from '@/components/woody/seo';
@@ -39,24 +39,11 @@ export default async function DigitalProductPage({ params }: Props) {
   const item = await findWoodyDigitalProduct(level, product, locale);
   if (!item) notFound();
   const pathname = `/digital-content/${level}/${product}`;
-  const content = {
-    key: 'digital-product',
-    title: item.title,
-    description: item.description,
-    hero: {
-      eyebrow: item.badge,
-      title: item.title,
-      description: item.description,
-      image: item.image,
-      imageAlt: item.title,
-    },
-    cards: [item],
-  };
 
   return (
     <>
       <JsonLd id="woody-digital-product" data={woodyProductGraph({ locale, pathname, item })} />
-      <WoodyPage content={content} locale={locale} />
+      <DigitalContentDetailClient locale={locale} level={level} section={product} />
     </>
   );
 }

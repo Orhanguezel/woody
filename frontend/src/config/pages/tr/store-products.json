@@ -7,20 +7,20 @@
     { "id": "ozel-ders", "name": "Özel Ders Serisi", "description": "Ev ve özel ders öğretmenleri için", "route": "/home-tutor" }
   ],
   "products": [
-    { "id": 1, "category": "okul-serisi", "name": "Basic Level Set Öğrenci Seti", "description": "Başlangıç seviyesi", "price": "2250 TL'den başlayan fiyatlarla" },
-    { "id": 2, "category": "okul-serisi", "name": "Junior Level Set Öğrenci Seti", "description": "Gelişim seviyesi", "price": "2250 TL'den başlayan fiyatlarla" },
-    { "id": 3, "category": "okul-serisi", "name": "Senior Level Set Öğrenci Seti", "description": "İleri seviye", "price": "2250 TL'den başlayan fiyatlarla" },
-    { "id": 7, "category": "atolye", "name": "Atölye Basic", "description": "Başlangıç paketi", "price": "₺1.999" },
-    { "id": 8, "category": "atolye", "name": "Atölye Junior", "description": "Orta seviye", "price": "₺2.199" },
-    { "id": 9, "category": "atolye", "name": "Atölye Senior", "description": "İleri seviye", "price": "₺2.399" },
-    { "id": 10, "category": "atolye", "name": "Atölye PRO", "description": "Profesyonel", "price": "₺2.699" },
-    { "id": 11, "category": "atolye", "name": "Atölye Tam Set", "description": "Hepsi bir arada", "price": "₺7.999" },
-    { "id": 12, "category": "atolye", "name": "Dijital Materyal", "description": "Online erişim", "price": "₺499" },
-    { "id": 13, "category": "ozel-ders", "name": "Home Basic", "description": "Bireysel başlangıç", "price": "₺1.499" },
-    { "id": 14, "category": "ozel-ders", "name": "Home Junior", "description": "Bireysel gelişim", "price": "₺1.699" },
-    { "id": 15, "category": "ozel-ders", "name": "Home Senior", "description": "Bireysel ileri", "price": "₺1.899" },
-    { "id": 16, "category": "ozel-ders", "name": "Home PRO", "description": "Bireysel profesyonel", "price": "₺2.099" },
-    { "id": 17, "category": "ozel-ders", "name": "Özel Ders Paketi", "description": "4 seviye kampanyalı", "price": "₺5.999" },
-    { "id": 18, "category": "ozel-ders", "name": "Online Kütüphane", "description": "Dijital erişim", "price": "₺399" }
+    { "id": 1, "category": "okul-serisi", "name": "Basic Level Set Öğrenci Seti", "description": "Başlangıç seviyesi", "price": "2250 TL'den başlayan fiyatlarla", "image": "/media/woody/reference/3jgyyil9_1.png" },
+    { "id": 2, "category": "okul-serisi", "name": "Junior Level Set Öğrenci Seti", "description": "Gelişim seviyesi", "price": "2250 TL'den başlayan fiyatlarla", "image": "/media/woody/reference/h5x59v59_3.png" },
+    { "id": 3, "category": "okul-serisi", "name": "Senior Level Set Öğrenci Seti", "description": "İleri seviye", "price": "2250 TL'den başlayan fiyatlarla", "image": "/media/woody/reference/m4z26p5k_2.png" },
+    { "id": 7, "category": "atolye", "name": "Atölye Basic", "description": "Başlangıç paketi", "price": "₺1.999", "image": "/media/woody/reference/m4z26p5k_2.png" },
+    { "id": 8, "category": "atolye", "name": "Atölye Junior", "description": "Orta seviye", "price": "₺2.199", "image": "/media/woody/reference/3jgyyil9_1.png" },
+    { "id": 9, "category": "atolye", "name": "Atölye Senior", "description": "İleri seviye", "price": "₺2.399", "image": "/media/woody/reference/h5x59v59_3.png" },
+    { "id": 10, "category": "atolye", "name": "Atölye PRO", "description": "Profesyonel", "price": "₺2.699", "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png" },
+    { "id": 11, "category": "atolye", "name": "Atölye Tam Set", "description": "Hepsi bir arada", "price": "₺7.999", "image": "/media/woody/reference/m4z26p5k_2.png" },
+    { "id": 12, "category": "atolye", "name": "Dijital Materyal", "description": "Online erişim", "price": "₺499", "image": "/media/woody/reference/3jgyyil9_1.png" },
+    { "id": 13, "category": "ozel-ders", "name": "Home Basic", "description": "Bireysel başlangıç", "price": "₺1.499", "image": "/media/woody/reference/h5x59v59_3.png" },
+    { "id": 14, "category": "ozel-ders", "name": "Home Junior", "description": "Bireysel gelişim", "price": "₺1.699", "image": "/media/woody/reference/m4z26p5k_2.png" },
+    { "id": 15, "category": "ozel-ders", "name": "Home Senior", "description": "Bireysel ileri", "price": "₺1.899", "image": "/media/woody/reference/3jgyyil9_1.png" },
+    { "id": 16, "category": "ozel-ders", "name": "Home PRO", "description": "Bireysel profesyonel", "price": "₺2.099", "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png" },
+    { "id": 17, "category": "ozel-ders", "name": "Özel Ders Paketi", "description": "4 seviye kampanyalı", "price": "₺5.999", "image": "/media/woody/reference/h5x59v59_3.png" },
+    { "id": 18, "category": "ozel-ders", "name": "Online Kütüphane", "description": "Dijital erişim", "price": "₺399", "image": "/media/woody/reference/m4z26p5k_2.png" }
   ]
 }

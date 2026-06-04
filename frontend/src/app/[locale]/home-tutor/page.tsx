@@ -1,7 +1,7 @@
 import JsonLd from '@/seo/JsonLd';
 import WoodyFallback from '@/components/woody/WoodyFallback';
-import WoodyPage from '@/components/woody/WoodyPage';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
+import HomeTutorPageClient from '@/components/woody/home-tutor/HomeTutorPageClient';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
 
 const PAGE_KEY = 'home-tutor';
@@ -22,7 +22,7 @@ export default async function HomeTutorPage({ params }: Props) {
   return (
     <>
       <JsonLd id="woody-home-tutor" data={woodyPageGraph({ locale, pathname: PATHNAME, content })} />
-      <WoodyPage content={content} locale={locale} />
+      <HomeTutorPageClient content={content} locale={locale} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import JsonLd from '@/seo/JsonLd';
 import WoodyFallback from '@/components/woody/WoodyFallback';
-import WoodyPage from '@/components/woody/WoodyPage';
+import LibraryPageClient from '@/components/woody/library/LibraryPageClient';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
 
@@ -22,7 +22,7 @@ export default async function LibraryPage({ params }: Props) {
   return (
     <>
       <JsonLd id="woody-library" data={woodyPageGraph({ locale, pathname: PATHNAME, content })} />
-      <WoodyPage content={content} locale={locale} />
+      <LibraryPageClient content={content} locale={locale} />
     </>
   );
 }

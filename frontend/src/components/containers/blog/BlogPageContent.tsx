@@ -8,6 +8,7 @@ import { useListCustomPagesPublicQuery } from '@/integrations/rtk/hooks';
 import { safeStr, toCdnSrc, excerpt } from '@/integrations/shared';
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
+import { FOCUS_RING } from '@/lib/a11y';
 import { getPublicAppName } from '@/lib/site-config';
 import blogFallbackPosts from '@/config/pages/blog-fallback-posts.json';
 import type { WoodyFallbackBlogPost } from '@/components/woody/blog-loader.server';
@@ -226,7 +227,7 @@ const BlogPageContent: React.FC<{
                   className={`group bg-[var(--gm-surface)] border border-[var(--gm-border-soft)] rounded-2xl overflow-hidden transition-all duration-500 hover:border-[var(--gm-primary)]/40 hover:shadow-[var(--gm-shadow-card)] hover:-translate-y-1 flex flex-col reveal reveal-delay-${(i % 3) + 1}`}
                 >
                   {/* Image */}
-                  <Link href={href} className="relative h-56 overflow-hidden bg-[var(--gm-bg-deep)] block no-underline">
+                  <Link href={href} className={`relative block h-56 overflow-hidden bg-[var(--gm-bg-deep)] no-underline ${FOCUS_RING}`} aria-label={title}>
                     {imgSrc ? (
                       <Image
                         src={imgSrc as any}
@@ -257,7 +258,7 @@ const BlogPageContent: React.FC<{
                     )}
 
                     <h2 className="font-serif text-xl font-light leading-[1.3] mb-3 text-[var(--gm-text)] group-hover:text-[var(--gm-primary)] transition-colors">
-                      <Link href={href} className="no-underline">{title}</Link>
+                      <Link href={href} className={`no-underline rounded-sm ${FOCUS_RING}`}>{title}</Link>
                     </h2>
 
                     {summary && (
@@ -267,7 +268,7 @@ const BlogPageContent: React.FC<{
                     <div className="pt-4 border-t border-[var(--gm-border-soft)] mt-auto">
                       <Link
                         href={href}
-                        className="text-[0.78rem] tracking-[0.15em] uppercase text-[var(--gm-primary)] hover:text-[var(--gm-primary-dark)] transition-colors inline-flex items-center gap-2 no-underline font-bold"
+                        className={`inline-flex items-center gap-2 rounded-sm text-[0.78rem] font-bold uppercase tracking-[0.15em] text-[var(--gm-primary)] no-underline transition-colors hover:text-[var(--gm-primary-dark)] ${FOCUS_RING}`}
                       >
                         {readMore}
                         <span className="sr-only">: {title}</span>

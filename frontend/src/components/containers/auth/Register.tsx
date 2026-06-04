@@ -19,6 +19,7 @@ import SocialLoginButtons from '@/components/auth/SocialLoginButtons';
 // i18n
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
+import { AUTH_FIELD_CLS, FOCUS_RING } from '@/lib/a11y';
 import { getSampleEmailPlaceholder } from '@/lib/site-config';
 
 const Register: React.FC = () => {
@@ -114,7 +115,7 @@ const Register: React.FC = () => {
               {ui('register_lead_has_account', 'Zaten hesabınız var mı?')}{' '}
               <Link
                 href={loginHref}
-                className="text-brand-primary font-bold hover:text-brand-hover transition-colors"
+                className={`rounded-sm font-bold text-brand-primary transition-colors hover:text-brand-hover ${FOCUS_RING}`}
               >
                 {ui('register_login_link', 'Giriş yap')}
               </Link>
@@ -141,7 +142,7 @@ const Register: React.FC = () => {
               <input
                 id="reg-fullname"
                 type="text"
-                className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                 placeholder={ui('register_fullname_placeholder', 'Adınız ve soyadınız')}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
@@ -156,7 +157,7 @@ const Register: React.FC = () => {
               <input
                 id="reg-phone"
                 type="tel"
-                className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                 placeholder={ui('register_phone_placeholder', '+90 5xx xxx xx xx')}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -171,7 +172,7 @@ const Register: React.FC = () => {
               <input
                 id="reg-email"
                 type="email"
-                className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                 placeholder={ui(
                   'register_email_placeholder',
                   getSampleEmailPlaceholder(locale),
@@ -192,7 +193,7 @@ const Register: React.FC = () => {
                 <input
                   id="reg-password"
                   type="password"
-                  className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                  className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                   placeholder={ui('register_password_placeholder', 'Şifre')}
                   autoComplete="new-password"
                   value={password}
@@ -209,7 +210,7 @@ const Register: React.FC = () => {
                 <input
                   id="reg-password-again"
                   type="password"
-                  className="w-full px-4 py-3 border border-border-light rounded-sm focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all bg-bg-card placeholder:text-text-muted text-text-primary"
+                  className={`${AUTH_FIELD_CLS} ${FOCUS_RING}`}
                   placeholder={ui('register_password_again_placeholder', 'Şifreyi tekrar girin')}
                   autoComplete="new-password"
                   value={passwordAgain}
@@ -224,21 +225,21 @@ const Register: React.FC = () => {
               <input
                 id="reg-rules"
                 type="checkbox"
-                className="mt-1 w-4 h-4 rounded border-border-light text-brand-primary focus:ring-brand-primary/20"
+                className={`mt-1 h-4 w-4 rounded border-border-light text-brand-primary accent-brand-primary ${FOCUS_RING}`}
                 checked={rulesAccepted}
                 onChange={(e) => setRulesAccepted(e.target.checked)}
                 required
               />
               <label htmlFor="reg-rules" className="text-sm text-text-secondary leading-snug">
-                <Link href={localizePath(locale, '/terms')} target="_blank" className="text-brand-primary hover:underline">Kullanım Koşullarını</Link> ve{' '}
-                <Link href={localizePath(locale, '/kvkk')} target="_blank" className="text-brand-primary hover:underline">KVKK Aydınlatma Metnini</Link> okudum, kabul ediyorum.
+                <Link href={localizePath(locale, '/terms')} target="_blank" rel="noopener noreferrer" className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`}>Kullanım Koşullarını</Link> ve{' '}
+                <Link href={localizePath(locale, '/kvkk')} target="_blank" rel="noopener noreferrer" className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`}>KVKK Aydınlatma Metnini</Link> okudum, kabul ediyorum.
               </label>
             </div>
 
             <div className="pt-6">
               <button
                 type="submit"
-                className="w-full bg-brand-primary text-white font-bold py-3.5 px-4 rounded-sm hover:bg-brand-hover transition-all duration-300 shadow-soft hover:shadow-medium disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center uppercase tracking-widest text-sm"
+                className={`flex w-full items-center justify-center rounded-sm bg-brand-primary px-4 py-3.5 text-sm font-bold uppercase tracking-widest text-text-on-dark shadow-soft transition-all duration-300 hover:bg-brand-hover hover:shadow-medium disabled:cursor-not-allowed disabled:opacity-70 ${FOCUS_RING}`}
                 disabled={isLoading}
               >
                 {signupState.isLoading
