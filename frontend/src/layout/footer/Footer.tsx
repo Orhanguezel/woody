@@ -225,7 +225,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
 
         <div className="mb-6 h-px w-full bg-white/40" />
 
-        <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-500 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-300 md:flex-row">
           <p>
             &copy; {new Date().getFullYear()} {getCopyrightHolder()}.{' '}
             {ui('ui_footer_rights', locale === 'tr' ? 'TÜM HAKLARI SAKLIDIR.' : 'ALL RIGHTS RESERVED.')}
