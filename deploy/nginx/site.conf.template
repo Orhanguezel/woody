@@ -29,6 +29,15 @@ server {
     proxy_set_header Host $host;
   }
 
+  # Buyuk medya (video/ses/gorsel) — diskten DOGRUDAN, Next bypass (git/rsync disi, fetch-media.sh ile indirilir)
+  location ^~ /media/ {
+    alias __DEPLOY_PATH__/frontend/public/media/;
+    try_files $uri =404;
+    access_log off;
+    expires 30d;
+    add_header Cache-Control "public, max-age=2592000";
+  }
+
   location / {
     proxy_pass http://127.0.0.1:__FRONTEND_PORT__;
     proxy_http_version 1.1;

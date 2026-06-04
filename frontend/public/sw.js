@@ -1,14 +1,20 @@
-const VERSION = 'pwa-v2';
+const VERSION = 'pwa-v3';
 const SHELL = `${VERSION}-shell`;
 const STATIC = `${VERSION}-static`;
 const PAGE = `${VERSION}-page`;
 const OFFLINE = '/offline.html';
-const SHELL_ASSETS = [OFFLINE, '/favicon.svg', '/favicon/apple-touch-icon.svg', '/favicon/icon-192.svg', '/favicon/icon-512.svg'];
+// Yalnizca var olan dosyalar. (Tek 404 install'u kirmasin diye asagida dayanikli yukleme yapilir.)
+const SHELL_ASSETS = [OFFLINE, '/favicon.svg'];
 const STATIC_RE = /\.(?:avif|webp|png|jpe?g|svg|gif|ico|woff2?|ttf|otf)$/i;
 const SKIP_RE = /\/api\/|\/site_settings|\/_next\//;
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(SHELL).then((cache) => cache.addAll(SHELL_ASSETS)));
+  // Dayanikli: addAll yerine tek tek add + allSettled — bir asset 404 olsa bile install cokmesin.
+  event.waitUntil(
+    caches.open(SHELL).then((cache) =>
+      Promise.allSettled(SHELL_ASSETS.map((asset) => cache.add(asset))),
+    ),
+  );
   self.skipWaiting();
 });
 
