@@ -62,7 +62,7 @@ export default function WoodyStoreShowcase({
 
   return (
     <main className="bg-white text-gray-900">
-      <section className="relative overflow-hidden bg-brand-primary py-9 md:py-11">
+      <section className="relative mt-[72px] overflow-hidden bg-brand-primary py-9 md:py-11">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.12]">
           <ShoppingBag className="h-64 w-64 text-white md:h-72 md:w-72" strokeWidth={1.5} aria-hidden />
         </div>

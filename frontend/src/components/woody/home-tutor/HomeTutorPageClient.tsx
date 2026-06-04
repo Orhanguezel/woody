@@ -55,7 +55,7 @@ export default function HomeTutorPageClient({
         </video>
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
-          <h1 className="font-display text-[54px] font-black uppercase leading-none tracking-[0.1em] drop-shadow-2xl md:text-[84px] lg:text-[112px]">
+          <h1 className="font-display text-[54px] font-black uppercase leading-none tracking-[0.1em] text-white drop-shadow-2xl md:text-[84px] lg:text-[112px]">
             {content.hero?.title || content.title}
           </h1>
           <button

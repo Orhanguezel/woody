@@ -110,14 +110,11 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             >
               <SiteLogo
                 variant="light"
-                wrapperClassName="w-44"
-                className="max-h-20 object-contain brightness-0 invert"
+                wrapperClassName="w-52"
+                className="max-h-24 object-contain"
                 priority={false}
               />
             </Link>
-            <h3 className="mb-4 font-display text-[28px] font-bold text-white md:text-[32px]">
-              {locale === 'tr' ? 'Woody ve Arkadaşları' : 'Woody and Friends'}
-            </h3>
             <p className="max-w-[320px] text-[14px] leading-relaxed text-gray-400">
               {ui(
                 'ui_footer_tagline',
