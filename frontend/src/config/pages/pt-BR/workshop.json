@@ -1,64 +1,64 @@
 {
-  "title": "Série {{appName}} Workshop",
-  "description": "Com a série de workshops, as crianças não apenas ouvem o inglês; elas o praticam, o aplicam e o vivenciam. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
-  "eyebrow": "SÉRIE {{appName}} WORKSHOP",
+  "title": "Série de workshops {{appName}}",
+  "description": "Com a série de workshops, as crianças não ouvem apenas inglês; eles tocam, aplicam e vivem. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
+  "eyebrow": "SÉRIE DE OFICINAS {{appName}}",
   "hero": {
-    "eyebrow": "SÉRIE {{appName}} WORKSHOP",
-    "title": "Workshop",
-    "description": "Com a série de workshops, as crianças não apenas ouvem o inglês; elas o praticam, o aplicam e o vivenciam. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
-    "primaryCTA": "Solicitar uma Demonstração",
+    "eyebrow": "SÉRIE DE OFICINAS {{appName}}",
+    "title": "Oficina",
+    "description": "Com a série de workshops, as crianças não ouvem apenas inglês; eles tocam, aplicam e vivem. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
+    "primaryCTA": "Solicite uma demonstração",
     "primaryHref": "/demo-talep",
-    "secondaryCTA": "Ver Preços",
+    "secondaryCTA": "Ver preços",
     "secondaryHref": "/fiyat"
   },
   "sections": [
     {
       "eyebrow": "Níveis",
-      "title": "Descubra o Conteúdo da Série por Meio de Apresentações em Vídeo",
-      "description": "A Série Workshop é composta por dois conjuntos distintos. Descubra seu conteúdo por meio de apresentações em vídeo. A série tem quatro níveis: Basic, Junior, Senior e PRO.",
+      "title": "Descubra o conteúdo da série por meio de vídeos passo a passo",
+      "description": "A série de workshops consiste em dois conjuntos separados. Descubra seu conteúdo por meio de vídeos passo a passo. A série tem quatro níveis: Básico, Júnior, Sênior e PRO.",
       "items": [
         {
           "badge": "BASIC",
-          "title": "Basic Level",
-          "description": "Proporciona um começo sólido no inglês com palavras básicas e frases simples."
+          "title": "Nível Básico",
+          "description": "Fornece um forte início de inglês com palavras básicas e frases simples."
         },
         {
           "badge": "JUNIOR",
-          "title": "Junior Level",
+          "title": "Nível Júnior",
           "description": "Desenvolve a capacidade das crianças de construir frases e se expressar."
         },
         {
           "badge": "SENIOR",
-          "title": "Senior Level",
-          "description": "Desenvolve a capacidade de usar e compreender o inglês de forma mais fluente."
+          "title": "Nível Sênior",
+          "description": "Desenvolve a capacidade de usar e compreender o inglês com mais fluência."
         },
         {
           "badge": "PRO",
-          "title": "PRO Level",
+          "title": "Nível PRO",
           "description": "Constrói uma base em leitura, escrita e inglês acadêmico."
         }
       ]
     },
     {
       "eyebrow": "Explorar",
-      "title": "Conheça o Sistema Mais de Perto",
+      "title": "Dê uma olhada mais de perto no sistema",
       "items": [
         {
-          "title": "{{appName}} Digital Library",
-          "description": "Uma biblioteca digital onde você pode navegar pelos livros {{appName}}. Veja todos os conjuntos em detalhes e visualize o conteúdo para entender claramente o sistema.",
+          "title": "Biblioteca Digital {{appName}}",
+          "description": "Uma biblioteca digital onde você pode navegar pelos livros {{appName}}. Veja todos os conjuntos em detalhes e visualize o conteúdo para obter uma compreensão clara do sistema.",
           "href": "/library"
         },
         {
-          "title": "{{appName}} Store",
-          "description": "Uma área onde você pode conferir os preços atuais dos conjuntos {{appName}} e fazer pedidos online.",
+          "title": "Loja",
+          "description": "Uma área onde você pode verificar os preços atuais dos conjuntos {{appName}} e fazer pedidos online.",
           "href": "/store"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Conjunto de Inglês Workshop | Educação de Inglês para Educação Infantil Baseada em Workshop",
-    "description": "Série {{appName}} Workshop: um conjunto de aprendizagem de inglês para educação infantil baseado em workshop e prático. 4 níveis (Basic/Junior/Senior/PRO), com atividades voltadas a brincadeiras e dramatização, em que as crianças aprendem inglês vivenciando-o.",
-    "keywords": "conjunto de inglês workshop, inglês baseado em workshop, workshop de inglês para educação infantil, woody workshop, educação de inglês prática"
+    "title": "Workshop Conjunto de Inglês | Educação pré-escolar de inglês baseada em oficinas",
+    "description": "{{appName}} Série de workshops: um conjunto prático de aprendizagem de inglês pré-escolar baseado em workshops. 4 níveis (Básico/Júnior/Sênior/PRO), com atividades lúdicas e teatrais, as crianças aprendem inglês vivenciando-o.",
+    "keywords": "workshop de inglês, workshop de inglês, workshop de inglês pré-escolar, workshop woody, educação prática de inglês"
   }
 }

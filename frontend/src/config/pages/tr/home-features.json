@@ -1,48 +1,48 @@
 {
   "eyebrow": "Neden {{appName}}?",
-  "title": "Projeye göre şekillenen <em>nötr</em> bir başlangıç.",
+  "title": "Anaokulu İngilizcesini <em>sistemli</em> ve uygulanabilir hale getirir.",
   "features": [
     {
       "num": "I",
-      "title": "Korunan <em>uygulama iskeleti</em>",
-      "body": "Routing, layout, tema, auth ve state yönetimi yeni marka için hazır kalır.",
+      "title": "Oyun temelli <em>ders akışı</em>",
+      "body": "Hikaye, şarkı, hareket ve tekrar akışı çocukların dili sınıf içinde doğal şekilde kullanmasını sağlar.",
       "meta": [
-        "App Router",
-        "Layout",
-        "Tema"
+        "Hikaye",
+        "Şarkı",
+        "Oyun"
       ],
       "settingKey": "ui_feature_structure_image",
       "imageFallback": "/img/placeholder.svg",
-      "overlayLabel": "İskelet",
-      "imageAlt": "Nötr arayüz alanı"
+      "overlayLabel": "Ders akışı",
+      "imageAlt": "Oyun temelli İngilizce dersi"
     },
     {
       "num": "II",
-      "title": "DB tabanlı <em>metin altyapısı</em>",
-      "body": "Yerel statik çeviri dosyaları yerine site ayarları ve içerik kaynakları kullanılabilir.",
+      "title": "Öğretmeni destekleyen <em>materyal seti</em>",
+      "body": "Öğretmen ve öğrenci setleri kurum içinde standart bir uygulama dili oluşturur.",
       "meta": [
-        "i18n",
-        "Site ayarları",
-        "İçerik"
+        "Öğretmen",
+        "Öğrenci",
+        "Set"
       ],
       "settingKey": "ui_feature_content_image",
       "imageFallback": "/img/placeholder.svg",
-      "overlayLabel": "İçerik",
-      "imageAlt": "İçerik alanı"
+      "overlayLabel": "Materyal",
+      "imageAlt": "Öğretmen ve öğrenci materyalleri"
     },
     {
       "num": "III",
-      "title": "Jenerik <em>sayfa seti</em>",
-      "body": "Ana sayfa, blog, iletişim, SSS, hesap ve yasal sayfalar domain bağımsız başlar.",
+      "title": "Dijital içerikle <em>süreklilik</em>",
+      "body": "Kitap, şarkı, video ve okul hesabı akışları öğrenmeyi sınıf dışına da taşır.",
       "meta": [
-        "Blog",
-        "İletişim",
-        "Hesap"
+        "Kütüphane",
+        "Okul hesabı",
+        "Takip"
       ],
       "settingKey": "ui_feature_pages_image",
       "imageFallback": "/img/placeholder.svg",
-      "overlayLabel": "Sayfalar",
-      "imageAlt": "Sayfa şablonu"
+      "overlayLabel": "Dijital",
+      "imageAlt": "Dijital öğrenme içeriği"
     }
   ]
 }

@@ -1,41 +1,41 @@
 {
   "title": "Política editorial e metodologia",
-  "description": "Como o {{appName}} prepara conteúdo, usa redação assistida por IA e aplica padrões de qualidade.",
+  "description": "Como {{appName}} prepara conteúdo, usa redação assistida por IA e aplica padrões de qualidade.",
   "back": "Voltar para Sobre",
   "authorRoleTitle": "Processo de qualidade editorial",
   "authorExpertiseLabels": [
     "Revisão editorial",
-    "Design de aprendizagem",
+    "Projeto de aprendizagem",
     "Linguagem acessível"
   ],
-  "credentialsNote": "Práticas de qualidade e atualização de conteúdo",
+  "credentialsNote": "Qualidade de conteúdo e práticas de atualização",
   "sections": [
     {
       "title": "Princípios de conteúdo",
       "paragraphs": [
-        "O conteúdo do {{appName}} ajuda os usuários a se prepararem para escolhas informadas e conversas com especialistas, e não para substituir o aconselhamento profissional em domínios regulamentados.",
-        "Priorizamos a linguagem simples, o tom não coercitivo e os insights práticos. Rejeitamos a linguagem de dependência e as previsões absolutas."
+        "O conteúdo {{appName}} ajuda os usuários a se prepararem para escolhas informadas e conversas com especialistas, e não para substituir o aconselhamento profissional em domínios regulamentados.",
+        "Priorizamos uma linguagem simples, um tom não coercitivo e uma visão prática. Rejeitamos a linguagem de dependência e as previsões absolutas."
       ]
     },
     {
-      "title": "Transparência sobre a redação assistida por IA",
+      "title": "Transparência na elaboração assistida por IA",
       "paragraphs": [
         "Alguns rascunhos educacionais podem usar LLMs para estruturar tópicos e melhorar a legibilidade.",
-        "Os rascunhos são revisados quanto à precisão, ao contexto, à acessibilidade e aos limites éticos antes da publicação."
+        "Os rascunhos são revisados ​​quanto à precisão, contexto, acessibilidade e limites éticos antes da publicação."
       ]
     },
     {
       "title": "Metodologia de aprendizagem",
       "paragraphs": [
-        "Os módulos seguem uma estrutura centrada no aluno; as fontes são mantidas e aprimoradas com base no feedback.",
-        "As sugestões personalizadas seguem regras transparentes alinhadas à política da plataforma."
+        "Os módulos seguem uma estrutura centrada no aluno; as fontes são mantidas e melhoradas com feedback.",
+        "As sugestões personalizadas seguem regras transparentes alinhadas com a política da plataforma."
       ]
     },
     {
       "title": "Processo de revisão",
       "paragraphs": [
-        "O conteúdo passa por revisão editorial antes da publicação. O texto voltado ao usuário prioriza consistência, precisão e confiança.",
-        "O conteúdo da plataforma é informação geral; consulte um profissional adequado para situações pessoais."
+        "O conteúdo é revisado editorialmente antes do lançamento. A cópia voltada para o usuário prioriza consistência, precisão e confiança.",
+        "O conteúdo da plataforma é informação geral; consulte um profissional relevante para situações pessoais."
       ]
     }
   ]

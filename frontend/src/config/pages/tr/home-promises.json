@@ -1,24 +1,24 @@
 {
-  "eyebrow": "Temel ilkeler",
-  "title": "{{appName}} için <em>nötr</em> sözler",
+  "eyebrow": "Sözümüz",
+  "title": "{{appName}} ile <em>ölçülü</em> ve güvenli öğrenme",
   "promises": [
     {
       "num": "01",
-      "title": "Markadan bağımsız",
-      "text": "Varsayılan metinler AppName tokenı ve env değerleriyle çalışır.",
-      "target": "MARKA"
+      "title": "Yaşa uygun",
+      "text": "Her seviye 3-6 yaş çocukların dikkat süresi, oyun ihtiyacı ve tekrar ritmine göre hazırlanır.",
+      "target": "YAŞ"
     },
     {
       "num": "02",
-      "title": "Genişletilebilir",
-      "text": "Bileşen ve sayfa iskeleti yeni domain içerikleri için boş bırakılır.",
-      "target": "YAPI"
+      "title": "Öğretmene uygulanabilir",
+      "text": "Ders akışı öğretmene net bir yol verir; kurumdan kuruma kalite farkını azaltır.",
+      "target": "SINIF"
     },
     {
       "num": "03",
-      "title": "Sade başlangıç",
-      "text": "Ticaret ve proje özel akışlar varsayılan şablonda yer almaz.",
-      "target": "SADELİK"
+      "title": "Kuruma sürdürülebilir",
+      "text": "Fiziksel materyal, dijital içerik ve akademi akışı uzun vadeli bir eğitim modeli kurar.",
+      "target": "KURUM"
     }
   ]
 }

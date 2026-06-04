@@ -1,41 +1,161 @@
 {
-  "title": "Perguntas Frequentes",
-  "description": "As perguntas mais frequentes sobre educação de inglês para a educação infantil e o sistema {{appName}}.",
-  "eyebrow": "PERGUNTAS FREQUENTES",
+  "title": "Perguntas frequentes",
+  "description": "As perguntas mais frequentes sobre a educação pré-escolar de inglês e o sistema {{appName}}.",
+  "eyebrow": "FAQ",
   "hero": {
-    "eyebrow": "PERGUNTAS FREQUENTES",
-    "title": "Perguntas Frequentes",
-    "description": "Perguntas frequentes e respostas sobre educação de inglês para a educação infantil e o sistema {{appName}}."
+    "eyebrow": "FAQ",
+    "title": "Perguntas frequentes",
+    "description": "Perguntas e respostas frequentes sobre a educação pré-escolar de inglês e o sistema {{appName}}."
   },
   "items": [
-    { "question": "Por que é necessário um conjunto de educação de inglês para a educação infantil?", "problem": "O maior problema na educação infantil é que as aulas de inglês variam de professor para professor e não avançam com um sistema padronizado.", "solution": "O {{appName}} oferece um conjunto de educação de inglês planejado, baseado em brincadeiras e aplicável para a educação infantil, de modo que as aulas avancem de forma sistemática em vez de aleatória.", "answer": "O {{appName}} oferece um conjunto de educação de inglês planejado, baseado em brincadeiras e aplicável para a educação infantil, de modo que as aulas avancem de forma sistemática em vez de aleatória." },
-    { "question": "Por que a educação de inglês para a educação infantil não se mantém na maioria das instituições?", "problem": "Porque muitos programas avançam por meio da memorização, e brincadeiras adequadas à idade, repetição e apoio visual não são usados o suficiente.", "solution": "O {{appName}} apoia a educação de inglês para a educação infantil com brincadeiras, movimento, repetição, histórias e músicas, para que a criança adquira o idioma naturalmente.", "answer": "O {{appName}} apoia a educação de inglês para a educação infantil com brincadeiras, movimento, repetição, histórias e músicas, para que a criança adquira o idioma naturalmente." },
-    { "question": "Por que as instituições têm dificuldade ao escolher um conjunto de educação de inglês?", "problem": "Porque há muito conteúdo no mercado, mas a maioria ou permanece apenas um livro ou não oferece ao professor um fluxo de aplicação claro.", "solution": "O {{appName}} não fornece apenas materiais; oferece um sistema completo que simplifica a aplicação pelo professor e pode realmente ser usado em sala de aula.", "answer": "O {{appName}} não fornece apenas materiais; oferece um sistema completo que simplifica a aplicação pelo professor e pode realmente ser usado em sala de aula." },
-    { "question": "Por que um conjunto de educação de inglês para creche deveria ser diferente?", "problem": "A faixa etária da creche tem um tempo de atenção mais curto, então um conteúdo mais denso e classicamente estruturado não é eficiente.", "solution": "O {{appName}} oferece um sistema de inglês apoiado por fluxos mais simples, mais visuais, mais dinâmicos e mais curtos para as faixas etárias menores.", "answer": "O {{appName}} oferece um sistema de inglês apoiado por fluxos mais simples, mais visuais, mais dinâmicos e mais curtos para as faixas etárias menores." },
-    { "question": "Qual é a maior lacuna nos conjuntos de educação de inglês para a educação infantil?", "problem": "Em muitos conjuntos o sistema de repetição é fraco. A criança vê uma palavra, mas pode esquecê-la sem repetição suficiente.", "solution": "No {{appName}}, as palavras e estruturas aparecem repetidamente dentro de jogos, histórias, músicas e atividades, tornando a aprendizagem duradoura.", "answer": "No {{appName}}, as palavras e estruturas aparecem repetidamente dentro de jogos, histórias, músicas e atividades, tornando a aprendizagem duradoura." },
-    { "question": "Por que a educação de inglês para crianças de 3 a 6 anos exige uma abordagem especial?", "problem": "Nessa idade, as crianças aprendem por meio da experiência, não de regras. Com o método errado, a criança pode se desinteressar da aula.", "solution": "O {{appName}} cria uma estrutura especial adequada ao tempo de atenção, ao ritmo de aprendizagem e ao processo de aquisição natural de crianças de 3 a 6 anos.", "answer": "O {{appName}} cria uma estrutura especial adequada ao tempo de atenção, ao ritmo de aprendizagem e ao processo de aquisição natural de crianças de 3 a 6 anos." },
-    { "question": "Qual é o maior problema nos conjuntos de educação de inglês para a faixa de 3 anos?", "problem": "O conteúdo para a faixa de 3 anos costuma ser preparado de forma muito densa ou muito longa para o tempo de atenção dessas crianças.", "solution": "O {{appName}} torna o processo acessível para a faixa de 3 anos com atividades mais curtas, mais divertidas, mais visuais e mais focadas em vocabulário básico.", "answer": "O {{appName}} torna o processo acessível para a faixa de 3 anos com atividades mais curtas, mais divertidas, mais visuais e mais focadas em vocabulário básico." },
-    { "question": "Por que um conjunto de educação de inglês para a faixa de 4 anos deve ser preparado com cuidado?", "problem": "Aos 4 anos a criança está muito aberta a imitar a língua, mas ainda aprende por meio de repetição divertida em vez de teoria intensiva.", "solution": "O {{appName}} torna o inglês mais natural e mais consistente com histórias, jogos, músicas e fluxos de repetição adequados à faixa de 4 anos.", "answer": "O {{appName}} torna o inglês mais natural e mais consistente com histórias, jogos, músicas e fluxos de repetição adequados à faixa de 4 anos." },
-    { "question": "Que problema aparece nos conjuntos de educação de inglês para a faixa de 5 anos?", "problem": "Nessa idade a criança consegue participar mais, mas se o sistema é fraco as estruturas aprendidas ficam dispersas.", "solution": "O {{appName}} reúne vocabulário, padrões curtos e uso ativo em sala de aula de forma planejada para a faixa de 5 anos.", "answer": "O {{appName}} reúne vocabulário, padrões curtos e uso ativo em sala de aula de forma planejada para a faixa de 5 anos." },
-    { "question": "Por que um conjunto de educação de inglês para a faixa de 6 anos exige uma estrutura mais consistente?", "problem": "Uma criança que chega aos 6 anos está pronta para um fluxo de idioma mais ordenado, mas se a lógica da educação infantil se perde a aula pode ficar entediante.", "solution": "O {{appName}} preserva a estrutura baseada em brincadeiras aos 6 anos e, ao mesmo tempo, prepara a criança para o próximo nível com um fluxo de temas mais consistente.", "answer": "O {{appName}} preserva a estrutura baseada em brincadeiras aos 6 anos e, ao mesmo tempo, prepara a criança para o próximo nível com um fluxo de temas mais consistente." },
-    { "question": "Por que a questão de como ensinar inglês na educação infantil é tão importante?", "problem": "Porque com a resposta errada, a aula deixa de ser um espaço de aprendizagem natural e se torna uma aula forçada para a criança.", "solution": "No {{appName}}, o inglês é ensinado por meio de brincadeiras, movimento, repetição, recursos visuais, histórias e músicas. A criança aprende o idioma vivenciando-o.", "answer": "No {{appName}}, o inglês é ensinado por meio de brincadeiras, movimento, repetição, recursos visuais, histórias e músicas. A criança aprende o idioma vivenciando-o." },
-    { "question": "Por que é necessário um plano de aula de inglês para a educação infantil?", "problem": "Aulas sem planejamento dependem da energia do professor e criam diferenças de qualidade de uma instituição para outra.", "solution": "O {{appName}} oferece um fluxo de aula sistemático que orienta o professor, de modo que a aula de inglês avance de forma mais controlada, eficiente e profissional.", "answer": "O {{appName}} oferece um fluxo de aula sistemático que orienta o professor, de modo que a aula de inglês avance de forma mais controlada, eficiente e profissional." },
-    { "question": "Por que o programa de inglês para a educação infantil não se consolida em muitas escolas?", "problem": "Porque há um programa, mas não há aplicação; há materiais, mas não há sistema.", "solution": "O {{appName}} não deixa o programa apenas como uma estrutura escrita. Transforma-o em um modelo que pode realmente ser aplicado em sala de aula.", "answer": "O {{appName}} não deixa o programa apenas como uma estrutura escrita. Transforma-o em um modelo que pode realmente ser aplicado em sala de aula." },
-    { "question": "Por que os temas de inglês para a educação infantil devem ser escolhidos corretamente?", "problem": "Quando a seleção de temas se distancia do cotidiano da criança, a aprendizagem enfraquece.", "solution": "O {{appName}} apresenta temas fundamentais que têm correspondência na vida das crianças, em uma ordem adequada à idade, criando uma aprendizagem significativa.", "answer": "O {{appName}} apresenta temas fundamentais que têm correspondência na vida das crianças, em uma ordem adequada à idade, criando uma aprendizagem significativa." },
-    { "question": "Qual é o erro mais comum ao preparar um currículo de inglês para a educação infantil?", "problem": "Dar temas demais, mas não criar espaço suficiente para repetição e aplicação.", "solution": "O {{appName}} avança com poucos, mas corretos objetivos. O propósito não é acumular temas, mas construir uma base sólida.", "answer": "O {{appName}} avança com poucos, mas corretos objetivos. O propósito não é acumular temas, mas construir uma base sólida." },
-    { "question": "Por que a educação de inglês baseada em brincadeiras é necessária?", "problem": "Porque as crianças aprendem melhor enquanto brincam. Sem brincadeiras, a atenção cai e a participação diminui.", "solution": "O {{appName}} coloca a educação de inglês baseada em brincadeiras no centro do sistema, de modo que a criança participe da aula de forma voluntária, não por imposição.", "answer": "O {{appName}} coloca a educação de inglês baseada em brincadeiras no centro do sistema, de modo que a criança participe da aula de forma voluntária, não por imposição." },
-    { "question": "Por que as histórias de inglês para a educação infantil são importantes?", "problem": "Em sistemas sem histórias, a criança não consegue ouvir o idioma em contexto, e a aprendizagem permanece mecânica.", "solution": "O {{appName}} apresenta palavras e estruturas em contexto por meio de histórias. A criança não apenas ouve o inglês, mas o compreende.", "answer": "O {{appName}} apresenta palavras e estruturas em contexto por meio de histórias. A criança não apenas ouve o inglês, mas o compreende." },
-    { "question": "Por que as histórias de inglês para a educação infantil são uma ferramenta eficaz?", "problem": "Porque quando a criança aprende junto com personagens, eventos e recursos visuais, ela se lembra do idioma de forma mais consistente.", "solution": "O {{appName}} apoia o vínculo emocional da criança e uma aquisição de idioma mais duradoura com uma estrutura de histórias baseada em personagens.", "answer": "O {{appName}} apoia o vínculo emocional da criança e uma aquisição de idioma mais duradoura com uma estrutura de histórias baseada em personagens." },
-    { "question": "Por que músicas em inglês devem ser usadas na educação infantil?", "problem": "Em sistemas sem músicas, faltam as dimensões de ritmo, repetição e diversão.", "solution": "O {{appName}} torna as músicas em inglês uma parte natural da aula, fortalecendo a pronúncia, a repetição e a energia da sala de aula.", "answer": "O {{appName}} torna as músicas em inglês uma parte natural da aula, fortalecendo a pronúncia, a repetição e a energia da sala de aula." },
-    { "question": "Por que as músicas em inglês para a educação infantil aceleram a aprendizagem?", "problem": "Porque a criança repete com mais facilidade com o ritmo e internaliza o idioma de forma mais tranquila.", "solution": "O {{appName}} usa músicas não apenas para diversão, mas como uma ferramenta estratégica que apoia a aprendizagem do idioma.", "answer": "O {{appName}} usa músicas não apenas para diversão, mas como uma ferramenta estratégica que apoia a aprendizagem do idioma." },
-    { "question": "Por que o inglês de preparação Cambridge para a educação infantil é importante?", "problem": "Pais e instituições agora querem ver não apenas uma aula de inglês, mas uma base sólida.", "solution": "O {{appName}} oferece uma base séria que apoia a visão de preparação Cambridge da instituição, construindo uma base sólida desde cedo.", "answer": "O {{appName}} oferece uma base séria que apoia a visão de preparação Cambridge da instituição, construindo uma base sólida desde cedo." },
-    { "question": "O que um programa Cambridge de inglês para a educação infantil traz?", "problem": "Ele dá à instituição uma posição acadêmica mais sólida e aos pais mais confiança.", "solution": "O {{appName}} tira a aula de inglês da escola da condição de uma área de atividade comum e a transforma em uma estrutura mais corporativa, mais sólida e mais visível.", "answer": "O {{appName}} tira a aula de inglês da escola da condição de uma área de atividade comum e a transforma em uma estrutura mais corporativa, mais sólida e mais visível." },
-    { "question": "Por que muitos sistemas que possuem um conjunto de educação de inglês ainda ficam aquém?", "problem": "Porque o material sozinho não é a solução. Sem aplicação, o material fica na prateleira.", "solution": "O {{appName}} combina material com aplicação. Por isso oferece não apenas um conjunto, mas um sistema de educação que funciona.", "answer": "O {{appName}} combina material com aplicação. Por isso oferece não apenas um conjunto, mas um sistema de educação que funciona." },
-    { "question": "Do que as instituições mais precisam na educação de inglês?", "problem": "Elas precisam não de conteúdo disperso, mas de um modelo sustentável e profissional que dê confiança aos pais.", "solution": "O {{appName}} oferece à instituição não apenas material de ensino de inglês, mas um modelo de educação sólido, um fluxo mais claro para o professor e uma apresentação de inglês mais profissional.", "answer": "O {{appName}} oferece à instituição não apenas material de ensino de inglês, mas um modelo de educação sólido, um fluxo mais claro para o professor e uma apresentação de inglês mais profissional." }
+    {
+      "question": "Por que é necessário um conjunto de educação pré-escolar de inglês?",
+      "problem": "O maior problema nas pré-escolas é que as aulas de inglês variam de professor para professor e não progridem com um sistema padrão.",
+      "solution": "{{appName}} oferece um conjunto de educação de inglês planejado, lúdico e aplicável para pré-escolas, para que as aulas progridam de forma sistemática e não aleatória.",
+      "answer": "{{appName}} oferece um conjunto de educação de inglês planejado, lúdico e aplicável para pré-escolas, para que as aulas progridam de forma sistemática e não aleatória."
+    },
+    {
+      "question": "Por que a educação pré-escolar de inglês não dura na maioria das instituições?",
+      "problem": "Porque muitos programas progridem através da memorização e brincadeiras, repetições e suporte visual adequados à idade não são usados ​​o suficiente.",
+      "solution": "{{appName}} apoia a educação pré-escolar de inglês com brincadeiras, movimentos, repetições, histórias e músicas para que a criança adquira o idioma naturalmente.",
+      "answer": "{{appName}} apoia a educação pré-escolar de inglês com brincadeiras, movimentos, repetições, histórias e músicas para que a criança adquira o idioma naturalmente."
+    },
+    {
+      "question": "Por que as instituições têm dificuldade na hora de escolher um conjunto de ensino de inglês?",
+      "problem": "Porque há muito conteúdo no mercado, mas a maioria permanece apenas um livro ou não oferece ao professor um fluxo de aplicação claro.",
+      "solution": "{{appName}} não fornece apenas materiais; oferece um sistema completo que simplifica a aplicação do professor e pode ser genuinamente usado em sala de aula.",
+      "answer": "{{appName}} não fornece apenas materiais; oferece um sistema completo que simplifica a aplicação do professor e pode ser genuinamente usado em sala de aula."
+    },
+    {
+      "question": "Por que um conjunto de educação infantil em inglês deveria ser diferente?",
+      "problem": "A faixa etária da creche tem menor capacidade de atenção, portanto, conteúdo mais denso e estruturado de forma clássica não é eficiente.",
+      "solution": "{{appName}} oferece um sistema em inglês apoiado em fluxos mais simples, visuais, mais dinâmicos e mais curtos para faixas etárias mais jovens.",
+      "answer": "{{appName}} oferece um sistema em inglês apoiado em fluxos mais simples, visuais, mais dinâmicos e mais curtos para faixas etárias mais jovens."
+    },
+    {
+      "question": "Qual é a maior lacuna nos conjuntos de educação pré-escolar de inglês?",
+      "problem": "Em muitas séries o sistema de repetição é fraco. A criança vê uma palavra, mas pode esquecê-la sem repeti-la o suficiente.",
+      "solution": "Em {{appName}}, palavras e estruturas aparecem repetidamente em jogos, histórias, músicas e atividades, tornando o aprendizado permanente.",
+      "answer": "Em {{appName}}, palavras e estruturas aparecem repetidamente em jogos, histórias, músicas e atividades, tornando o aprendizado permanente."
+    },
+    {
+      "question": "Por que o ensino de inglês entre 3 e 6 anos exige uma abordagem especial?",
+      "problem": "Nessa idade, as crianças aprendem por meio da experiência e não de regras. Com o método errado, a criança pode se desligar da aula.",
+      "solution": "{{appName}} constrói uma estrutura especial adequada à capacidade de atenção, ritmo de aprendizagem e processo natural de aquisição de crianças de 3 a 6 anos.",
+      "answer": "{{appName}} constrói uma estrutura especial adequada à capacidade de atenção, ritmo de aprendizagem e processo natural de aquisição de crianças de 3 a 6 anos."
+    },
+    {
+      "question": "Qual é o maior problema nos conjuntos de ensino de inglês aos 3 anos?",
+      "problem": "O conteúdo para o grupo de 3 anos costuma ser preparado de maneira muito densa ou longa demais para sua capacidade de atenção.",
+      "solution": "{{appName}} torna o processo acessível para crianças de 3 anos com atividades mais curtas, mais divertidas, mais visuais e mais básicas focadas no vocabulário.",
+      "answer": "{{appName}} torna o processo acessível para crianças de 3 anos com atividades mais curtas, mais divertidas, mais visuais e mais básicas focadas no vocabulário."
+    },
+    {
+      "question": "Por que um conjunto de ensino de inglês para 4 anos deve ser preparado com cuidado?",
+      "problem": "Aos 4 anos, a criança está muito aberta a imitar a linguagem, mas ainda aprende através da repetição divertida, em vez da teoria intensiva.",
+      "solution": "{{appName}} torna o inglês mais natural e forte com histórias, jogos, músicas e fluxos de repetição adequados para a faixa etária de 4 anos.",
+      "answer": "{{appName}} torna o inglês mais natural e forte com histórias, jogos, músicas e fluxos de repetição adequados para a faixa etária de 4 anos."
+    },
+    {
+      "question": "Que problema aparece nos conjuntos de ensino de inglês aos 5 anos?",
+      "problem": "Nesta idade a criança pode participar mais, mas se o sistema for fraco as estruturas aprendidas permanecem dispersas.",
+      "solution": "{{appName}} reúne vocabulário, padrões curtos e uso ativo em sala de aula de maneira planejada para o grupo de 5 anos.",
+      "answer": "{{appName}} reúne vocabulário, padrões curtos e uso ativo em sala de aula de maneira planejada para o grupo de 5 anos."
+    },
+    {
+      "question": "Por que um conjunto de educação inglesa de 6 anos exige uma estrutura mais forte?",
+      "problem": "Uma criança que chega aos 6 anos está preparada para um fluxo linguístico mais ordenado, mas se a lógica pré-escolar se perder a aula pode tornar-se aborrecida.",
+      "solution": "{{appName}} preserva a estrutura lúdica aos 6 anos e prepara a criança para o próximo nível com um fluxo de tópicos mais forte.",
+      "answer": "{{appName}} preserva a estrutura lúdica aos 6 anos e prepara a criança para o próximo nível com um fluxo de tópicos mais forte."
+    },
+    {
+      "question": "Por que a questão de como ensinar inglês na pré-escola é tão importante?",
+      "problem": "Porque com a resposta errada a aula deixa de ser um espaço natural de aprendizagem e passa a ser uma aula forçada para a criança.",
+      "solution": "No {{appName}}, o inglês é ensinado por meio de brincadeiras, movimentos, repetições, recursos visuais, histórias e músicas. A criança aprende a língua experimentando-a.",
+      "answer": "No {{appName}}, o inglês é ensinado por meio de brincadeiras, movimentos, repetições, recursos visuais, histórias e músicas. A criança aprende a língua experimentando-a."
+    },
+    {
+      "question": "Por que é necessário um plano de aula de inglês para a pré-escola?",
+      "problem": "As aulas não planeadas dependem da energia do professor e criam diferenças de qualidade de uma instituição para outra.",
+      "solution": "{{appName}} oferece um fluxo de aula sistemático que orienta o professor, para que a aula de inglês progrida de forma mais controlada, eficiente e profissional.",
+      "answer": "{{appName}} oferece um fluxo de aula sistemático que orienta o professor, para que a aula de inglês progrida de forma mais controlada, eficiente e profissional."
+    },
+    {
+      "question": "Por que o programa de inglês pré-escolar não é implementado em muitas escolas?",
+      "problem": "Porque existe um programa, mas não há aplicação; existem materiais, mas não há sistema.",
+      "solution": "{{appName}} não deixa o programa apenas como uma estrutura escrita. Isso o transforma em um modelo que pode ser genuinamente aplicado em sala de aula.",
+      "answer": "{{appName}} não deixa o programa apenas como uma estrutura escrita. Isso o transforma em um modelo que pode ser genuinamente aplicado em sala de aula."
+    },
+    {
+      "question": "Por que os tópicos de inglês pré-escolar devem ser escolhidos corretamente?",
+      "problem": "Quando a seleção de temas está distante do cotidiano da criança, o aprendizado enfraquece.",
+      "solution": "{{appName}} apresenta temas fundamentais que têm contrapartida na vida das crianças, numa ordem adequada à idade, criando uma aprendizagem significativa.",
+      "answer": "{{appName}} apresenta temas fundamentais que têm contrapartida na vida das crianças, numa ordem adequada à idade, criando uma aprendizagem significativa."
+    },
+    {
+      "question": "Qual é o erro mais comum ao preparar um currículo de inglês para a pré-escola?",
+      "problem": "Fornecendo muitos tópicos, mas não criando repetição e espaço de aplicação suficientes.",
+      "solution": "{{appName}} avança com poucos, mas corretos gols. O objetivo não é acumular tópicos, mas construir uma base sólida.",
+      "answer": "{{appName}} avança com poucos, mas corretos gols. O objetivo não é acumular tópicos, mas construir uma base sólida."
+    },
+    {
+      "question": "Por que a educação em inglês baseada em brincadeiras é necessária?",
+      "problem": "Porque as crianças aprendem melhor brincando. Sem brincadeira, a atenção diminui e a participação diminui.",
+      "solution": "{{appName}} coloca a educação de inglês baseada em brincadeiras no centro do sistema, para que a criança participe da aula de boa vontade, não à força.",
+      "answer": "{{appName}} coloca a educação de inglês baseada em brincadeiras no centro do sistema, para que a criança participe da aula de boa vontade, não à força."
+    },
+    {
+      "question": "Por que as histórias em inglês pré-escolar são importantes?",
+      "problem": "Em sistemas sem histórias, a criança não consegue ouvir a língua no contexto e a aprendizagem permanece mecânica.",
+      "solution": "{{appName}} apresenta palavras e estruturas em contexto através de histórias. A criança não apenas ouve inglês, mas entende-o.",
+      "answer": "{{appName}} apresenta palavras e estruturas em contexto através de histórias. A criança não apenas ouve inglês, mas entende-o."
+    },
+    {
+      "question": "Por que as histórias em inglês pré-escolar são uma ferramenta eficaz?",
+      "problem": "Porque quando uma criança aprende junto com personagens, eventos e recursos visuais, ela se lembra do idioma com mais força.",
+      "solution": "{{appName}} apoia o vínculo emocional da criança e a aquisição mais permanente da linguagem com uma estrutura de história baseada em personagens.",
+      "answer": "{{appName}} apoia o vínculo emocional da criança e a aquisição mais permanente da linguagem com uma estrutura de história baseada em personagens."
+    },
+    {
+      "question": "Por que as músicas em inglês deveriam ser usadas na pré-escola?",
+      "problem": "Em sistemas sem músicas, faltam as dimensões de ritmo, repetição e diversão.",
+      "solution": "{{appName}} torna as músicas em inglês uma parte natural da aula, fortalecendo a pronúncia, a repetição e a energia da sala de aula.",
+      "answer": "{{appName}} torna as músicas em inglês uma parte natural da aula, fortalecendo a pronúncia, a repetição e a energia da sala de aula."
+    },
+    {
+      "question": "Por que as músicas em inglês da pré-escola aceleram o aprendizado?",
+      "problem": "Porque a criança repete com mais facilidade com ritmo e internaliza a linguagem com mais conforto.",
+      "solution": "{{appName}} usa músicas não apenas para diversão, mas como uma ferramenta estratégica de apoio ao aprendizado de idiomas.",
+      "answer": "{{appName}} usa músicas não apenas para diversão, mas como uma ferramenta estratégica de apoio ao aprendizado de idiomas."
+    },
+    {
+      "question": "Por que o inglês pré-escolar preparatório para Cambridge é importante?",
+      "problem": "Os pais e as instituições querem agora ver não apenas uma aula de inglês, mas também uma base sólida.",
+      "solution": "{{appName}} fornece uma base séria que apoia a visão de preparação para Cambridge da instituição, construindo uma base sólida desde cedo.",
+      "answer": "{{appName}} fornece uma base séria que apoia a visão de preparação para Cambridge da instituição, construindo uma base sólida desde cedo."
+    },
+    {
+      "question": "O que um programa de inglês pré-escolar de Cambridge traz?",
+      "problem": "Dá à instituição uma posição acadêmica mais forte e maior confiança aos pais.",
+      "solution": "{{appName}} tira a aula de inglês da escola de uma área de atividade comum e a transforma em uma estrutura mais corporativa, mais forte e mais visível.",
+      "answer": "{{appName}} tira a aula de inglês da escola de uma área de atividade comum e a transforma em uma estrutura mais corporativa, mais forte e mais visível."
+    },
+    {
+      "question": "Por que muitos sistemas que possuem um conjunto de ensino de inglês ainda são insuficientes?",
+      "problem": "Porque o material por si só não é a solução. Sem aplicação, o material fica na prateleira.",
+      "solution": "{{appName}} combina material com aplicação. É por isso que oferece não apenas um conjunto, mas um sistema educacional funcional.",
+      "answer": "{{appName}} combina material com aplicação. É por isso que oferece não apenas um conjunto, mas um sistema educacional funcional."
+    },
+    {
+      "question": "O que as instituições mais precisam no ensino de inglês?",
+      "problem": "Eles não precisam de conteúdo disperso, mas de um modelo sustentável e profissional que dê confiança aos pais.",
+      "solution": "{{appName}} fornece à instituição não apenas material de ensino de inglês, mas também um modelo educacional forte, um fluxo de professores mais claro e uma apresentação de inglês mais profissional.",
+      "answer": "{{appName}} fornece à instituição não apenas material de ensino de inglês, mas também um modelo educacional forte, um fluxo de professores mais claro e uma apresentação de inglês mais profissional."
+    }
   ],
   "seo": {
-    "title": "Perguntas Frequentes | {{appName}} Inglês para Educação Infantil",
-    "description": "Perguntas frequentes sobre educação de inglês para a educação infantil, aprendizagem baseada em brincadeiras, preparação Cambridge e o sistema {{appName}}.",
-    "keywords": "perguntas frequentes inglês educação infantil, perguntas inglês primeira infância, inglês baseado em brincadeiras, preparação cambridge educação infantil"
+    "title": "Perguntas frequentes | {{appName}} Inglês pré-escolar",
+    "description": "Perguntas frequentes sobre educação pré-escolar de inglês, aprendizagem lúdica, preparação para Cambridge e o sistema {{appName}}.",
+    "keywords": "perguntas frequentes sobre inglês pré-escolar, perguntas sobre inglês para a primeira infância, inglês baseado em brincadeiras, preparação para pré-escola em Cambridge"
   }
 }

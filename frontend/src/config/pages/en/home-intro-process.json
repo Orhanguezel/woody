@@ -1,23 +1,23 @@
 {
-  "eyebrow": "Flow",
-  "titleBefore": "How to use ",
-  "titleAccent": "the template",
-  "lead": "Fill neutral pages with your brand, content, and product decisions.",
+  "eyebrow": "Learning Flow",
+  "titleBefore": "How children ",
+  "titleAccent": "move forward",
+  "lead": "Each series progresses with age-appropriate materials, play, repetition, and digital support.",
   "steps": [
     {
       "icon": "bookOpen",
-      "title": "Define the brand",
-      "desc": "Update AppName and site settings with project values."
+      "title": "Choose the level",
+      "desc": "Basic, Junior, Senior, or PRO is selected according to age, classroom structure, and learning goals."
     },
     {
       "icon": "playCircle",
-      "title": "Add content",
-      "desc": "Feed home sections, posts, and FAQs from DB or CMS records."
+      "title": "Apply through play",
+      "desc": "Teacher sets, student materials, songs, and stories are used together in the classroom."
     },
     {
       "icon": "chartColumn",
-      "title": "Prepare launch",
-      "desc": "Complete SEO, legal copy, contact details, and validation."
+      "title": "Continue digitally",
+      "desc": "The library, digital content, and academy flow carry learning into after-school processes."
     }
   ]
 }

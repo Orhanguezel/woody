@@ -1,43 +1,43 @@
 {
-  "eyebrow": "Blank frontend template",
+  "eyebrow": "Inglês baseado em brincadeiras",
   "title": "{{appName}}",
-  "subtitle": "READY · NEUTRAL",
+  "subtitle": "PRÉ-ESCOLA · JORNADA EM CAMBRIDGE",
   "heroTitleLine1": "{{appName}}",
-  "heroTitleGradient": "template UI.",
-  "headline": "<em>A clean start</em>, flexible pages, and preserved infrastructure<br/>— <strong>a neutral shell ready for your brand</strong>.",
-  "lead": "{{appName}} provides a simple starting point with content, account, blog, contact, and legal pages.",
-  "tagline": "Fill brand, content, and product details for your project.",
-  "socialProof": "App Router, i18n, auth, SEO, theme, and state foundations remain in place.",
+  "heroTitleGradient": "mundo.",
+  "headline": "<em>Inglês através da brincadeira</em>, confiança através de histórias e continuidade através de conteúdo digital<br/>— <strong>um sistema de aprendizagem completo para pré-escolas</strong>.",
+  "lead": "{{appName}} reúne materiais físicos, personagens de língua inglesa, conteúdo digital e a abordagem Cambridge em um único sistema.",
+  "tagline": "Um modelo de inglês pré-escolar rastreável para escolas, professores e famílias.",
+  "socialProof": "Pré-escola, oficina, tutor doméstico, biblioteca digital e academia fluem sob o mesmo teto.",
   "metrics": [
     {
-      "value": "App Router",
-      "label": "Modern structure"
+      "value": "3-6",
+      "label": "Faixa etária"
     },
     {
-      "value": "i18n",
-      "label": "DB-driven copy"
+      "value": "4",
+      "label": "Níveis"
     },
     {
-      "value": "Auth",
-      "label": "Account flow"
+      "value": "Cambridge",
+      "label": "Abordagem de preparação"
     }
   ],
-  "showcaseTopic": "Template module",
-  "showcaseProgress": "Step 1/3",
-  "showcaseQuestion": "Which project will this area describe?",
-  "showcaseOptionA": "A) SaaS",
-  "showcaseOptionB": "B) Content site",
-  "showcaseOptionC": "C) Portal",
-  "showcaseOptionD": "D) Custom app",
-  "showcaseXpLabel": "UI",
-  "showcaseXpValue": "Ready",
-  "showcaseStreak": "3",
-  "showcaseStreakSuffix": "core areas",
-  "showcaseStreakSub": "Content, account, contact",
-  "showcaseBadgeTitle": "Template ready",
-  "showcaseBadgeSub": "Neutral start",
-  "showcaseXpGain": "Ready",
-  "primaryCTA": "Contact us",
-  "secondaryCTA": "Read the blog",
-  "scrollHint": "Scroll down"
+  "showcaseTopic": "Jornada de nível",
+  "showcaseProgress": "Básico → Júnior → Sênior → PRO",
+  "showcaseQuestion": "Qual série se adapta à sua instituição?",
+  "showcaseOptionA": "A) Pré-escola",
+  "showcaseOptionB": "B) Oficina",
+  "showcaseOptionC": "C) Tutor Doméstico",
+  "showcaseOptionD": "D) Academia",
+  "showcaseXpLabel": "Aprendizado",
+  "showcaseXpValue": "Ativo",
+  "showcaseStreak": "4",
+  "showcaseStreakSuffix": "níveis",
+  "showcaseStreakSub": "Básico, Júnior, Sênior, PRO",
+  "showcaseBadgeTitle": "Demonstração pronta",
+  "showcaseBadgeSub": "Para instituições",
+  "showcaseXpGain": "Começar",
+  "primaryCTA": "Explore a série pré-escolar",
+  "secondaryCTA": "Solicite uma demonstração",
+  "scrollHint": "Role para baixo"
 }

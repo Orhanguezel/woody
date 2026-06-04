@@ -1,8 +1,8 @@
 {
   "eyebrow": "Anglais basé sur le jeu",
-  "title": "ZZAPPNOMTOKENZZ",
+  "title": "{{appName}}",
   "subtitle": "PRÉSCOLAIRE · VOYAGE À CAMBRIDGE",
-  "heroTitleLine1": "ZZAPPNOMTOKENZZ",
+  "heroTitleLine1": "{{appName}}",
   "heroTitleGradient": "monde.",
   "headline": "<em>L'anglais par le jeu</em>, la confiance à travers les histoires et la continuité grâce au contenu numérique<br/>— <strong>un système d'apprentissage complet pour les écoles maternelles</strong>.",
   "lead": "{{appName}} rassemble des matériaux physiques, des personnages anglophones, du contenu numérique et l'approche de Cambridge dans un seul système.",

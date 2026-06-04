@@ -1,36 +1,36 @@
 {
   "eyebrow": "Über {{appName}}",
-  "title": "Eine einfache und erweiterbare Frontend-Vorlage für neue Projekte.",
-  "lead": "{{appName}} ist eine neutrale Web-App-Hülle, die für spätere Marken- und Domaininhalte vorbereitet ist.",
+  "title": "Ein Bildungssystem, das Vorschulenglisch mit Spielen, Geschichten und digitalen Inhalten kombiniert.",
+  "lead": "{{appName}} ist ein umfassendes Modell, das das Englischlernen im Vorschulalter für Kindergärten, Lehrer und Familien geplant und nachhaltig macht.",
   "founderTitle": "Ausgangspunkt",
   "founderParagraphs": [
-    "Diese Vorlage bietet eine wiederverwendbare Frontend-Grundlage.",
-    "Projektspezifische Entscheidungen werden später in den Schichten Inhalt, Design und Integration abgeschlossen."
+    "Ziel von {{appName}} ist es, dass Kinder Englisch nicht nur hören, sondern es durch Spiel, Bewegung, Lieder und Geschichten erleben können.",
+    "Es bietet Institutionen einen Lehrerfluss, Schülermaterialien, digitale Inhalte und einen akademischen Prozess in einem Modell."
   ],
-  "methodologyTitle": "Ansatz",
+  "methodologyTitle": "Lernansatz",
   "methodologyParagraphs": [
-    "Die Infrastruktur bleibt bestehen, während domänenspezifische Texte und Commerce-Abläufe standardmäßig entfernt werden.",
-    "Ein neues Projekt kann auf dieser Hülle mit seiner eigenen Informationsarchitektur und seinen eigenen Inhaltsquellen aufbauen."
+    "Die Stufen „Basic“, „Junior“, „Senior“ und „PRO“ machen Fortschritte mit altersgerechten Wiederholungen, visueller Unterstützung und Unterrichtsaktivitäten.",
+    "Die Serien „Vorschule“, „Workshop“ und „Heimlehrer“ bieten separate Abläufe für verschiedene institutionelle und Nutzungsszenarien."
   ],
   "experienceTitle": "Umfang",
   "experienceParagraphs": [
-    "Grundlagen für Startseite, Blog, Kontakt, FAQ, Konto, Rechtsseiten, Theme und SEO bleiben erhalten.",
-    "Der Markenname wird über env und das AppName-Token verwaltet."
+    "Physische Sets, die digitale Bibliothek, das Schulkonto und Akademieinhalte unterstützen nachhaltiges Lernen.",
+    "Ziel ist es, eine Englischerfahrung zu schaffen, die Lehrer anwenden, Kinder mitmachen und Institutionen nachverfolgen können."
   ],
   "differentiatorsTitle": "Warum {{appName}}?",
   "differentiators": [
     {
-      "title": "Neutrale Texte",
-      "body": "Der Standardtext ist projektunabhängig."
+      "title": "Altersgerechte Inhalte",
+      "body": "Es bietet Levels, die auf die Aufmerksamkeitsspanne und den Lernrhythmus von Kindern im Alter von 3 bis 6 Jahren abgestimmt sind."
     },
     {
-      "title": "Erhaltene Hülle",
-      "body": "Grundlagen für Routing, Auth, i18n und Theme bleiben nutzbar."
+      "title": "Ein Flow, der Lehrer unterstützt",
+      "body": "Lehrersets und Unterrichtsaktivitäten machen den Unterricht standardisierter und praktischer."
     },
     {
-      "title": "Einfache Anpassung",
-      "body": "Neue Domaininhalte können aus DB- oder CMS-Datensätzen stammen."
+      "title": "Digitale Kontinuität",
+      "body": "Bücher, Lieder, Videos und Schulkontoabläufe tragen zum Lernen über das Klassenzimmer hinaus bei."
     }
   ],
-  "authorBio": "{{appName}}-Inhalte sind so vorbereitet, dass sie von Projektteams mit ihren eigenen Marken- und Produktentscheidungen vervollständigt werden können."
+  "authorBio": "Der Inhalt von {{appName}} ist darauf ausgelegt, Kindern ein sicheres, fröhliches und praktisches Englischerlebnis zu ermöglichen."
 }

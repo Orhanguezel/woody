@@ -1,24 +1,24 @@
 {
-  "eyebrow": "Principles",
-  "title": "<em>Neutral</em> promises for {{appName}}",
+  "eyebrow": "Nossa promessa",
+  "title": "<em>Measured</em> e aprendizagem segura com {{appName}}",
   "promises": [
     {
       "num": "01",
-      "title": "Brand independent",
-      "text": "Default copy works with the AppName token and environment values.",
-      "target": "BRAND"
+      "title": "Adequado à idade",
+      "text": "Cada nível é projetado em torno da capacidade de atenção, das necessidades de brincadeira e do ritmo de repetição das crianças de 3 a 6 anos.",
+      "target": "AGE"
     },
     {
       "num": "02",
-      "title": "Extendable",
-      "text": "Components and page shells are ready for new domain content.",
-      "target": "STRUCTURE"
+      "title": "Prático para professores",
+      "text": "O fluxo de aula dá aos professores um caminho claro e reduz as diferenças de qualidade entre as instituições.",
+      "target": "CLASS"
     },
     {
       "num": "03",
-      "title": "Simple start",
-      "text": "Commerce and project-specific flows are not part of the default template.",
-      "target": "SIMPLICITY"
+      "title": "Sustentável para instituições",
+      "text": "Os materiais físicos, o conteúdo digital e o fluxo da academia constroem um modelo de educação de longo prazo.",
+      "target": "SCHOOL"
     }
   ]
 }

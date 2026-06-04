@@ -1,36 +1,36 @@
 {
   "eyebrow": "À propos de {{appName}}",
-  "title": "Un modèle d'interface simple et extensible pour les nouveaux projets.",
-  "lead": "{{appName}} est un shell d'application Web neutre préparé pour le contenu ultérieur de la marque et du domaine.",
+  "title": "Un système éducatif qui combine l'anglais préscolaire avec des jeux, des histoires et du contenu numérique.",
+  "lead": "{{appName}} est un modèle complet qui rend l'apprentissage de l'anglais préscolaire planifié et durable pour les jardins d'enfants, les enseignants et les familles.",
   "founderTitle": "Point de départ",
   "founderParagraphs": [
-    "Ce modèle fournit une base frontale réutilisable.",
-    "Les décisions spécifiques au projet sont prises ultérieurement dans les couches de contenu, de conception et d'intégration."
+    "{{appName}} vise à permettre aux enfants non seulement d'entendre l'anglais, mais aussi de l'expérimenter à travers le jeu, le mouvement, les chansons et les histoires.",
+    "Il offre aux établissements un flux d'enseignants, du matériel pour les étudiants, du contenu numérique et un processus académique dans un seul modèle."
   ],
-  "methodologyTitle": "Approche",
+  "methodologyTitle": "Approche d'apprentissage",
   "methodologyParagraphs": [
-    "L'infrastructure reste en place tandis que la copie de domaine et les flux commerciaux sont effacés par défaut.",
-    "Un nouveau projet peut s'appuyer sur ce shell avec sa propre architecture d'informations et ses propres sources de contenu."
+    "Les niveaux Basic, Junior, Senior et PRO progressent grâce à une répétition, un soutien visuel et des activités en classe adaptés à l'âge.",
+    "Les séries Preschool, Workshop et Home Tutor fournissent des flux séparés pour différents scénarios institutionnels et d'utilisation."
   ],
   "experienceTitle": "Portée",
   "experienceParagraphs": [
-    "L'accueil, le blog, le contact, la FAQ, le compte, les pages juridiques, le thème et les fondations SEO restent.",
-    "Le nom de la marque est géré via env et le jeton AppName."
+    "Les ensembles physiques, la bibliothèque numérique, le compte de l'école et le contenu de l'académie soutiennent un apprentissage durable.",
+    "L’objectif est de créer une expérience en anglais que les enseignants peuvent appliquer, que les enfants peuvent rejoindre et que les établissements peuvent suivre."
   ],
   "differentiatorsTitle": "Pourquoi {{appName}} ?",
   "differentiators": [
     {
-      "title": "Copie neutre",
-      "body": "Le texte par défaut est indépendant du projet."
+      "title": "Contenu adapté à l'âge",
+      "body": "Il propose des niveaux structurés autour de la capacité d’attention et du rythme d’apprentissage des enfants âgés de 3 à 6 ans."
     },
     {
-      "title": "Coquille conservée",
-      "body": "Les fondations de routage, d'authentification, i18n et thématiques restent utilisables."
+      "title": "Un flux qui accompagne les enseignants",
+      "body": "Les ensembles pour enseignants et les activités en classe rendent les cours plus standards et plus pratiques."
     },
     {
-      "title": "Adaptation facile",
-      "body": "Le contenu du nouveau domaine peut provenir d'enregistrements DB ou CMS."
+      "title": "Continuité numérique",
+      "body": "Les livres, les chansons, les vidéos et les flux de comptes scolaires permettent d’apprendre au-delà de la salle de classe."
     }
   ],
-  "authorBio": "Le contenu de {{appName}} est préparé pour être complété par les équipes de projet avec leurs propres décisions en matière de marque et de produit."
+  "authorBio": "Le contenu de {{appName}} est préparé pour offrir aux enfants une expérience d'anglais sûre, joyeuse et pratique."
 }
