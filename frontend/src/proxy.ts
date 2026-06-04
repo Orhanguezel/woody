@@ -7,7 +7,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 
-const SUPPORTED_LOCALES = ['tr', 'en', 'de'] as const;
+// 10 dil (DB app_locales ile uyumlu). firstSeg lowercase'lendiği için kodlar küçük harf.
+// NOT: İdeali DB'den dinamik; şimdilik merkezi tek liste (proxy edge runtime DB okuyamaz).
+const SUPPORTED_LOCALES = ['tr', 'en', 'de', 'ar', 'fr', 'ru', 'es', 'it', 'nl', 'pt-br'] as const;
 const DEFAULT_LOCALE = 'tr';
 
 // Non-locale path prefixes (admin, api vs.)
