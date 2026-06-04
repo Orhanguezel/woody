@@ -3,13 +3,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { ArrowRight, ChevronDown, Search } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronLeft, Search } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
 import { LayoutSeoBridge } from '@/seo';
 import { useLocaleShort } from '@/i18n';
 import type { WoodyFallbackBlogPost } from './blog-loader.server';
+
+// Blog breadcrumb logosu (akademi sayfasi deseni — ortalanmis marka logosu + geri linki)
+const BLOG_LOGO = '/assets/woody/blog/woody-blog-logo.png';
 
 export type WoodyBlogFaqItem = {
   question: string;
@@ -63,6 +66,7 @@ export default function WoodyBlogIndexClient({
   faqItems?: WoodyBlogFaqItem[];
 }) {
   const locale = useLocaleShort();
+  const backLabel = locale === 'tr' ? 'GERİ' : 'BACK';
   const [openFaq, setOpenFaq] = useState(0);
   const posts = useMemo(() => initialPosts.filter((post) => post?.slug && post?.title), [initialPosts]);
   const visibleFaq = useMemo(() => (faqItems.length > 0 ? faqItems : fallbackFaq).slice(0, 8), [faqItems]);
@@ -78,37 +82,40 @@ export default function WoodyBlogIndexClient({
     <>
       <LayoutSeoBridge title={title} description={description} ogImage={posts[0]?.featured_image} noindex={false} />
       <main className="bg-[#fff9ee] text-[#24333f]">
-        <section className="relative overflow-hidden bg-[linear-gradient(135deg,#f58220_0%,#f6b739_42%,#fff7e7_100%)]">
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,rgba(255,249,238,0)_0%,#fff9ee_100%)]" />
-          <div className="container relative grid min-h-[430px] items-center gap-10 py-20 lg:grid-cols-[1fr_420px] lg:py-24">
-            <div className="max-w-3xl">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">BLOG</p>
-              <h1 className="mt-4 max-w-4xl font-display text-[clamp(2.8rem,7vw,6.2rem)] font-black leading-[0.95] text-white drop-shadow-[0_5px_20px_rgba(136,64,0,0.22)]">
-                {title}
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/95">{description}</p>
-              {activeCategory ? (
-                <div className="mt-7 inline-flex items-center gap-2 rounded-full bg-white/22 px-4 py-2 text-sm font-black text-white ring-1 ring-white/40">
-                  <Search className="h-4 w-4" aria-hidden />
-                  {categoryLabel(activeCategory)}
-                </div>
-              ) : null}
-            </div>
-
-            <div className="hidden rounded-lg bg-white/18 p-5 shadow-[0_22px_70px_rgba(145,76,12,0.22)] ring-1 ring-white/45 lg:block">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-white">
-                <Image
-                  src={posts[0]?.featured_image || 'https://images.unsplash.com/photo-1560785496-321917f24016?w=900&q=80'}
-                  alt=""
-                  fill
-                  sizes="420px"
-                  className="object-cover"
-                  priority
-                />
+        {/* Breadcrumb / hero — akademi sayfasi deseni: ortalanmis Woody Blog logosu + geri linki */}
+        <section className="mt-[72px] bg-white py-8 md:py-10">
+          <div className="mx-auto flex max-w-[600px] flex-col items-center justify-center gap-4 px-6">
+            <Image
+              src={BLOG_LOGO}
+              alt={title}
+              width={520}
+              height={300}
+              priority
+              className="h-auto w-full max-w-[360px] object-contain"
+            />
+            {description ? (
+              <p className="max-w-2xl text-center text-base font-semibold leading-7 text-[#5f6871]">
+                {description}
+              </p>
+            ) : null}
+            {activeCategory ? (
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#f58220]/12 px-4 py-2 text-sm font-black text-[#d96f12] ring-1 ring-[#f58220]/30">
+                <Search className="h-4 w-4" aria-hidden />
+                {categoryLabel(activeCategory)}
               </div>
-            </div>
+            ) : null}
           </div>
         </section>
+
+        <div className="mx-auto max-w-[1400px] px-6 pt-2 md:px-16 lg:px-20">
+          <Link
+            href={`/${locale}`}
+            className={`inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-gray-600 transition hover:text-black ${FOCUS_RING}`}
+          >
+            <ChevronLeft className="size-5" aria-hidden />
+            {backLabel}
+          </Link>
+        </div>
 
         <section className="container py-12 lg:py-16">
           <Link
