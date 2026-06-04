@@ -2,32 +2,23 @@
 
 import React, { useMemo } from 'react';
 import Link from 'next/link';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 import SocialLinks from '@/components/common/public/SocialLinks';
 import { SiteLogo } from '@/layout/SiteLogo';
-import { Apple, Play, ShieldCheck, Lock } from 'lucide-react';
-import {
-  useGetSiteSettingByKeyQuery,
-  useListFooterSectionsQuery,
-  useListMenuItemsQuery,
-} from '@/integrations/rtk/hooks';
-
-import type { FooterSectionDto, PublicMenuItemDto } from '@/integrations/shared';
+import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
-import {
-  getCopyrightHolder,
-  getFooterFallbackSections,
-} from '@/lib/site-config';
+import { getCopyrightHolder } from '@/lib/site-config';
+
+type FooterLink = {
+  id: string;
+  url: string;
+  title: string;
+};
 
 const isExternalHref = (href: string) =>
   /^https?:\/\//i.test(href) || /^mailto:/i.test(href) || /^tel:/i.test(href);
-
-function pickLocalized<T extends Record<string, string>>(labels: T, loc: string): string {
-  const k = loc.split('-')[0]?.toLowerCase() || 'tr';
-  const raw = labels as Record<string, string>;
-  return raw[k] || raw.tr || raw.en || Object.values(raw)[0] || '';
-}
 
 const cleanHashLink = (href: string) => {
   if (!href) return href;
@@ -38,87 +29,70 @@ const cleanHashLink = (href: string) => {
   return href;
 };
 
-/** Backend boşsa src/config/site-defaults.json içindeki footer fallback kullanılır */
-const FALLBACK_SECTIONS = getFooterFallbackSections();
-
-type FooterRenderSection = {
-  id: string;
-  title: string;
-  items: Array<{ id: string; url: string; title: string }>;
-};
+function footerLinks(locale: string): FooterLink[] {
+  return [
+    { id: 'school', url: '/preschool', title: locale === 'tr' ? 'Okul' : 'School' },
+    { id: 'workshop', url: '/workshop', title: locale === 'tr' ? 'Atölye' : 'Workshop' },
+    { id: 'home-tutor', url: '/home-tutor', title: locale === 'tr' ? 'Ev & Özel Ders' : 'Home & Private Lesson' },
+    { id: 'academy', url: '/woody-academy', title: 'Woody Academy' },
+    { id: 'store', url: '/store', title: 'Woody Store' },
+    { id: 'blog', url: '/blog', title: 'Blog' },
+  ];
+}
 
 const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
   const fallbackLocale = useLocaleShort();
   const locale = localeProp || fallbackLocale;
   const { ui } = useUiSection('ui_footer', locale);
 
-
   const { data: companyBrandSetting } = useGetSiteSettingByKeyQuery({ key: 'company_brand', locale });
+  const { data: contactInfoSetting } = useGetSiteSettingByKeyQuery({ key: 'contact_info', locale });
   const { data: socialsSetting } = useGetSiteSettingByKeyQuery({ key: 'socials', locale });
 
   const { socials } = useMemo(() => {
     const brandVal = (companyBrandSetting?.value ?? {}) as any;
     const socialsVal = (socialsSetting?.value ?? {}) as Record<string, string>;
-    const mergedSocials: Record<string, string> = { ...(brandVal.socials as Record<string, string> | undefined), ...socialsVal };
+    const mergedSocials: Record<string, string> = {
+      ...(brandVal.socials as Record<string, string> | undefined),
+      ...socialsVal,
+    };
     return { socials: mergedSocials };
   }, [companyBrandSetting?.value, socialsSetting?.value]);
 
-  const { data: footerSections } = useListFooterSectionsQuery({ is_active: true, order: 'display_order.asc', locale });
-  const sections: FooterSectionDto[] = useMemo(() => {
-    return (footerSections ?? []).slice().sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0)) as FooterSectionDto[];
-  }, [footerSections]);
-
-  const { data: footerMenuData } = useListMenuItemsQuery({ location: 'footer', is_active: true, locale });
-  const footerMenuItems: PublicMenuItemDto[] = useMemo(() => footerMenuData?.items ?? [], [footerMenuData]);
-
-  const itemsBySectionId = useMemo(() => {
-    const m = new Map<string, PublicMenuItemDto[]>();
-    for (const item of footerMenuItems) {
-      const sid = ((item as any).section_id ?? (item as any).sectionId) as string | undefined;
-      if (!sid) continue;
-      const arr = m.get(sid) ?? [];
-      arr.push(item);
-      m.set(sid, arr);
-    }
-    return m;
-  }, [footerMenuItems]);
-
-  // Backend boş döndüyse fallback'e düş
-  const renderSections: FooterRenderSection[] = useMemo(() => {
-    const fromApi = sections
-      .map<FooterRenderSection>((sec) => ({
-        id: sec.id,
-        title: sec.title || '',
-        items: (itemsBySectionId.get(sec.id) ?? []).map((item) => ({
-          id: item.id,
-          url: item.url || '',
-          title: item.title || '',
-        })),
-      }))
-      .filter((sec) => sec.title && sec.items.length > 0);
-
-    if (fromApi.length > 0) return fromApi;
-
-    return FALLBACK_SECTIONS.map<FooterRenderSection>((sec) => ({
-      id: sec.id,
-      title: pickLocalized(sec.title, locale),
-      items: sec.items.map((it) => ({
-        id: it.id,
-        url: it.url,
-        title: pickLocalized(it.label, locale),
-      })),
-    }));
-  }, [sections, itemsBySectionId, locale]);
-
+  const contact = (contactInfoSetting?.value ?? {}) as Record<string, unknown>;
+  const phone = String(contact.phone || contact.gsm || contact.whatsapp || '').trim();
+  const email = String(contact.email || '').trim();
+  const address = String(contact.address || contact.addressLine || '').trim();
   const homeHref = localizePath(locale, '/');
 
   return (
-    <footer className="py-24 lg:py-32 bg-[var(--gm-bg)] border-t border-[var(--gm-border-soft)]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
-          {/* Brand Info */}
-          <div className="flex flex-col items-start text-center md:text-left">
-            <Link href={homeHref} className="mb-8 flex items-start no-underline group">
+    <footer className="border-t border-[var(--gm-border-soft)] bg-[var(--gm-bg)] py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-14 rounded-xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-6 shadow-[var(--gm-shadow-soft)] md:flex md:items-center md:justify-between md:gap-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--gm-primary)]">
+              Woody Academy
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-[var(--gm-text)]">
+              {locale === 'tr' ? 'Woody Academy Kariyer' : 'Woody Academy Careers'}
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--gm-text-dim)]">
+              {locale === 'tr'
+                ? 'Öğretmen gelişim programları ve okul iş birlikleri hakkında bilgi almak için bizimle iletişime geçin.'
+                : 'Contact us for teacher development programs and school partnerships.'}
+            </p>
+          </div>
+          <Link
+            href={localizePath(locale, '/contact')}
+            className="mt-5 inline-flex rounded-md bg-[var(--gm-primary)] px-5 py-3 font-bold text-[var(--gm-surface)] md:mt-0"
+          >
+            {locale === 'tr' ? 'İletişime Geç' : 'Contact Us'}
+          </Link>
+        </div>
+
+        <div className="mb-16 grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-4">
+          <div className="flex flex-col items-start text-left">
+            <Link href={homeHref} className="mb-8 flex items-start no-underline">
               <SiteLogo
                 variant="dark"
                 wrapperClassName="w-44"
@@ -126,102 +100,89 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                 priority={false}
               />
             </Link>
-            <p className="text-[var(--gm-text-dim)] font-light text-[15px] leading-relaxed mb-8 max-w-[260px]">
-              {ui('ui_footer_tagline')}
+            <p className="max-w-[280px] text-[15px] font-light leading-relaxed text-[var(--gm-text-dim)]">
+              {ui(
+                'ui_footer_tagline',
+                locale === 'tr'
+                  ? 'Okul öncesi İngilizce eğitiminde oyun temelli, hikaye destekli ve dijital içerikle sürdürülebilir öğrenme deneyimi.'
+                  : 'A play-based, story-supported, and digitally sustainable preschool English learning experience.',
+              )}
             </p>
-            <div className="mb-8">
-              <SocialLinks socials={socials} size="sm" />
-            </div>
-
-            {/* App Download Links */}
-            <div className="flex flex-col gap-3">
-              <span className="font-display text-[9px] tracking-[0.3em] text-[var(--gm-gold-deep)] uppercase mb-1">
-                {locale === 'tr' ? 'Mobil Uygulamamız' : 'Our Mobile App'}
-              </span>
-              <div className="flex gap-4">
-                <a 
-                  href="#" 
-                  className="flex items-center gap-3 text-[var(--gm-text-dim)] hover:text-[var(--gm-gold)] hover:border-[var(--gm-gold)/30] transition-all duration-300 border border-[var(--gm-border-soft)] rounded-xl px-4 py-2 bg-[var(--gm-bg-surface)]/40 backdrop-blur-md shadow-sm group/store"
-                  title="App Store"
-                >
-                  <Apple size={20} className="group-hover/store:scale-110 transition-transform" />
-                  <div className="flex flex-col items-start leading-none">
-                    <span className="text-[8px] uppercase tracking-wider opacity-60 mb-0.5">App Store</span>
-                    <span className="text-[13px] font-semibold">iOS</span>
-                  </div>
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center gap-3 text-[var(--gm-text-dim)] hover:text-[var(--gm-gold)] hover:border-[var(--gm-gold)/30] transition-all duration-300 border border-[var(--gm-border-soft)] rounded-xl px-4 py-2 bg-[var(--gm-bg-surface)]/40 backdrop-blur-md shadow-sm group/store"
-                  title="Google Play"
-                >
-                  <Play size={18} fill="currentColor" className="group-hover/store:scale-110 transition-transform" />
-                  <div className="flex flex-col items-start leading-none">
-                    <span className="text-[8px] uppercase tracking-wider opacity-60 mb-0.5">Google Play</span>
-                    <span className="text-[13px] font-semibold">Android</span>
-                  </div>
-                </a>
-              </div>
-            </div>
           </div>
 
-          {/* Columns */}
-          {renderSections.map((sec) => (
-            <div key={sec.id}>
-              <div className="font-display text-[11px] tracking-[0.32em] text-[var(--gm-gold-deep)] uppercase mb-8">
-                {sec.title}
-              </div>
-              <ul className="list-none p-0 m-0 space-y-4">
-                {sec.items.map((item) => (
-                  <li key={item.id}>
-                    <Link
-                      href={isExternalHref(item.url) ? item.url : localizePath(locale, cleanHashLink(item.url))}
-                      className="text-[var(--gm-text-dim)] hover:text-[var(--gm-gold)] transition-colors font-serif italic text-[16px]"
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+          <div>
+            <div className="mb-8 font-display text-[11px] uppercase tracking-[0.32em] text-[var(--gm-gold-deep)]">
+              {locale === 'tr' ? 'Kurumsal' : 'Corporate'}
             </div>
-          ))}
-        </div>
-
-        {/* Payment & Security Section */}
-        <div className="pt-12 mb-12 border-t border-[var(--gm-border-soft)] flex flex-col lg:flex-row justify-between items-center gap-8">
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8 opacity-60">
-            <div className="flex items-center gap-3">
-              <ShieldCheck size={20} className="text-[var(--gm-gold)]" />
-              <span className="font-display text-[10px] tracking-[0.2em] text-[var(--gm-text-dim)] uppercase">
-                {locale === 'tr' ? '256-bit SSL Güvenlik' : '256-bit SSL Security'}
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Lock size={18} className="text-[var(--gm-gold)]" />
-              <span className="font-display text-[10px] tracking-[0.2em] text-[var(--gm-text-dim)] uppercase">
-                {locale === 'tr' ? 'Güvenli Ödeme Altyapısı' : 'Secure Payment Gateway'}
-              </span>
-            </div>
+            <ul className="m-0 list-none space-y-4 p-0">
+              {footerLinks(locale).map((item) => (
+                <li key={item.id}>
+                  <Link
+                    href={isExternalHref(item.url) ? item.url : localizePath(locale, cleanHashLink(item.url))}
+                    className="font-serif text-[16px] italic text-[var(--gm-text-dim)] transition-colors hover:text-[var(--gm-gold)]"
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          
-          <div className="flex items-center gap-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            {/* Generic Payment Icons / Logos */}
-            <div className="font-display text-[14px] font-bold tracking-widest text-[var(--gm-text-dim)]">VISA</div>
-            <div className="font-display text-[14px] font-bold tracking-widest text-[var(--gm-text-dim)]">MASTERCARD</div>
-            <div className="font-display text-[14px] font-bold tracking-widest text-[var(--gm-text-dim)]">IYZICO</div>
+
+          <div>
+            <div className="mb-8 font-display text-[11px] uppercase tracking-[0.32em] text-[var(--gm-gold-deep)]">
+              {locale === 'tr' ? 'İletişim' : 'Contact'}
+            </div>
+            <ul className="m-0 list-none space-y-4 p-0 text-[var(--gm-text-dim)]">
+              {phone ? (
+                <li className="flex gap-3">
+                  <Phone className="mt-1 size-4 shrink-0 text-[var(--gm-primary)]" aria-hidden />
+                  <a href={`tel:${phone.replace(/\s+/g, '')}`} className="hover:text-[var(--gm-gold)]">
+                    {phone}
+                  </a>
+                </li>
+              ) : null}
+              {email ? (
+                <li className="flex gap-3">
+                  <Mail className="mt-1 size-4 shrink-0 text-[var(--gm-primary)]" aria-hidden />
+                  <a href={`mailto:${email}`} className="hover:text-[var(--gm-gold)]">
+                    {email}
+                  </a>
+                </li>
+              ) : null}
+              {address ? (
+                <li className="flex gap-3">
+                  <MapPin className="mt-1 size-4 shrink-0 text-[var(--gm-primary)]" aria-hidden />
+                  <span>{address}</span>
+                </li>
+              ) : null}
+              {!phone && !email && !address ? (
+                <li>
+                  <Link href={localizePath(locale, '/contact')} className="hover:text-[var(--gm-gold)]">
+                    {locale === 'tr' ? 'İletişim formu' : 'Contact form'}
+                  </Link>
+                </li>
+              ) : null}
+            </ul>
+          </div>
+
+          <div>
+            <div className="mb-8 font-display text-[11px] uppercase tracking-[0.32em] text-[var(--gm-gold-deep)]">
+              {locale === 'tr' ? 'Bizi Takip Edin' : 'Follow Us'}
+            </div>
+            <SocialLinks socials={socials} size="sm" />
           </div>
         </div>
 
-        <div className="pt-8 border-t border-[var(--gm-border-soft)] flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] tracking-[0.1em] text-[var(--gm-muted)] uppercase">
+        <div className="flex flex-col items-center justify-between gap-8 border-t border-[var(--gm-border-soft)] pt-8 text-[11px] uppercase tracking-[0.1em] text-[var(--gm-muted)] md:flex-row">
           <p>
             &copy; {new Date().getFullYear()} {getCopyrightHolder()}. {ui('ui_footer_rights', 'TÜM HAKLARI SAKLIDIR.')}
           </p>
           <div className="flex gap-6">
-            <Link href={localizePath(locale, '/editorial-policy')} className="hover:text-[var(--gm-gold)] transition-colors">
+            <Link href={localizePath(locale, '/editorial-policy')} className="transition-colors hover:text-[var(--gm-gold)]">
               {locale === 'tr' ? 'EDİTORYAL POLİTİKA' : locale === 'de' ? 'REDAKTIONELLE RICHTLINIE' : 'EDITORIAL POLICY'}
             </Link>
-            <a href="https://guezelwebdesign.com" target="_blank" rel="noopener" className="hover:text-[var(--gm-gold)] transition-colors">
-              DESIGNED BY GUEZELEWEB
+            <a href="https://guezelwebdesign.com" target="_blank" rel="noopener" className="transition-colors hover:text-[var(--gm-gold)]">
+              DESIGNED BY GUEZELWEB
             </a>
           </div>
         </div>

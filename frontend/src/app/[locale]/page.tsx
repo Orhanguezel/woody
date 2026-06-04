@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import React from 'react';
 import HomeContent from '@/components/containers/home/HomeContent';
 import JsonLd from '@/seo/JsonLd';
-import WoodyPage from '@/components/woody/WoodyPage';
+import WoodyHomePage from '@/components/woody/home/WoodyHomePage';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
 import { woodyPageGraph } from '@/components/woody/seo';
 
@@ -29,12 +29,25 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const content = await loadWoodyPageContent('home', locale);
+  const [content, preschool, workshop, homeTutor, whyContent, newsContent] = await Promise.all([
+    loadWoodyPageContent('home', locale),
+    loadWoodyPageContent('preschool', locale),
+    loadWoodyPageContent('workshop', locale),
+    loadWoodyPageContent('home-tutor', locale),
+    loadWoodyPageContent('why-woody', locale),
+    loadWoodyPageContent('news', locale),
+  ]);
   if (content) {
     return (
       <>
         <JsonLd id="woody-home" data={woodyPageGraph({ locale, pathname: '/', content, schemaType: 'EducationalOrganization' })} />
-        <WoodyPage content={content} locale={locale} />
+        <WoodyHomePage
+          content={content}
+          setPages={[preschool, workshop, homeTutor].filter((item): item is NonNullable<typeof item> => Boolean(item))}
+          whyContent={whyContent}
+          newsContent={newsContent}
+          locale={locale}
+        />
       </>
     );
   }

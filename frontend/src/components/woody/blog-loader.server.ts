@@ -21,6 +21,14 @@ export async function loadFallbackBlogPosts(locale: string): Promise<WoodyFallba
   return Array.isArray(posts) ? posts : [];
 }
 
+export async function loadFallbackBlogPostsByCategory(
+  locale: string,
+  category: string,
+): Promise<WoodyFallbackBlogPost[]> {
+  const posts = await loadFallbackBlogPosts(locale);
+  return posts.filter((post) => post.category === category);
+}
+
 export async function findFallbackBlogPost(
   slug: string,
   locale: string,

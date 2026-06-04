@@ -16,8 +16,30 @@
     "defaultLogoAlt": "Woody ve Arkadaşları logo"
   },
   "site": {
-    "originFallback": "http://localhost:3077",
+    "originFallback": "https://woodyvearkadaslari.com",
     "apiBaseFallback": "http://127.0.0.1:8086/api/v1"
+  },
+  "contact": {
+    "companyName": "Woody ve Arkadaşları",
+    "email": "minayayinevi@gmail.com",
+    "phones": [
+      "0324 358 03 73",
+      "0533 157 03 73"
+    ],
+    "whatsapp": "0533 157 03 73",
+    "address": {
+      "addressCountry": "TR",
+      "addressLocality": "Türkiye Geneli"
+    },
+    "businessHours": []
+  },
+  "socials": {},
+  "analytics": {
+    "ga4MeasurementId": "G-0D7LYLF51K",
+    "gtmContainerId": "dogaadmin",
+    "facebookPixelId": "",
+    "googleSiteVerification": "",
+    "bingSiteVerification": ""
   },
   "i18n": {
     "defaultLocale": "tr"
@@ -99,102 +121,64 @@
         "id": "fb-home",
         "url": "/",
         "label": {
-          "tr": "Ana Sayfa",
-          "en": "Home",
-          "de": "Startseite"
-        }
-      },
-      {
-        "id": "fb-preschool",
-        "url": "/preschool",
-        "label": {
-          "tr": "Anaokulu",
-          "en": "Preschool",
-          "de": "Vorschule"
-        }
-      },
-      {
-        "id": "fb-academy",
-        "url": "/woody-academy",
-        "label": {
-          "tr": "Akademi",
-          "en": "Academy",
-          "de": "Akademie"
-        }
-      },
-      {
-        "id": "fb-digital",
-        "url": "/digital-content",
-        "label": {
-          "tr": "Dijital İçerik",
-          "en": "Digital Content",
-          "de": "Digitale Inhalte"
+          "tr": "HOME",
+          "en": "HOME",
+          "de": "HOME"
         }
       },
       {
         "id": "fb-store",
         "url": "/store",
         "label": {
-          "tr": "Mağaza",
-          "en": "Store",
-          "de": "Shop"
+          "tr": "WOODY STORE",
+          "en": "WOODY STORE",
+          "de": "WOODY STORE"
         }
       },
       {
-        "id": "fb-more",
-        "url": "",
+        "id": "fb-preschool",
+        "url": "/preschool",
         "label": {
-          "tr": "Keşfet",
-          "en": "Explore",
-          "de": "Entdecken"
-        },
-        "children": [
-          {
-            "id": "fb-workshop",
-            "url": "/workshop",
-            "label": {
-              "tr": "Atölye",
-              "en": "Workshop",
-              "de": "Workshop"
-            }
-          },
-          {
-            "id": "fb-home-tutor",
-            "url": "/home-tutor",
-            "label": {
-              "tr": "Ev Öğretmeni",
-              "en": "Home Tutor",
-              "de": "Hauslehrer"
-            }
-          },
-          {
-            "id": "fb-library",
-            "url": "/library",
-            "label": {
-              "tr": "Kütüphane",
-              "en": "Library",
-              "de": "Bibliothek"
-            }
-          },
-          {
-            "id": "fb-blog",
-            "url": "/blog",
-            "label": {
-              "tr": "Blog",
-              "en": "Blog",
-              "de": "Blog"
-            }
-          },
-          {
-            "id": "fb-contact",
-            "url": "/contact",
-            "label": {
-              "tr": "İletişim",
-              "en": "Contact",
-              "de": "Kontakt"
-            }
-          }
-        ]
+          "tr": "OKUL",
+          "en": "SCHOOL",
+          "de": "SCHULE"
+        }
+      },
+      {
+        "id": "fb-workshop",
+        "url": "/workshop",
+        "label": {
+          "tr": "ATÖLYE",
+          "en": "WORKSHOP",
+          "de": "WORKSHOP"
+        }
+      },
+      {
+        "id": "fb-home-tutor",
+        "url": "/home-tutor",
+        "label": {
+          "tr": "EV & ÖZEL DERS",
+          "en": "HOME & PRIVATE LESSON",
+          "de": "ZUHAUSE & EINZELUNTERRICHT"
+        }
+      },
+      {
+        "id": "fb-academy",
+        "url": "/woody-academy",
+        "label": {
+          "tr": "WOODY ACADEMY",
+          "en": "WOODY ACADEMY",
+          "de": "WOODY ACADEMY"
+        }
+      },
+      {
+        "id": "fb-blog",
+        "url": "/blog",
+        "label": {
+          "tr": "BLOG",
+          "en": "BLOG",
+          "de": "BLOG"
+        }
       }
     ],
     "footerFallbackSections": [

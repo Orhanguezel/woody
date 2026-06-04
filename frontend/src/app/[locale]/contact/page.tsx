@@ -1,59 +1,56 @@
-/* eslint-disable react/no-unescaped-entities */
-'use client';
+import ContactRouteClient from './ContactRouteClient';
 
-import React, { useMemo } from 'react';
+import JsonLd from '@/seo/JsonLd';
+import { breadcrumbSchema, graph, localBusiness } from '@/seo/jsonld';
+import {
+  getDefaultContactInfo,
+  getLocaleDescriptionFallback,
+  getPublicAppName,
+  getPublicSiteOrigin,
+} from '@/lib/site-config';
 
-import Banner from '@/layout/banner/Breadcrum';
-import { LayoutSeoBridge } from '@/seo';
+type Props = { params: Promise<{ locale: string }> };
 
-import ContactPage from '@/components/containers/contact/ContactPage';
-
-import { useLocaleShort, useUiSection } from '@/i18n';
-import { isValidUiText } from '@/integrations/shared';
-import { safeStr } from '@/integrations/shared';
-import { getPublicAppName, titleWithAppName } from '@/lib/site-config';
-
-export default function ContactRoutePage() {
-  const locale = useLocaleShort();
-  const { ui } = useUiSection('ui_contact', locale as any);
-
-  const fbTitle = useMemo(() => {
-    if (locale === 'tr') return 'İletişim';
-    if (locale === 'de') return 'Kontakt';
-    return 'Contact';
-  }, [locale]);
-
-  const bannerTitle = useMemo(() => {
-    const key = 'ui_contact_page_title';
-    const v = safeStr(ui(key, ''));
-    return isValidUiText(v, key) ? v : fbTitle;
-  }, [ui, fbTitle]);
-
-  const seoTitle = useMemo(() => {
-    const key = 'ui_contact_meta_title';
-    const v = safeStr(ui(key, ''));
-    if (isValidUiText(v, key)) return v;
-    return titleWithAppName(bannerTitle || fbTitle);
-  }, [ui, bannerTitle, fbTitle]);
-
-  const seoDescription = useMemo(() => {
-    const key = 'ui_contact_meta_description';
-    const v = safeStr(ui(key, ''));
-    if (isValidUiText(v, key)) return v;
-
-    const app = getPublicAppName();
-    if (locale === 'tr')
-      return `${app} ile iletişime geçin: soru ve talepleriniz için bize ulaşın.`;
-    if (locale === 'de')
-      return `Kontaktieren Sie ${app}: für Anfragen und Fragen erreichen Sie uns.`;
-    return `Contact ${app}: reach us with questions about our consultation services.`;
-  }, [ui, locale]);
+export default async function ContactRoutePage({ params }: Props) {
+  const { locale } = await params;
+  const siteUrl = getPublicSiteOrigin();
+  const app = getPublicAppName();
+  const contact = getDefaultContactInfo();
+  const pageUrl = `${siteUrl}/${locale}/contact`;
 
   return (
     <>
-      <LayoutSeoBridge title={seoTitle} description={seoDescription} noindex={false} />
-      <Banner title={bannerTitle} />
-      <ContactPage />
+      <JsonLd
+        id="contact-local-business"
+        data={graph([
+          breadcrumbSchema([
+            { name: app, item: `${siteUrl}/${locale}` },
+            { name: locale === 'tr' ? 'İletişim' : 'Contact', item: pageUrl },
+          ]),
+          localBusiness({
+            id: `${siteUrl}/#local-business`,
+            name: app,
+            description: getLocaleDescriptionFallback(locale) || app,
+            url: pageUrl,
+            ...(contact.phone ? { telephone: contact.phone } : {}),
+            ...(contact.email ? { email: contact.email } : {}),
+            ...(contact.address?.addressCountry && contact.address?.addressLocality
+              ? {
+                  address: {
+                    addressCountry: contact.address.addressCountry,
+                    addressLocality: contact.address.addressLocality,
+                    ...(contact.address.addressRegion ? { addressRegion: contact.address.addressRegion } : {}),
+                    ...(contact.address.postalCode ? { postalCode: contact.address.postalCode } : {}),
+                    ...(contact.address.streetAddress ? { streetAddress: contact.address.streetAddress } : {}),
+                  },
+                }
+              : {}),
+            logo: `${siteUrl}/favicon.svg`,
+            areaServed: locale === 'tr' ? 'Türkiye' : 'Turkey',
+          }),
+        ])}
+      />
+      <ContactRouteClient />
     </>
   );
 }

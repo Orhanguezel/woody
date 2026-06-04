@@ -27,11 +27,46 @@ const BLOG_IMAGE_FALLBACKS: Record<string, string> = {
   '/img/session-cover.png': '/img/placeholder.svg',
 };
 
+const BLOG_CATEGORY_LABELS: Record<string, Record<string, string>> = {
+  tr: {
+    genel: 'Genel',
+    haber: 'Haberler',
+    'okul-oncesi': 'Okul Öncesi',
+    aile: 'Aile',
+    'dijital-icerik': 'Dijital İçerik',
+    ogretmen: 'Öğretmen',
+    okul: 'Okul',
+    etkinlik: 'Etkinlik',
+    mevsimsel: 'Mevsimsel',
+  },
+  en: {
+    genel: 'General',
+    haber: 'News',
+    'okul-oncesi': 'Preschool',
+    aile: 'Family',
+    'dijital-icerik': 'Digital Content',
+    ogretmen: 'Teacher',
+    okul: 'School',
+    etkinlik: 'Event',
+    mevsimsel: 'Seasonal',
+  },
+};
+
 function normalizeBlogImage(src: string): string {
   return BLOG_IMAGE_FALLBACKS[src] || src;
 }
 
-const BlogPageContent: React.FC<{ initialPosts?: WoodyFallbackBlogPost[] }> = ({
+function blogCategoryLabel(category: string, locale: string) {
+  return BLOG_CATEGORY_LABELS[locale]?.[category] || BLOG_CATEGORY_LABELS.en[category] || category;
+}
+
+const BlogPageContent: React.FC<{
+  activeCategory?: string;
+  forceInitialPosts?: boolean;
+  initialPosts?: WoodyFallbackBlogPost[];
+}> = ({
+  activeCategory,
+  forceInitialPosts = false,
   initialPosts = [],
 }) => {
   const app = getPublicAppName();
@@ -49,13 +84,24 @@ const BlogPageContent: React.FC<{ initialPosts?: WoodyFallbackBlogPost[] }> = ({
   }, [data]);
 
   const renderedItems = useMemo(() => {
+    if (forceInitialPosts) return initialPosts;
     if (initialPosts.length > 0) return initialPosts;
     if (items.length > 0) return items;
     const raw = blogFallbackPosts as Record<string, FallbackBlogPost[]>;
     return raw[locale] || raw[locale.split('-')[0]] || raw.en || [];
-  }, [initialPosts, items, locale]);
+  }, [forceInitialPosts, initialPosts, items, locale]);
 
   const blogListHref = useMemo(() => localizePath(locale, '/blog'), [locale]);
+  const categoryFilters = useMemo(() => {
+    const categories = new Set<string>();
+    const raw = blogFallbackPosts as Record<string, FallbackBlogPost[]>;
+    const fallbackPosts = raw[locale] || raw[locale.split('-')[0]] || raw.en || [];
+    [...renderedItems, ...fallbackPosts].forEach((post: any) => {
+      const category = safeStr(post.category);
+      if (category) categories.add(category);
+    });
+    return Array.from(categories);
+  }, [locale, renderedItems]);
 
   const readMore = t('ui_blog_read_more',
     locale === 'de' ? 'Weiterlesen' : locale === 'tr' ? 'Devamini oku' : 'Read more'
@@ -111,6 +157,33 @@ const BlogPageContent: React.FC<{ initialPosts?: WoodyFallbackBlogPost[] }> = ({
             <span className="text-[var(--gm-primary)] text-xs">✦</span>
             <span className="h-px w-12 bg-[var(--gm-primary)]/40" />
           </div>
+          {categoryFilters.length > 0 ? (
+            <nav aria-label="Blog categories" className="mt-8 flex flex-wrap justify-center gap-2">
+              <Link
+                href={blogListHref}
+                className={`rounded-md border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                  activeCategory
+                    ? 'border-[var(--gm-border-soft)] bg-[var(--gm-surface)] text-[var(--gm-text-dim)] hover:border-[var(--gm-primary)]'
+                    : 'border-[var(--gm-primary)] bg-[var(--gm-primary)] text-[var(--gm-surface)]'
+                }`}
+              >
+                {locale === 'tr' ? 'Tümü' : locale === 'de' ? 'Alle' : 'All'}
+              </Link>
+              {categoryFilters.map((category) => (
+                <Link
+                  key={category}
+                  href={localizePath(locale, `/blog/category/${category}`)}
+                  className={`rounded-md border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                    activeCategory === category
+                      ? 'border-[var(--gm-primary)] bg-[var(--gm-primary)] text-[var(--gm-surface)]'
+                      : 'border-[var(--gm-border-soft)] bg-[var(--gm-surface)] text-[var(--gm-text-dim)] hover:border-[var(--gm-primary)]'
+                  }`}
+                >
+                  {blogCategoryLabel(category, locale)}
+                </Link>
+              ))}
+            </nav>
+          ) : null}
         </header>
 
         {/* Loading */}
@@ -209,6 +282,16 @@ const BlogPageContent: React.FC<{ initialPosts?: WoodyFallbackBlogPost[] }> = ({
                 </article>
               );
             })}
+          </div>
+        )}
+
+        {!isLoading && renderedItems.length === 0 && (
+          <div className="rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-8 text-center text-[var(--gm-text-dim)]">
+            {locale === 'tr'
+              ? 'Bu kategoride henüz yayınlanmış yazı yok.'
+              : locale === 'de'
+                ? 'In dieser Kategorie gibt es noch keine veröffentlichten Beiträge.'
+                : 'There are no published posts in this category yet.'}
           </div>
         )}
       </div>

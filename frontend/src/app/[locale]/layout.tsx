@@ -10,6 +10,8 @@ import JsonLd from '@/seo/JsonLd';
 import { graph, org, website } from '@/seo/jsonld';
 import type { PublicMenuItemDto } from '@/integrations/shared';
 import {
+  getDefaultContactInfo,
+  getDefaultSocialUrls,
   getOrgJsonLdDescription,
   getPlaceholderSameAsUrls,
   getPublicApiBaseUrl,
@@ -46,7 +48,9 @@ export async function generateMetadata({
 }
 
 const SITE_URL = getPublicSiteOrigin();
-const BRAND_SAME_AS = getPlaceholderSameAsUrls();
+const BRAND_SAME_AS = Array.from(
+  new Set([...getPlaceholderSameAsUrls(), ...Object.values(getDefaultSocialUrls())]),
+);
 
 export default async function RootLayout({
   children,
@@ -58,6 +62,7 @@ export default async function RootLayout({
   const { locale } = await params;
   // SSR fetch: header menu items — hidrasyon mismatch'i önlemek için server'da çekilir
   const initialMenuItems = await fetchHeaderMenuItems(locale);
+  const contact = getDefaultContactInfo();
 
   const jsonLdData = graph([
     org({
@@ -67,6 +72,8 @@ export default async function RootLayout({
       logo: `${SITE_URL}/favicon.svg`,
       sameAs: BRAND_SAME_AS,
       description: getOrgJsonLdDescription(locale),
+      ...(contact.phone ? { telephone: contact.phone } : {}),
+      ...(contact.email ? { email: contact.email } : {}),
       priceRange: '₺149-₺3500',
       areaServed: 'TR',
     }),

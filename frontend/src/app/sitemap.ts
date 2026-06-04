@@ -23,6 +23,17 @@ const LEGACY_STATIC_PAGES = [
 ] as const;
 
 const WOODY_DIGITAL_PAGES = allWoodyDigitalPaths();
+const WOODY_BLOG_CATEGORIES = [
+  'genel',
+  'haber',
+  'okul-oncesi',
+  'aile',
+  'dijital-icerik',
+  'ogretmen',
+  'okul',
+  'etkinlik',
+  'mevsimsel',
+] as const;
 
 type SitemapRoute = {
   path: string;
@@ -70,7 +81,12 @@ async function blogRoutes(): Promise<SitemapRoute[]> {
     }
   }
 
-  return Array.from(byId.values());
+  const categoryRoutes = WOODY_BLOG_CATEGORIES.map((category) => ({
+    path: `/blog/category/${category}`,
+    priority: 0.62,
+  }));
+
+  return [...categoryRoutes, ...Array.from(byId.values())];
 }
 
 async function storeProductRoutes(): Promise<SitemapRoute[]> {

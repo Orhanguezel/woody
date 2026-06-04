@@ -12,8 +12,6 @@ import React, { useMemo, useState, useEffect, useId, useCallback } from 'react';
 import { useListFaqsQuery } from '@/integrations/rtk/hooks';
 import type { FaqDto } from '@/integrations/shared';
 import { normalizeFaq, safeStr } from '@/integrations/shared';
-import { faqPage } from '@/seo/jsonld';
-import JsonLd from '@/seo/JsonLd';
 
 // i18n
 import { useLocaleShort, useUiSection } from '@/i18n';
@@ -80,17 +78,6 @@ const FaqsPageContent: React.FC = () => {
 
   const hasFaqs = faqs.length > 0;
 
-  // FAQPage JSON-LD schema
-  const faqSchema = useMemo(() => {
-    if (!hasFaqs) return null;
-    return faqPage(
-      faqs.map((f) => ({
-        question: safeStr(f.question) || '',
-        answer: safeStr(f.answer) || '',
-      })),
-    );
-  }, [faqs, hasFaqs]);
-
   // open state (first item auto-open)
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -105,7 +92,6 @@ const FaqsPageContent: React.FC = () => {
 
   return (
     <section className="bg-bg-primary py-20 min-h-screen">
-      {faqSchema && <JsonLd data={faqSchema} id="faq-page" />}
       <div className="container mx-auto px-4">
         {/* HEADER */}
         <div className="text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up">

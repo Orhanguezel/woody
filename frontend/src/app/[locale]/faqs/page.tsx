@@ -1,75 +1,45 @@
-'use client';
+import FaqsRouteClient from './FaqsRouteClient';
 
-import React, { useMemo } from 'react';
-import Banner from '@/layout/banner/Breadcrum';
-import FaqsPageContent from '@/components/containers/faqs/FaqsPageContent';
-import { LayoutSeoBridge } from '@/seo';
-import { useLocaleShort, useUiSection } from '@/i18n';
-import { isValidUiText } from '@/integrations/shared';
-import { safeStr, toCdnSrc } from '@/integrations/shared';
+import { loadPageContent } from '@/config/pages/loader';
+import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
+import JsonLd from '@/seo/JsonLd';
+import { breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld';
 
-export default function FaqsPage() {
-  const locale = useLocaleShort();
-  const { ui } = useUiSection('ui_faqs', locale as any);
+type Props = { params: Promise<{ locale: string }> };
+type FaqPageContent = {
+  title?: string;
+  items?: Array<{ answer?: string; question?: string; solution?: string }>;
+};
 
-  // ======================
-  // Banner title (UI)
-  // ======================
-  const bannerTitle = useMemo(() => {
-    const key = 'ui_faqs_page_title';
-    const v = safeStr(ui(key, 'FAQs'));
-    return isValidUiText(v, key) ? v : 'FAQs';
-  }, [ui]);
-
-  // ======================
-  // SEO override (UI-only; Layout handles global defaults)
-  // ======================
-  const pageTitle = useMemo(() => {
-    const key = 'ui_faqs_meta_title';
-    const v = safeStr(ui(key, ''));
-    if (isValidUiText(v, key)) return v;
-
-    return bannerTitle || 'FAQs';
-  }, [ui, bannerTitle]);
-
-  const pageDescription = useMemo(() => {
-    const keyMeta = 'ui_faqs_meta_description';
-    const vMeta = safeStr(ui(keyMeta, ''));
-    if (isValidUiText(vMeta, keyMeta)) return vMeta;
-
-    const keyPage = 'ui_faqs_page_description';
-    const vPage = safeStr(ui(keyPage, ''));
-    if (isValidUiText(vPage, keyPage)) return vPage;
-
-    return ''; // empty => Layout default
-  }, [ui]);
-
-  const ogImageOverride = useMemo(() => {
-    const key = 'ui_faqs_og_image';
-    const raw = safeStr(ui(key, ''));
-    if (!raw) return undefined;
-
-    if (/^https?:\/\//i.test(raw)) return raw;
-    return toCdnSrc(raw, 1200, 630, 'fill') || raw;
-  }, [ui]);
+export default async function FaqsPage({ params }: Props) {
+  const { locale } = await params;
+  const content = await loadPageContent<FaqPageContent>('faq', locale);
+  const items = (content?.items ?? [])
+    .map((item) => ({
+      question: String(item.question || '').trim(),
+      answer: String(item.answer || item.solution || '').trim(),
+    }))
+    .filter((item) => item.question && item.answer)
+    .slice(0, 25);
+  const siteUrl = getPublicSiteOrigin();
+  const app = getPublicAppName();
+  const pageUrl = `${siteUrl}/${locale}/faqs`;
 
   return (
     <>
-      <LayoutSeoBridge
-        title={pageTitle}
-        description={pageDescription || undefined}
-        ogImage={ogImageOverride}
-        noindex={false}
-      />
-
-      <Banner title={bannerTitle} />
-
-      <div className="bg-bg-primary min-h-[50vh]">
-        <section className="container mx-auto py-16 px-4">
-          <FaqsPageContent />
-        </section>
-
-      </div>
+      {items.length > 0 ? (
+        <JsonLd
+          id="faqs-ssr"
+          data={graph([
+            breadcrumbSchema([
+              { name: app, item: `${siteUrl}/${locale}` },
+              { name: content?.title || 'FAQs', item: pageUrl },
+            ]),
+            faqSchema(items),
+          ])}
+        />
+      ) : null}
+      <FaqsRouteClient />
     </>
   );
 }
