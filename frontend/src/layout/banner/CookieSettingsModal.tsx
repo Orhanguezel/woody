@@ -48,6 +48,134 @@ function pickText(primary?: string, secondary?: string, fallback?: string) {
   return (fallback ?? '').trim();
 }
 
+const COOKIE_MODAL_FALLBACKS: Record<string, Record<string, string>> = {
+  tr: {
+    cc_aria_close: 'Kapat',
+    cc_btn_cancel: 'Vazgeç',
+    cc_btn_save: 'Kaydet',
+    cc_desc_analytics: 'Trafiği ve performansı anlamamıza yardımcı olur.',
+    cc_desc_necessary: 'Oturum, güvenlik ve dil tercihi gibi temel işlevler için gereklidir.',
+    cc_description: 'Hangi çerez kategorilerine izin vereceğinizi seçebilirsiniz. Zorunlu çerezler her zaman aktiftir.',
+    cc_label_analytics: 'Analitik',
+    cc_label_necessary: 'Zorunlu',
+    cc_pill_on: 'Açık',
+    cc_title: 'Çerez Ayarları',
+  },
+  en: {
+    cc_aria_close: 'Close',
+    cc_btn_cancel: 'Cancel',
+    cc_btn_save: 'Save',
+    cc_desc_analytics: 'Helps us understand traffic and performance.',
+    cc_desc_necessary: 'Required for core functions such as session, security, and language preference.',
+    cc_description: 'You can choose which cookie categories you allow. Necessary cookies are always enabled.',
+    cc_label_analytics: 'Analytics',
+    cc_label_necessary: 'Necessary',
+    cc_pill_on: 'On',
+    cc_title: 'Cookie Settings',
+  },
+  de: {
+    cc_aria_close: 'Schließen',
+    cc_btn_cancel: 'Abbrechen',
+    cc_btn_save: 'Speichern',
+    cc_desc_analytics: 'Hilft uns, Datenverkehr und Leistung zu verstehen.',
+    cc_desc_necessary: 'Erforderlich für Kernfunktionen wie Sitzung, Sicherheit und Spracheinstellung.',
+    cc_description: 'Sie können auswählen, welche Cookie-Kategorien Sie erlauben. Notwendige Cookies sind immer aktiv.',
+    cc_label_analytics: 'Analyse',
+    cc_label_necessary: 'Notwendig',
+    cc_pill_on: 'Aktiv',
+    cc_title: 'Cookie-Einstellungen',
+  },
+  ar: {
+    cc_aria_close: 'إغلاق',
+    cc_btn_cancel: 'إلغاء',
+    cc_btn_save: 'حفظ',
+    cc_desc_analytics: 'يساعدنا على فهم الزيارات والأداء.',
+    cc_desc_necessary: 'ضروري للوظائف الأساسية مثل الجلسة والأمان وتفضيل اللغة.',
+    cc_description: 'يمكنك اختيار فئات ملفات تعريف الارتباط التي تسمح بها. الملفات الضرورية مفعلة دائما.',
+    cc_label_analytics: 'التحليلات',
+    cc_label_necessary: 'ضرورية',
+    cc_pill_on: 'مفعل',
+    cc_title: 'إعدادات ملفات تعريف الارتباط',
+  },
+  fr: {
+    cc_aria_close: 'Fermer',
+    cc_btn_cancel: 'Annuler',
+    cc_btn_save: 'Enregistrer',
+    cc_desc_analytics: 'Nous aide à comprendre le trafic et les performances.',
+    cc_desc_necessary: 'Nécessaire aux fonctions essentielles comme la session, la sécurité et la langue.',
+    cc_description: 'Vous pouvez choisir les catégories de cookies autorisées. Les cookies nécessaires sont toujours actifs.',
+    cc_label_analytics: 'Analyse',
+    cc_label_necessary: 'Nécessaires',
+    cc_pill_on: 'Activé',
+    cc_title: 'Paramètres des cookies',
+  },
+  ru: {
+    cc_aria_close: 'Закрыть',
+    cc_btn_cancel: 'Отмена',
+    cc_btn_save: 'Сохранить',
+    cc_desc_analytics: 'Помогает нам понимать трафик и производительность.',
+    cc_desc_necessary: 'Необходимы для основных функций, таких как сессия, безопасность и выбор языка.',
+    cc_description: 'Вы можете выбрать разрешенные категории cookies. Необходимые cookies всегда включены.',
+    cc_label_analytics: 'Аналитика',
+    cc_label_necessary: 'Необходимые',
+    cc_pill_on: 'Вкл.',
+    cc_title: 'Настройки cookies',
+  },
+  es: {
+    cc_aria_close: 'Cerrar',
+    cc_btn_cancel: 'Cancelar',
+    cc_btn_save: 'Guardar',
+    cc_desc_analytics: 'Nos ayuda a entender el tráfico y el rendimiento.',
+    cc_desc_necessary: 'Necesarias para funciones básicas como sesión, seguridad y preferencia de idioma.',
+    cc_description: 'Puedes elegir qué categorías de cookies permites. Las necesarias siempre están activas.',
+    cc_label_analytics: 'Analítica',
+    cc_label_necessary: 'Necesarias',
+    cc_pill_on: 'Activo',
+    cc_title: 'Configuración de cookies',
+  },
+  it: {
+    cc_aria_close: 'Chiudi',
+    cc_btn_cancel: 'Annulla',
+    cc_btn_save: 'Salva',
+    cc_desc_analytics: 'Ci aiuta a capire traffico e prestazioni.',
+    cc_desc_necessary: 'Necessari per funzioni di base come sessione, sicurezza e preferenza lingua.',
+    cc_description: 'Puoi scegliere quali categorie di cookie consentire. I cookie necessari sono sempre attivi.',
+    cc_label_analytics: 'Analisi',
+    cc_label_necessary: 'Necessari',
+    cc_pill_on: 'Attivo',
+    cc_title: 'Impostazioni cookie',
+  },
+  nl: {
+    cc_aria_close: 'Sluiten',
+    cc_btn_cancel: 'Annuleren',
+    cc_btn_save: 'Opslaan',
+    cc_desc_analytics: 'Helpt ons verkeer en prestaties te begrijpen.',
+    cc_desc_necessary: 'Nodig voor kernfuncties zoals sessie, veiligheid en taalvoorkeur.',
+    cc_description: 'Je kunt kiezen welke cookiecategorieën je toestaat. Noodzakelijke cookies staan altijd aan.',
+    cc_label_analytics: 'Analyse',
+    cc_label_necessary: 'Noodzakelijk',
+    cc_pill_on: 'Aan',
+    cc_title: 'Cookie-instellingen',
+  },
+  'pt-br': {
+    cc_aria_close: 'Fechar',
+    cc_btn_cancel: 'Cancelar',
+    cc_btn_save: 'Salvar',
+    cc_desc_analytics: 'Ajuda-nos a entender o tráfego e o desempenho.',
+    cc_desc_necessary: 'Necessário para funções básicas como sessão, segurança e preferência de idioma.',
+    cc_description: 'Você pode escolher quais categorias de cookies permite. Cookies necessários ficam sempre ativos.',
+    cc_label_analytics: 'Análise',
+    cc_label_necessary: 'Necessários',
+    cc_pill_on: 'Ativo',
+    cc_title: 'Configurações de cookies',
+  },
+};
+
+function modalFallback(locale: string, key: string) {
+  const normalized = locale.toLowerCase();
+  return COOKIE_MODAL_FALLBACKS[normalized]?.[key] || COOKIE_MODAL_FALLBACKS[normalized.split('-')[0]]?.[key] || COOKIE_MODAL_FALLBACKS.en[key] || key;
+}
+
 export default function CookieSettingsModal({
   open,
   consent,
@@ -93,27 +221,27 @@ export default function CookieSettingsModal({
 
   const nextState: ConsentState = useMemo(() => ({ necessary: true, analytics }), [analytics]);
 
-  const uiTitle = ui('cc_title', 'Cookie Settings');
+  const uiTitle = ui('cc_title', modalFallback(locale, 'cc_title'));
   const uiDesc = ui(
     'cc_description',
-    'You can choose which cookie categories you allow. Necessary cookies are always enabled.',
+    modalFallback(locale, 'cc_description'),
   );
 
-  const uiLabelNecessary = ui('cc_label_necessary', 'Necessary');
+  const uiLabelNecessary = ui('cc_label_necessary', modalFallback(locale, 'cc_label_necessary'));
   const uiDescNecessary = ui(
     'cc_desc_necessary',
-    'Required for core functions (session, security, language preference, etc.).',
+    modalFallback(locale, 'cc_desc_necessary'),
   );
 
-  const uiLabelAnalytics = ui('cc_label_analytics', 'Analytics');
+  const uiLabelAnalytics = ui('cc_label_analytics', modalFallback(locale, 'cc_label_analytics'));
   const uiDescAnalytics = ui(
     'cc_desc_analytics',
-    'Helps us understand traffic and performance (e.g., page views).',
+    modalFallback(locale, 'cc_desc_analytics'),
   );
 
-  const uiBtnSave = ui('cc_btn_save', 'Save');
-  const uiBtnCancel = ui('cc_btn_cancel', 'Cancel');
-  const uiAriaClose = ui('cc_aria_close', 'Close');
+  const uiBtnSave = ui('cc_btn_save', modalFallback(locale, 'cc_btn_save'));
+  const uiBtnCancel = ui('cc_btn_cancel', modalFallback(locale, 'cc_btn_cancel'));
+  const uiAriaClose = ui('cc_aria_close', modalFallback(locale, 'cc_aria_close'));
 
   const finalTitle = pickText(title, uiTitle, 'Cookie Settings');
   const finalDesc = pickText(description, uiDesc, '');
@@ -173,7 +301,7 @@ export default function CookieSettingsModal({
               <p className="mt-1 text-sm text-text-secondary leading-relaxed">{finalDescNecessary}</p>
             </div>
             <span className="shrink-0 inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-brand-primary/10 text-text-primary border border-brand-primary/15">
-              {ui('cc_pill_on', 'On')}
+              {ui('cc_pill_on', modalFallback(locale, 'cc_pill_on'))}
             </span>
           </div>
 

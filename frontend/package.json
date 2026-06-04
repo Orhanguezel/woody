@@ -18,6 +18,7 @@
     "test:e2e:ui": "playwright test --ui",
     "lh:autorun": "lhci autorun --config=./lighthouserc.cjs",
     "lh:collect": "lhci collect --config=./lighthouserc.cjs",
+    "seo:schema": "node scripts/validate-jsonld.mjs",
     "indexnow:ping": "bun scripts/indexnow-ping.ts"
   },
   "dependencies": {

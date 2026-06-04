@@ -6,6 +6,21 @@ import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 
 import type { WoodyCard, WoodyPageContent } from './content-loader.server';
 
+function parsePrice(value: string | number | undefined): number {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : 0;
+  const raw = String(value ?? '').trim();
+  if (!raw) return 0;
+  const numeric = raw.replace(/[^\d.,]/g, '');
+  if (!numeric) return 0;
+  const normalized = numeric.includes(',') && numeric.includes('.')
+    ? numeric.replace(/\./g, '').replace(',', '.')
+    : numeric.includes(',')
+      ? numeric.replace(',', '.')
+      : numeric.replace(/\.(?=\d{3}(?:\D|$))/g, '');
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
 export async function woodyMetadata(args: {
   locale: string;
   pageKey: string;
@@ -73,7 +88,7 @@ export function woodyProductGraph(args: {
   const siteUrl = getPublicSiteOrigin();
   const app = getPublicAppName();
   const pageUrl = `${siteUrl}/${args.locale}${args.pathname}`;
-  const price = typeof args.item.price === 'number' ? args.item.price : Number(args.item.price || 0);
+  const price = parsePrice(args.item.price);
 
   return graph([
     breadcrumbSchema([

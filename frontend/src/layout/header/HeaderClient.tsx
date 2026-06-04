@@ -155,7 +155,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
 
       <header data-test-marker="antigravity-fix-v1" className="relative z-[1000]">
         <nav
-          className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-500 px-6 lg:px-12
+          className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-500 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32
             ${scrolled
               ? 'py-4 bg-[var(--gm-bg)]/92 backdrop-blur-[12px] border-b border-[var(--gm-border-soft)] shadow-sm'
               : 'py-6 lg:py-8 bg-transparent'

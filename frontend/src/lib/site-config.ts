@@ -89,6 +89,12 @@ export function getDefaultLogoAlt(): string {
   );
 }
 
+export function getPublicLogoUrl(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_LOGO_URL?.trim();
+  if (fromEnv) return fromEnv;
+  return getDefaultTokenBranding().logo_url || '/logo/logo.svg';
+}
+
 export function getManifestPwaStrings(): { name: string; short_name: string; description: string } {
   const nameRaw =
     process.env.NEXT_PUBLIC_MANIFEST_NAME?.trim() || String(siteDefaults.manifest.name || '');

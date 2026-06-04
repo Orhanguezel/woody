@@ -76,6 +76,7 @@ function present<T>(value: T | null | undefined): value is T {
 }
 
 function asString(value: unknown): string {
+  if (typeof value === 'number' && Number.isFinite(value)) return String(value);
   return typeof value === 'string' ? value.trim() : '';
 }
 
@@ -101,7 +102,7 @@ function normalizeCard(raw: unknown): WoodyCard | null {
     currency: asString(raw.currency) || asString(raw.priceCurrency),
     features: asStringArray(raw.features),
     badge: appInject(asString(raw.badge)),
-    slug: asString(raw.slug),
+    slug: asString(raw.slug) || asString(raw.id),
     level: asString(raw.level),
     product: asString(raw.product),
   };
