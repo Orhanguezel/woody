@@ -21,26 +21,44 @@
           "badge": "Pour les salles de classe",
           "title": "Série préscolaire",
           "description": "Conçu pour les grandes salles de classe, les écoles et les jardins d'enfants. Le contenu et les jeux sont structurés pour la gestion de classe, adaptés aux grands groupes. Propose un modèle dans lequel toute la classe peut participer activement simultanément.",
+          "features": [
+            "Pour les grandes salles de classe, les écoles et les jardins d'enfants",
+            "Contenu et jeux structurés pour la gestion de classe",
+            "Participation active de toute la classe en même temps"
+          ],
+          "cta": "Explorez la série préscolaire",
           "href": "/preschool"
         },
         {
           "badge": "Pour les petits groupes",
           "title": "Atelier",
           "description": "Conçu pour des petits groupes de 3 à 5 personnes. Le contenu et les jeux sont organisés pour une interaction plus intensive et une participation individuelle. Offre une structure de candidature plus ciblée et plus rapide.",
+          "features": [
+            "Pour les petits groupes de 3 à 5 personnes",
+            "Interaction intensive et participation individuelle",
+            "Une structure plus ciblée et plus rapide"
+          ],
+          "cta": "Explorez la série Atelier",
           "href": "/workshop"
         },
         {
           "badge": "Utilisation individuelle",
           "title": "Tuteur à domicile / Série à domicile",
           "description": "Convient pour un usage individuel de 1 à 2 personnes. Le contenu et les jeux sont entièrement adaptés pour un apprentissage individuel. Fournit des progrès spécifiques à l’enfant et une attention maximale.",
+          "features": [
+            "Pour un usage individuel de 1 à 2 personnes",
+            "Contenu adapté à l'apprentissage individuel",
+            "Des progrès spécifiques à l'enfant et une attention maximale"
+          ],
+          "cta": "Explorez la série à domicile",
           "href": "/home-tutor"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Ensemble d'apprentissage de l'anglais préscolaire | Anglais de la petite enfance basé sur le jeu",
-    "description": "Laissez vos enfants apprendre tout en s'amusant avec un système d'apprentissage de l'anglais préscolaire. Découvrez des ensembles d'apprentissage basés sur le jeu, des demandes de démonstration et des forfaits abordables.",
+    "title": "{{appName}} et ses Amis | Anglais préscolaire",
+    "description": "Ensembles d'apprentissage de l'anglais préscolaire, contenu numérique et plateforme de soutien aux enseignants.",
     "keywords": "programme d'anglais préscolaire Turquie, anglais de la petite enfance basé sur le jeu, ensemble d'apprentissage de l'anglais préscolaire, éducation anglaise de la petite enfance, système de préparation de Cambridge, anglais pour enfants, programme d'anglais pour 3-6 ans"
   }
 }

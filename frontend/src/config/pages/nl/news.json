@@ -1,0 +1,49 @@
+{
+  "title": "{{appName}}-updates",
+  "eyebrow": "{{appName}}-updates",
+  "items": [
+    {
+      "id": 1,
+      "order": 1,
+      "title": "Overeenkomst getekend in heel Duitsland",
+      "description": "Er is een overeenkomst getekend met Don Bosco Medien, een netwerk voor boekdistributie en marketing, die de gebruiks- en verkooprechten van alle inhoud van {{appName}} en Vrienden in heel Duitsland omvat.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+    },
+    {
+      "id": 2,
+      "order": 2,
+      "title": "Overeenkomst getekend in heel Rusland",
+      "description": "Er is een overeenkomst getekend met Prosveshcheniye Publishers die de gebruiks- en verkooprechten van alle inhoud van {{appName}} en Vrienden in heel Rusland omvat.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+    },
+    {
+      "id": 3,
+      "order": 3,
+      "title": "Cambridge-certificeringsproces gelanceerd",
+      "description": "Het Cambridge-certificeringsproces is officieel gelanceerd in samenwerking met British Side.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+    },
+    {
+      "id": 4,
+      "order": 4,
+      "title": "Scholen veranderen in mini Cambridge-campussen",
+      "description": "In samenwerking met British Side veranderen we scholen in mini Cambridge-campussen.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "fitImage": true
+    },
+    {
+      "id": 5,
+      "order": 5,
+      "title": "Ontdek het Cambridge-onderwijssysteem",
+      "description": "Maak kennis met de internationale aanpak van Engels onderwijs voor kleuters.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+    },
+    {
+      "id": 6,
+      "order": 6,
+      "title": "Nu zijn we ook een drukkerij!",
+      "description": "We produceren sterkere inhoud en groeien vrij.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "title": "Transición al sistema de certificación Cambridge English con {{appName}}",
+  "eyebrow": "¿Por qué {{appName}}?",
+  "description": "Un modelo de aprendizaje estructurado y basado en el juego que introduce a los niños en una educación de inglés estandarizada internacionalmente desde una edad temprana.",
+  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "imageAlt": "Personajes de {{appName}}",
+  "certifications": [
+    {
+      "name": "Cambridge English",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+    },
+    {
+      "name": "British Side",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+    },
+    {
+      "name": "{{appName}} Academy",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+    }
+  ],
+  "sections": [
+    {
+      "title": "¿Por qué {{appName}}?",
+      "items": [
+        {
+          "title": "Programa de certificación Cambridge",
+          "description": "Los estudiantes obtienen un certificado Cambridge English reconocido en más de 160 países"
+        },
+        {
+          "title": "Aprendizaje 100% basado en el juego",
+          "description": "Con 8 juegos activos cada semana, el proceso de aprendizaje se construye enteramente sobre el juego"
+        },
+        {
+          "title": "Personajes de habla inglesa únicos en cada unidad",
+          "description": "Un personaje diferente toma el escenario en cada unidad; el niño aprende el idioma interactuando con el personaje"
+        },
+        {
+          "title": "Integración con la plataforma digital",
+          "description": "Ofrece una experiencia de aprendizaje multifacética con historias en inglés en Storyland, canciones específicas de cada unidad en Musicland y películas de los personajes en Movieland"
+        },
+        {
+          "title": "Experiencia de aprendizaje activo con más de 40 juguetes",
+          "description": "El niño se convierte en alguien que juega y aprende, no solo que observa"
+        },
+        {
+          "title": "Plan de lecciones mensual y semanal detallado",
+          "description": "Orientación para el docente hora por hora, paso a paso"
+        },
+        {
+          "title": "0% de requisito de preparación",
+          "description": "El docente lo abre y lo aplica directamente"
+        },
+        {
+          "title": "Cada semana: 8 juegos en clase + Worksheet + Craft",
+          "description": "Cada semana se realiza una producción individual con un worksheet y una craft tras 8 juegos diferentes"
+        },
+        {
+          "title": "Sistema de evaluación Checkpoint",
+          "description": "Medición y seguimiento al final de cada unidad"
+        },
+        {
+          "title": "Libro de comprensión Story Book",
+          "description": "El niño escucha la historia y expresa su comprensión con pegatinas"
+        },
+        {
+          "title": "Sistema de portafolio de fin de período",
+          "description": "Un resultado tangible para los padres"
+        },
+        {
+          "title": "Una plataforma – todo el contenido",
+          "description": "Sistema físico + digital integrado"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "¿Por qué {{appName}}? | Transición al sistema de certificación Cambridge English",
+    "description": "Con {{appName}}, los niños conocen una educación de inglés estandarizada internacionalmente desde una edad temprana. Programa de certificación Cambridge, aprendizaje 100% basado en el juego e integración con la plataforma digital."
+  }
+}

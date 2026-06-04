@@ -21,26 +21,44 @@
           "badge": "Voor klaslokalen",
           "title": "Voorschoolse serie",
           "description": "Ontworpen voor grote klaslokalen, scholen en kleuterscholen. Inhoud en games zijn gestructureerd voor klasmanagement, geschikt voor grote groepen. Biedt een model waarbij de hele klas tegelijkertijd actief kan deelnemen.",
+          "features": [
+            "Voor grote klaslokalen, scholen en kleuterscholen",
+            "Inhoud en games gestructureerd voor klasmanagement",
+            "Actieve deelname van de hele klas tegelijk"
+          ],
+          "cta": "Ontdek de Preschool-serie",
           "href": "/preschool"
         },
         {
           "badge": "Voor kleine groepen",
           "title": "Werkplaats",
           "description": "Ontworpen voor kleine groepen van 3-5 personen. Content en games zijn ingericht voor intensievere interactie en individuele participatie. Biedt een meer gerichte en snelle applicatiestructuur.",
+          "features": [
+            "Voor kleine groepen van 3-5 personen",
+            "Intensieve interactie en individuele deelname",
+            "Een meer gerichte en snelle structuur"
+          ],
+          "cta": "Ontdek de Workshop-serie",
           "href": "/workshop"
         },
         {
           "badge": "Individueel gebruik",
           "title": "Thuisleraar / Thuisserie",
           "description": "Geschikt voor individueel gebruik door 1-2 personen. Inhoud en games zijn volledig aangepast voor één-op-één leren. Biedt kindspecifieke voortgang en maximale aandacht.",
+          "features": [
+            "Voor individueel gebruik door 1-2 personen",
+            "Inhoud aangepast voor één-op-één leren",
+            "Kindspecifieke voortgang en maximale aandacht"
+          ],
+          "cta": "Ontdek de Home-serie",
           "href": "/home-tutor"
         }
       ]
     }
   ],
   "seo": {
-    "title": "Voorschoolse Engelse leerset | Spelenderwijs Engels voor jonge kinderen",
-    "description": "Laat uw kinderen leren terwijl ze plezier hebben met een voorschools Engels leersysteem. Ontdek speelgebaseerde leersets, demo-aanvragen en betaalbare pakketten.",
+    "title": "{{appName}} en Vrienden | Engels voor kleuters",
+    "description": "Engelse leersets voor kleuters, digitale inhoud en een ondersteuningsplatform voor leerkrachten.",
     "keywords": "Engels voorschools programma Turkije, spelend Engels voor jonge kinderen, Engels voorschoolse leerset, Engels voor jonge kinderen, Cambridge voorbereidingssysteem, Engels voor kinderen, Engels programma voor kinderen van 3 tot 6 jaar"
   }
 }

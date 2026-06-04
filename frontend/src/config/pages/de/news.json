@@ -1,0 +1,49 @@
+{
+  "title": "{{appName}} Neuigkeiten",
+  "eyebrow": "{{appName}} Neuigkeiten",
+  "items": [
+    {
+      "id": 1,
+      "order": 1,
+      "title": "Vereinbarung deutschlandweit unterzeichnet",
+      "description": "Mit Don Bosco Medien, einem Netzwerk für Buchvertrieb und -marketing, wurde eine Vereinbarung über die Nutzungs- und Verkaufsrechte aller Inhalte von {{appName}} und Freunde in ganz Deutschland unterzeichnet.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+    },
+    {
+      "id": 2,
+      "order": 2,
+      "title": "Vereinbarung russlandweit unterzeichnet",
+      "description": "Mit Prosveshcheniye Publishers wurde eine Vereinbarung über die Nutzungs- und Verkaufsrechte aller Inhalte von {{appName}} und Freunde in ganz Russland unterzeichnet.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+    },
+    {
+      "id": 3,
+      "order": 3,
+      "title": "Cambridge Zertifizierungsprozess gestartet",
+      "description": "Der Cambridge Zertifizierungsprozess wurde offiziell in Partnerschaft mit British Side gestartet.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+    },
+    {
+      "id": 4,
+      "order": 4,
+      "title": "Schulen verwandeln sich in Mini-Cambridge-Campusse",
+      "description": "In Partnerschaft mit British Side verwandeln wir Schulen in Mini-Cambridge-Campusse.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "fitImage": true
+    },
+    {
+      "id": 5,
+      "order": 5,
+      "title": "Entdecken Sie das Cambridge Bildungssystem",
+      "description": "Lernen Sie den internationalen Ansatz für die Englischausbildung im Vorschulalter kennen.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+    },
+    {
+      "id": 6,
+      "order": 6,
+      "title": "Jetzt sind wir auch ein Verlag!",
+      "description": "Wir produzieren stärkere Inhalte und wachsen frei.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+    }
+  ]
+}

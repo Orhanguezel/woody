@@ -1,0 +1,49 @@
+{
+  "title": "{{appName}} Updates",
+  "eyebrow": "{{appName}} Updates",
+  "items": [
+    {
+      "id": 1,
+      "order": 1,
+      "title": "Agreement Signed Across Germany",
+      "description": "An agreement covering the usage and sales rights of all content belonging to {{appName}} and Friends across Germany has been signed with Don Bosco Medien, a book distribution and marketing network.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/q3w780z7_1.png"
+    },
+    {
+      "id": 2,
+      "order": 2,
+      "title": "Agreement Signed Across Russia",
+      "description": "An agreement covering the usage and sales rights of all content belonging to {{appName}} and Friends across Russia has been signed with Prosveshcheniye Publishers.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/796xqghe_2.png"
+    },
+    {
+      "id": 3,
+      "order": 3,
+      "title": "Cambridge Certification Process Launched",
+      "description": "The Cambridge certification process has been officially launched in partnership with British Side.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/xmex01in_Woody%20%287%29.png"
+    },
+    {
+      "id": 4,
+      "order": 4,
+      "title": "Schools Are Transforming into Mini Cambridge Campuses",
+      "description": "In partnership with British Side, we are transforming schools into mini Cambridge campuses.",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/881wsvif_rekant.png",
+      "fitImage": true
+    },
+    {
+      "id": 5,
+      "order": 5,
+      "title": "Discover the Cambridge Education System",
+      "description": "Get to know the international approach to preschool English education.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/543xrrqf_cambr%C4%B1dgr%20tan%C4%B1%C4%B1m.mp4"
+    },
+    {
+      "id": 6,
+      "order": 6,
+      "title": "Now We Are a Printing House Too!",
+      "description": "We produce stronger content and grow freely.",
+      "video": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/b69zuql4_Ads%C4%B1z%20%281080%20x%201350%20piksel%29%20kopyas%C4%B1%20kopyas%C4%B1%20%284%29.mp4"
+    }
+  ]
+}

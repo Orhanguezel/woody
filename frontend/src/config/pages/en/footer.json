@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} and Friends",
+  "description": "A play-based and systematic learning model for preschool English education.",
+  "columns": {
+    "corporate": {
+      "title": "Corporate",
+      "links": [
+        { "label": "Pricing & Packages", "href": "/fiyat" },
+        { "label": "Free Demo Request", "href": "/demo-talep" },
+        { "label": "Frequently Asked Questions", "href": "/sss" },
+        { "label": "Preschool English Guide", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "follow": {
+      "title": "Follow Us"
+    }
+  },
+  "career": {
+    "label": "{{appName}} Academy Careers",
+    "cta": "Teacher Application"
+  },
+  "copyright": "© 2026 {{appName}} and Friends. All rights reserved."
+}

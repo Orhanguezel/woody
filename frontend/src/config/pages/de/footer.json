@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} und Freunde",
+  "description": "Ein spielbasiertes und systematisches Lernmodell für die Englischausbildung im Vorschulalter.",
+  "columns": {
+    "corporate": {
+      "title": "Unternehmen",
+      "links": [
+        { "label": "Preise & Pakete", "href": "/fiyat" },
+        { "label": "Kostenlose Demo anfragen", "href": "/demo-talep" },
+        { "label": "Häufig gestellte Fragen", "href": "/sss" },
+        { "label": "Leitfaden Vorschul-Englisch", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "Kontakt"
+    },
+    "follow": {
+      "title": "Folgen Sie uns"
+    }
+  },
+  "career": {
+    "label": "{{appName}} Academy Karriere",
+    "cta": "Bewerbung als Lehrkraft"
+  },
+  "copyright": "© 2026 {{appName}} und Freunde. Alle Rechte vorbehalten."
+}

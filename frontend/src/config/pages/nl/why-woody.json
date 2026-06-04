@@ -1,0 +1,80 @@
+{
+  "title": "Stap over op het Cambridge English-certificeringssysteem met {{appName}}",
+  "eyebrow": "Waarom {{appName}}?",
+  "description": "Een gestructureerd, op spel gebaseerd leermodel dat kinderen op jonge leeftijd kennis laat maken met internationaal gestandaardiseerd Engels onderwijs.",
+  "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/qor2i6j7_freepik_do-t-same.-never-change_2769765773.png",
+  "imageAlt": "{{appName}}-karakters",
+  "certifications": [
+    {
+      "name": "Cambridge English",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/0ljulhkj_8.png"
+    },
+    {
+      "name": "British Side",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/1lah28n2_7.png"
+    },
+    {
+      "name": "{{appName}} Academy",
+      "image": "https://customer-assets.emergentagent.com/job_render-studio-49/artifacts/22mg24ku_9.png"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Waarom {{appName}}?",
+      "items": [
+        {
+          "title": "Cambridge-certificeringsprogramma",
+          "description": "Leerlingen behalen een Cambridge English-certificaat dat in meer dan 160 landen wordt erkend"
+        },
+        {
+          "title": "100% op spel gebaseerd leren",
+          "description": "Met 8 actieve spellen per week is het leerproces volledig gebouwd op spel"
+        },
+        {
+          "title": "Engelssprekende karakters uniek voor elke unit",
+          "description": "In elke unit staat een ander karakter centraal; het kind leert de taal door interactie met het karakter"
+        },
+        {
+          "title": "Integratie van het digitale platform",
+          "description": "Biedt een veelzijdige leerervaring met Engelse verhalen op Storyland, unit-specifieke liedjes op Musicland en karakterfilms op Movieland"
+        },
+        {
+          "title": "Actieve leerervaring met meer dan 40 speeltjes",
+          "description": "Het kind wordt iemand die speelt en leert, niet alleen toekijkt"
+        },
+        {
+          "title": "Gedetailleerd maand- en weeklesplan",
+          "description": "Uur voor uur, stap voor stap begeleiding voor de leerkracht"
+        },
+        {
+          "title": "0% voorbereiding vereist",
+          "description": "De leerkracht opent het en past het direct toe"
+        },
+        {
+          "title": "Elke week: 8 klassikale spellen + Worksheet + Craft",
+          "description": "Elke week wordt individuele productie uitgevoerd met een worksheet en craft na 8 verschillende spellen"
+        },
+        {
+          "title": "Checkpoint-beoordelingssysteem",
+          "description": "Meting en opvolging aan het einde van de unit"
+        },
+        {
+          "title": "Story Book-begripsboek",
+          "description": "Het kind luistert naar het verhaal en drukt begrip uit met stickers"
+        },
+        {
+          "title": "Portfoliosysteem aan het einde van het semester",
+          "description": "Een tastbaar resultaat voor ouders"
+        },
+        {
+          "title": "Eén platform – alle inhoud",
+          "description": "Geïntegreerd fysiek + digitaal systeem"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Waarom {{appName}}? | Stap over op het Cambridge English-certificeringssysteem",
+    "description": "Met {{appName}} maken kinderen op jonge leeftijd kennis met internationaal gestandaardiseerd Engels onderwijs. Cambridge-certificeringsprogramma, 100% op spel gebaseerd leren en integratie van het digitale platform."
+  }
+}

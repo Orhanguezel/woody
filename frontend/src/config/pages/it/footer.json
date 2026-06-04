@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} e Amici",
+  "description": "Un modello di apprendimento sistematico e basato sul gioco per l'educazione inglese in età prescolare.",
+  "columns": {
+    "corporate": {
+      "title": "Azienda",
+      "links": [
+        { "label": "Prezzi e pacchetti", "href": "/fiyat" },
+        { "label": "Richiesta demo gratuita", "href": "/demo-talep" },
+        { "label": "Domande frequenti", "href": "/sss" },
+        { "label": "Guida all'inglese in età prescolare", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "Contatti"
+    },
+    "follow": {
+      "title": "Seguici"
+    }
+  },
+  "career": {
+    "label": "Carriere {{appName}} Academy",
+    "cta": "Candidatura insegnanti"
+  },
+  "copyright": "© 2026 {{appName}} e Amici. Tutti i diritti riservati."
+}

@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} e Amigos",
+  "description": "Um modelo de aprendizagem baseado em brincadeiras e sistemático para o ensino de inglês na pré-escola.",
+  "columns": {
+    "corporate": {
+      "title": "Institucional",
+      "links": [
+        { "label": "Preços e pacotes", "href": "/fiyat" },
+        { "label": "Solicitação de demonstração gratuita", "href": "/demo-talep" },
+        { "label": "Perguntas frequentes", "href": "/sss" },
+        { "label": "Guia de inglês para pré-escola", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "Contato"
+    },
+    "follow": {
+      "title": "Siga-nos"
+    }
+  },
+  "career": {
+    "label": "Carreiras na {{appName}} Academy",
+    "cta": "Candidatura de professor"
+  },
+  "copyright": "© 2026 {{appName}} e Amigos. Todos os direitos reservados."
+}

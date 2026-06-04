@@ -1,0 +1,27 @@
+{
+  "brand": "{{appName}} y sus Amigos",
+  "description": "Un modelo de aprendizaje basado en el juego y sistemático para la educación de inglés en preescolar.",
+  "columns": {
+    "corporate": {
+      "title": "Corporativo",
+      "links": [
+        { "label": "Precios y paquetes", "href": "/fiyat" },
+        { "label": "Solicitud de demostración gratuita", "href": "/demo-talep" },
+        { "label": "Preguntas frecuentes", "href": "/sss" },
+        { "label": "Guía de inglés preescolar", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    "contact": {
+      "title": "Contacto"
+    },
+    "follow": {
+      "title": "Síguenos"
+    }
+  },
+  "career": {
+    "label": "Empleos en {{appName}} Academy",
+    "cta": "Solicitud de docente"
+  },
+  "copyright": "© 2026 {{appName}} y sus Amigos. Todos los derechos reservados."
+}
