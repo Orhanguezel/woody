@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Evde öğrenme rutini">
+  <defs>
+    <linearGradient id="bgH" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2ECC71"/>
+      <stop offset="1" stop-color="#159C57"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgH)"/>
+  <circle cx="660" cy="100" r="115" fill="#ffffff" opacity="0.12"/>
+  <circle cx="130" cy="360" r="85" fill="#ffffff" opacity="0.10"/>
+  <!-- ev -->
+  <g transform="translate(310 140)">
+    <polygon points="90,0 0,75 180,75" fill="#FF6A00"/>
+    <rect x="20" y="75" width="140" height="105" fill="#ffffff"/>
+    <rect x="70" y="120" width="40" height="60" fill="#2196F3"/>
+    <rect x="35" y="92" width="30" height="26" fill="#F5C518"/>
+    <rect x="115" y="92" width="30" height="26" fill="#F5C518"/>
+  </g>
+  <circle cx="600" cy="120" r="26" fill="#F5C518"/>
+  <text x="400" y="375" font-family="'Fredoka','Segoe UI',sans-serif" font-size="34" font-weight="800" fill="#ffffff" text-anchor="middle">Evde Öğrenme Rutini</text>
+</svg>
