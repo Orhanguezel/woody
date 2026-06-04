@@ -7,7 +7,7 @@
     "title": "متجر {{appName}}",
     "description": "مجموعات تعلم اللغة الإنجليزية لمرحلة ما قبل المدرسة. منطقة حيث يمكنك التحقق من الأسعار الحالية لمجموعات {{appName}} وطلب عرض أسعار.",
     "primaryCTA": "احصل على عرض أسعار",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

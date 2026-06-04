@@ -7,7 +7,7 @@
     "title": "{{appName}} Winkel",
     "description": "Engelse leersets voor voorschoolse educatie. Een gebied waar u de huidige prijzen van {{appName}}-sets kunt bekijken en een offerte kunt aanvragen.",
     "primaryCTA": "Ontvang een offerte",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

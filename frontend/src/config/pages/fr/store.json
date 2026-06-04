@@ -7,7 +7,7 @@
     "title": "{{appName}} Boutique",
     "description": "Ensembles d'apprentissage de l'anglais préscolaire. Une zone où vous pouvez consulter les prix actuels des ensembles {{appName}} et demander un devis.",
     "primaryCTA": "Obtenez un devis",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

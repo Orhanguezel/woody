@@ -7,7 +7,7 @@
     "title": "{{appName}} Store",
     "description": "Preschool English learning sets. An area where you can check current prices of {{appName}} sets and request a quote.",
     "primaryCTA": "Get a Quote",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

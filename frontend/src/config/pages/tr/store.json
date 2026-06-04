@@ -7,7 +7,7 @@
     "title": "{{appName}} Store",
     "description": "Okul öncesi İngilizce eğitim setleri. {{appName}} setlerinin güncel fiyatlarını inceleyebileceğiniz ve fiyat teklifi alabileceğiniz alandır.",
     "primaryCTA": "Teklif Al",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

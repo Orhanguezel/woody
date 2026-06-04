@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 import type { WoodyCard } from '../content-loader.server';
-import { WOODY_CHARACTER_IMAGE, localizeHomeHref } from '../home/home-copy';
+import { HERO_BG, localizeHomeHref } from '../home/home-copy';
 
 function ctaFor(index: number, locale: string) {
   if (locale === 'tr') {
@@ -35,7 +35,7 @@ export default function WoodySetZigzag({
 
         <div className="space-y-10">
           {cards.map((card, index) => {
-            const image = card.image || WOODY_CHARACTER_IMAGE;
+            const image = card.image || HERO_BG;
             const reverse = index % 2 === 1;
             return (
               <article

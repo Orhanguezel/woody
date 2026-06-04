@@ -69,7 +69,7 @@ export default async function RootLayout({
       id: `${SITE_URL}/#org`,
       name: getPublicAppName(),
       url: SITE_URL,
-      logo: `${SITE_URL}/favicon.svg`,
+      logo: `${SITE_URL}/uploads/brand/logo-primary.svg`,
       sameAs: BRAND_SAME_AS,
       description: getOrgJsonLdDescription(locale),
       ...(contact.phone ? { telephone: contact.phone } : {}),

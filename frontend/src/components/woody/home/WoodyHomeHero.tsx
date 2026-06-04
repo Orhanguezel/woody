@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { PlayCircle, Sparkles } from 'lucide-react';
 
 import type { WoodyPageContent } from '../content-loader.server';
-import { HERO_BG, WOODY_CHARACTER_IMAGE, localizeHomeHref } from './home-copy';
+import { HERO_BG, localizeHomeHref } from './home-copy';
 
 const HERO_VIDEO = '/uploads/woody-content/hero-woody-robot.mp4';
 
@@ -58,21 +58,15 @@ export default function WoodyHomeHero({ content, locale }: { content: WoodyPageC
 
         <div className="relative z-10 mx-auto w-full max-w-[520px] lg:mr-0">
           <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/74 shadow-[var(--gm-shadow-card)]">
-            <Image
-              src={WOODY_CHARACTER_IMAGE}
-              alt={title}
-              fill
-              priority
-              sizes="(max-width: 1024px) 90vw, 520px"
-              className="object-contain p-8"
-            />
-            <a
-              href={HERO_VIDEO}
-              className="absolute inset-x-0 bottom-6 mx-auto inline-flex w-max items-center gap-2 rounded-full bg-[var(--gm-primary)] px-5 py-3 text-sm font-bold text-[var(--gm-surface)] shadow-[var(--gm-shadow-card)] transition hover:-translate-y-0.5"
+            <video
+              controls
+              preload="none"
+              poster={HERO_BG}
+              aria-label={locale === 'tr' ? 'Tanıtım videosu' : 'Promo video'}
+              className="absolute inset-0 size-full object-cover"
             >
-              <PlayCircle className="size-5" aria-hidden />
-              {locale === 'tr' ? 'Tanıtım videosu' : 'Promo video'}
-            </a>
+              <source src={HERO_VIDEO} type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>

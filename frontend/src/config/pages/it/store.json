@@ -7,7 +7,7 @@
     "title": "{{appName}} Store",
     "description": "Set per l'apprendimento dell'inglese in età prescolare. Un'area dove potrai verificare i prezzi attuali dei set {{appName}} e richiedere un preventivo.",
     "primaryCTA": "Ottieni un preventivo",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

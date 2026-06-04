@@ -7,7 +7,7 @@
     "title": "Tienda {{appName}}",
     "description": "Conjuntos de aprendizaje de inglés preescolar. Una zona donde podrás consultar los precios actuales de los conjuntos {{appName}} y solicitar presupuesto.",
     "primaryCTA": "Obtenga una cotización",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

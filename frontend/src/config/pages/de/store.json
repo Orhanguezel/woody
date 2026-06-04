@@ -7,7 +7,7 @@
     "title": "{{appName}} Store",
     "description": "Englisch-Lernsets für Vorschulkinder. Ein Bereich, in dem Sie die aktuellen Preise der {{appName}}-Sets überprüfen und ein Angebot anfordern können.",
     "primaryCTA": "Holen Sie sich ein Angebot",
-    "primaryHref": "/demo-talep"
+    "primaryHref": "/contact"
   },
   "sections": [
     {

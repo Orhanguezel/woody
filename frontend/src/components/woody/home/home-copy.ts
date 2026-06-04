@@ -14,7 +14,8 @@ export type WoodyWhyItem = {
 };
 
 export const HERO_BG = '/assets/woody/sections/hero-poster.webp';
-export const WOODY_CHARACTER_IMAGE = '/assets/woody/woody-and-friends-optimized.webp';
+// Woody marka logosu — DB site_logo ile ayni varlik (/uploads/brand/logo-primary.svg).
+export const WOODY_CHARACTER_IMAGE = '/uploads/brand/logo-primary.svg';
 export const WHY_WOODY_BG_IMAGES = [
   '/assets/woody/sections/why-woody-bg-1.webp',
   '/assets/woody/sections/why-woody-bg-2.webp',

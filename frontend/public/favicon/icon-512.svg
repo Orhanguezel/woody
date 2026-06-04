@@ -1,7 +1,0 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
-  <title id="title">Woody ve Arkadaşları</title>
-  <rect width="512" height="512" rx="128" fill="#2196F3"/>
-  <circle cx="352" cy="144" r="74" fill="#F5C518"/>
-  <path d="M136 309c35-86 93-131 168-131 59 0 106 27 137 78-43-20-83-17-122 8-49 32-80 84-97 160-26-72-53-111-86-115Z" fill="#FFFFFF"/>
-  <path d="M136 379c57-24 122-24 192 0" fill="none" stroke="#FF6A00" stroke-width="40" stroke-linecap="round"/>
-</svg>
