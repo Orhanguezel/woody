@@ -30,7 +30,7 @@ export default function WhatsAppFloatingButton({ locale: localeProp }: { locale?
     locale === 'tr' ? 'WhatsApp ile bize ulaşın' : 'Contact us on WhatsApp';
 
   return (
-    <div className="fixed bottom-6 right-6 z-[900] flex items-center gap-3">
+    <div className="fixed bottom-6 left-6 z-[900] flex flex-row-reverse items-center gap-3">
       <span className="hidden rounded-full bg-white px-4 py-2 text-[13px] font-semibold text-gray-700 shadow-[0_6px_18px_rgba(0,0,0,0.14)] md:inline-block">
         {locale === 'tr' ? 'Bize Ulaşın' : 'Contact Us'}
       </span>

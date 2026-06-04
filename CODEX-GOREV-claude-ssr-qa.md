@@ -117,3 +117,29 @@ Dev server (`http://127.0.0.1:3077`) üzerinde bağımsız token-siz SSR QA koş
   sızıntı sadece **bayat deploy**tı. Redeploy ile düzelir.
 
 Açık tek iş: SEO/parite tarafında **piksel görsel QA** (Antigravity tokeni dönünce) + canlı deploy gate.
+
+---
+
+## GÖREV 5 — [P2] WhatsApp widget sol konum + sticky store çakışması (Codex)
+
+İstek (Orhan): WhatsApp widget sola taşınacak.
+
+**Claude tespiti (2026-06-05):** Widget repoda **ZATEN solda**:
+- `frontend/src/components/woody/WhatsAppFloatingButton.tsx:33` → `fixed bottom-6 left-6 z-[900]`
+- `frontend/src/components/woody/StickyStoreButton.tsx:34` → `fixed bottom-5 left-4 z-[899] md:hidden`
+
+⚠️ **Asıl sorun: ikisi de SOL ALTTA → mobilde üst üste biniyor.**
+
+Yap:
+1. WhatsApp solda kalsın (referansa göre konumu teyit et: `_referans/.../FloatingContact.jsx`).
+2. Çakışmayı çöz: ya StickyStoreButton'ı sağa al, ya dikey offset ver (ör. WhatsApp `bottom-6`,
+   sticky store `bottom-20`), ya da aynı tarafta üst üste binmeyecek şekilde diz.
+3. Mobil (375px) + desktop'ta ikisinin de erişilebilir/tıklanabilir olduğunu doğrula.
+
+**Kabul:** Mobilde WhatsApp ve sticky store butonu çakışmıyor; WhatsApp sol altta; ikisi de tıklanır.
+
+✅ **Tamamlandı (2026-06-05 / Codex):**
+- WhatsApp widget solda bırakıldı: `bottom-6 left-6`.
+- Mobil sticky store butonu aynı sol kolonda WhatsApp'ın üstüne alındı: `bottom-28 left-4`.
+- Sağ alt köşeye taşınmadı; böylece `ScrollProgress` ile yeni bir sağ alt çakışması yaratılmadı.
+- 375px mobil Playwright bounding-box kontrolünde WhatsApp ve sticky store arasında overlap yok.

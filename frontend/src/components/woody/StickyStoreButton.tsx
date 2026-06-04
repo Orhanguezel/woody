@@ -31,7 +31,7 @@ export default function StickyStoreButton({ locale: localeProp }: { locale?: str
       aria-label={label}
       aria-hidden={!show}
       tabIndex={show ? 0 : -1}
-      className={`fixed bottom-5 left-4 z-[899] flex min-h-11 items-center gap-2 rounded-xl bg-[var(--gm-primary)] px-4 py-2.5 text-[13px] font-semibold text-white no-underline shadow-[var(--gm-shadow-card)] transition-all duration-300 active:translate-y-[1px] active:scale-95 md:hidden ${FOCUS_RING} ${
+      className={`fixed bottom-28 left-4 z-[899] flex min-h-11 items-center gap-2 rounded-xl bg-[var(--gm-primary)] px-4 py-2.5 text-[13px] font-semibold text-white no-underline shadow-[var(--gm-shadow-card)] transition-all duration-300 active:translate-y-[1px] active:scale-95 md:hidden ${FOCUS_RING} ${
         show ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >
