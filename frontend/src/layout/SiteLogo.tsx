@@ -121,7 +121,7 @@ export const SiteLogo: React.FC<SiteLogoProps> = ({
     return (
       <span className={frameClass} aria-hidden="true">
         <span
-          className="w-full h-10 bg-bg-card-hover border border-border-light animate-pulse"
+          className="w-full h-10 rounded bg-current/10 animate-pulse"
           aria-hidden="true"
         />
       </span>

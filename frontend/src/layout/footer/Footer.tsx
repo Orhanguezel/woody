@@ -101,7 +101,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
   return (
     <footer className="bg-gray-900 py-16 text-white lg:py-20">
       <div className="mx-auto max-w-[1200px] px-6 md:px-12">
-        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-[2fr_1fr_1fr]">
           <div>
             <Link
               href={homeHref}
@@ -110,8 +110,8 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             >
               <SiteLogo
                 variant="light"
-                wrapperClassName="w-[27rem]"
-                className="max-h-36 object-contain"
+                wrapperClassName="w-[32rem]"
+                className="max-h-44 object-contain"
                 priority={false}
               />
             </Link>
