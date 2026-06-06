@@ -146,11 +146,11 @@ export default function WoodyBlogIndexClient({
             </div>
             <div className="relative min-h-[260px] bg-[#0c8f74]">
               <Image
-                src="https://images.unsplash.com/photo-1560785496-321917f24016?w=1000&q=80"
+                src="/assets/woody/blog/blog-guide.svg"
                 alt=""
                 fill
                 sizes="(max-width: 768px) 100vw, 520px"
-                className="object-cover mix-blend-luminosity opacity-85"
+                className="object-cover"
               />
             </div>
           </Link>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img" aria-label="Kapsamlı rehber">
+  <defs>
+    <linearGradient id="bgG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16b394"/>
+      <stop offset="1" stop-color="#0c8f74"/>
+    </linearGradient>
+    <linearGradient id="pageG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef6f2"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="520" fill="url(#bgG)"/>
+  <circle cx="80" cy="80" r="130" fill="#ffffff" opacity="0.08"/>
+  <circle cx="580" cy="450" r="150" fill="#ffffff" opacity="0.07"/>
+  <circle cx="548" cy="120" r="11" fill="#F5C518"/>
+  <circle cx="110" cy="410" r="9" fill="#F5C518"/>
+  <circle cx="500" cy="360" r="7" fill="#FFB800"/>
+  <circle cx="150" cy="150" r="6" fill="#FFB800"/>
+
+  <!-- graduation cap -->
+  <g transform="translate(320 118)">
+    <polygon points="-92,2 0,-42 92,2 0,46" fill="#0B1F3A"/>
+    <polygon points="-92,2 0,46 92,2 92,12 0,56 -92,12" fill="#08182c"/>
+    <path d="M-46,24 L-46,58 Q0,78 46,58 L46,24 L0,44 Z" fill="#15355c"/>
+    <line x1="92" y1="6" x2="98" y2="60" stroke="#F5C518" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="98" cy="64" r="9" fill="#F5C518"/>
+  </g>
+
+  <!-- open book / guide -->
+  <g transform="translate(320 330)">
+    <path d="M-170,-78 Q-85,-100 0,-78 Q85,-100 170,-78 L170,92 Q85,72 0,92 Q-85,72 -170,92 Z" fill="url(#pageG)"/>
+    <path d="M0,-78 L0,92" stroke="#cfe1d9" stroke-width="3"/>
+    <g stroke="#16a589" stroke-width="7" stroke-linecap="round" opacity="0.45">
+      <line x1="-138" y1="-44" x2="-92" y2="-48"/>
+      <line x1="-138" y1="-14" x2="-30" y2="-18"/>
+      <line x1="-138" y1="16"  x2="-44" y2="13"/>
+      <line x1="-138" y1="46"  x2="-66" y2="44"/>
+      <line x1="44"   y1="-48" x2="138" y2="-44"/>
+      <line x1="30"   y1="-18" x2="138" y2="-14"/>
+      <line x1="56"   y1="13"  x2="138" y2="16"/>
+      <line x1="72"   y1="44"  x2="138" y2="46"/>
+    </g>
+    <!-- ABC blocks -->
+    <g transform="translate(-66 -22)">
+      <rect x="-24" y="-24" width="48" height="48" rx="10" fill="#FF6A00"/>
+      <text x="0" y="11" font-family="'Fredoka','Segoe UI',sans-serif" font-size="32" font-weight="800" fill="#ffffff" text-anchor="middle">A</text>
+    </g>
+    <g transform="translate(70 -22)">
+      <rect x="-24" y="-24" width="48" height="48" rx="10" fill="#2196F3"/>
+      <text x="0" y="11" font-family="'Fredoka','Segoe UI',sans-serif" font-size="32" font-weight="800" fill="#ffffff" text-anchor="middle">B</text>
+    </g>
+  </g>
+</svg>
