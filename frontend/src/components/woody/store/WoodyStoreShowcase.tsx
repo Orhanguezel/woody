@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight, MessageCircle, ShoppingBag } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
@@ -66,16 +66,29 @@ export default function WoodyStoreShowcase({
 
   return (
     <main className="bg-white text-gray-900">
-      <section className="relative mt-[72px] overflow-hidden bg-brand-primary py-9 md:py-11">
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.12]">
-          <ShoppingBag className="h-64 w-64 text-white md:h-72 md:w-72" strokeWidth={1.5} aria-hidden />
-        </div>
-        <div className="container relative text-center">
-          <h1 className="font-display text-[42px] font-black leading-tight text-white md:text-[56px] lg:text-[64px]">
-            WOODY STORE
-          </h1>
+      <section className="mt-[72px] bg-white py-8 md:py-10">
+        <div className="mx-auto flex max-w-[600px] items-center justify-center px-6">
+          <h1 className="sr-only">Woody Store</h1>
+          <Image
+            src="/assets/woody/woody-store-logo.png"
+            alt="Woody Store"
+            width={750}
+            height={492}
+            priority
+            className="h-auto w-full max-w-[450px] object-contain"
+          />
         </div>
       </section>
+
+      <div className="mx-auto max-w-[1400px] px-6 pt-2 md:px-16 lg:px-20">
+        <Link
+          href={`/${locale}`}
+          className={`inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-gray-600 transition hover:text-black ${FOCUS_RING}`}
+        >
+          <ChevronLeft className="size-5" aria-hidden />
+          {isTr ? 'GERİ' : 'BACK'}
+        </Link>
+      </div>
 
       <section className="border-b border-gray-200 bg-white py-4 md:py-5">
         <div className="container max-w-[1000px] text-center">
