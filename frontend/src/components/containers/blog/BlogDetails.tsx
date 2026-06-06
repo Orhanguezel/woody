@@ -331,7 +331,7 @@ export default function BlogDetails() {
               <div className="sticky top-24 space-y-8">
                 {otherBlogs.length > 0 && (
                   <div className="bg-bg-secondary p-6 shadow-soft border border-border-light">
-                    <h3 className="text-xl font-light font-serif text-text-primary mb-6 border-b border-border-light pb-2">
+                    <h3 className="text-xl font-light font-display text-text-primary mb-6 border-b border-border-light pb-2">
                       {t.otherBlogsTitle}
                     </h3>
                     <ul className="space-y-4">
@@ -369,7 +369,7 @@ export default function BlogDetails() {
                   {t.backToList}
                 </Link>
 
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-text-primary leading-tight mb-6">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-light text-text-primary leading-tight mb-6">
                   {title}
                 </h1>
               </div>
@@ -467,7 +467,7 @@ export default function BlogDetails() {
 
               {/* Content */}
               <div className="bg-bg-secondary p-8 md:p-10 shadow-soft border border-border-light">
-                <div className="prose prose-lg prose-invert max-w-none prose-headings:font-serif prose-headings:font-light prose-headings:text-text-primary prose-a:text-brand-primary prose-p:text-text-secondary prose-p:font-light prose-p:text-base prose-p:leading-[1.8] prose-li:text-text-secondary prose-li:font-light prose-li:text-base prose-li:leading-[1.8] prose-ul:mb-6 prose-ol:mb-6 prose-p:mb-6 prose-strong:text-text-primary prose-em:text-brand-primary/80">
+                <div className="prose prose-lg prose-invert max-w-none prose-headings:font-display prose-headings:font-light prose-headings:text-text-primary prose-a:text-brand-primary prose-p:text-text-secondary prose-p:font-light prose-p:text-base prose-p:leading-[1.8] prose-li:text-text-secondary prose-li:font-light prose-li:text-base prose-li:leading-[1.8] prose-ul:mb-6 prose-ol:mb-6 prose-p:mb-6 prose-strong:text-text-primary prose-em:text-brand-primary/80">
                   {contentHtml ? (
                     <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
                   ) : (

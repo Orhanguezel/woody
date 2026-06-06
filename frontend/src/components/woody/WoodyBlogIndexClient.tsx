@@ -196,7 +196,7 @@ export default function WoodyBlogIndexClient({
                     <span>{categoryLabel(post.category)}</span>
                     <span className="text-[#9a8a74]">{formatDate(post.created_at, locale)}</span>
                   </div>
-                  <h3 className="mt-4 text-xl font-black leading-tight text-[#24333f]">{post.title}</h3>
+                  <h3 className="mt-4 font-display text-xl font-black leading-tight text-[#24333f]">{post.title}</h3>
                   <p className="mt-3 line-clamp-4 text-sm leading-7 text-[#68727b]">{post.summary}</p>
                   <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-black text-[#0c8f74]">
                     {locale === 'tr' ? 'Devamını oku' : 'Read more'}
