@@ -80,15 +80,15 @@ export default function WoodyAcademyPageClient({
           <Image
             src={ACADEMY_LOGO}
             alt={content.title}
-            width={520}
-            height={260}
+            width={750}
+            height={492}
             priority
             className="h-auto w-full max-w-[450px] object-contain"
           />
         </div>
       </section>
 
-      <div className="mx-auto max-w-[1400px] px-6 pt-4 md:px-16 lg:px-20">
+      <div className="mx-auto max-w-[1400px] px-6 pt-2 md:px-16 lg:px-20">
         <Link
           href={`/${locale}`}
           className={`inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-gray-600 transition hover:text-black ${FOCUS_RING}`}

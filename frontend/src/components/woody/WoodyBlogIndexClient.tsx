@@ -90,8 +90,8 @@ export default function WoodyBlogIndexClient({
             <Image
               src={BLOG_LOGO}
               alt={title}
-              width={520}
-              height={300}
+              width={750}
+              height={492}
               priority
               className="h-auto w-full max-w-[450px] object-contain"
             />
