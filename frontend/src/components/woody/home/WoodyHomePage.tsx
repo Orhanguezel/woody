@@ -38,11 +38,11 @@ export default function WoodyHomePage({
   const news = getNewsItems(newsContent);
   const renderers: Record<string, React.ReactNode> = {
     WoodyHomeHero: <WoodyHomeHero content={content} locale={locale} />,
-    WoodyGrayBanner: <WoodyGrayBanner locale={locale} />,
-    WoodySetZigzag: <WoodySetZigzag cards={setCards} locale={locale} />,
-    CertificationSection: <CertificationSection locale={locale} />,
+    WoodyGrayBanner: <WoodyGrayBanner locale={locale} eyebrow={content?.sections?.[0]?.eyebrow} />,
+    WoodySetZigzag: <WoodySetZigzag cards={setCards} intro={content?.sections?.[0]} locale={locale} />,
+    CertificationSection: <CertificationSection content={whyContent} locale={locale} />,
     WoodyWhyCambridge: <WoodyWhyCambridge content={whyContent} locale={locale} />,
-    WoodyNewsCarousel: <WoodyNewsCarousel items={news} locale={locale} />,
+    WoodyNewsCarousel: <WoodyNewsCarousel items={news} title={newsContent?.title} locale={locale} />,
   };
   const configuredKeys = layout?.map((section) => section.component_key).filter((key) => key in renderers) ?? [];
   const sectionKeys = configuredKeys.length ? configuredKeys : [...DEFAULT_SECTION_KEYS];

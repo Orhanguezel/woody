@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { FOCUS_RING } from '@/lib/a11y';
 
-import type { WoodyCard } from '../content-loader.server';
+import type { WoodyCard, WoodySection } from '../content-loader.server';
 import { SET_SERIES_MEDIA, localizeHomeHref } from '../home/home-copy';
 
 function ctaFor(index: number, locale: string) {
@@ -15,18 +15,22 @@ function ctaFor(index: number, locale: string) {
 
 export default function WoodySetZigzag({
   cards,
+  intro,
   locale,
 }: {
   cards: WoodyCard[];
+  intro?: WoodySection;
   locale: string;
 }) {
   if (!cards.length) return null;
   const introTitle =
-    locale === 'tr' ? 'Hangi Woody Set Sizin Icin Uygun?' : 'Which Woody Set Is Right for You?';
+    intro?.title ||
+    (locale === 'tr' ? 'Hangi Woody Set Sizin Icin Uygun?' : 'Which Woody Set Is Right for You?');
   const introDescription =
-    locale === 'tr'
+    intro?.description ||
+    (locale === 'tr'
       ? 'Kurumunuza veya kullanim alaniniza en uygun Woody setini secin. Her set, farkli ihtiyaclara gore ozel olarak yapilandirilmistir.'
-      : 'Choose the Woody set that best fits your institution or use case. Each set is structured for a different learning context.';
+      : 'Choose the Woody set that best fits your institution or use case. Each set is structured for a different learning context.');
   const clickLabel = locale === 'tr' ? 'TIKLAYIN' : 'CLICK';
 
   return (

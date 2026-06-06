@@ -41,7 +41,7 @@ export default function WoodyWhyCambridge({
   locale: string;
 }) {
   const items = getWhyItems(content).slice(0, 12);
-  const title = locale === 'tr' ? 'Neden Woody?' : 'Why Woody?';
+  const title = content?.eyebrow || (locale === 'tr' ? 'Neden Woody?' : 'Why Woody?');
   const image = content?.image || WHY_WOODY_BG_IMAGES[0];
   const imageAlt =
     content?.imageAlt || (locale === 'tr' ? 'Woody karakterleri' : 'Woody characters');

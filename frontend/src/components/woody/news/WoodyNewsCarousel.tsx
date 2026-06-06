@@ -11,9 +11,11 @@ import { NEWS_IMAGES } from '../home/home-copy';
 
 export default function WoodyNewsCarousel({
   items,
+  title: titleProp,
   locale,
 }: {
   items: WoodyNewsItem[];
+  title?: string;
   locale: string;
 }) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -44,7 +46,7 @@ export default function WoodyNewsCarousel({
     setActiveIndex(nextIndex);
   };
 
-  const title = locale === 'tr' ? 'Woody Yenilikler' : 'Woody News';
+  const title = titleProp || (locale === 'tr' ? 'Woody Yenilikler' : 'Woody News');
   const previous = locale === 'tr' ? 'Onceki haber' : 'Previous update';
   const next = locale === 'tr' ? 'Sonraki haber' : 'Next update';
   const close = locale === 'tr' ? 'Videoyu kapat' : 'Close video';

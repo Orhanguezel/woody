@@ -1,21 +1,34 @@
 import Image from 'next/image';
 
+import type { WoodyPageContent } from '../content-loader.server';
 import { CERTIFICATE_IMAGES } from './home-copy';
 
-export default function CertificationSection({ locale }: { locale: string }) {
+export default function CertificationSection({
+  content,
+  locale,
+}: {
+  content?: WoodyPageContent | null;
+  locale: string;
+}) {
+  const heading =
+    content?.title ||
+    (locale === 'tr'
+      ? 'Woody ile Cambridge English Sertifika Sistemine Geçiş'
+      : 'Transition to the Cambridge English Certificate System with Woody');
+  const subtitle =
+    content?.description ||
+    (locale === 'tr'
+      ? 'Çocukları erken yaşta uluslararası standartta İngilizce eğitimle buluşturan, yapılandırılmış ve oyun temelli öğrenme modeli.'
+      : 'A structured, play-based learning model that introduces children to international-standard English education early.');
   return (
     <section className="w-full bg-white pb-0 pt-6">
       <div className="mx-auto max-w-[1200px] px-6">
         <div className="flex flex-col items-center justify-center text-center">
           <h2 className="max-w-[800px] text-[24px] font-bold leading-tight text-text-secondary md:text-[32px] lg:text-[36px]">
-            {locale === 'tr'
-              ? 'Woody ile Cambridge English Sertifika Sistemine Geçiş'
-              : 'Transition to the Cambridge English Certificate System with Woody'}
+            {heading}
           </h2>
           <p className="mt-2 max-w-[650px] text-[12px] leading-relaxed text-gray-600 md:text-[13px]">
-            {locale === 'tr'
-              ? 'Çocukları erken yaşta uluslararası standartta İngilizce eğitimle buluşturan, yapılandırılmış ve oyun temelli öğrenme modeli.'
-              : 'A structured, play-based learning model that introduces children to international-standard English education early.'}
+            {subtitle}
           </p>
           <div className="mt-6 flex flex-nowrap items-center justify-center gap-5">
             {CERTIFICATE_IMAGES.map((image) => (

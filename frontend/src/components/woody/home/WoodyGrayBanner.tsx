@@ -17,11 +17,19 @@ function asItems(value: unknown): string[] {
   return raw.map((item) => String(item).trim()).filter(Boolean);
 }
 
-export default async function WoodyGrayBanner({ locale }: { locale: string }) {
-  const fallback = locale === 'tr' ? copy.tr : locale === 'de' ? copy.de : copy.en;
+export default async function WoodyGrayBanner({ locale, eyebrow }: { locale: string; eyebrow?: string }) {
+  const fallback = eyebrow
+    ? [eyebrow]
+    : locale === 'tr'
+      ? copy.tr
+      : locale === 'de'
+        ? copy.de
+        : copy.en;
   const setting = await fetchSetting('home_banner', locale, { revalidate: 60 });
   const items = asItems(setting?.value);
-  const displayItems = items.length ? items : fallback;
+  // DB home_banner '*' altinda TR tutuluyor ve tum dillere dusuyor; TR disi dillerde
+  // localize icerik eyebrow'unu (home.json) tercih et.
+  const displayItems = locale !== 'tr' && eyebrow ? [eyebrow] : items.length ? items : fallback;
   if (!displayItems.length) return null;
 
   return (
