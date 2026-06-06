@@ -207,7 +207,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
             >
               <SiteLogo
                 alt={resolvedBrand.name}
-                wrapperClassName="!w-auto h-[38px] md:h-[44px]"
+                wrapperClassName="!w-auto h-[56px] md:h-[64px]"
                 className="!w-auto h-full object-contain"
                 priority
               />
