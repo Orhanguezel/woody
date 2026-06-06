@@ -60,7 +60,7 @@ export default function WoodyBlogFallbackDetail({
         <article className="rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-6 leading-8 text-[var(--gm-text-dim)] shadow-[var(--gm-shadow-soft)] md:p-8">
           {post.content_html ? (
             <div
-              className="prose max-w-none prose-p:text-[var(--gm-text-dim)] prose-headings:text-[var(--gm-text)]"
+              className="prose max-w-none font-sans prose-headings:font-display prose-headings:text-[var(--gm-text)] prose-p:font-sans prose-p:text-[var(--gm-text-dim)] prose-li:font-sans prose-strong:font-sans"
               dangerouslySetInnerHTML={{ __html: post.content_html }}
             />
           ) : (
