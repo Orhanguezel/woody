@@ -21,7 +21,7 @@ export default function WhatsAppFloatingButton({ locale: localeProp }: { locale?
     const normalized = phone || '+905555555555';
     const text =
       locale === 'tr'
-        ? 'Merhaba, Woody ve Arkadaşları hakkında bilgi almak istiyorum.'
+        ? 'Merhaba, Woody and Friends hakkında bilgi almak istiyorum.'
         : 'Hello, I would like information about Woody and Friends.';
     return `https://wa.me/${normalized.replace(/^\+/, '')}?text=${encodeURIComponent(text)}`;
   }, [contactInfo?.value, locale]);

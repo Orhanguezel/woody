@@ -4,7 +4,7 @@
     "titleTemplate": "%s | {{appName}}"
   },
   "brand": {
-    "appName": "Woody ve Arkadaşları",
+    "appName": "Woody and Friends",
     "taglineTr": "Çocuklar için İngilizce, hikaye ve dijital öğrenme deneyimi",
     "taglineEn": "English, stories, and digital learning for children",
     "themeColor": "#FF6A00",
@@ -13,14 +13,14 @@
     "wordMarkLine2": "",
     "shortName": "{{appName}}",
     "copyrightHolder": "{{appName}}",
-    "defaultLogoAlt": "Woody ve Arkadaşları logo"
+    "defaultLogoAlt": "Woody and Friends logo"
   },
   "site": {
     "originFallback": "https://woodyvearkadaslari.com",
     "apiBaseFallback": "http://127.0.0.1:8086/api/v1"
   },
   "contact": {
-    "companyName": "Woody ve Arkadaşları",
+    "companyName": "Woody and Friends",
     "email": "minayayinevi@gmail.com",
     "phones": [
       "0324 358 03 73",

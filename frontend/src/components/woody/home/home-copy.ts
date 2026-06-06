@@ -85,7 +85,7 @@ export const FALLBACK_WHY_ITEMS: WoodyWhyItem[] = [
 export const FALLBACK_NEWS: WoodyNewsItem[] = [
   {
     title: 'Woody Almanya distribütörlüğü',
-    summary: 'Woody ve Arkadaşları, okul öncesi İngilizce setlerini Avrupa kurumlarına ulaştıracak yeni iş birliklerini duyurur.',
+    summary: 'Woody and Friends, okul öncesi İngilizce setlerini Avrupa kurumlarına ulaştıracak yeni iş birliklerini duyurur.',
     date: '2026-06-03',
     image: NEWS_IMAGES[0],
     href: '/blog',

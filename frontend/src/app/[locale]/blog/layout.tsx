@@ -18,7 +18,7 @@ export async function generateMetadata({
       title: 'Blog',
       description:
         locale === 'tr'
-          ? 'Woody ve Arkadaşları blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
+          ? 'Woody and Friends blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
           : 'Woody and Friends blog posts on children English and digital learning.',
     },
   });

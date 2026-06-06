@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: locale === 'tr' ? 'Blog' : 'Blog',
       description:
         locale === 'tr'
-          ? 'Woody ve Arkadaşları blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
-          : 'Woody ve Arkadaşları blog posts on children English and digital learning.',
+          ? 'Woody and Friends blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
+          : 'Woody and Friends blog posts on children English and digital learning.',
     },
   });
 }

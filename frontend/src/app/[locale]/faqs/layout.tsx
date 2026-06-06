@@ -18,7 +18,7 @@ export async function generateMetadata({
       title: locale === 'tr' ? 'Sık Sorulan Sorular' : 'Frequently Asked Questions',
       description:
         locale === 'tr'
-          ? 'Woody ve Arkadaşları hakkında sık sorulan sorular.'
+          ? 'Woody and Friends hakkında sık sorulan sorular.'
           : 'Frequently asked questions about Woody and Friends.',
     },
   });

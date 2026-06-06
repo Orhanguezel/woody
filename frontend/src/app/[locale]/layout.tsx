@@ -46,7 +46,7 @@ export async function generateMetadata({
     pageKey: 'home',
     pathname: '/',
     fallback: {
-      title: locale === 'tr' ? 'Woody ve Arkadaşları | Okul Öncesi İngilizce' : 'Woody and Friends | Preschool English',
+      title: locale === 'tr' ? 'Woody and Friends | Okul Öncesi İngilizce' : 'Woody and Friends | Preschool English',
       description:
         locale === 'tr'
           ? 'Okul öncesi İngilizce eğitim setleri, dijital içerikler ve öğretmen destek platformu.'

@@ -17,7 +17,7 @@ export async function generateMetadata({
       title: locale === 'tr' ? 'İletişim' : 'Contact',
       description:
         locale === 'tr'
-          ? 'Woody ve Arkadaşları ile iletişime geçin.'
+          ? 'Woody and Friends ile iletişime geçin.'
           : 'Contact Woody and Friends.',
     },
   });
