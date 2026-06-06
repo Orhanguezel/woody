@@ -7,7 +7,6 @@
 
 import React, { useMemo, useCallback } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 // RTK – Custom Pages Public
 import { useListCustomPagesPublicQuery } from '@/integrations/rtk/hooks';
@@ -16,7 +15,6 @@ import { downgradeH1ToH2, pickPage, toCdnSrc } from '@/integrations/shared';
 
 // Helpers
 import { useLocaleShort, useUiSection } from '@/i18n';
-import { localizePath } from '@/integrations/shared';
 import { getPublicAppName } from '@/lib/site-config';
 import { injectAppName } from '@/lib/page-copy';
 import aboutPageCopy from '@/config/pages/about-page.json';
@@ -348,16 +346,6 @@ const AboutPageContent: React.FC = () => {
             </p>
             <h2 className="mt-2 text-2xl font-serif text-[var(--gm-text)]">{getPublicAppName()}</h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--gm-text-dim)]">{copy.authorBio}</p>
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link
-              href={localizePath(locale, '/editorial-policy')}
-              className="inline-flex items-center gap-3 rounded-full bg-[var(--gm-primary)] hover:bg-[var(--gm-primary-dark)] px-8 py-4 text-xs font-bold uppercase tracking-[0.24em] text-white shadow-[var(--gm-shadow-card)] hover:shadow-[var(--gm-shadow-gold)] transition-all"
-            >
-              {locale === 'tr' ? 'Editoryal politika ve metodoloji' : locale === 'de' ? 'Redaktionelle Richtlinie und Methodik' : 'Editorial policy and methodology'}
-              <span aria-hidden>→</span>
-            </Link>
           </div>
         </div>
       </div>

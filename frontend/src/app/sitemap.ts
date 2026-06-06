@@ -15,7 +15,6 @@ type WoodyLocale = (typeof WOODY_LOCALES)[number];
 const LEGACY_STATIC_PAGES = [
   '/faqs',
   '/contact',
-  '/editorial-policy',
   '/terms',
   '/privacy-policy',
   '/cookie-policy',

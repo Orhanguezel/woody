@@ -229,9 +229,6 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             {ui('ui_footer_rights', locale === 'tr' ? 'TÜM HAKLARI SAKLIDIR.' : 'ALL RIGHTS RESERVED.')}
           </p>
           <div className="flex gap-6 text-[11px] uppercase tracking-[0.1em]">
-            <Link href={localizePath(locale, '/editorial-policy')} className={`rounded-md transition-colors hover:text-white ${FOCUS_RING}`}>
-              {locale === 'tr' ? 'EDİTORYAL POLİTİKA' : 'EDITORIAL POLICY'}
-            </Link>
             <a
               href="https://guezelwebdesign.com"
               target="_blank"

@@ -83,7 +83,7 @@
   --color-level-senior: var(--level-senior, #E91E90);
   --color-level-pro:    var(--level-pro, #D32F2F);
 
-  --font-sans:    var(--gm-font-sans, var(--font-quicksand), Quicksand, var(--font-inter), Inter, system-ui, sans-serif);
+  --font-sans:    var(--gm-font-sans, var(--font-inter), Inter, system-ui, sans-serif);
   --font-serif:   var(--gm-font-serif, var(--font-source-serif), Georgia, 'Times New Roman', serif);
   --font-display: var(--gm-font-display, var(--font-baloo), 'Baloo 2', var(--font-fredoka), Fredoka, system-ui, sans-serif);
   --font-quicksand-stack: var(--font-quicksand), Quicksand, var(--font-inter), Inter, system-ui, sans-serif;
