@@ -194,7 +194,7 @@
 
   p, .prose, .prose p, .prose li {
     color: var(--color-text-secondary);
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
   }
 
   main li {
