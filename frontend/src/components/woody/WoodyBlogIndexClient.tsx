@@ -93,13 +93,8 @@ export default function WoodyBlogIndexClient({
               width={520}
               height={300}
               priority
-              className="h-auto w-full max-w-[360px] object-contain"
+              className="h-auto w-full max-w-[450px] object-contain"
             />
-            {description ? (
-              <p className="max-w-2xl text-center text-base font-semibold leading-7 text-[#5f6871]">
-                {description}
-              </p>
-            ) : null}
             {activeCategory ? (
               <div className="inline-flex items-center gap-2 rounded-full bg-[#f58220]/12 px-4 py-2 text-sm font-black text-[#d96f12] ring-1 ring-[#f58220]/30">
                 <Search className="h-4 w-4" aria-hidden />
@@ -118,6 +113,12 @@ export default function WoodyBlogIndexClient({
             {backLabel}
           </Link>
         </div>
+
+        {description ? (
+          <div className="mx-auto max-w-[820px] px-6 pt-4 text-center">
+            <p className="text-base font-semibold leading-7 text-[#5f6871] md:text-lg">{description}</p>
+          </div>
+        ) : null}
 
         <section className="container py-12 lg:py-16">
           <Link
