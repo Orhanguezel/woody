@@ -47,5 +47,10 @@ INSERT INTO `storage_assets` (`id`,`name`,`bucket`,`path`,`folder`,`mime`,`size`
 ('sa-woody-logo-primary-512','logo-primary-512.png','brand','brand/logo-primary-512.png','brand','image/png',26062,'/uploads/brand/logo-primary-512.png','local'),
 ('sa-woody-logo-white-1024','logo-white-1024.png','brand','brand/logo-white-1024.png','brand','image/png',36641,'/uploads/brand/logo-white-1024.png','local'),
 ('sa-woody-favicon-512','favicon-512.png','brand','brand/favicon-512.png','brand','image/png',19317,'/uploads/brand/favicon-512.png','local'),
-('sa-woody-favicon-64','favicon-64.png','brand','brand/favicon-64.png','brand','image/png',2036,'/uploads/brand/favicon-64.png','local')
+('sa-woody-favicon-64','favicon-64.png','brand','brand/favicon-64.png','brand','image/png',2036,'/uploads/brand/favicon-64.png','local'),
+('sa-woody-waf-webp','woody-and-friends-optimized.webp','brand','brand/woody-and-friends-optimized.webp','brand','image/webp',16752,'/uploads/brand/woody-and-friends-optimized.webp','local'),
+('sa-woody-waf-png','woody-and-friends-logo.png','brand','brand/woody-and-friends-logo.png','brand','image/png',97342,'/uploads/brand/woody-and-friends-logo.png','local'),
+('sa-woody-apple-touch','apple-touch-icon.png','brand','brand/apple-touch-icon.png','brand','image/png',1052,'/uploads/brand/apple-touch-icon.png','local'),
+('sa-woody-favicon-16','favicon-16.png','brand','brand/favicon-16.png','brand','image/png',520,'/uploads/brand/favicon-16.png','local'),
+('sa-woody-favicon-32','favicon-32.png','brand','brand/favicon-32.png','brand','image/png',554,'/uploads/brand/favicon-32.png','local')
 ON DUPLICATE KEY UPDATE `url`=VALUES(`url`), `size`=VALUES(`size`), `mime`=VALUES(`mime`);
