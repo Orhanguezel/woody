@@ -201,7 +201,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             <h4 className="mb-4 mt-8 text-[16px] font-semibold tracking-wide text-white">
               {locale === 'tr' ? 'Bizi Takip Edin' : 'Follow Us'}
             </h4>
-            <SocialLinks socials={socials} size="lg" />
+            <SocialLinks socials={socials} size="lg" tone="dark" />
           </div>
         </div>
 

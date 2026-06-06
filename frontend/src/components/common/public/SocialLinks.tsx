@@ -1,6 +1,8 @@
 // =============================================================
-// FILE: src/components/common/SocialLinks.tsx
-// – Social Icons (shared)
+// FILE: src/components/common/public/SocialLinks.tsx
+// – Social Icons (shared) — circular buttons, pure Tailwind (no styled-jsx)
+//   tone="dark" => light icons on dark surfaces (footer)
+//   tone="light" => dark icons on light surfaces (offcanvas/default)
 // =============================================================
 'use client';
 
@@ -24,6 +26,7 @@ export type SocialLinksProps = {
   itemClassName?: string;
   iconClassName?: string;
   size?: 'sm' | 'md' | 'lg';
+  tone?: 'light' | 'dark';
   withLabels?: boolean; // default: false (icons only)
   onClickItem?: () => void;
 };
@@ -36,12 +39,24 @@ const normalizeUrl = (u?: string) => {
   return `https://${s}`;
 };
 
+const SIZE_MAP: Record<'sm' | 'md' | 'lg', { box: string; icon: string }> = {
+  sm: { box: 'h-9 w-9', icon: 'h-4 w-4' },
+  md: { box: 'h-10 w-10', icon: 'h-[18px] w-[18px]' },
+  lg: { box: 'h-12 w-12', icon: 'h-5 w-5' },
+};
+
+const TONE_MAP: Record<'light' | 'dark', string> = {
+  light: 'bg-black/5 text-[var(--gm-text)] hover:bg-[var(--gm-primary)] hover:text-white',
+  dark: 'bg-white/10 text-white/90 hover:bg-[var(--gm-primary)] hover:text-white',
+};
+
 export const SocialLinks: React.FC<SocialLinksProps> = ({
   socials,
   className,
   itemClassName,
   iconClassName,
   size = 'md',
+  tone = 'light',
   withLabels = false,
   onClickItem,
 }) => {
@@ -65,15 +80,11 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
 
   if (!items.length) return null;
 
-  const sizeClass =
-    size === 'sm'
-      ? 'app-social--sm'
-      : size === 'lg'
-      ? 'app-social--lg'
-      : 'app-social--md';
+  const sz = SIZE_MAP[size];
+  const toneCls = TONE_MAP[tone];
 
   return (
-    <ul className={`app-social ${sizeClass} ${className ?? ''}`}>
+    <ul className={`m-0 flex list-none flex-wrap items-center gap-2.5 p-0 ${className ?? ''}`}>
       {items.map(({ key, label, url, Icon }) => (
         <li key={key} className={itemClassName}>
           <Link
@@ -83,79 +94,13 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
             aria-label={label}
             title={label}
             onClick={onClickItem}
-            className="app-social__a"
+            className={`inline-flex ${sz.box} items-center justify-center rounded-full no-underline shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(0,0,0,0.22)] ${toneCls} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gm-primary)]/40 focus-visible:ring-offset-2`}
           >
-            <Icon className={`app-social__icon ${iconClassName ?? ''}`} />
-            {withLabels ? <span className="app-social__label">{label}</span> : null}
+            <Icon className={`${sz.icon} ${iconClassName ?? ''}`} />
+            {withLabels ? <span className="ml-2 text-[13px] leading-none">{label}</span> : null}
           </Link>
         </li>
       ))}
-
-      <style jsx>{`
-        .app-social {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          flex-wrap: wrap;
-        }
-
-        .app-social__a {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          border-radius: 999px;
-          background: color-mix(in srgb, currentColor 14%, transparent);
-          transition: transform 160ms ease, background 160ms ease, color 160ms ease,
-            box-shadow 160ms ease;
-        }
-        .app-social__a:hover {
-          background: var(--gm-primary, currentColor);
-          color: #fff;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 18px color-mix(in srgb, var(--gm-primary, #000) 35%, transparent);
-        }
-        .app-social__a:focus-visible {
-          outline: none;
-          box-shadow: 0 0 0 2px color-mix(in srgb, var(--gm-primary) 35%, transparent),
-            0 0 0 4px var(--gm-surface);
-        }
-
-        .app-social--sm .app-social__a {
-          width: 34px;
-          height: 34px;
-        }
-        .app-social--md .app-social__a {
-          width: 40px;
-          height: 40px;
-        }
-        .app-social--lg .app-social__a {
-          width: 46px;
-          height: 46px;
-        }
-
-        .app-social__icon {
-          width: 16px;
-          height: 16px;
-        }
-        .app-social--sm .app-social__icon {
-          width: 14px;
-          height: 14px;
-        }
-        .app-social--lg .app-social__icon {
-          width: 18px;
-          height: 18px;
-        }
-
-        .app-social__label {
-          margin-left: 8px;
-          font-size: 13px;
-          line-height: 1;
-        }
-      `}</style>
     </ul>
   );
 };
