@@ -119,6 +119,28 @@ INSERT INTO `menu_items_i18n` (`id`, `menu_item_id`, `locale`, `title`, `url`) V
 ('22222222-2222-4222-8222-000000000307', '11111111-1111-4111-8111-000000000207', 'en', 'Blog', '/blog')
 ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `url` = VALUES(`url`);
 
+-- RU menu translations
+INSERT INTO `menu_items_i18n` (`id`, `menu_item_id`, `locale`, `title`, `url`) VALUES
+('ru111111-1111-4111-8111-000000000001', '11111111-1111-4111-8111-000000000001', 'ru', 'Главная', '/'),
+('ru111111-1111-4111-8111-000000000002', '11111111-1111-4111-8111-000000000002', 'ru', 'WOODY STORE', '/store'),
+('ru111111-1111-4111-8111-000000000003', '11111111-1111-4111-8111-000000000003', 'ru', 'ШКОЛА', '/preschool'),
+('ru111111-1111-4111-8111-000000000004', '11111111-1111-4111-8111-000000000004', 'ru', 'МАСТЕРСКАЯ', '/workshop'),
+('ru111111-1111-4111-8111-000000000005', '11111111-1111-4111-8111-000000000005', 'ru', 'ДОМ И ЧАСТНЫЕ УРОКИ', '/home-tutor'),
+('ru111111-1111-4111-8111-000000000006', '11111111-1111-4111-8111-000000000006', 'ru', 'WOODY ACADEMY', '/woody-academy'),
+('ru111111-1111-4111-8111-000000000007', '11111111-1111-4111-8111-000000000007', 'ru', 'БЛОГ', '/blog'),
+('ru111111-1111-4111-8111-000000000008', '11111111-1111-4111-8111-000000000008', 'ru', 'Домашний педагог', '/home-tutor'),
+('ru111111-1111-4111-8111-000000000009', '11111111-1111-4111-8111-000000000009', 'ru', 'Библиотека', '/library'),
+('ru111111-1111-4111-8111-000000000010', '11111111-1111-4111-8111-000000000010', 'ru', 'Блог', '/blog'),
+('ru111111-1111-4111-8111-000000000011', '11111111-1111-4111-8111-000000000011', 'ru', 'Контакты', '/contact'),
+('ru111111-1111-4111-8111-000000000201', '11111111-1111-4111-8111-000000000201', 'ru', 'Школа', '/preschool'),
+('ru111111-1111-4111-8111-000000000202', '11111111-1111-4111-8111-000000000202', 'ru', 'Мастерская', '/workshop'),
+('ru111111-1111-4111-8111-000000000203', '11111111-1111-4111-8111-000000000203', 'ru', 'Дом и частные уроки', '/home-tutor'),
+('ru111111-1111-4111-8111-000000000204', '11111111-1111-4111-8111-000000000204', 'ru', 'Woody Academy', '/woody-academy'),
+('ru111111-1111-4111-8111-000000000205', '11111111-1111-4111-8111-000000000205', 'ru', 'Библиотека', '/library'),
+('ru111111-1111-4111-8111-000000000206', '11111111-1111-4111-8111-000000000206', 'ru', 'Woody Store', '/store'),
+('ru111111-1111-4111-8111-000000000207', '11111111-1111-4111-8111-000000000207', 'ru', 'Блог', '/blog')
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `url` = VALUES(`url`);
+
 INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 ('ss-woody-ui-cookie-tr', 'ui_cookie', 'tr', '{"cc_banner_title":"Çerezler","cc_banner_desc":"Deneyimi geliştirmek ve trafiği isteğe bağlı analiz etmek için çerezler kullanıyoruz.","cc_banner_link_policy":"Çerez Politikası","cc_banner_btn_settings":"Çerez Ayarları","cc_banner_btn_reject":"Tümünü Reddet","cc_banner_btn_accept":"Tümünü Kabul Et","cc_banner_aria_close":"Kapat","cc_banner_aria_region":"Çerez onayı","cc_title":"Çerez Ayarları","cc_description":"Hangi çerez kategorilerine izin vereceğinizi seçebilirsiniz. Zorunlu çerezler her zaman aktiftir.","cc_label_necessary":"Zorunlu","cc_desc_necessary":"Oturum, güvenlik ve dil tercihi gibi temel işlevler için gereklidir.","cc_label_analytics":"Analitik","cc_desc_analytics":"Trafiği ve performansı anlamamıza yardımcı olur.","cc_btn_cancel":"Vazgeç","cc_btn_save":"Kaydet","cc_aria_close":"Kapat","cc_pill_on":"Açık"}'),
 ('ss-woody-ui-cookie-en', 'ui_cookie', 'en', '{"cc_banner_title":"Cookies","cc_banner_desc":"We use cookies to improve your experience and optionally analyze traffic.","cc_banner_link_policy":"Cookie Policy","cc_banner_btn_settings":"Cookie Settings","cc_banner_btn_reject":"Reject All","cc_banner_btn_accept":"Accept All","cc_banner_aria_close":"Close","cc_banner_aria_region":"Cookie consent","cc_title":"Cookie Settings","cc_description":"You can choose which cookie categories you allow. Necessary cookies are always enabled.","cc_label_necessary":"Necessary","cc_desc_necessary":"Required for core functions such as session, security, and language preference.","cc_label_analytics":"Analytics","cc_desc_analytics":"Helps us understand traffic and performance.","cc_btn_cancel":"Cancel","cc_btn_save":"Save","cc_aria_close":"Close","cc_pill_on":"On"}'),
