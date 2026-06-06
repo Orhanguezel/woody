@@ -43,7 +43,7 @@ const Banner: React.FC<Props> = ({ title }) => {
           </div>
 
           {/* Title — theme-aware (dark/light contrast) */}
-          <h1 className="font-serif text-[clamp(2.4rem,5vw,4rem)] font-light leading-[1.1] tracking-[-0.01em] text-foreground">
+          <h1 className="font-display text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] tracking-[-0.01em] text-foreground">
             {title}
           </h1>
         </div>
