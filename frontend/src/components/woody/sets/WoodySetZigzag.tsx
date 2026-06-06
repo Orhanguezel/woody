@@ -31,7 +31,7 @@ export default function WoodySetZigzag({
     (locale === 'tr'
       ? 'Kurumunuza veya kullanim alaniniza en uygun Woody setini secin. Her set, farkli ihtiyaclara gore ozel olarak yapilandirilmistir.'
       : 'Choose the Woody set that best fits your institution or use case. Each set is structured for a different learning context.');
-  const clickLabel = locale === 'tr' ? 'TIKLAYIN' : 'CLICK';
+  const clickLabel = locale === 'tr' ? 'TIKLAYIN' : locale === 'ru' ? 'НАЖМИТЕ' : 'CLICK';
 
   return (
     <section className="bg-white py-12 lg:py-20">
@@ -51,7 +51,8 @@ export default function WoodySetZigzag({
             const meta = SET_SERIES_MEDIA[index % SET_SERIES_MEDIA.length];
             const image = card.image || meta.image;
             const reverse = index % 2 === 1;
-            const ribbonText = locale === 'tr' ? meta.ribbonTr : meta.ribbonEn;
+            const ribbonText =
+              locale === 'tr' ? meta.ribbonTr : locale === 'ru' ? meta.ribbonRu : meta.ribbonEn;
             return (
               <Link
                 key={`${card.title}-${index}`}
@@ -114,7 +115,7 @@ export default function WoodySetZigzag({
                       {card.description}
                     </p>
                   ) : null}
-                  <span className="sr-only">{ctaFor(index, locale)}</span>
+                  <span className="sr-only">{intro?.items?.[index]?.cta || ctaFor(index, locale)}</span>
                 </div>
               </Link>
             );

@@ -40,18 +40,21 @@ export const SET_SERIES_MEDIA = [
     image: '/media/woody/reference/n8vryl38_6.png',
     ribbonTr: 'OKUL SERISI',
     ribbonEn: 'SCHOOL SERIES',
+    ribbonRu: 'ШКОЛЬНАЯ СЕРИЯ',
   },
   {
     accent: 'var(--gm-success)',
     image: '/media/woody/reference/7q4grria_7.png',
     ribbonTr: 'ATOLYE SERISI',
     ribbonEn: 'WORKSHOP SERIES',
+    ribbonRu: 'СЕРИЯ МАСТЕРСКОЙ',
   },
   {
     accent: '#9B59B6',
     image: '/media/woody/reference/exdjhy2v_8.png',
     ribbonTr: 'EV OZEL DERS SERISI',
     ribbonEn: 'HOME TUTOR SERIES',
+    ribbonRu: 'СЕРИЯ ДОМАШНЕГО ОБУЧЕНИЯ',
   },
 ] as const;
 

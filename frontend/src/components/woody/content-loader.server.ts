@@ -29,6 +29,7 @@ export type WoodyCard = {
   slug?: string;
   level?: string;
   product?: string;
+  cta?: string;
 };
 
 export type WoodySection = {
@@ -113,6 +114,7 @@ function normalizeCard(raw: unknown): WoodyCard | null {
     slug: asString(raw.slug) || asString(raw.id),
     level: asString(raw.level),
     product: asString(raw.product),
+    cta: appInject(asString(raw.cta)),
   };
 }
 
