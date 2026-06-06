@@ -6,7 +6,7 @@
     "eyebrow": "{{appName}} MAGASIN",
     "title": "{{appName}} Boutique",
     "description": "Ensembles d'apprentissage de l'anglais préscolaire. Une zone où vous pouvez consulter les prix actuels des ensembles {{appName}} et demander un devis.",
-    "primaryCTA": "Obtenez un devis",
+    "primaryCTA": "",
     "primaryHref": "/contact"
   },
   "sections": [
@@ -16,18 +16,15 @@
       "items": [
         {
           "title": "Ensemble étudiant de niveau de base",
-          "description": "Niveau débutant",
-          "price": "Starting from 2250 TL"
+          "description": "Niveau débutant"
         },
         {
           "title": "Ensemble étudiant de niveau junior",
-          "description": "Niveau de développement",
-          "price": "Starting from 2250 TL"
+          "description": "Niveau de développement"
         },
         {
           "title": "Ensemble d'étudiants de niveau senior",
-          "description": "Niveau avancé",
-          "price": "Starting from 2250 TL"
+          "description": "Niveau avancé"
         }
       ]
     },
@@ -110,5 +107,7 @@
     "title": "Boutique | Ensembles d'apprentissage {{appName}}",
     "description": "Magasin de ensembles d'apprentissage de l'anglais préscolaire {{appName}}. Prix ​​et devis actuels pour les produits des séries préscolaires, des séries d’ateliers et des séries de cours privés.",
     "keywords": "magasin woody, acheter un ensemble d'anglais préscolaire, prix du kit d'apprentissage de l'anglais préscolaire, magasin de kits d'apprentissage de l'anglais"
-  }
+  },
+  "showCart": false,
+  "showQuoteButtons": false
 }

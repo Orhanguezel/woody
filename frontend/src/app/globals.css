@@ -83,9 +83,11 @@
   --color-level-senior: var(--level-senior, #E91E90);
   --color-level-pro:    var(--level-pro, #D32F2F);
 
-  --font-sans:    var(--gm-font-sans, var(--font-inter), Inter, system-ui, sans-serif);
+  --font-sans:    var(--gm-font-sans, var(--font-quicksand), Quicksand, var(--font-inter), Inter, system-ui, sans-serif);
   --font-serif:   var(--gm-font-serif, var(--font-source-serif), Georgia, 'Times New Roman', serif);
-  --font-display: var(--gm-font-display, var(--font-fredoka), Fredoka, system-ui, sans-serif);
+  --font-display: var(--gm-font-display, var(--font-baloo), 'Baloo 2', var(--font-fredoka), Fredoka, system-ui, sans-serif);
+  --font-quicksand-stack: var(--font-quicksand), Quicksand, var(--font-inter), Inter, system-ui, sans-serif;
+  --font-series: var(--font-baloo), 'Baloo 2', var(--font-fredoka), Fredoka, system-ui, sans-serif;
 }
 
 /* ─── SHADOWS (LIGHT) ─── */
@@ -146,7 +148,7 @@
   body {
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-weight: 400;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
@@ -508,6 +510,16 @@
     box-shadow: 0 18px 48px color-mix(in srgb, var(--gm-sand-900) 6%, transparent);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+  }
+}
+
+@layer utilities {
+  .font-quicksand {
+    font-family: var(--font-quicksand-stack);
+  }
+
+  .font-series {
+    font-family: var(--font-series);
   }
 }
 

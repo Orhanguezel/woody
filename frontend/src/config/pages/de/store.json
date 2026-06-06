@@ -6,9 +6,11 @@
     "eyebrow": "{{appName}} STORE",
     "title": "{{appName}} Store",
     "description": "Englisch-Lernsets für Vorschulkinder. Ein Bereich, in dem Sie die aktuellen Preise der {{appName}}-Sets überprüfen und ein Angebot anfordern können.",
-    "primaryCTA": "Holen Sie sich ein Angebot",
+    "primaryCTA": "",
     "primaryHref": "/contact"
   },
+  "showCart": false,
+  "showQuoteButtons": false,
   "sections": [
     {
       "eyebrow": "Vorschulreihe",
@@ -17,17 +19,17 @@
         {
           "title": "Grundstufen-Schülerset",
           "description": "Anfängerniveau",
-          "price": "Starting from 2250 TL"
+          "price": ""
         },
         {
           "title": "Set für Schüler der Junior-Stufe",
           "description": "Entwicklungsstand",
-          "price": "Starting from 2250 TL"
+          "price": ""
         },
         {
           "title": "Set für Oberstufenschüler",
           "description": "Fortgeschrittenes Niveau",
-          "price": "Starting from 2250 TL"
+          "price": ""
         }
       ]
     },

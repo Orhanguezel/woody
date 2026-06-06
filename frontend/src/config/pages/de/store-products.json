@@ -1,6 +1,9 @@
 {
   "quoteWhatsApp": "905331570373",
   "quoteMessage": "Hallo, ich möchte Preisinformationen zu Ihren Schulsets erhalten.\n\nStadt:\nSchulname:\nAnzahl Studierende:\nKönnten Sie bitte Ihr Preisangebot zusammen mit Ihrem digitalen Katalog teilen?",
+  "primaryCTA": "",
+  "showQuoteButtons": false,
+  "showCart": false,
   "categories": [
     {
       "id": "okul-serisi",
@@ -26,22 +29,19 @@
       "id": 1,
       "category": "okul-serisi",
       "name": "Grundstufen-Schülerset",
-      "description": "Anfängerniveau",
-      "price": "Starting from 2250 TL"
+      "description": "Anfängerniveau"
     },
     {
       "id": 2,
       "category": "okul-serisi",
       "name": "Set für Schüler der Junior-Stufe",
-      "description": "Entwicklungsstand",
-      "price": "Starting from 2250 TL"
+      "description": "Entwicklungsstand"
     },
     {
       "id": 3,
       "category": "okul-serisi",
       "name": "Set für Oberstufenschüler",
-      "description": "Fortgeschrittenes Niveau",
-      "price": "Starting from 2250 TL"
+      "description": "Fortgeschrittenes Niveau"
     },
     {
       "id": 7,

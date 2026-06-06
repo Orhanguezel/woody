@@ -26,22 +26,19 @@
       "id": 1,
       "category": "okul-serisi",
       "name": "Ensemble étudiant de niveau de base",
-      "description": "Niveau débutant",
-      "price": "Starting from 2250 TL"
+      "description": "Niveau débutant"
     },
     {
       "id": 2,
       "category": "okul-serisi",
       "name": "Ensemble étudiant de niveau junior",
-      "description": "Niveau de développement",
-      "price": "Starting from 2250 TL"
+      "description": "Niveau de développement"
     },
     {
       "id": 3,
       "category": "okul-serisi",
       "name": "Ensemble d'étudiants de niveau senior",
-      "description": "Niveau avancé",
-      "price": "Starting from 2250 TL"
+      "description": "Niveau avancé"
     },
     {
       "id": 7,
@@ -127,5 +124,8 @@
       "description": "Accès numérique",
       "price": "₺399"
     }
-  ]
+  ],
+  "primaryCTA": "",
+  "showQuoteButtons": false,
+  "showCart": false
 }

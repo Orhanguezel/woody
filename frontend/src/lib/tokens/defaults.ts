@@ -59,9 +59,9 @@ export const DEFAULT_TOKENS: DesignTokens = {
     text_muted_dark: '#A8C4DF',
   },
   typography: {
-    font_display: 'var(--font-fredoka), var(--font-inter), system-ui, sans-serif',
+    font_display: 'var(--font-baloo), var(--font-fredoka), var(--font-quicksand), system-ui, sans-serif',
     font_serif: 'var(--font-source-serif), Georgia, serif',
-    font_sans: 'var(--font-inter), system-ui, sans-serif',
+    font_sans: 'var(--font-quicksand), var(--font-inter), system-ui, sans-serif',
     font_mono: 'var(--font-ibm-mono), ui-monospace, monospace',
     base_size: '16px',
   },

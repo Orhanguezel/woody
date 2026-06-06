@@ -6,7 +6,7 @@
     "eyebrow": "LOJA {{appName}}",
     "title": "Loja",
     "description": "Conjuntos de aprendizagem de inglês pré-escolar. Uma área onde você pode consultar os preços atuais dos conjuntos {{appName}} e solicitar um orçamento.",
-    "primaryCTA": "Obtenha uma cotação",
+    "primaryCTA": "",
     "primaryHref": "/contact"
   },
   "sections": [
@@ -16,18 +16,15 @@
       "items": [
         {
           "title": "Conjunto de Alunos de Nível Básico",
-          "description": "Nível iniciante",
-          "price": "Starting from 2250 TL"
+          "description": "Nível iniciante"
         },
         {
           "title": "Conjunto de alunos de nível júnior",
-          "description": "Nível de desenvolvimento",
-          "price": "Starting from 2250 TL"
+          "description": "Nível de desenvolvimento"
         },
         {
           "title": "Conjunto de alunos de nível sênior",
-          "description": "Nível avançado",
-          "price": "Starting from 2250 TL"
+          "description": "Nível avançado"
         }
       ]
     },
@@ -110,5 +107,7 @@
     "title": "Loja | Conjuntos de aprendizagem {{appName}}",
     "description": "Loja de conjuntos de aprendizagem de inglês pré-escolar {{appName}}. Preços e cotações atuais para produtos de séries pré-escolares, séries de workshops e séries de aulas particulares.",
     "keywords": "loja woody, comprar conjunto de inglês pré-escolar, preço do conjunto de aprendizagem de inglês pré-escolar, loja de conjunto de aprendizagem de inglês"
-  }
+  },
+  "showCart": false,
+  "showQuoteButtons": false
 }

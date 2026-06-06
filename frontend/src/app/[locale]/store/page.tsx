@@ -13,6 +13,21 @@ const PATHNAME = '/store';
 
 type Props = { params: Promise<{ locale: string }> };
 
+function asStoreCatalog(content: Awaited<ReturnType<typeof loadWoodyPageContent>>, fallback: StoreCatalog | null): StoreCatalog {
+  const raw = (content?.raw ?? {}) as Record<string, any>;
+  const hero = raw.hero && typeof raw.hero === 'object' ? raw.hero : {};
+
+  return {
+    ...(fallback ?? {}),
+    quoteWhatsApp: raw.quoteWhatsApp ?? fallback?.quoteWhatsApp,
+    quoteMessage: raw.quoteMessage ?? fallback?.quoteMessage,
+    primaryCTA: raw.primaryCTA ?? hero.primaryCTA ?? fallback?.primaryCTA,
+    showQuoteButtons: raw.showQuoteButtons,
+    categories: Array.isArray(raw.categories) ? raw.categories : fallback?.categories,
+    products: Array.isArray(raw.products) ? raw.products : fallback?.products,
+  };
+}
+
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const content = await loadWoodyPageContent(PAGE_KEY, locale);
@@ -31,9 +46,11 @@ export default async function StorePage({ params }: Props) {
     return <WoodyFallback pageKey={PAGE_KEY} />;
   }
   const merged = content ?? { key: PAGE_KEY, title: PAGE_KEY };
+  const storeCatalog = asStoreCatalog(content, catalog ?? { products: fallbackProducts as any });
+  const showCart = Boolean((content?.raw as any)?.showCart);
   const schemaProducts = dbProducts.length
     ? dbProducts
-    : (catalog?.products ?? fallbackProducts).map((item: any) => ({
+    : (storeCatalog.products ?? fallbackProducts).map((item: any) => ({
         title: item.title || item.name,
         description: item.description,
         image: item.image,
@@ -47,8 +64,8 @@ export default async function StorePage({ params }: Props) {
         id="woody-store"
         data={woodyStoreListingGraph({ locale, pathname: PATHNAME, content: merged, items: schemaProducts })}
       />
-      <WoodyStoreShowcase catalog={catalog ?? { products: fallbackProducts as any }} locale={locale} />
-      {dbProducts.length ? <WoodyStoreClient products={dbProducts} locale={locale} /> : null}
+      <WoodyStoreShowcase catalog={storeCatalog} locale={locale} />
+      {showCart && dbProducts.length ? <WoodyStoreClient products={dbProducts} locale={locale} /> : null}
     </>
   );
 }

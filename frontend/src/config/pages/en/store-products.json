@@ -1,26 +1,146 @@
 {
   "quoteWhatsApp": "905331570373",
   "quoteMessage": "Hello, I would like to get pricing information about your school sets.\n\nCity:\nSchool Name:\nNumber of Students:\nCould you please share your price quote along with your digital catalog?",
+  "primaryCTA": "",
+  "showQuoteButtons": false,
+  "showCart": false,
   "categories": [
-    { "id": "okul-serisi", "name": "Preschool Series", "description": "", "route": "/preschool" },
-    { "id": "atolye", "name": "Workshop Series", "description": "For workshops and course centers", "route": "/workshop" },
-    { "id": "ozel-ders", "name": "Private Lesson Series", "description": "For home and private lesson teachers", "route": "/home-tutor" }
+    {
+      "id": "okul-serisi",
+      "name": "Preschool Series",
+      "description": "",
+      "route": "/preschool"
+    },
+    {
+      "id": "atolye",
+      "name": "Workshop Series",
+      "description": "For workshops and course centers",
+      "route": "/workshop"
+    },
+    {
+      "id": "ozel-ders",
+      "name": "Private Lesson Series",
+      "description": "For home and private lesson teachers",
+      "route": "/home-tutor"
+    }
   ],
   "products": [
-    { "id": 1, "category": "okul-serisi", "name": "Basic Level Student Set", "description": "Beginner level", "price": "Starting from 2250 TL", "image": "/media/woody/reference/3jgyyil9_1.png" },
-    { "id": 2, "category": "okul-serisi", "name": "Junior Level Student Set", "description": "Development level", "price": "Starting from 2250 TL", "image": "/media/woody/reference/h5x59v59_3.png" },
-    { "id": 3, "category": "okul-serisi", "name": "Senior Level Student Set", "description": "Advanced level", "price": "Starting from 2250 TL", "image": "/media/woody/reference/m4z26p5k_2.png" },
-    { "id": 7, "category": "atolye", "name": "Workshop Basic", "description": "Starter package", "price": "₺1,999", "image": "/media/woody/reference/m4z26p5k_2.png" },
-    { "id": 8, "category": "atolye", "name": "Workshop Junior", "description": "Intermediate level", "price": "₺2,199", "image": "/media/woody/reference/3jgyyil9_1.png" },
-    { "id": 9, "category": "atolye", "name": "Workshop Senior", "description": "Advanced level", "price": "₺2,399", "image": "/media/woody/reference/h5x59v59_3.png" },
-    { "id": 10, "category": "atolye", "name": "Workshop PRO", "description": "Professional", "price": "₺2,699", "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png" },
-    { "id": 11, "category": "atolye", "name": "Workshop Full Set", "description": "All in one", "price": "₺7,999", "image": "/media/woody/reference/m4z26p5k_2.png" },
-    { "id": 12, "category": "atolye", "name": "Digital Material", "description": "Online access", "price": "₺499", "image": "/media/woody/reference/3jgyyil9_1.png" },
-    { "id": 13, "category": "ozel-ders", "name": "Home Basic", "description": "Individual starter", "price": "₺1,499", "image": "/media/woody/reference/h5x59v59_3.png" },
-    { "id": 14, "category": "ozel-ders", "name": "Home Junior", "description": "Individual development", "price": "₺1,699", "image": "/media/woody/reference/m4z26p5k_2.png" },
-    { "id": 15, "category": "ozel-ders", "name": "Home Senior", "description": "Individual advanced", "price": "₺1,899", "image": "/media/woody/reference/3jgyyil9_1.png" },
-    { "id": 16, "category": "ozel-ders", "name": "Home PRO", "description": "Individual professional", "price": "₺2,099", "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png" },
-    { "id": 17, "category": "ozel-ders", "name": "Private Lesson Package", "description": "4 levels, discounted", "price": "₺5,999", "image": "/media/woody/reference/h5x59v59_3.png" },
-    { "id": 18, "category": "ozel-ders", "name": "Online Library", "description": "Digital access", "price": "₺399", "image": "/media/woody/reference/m4z26p5k_2.png" }
+    {
+      "id": 1,
+      "category": "okul-serisi",
+      "name": "Basic Level Student Set",
+      "description": "Beginner level",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
+    },
+    {
+      "id": 2,
+      "category": "okul-serisi",
+      "name": "Junior Level Student Set",
+      "description": "Development level",
+      "image": "/media/woody/reference/h5x59v59_3.png"
+    },
+    {
+      "id": 3,
+      "category": "okul-serisi",
+      "name": "Senior Level Student Set",
+      "description": "Advanced level",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
+    },
+    {
+      "id": 7,
+      "category": "atolye",
+      "name": "Workshop Basic",
+      "description": "Starter package",
+      "price": "₺1,999",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
+    },
+    {
+      "id": 8,
+      "category": "atolye",
+      "name": "Workshop Junior",
+      "description": "Intermediate level",
+      "price": "₺2,199",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
+    },
+    {
+      "id": 9,
+      "category": "atolye",
+      "name": "Workshop Senior",
+      "description": "Advanced level",
+      "price": "₺2,399",
+      "image": "/media/woody/reference/h5x59v59_3.png"
+    },
+    {
+      "id": 10,
+      "category": "atolye",
+      "name": "Workshop PRO",
+      "description": "Professional",
+      "price": "₺2,699",
+      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
+    },
+    {
+      "id": 11,
+      "category": "atolye",
+      "name": "Workshop Full Set",
+      "description": "All in one",
+      "price": "₺7,999",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
+    },
+    {
+      "id": 12,
+      "category": "atolye",
+      "name": "Digital Material",
+      "description": "Online access",
+      "price": "₺499",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
+    },
+    {
+      "id": 13,
+      "category": "ozel-ders",
+      "name": "Home Basic",
+      "description": "Individual starter",
+      "price": "₺1,499",
+      "image": "/media/woody/reference/h5x59v59_3.png"
+    },
+    {
+      "id": 14,
+      "category": "ozel-ders",
+      "name": "Home Junior",
+      "description": "Individual development",
+      "price": "₺1,699",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
+    },
+    {
+      "id": 15,
+      "category": "ozel-ders",
+      "name": "Home Senior",
+      "description": "Individual advanced",
+      "price": "₺1,899",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
+    },
+    {
+      "id": 16,
+      "category": "ozel-ders",
+      "name": "Home PRO",
+      "description": "Individual professional",
+      "price": "₺2,099",
+      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
+    },
+    {
+      "id": 17,
+      "category": "ozel-ders",
+      "name": "Private Lesson Package",
+      "description": "4 levels, discounted",
+      "price": "₺5,999",
+      "image": "/media/woody/reference/h5x59v59_3.png"
+    },
+    {
+      "id": 18,
+      "category": "ozel-ders",
+      "name": "Online Library",
+      "description": "Digital access",
+      "price": "₺399",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
+    }
   ]
 }

@@ -27,6 +27,8 @@ export type StoreCatalogProduct = {
 export type StoreCatalog = {
   quoteWhatsApp?: string;
   quoteMessage?: string;
+  primaryCTA?: string;
+  showQuoteButtons?: boolean;
   categories?: StoreCatalogCategory[];
   products?: StoreCatalogProduct[];
 };
@@ -59,6 +61,8 @@ export default function WoodyStoreShowcase({
   const categories = catalog.categories ?? [];
   const products = catalog.products ?? [];
   const quoteUrl = quoteHref(catalog.quoteWhatsApp, catalog.quoteMessage);
+  const quoteLabel = String(catalog.primaryCTA || '').trim();
+  const showQuoteButtons = catalog.showQuoteButtons !== false && Boolean(quoteLabel);
 
   return (
     <main className="bg-white text-gray-900">
@@ -161,19 +165,23 @@ export default function WoodyStoreShowcase({
                           </p>
                         ) : null}
                         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                          <p className="text-[12px] font-black leading-tight text-gray-800 md:text-[13px]">
-                            {product.price || (isTr ? "2250 TL'den başlayan fiyatlarla" : 'Starting from 2250 TL')}
-                          </p>
-                          <a
-                            href={quoteUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={`inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-3 py-2 text-[11px] font-bold text-white transition hover:bg-brand-dark md:w-auto md:text-[12px] ${FOCUS_RING}`}
-                            data-testid={`store-quote-btn-${product.id}`}
-                          >
-                            <MessageCircle className="h-3.5 w-3.5" aria-hidden />
-                            {isTr ? 'Teklif Al' : 'Get Quote'}
-                          </a>
+                          {product.price ? (
+                            <p className="text-[12px] font-black leading-tight text-gray-800 md:text-[13px]">
+                              {product.price}
+                            </p>
+                          ) : null}
+                          {showQuoteButtons ? (
+                            <a
+                              href={quoteUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className={`inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-3 py-2 text-[11px] font-bold text-white transition hover:bg-brand-dark md:w-auto md:text-[12px] ${FOCUS_RING}`}
+                              data-testid={`store-quote-btn-${product.id}`}
+                            >
+                              <MessageCircle className="h-3.5 w-3.5" aria-hidden />
+                              {quoteLabel}
+                            </a>
+                          ) : null}
                         </div>
                       </div>
                     </article>

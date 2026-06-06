@@ -6,7 +6,7 @@
     "eyebrow": "МАГАЗИН {{appName}}",
     "title": "{{appName}} Магазин",
     "description": "Наборы для изучения английского языка для дошкольников. Область, где вы можете проверить текущие цены на наборы {{appName}} и запросить ценовое предложение.",
-    "primaryCTA": "Получить предложение",
+    "primaryCTA": "",
     "primaryHref": "/contact"
   },
   "sections": [
@@ -16,18 +16,15 @@
       "items": [
         {
           "title": "Набор учащихся базового уровня",
-          "description": "Начальный уровень",
-          "price": "Starting from 2250 TL"
+          "description": "Начальный уровень"
         },
         {
           "title": "Набор для учащихся младшего уровня",
-          "description": "Уровень развития",
-          "price": "Starting from 2250 TL"
+          "description": "Уровень развития"
         },
         {
           "title": "Набор для студентов старших классов",
-          "description": "Продвинутый уровень",
-          "price": "Starting from 2250 TL"
+          "description": "Продвинутый уровень"
         }
       ]
     },
@@ -110,5 +107,7 @@
     "title": "Магазин | Наборы для обучения {{appName}}",
     "description": "{{appName}} Магазин дошкольных наборов для изучения английского языка. Текущие цены и расценки на продукты серии Preschool Series, Workshop Series и Private Lesson Series.",
     "keywords": "магазин Woody, купить набор английского для дошкольников, набор для изучения английского для дошкольников цена, магазин наборов для изучения английского"
-  }
+  },
+  "showCart": false,
+  "showQuoteButtons": false
 }

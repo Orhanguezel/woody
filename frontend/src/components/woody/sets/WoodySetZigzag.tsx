@@ -33,7 +33,7 @@ export default function WoodySetZigzag({
     <section className="bg-white py-12 lg:py-20">
       <div className="mx-auto max-w-[1100px] px-6 md:px-12 lg:px-20">
         <div className="mb-14 pt-10 text-center">
-          <h2 className="text-[32px] font-bold leading-tight text-text-secondary md:text-[42px] lg:text-[48px]">
+          <h2 className="font-series text-[32px] font-bold leading-tight text-text-secondary md:text-[42px] lg:text-[48px]">
             {introTitle}
           </h2>
           <div className="mx-auto mt-5 h-[3px] w-20 bg-brand-primary-light" />
@@ -72,7 +72,7 @@ export default function WoodySetZigzag({
                     >
                       <span className="mb-3 text-[10px] tracking-[0.3em] md:text-[12px]">{clickLabel}</span>
                       <span className="my-2 h-[2px] w-8 bg-white/60" />
-                      <span className="mt-3 whitespace-nowrap text-[12px] font-black tracking-[0.2em] md:text-[15px]">
+                      <span className="font-series mt-3 whitespace-nowrap text-[12px] font-black tracking-[0.2em] md:text-[15px]">
                         {ribbonText}
                       </span>
                     </div>
@@ -98,7 +98,7 @@ export default function WoodySetZigzag({
                       {card.badge}
                     </span>
                   ) : null}
-                  <h3 className="mt-5 text-[30px] font-light leading-tight text-black transition-colors duration-300 group-hover:text-gray-700 md:text-[36px] lg:text-[40px]">
+                  <h3 className="font-series mt-5 text-[30px] font-light leading-tight text-black transition-colors duration-300 group-hover:text-gray-700 md:text-[36px] lg:text-[40px]">
                     {card.title}
                   </h3>
                   <div

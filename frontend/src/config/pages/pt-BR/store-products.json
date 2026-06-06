@@ -26,22 +26,19 @@
       "id": 1,
       "category": "okul-serisi",
       "name": "Conjunto de Alunos de Nível Básico",
-      "description": "Nível iniciante",
-      "price": "Starting from 2250 TL"
+      "description": "Nível iniciante"
     },
     {
       "id": 2,
       "category": "okul-serisi",
       "name": "Conjunto de alunos de nível júnior",
-      "description": "Nível de desenvolvimento",
-      "price": "Starting from 2250 TL"
+      "description": "Nível de desenvolvimento"
     },
     {
       "id": 3,
       "category": "okul-serisi",
       "name": "Conjunto de alunos de nível sênior",
-      "description": "Nível avançado",
-      "price": "Starting from 2250 TL"
+      "description": "Nível avançado"
     },
     {
       "id": 7,
@@ -127,5 +124,8 @@
       "description": "Acesso digital",
       "price": "₺399"
     }
-  ]
+  ],
+  "primaryCTA": "",
+  "showQuoteButtons": false,
+  "showCart": false
 }

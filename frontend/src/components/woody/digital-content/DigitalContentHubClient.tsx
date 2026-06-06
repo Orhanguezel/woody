@@ -45,11 +45,16 @@ export default function DigitalContentHubClient({ locale }: { locale: string }) 
                     setSelectedLevel(selectedLevel === level.id ? null : level.id);
                   }}
                   aria-expanded={selectedLevel === level.id}
+                  aria-pressed={selectedLevel === level.id}
                   aria-controls={selectedLevel === level.id ? `digital-sections-${level.id}` : undefined}
-                  className={`group relative h-[220px] w-full max-w-[320px] cursor-pointer overflow-visible rounded-[28px] bg-white p-1 transition hover:scale-105 hover:shadow-2xl active:scale-95 ${FOCUS_RING}`}
+                  className={`group relative h-[220px] w-full max-w-[320px] cursor-pointer overflow-visible rounded-[28px] border-4 bg-white p-1 transition hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl active:translate-y-0 active:scale-95 ${FOCUS_RING}`}
                   style={{
+                    borderColor: selectedLevel === level.id ? level.color : `${level.color}66`,
                     background: `linear-gradient(135deg, ${level.color}00 0%, ${level.color}40 50%, ${level.color}00 100%)`,
-                    boxShadow: `0 8px 32px 0 ${level.color}40, 0 4px 16px 0 ${level.color}30`,
+                    boxShadow:
+                      selectedLevel === level.id
+                        ? `0 14px 40px 0 ${level.color}55, inset 0 0 0 3px ${level.color}30`
+                        : `0 8px 32px 0 ${level.color}40, 0 4px 16px 0 ${level.color}30`,
                   }}
                 >
                   <div

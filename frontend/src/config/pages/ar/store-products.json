@@ -26,22 +26,19 @@
       "id": 1,
       "category": "okul-serisi",
       "name": "مجموعة طلاب المستوى الأساسي",
-      "description": "مستوى المبتدئين",
-      "price": "Starting from 2250 TL"
+      "description": "مستوى المبتدئين"
     },
     {
       "id": 2,
       "category": "okul-serisi",
       "name": "مجموعة طلاب المستوى المبتدئ",
-      "description": "مستوى التطوير",
-      "price": "Starting from 2250 TL"
+      "description": "مستوى التطوير"
     },
     {
       "id": 3,
       "category": "okul-serisi",
       "name": "مجموعة طلاب المستوى الأول",
-      "description": "المستوى المتقدم",
-      "price": "Starting from 2250 TL"
+      "description": "المستوى المتقدم"
     },
     {
       "id": 7,
@@ -127,5 +124,8 @@
       "description": "الوصول الرقمي",
       "price": "₺399"
     }
-  ]
+  ],
+  "primaryCTA": "",
+  "showQuoteButtons": false,
+  "showCart": false
 }

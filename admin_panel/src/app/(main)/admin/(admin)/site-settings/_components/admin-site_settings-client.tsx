@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Code,
   Database,
+  FileText,
   Globe,
   Mail,
   Palette,
@@ -42,6 +43,7 @@ import { DesignTokensTab } from "../tabs/design-tokens-tab";
 import { GeneralSettingsTab } from "../tabs/general-settings-tab";
 import { LiveKitTab } from "../tabs/livekit-tab";
 import { LocalesSettingsTab } from "../tabs/locales-settings-tab";
+import { PageContentTab } from "../tabs/page-content-tab";
 import { SeoSettingsTab } from "../tabs/seo-settings-tab";
 import { SmtpSettingsTab } from "../tabs/smtp-settings-tab";
 import { SiteSettingsList } from "./site-settings-list";
@@ -50,6 +52,7 @@ type SettingsTab =
   | "list"
   | "global_list"
   | "general"
+  | "page_content"
   | "seo"
   | "smtp"
   | "cloudinary"
@@ -148,6 +151,7 @@ export default function AdminSiteSettingsClient() {
     { value: "design_tokens", label: t("tabs.design_tokens", null, "Tasarım Tokenları"), icon: Palette },
     { value: "branding", label: t("tabs.branding", null, "Marka & Kimlik"), icon: ShieldCheck },
     { value: "general", label: t("tabs.general", null, "Genel Ayarlar"), icon: Settings },
+    { value: "page_content", label: t("tabs.page_content", null, "Sayfa İçerikleri"), icon: FileText },
     { value: "seo", label: t("tabs.seo", null, "SEO & Meta"), icon: Globe },
     { value: "api", label: t("tabs.api", null, "API & Entegrasyon"), icon: Sliders },
     { value: "smtp", label: t("tabs.smtp", null, "E-posta (SMTP)"), icon: Mail },
@@ -289,6 +293,7 @@ export default function AdminSiteSettingsClient() {
               {tab === "design_tokens" && <DesignTokensTab />}
               {tab === "branding" && <BrandingSettingsTab />}
               {tab === "general" && <GeneralSettingsTab locale={locale} />}
+              {tab === "page_content" && <PageContentTab locale={locale} />}
               {tab === "seo" && <SeoSettingsTab locale={locale} />}
               {tab === "api" && <ApiSettingsTab locale={locale} />}
               {tab === "smtp" && <SmtpSettingsTab locale={locale} />}

@@ -6,7 +6,7 @@
     "eyebrow": "{{appName}} WINKEL",
     "title": "{{appName}} Winkel",
     "description": "Engelse leersets voor voorschoolse educatie. Een gebied waar u de huidige prijzen van {{appName}}-sets kunt bekijken en een offerte kunt aanvragen.",
-    "primaryCTA": "Ontvang een offerte",
+    "primaryCTA": "",
     "primaryHref": "/contact"
   },
   "sections": [
@@ -16,18 +16,15 @@
       "items": [
         {
           "title": "Basisniveau studentenset",
-          "description": "Beginnersniveau",
-          "price": "Starting from 2250 TL"
+          "description": "Beginnersniveau"
         },
         {
           "title": "Studentenset op junior niveau",
-          "description": "Ontwikkelingsniveau",
-          "price": "Starting from 2250 TL"
+          "description": "Ontwikkelingsniveau"
         },
         {
           "title": "Studentenset op senior niveau",
-          "description": "Gevorderd niveau",
-          "price": "Starting from 2250 TL"
+          "description": "Gevorderd niveau"
         }
       ]
     },
@@ -110,5 +107,7 @@
     "title": "Winkel | {{appName}} Leersets",
     "description": "{{appName}} winkel voor kleuterschool Engelse leersets. Huidige prijzen en offertes voor producten uit de Preschool Series, Workshop Series en Private Lesson Series.",
     "keywords": "Woody winkel, voorschoolse Engelse set kopen, prijs voor voorschoolse Engelse leerset, winkel voor Engelse leerset"
-  }
+  },
+  "showCart": false,
+  "showQuoteButtons": false
 }

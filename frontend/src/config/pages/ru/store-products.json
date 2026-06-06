@@ -26,22 +26,19 @@
       "id": 1,
       "category": "окул-сериси",
       "name": "Набор учащихся базового уровня",
-      "description": "Начальный уровень",
-      "price": "Starting from 2250 TL"
+      "description": "Начальный уровень"
     },
     {
       "id": 2,
       "category": "окул-сериси",
       "name": "Набор для учащихся младшего уровня",
-      "description": "Уровень развития",
-      "price": "Starting from 2250 TL"
+      "description": "Уровень развития"
     },
     {
       "id": 3,
       "category": "окул-сериси",
       "name": "Набор для студентов старших классов",
-      "description": "Продвинутый уровень",
-      "price": "Starting from 2250 TL"
+      "description": "Продвинутый уровень"
     },
     {
       "id": 7,
@@ -127,5 +124,8 @@
       "description": "Цифровой доступ",
       "price": "₺399"
     }
-  ]
+  ],
+  "primaryCTA": "",
+  "showQuoteButtons": false,
+  "showCart": false
 }

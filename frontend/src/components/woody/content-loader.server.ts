@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { loadPageContent } from '@/config/pages/loader';
+import { fetchSetting } from '@/i18n/server';
 import { injectAppName } from '@/lib/page-copy';
 import { getPublicAppName } from '@/lib/site-config';
 
@@ -67,6 +68,7 @@ export type WoodyPageContent = {
   };
   jsonLd?: JsonObject;
   localBusiness?: JsonObject;
+  raw?: JsonObject;
 };
 
 const PAGES_DIR = path.join(process.cwd(), 'src', 'config', 'pages');
@@ -151,8 +153,11 @@ async function readJsonFile(filePath: string): Promise<unknown | null> {
 }
 
 async function readPageJson(key: string, locale: string): Promise<JsonObject | null> {
+  const dbRaw = await readPageSettingJson(key, locale);
+  if (dbRaw) return dbRaw;
+
   const fromLoader = await loadPageContent<unknown>(key, locale, { injectAppName: false });
-  if (isRecord(fromLoader)) return fromLoader;
+  if (isRecord(fromLoader)) return key === 'home' ? mergeHomeBannerSetting(fromLoader, locale) : fromLoader;
 
   const candidates = [
     path.join(PAGES_DIR, locale, `${key}.json`),
@@ -166,6 +171,30 @@ async function readPageJson(key: string, locale: string): Promise<JsonObject | n
   }
 
   return null;
+}
+
+async function readPageSettingJson(key: string, locale: string): Promise<JsonObject | null> {
+  const settingKey = key.startsWith('page_') ? key : `page_${key}`;
+  if (!['page_store', 'page_preschool', 'page_workshop'].includes(settingKey)) return null;
+
+  const row = await fetchSetting(settingKey, locale, { revalidate: 60 });
+  const value = row?.value;
+  if (isRecord(value)) return value;
+  return null;
+}
+
+async function mergeHomeBannerSetting(raw: JsonObject, locale: string): Promise<JsonObject> {
+  const row = await fetchSetting('home_banner', locale, { revalidate: 60 });
+  const value = row?.value;
+  if (!isRecord(value)) return raw;
+
+  const bannerItems = Array.isArray(value.items)
+    ? value.items.map(asString).filter(Boolean)
+    : Array.isArray(value.bannerItems)
+      ? value.bannerItems.map(asString).filter(Boolean)
+      : [];
+
+  return bannerItems.length ? { ...raw, bannerItems } : raw;
 }
 
 export async function loadWoodyPageContent(key: string, locale: string): Promise<WoodyPageContent | null> {
@@ -214,6 +243,7 @@ export async function loadWoodyPageContent(key: string, locale: string): Promise
       : undefined,
     jsonLd: isRecord(raw.jsonLd) ? raw.jsonLd : undefined,
     localBusiness: isRecord(raw.localBusiness) ? raw.localBusiness : undefined,
+    raw,
   };
 }
 

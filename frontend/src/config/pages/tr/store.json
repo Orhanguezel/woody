@@ -6,17 +6,28 @@
     "eyebrow": "{{appName}} STORE",
     "title": "{{appName}} Store",
     "description": "Okul öncesi İngilizce eğitim setleri. {{appName}} setlerinin güncel fiyatlarını inceleyebileceğiniz ve fiyat teklifi alabileceğiniz alandır.",
-    "primaryCTA": "Teklif Al",
+    "primaryCTA": "",
     "primaryHref": "/contact"
   },
+  "showCart": false,
+  "showQuoteButtons": false,
   "sections": [
     {
       "eyebrow": "Okul Serisi",
       "title": "Okul Serisi",
       "items": [
-        { "title": "Basic Level Set Öğrenci Seti", "description": "Başlangıç seviyesi", "price": "2250 TL'den başlayan fiyatlarla" },
-        { "title": "Junior Level Set Öğrenci Seti", "description": "Gelişim seviyesi", "price": "2250 TL'den başlayan fiyatlarla" },
-        { "title": "Senior Level Set Öğrenci Seti", "description": "İleri seviye", "price": "2250 TL'den başlayan fiyatlarla" }
+        {
+          "title": "Basic Level Set Öğrenci Seti",
+          "description": "Başlangıç seviyesi"
+        },
+        {
+          "title": "Junior Level Set Öğrenci Seti",
+          "description": "Gelişim seviyesi"
+        },
+        {
+          "title": "Senior Level Set Öğrenci Seti",
+          "description": "İleri seviye"
+        }
       ]
     },
     {
@@ -24,12 +35,36 @@
       "title": "Atölye Serisi",
       "description": "Atölye ve kurs merkezleri için",
       "items": [
-        { "title": "Atölye Basic", "description": "Başlangıç paketi", "price": "₺1.999" },
-        { "title": "Atölye Junior", "description": "Orta seviye", "price": "₺2.199" },
-        { "title": "Atölye Senior", "description": "İleri seviye", "price": "₺2.399" },
-        { "title": "Atölye PRO", "description": "Profesyonel", "price": "₺2.699" },
-        { "title": "Atölye Tam Set", "description": "Hepsi bir arada", "price": "₺7.999" },
-        { "title": "Dijital Materyal", "description": "Online erişim", "price": "₺499" }
+        {
+          "title": "Atölye Basic",
+          "description": "Başlangıç paketi",
+          "price": "₺1.999"
+        },
+        {
+          "title": "Atölye Junior",
+          "description": "Orta seviye",
+          "price": "₺2.199"
+        },
+        {
+          "title": "Atölye Senior",
+          "description": "İleri seviye",
+          "price": "₺2.399"
+        },
+        {
+          "title": "Atölye PRO",
+          "description": "Profesyonel",
+          "price": "₺2.699"
+        },
+        {
+          "title": "Atölye Tam Set",
+          "description": "Hepsi bir arada",
+          "price": "₺7.999"
+        },
+        {
+          "title": "Dijital Materyal",
+          "description": "Online erişim",
+          "price": "₺499"
+        }
       ]
     },
     {
@@ -37,12 +72,36 @@
       "title": "Özel Ders Serisi",
       "description": "Ev ve özel ders öğretmenleri için",
       "items": [
-        { "title": "Home Basic", "description": "Bireysel başlangıç", "price": "₺1.499" },
-        { "title": "Home Junior", "description": "Bireysel gelişim", "price": "₺1.699" },
-        { "title": "Home Senior", "description": "Bireysel ileri", "price": "₺1.899" },
-        { "title": "Home PRO", "description": "Bireysel profesyonel", "price": "₺2.099" },
-        { "title": "Özel Ders Paketi", "description": "4 seviye kampanyalı", "price": "₺5.999" },
-        { "title": "Online Kütüphane", "description": "Dijital erişim", "price": "₺399" }
+        {
+          "title": "Home Basic",
+          "description": "Bireysel başlangıç",
+          "price": "₺1.499"
+        },
+        {
+          "title": "Home Junior",
+          "description": "Bireysel gelişim",
+          "price": "₺1.699"
+        },
+        {
+          "title": "Home Senior",
+          "description": "Bireysel ileri",
+          "price": "₺1.899"
+        },
+        {
+          "title": "Home PRO",
+          "description": "Bireysel profesyonel",
+          "price": "₺2.099"
+        },
+        {
+          "title": "Özel Ders Paketi",
+          "description": "4 seviye kampanyalı",
+          "price": "₺5.999"
+        },
+        {
+          "title": "Online Kütüphane",
+          "description": "Dijital erişim",
+          "price": "₺399"
+        }
       ]
     }
   ],
