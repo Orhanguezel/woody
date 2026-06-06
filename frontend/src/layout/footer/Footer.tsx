@@ -110,8 +110,8 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             >
               <SiteLogo
                 variant="light"
-                wrapperClassName="w-52"
-                className="max-h-24 object-contain"
+                wrapperClassName="w-72"
+                className="max-h-28 object-contain"
                 priority={false}
               />
             </Link>
@@ -201,7 +201,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             <h4 className="mb-4 mt-8 text-[16px] font-semibold tracking-wide text-white">
               {locale === 'tr' ? 'Bizi Takip Edin' : 'Follow Us'}
             </h4>
-            <SocialLinks socials={socials} size="sm" />
+            <SocialLinks socials={socials} size="lg" />
           </div>
         </div>
 
@@ -225,8 +225,8 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
 
         <div className="mb-6 h-px w-full bg-white/40" />
 
-        <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-300 md:flex-row">
-          <p>
+        <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-200 md:flex-row">
+          <p className="text-white/85">
             &copy; {new Date().getFullYear()} {getCopyrightHolder()}.{' '}
             {ui('ui_footer_rights', locale === 'tr' ? 'TÜM HAKLARI SAKLIDIR.' : 'ALL RIGHTS RESERVED.')}
           </p>

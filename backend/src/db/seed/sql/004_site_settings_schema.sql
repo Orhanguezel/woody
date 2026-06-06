@@ -41,7 +41,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 ('ss-gtm-container-id', 'gtm_container_id', '*', '""'),
 ('ss-site-logo',         'site_logo',         '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
 ('ss-site-logo-dark',    'site_logo_dark',    '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
-('ss-site-logo-light',   'site_logo_light',   '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
+('ss-site-logo-light',   'site_logo_light',   '*', '"/uploads/brand/woody-and-friends-logo.png"'),
 ('ss-contact-info',      'contact_info',      '*', '{}'),
 ('ss-socials',           'socials',           '*', '{}'),
 ('ss-company-brand',     'company_brand',     '*', '{"name":"AppName","website":"","phone":"","email":"","socials":{}}'),

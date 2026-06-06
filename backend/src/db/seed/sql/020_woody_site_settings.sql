@@ -20,7 +20,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 ('ss-woody-gtm', 'gtm_container_id', '*', '"dogaadmin"'),
 ('ss-woody-site-logo', 'site_logo', '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
 ('ss-woody-site-logo-dark', 'site_logo_dark', '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
-('ss-woody-site-logo-light', 'site_logo_light', '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
+('ss-woody-site-logo-light', 'site_logo_light', '*', '"/uploads/brand/woody-and-friends-logo.png"'),
 ('ss-woody-site-favicon', 'site_favicon', '*', '"/uploads/brand/favicon-32.png"'),
 ('ss-woody-site-apple-touch-icon', 'site_apple_touch_icon', '*', '"/uploads/brand/apple-touch-icon.png"'),
 ('ss-woody-site-app-icon-512', 'site_app_icon_512', '*', '"/uploads/brand/favicon-512.png"'),
