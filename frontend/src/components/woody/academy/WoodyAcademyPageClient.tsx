@@ -7,7 +7,7 @@ import { FOCUS_RING } from '@/lib/a11y';
 import type { WoodyPageContent, WoodySection } from '../content-loader.server';
 
 const ACADEMY_LOGO =
-  '/media/woody/reference/uqaprkim_6.png';
+  '/assets/woody/woody-academy-logo.png';
 const STUDENT_IMAGE =
   '/media/woody/reference/dbzvnesg_Little%20girl%20at%20home%20holding%20a%20certificate%20mock-up.png';
 const TEACHER_IMAGE =
