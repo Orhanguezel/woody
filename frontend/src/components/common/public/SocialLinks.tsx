@@ -108,12 +108,15 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
           justify-content: center;
           text-decoration: none;
           border-radius: 999px;
-          transition: transform 140ms ease, opacity 140ms ease;
-          opacity: 0.92;
+          background: color-mix(in srgb, currentColor 14%, transparent);
+          transition: transform 160ms ease, background 160ms ease, color 160ms ease,
+            box-shadow 160ms ease;
         }
         .app-social__a:hover {
-          opacity: 1;
-          transform: translateY(-1px);
+          background: var(--gm-primary, currentColor);
+          color: #fff;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 18px color-mix(in srgb, var(--gm-primary, #000) 35%, transparent);
         }
         .app-social__a:focus-visible {
           outline: none;

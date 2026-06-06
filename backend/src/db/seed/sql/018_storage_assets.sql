@@ -52,5 +52,6 @@ INSERT INTO `storage_assets` (`id`,`name`,`bucket`,`path`,`folder`,`mime`,`size`
 ('sa-woody-waf-png','woody-and-friends-logo.png','brand','brand/woody-and-friends-logo.png','brand','image/png',97342,'/uploads/brand/woody-and-friends-logo.png','local'),
 ('sa-woody-apple-touch','apple-touch-icon.png','brand','brand/apple-touch-icon.png','brand','image/png',1052,'/uploads/brand/apple-touch-icon.png','local'),
 ('sa-woody-favicon-16','favicon-16.png','brand','brand/favicon-16.png','brand','image/png',520,'/uploads/brand/favicon-16.png','local'),
-('sa-woody-favicon-32','favicon-32.png','brand','brand/favicon-32.png','brand','image/png',554,'/uploads/brand/favicon-32.png','local')
+('sa-woody-favicon-32','favicon-32.png','brand','brand/favicon-32.png','brand','image/png',554,'/uploads/brand/favicon-32.png','local'),
+('sa-woody-favicon-svg','favicon.svg','brand','brand/favicon.svg','brand','image/svg+xml',790,'/uploads/brand/favicon.svg','local')
 ON DUPLICATE KEY UPDATE `url`=VALUES(`url`), `size`=VALUES(`size`), `mime`=VALUES(`mime`);
