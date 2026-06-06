@@ -1,9 +1,9 @@
 {
   "title": "Willkommen in der {{appName}}-Welt",
   "description": "{{appName}} ist ein Englisch-Lernmodell für Vorschulkinder, das physische Materialien, englischsprachige Charaktere, digitale Inhalte und den Cambridge-Ansatz in einem einzigen System vereint.",
-  "eyebrow": "Spielbasiertes Lernen",
+  "eyebrow": "",
   "hero": {
-    "eyebrow": "Spielbasiertes Lernen",
+    "eyebrow": "",
     "title": "Willkommen in der {{appName}}-Welt",
     "description": "{{appName}} ist ein Englisch-Lernmodell für Vorschulkinder, das physische Materialien, englischsprachige Charaktere, digitale Inhalte und den Cambridge-Ansatz in einem einzigen System vereint.",
     "primaryCTA": "Entdecken Sie die Vorschulserie",
