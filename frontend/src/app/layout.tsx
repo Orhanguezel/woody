@@ -61,6 +61,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const favicon = await fetchSetting('site_favicon', '*');
   const faviconUrl = extractUrl(favicon?.value) || '/favicon.svg';
 
+  const appleTouch = await fetchSetting('site_apple_touch_icon', '*');
+  const appleTouchUrl = extractUrl(appleTouch?.value) || faviconUrl;
+
   const gscVerification = await fetchSetting('google_site_verification', '*');
   const gscCode = String(gscVerification?.value || '').trim();
   const bingVerification = await fetchSetting('bing_site_verification', '*');
@@ -82,7 +85,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: faviconUrl,
       shortcut: faviconUrl,
-      apple: faviconUrl,
+      apple: appleTouchUrl,
     },
   };
 
