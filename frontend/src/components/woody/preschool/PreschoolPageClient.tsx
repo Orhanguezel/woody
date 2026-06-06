@@ -11,8 +11,6 @@ import type { WoodyCard, WoodyPageContent, WoodySection } from '../content-loade
 
 const HERO_VIDEO =
   '/media/woody/reference/uplopykh_194136173ef7.mp4';
-const COMING_SOON_IMAGE =
-  '/media/woody/reference/kg4rjgb3_Paragraf%20metniniz%20(4).png';
 const DIGITAL_BANNER_IMAGE =
   '/media/woody/reference/y0tliapf_freepik_ultra-high-detail-cinemat_2769441228.png';
 
@@ -164,16 +162,20 @@ export default function PreschoolPageClient({
 
       <section className="bg-gray-50 py-10 md:py-14">
         <div className="mx-auto max-w-[1100px] px-6 md:px-12">
-          <div className="flex flex-col items-center gap-6 md:flex-row md:gap-10">
-            {[teacherSet, studentSet].map((label) => (
-              <div key={label} className="w-full flex-1">
-                <div className="relative aspect-video overflow-hidden rounded-2xl bg-white shadow-2xl">
-                  <Image
-                    src={COMING_SOON_IMAGE}
-                    alt={label}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-[center_15%]"
+          <div className="flex flex-col items-center justify-center gap-10 md:flex-row md:items-start md:gap-12">
+            {[
+              { label: teacherSet, id: '4dATV4o4q2s' },
+              { label: studentSet, id: 'H1DextqOeX0' },
+            ].map(({ label, id }) => (
+              <div key={label} className="w-full max-w-[320px]">
+                <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-2xl">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${id}`}
+                    title={label}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="absolute inset-0 size-full"
                   />
                 </div>
                 <p className="mt-4 text-center text-[18px] font-bold tracking-wide text-gray-800 md:text-[22px]">
