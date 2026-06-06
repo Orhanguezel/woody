@@ -27,8 +27,8 @@ INSERT INTO `home_sections` (`id`, `slug`, `label`, `component_key`, `order_inde
 ('home-hero', 'hero', 'Hero', 'WoodyHomeHero', 10, 1, NULL),
 ('home-gray-banner', 'gray-banner', 'Ogrenme Vurgulari', 'WoodyGrayBanner', 20, 1, NULL),
 ('home-setler', 'setler', 'Woody Setleri', 'WoodySetZigzag', 30, 1, NULL),
-('home-sertifikalar', 'sertifikalar', 'Sertifikalar', 'CertificationSection', 40, 1, NULL),
-('home-neden', 'neden', 'Neden AppName', 'WoodyWhyCambridge', 50, 1, NULL),
+('home-neden', 'neden', 'Neden AppName', 'WoodyWhyCambridge', 40, 1, NULL),
+('home-sertifikalar', 'sertifikalar', 'Sertifikalar', 'CertificationSection', 50, 1, NULL),
 ('home-yenilikler', 'yenilikler', 'Woody Yenilikler', 'WoodyNewsCarousel', 60, 1, NULL)
 ON DUPLICATE KEY UPDATE
   `label` = VALUES(`label`),

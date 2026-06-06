@@ -14,8 +14,8 @@ const DEFAULT_SECTION_KEYS = [
   'WoodyHomeHero',
   'WoodyGrayBanner',
   'WoodySetZigzag',
-  'CertificationSection',
   'WoodyWhyCambridge',
+  'CertificationSection',
   'WoodyNewsCarousel',
 ] as const;
 
