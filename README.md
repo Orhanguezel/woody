@@ -73,3 +73,10 @@ mkdir -p .secrets && cp deploy/credentials.env.example .secrets/credentials.env
 - Uygulama adlari ve aciklamalar env uzerinden yonetilir, hard-code edilmez.
 - API pattern standardi: is endpointleri `/api/v1/...` altindadir.
 
+
+## Ekran Görüntüleri
+<p align="center">
+  <img src="admin_panel/public/img/student_view.png" width="600" alt="Woody student view" />
+  <img src="admin_panel/public/img/topic_tree.png" width="600" alt="Woody topic tree" />
+  <img src="admin_panel/public/img/performance_target.png" width="600" alt="Woody performance target" />
+</p>
