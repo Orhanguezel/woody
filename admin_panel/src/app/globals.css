@@ -103,7 +103,7 @@
   --color-gm-text: var(--brand-ink);
   --color-gm-text-dim: oklch(0.45 0.012 50);
   --color-gm-border-soft: var(--brand-gold-border);
-  --shadow-glow-primary: 0 0 20px rgba(22, 163, 74, 0.22);
+  --shadow-glow-primary: 0 0 20px rgba(232, 197, 122, 0.3);
 }
 
 /* Default theme styles (used when no data-theme-preset is set or when 'default' is selected).
@@ -134,22 +134,23 @@ These serve as the fallback; there is no separate default.css file. */
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
-  /* Sidebar — açık zemin, yeşil vurgu */
-  --sidebar: oklch(0.97 0.02 145);
-  --sidebar-foreground: oklch(0.28 0.06 145);
-  --sidebar-primary: oklch(0.55 0.17 145);
-  --sidebar-primary-foreground: oklch(0.98 0.01 145);
-  --sidebar-accent: oklch(0.94 0.04 145);
-  --sidebar-accent-foreground: oklch(0.28 0.06 145);
-  --sidebar-border: oklch(0.88 0.04 145 / 0.5);
-  --sidebar-ring: oklch(0.55 0.17 145);
+  /* Sidebar — açık zemin, Woody mercan (coral) vurgu (hue ~33) */
+  --sidebar: oklch(0.98 0.012 40);
+  --sidebar-foreground: oklch(0.34 0.05 33);
+  --sidebar-primary: oklch(0.64 0.105 33);
+  --sidebar-primary-foreground: oklch(0.99 0.01 40);
+  --sidebar-accent: oklch(0.95 0.03 40);
+  --sidebar-accent-foreground: oklch(0.34 0.05 33);
+  --sidebar-border: oklch(0.88 0.03 40 / 0.55);
+  --sidebar-ring: oklch(0.64 0.105 33);
 
-  --brand-gold: #22c55e;
-  --brand-gold-strong: #15803d;
-  --brand-gold-soft: rgba(22, 163, 74, 0.08);
-  --brand-gold-border: rgba(22, 101, 52, 0.22);
-  --brand-ink: #14532d;
-  --brand-cream: #f7fee7;
+  /* Admin accent — Woody altın/turuncu (woody-klasik aksanıyla uyumlu, eski yeşil kaldırıldı) */
+  --brand-gold: #E8C57A;
+  --brand-gold-strong: #C99A3E;
+  --brand-gold-soft: rgba(232, 197, 122, 0.14);
+  --brand-gold-border: rgba(201, 154, 62, 0.28);
+  --brand-ink: #3A2D12;
+  --brand-cream: #FDFCFB;
 
   /* fonts */
   --font-sans: var(--font-inter);
@@ -181,20 +182,20 @@ These serve as the fallback; there is no separate default.css file. */
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
-  /* Sidebar — koyu yeşil ton */
-  --sidebar: oklch(0.22 0.05 155);
-  --sidebar-foreground: oklch(0.95 0.03 145);
-  --sidebar-primary: oklch(0.72 0.16 145);
-  --sidebar-primary-foreground: oklch(0.15 0.04 155);
-  --sidebar-accent: oklch(0.28 0.05 155);
-  --sidebar-accent-foreground: oklch(0.95 0.03 145);
-  --sidebar-border: oklch(0.72 0.16 145 / 0.15);
-  --sidebar-ring: oklch(0.72 0.16 145);
+  /* Sidebar — koyu sıcak ton, Woody mercan vurgu */
+  --sidebar: oklch(0.22 0.03 33);
+  --sidebar-foreground: oklch(0.95 0.02 40);
+  --sidebar-primary: oklch(0.76 0.085 32);
+  --sidebar-primary-foreground: oklch(0.18 0.03 33);
+  --sidebar-accent: oklch(0.28 0.03 33);
+  --sidebar-accent-foreground: oklch(0.95 0.02 40);
+  --sidebar-border: oklch(0.76 0.085 32 / 0.15);
+  --sidebar-ring: oklch(0.76 0.085 32);
 
-  --brand-gold: #4ade80;
-  --brand-gold-strong: #22c55e;
-  --brand-gold-soft: rgba(74, 222, 128, 0.1);
-  --brand-gold-border: rgba(167, 243, 208, 0.2);
+  --brand-gold: #F0D69A;
+  --brand-gold-strong: #E8C57A;
+  --brand-gold-soft: rgba(240, 214, 154, 0.12);
+  --brand-gold-border: rgba(232, 197, 122, 0.22);
 }
 
 @layer base {

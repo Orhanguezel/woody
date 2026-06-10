@@ -98,38 +98,6 @@ export default async function RootLayout({
   return (
     <ThemeProvider>
       <div className="font-sans antialiased text-text-primary bg-bg-primary">
-        {/* SSR Splash Screen Overlay */}
-        <div
-          id="gm-splash-ssr"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 99998,
-            background: 'var(--gm-bg)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'opacity 0.4s ease',
-          }}
-          aria-hidden="true"
-          suppressHydrationWarning
-        >
-          <div style={{
-            color: 'var(--gm-gold)',
-            fontSize: '1.5rem',
-            letterSpacing: '0.2em',
-            fontWeight: 600,
-            textTransform: 'uppercase',
-            fontFamily: 'var(--font-pj), system-ui, sans-serif'
-          }}>
-            {getPublicAppName()}
-          </div>
-        </div>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(sessionStorage.getItem('gm_splash_seen')){var el=document.getElementById('gm-splash-ssr');if(el)el.style.display='none'}}catch(e){}})()`
-          }}
-        />
         <JsonLd data={jsonLdData} id="site-graph" />
         <ScrollAnchorFixer />
         <Providers>

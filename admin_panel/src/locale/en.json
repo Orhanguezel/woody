@@ -2687,17 +2687,17 @@
       },
       "branding": {
         "title": "Branding & Identity",
-        "description": "General panel settings: page title, copyright, favicons and meta tags.",
+        "description": "Panel brand, sign-in screen, logo, favicons and meta tags.",
         "saved": "Branding settings saved.",
         "saveError": "Failed to save branding settings.",
         "identity": "Identity",
         "adminLogin": "Admin sign-in screen",
-        "adminLoginHelp": "Left panel title, quote and background. If the title is empty, the translated default is used.",
+        "adminLoginHelp": "Left panel title, text and background image. Upload a new image here or choose one from the media library.",
         "visual": "Visual",
         "metaSeo": "Meta / SEO",
         "placeholders": {
-          "adminLoginHeading": "e.g. Welcome back",
-          "adminLoginQuote": "Short tagline"
+          "adminLoginHeading": "e.g. Welcome to Woody's world",
+          "adminLoginQuote": "e.g. Manage preschool English and digital learning content from here."
         },
         "fields": {
           "appName": "Panel Name",

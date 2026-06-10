@@ -14,7 +14,6 @@ import PwaRegistration from '../components/system/PwaRegistration';
 import { resetLayoutSeo } from '../seo';
 
 
-import { SplashScreen } from '../layout/SplashScreen';
 import { getPublicAppName } from '@/lib/site-config';
 import WhatsAppFloatingButton from '@/components/woody/WhatsAppFloatingButton';
 import StickyStoreButton from '@/components/woody/StickyStoreButton';
@@ -111,7 +110,6 @@ export default function ClientLayout({
 
   return (
     <Fragment>
-      <SplashScreen />
       <PwaRegistration />
       <AnalyticsScripts />
       <GAViewPages />

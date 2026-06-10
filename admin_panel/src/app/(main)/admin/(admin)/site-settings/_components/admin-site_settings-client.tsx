@@ -3,7 +3,6 @@
 import * as React from "react";
 
 import {
-  Activity,
   ChevronRight,
   Code,
   Database,
@@ -41,7 +40,6 @@ import { CustomCssTab } from "../tabs/custom-css-tab";
 import { DesignTokensTab } from "../tabs/design-tokens-tab";
 // tabs (content sources)
 import { GeneralSettingsTab } from "../tabs/general-settings-tab";
-import { LiveKitTab } from "../tabs/livekit-tab";
 import { LocalesSettingsTab } from "../tabs/locales-settings-tab";
 import { PageContentTab } from "../tabs/page-content-tab";
 import { SeoSettingsTab } from "../tabs/seo-settings-tab";
@@ -61,8 +59,7 @@ type SettingsTab =
   | "locales"
   | "branding"
   | "design_tokens"
-  | "custom_css"
-  | "livekit";
+  | "custom_css";
 
 function ListPanel({
   locale,
@@ -144,7 +141,6 @@ export default function AdminSiteSettingsClient() {
     "branding",
     "design_tokens",
     "custom_css",
-    "livekit",
   ].includes(tab);
 
   const menuItems = [
@@ -155,7 +151,6 @@ export default function AdminSiteSettingsClient() {
     { value: "seo", label: t("tabs.seo", null, "SEO & Meta"), icon: Globe },
     { value: "api", label: t("tabs.api", null, "API & Entegrasyon"), icon: Sliders },
     { value: "smtp", label: t("tabs.smtp", null, "E-posta (SMTP)"), icon: Mail },
-    { value: "livekit", label: t("tabs.livekit", null, "Görüntülü Altyapı"), icon: Activity },
     { value: "custom_css", label: t("tabs.custom_css", null, "Özel CSS"), icon: Code },
     { value: "list", label: t("tabs.list", null, "Tüm Kayıtlar"), icon: Database },
   ];
@@ -297,7 +292,6 @@ export default function AdminSiteSettingsClient() {
               {tab === "seo" && <SeoSettingsTab locale={locale} />}
               {tab === "api" && <ApiSettingsTab locale={locale} />}
               {tab === "smtp" && <SmtpSettingsTab locale={locale} />}
-              {tab === "livekit" && <LiveKitTab />}
               {tab === "custom_css" && <CustomCssTab />}
               {tab === "list" && (
                 <div className="space-y-8">

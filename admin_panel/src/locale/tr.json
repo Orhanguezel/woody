@@ -2655,17 +2655,17 @@
     },
     "branding": {
       "title": "Marka & Kimlik",
-      "description": "Genel panel ayarları: sayfa başlığı, telif hakkı, favicon ve meta etiketleri.",
+      "description": "Panel markası, giriş ekranı, logo, favicon ve meta etiketleri.",
       "saved": "Marka ayarları kaydedildi.",
       "saveError": "Marka ayarları kaydedilemedi.",
       "identity": "Kimlik",
       "adminLogin": "Yönetici giriş ekranı",
-      "adminLoginHelp": "Sol paneldeki başlık, alıntı ve arka plan görseli. Boş bırakılan başlık için çeviri metni kullanılır.",
+      "adminLoginHelp": "Sol paneldeki başlık, metin ve arka plan görseli. Görseli buradan yükleyebilir veya medya kütüphanesinden seçebilirsiniz.",
       "visual": "Görsel",
       "metaSeo": "Meta / SEO",
       "placeholders": {
-        "adminLoginHeading": "Örn: Tekrar hoş geldiniz",
-        "adminLoginQuote": "Kısa tanıtım veya slogan"
+        "adminLoginHeading": "Örn: Woody dünyasına hoş geldiniz",
+        "adminLoginQuote": "Örn: Okul öncesi İngilizce ve dijital öğrenme içeriklerini buradan yönetin."
       },
       "fields": {
         "appName": "Panel Adı",

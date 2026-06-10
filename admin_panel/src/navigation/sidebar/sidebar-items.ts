@@ -193,6 +193,31 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   home_layout: 'Anasayfa Düzeni',
 };
 
+// woody backend'inde KARSILIGI OLMAYAN admin ozellikleri — menude gizlenir
+// (ilgili endpoint'ler 404 + RTK retry dongusu uretiyordu). Backend modulu eklenince
+// buradan cikarilir. Backend'i olan/stub'lanan tum diger anahtarlar gorunur kalir
+// (dashboard, users, schools, products, blog, orders, subscriptions, subscription_plans,
+//  support, notifications, site_settings, navigation, home_layout, storage).
+const HIDDEN_NAV_KEYS = new Set<AdminNavItemKey>([
+  'reviews',
+  'announcements',
+  'email_templates',
+  'chat',
+  'banners',
+  'campaigns',
+  'wallet',
+  'mail',
+  'db',
+  'audit',
+  'llm_prompts',
+  'cache',
+  // Abonelik sistemi woody'de kullanilmiyor (kullanici talebi)
+  'subscriptions',
+  'subscription_plans',
+  // Iyzipay ayarlari site-settings > API tab'inda; ayri sayfa gereksiz (kullanici talebi)
+  'payment_settings',
+]);
+
 export function buildAdminSidebarItems(
   copy?: Partial<AdminNavCopy> | null,
   t?: TranslateFn,
@@ -200,7 +225,10 @@ export function buildAdminSidebarItems(
   const labels = copy?.labels ?? ({} as AdminNavCopy['labels']);
   const items = copy?.items ?? ({} as AdminNavCopy['items']);
 
-  return adminNavConfig.map((group) => {
+  return adminNavConfig
+    .map((group) => ({ ...group, items: group.items.filter((it) => !HIDDEN_NAV_KEYS.has(it.key)) }))
+    .filter((group) => group.items.length > 0)
+    .map((group) => {
     // 1. Try copy.labels[group.key]
     // 2. Try t(`admin.sidebar.groups.${group.key}`)
     // 3. Fallback to empty (or key)

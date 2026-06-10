@@ -12,11 +12,11 @@ import { NextRequest, NextResponse } from 'next/server';
 const SUPPORTED_LOCALES = ['tr', 'en', 'de', 'ar', 'fr', 'ru', 'es', 'it', 'nl', 'pt-br'] as const;
 const DEFAULT_LOCALE = 'tr';
 
-// Non-locale path prefixes (admin, api vs.)
-const NON_LOCALE_PREFIXES = ['admin', 'api', 'uploads', 'public', 'static', 'images', 'assets'];
+// Non-locale path prefixes (admin, api vs.) — 'media' diskten dogrudan servis edilir, locale'e rewrite EDILMEZ
+const NON_LOCALE_PREFIXES = ['admin', 'api', 'uploads', 'media', 'public', 'static', 'images', 'assets'];
 
-// Static file extensions — middleware'i atla
-const STATIC_EXT_RE = /\.(?:ico|png|jpg|jpeg|gif|svg|webp|woff2?|ttf|otf|eot|css|js|map|txt|xml|json|webmanifest)$/i;
+// Static file extensions — middleware'i atla (video/ses dahil; yoksa .mp4/.mp3 /tr'ye rewrite olup 404 doner)
+const STATIC_EXT_RE = /\.(?:ico|png|jpg|jpeg|gif|svg|webp|avif|woff2?|ttf|otf|eot|css|js|mjs|map|txt|xml|json|webmanifest|mp4|webm|mov|m4v|mp3|m4a|wav|ogg|pdf)$/i;
 
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;

@@ -1,5 +1,7 @@
-import AdminBlogClient from './_components/admin-blog-client';
+// src/app/(main)/admin/blog/page.tsx
+
+import BlogListClient from './_components/blog-list-client';
 
 export default function Page() {
-  return <AdminBlogClient />;
+  return <BlogListClient />;
 }

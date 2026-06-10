@@ -1,26 +1,19 @@
-'use client';
+"use client";
 
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from "next/navigation";
 
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
-import { useAuthTokenMutation } from '@/integrations/hooks';
-import { useAdminTranslations } from '@/i18n';
-import { useLocaleShort } from '@/i18n/useLocaleShort';
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useAdminTranslations } from "@/i18n";
+import { useLocaleShort } from "@/i18n/useLocaleShort";
+import { useAuthTokenMutation } from "@/integrations/hooks";
 
 type FormValues = {
   email: string;
@@ -29,28 +22,30 @@ type FormValues = {
 };
 
 function safeNext(next: string | null | undefined, fallback: string): string {
-  const v = String(next ?? '').trim();
-  if (!v || !v.startsWith('/')) return fallback;
-  if (v.startsWith('//')) return fallback;
+  const v = String(next ?? "").trim();
+  if (!v || !v.startsWith("/")) return fallback;
+  if (v.startsWith("//")) return fallback;
   return v;
 }
 
+function getNestedString(value: unknown, path: string[]): string | null {
+  let current: unknown = value;
+  for (const key of path) {
+    if (!current || typeof current !== "object" || !(key in current)) return null;
+    current = (current as Record<string, unknown>)[key];
+  }
+  return typeof current === "string" && current.trim() ? current : null;
+}
+
 function getErrMessage(err: unknown, fallback: string): string {
-  const anyErr = err as any;
+  const candidates = [
+    getNestedString(err, ["data", "error", "message"]),
+    getNestedString(err, ["data", "error"]),
+    getNestedString(err, ["data", "message"]),
+    getNestedString(err, ["error"]),
+  ];
 
-  const m1 = anyErr?.data?.error?.message;
-  if (typeof m1 === 'string' && m1.trim()) return m1;
-
-  const m1b = anyErr?.data?.error;
-  if (typeof m1b === 'string' && m1b.trim()) return m1b;
-
-  const m2 = anyErr?.data?.message;
-  if (typeof m2 === 'string' && m2.trim()) return m2;
-
-  const m3 = anyErr?.error;
-  if (typeof m3 === 'string' && m3.trim()) return m3;
-
-  return fallback;
+  return candidates.find(Boolean) || fallback;
 }
 
 export function LoginForm() {
@@ -62,36 +57,36 @@ export function LoginForm() {
   const [login, loginState] = useAuthTokenMutation();
 
   const FormSchema = z.object({
-    email: z.string().email({ message: t('admin.auth.login.emailRequired') }),
-    password: z.string().min(6, { message: t('admin.auth.login.passwordMinLength') }),
+    email: z.string().email({ message: t("admin.auth.login.emailRequired") }),
+    password: z.string().min(6, { message: t("admin.auth.login.passwordMinLength") }),
     remember: z.boolean().optional(),
   });
 
   const form = useForm<FormValues>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       remember: false,
     },
-    mode: 'onSubmit',
+    mode: "onSubmit",
   });
 
   const onSubmit = async (values: FormValues) => {
     try {
       await login({
-        grant_type: 'password',
+        grant_type: "password",
         email: values.email.trim().toLowerCase(),
         password: values.password,
       }).unwrap();
 
-      toast.success(t('admin.auth.login.loginSuccess'));
+      toast.success(t("admin.auth.login.loginSuccess"));
 
-      const next = safeNext(sp?.get('next'), '/admin');
+      const next = safeNext(sp?.get("next"), "/admin");
       router.replace(next);
       router.refresh();
     } catch (err) {
-      toast.error(getErrMessage(err, t('admin.auth.login.loginFailed')));
+      toast.error(getErrMessage(err, t("admin.auth.login.loginFailed")));
     }
   };
 
@@ -105,14 +100,16 @@ export function LoginForm() {
           name="email"
           render={({ field }) => (
             <FormItem className="space-y-1.5">
-              <FormLabel className="text-[var(--brand-ink)]/70 text-xs font-semibold uppercase tracking-wider">{t('admin.auth.login.emailLabel')}</FormLabel>
+              <FormLabel className="font-bold text-[#0b1f3a]/72 text-xs uppercase tracking-wider">
+                {t("admin.auth.login.emailLabel")}
+              </FormLabel>
               <FormControl>
                 <Input
                   id="email"
                   type="email"
-                  placeholder={t('admin.auth.login.emailPlaceholder')}
+                  placeholder={t("admin.auth.login.emailPlaceholder")}
                   autoComplete="email"
-                  className="bg-white/50 border-[var(--brand-gold-border)] focus:border-[var(--brand-gold)] focus:ring-[var(--brand-gold)]/20 rounded-lg py-5 transition-all"
+                  className="rounded-lg border-[#ffd24b]/70 bg-white/80 py-5 text-[#0b1f3a] transition-all focus:border-[#ff6a00] focus:ring-[#ff6a00]/20"
                   disabled={isBusy}
                   {...field}
                 />
@@ -127,14 +124,16 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem className="space-y-1.5">
-              <FormLabel className="text-[var(--brand-ink)]/70 text-xs font-semibold uppercase tracking-wider">{t('admin.auth.login.passwordLabel')}</FormLabel>
+              <FormLabel className="font-bold text-[#0b1f3a]/72 text-xs uppercase tracking-wider">
+                {t("admin.auth.login.passwordLabel")}
+              </FormLabel>
               <FormControl>
                 <Input
                   id="password"
                   type="password"
-                  placeholder={t('admin.auth.login.passwordPlaceholder')}
+                  placeholder={t("admin.auth.login.passwordPlaceholder")}
                   autoComplete="current-password"
-                  className="bg-white/50 border-[var(--brand-gold-border)] focus:border-[var(--brand-gold)] focus:ring-[var(--brand-gold)]/20 rounded-lg py-5 transition-all"
+                  className="rounded-lg border-[#ffd24b]/70 bg-white/80 py-5 text-[#0b1f3a] transition-all focus:border-[#ff6a00] focus:ring-[#ff6a00]/20"
                   disabled={isBusy}
                   {...field}
                 />
@@ -159,29 +158,29 @@ export function LoginForm() {
                   className="size-4"
                 />
               </FormControl>
-              <FormLabel
-                htmlFor="login-remember"
-                className="ml-1 font-medium text-muted-foreground text-sm"
-              >
-                {t('admin.auth.login.rememberMe')}
+              <FormLabel htmlFor="login-remember" className="ml-1 font-medium text-[#555] text-sm">
+                {t("admin.auth.login.rememberMe")}
               </FormLabel>
             </FormItem>
           )}
         />
 
         <Button
-          className="w-full rounded-xl bg-[var(--brand-gold)] py-6 font-bold text-[var(--brand-ink)] shadow-lg transition-all duration-300 hover:bg-[var(--brand-gold-strong)] hover:shadow-glow-primary"
+          className="w-full rounded-lg bg-[#ff6a00] py-6 font-black text-white shadow-[0_18px_42px_rgba(255,106,0,0.28)] transition-all duration-300 hover:bg-[#e85c00] hover:shadow-[0_22px_52px_rgba(255,106,0,0.34)]"
           type="submit"
           disabled={isBusy}
           aria-busy={isBusy}
         >
           {isBusy ? (
-            <div className="flex items-center gap-2" role="status" aria-live="polite">
-              <span className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--brand-ink)] border-t-transparent" aria-hidden />
-              {t('admin.auth.login.loggingIn')}
-            </div>
+            <output className="flex items-center gap-2" aria-live="polite">
+              <span
+                className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"
+                aria-hidden
+              />
+              {t("admin.auth.login.loggingIn")}
+            </output>
           ) : (
-            t('admin.auth.login.loginButton')
+            t("admin.auth.login.loginButton")
           )}
         </Button>
       </form>

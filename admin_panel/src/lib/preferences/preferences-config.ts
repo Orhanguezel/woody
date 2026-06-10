@@ -70,7 +70,9 @@ type PreferencePersistenceConfig = {
  */
 export const PREFERENCE_DEFAULTS: PreferenceValueMap = {
   theme_mode: "light",
-  theme_preset: "default",
+  // Woody markasi: mavi ana renk + turuncu/altin vurgu (public site ile uyumlu, DB active_theme_preset ile ayni).
+  // Yesil "default" tema artik kullanilmiyor.
+  theme_preset: "woody-klasik",
   font: "inter",
   content_layout: "centered",
   navbar_style: "sticky",

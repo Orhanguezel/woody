@@ -22,15 +22,7 @@ import type { DashboardRangeKey } from '@/integrations/shared';
 import { useAdminUiCopy } from '@/app/(main)/admin/_components/common/useAdminUiCopy';
 import { useAdminT } from '@/app/(main)/admin/_components/common/useAdminT';
 import { useAdminSettings } from './admin-settings-provider';
-
-const ROUTE_MAP: Record<string, string> = {
-  site_settings: '/admin/site-settings',
-  bookings: '/admin/bookings',
-  users: '/admin/users',
-  consultants: '/admin/consultants',
-  support: '/admin/support',
-  announcements: '/admin/announcements',
-};
+import { buildAdminSidebarItems } from '@/navigation/sidebar/sidebar-items';
 
 const KPI_CHART_CONFIG = {
   revenue_total: { label: 'Gelir', color: 'var(--gm-gold)' },
@@ -62,6 +54,13 @@ export default function AdminDashboardClient() {
   const t = useAdminT();
   const page = copy.pages?.dashboard ?? {};
   const { pageMeta } = useAdminSettings();
+
+  // Hızlı erişim: sidebar ile TEK kaynak (buildAdminSidebarItems). Gizlenen bölümler
+  // (HIDDEN_NAV_KEYS) burada da otomatik düşer — eski hard-coded ROUTE_MAP kaldırıldı.
+  const quickLinks = React.useMemo(
+    () => buildAdminSidebarItems(copy.nav, t).flatMap((g) => g.items),
+    [copy.nav, t],
+  );
 
   const [range, setRange] = React.useState<DashboardRangeKey>('30d');
   const q = useGetDashboardSummaryAdminQuery({ range });
@@ -225,9 +224,9 @@ export default function AdminDashboardClient() {
             <CardDescription className="font-serif italic text-base opacity-70 text-gm-muted">Yönetim modüllerine anında ulaşın.</CardDescription>
           </CardHeader>
           <CardContent className="p-10 grid grid-cols-2 gap-4">
-            {Object.entries(ROUTE_MAP).map(([key, href]) => (
-              <Link key={key} href={href} className="flex items-center justify-between p-5 rounded-3xl bg-gm-surface/40 border border-gm-border-soft hover:border-gm-gold/40 hover:bg-gm-surface/80 transition-all duration-300 group">
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-gm-muted group-hover:text-gm-gold transition-colors">{key.replace('_', ' ')}</span>
+            {quickLinks.map((item) => (
+              <Link key={item.url} href={item.url} className="flex items-center justify-between p-5 rounded-3xl bg-gm-surface/40 border border-gm-border-soft hover:border-gm-gold/40 hover:bg-gm-surface/80 transition-all duration-300 group">
+                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-gm-muted group-hover:text-gm-gold transition-colors">{item.title}</span>
                 <ArrowRight className="w-4 h-4 text-gm-gold opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" />
               </Link>
             ))}

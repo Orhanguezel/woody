@@ -34,9 +34,6 @@ const API_KEYS = [
   "gtm_container_id",
   "ga4_measurement_id",
   "cookie_consent",
-  "livekit_url",
-  "livekit_api_key",
-  "livekit_api_secret",
   "firebase_project_id",
   "firebase_client_email",
   "firebase_private_key",
@@ -54,9 +51,6 @@ const EMPTY_FORM: ApiForm = {
   gtm_container_id: "",
   ga4_measurement_id: "",
   cookie_consent: "",
-  livekit_url: "",
-  livekit_api_key: "",
-  livekit_api_secret: "",
   firebase_project_id: "",
   firebase_client_email: "",
   firebase_private_key: "",
@@ -265,69 +259,6 @@ export const ApiSettingsTab: React.FC<ApiSettingsTabProps> = ({ locale }) => {
           </div>
         </div>
 
-        {/* LiveKit Section */}
-        <div className="space-y-6">
-          <div className="border-b border-gm-border-soft pb-3 space-y-1">
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-gm-gold flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-gm-gold/50" />
-              LiveKit (Sesli / Görüntülü Görüşme)
-            </h3>
-            <p className="text-[10px] font-serif italic text-gm-muted ml-4 opacity-80">
-              Sunucu tarafı .env dosyasından okunur — bu alanlar referans amaçlı kayıt tutar.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="md:col-span-2 space-y-2">
-              <Label
-                htmlFor="livekit_url"
-                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
-              >
-                {t("admin.siteSettings.api.livekitUrl", null, "LiveKit URL")}
-              </Label>
-              <Input
-                id="livekit_url"
-                value={form.livekit_url}
-                onChange={(e) => handleChange("livekit_url", e.target.value)}
-                placeholder="wss://your-project.livekit.cloud"
-                disabled={busy}
-                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm font-mono text-gm-text transition-all"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label
-                htmlFor="livekit_api_key"
-                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
-              >
-                {t("admin.siteSettings.api.livekitApiKey", null, "LiveKit API Key")}
-              </Label>
-              <Input
-                id="livekit_api_key"
-                value={form.livekit_api_key}
-                onChange={(e) => handleChange("livekit_api_key", e.target.value)}
-                placeholder="API Key"
-                disabled={busy}
-                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm font-mono text-gm-text transition-all"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label
-                htmlFor="livekit_api_secret"
-                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
-              >
-                {t("admin.siteSettings.api.livekitApiSecret", null, "LiveKit API Secret")}
-              </Label>
-              <Input
-                id="livekit_api_secret"
-                type="password"
-                value={form.livekit_api_secret}
-                onChange={(e) => handleChange("livekit_api_secret", e.target.value)}
-                placeholder="API Secret"
-                disabled={busy}
-                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm font-mono text-gm-text transition-all"
-              />
-            </div>
-          </div>
-        </div>
 
         {/* Firebase Section */}
         <div className="space-y-6">

@@ -6,9 +6,9 @@
 import packageJson from '../../package.json';
 
 const currentYear = new Date().getFullYear();
-const appName = process.env.NEXT_PUBLIC_APP_NAME || 'Admin Panel';
-const appCopyright = process.env.NEXT_PUBLIC_APP_COPYRIGHT || 'Platform';
-const appDescription = process.env.NEXT_PUBLIC_APP_DESCRIPTION || 'Yonetim paneli.';
+const appName = process.env.NEXT_PUBLIC_APP_NAME || 'Woody and Friends Admin';
+const appCopyright = process.env.NEXT_PUBLIC_APP_COPYRIGHT || 'Woody and Friends';
+const appDescription = process.env.NEXT_PUBLIC_APP_DESCRIPTION || 'Woody and Friends yonetim paneli.';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3094';
 
 export type AdminBrandingConfig = {
@@ -25,7 +25,7 @@ export type AdminBrandingConfig = {
   admin_login_heading: string;
   /** Giriş sayfası sol panel alıntı metni. */
   admin_login_quote: string;
-  /** Giriş arka plan görseli URL (boşsa /img/admin_login_bg.png). */
+  /** Giriş arka plan görseli URL (boşsa düz tema arka plani; site-settings'ten atanir). */
   admin_login_background_url: string;
   meta: {
     title: string;
@@ -42,16 +42,16 @@ export const DEFAULT_BRANDING: AdminBrandingConfig = {
   app_name: appName,
   app_copyright: appCopyright,
   html_lang: 'tr',
-  theme_color: '#15803d',
+  theme_color: '#FF6A00',
   favicon_16: '/favicon/favicon-16.svg',
   favicon_32: '/favicon/favicon-32.svg',
   favicon_url: '/favicon.ico',
-  logo_url: '',
+  logo_url: '/assets/woody/woody-and-friends-flat.png',
   apple_touch_icon: '/favicon/apple-touch-icon.svg',
   admin_login_heading: '',
   admin_login_quote:
-    'Ziraat müfredatına odaklı quiz ve sınav hazırlığını buradan yönetin.',
-  admin_login_background_url: '/img/admin_login_bg.png',
+    'Okul oncesi Ingilizce, hikaye ve dijital ogrenme iceriklerini buradan yonetin.',
+  admin_login_background_url: '/assets/woody/sections/hero-poster.webp',
   meta: {
     title: appName,
     description: appDescription,

@@ -1,5 +1,7 @@
-import AdminProductsClient from './_components/admin-products-client';
+// src/app/(main)/admin/products/page.tsx
+
+import ProductsListClient from './_components/products-list-client';
 
 export default function Page() {
-  return <AdminProductsClient />;
+  return <ProductsListClient />;
 }
