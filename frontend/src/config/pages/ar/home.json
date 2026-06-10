@@ -60,5 +60,12 @@
     "title": "{{appName}} وأصدقاؤه | اللغة الإنجليزية لمرحلة ما قبل المدرسة",
     "description": "مجموعات تعلم اللغة الإنجليزية لمرحلة ما قبل المدرسة، ومحتوى رقمي، ومنصة دعم للمعلمين.",
     "keywords": "برنامج اللغة الإنجليزية لمرحلة ما قبل المدرسة تركيا، اللغة الإنجليزية في مرحلة الطفولة المبكرة القائمة على اللعب، مجموعة تعلم اللغة الإنجليزية لمرحلة ما قبل المدرسة، تعليم اللغة الإنجليزية في مرحلة الطفولة المبكرة، نظام إعداد كامبريدج، اللغة الإنجليزية للأطفال، برنامج اللغة الإنجليزية في سن 3-6 سنوات"
+  },
+  "digitalEntry": {
+    "eyebrow": "WOODY DIGITAL",
+    "title": "Enter Woody Digital in one click",
+    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
+    "cta": "Open Woody Digital",
+    "href": "/digital-content"
   }
 }

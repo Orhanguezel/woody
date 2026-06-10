@@ -65,5 +65,11 @@
     "title": "Set di inglese per tutor domestico | Lezioni private e a domicilio Istruzione in inglese in età prescolare",
     "description": "{{appName}} Home Tutor: un set per l'apprendimento dell'inglese in età prescolare per lezioni private o a casa. Un curriculum a 4 livelli (Basic/Junior/Senior/PRO) ad uso genitore + figlio, contenuti digitali inclusi.",
     "keywords": "Tutor di inglese a casa, lezioni private di inglese a casa, set di inglese prescolare a casa, tutor di Woody a casa, lezioni private di inglese per bambini"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Home Tutor video"
   }
 }

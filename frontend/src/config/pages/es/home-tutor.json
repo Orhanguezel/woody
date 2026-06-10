@@ -65,5 +65,11 @@
     "title": "Inicio Tutor Conjunto de inglés | Lección privada y en casa Educación preescolar de inglés",
     "description": "{{appName}} Home Tutor: un set de aprendizaje de inglés preescolar para clases privadas o en casa. Un plan de estudios de 4 niveles (Básico/Junior/Senior/PRO) para uso de padres e hijos, contenido digital incluido.",
     "keywords": "tutor de inglés en casa, lección privada de inglés en casa, set de inglés para preescolar en casa, tutor de woody en casa, lección privada de inglés para niños"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Home Tutor video"
   }
 }

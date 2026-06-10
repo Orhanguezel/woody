@@ -65,5 +65,11 @@
     "title": "Home Tutor Englisch-Set | Heim- und Privatunterricht im Vorschul-Englischunterricht",
     "description": "{{appName}} Home Tutor: ein Englisch-Lernset für Vorschulkinder für den Heim- oder Privatunterricht. Ein 4-stufiger Lehrplan (Basic/Junior/Senior/PRO) für Eltern und Kinder, einschließlich digitaler Inhalte.",
     "keywords": "Nachhilfe für Englisch zu Hause, Privatunterricht für Englisch zu Hause, Englisch-Set für Vorschulkinder, Woody-Nachhilfe für zu Hause, Privatunterricht für Kinder in Englisch"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Home Tutor video"
   }
 }

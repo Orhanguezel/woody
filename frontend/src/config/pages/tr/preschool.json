@@ -70,5 +70,45 @@
     "title": "Anaokulu İngilizce Eğitim Setleri",
     "description": "{{appName}} Preschool anaokulu İngilizce eğitim seti, 3-6 yaş çocuklar için oyun temelli okul öncesi İngilizce programı. Cambridge hazırlık sistemi ile preschool English curriculum. Öğretmen ve öğrenci setleri, anaokulu İngilizce müfredatı ve ders planı.",
     "keywords": "anaokulu İngilizce eğitim seti, preschool English program Turkey, okul öncesi İngilizce seti, anaokulu için İngilizce programı, Cambridge hazırlık anaokulu, 3-6 yaş İngilizce programı, İngilizce eğitim serisi anaokulu"
+  },
+  "quoteForm": {
+    "title": "Okulunuz için fiyat teklifi alın",
+    "description": "Kurum bilgilerinizi bırakın; öğrenci sayısı, seviye ve ihtiyaçlarınıza göre size özel teklif hazırlayalım.",
+    "linkLabel": "Teklif Formu",
+    "submit": "Teklif Talebi Gönder",
+    "success": "Talebiniz alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
+    "error": "Talep gönderilemedi. Lütfen bilgileri kontrol edip tekrar deneyin.",
+    "kvkkLabel": "KVKK aydınlatma metnini okudum ve teklif talebi için iletişime geçilmesini kabul ediyorum.",
+    "fields": {
+      "orgName": "Kurum adı",
+      "contactName": "Yetkili adı",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "studentCount": "Öğrenci sayısı",
+      "level": "Seviye",
+      "city": "İl",
+      "district": "İlçe",
+      "message": "Mesaj"
+    },
+    "levels": {
+      "mixed": "Karma seviye",
+      "basic": "Basic",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "pageUi": {
+    "teacherSet": "Öğretmen Seti",
+    "studentSet": "Öğrenci Seti",
+    "closeVideo": "Videoyu kapat",
+    "videoWatch": "Video İzle",
+    "quote": "Fiyat Teklifi Al",
+    "playHero": "Preschool videosunu oynat",
+    "close": "Kapat",
+    "digitalTitle": "Woody Dijital İçerikler",
+    "digitalDescription": "Movieland, Storyland ve Musicland ile öğrenme süreci video, hikaye ve müzikle zenginleşir.",
+    "digitalCta": "Dijital dünyaya gitmek için tıklayın",
+    "quoteMessageTemplate": "Merhaba, {{level}} hakkında fiyat teklifi almak istiyorum.",
+    "proMessage": "PRO seviyesi için Woody Academy'de eğitim verilir."
   }
 }

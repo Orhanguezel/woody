@@ -1,0 +1,15 @@
+{
+  "title": "İade ve Cayma Politikası",
+  "eyebrow": "YASAL TASLAK",
+  "description": "Taslak metindir; avukat onayı bekliyor. Yayın/checkout aktivasyonu öncesinde nihai metinle değiştirilecektir.",
+  "sections": [
+    {
+      "title": "Durum",
+      "description": "Bu sayfa satış altyapısı hazırlığı için oluşturulmuştur ve arama motorlarına kapalıdır."
+    }
+  ],
+  "seo": {
+    "title": "İade ve Cayma Politikası",
+    "description": "Noindex yasal taslak."
+  }
+}

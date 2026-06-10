@@ -60,5 +60,12 @@
     "title": "{{appName}} и друзья | Английский для дошкольников",
     "description": "Наборы для изучения английского языка для дошкольников, цифровой контент и платформа поддержки учителей.",
     "keywords": "Программа английского для дошкольников Турция, английский для детей раннего возраста в игровой форме, набор для изучения английского языка для дошкольников, обучение английскому для детей дошкольного возраста, система подготовки к Кембридже, английский для детей, программа английского языка для детей 3-6 лет"
+  },
+  "digitalEntry": {
+    "eyebrow": "WOODY DIGITAL",
+    "title": "Enter Woody Digital in one click",
+    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
+    "cta": "Open Woody Digital",
+    "href": "/digital-content"
   }
 }

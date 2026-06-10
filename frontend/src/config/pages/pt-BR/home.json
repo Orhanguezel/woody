@@ -60,5 +60,12 @@
     "title": "{{appName}} e Amigos | Inglês para a pré-escola",
     "description": "Conjuntos de aprendizagem de inglês pré-escolar, conteúdo digital e plataforma de apoio ao professor.",
     "keywords": "programa de inglês pré-escolar Turquia, inglês infantil baseado em brincadeiras, conjunto de aprendizagem de inglês pré-escolar, educação de inglês infantil, sistema de preparação Cambridge, inglês para crianças, programa de inglês de 3 a 6 anos"
+  },
+  "digitalEntry": {
+    "eyebrow": "WOODY DIGITAL",
+    "title": "Enter Woody Digital in one click",
+    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
+    "cta": "Open Woody Digital",
+    "href": "/digital-content"
   }
 }

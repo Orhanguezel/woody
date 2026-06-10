@@ -39,9 +39,9 @@ export async function switchLocale(
   const asPath = safeAsPath(currentPath);
   const { pathname, query, hash } = splitAsPath(asPath);
 
-  const nextLoc = normLocaleTag(next) || 'de';
+  const nextLoc = normLocaleTag(next) || 'tr';
   const actives = Array.isArray(activeLocales) ? activeLocales : [];
-  const defaultLocale = normLocaleTag(actives[0]) || 'de';
+  const defaultLocale = normLocaleTag(actives[0]) || 'tr';
 
   const finalTarget = localizePath(nextLoc, `${pathname}${query}${hash}`, actives, {
     defaultLocale,

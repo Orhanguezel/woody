@@ -17,6 +17,17 @@ type WhatsAppLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'hr
  */
 export function WhatsAppLink({ phone, text, children, ...rest }: WhatsAppLinkProps) {
   const [href, setHref] = React.useState(() => buildWhatsAppHref(phone, text));
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
+    try {
+      window.gtag?.('event', 'whatsapp_click', {
+        page_path: window.location.pathname,
+        phone: phone || undefined,
+      });
+    } catch {
+      // Analytics is optional.
+    }
+    rest.onClick?.(event);
+  };
 
   React.useEffect(() => {
     const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
@@ -26,7 +37,7 @@ export function WhatsAppLink({ phone, text, children, ...rest }: WhatsAppLinkPro
   }, [phone, text]);
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+    <a href={href} target="_blank" rel="noopener noreferrer" {...rest} onClick={handleClick}>
       {children}
     </a>
   );

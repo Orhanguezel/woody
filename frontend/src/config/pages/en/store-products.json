@@ -142,5 +142,39 @@
       "price": "₺399",
       "image": "/media/woody/reference/m4z26p5k_2.png"
     }
-  ]
+  ],
+  "quoteForm": {
+    "title": "Request a quote for your school",
+    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
+    "linkLabel": "Quote Form",
+    "submit": "Send Quote Request",
+    "success": "Your request has been received. Our team will contact you shortly.",
+    "error": "The request could not be sent. Please check the information and try again.",
+    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "fields": {
+      "orgName": "Institution name",
+      "contactName": "Contact name",
+      "email": "Email",
+      "phone": "Phone",
+      "studentCount": "Student count",
+      "level": "Level",
+      "city": "City",
+      "district": "District",
+      "message": "Message"
+    },
+    "levels": {
+      "mixed": "Mixed level",
+      "basic": "Basic",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "waitlistForm": {
+    "title": "Stay informed",
+    "description": "We will notify you when this product opens.",
+    "emailPlaceholder": "Your email",
+    "submit": "Join",
+    "success": "You have been added to the waitlist.",
+    "error": "Signup failed. Please try again."
+  }
 }

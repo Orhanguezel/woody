@@ -15,7 +15,9 @@ export default function VerifyEmailPage() {
   const token = searchParams.get('token');
   const mode = searchParams.get('mode');
   const email = searchParams.get('email');
+  const next = searchParams.get('next') || '';
   const locale = useLocaleShort();
+  const nextHref = next.startsWith('/') ? next : localizePath(locale, '/profile');
 
   const [confirm, { isLoading }] = useConfirmEmailVerificationMutation();
   const [sendVerification, sendState] = useSendEmailVerificationMutation();
@@ -106,7 +108,7 @@ export default function VerifyEmailPage() {
                   {sendState.isLoading ? '...' : resendLabel}
                 </button>
                 <Link
-                  href={localizePath(locale, '/profile')}
+                  href={nextHref}
                   className="inline-block w-full border border-border-light bg-bg-card text-text-primary font-semibold py-3 px-6 rounded-sm hover:bg-bg-card-hover transition-all"
                 >
                   {locale === 'de' ? 'Zum Profil' : locale === 'tr' ? 'Profile Git' : 'Go to Profile'}
@@ -147,7 +149,7 @@ export default function VerifyEmailPage() {
                     : 'Your email address has been successfully verified.'}
               </p>
               <Link
-                href={localizePath(locale, '/profile')}
+                href={nextHref}
                 className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all"
               >
                 {locale === 'de' ? 'Zum Profil' : locale === 'tr' ? 'Profile Git' : 'Go to Profile'}
@@ -204,7 +206,7 @@ export default function VerifyEmailPage() {
                       : 'The link is invalid or has expired.')}
               </p>
               <Link
-                href={localizePath(locale, '/profile')}
+                href={nextHref}
                 className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all"
               >
                 {locale === 'de' ? 'Zum Profil' : locale === 'tr' ? 'Profile Git' : 'Go to Profile'}

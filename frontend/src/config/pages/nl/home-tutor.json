@@ -65,5 +65,11 @@
     "title": "Home Bijlesdocent Engels Set | Thuis- en privéles Engels voorschools onderwijs",
     "description": "{{appName}} Home Tutor: een voorschoolse leerset voor Engels voor thuis- of privélessen. Een curriculum met 4 niveaus (Basic/Junior/Senior/PRO) voor gebruik door ouder en kind, inclusief digitale inhoud.",
     "keywords": "thuisleraar Engels, privéles Engels aan huis, voorschoolse Engelse thuisset, Woody thuisleraar, privéles Engels voor kinderen"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Home Tutor video"
   }
 }

@@ -46,6 +46,34 @@ while IFS=$'\t' read -r fname url; do
   fi
 done < "$MANIFEST"
 
+echo "Unicode dosya adi aliaslari kontrol ediliyor..."
+python3 - "$MEDIA_DIR" <<'PY'
+import os
+import sys
+import unicodedata
+
+root = sys.argv[1]
+created = 0
+for dirpath, _dirnames, filenames in os.walk(root):
+    for name in filenames:
+        src = os.path.join(dirpath, name)
+        for normalized in {unicodedata.normalize("NFC", name), unicodedata.normalize("NFD", name)}:
+            if normalized == name:
+                continue
+            dst = os.path.join(dirpath, normalized)
+            if os.path.exists(dst):
+                continue
+            try:
+                os.link(src, dst)
+            except OSError:
+                try:
+                    os.symlink(name, dst)
+                except OSError:
+                    continue
+            created += 1
+print(f"Alias: {created} olusturuldu")
+PY
+
 echo "─────────────────────────────────────────────"
 echo "Bitti: ✅ $ok indirildi · ⏭ $skip atlandı · ❌ $fail başarısız"
 if (( fail > 0 )); then

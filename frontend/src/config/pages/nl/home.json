@@ -60,5 +60,12 @@
     "title": "{{appName}} en Vrienden | Engels voor kleuters",
     "description": "Engelse leersets voor kleuters, digitale inhoud en een ondersteuningsplatform voor leerkrachten.",
     "keywords": "Engels voorschools programma Turkije, spelend Engels voor jonge kinderen, Engels voorschoolse leerset, Engels voor jonge kinderen, Cambridge voorbereidingssysteem, Engels voor kinderen, Engels programma voor kinderen van 3 tot 6 jaar"
+  },
+  "digitalEntry": {
+    "eyebrow": "WOODY DIGITAL",
+    "title": "Enter Woody Digital in one click",
+    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
+    "cta": "Open Woody Digital",
+    "href": "/digital-content"
   }
 }

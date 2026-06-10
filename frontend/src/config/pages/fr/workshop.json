@@ -60,5 +60,11 @@
     "title": "Ensemble d'anglais d'atelier | Éducation préscolaire en anglais par ateliers",
     "description": "Série d'ateliers {{appName}} : un ensemble d'apprentissage pratique de l'anglais préscolaire basé sur des ateliers. 4 niveaux (Basic/Junior/Senior/PRO), avec des activités axées sur le jeu et le théâtre, les enfants apprennent l'anglais en le vivant.",
     "keywords": "ensemble d'anglais d'atelier, anglais en atelier, atelier d'anglais préscolaire, atelier boisé, enseignement pratique de l'anglais"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Workshop video"
   }
 }

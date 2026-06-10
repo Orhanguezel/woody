@@ -38,7 +38,7 @@ function resolveCurrentLocaleFromPath(asPath: string, activeLocales: string[]): 
   const actives = (activeLocales || []).map(normLocaleTag).filter(Boolean);
   const activeSet = new Set(actives);
 
-  const def = normLocaleTag(actives[0]) || 'de';
+  const def = normLocaleTag(actives[0]) || 'tr';
   const seg = firstPathSeg(asPath);
 
   if (seg && activeSet.has(seg)) return seg;

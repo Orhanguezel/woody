@@ -123,7 +123,7 @@ export function AppSidebar({
           </div>
           <div className="flex flex-col gap-0.5 leading-none transition-all duration-200 group-data-[state=collapsed]:opacity-0 group-data-[state=collapsed]:w-0 group-data-[state=collapsed]:overflow-hidden group-data-[state=collapsed]:hidden">
             <span className="font-serif font-bold text-xl tracking-tight text-sidebar-foreground whitespace-nowrap">
-              {(copy.app_name || '').trim() || getAdminAppName()}
+              {(copy.app_name || '').trim() || branding.app_name || getAdminAppName()}
             </span>
             {(getAdminBrandSubtitle() || '').trim() ? (
               <span className="text-[9px] font-bold tracking-[0.3em] text-brand-gold uppercase opacity-80 whitespace-nowrap">

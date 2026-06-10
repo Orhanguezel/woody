@@ -92,5 +92,242 @@
     "title": "Bibliothèque numérique | {{appName}} et ses Amis",
     "description": "Monde de contenu numérique {{appName}} : sections Storyland, Movieland, Musicland et Library pour les niveaux Basic, Junior et Senior.",
     "keywords": "woody digital, contenu numérique, storyland, movieland, musicland, vidéo anglaise pour enfants"
+  },
+  "levelLabels": {
+    "basic": {
+      "title": "BASIC",
+      "subtitle": "Level 1",
+      "detailTitle": "BASIC Level 1"
+    },
+    "junior": {
+      "title": "JUNIOR",
+      "subtitle": "Level 2",
+      "detailTitle": "JUNIOR Level 2"
+    },
+    "senior": {
+      "title": "SENIOR",
+      "subtitle": "Level 3",
+      "detailTitle": "SENIOR Level 3"
+    }
+  },
+  "sectionLabels": {
+    "storyland": {
+      "title": "Storyland",
+      "description": "16 interactive video stories"
+    },
+    "movieland": {
+      "title": "Movieland",
+      "description": "8 videos"
+    },
+    "musicland": {
+      "title": "Musicland",
+      "description": "8 songs"
+    },
+    "library": {
+      "title": "Library",
+      "description": "Book content will open with membership"
+    }
+  },
+  "library": {
+    "badge": "Bientôt",
+    "title": "Library is coming soon",
+    "description": "Library content will open with the membership system. For now, covers are shown as gray previews.",
+    "modalTitle": "Membership required for Library",
+    "modalDescription": "This area will unlock when the membership system is enabled. Create an account or sign in to be ready.",
+    "registerCta": "Register",
+    "loginCta": "Log in"
+  },
+  "ui": {
+    "hubTitle": "Digital Content",
+    "publicBadge": "Public",
+    "close": "Fermer",
+    "back": "Back to digital content",
+    "nowPlaying": "Now playing",
+    "stop": "Stop",
+    "protectedTitle": "Protected Content",
+    "protectedDescription": "Enter your 4-digit password to view this content.",
+    "passwordLabel": "Four-digit password",
+    "enter": "Enter",
+    "passwordHelp": "Enter your password once; it will not be requested again during this session.",
+    "passwordError": "Invalid password. Please try again.",
+    "videoMissing": "The video link has not been added yet."
+  },
+  "musicland": {
+    "tracks": {
+      "basic": [
+        {
+          "id": 1,
+          "title": "Theme 1",
+          "topic": "Theme 1",
+          "audioUrl": "/media/woody/reference/iccoy0mm_theme%201%20.mp3",
+          "thumbnail": "/media/woody/reference/pxj6okjj_1.png"
+        },
+        {
+          "id": 2,
+          "title": "Theme 2",
+          "topic": "Theme 2",
+          "audioUrl": "/media/woody/reference/y3dz0w3v_theme%202.mp3",
+          "thumbnail": "/media/woody/reference/3r3f6uwx_2.png"
+        },
+        {
+          "id": 3,
+          "title": "Theme 3",
+          "topic": "Theme 3",
+          "audioUrl": "/media/woody/reference/lfgctcef_theme%203%20.mp3",
+          "thumbnail": "/media/woody/reference/fvlxvwww_3.png"
+        },
+        {
+          "id": 4,
+          "title": "Theme 4",
+          "topic": "Theme 4",
+          "audioUrl": "/media/woody/reference/6pfdm5c0_theme%204%20.mp3",
+          "thumbnail": "/media/woody/reference/5ukkudwy_4.png"
+        },
+        {
+          "id": 5,
+          "title": "Theme 5",
+          "topic": "Theme 5",
+          "audioUrl": "/media/woody/reference/w4djc170_Theme%205.mp3",
+          "thumbnail": "/media/woody/reference/9bh5jjnf_5.png"
+        },
+        {
+          "id": 6,
+          "title": "Theme 6",
+          "topic": "Theme 6",
+          "audioUrl": "/media/woody/reference/g2sj2m65_theme%206.mp3",
+          "thumbnail": "/media/woody/reference/9vonr43z_6.png"
+        },
+        {
+          "id": 7,
+          "title": "Theme 7 – Clothes",
+          "topic": "Clothes",
+          "audioUrl": "/media/woody/reference/2sncgdds_theme%207.mp3",
+          "thumbnail": "/media/woody/reference/73lilv7l_7.png"
+        },
+        {
+          "id": 8,
+          "title": "Theme 8",
+          "topic": "Theme 8",
+          "audioUrl": "/media/woody/reference/726lj4d9_theme%208.mp3",
+          "thumbnail": "/media/woody/reference/8ontm0a3_8.png"
+        }
+      ],
+      "junior": [
+        {
+          "id": 1,
+          "title": "Theme 1",
+          "topic": "Theme 1",
+          "audioUrl": "/media/woody/reference/r6xwf4fx_Theme%201.mp3",
+          "thumbnail": "/media/woody/reference/rn4hl66d_1.png"
+        },
+        {
+          "id": 2,
+          "title": "Theme 2",
+          "topic": "Theme 2",
+          "audioUrl": "/media/woody/reference/ypzzvi5i_theme%202.mp3",
+          "thumbnail": "/media/woody/reference/68recr7x_2.png"
+        },
+        {
+          "id": 3,
+          "title": "Theme 3",
+          "topic": "Theme 3",
+          "audioUrl": "/media/woody/reference/07v23187_theme%203%20.mp3",
+          "thumbnail": "/media/woody/reference/ex1xgfa1_3.png"
+        },
+        {
+          "id": 4,
+          "title": "Theme 4",
+          "topic": "Theme 4",
+          "audioUrl": "/media/woody/reference/kbi01h0d_theme%204%20.mp3",
+          "thumbnail": "/media/woody/reference/0skbimng_4.png"
+        },
+        {
+          "id": 5,
+          "title": "Theme 5",
+          "topic": "Theme 5",
+          "audioUrl": "/media/woody/reference/fqeyspb4_theme%205.mp3",
+          "thumbnail": "/media/woody/reference/uj8it9vz_5.png"
+        },
+        {
+          "id": 6,
+          "title": "Theme 6",
+          "topic": "Theme 6",
+          "audioUrl": "/media/woody/reference/c2eihyip_theme%206.mp3",
+          "thumbnail": "/media/woody/reference/22qudlvp_11.png"
+        },
+        {
+          "id": 7,
+          "title": "Theme 7",
+          "topic": "Theme 7",
+          "audioUrl": "/media/woody/reference/ttak76ty_theme%207.mp3",
+          "thumbnail": "/media/woody/reference/xvg3m6sd_13.png"
+        },
+        {
+          "id": 8,
+          "title": "Theme 8",
+          "topic": "Theme 8",
+          "audioUrl": "/media/woody/reference/hj56hh9t_theme%208%20.mp3",
+          "thumbnail": "/media/woody/reference/cnuuucdz_15.png"
+        }
+      ],
+      "senior": [
+        {
+          "id": 1,
+          "title": "Theme 1",
+          "topic": "Theme 1",
+          "audioUrl": "/media/woody/reference/9uqnvd3a_theme%201.mp3",
+          "thumbnail": "/media/woody/reference/ejpqg9mg_I%CC%87lk%20sayfa%20theme%201_Sayfa_1.jpg"
+        },
+        {
+          "id": 2,
+          "title": "Theme 2",
+          "topic": "Theme 2",
+          "audioUrl": "/media/woody/reference/ymbcni8l_theme%202%20.mp3",
+          "thumbnail": "/media/woody/reference/pxbe6piu_I%CC%87lk%20sayfa%20theme%201_Sayfa_2.jpg"
+        },
+        {
+          "id": 3,
+          "title": "Theme 3",
+          "topic": "Theme 3",
+          "audioUrl": "/media/woody/reference/k7dc3mmg_theme%203.mp3",
+          "thumbnail": "/media/woody/reference/uoftphsc_I%CC%87lk%20sayfa%20theme%201_Sayfa_3.jpg"
+        },
+        {
+          "id": 4,
+          "title": "Theme 4",
+          "topic": "Theme 4",
+          "audioUrl": "/media/woody/reference/87azrhhk_theme%204.mp3",
+          "thumbnail": "/media/woody/reference/kbd06i5m_I%CC%87lk%20sayfa%20theme%201_Sayfa_4.jpg"
+        },
+        {
+          "id": 5,
+          "title": "Theme 5",
+          "topic": "Theme 5",
+          "audioUrl": "/media/woody/reference/tuf69tq4_theme%205%20.mp3",
+          "thumbnail": "/media/woody/reference/bbn6tpbx_I%CC%87lk%20sayfa%20theme%201_Sayfa_5.jpg"
+        },
+        {
+          "id": 6,
+          "title": "Theme 6",
+          "topic": "Theme 6",
+          "audioUrl": "/media/woody/reference/u633wm8u_THEME%206.mp3",
+          "thumbnail": "/media/woody/reference/wh47lcep_I%CC%87lk%20sayfa%20theme%201_Sayfa_6.jpg"
+        },
+        {
+          "id": 7,
+          "title": "Theme 7",
+          "topic": "Theme 7",
+          "audioUrl": "/media/woody/reference/8620pn8i_THEME%207.mp3",
+          "thumbnail": "/media/woody/reference/w6y5frsb_I%CC%87lk%20sayfa%20theme%201_Sayfa_7.jpg"
+        },
+        {
+          "id": 8,
+          "title": "Theme 8",
+          "topic": "Theme 8",
+          "audioUrl": "/media/woody/reference/y64ptt3d_theme%208%20.mp3",
+          "thumbnail": "/media/woody/reference/ymtca4bt_I%CC%87lk%20sayfa%20theme%201_Sayfa_8.jpg"
+        }
+      ]
+    }
   }
 }

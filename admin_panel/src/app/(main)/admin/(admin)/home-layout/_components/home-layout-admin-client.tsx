@@ -41,6 +41,19 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
+async function revalidateHomeCache() {
+  try {
+    const res = await fetch('/admin/api/revalidate-proxy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: '/tr' }),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 interface RowProps {
   section: AdminHomeSectionDto;
   expanded: boolean;
@@ -197,7 +210,7 @@ export default function HomeLayoutAdminClient() {
   const [items, setItems] = React.useState<AdminHomeSectionDto[]>([]);
   const [expandedId, setExpandedId] = React.useState<string | null>(null);
   const [showNew, setShowNew] = React.useState(false);
-  const [newRow, setNewRow] = React.useState({ slug: '', label: '', component_key: 'HeroNew' });
+  const [newRow, setNewRow] = React.useState({ slug: '', label: '', component_key: 'WoodyHomeHero' });
 
   React.useEffect(() => {
     if (data) setItems(data);
@@ -213,12 +226,22 @@ export default function HomeLayoutAdminClient() {
     if (!over || active.id === over.id) return;
     const oldIdx = items.findIndex((s) => s.id === active.id);
     const newIdx = items.findIndex((s) => s.id === over.id);
+    if (oldIdx < 0 || newIdx < 0) return;
     const reordered = arrayMove(items, oldIdx, newIdx).map((s, i) => ({ ...s, order_index: (i + 1) * 10 }));
+    const payload = reordered
+      .filter((s) => typeof s.id === 'string' && s.id.length >= 32)
+      .map((s) => ({ id: s.id, order_index: s.order_index }));
+    if (payload.length !== reordered.length || payload.length === 0) {
+      toast.error('Sıralama kaydedilemedi');
+      refetch();
+      return;
+    }
     setItems(reordered);
 
     try {
-      await reorderSections({ items: reordered.map((s) => ({ id: s.id, order_index: s.order_index })) }).unwrap();
-      toast.success('Sıralama güncellendi');
+      await reorderSections({ items: payload }).unwrap();
+      const revalidated = await revalidateHomeCache();
+      toast.success(revalidated ? 'Sıralama güncellendi ve frontend cache temizlendi' : 'Sıralama güncellendi');
     } catch {
       toast.error('Sıralama kaydedilemedi');
       refetch();
@@ -228,7 +251,8 @@ export default function HomeLayoutAdminClient() {
   const patchRow = async (id: string, patch: Partial<AdminHomeSectionDto>) => {
     try {
       await updateSection({ id, data: patch as any }).unwrap();
-      toast.success('Kaydedildi');
+      const revalidated = await revalidateHomeCache();
+      toast.success(revalidated ? 'Kaydedildi ve frontend cache temizlendi' : 'Kaydedildi');
     } catch {
       toast.error('Kaydedilemedi');
     }
@@ -238,7 +262,8 @@ export default function HomeLayoutAdminClient() {
     if (!confirm(`"${label}" silinsin mi?`)) return;
     try {
       await deleteSection(id).unwrap();
-      toast.success('Silindi');
+      const revalidated = await revalidateHomeCache();
+      toast.success(revalidated ? 'Silindi ve frontend cache temizlendi' : 'Silindi');
     } catch {
       toast.error('Silinemedi');
     }
@@ -259,9 +284,10 @@ export default function HomeLayoutAdminClient() {
         is_active: 1,
         config: null,
       }).unwrap();
-      toast.success('Eklendi');
+      const revalidated = await revalidateHomeCache();
+      toast.success(revalidated ? 'Eklendi ve frontend cache temizlendi' : 'Eklendi');
       setShowNew(false);
-      setNewRow({ slug: '', label: '', component_key: 'HeroNew' });
+      setNewRow({ slug: '', label: '', component_key: 'WoodyHomeHero' });
     } catch (e: any) {
       toast.error(e?.data?.error?.message || 'Eklenemedi');
     }

@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import adminBrandingDefaults from "@/config/admin-branding-defaults.json";
 import { useGetSiteSettingAdminByKeyQuery, useUpdateSiteSettingAdminMutation } from "@/integrations/hooks";
 import { cn } from "@/lib/utils";
 
@@ -68,7 +69,10 @@ const DEFAULTS: TokenForm = {
     glow_gold: "0 0 30px rgba(22,163,74,0.14)",
   },
   branding: {
-    app_name: process.env.NEXT_PUBLIC_SITE_NAME?.trim() || process.env.NEXT_PUBLIC_APP_NAME?.trim() || "Platform",
+    app_name:
+      process.env.NEXT_PUBLIC_SITE_NAME?.trim() ||
+      process.env.NEXT_PUBLIC_APP_NAME?.trim() ||
+      adminBrandingDefaults.app_name,
     tagline: "Ürün ve içerik deneyiminizi tek yerden yönetin.",
     tagline_en: "Manage your product experience from one place.",
     logo_url: "",

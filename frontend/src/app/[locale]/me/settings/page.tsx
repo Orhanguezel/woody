@@ -9,18 +9,21 @@ import {
   ShieldAlert, 
   Trash2, 
   Save,
+  CreditCard,
 } from 'lucide-react';
 import { 
   useGetMyProfileQuery, 
   useUpsertMyProfileMutation,
 } from '@/integrations/rtk/hooks';
 import { toast } from 'sonner';
+import { useSubscriptionAccess } from '@/hooks/useSubscriptionAccess';
 
 const cinzel = Cinzel({ subsets: ['latin'] });
 
 export default function SettingsPage() {
   const { data: profile } = useGetMyProfileQuery();
   const [upsertProfile] = useUpsertMyProfileMutation();
+  const subscription = useSubscriptionAccess('library');
 
   const [formData, setFormData] = useState({
     full_name: '',
@@ -111,6 +114,19 @@ export default function SettingsPage() {
                     </button>
                  </div>
                ))}
+            </div>
+          </section>
+
+          <section className="bg-surface/30 border border-border/20 rounded-[2.5rem] p-8 md:p-10 space-y-6">
+            <div className="flex items-center gap-4 text-brand-gold">
+              <CreditCard className="w-6 h-6" />
+              <h2 className={`${cinzel.className} text-xl tracking-wider`}>Aboneliğim</h2>
+            </div>
+            <div className="rounded-2xl border border-border/20 bg-surface-high/30 p-5">
+              <div className="text-sm font-bold text-foreground">Library erişimi</div>
+              <div className="mt-1 text-sm text-muted-foreground">
+                Durum: {subscription.status === 'active' ? 'aktif' : subscription.status === 'loading' ? 'yükleniyor' : 'yok'}
+              </div>
             </div>
           </section>
 

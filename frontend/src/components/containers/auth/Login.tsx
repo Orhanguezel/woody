@@ -47,7 +47,10 @@ const Login: React.FC = () => {
     return raw.startsWith('/');
   }, [searchParams]);
 
-  const registerHref = useMemo(() => localizePath(locale, '/register'), [locale]);
+  const registerHref = useMemo(() => {
+    const base = localizePath(locale, '/register');
+    return hasExplicitNext ? `${base}?next=${encodeURIComponent(nextHref)}` : base;
+  }, [hasExplicitNext, locale, nextHref]);
   const forgotPasswordHref = useMemo(() => localizePath(locale, '/forgot-password'), [locale]);
 
   const [email, setEmail] = useState('');

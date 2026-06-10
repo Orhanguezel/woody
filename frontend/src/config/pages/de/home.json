@@ -60,5 +60,12 @@
     "title": "{{appName}} und Freunde | Vorschul-Englisch",
     "description": "Englisch-Lernsets für Vorschulkinder, digitale Inhalte und eine Support-Plattform für Lehrkräfte.",
     "keywords": "Vorschul-Englischprogramm Türkei, spielerisches frühkindliches Englisch, Vorschul-Englisch-Lernset, frühkindliche Englischausbildung, Cambridge-Vorbereitungssystem, Englisch für Kinder, Englischprogramm im Alter von 3 bis 6 Jahren"
+  },
+  "digitalEntry": {
+    "eyebrow": "WOODY DIGITAL",
+    "title": "Enter Woody Digital in one click",
+    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
+    "cta": "Open Woody Digital",
+    "href": "/digital-content"
   }
 }

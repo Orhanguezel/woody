@@ -5,6 +5,7 @@
 // =============================================================
 
 import { z } from 'zod';
+import adminBrandingDefaults from '@/config/admin-branding-defaults.json';
 
 const nonEmpty = z.string().trim().min(1);
 
@@ -74,7 +75,10 @@ export type SiteMetaDefaultObject = z.infer<typeof siteMetaDefaultSchema>;
 
 export const DEFAULT_OG_IMAGE = '/img/og-default.jpg';
 
-const _appName = process.env.NEXT_PUBLIC_APP_NAME || 'Platform';
+const _appName =
+  process.env.NEXT_PUBLIC_SITE_NAME?.trim() ||
+  process.env.NEXT_PUBLIC_APP_NAME?.trim() ||
+  adminBrandingDefaults.app_name;
 
 /**
  * ✅ Global fallback – DB boş/kırık olduğunda kullanılır.

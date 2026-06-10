@@ -60,5 +60,11 @@
     "title": "Workshop Conjunto de Inglês | Educação pré-escolar de inglês baseada em oficinas",
     "description": "{{appName}} Série de workshops: um conjunto prático de aprendizagem de inglês pré-escolar baseado em workshops. 4 níveis (Básico/Júnior/Sênior/PRO), com atividades lúdicas e teatrais, as crianças aprendem inglês vivenciando-o.",
     "keywords": "workshop de inglês, workshop de inglês, workshop de inglês pré-escolar, workshop woody, educação prática de inglês"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Workshop video"
   }
 }

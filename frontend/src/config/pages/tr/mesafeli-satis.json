@@ -1,0 +1,15 @@
+{
+  "title": "Mesafeli Satış Sözleşmesi",
+  "eyebrow": "YASAL TASLAK",
+  "description": "Taslak metindir; avukat onayı bekliyor. Yayın/checkout aktivasyonu öncesinde nihai metinle değiştirilecektir.",
+  "sections": [
+    {
+      "title": "Durum",
+      "description": "Bu sayfa satış altyapısı hazırlığı için oluşturulmuştur ve arama motorlarına kapalıdır."
+    }
+  ],
+  "seo": {
+    "title": "Mesafeli Satış Sözleşmesi",
+    "description": "Noindex yasal taslak."
+  }
+}

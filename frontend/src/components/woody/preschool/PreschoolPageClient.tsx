@@ -7,8 +7,23 @@ import { BookOpen, ChevronRight, LibraryBig, Play, ShoppingBag, Target, X } from
 
 import { FOCUS_RING } from '@/lib/a11y';
 import { WhatsAppLink } from '@/components/common/WhatsAppLink';
+import QuoteRequestForm, { type QuoteFormCopy } from '@/components/woody/quote/QuoteRequestForm';
 
 import type { WoodyCard, WoodyPageContent, WoodySection } from '../content-loader.server';
+type PreschoolPageUi = {
+  teacherSet?: string;
+  studentSet?: string;
+  videoWatch?: string;
+  quote?: string;
+  playHero?: string;
+  close?: string;
+  closeVideo?: string;
+  digitalTitle?: string;
+  digitalDescription?: string;
+  digitalCta?: string;
+  quoteMessageTemplate?: string;
+  proMessage?: string;
+};
 
 const HERO_VIDEO =
   '/media/woody/reference/uplopykh_194136173ef7.mp4';
@@ -99,6 +114,8 @@ export default function PreschoolPageClient({
   const setSection = findSection(content, 0);
   const levelsSection = findSection(content, 1);
   const exploreSection = findSection(content, 2);
+  const quoteForm = (content.raw as { quoteForm?: QuoteFormCopy } | undefined)?.quoteForm;
+  const pageUi = ((content.raw as { pageUi?: PreschoolPageUi } | undefined)?.pageUi ?? {}) as PreschoolPageUi;
   const { intro, notice } = splitNotice(setSection.description || '');
   const levels = useMemo(
     () =>
@@ -109,10 +126,10 @@ export default function PreschoolPageClient({
     [levelsSection.items],
   );
 
-  const teacherSet = locale === 'tr' ? 'Öğretmen Seti' : 'Teacher Set';
-  const studentSet = locale === 'tr' ? 'Öğrenci Seti' : 'Student Set';
-  const videoWatch = locale === 'tr' ? 'Video İzle' : 'Watch Video';
-  const quote = locale === 'tr' ? 'Fiyat Teklifi Al' : 'Get a Quote';
+  const teacherSet = pageUi.teacherSet || '';
+  const studentSet = pageUi.studentSet || '';
+  const videoWatch = pageUi.videoWatch || '';
+  const quote = pageUi.quote || '';
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
@@ -129,7 +146,7 @@ export default function PreschoolPageClient({
             type="button"
             onClick={() => setHeroOpen(true)}
             className={`mt-6 flex size-[70px] items-center justify-center rounded-full border-2 border-white/70 bg-transparent transition hover:scale-110 hover:border-white ${FOCUS_RING}`}
-            aria-label={locale === 'tr' ? 'Preschool videosunu oynat' : 'Play Preschool video'}
+            aria-label={pageUi.playHero}
           >
             <Play className="ml-1 size-7 text-white" fill="currentColor" aria-hidden />
           </button>
@@ -204,15 +221,13 @@ export default function PreschoolPageClient({
             <div className="absolute left-8 top-8 max-w-[380px] md:left-12 md:top-12 md:max-w-[420px] lg:left-16 lg:top-16">
               <div className="rounded-xl bg-white/90 px-6 py-5 backdrop-blur-sm md:px-7 md:py-6">
                 <h2 className="text-[22px] font-semibold leading-tight text-gray-900 md:text-[28px]">
-                  {locale === 'tr' ? 'Woody Dijital İçerikler' : 'Woody Digital Content'}
+                  {pageUi.digitalTitle}
                 </h2>
                 <p className="mt-3 text-[13px] leading-relaxed text-gray-700 md:text-[14px]">
-                  {locale === 'tr'
-                    ? 'Movieland, Storyland ve Musicland ile öğrenme süreci video, hikaye ve müzikle zenginleşir.'
-                    : 'Movieland, Storyland and Musicland enrich learning with video, stories and music.'}
+                  {pageUi.digitalDescription}
                 </p>
                 <span className="mt-4 inline-flex rounded-lg bg-gray-900 px-5 py-2.5 text-[13px] font-medium text-white md:text-[14px]">
-                  {locale === 'tr' ? 'Dijital dünyaya gitmek için tıklayın' : 'Open the digital world'}
+                  {pageUi.digitalCta}
                 </span>
               </div>
             </div>
@@ -249,23 +264,33 @@ export default function PreschoolPageClient({
                     />
                   </h3>
                   <p className="mb-3 mt-1 text-[13px] text-gray-500">{level.copy?.description}</p>
-                  <WhatsAppLink
-                    phone="905331570373"
-                    text={
-                      locale === 'tr'
-                        ? `Merhaba, ${level.name} hakkında fiyat teklifi almak istiyorum.`
-                        : `Hello, I would like to get a quote for ${level.name}.`
-                    }
-                    className={`inline-flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-[13px] font-medium text-white shadow-sm transition hover:bg-green-600 md:text-[14px] ${FOCUS_RING}`}
-                  >
-                    {quote}
-                  </WhatsAppLink>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <WhatsAppLink
+                      phone="905331570373"
+                      text={
+                        (pageUi.quoteMessageTemplate || '').replace('{{level}}', level.name)
+                      }
+                      className={`inline-flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-[13px] font-medium text-white shadow-sm transition hover:bg-green-600 md:text-[14px] ${FOCUS_RING}`}
+                    >
+                      {quote}
+                    </WhatsAppLink>
+                    {quoteForm?.linkLabel ? (
+                      <a
+                        href="#quote-form"
+                        className={`inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-[13px] font-medium text-gray-800 shadow-sm transition hover:bg-gray-50 md:text-[14px] ${FOCUS_RING}`}
+                      >
+                        {quoteForm.linkLabel}
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </article>
             ))}
           </div>
         </div>
       </section>
+
+      <QuoteRequestForm copy={quoteForm} source="preschool" />
 
       <section className="bg-white py-20 md:py-24">
         <div className="mx-auto max-w-[1100px] px-6 md:px-12">
@@ -304,7 +329,7 @@ export default function PreschoolPageClient({
               type="button"
               onClick={() => setSelectedLevel(null)}
               className={`absolute right-4 top-4 text-gray-400 transition hover:text-gray-600 ${FOCUS_RING}`}
-              aria-label={locale === 'tr' ? 'Kapat' : 'Close'}
+              aria-label={pageUi.close}
             >
               <X className="size-6" aria-hidden />
             </button>
@@ -313,7 +338,7 @@ export default function PreschoolPageClient({
             </h3>
             {selectedLevel.name === 'PRO Level' ? (
               <p className="py-6 text-center text-[15px] leading-relaxed text-gray-600 md:text-[16px]">
-                {locale === 'tr' ? "PRO seviyesi için Woody Academy'de eğitim verilir." : 'PRO level training is delivered in Woody Academy.'}
+                {pageUi.proMessage}
               </p>
             ) : (
               <div className="mt-6 space-y-3">
@@ -350,7 +375,7 @@ export default function PreschoolPageClient({
               setVideoUrl(null);
             }}
             className={`absolute right-6 top-6 z-[10001] text-white/80 transition hover:text-white ${FOCUS_RING}`}
-            aria-label={locale === 'tr' ? 'Videoyu kapat' : 'Close video'}
+            aria-label={pageUi.closeVideo}
           >
             <X className="size-9" aria-hidden />
           </button>

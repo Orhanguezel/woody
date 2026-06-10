@@ -22,6 +22,7 @@ import {
   MessageSquare,
   Package,
   Receipt,
+  FileText,
   School,
   Send,
   Settings,
@@ -74,6 +75,7 @@ export type AdminNavItemKey =
   | 'chat'
   | 'wallet'
   | 'orders'
+  | 'quote_requests'
   | 'products'
   | 'blog'
   | 'schools'
@@ -114,6 +116,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'products', url: '/admin/products', icon: Package },
       { key: 'blog', url: '/admin/blog', icon: BookOpenText },
       { key: 'orders', url: '/admin/orders', icon: Package },
+      { key: 'quote_requests', url: '/admin/quote-requests', icon: FileText },
       { key: 'subscriptions', url: '/admin/subscriptions', icon: CreditCard },
       { key: 'subscription_plans', url: '/admin/subscription-plans', icon: Receipt },
     ],
@@ -177,6 +180,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   support: 'Destek',
   chat: 'Chat & AI',
   orders: 'Siparişler',
+  quote_requests: 'Teklif Talepleri',
   products: 'Ürünler',
   blog: 'Blog',
   schools: 'Okullar',
@@ -210,10 +214,6 @@ const HIDDEN_NAV_KEYS = new Set<AdminNavItemKey>([
   'db',
   'audit',
   'llm_prompts',
-  'cache',
-  // Abonelik sistemi woody'de kullanilmiyor (kullanici talebi)
-  'subscriptions',
-  'subscription_plans',
   // Iyzipay ayarlari site-settings > API tab'inda; ayri sayfa gereksiz (kullanici talebi)
   'payment_settings',
 ]);

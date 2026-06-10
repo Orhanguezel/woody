@@ -47,7 +47,7 @@ export function LoginClient({ branding }: { branding: AdminBrandingConfig }) {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,31,58,0.72)_0%,rgba(11,92,173,0.30)_46%,rgba(255,248,232,0.05)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgba(11,31,58,0.82)_0%,rgba(11,31,58,0)_100%)]" />
         <div className="absolute top-8 right-8 rounded-full bg-[#f5c518] px-4 py-2 font-black text-[#0b1f3a] text-xs uppercase tracking-[0.18em] shadow-[0_14px_40px_rgba(245,197,24,0.32)]">
-          Woody Admin
+          {b.app_name}
         </div>
 
         <div className="absolute right-10 bottom-10 left-10 z-10 max-w-2xl xl:bottom-14 xl:left-14">
@@ -123,7 +123,7 @@ export function LoginClient({ branding }: { branding: AdminBrandingConfig }) {
           <p className="text-center font-mono text-[#0b5cad]/60 text-[10px]">
             {t("admin.auth.login.copyrightLine", {
               year: new Date().getFullYear(),
-              app: getAdminAppName(),
+              app: b.app_name || getAdminAppName(),
             })}
           </p>
         </div>

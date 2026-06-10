@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const FRONTEND_INTERNAL_URL =
   process.env.PANEL_FRONTEND_URL ||
   process.env.NEXT_PUBLIC_FRONTEND_URL ||
-  'http://127.0.0.1:3095';
+  'http://127.0.0.1:3101';
 const REVALIDATE_SECRET =
   process.env.REVALIDATE_SECRET ||
   process.env.NEXT_PUBLIC_REVALIDATE_SECRET ||

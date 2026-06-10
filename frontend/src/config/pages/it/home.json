@@ -60,5 +60,12 @@
     "title": "{{appName}} e Amici | Inglese per la prima infanzia",
     "description": "Set per l'apprendimento dell'inglese in età prescolare, contenuti digitali e piattaforma di supporto per insegnanti.",
     "keywords": "Programma di inglese prescolare Turchia, inglese per la prima infanzia basato sul gioco, set di apprendimento dell'inglese prescolare, educazione inglese per la prima infanzia, sistema di preparazione Cambridge, inglese per bambini, programma di inglese per bambini dai 3 ai 6 anni"
+  },
+  "digitalEntry": {
+    "eyebrow": "WOODY DIGITAL",
+    "title": "Enter Woody Digital in one click",
+    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
+    "cta": "Open Woody Digital",
+    "href": "/digital-content"
   }
 }

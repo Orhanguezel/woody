@@ -23,6 +23,8 @@ function asStoreCatalog(content: Awaited<ReturnType<typeof loadWoodyPageContent>
     quoteMessage: raw.quoteMessage ?? fallback?.quoteMessage,
     primaryCTA: raw.primaryCTA ?? hero.primaryCTA ?? fallback?.primaryCTA,
     showQuoteButtons: raw.showQuoteButtons,
+    quoteForm: raw.quoteForm ?? fallback?.quoteForm,
+    waitlistForm: raw.waitlistForm ?? fallback?.waitlistForm,
     categories: Array.isArray(raw.categories) ? raw.categories : fallback?.categories,
     products: Array.isArray(raw.products) ? raw.products : fallback?.products,
   };

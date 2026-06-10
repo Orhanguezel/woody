@@ -65,5 +65,11 @@
     "title": "Ensemble d'anglais pour tuteur à domicile | Cours à domicile et particuliers Éducation préscolaire en anglais",
     "description": "{{appName}} Home Tutor : un kit d'apprentissage de l'anglais préscolaire pour des cours à domicile ou privés. Un cursus en 4 niveaux (Basic/Junior/Senior/PRO) à usage parent + enfant, contenu numérique inclus.",
     "keywords": "tuteur à domicile anglais, cours particulier à domicile anglais, kit maison anglais préscolaire, tuteur à domicile woody, cours particulier enfants anglais"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Home Tutor video"
   }
 }

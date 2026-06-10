@@ -70,5 +70,45 @@
     "title": "Наборы для изучения английского языка для дошкольников | {{appName}} и друзья",
     "description": "{{appName}} Набор для изучения английского языка для дошкольников: игровая программа английского языка для детей 3–6 лет. Учебная программа по английскому языку для дошкольников с системой подготовки к Кембриджу. Наборы для учителей и учеников, учебная программа по английскому языку для дошкольников и планы уроков.",
     "keywords": "Набор для изучения английского языка для дошкольников, программа английского языка для дошкольников Турция, набор английского языка для детей раннего возраста, программа английского языка для дошкольников, подготовка к Кембриджскому дошкольному учреждению, программа английского языка для детей 3-6 лет, серия английского языка для дошкольников"
+  },
+  "quoteForm": {
+    "title": "Request a quote for your school",
+    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
+    "linkLabel": "Quote Form",
+    "submit": "Send Quote Request",
+    "success": "Your request has been received. Our team will contact you shortly.",
+    "error": "The request could not be sent. Please check the information and try again.",
+    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "fields": {
+      "orgName": "Institution name",
+      "contactName": "Contact name",
+      "email": "Email",
+      "phone": "Phone",
+      "studentCount": "Student count",
+      "level": "Level",
+      "city": "City",
+      "district": "District",
+      "message": "Message"
+    },
+    "levels": {
+      "mixed": "Mixed level",
+      "basic": "Basic",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "videoWatch": "Watch Video",
+    "quote": "Get a Quote",
+    "playHero": "Play Preschool video",
+    "close": "Close",
+    "digitalTitle": "Woody Digital Content",
+    "digitalDescription": "Movieland, Storyland and Musicland enrich learning with video, stories and music.",
+    "digitalCta": "Open the digital world",
+    "quoteMessageTemplate": "Hello, I would like to get a quote for {{level}}.",
+    "proMessage": "PRO level training is delivered in Woody Academy."
   }
 }

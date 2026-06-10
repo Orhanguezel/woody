@@ -70,5 +70,45 @@
     "title": "Conjuntos de aprendizagem de inglês pré-escolar | {{appName}} e Amigos",
     "description": "{{appName}} Conjunto de aprendizagem de inglês pré-escolar: um programa de inglês para a primeira infância baseado em brincadeiras para crianças de 3 a 6 anos. Currículo de inglês pré-escolar com sistema de preparação Cambridge. Conjuntos de professores e alunos, currículo de inglês pré-escolar e planos de aula.",
     "keywords": "conjunto de aprendizagem de inglês pré-escolar, programa de inglês pré-escolar Turquia, conjunto de inglês para primeira infância, programa de inglês para pré-escola, pré-escola de preparação para Cambridge, programa de inglês para 3 a 6 anos, série de inglês pré-escolar"
+  },
+  "quoteForm": {
+    "title": "Request a quote for your school",
+    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
+    "linkLabel": "Quote Form",
+    "submit": "Send Quote Request",
+    "success": "Your request has been received. Our team will contact you shortly.",
+    "error": "The request could not be sent. Please check the information and try again.",
+    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "fields": {
+      "orgName": "Institution name",
+      "contactName": "Contact name",
+      "email": "Email",
+      "phone": "Phone",
+      "studentCount": "Student count",
+      "level": "Level",
+      "city": "City",
+      "district": "District",
+      "message": "Message"
+    },
+    "levels": {
+      "mixed": "Mixed level",
+      "basic": "Basic",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "videoWatch": "Watch Video",
+    "quote": "Get a Quote",
+    "playHero": "Play Preschool video",
+    "close": "Close",
+    "digitalTitle": "Woody Digital Content",
+    "digitalDescription": "Movieland, Storyland and Musicland enrich learning with video, stories and music.",
+    "digitalCta": "Open the digital world",
+    "quoteMessageTemplate": "Hello, I would like to get a quote for {{level}}.",
+    "proMessage": "PRO level training is delivered in Woody Academy."
   }
 }

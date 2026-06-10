@@ -3,36 +3,37 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import { ChevronLeft, Lock, Play, X } from 'lucide-react';
+import { ChevronLeft, Lock, Play, UserPlus, X } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
+import { useSubscriptionAccess } from '@/hooks/useSubscriptionAccess';
 import {
-  DIGITAL_LEVEL_TITLES,
   DIGITAL_PROTECTED_SECTIONS,
-  DIGITAL_SECTION_TITLES,
   DIGITAL_SECTIONS,
   DIGITAL_VALID_PASSWORDS,
+  type DigitalContentCopy,
   type DigitalContentItem,
   getGeneratedItems,
+  getLevelTitle,
+  getSectionTitle,
 } from './digital-content-data';
 
 function PasswordModal({
   value,
   error,
-  locale,
+  copy,
   onChange,
   onSubmit,
   onClose,
 }: {
   value: string;
   error: string;
-  locale: string;
+  copy?: DigitalContentCopy;
   onChange: (value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onClose: () => void;
 }) {
-  const isTr = locale === 'tr';
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/80 p-4" data-testid="password-modal">
       <div className="relative w-full max-w-[400px] rounded-2xl bg-white p-8">
@@ -40,7 +41,7 @@ function PasswordModal({
           type="button"
           onClick={onClose}
           className={`absolute right-4 top-4 text-gray-400 transition hover:text-gray-600 ${FOCUS_RING}`}
-          aria-label={isTr ? 'Kapat' : 'Close'}
+          aria-label={copy?.ui?.close}
         >
           <X className="h-6 w-6" aria-hidden />
         </button>
@@ -50,10 +51,10 @@ function PasswordModal({
           </div>
         </div>
         <h2 className="mb-2 text-center text-[24px] font-black text-gray-900 md:text-[28px]">
-          {isTr ? 'İçerik Korumalı' : 'Protected Content'}
+          {copy?.ui?.protectedTitle}
         </h2>
         <p className="mb-6 text-center text-[14px] text-gray-600">
-          {isTr ? 'Bu içeriği görüntülemek için 4 haneli şifrenizi girin.' : 'Enter your 4-digit password to view this content.'}
+          {copy?.ui?.protectedDescription}
         </p>
         <form onSubmit={onSubmit}>
           <input
@@ -63,7 +64,7 @@ function PasswordModal({
             value={value}
             onChange={(event) => onChange(event.target.value.replace(/\D/g, ''))}
             placeholder="****"
-            aria-label={isTr ? 'Dört haneli şifre' : 'Four-digit password'}
+            aria-label={copy?.ui?.passwordLabel}
             className={`mb-4 w-full rounded-xl border-2 border-gray-300 px-4 py-4 text-center text-[32px] font-black tracking-[12px] transition focus:border-blue-500 ${FOCUS_RING}`}
             autoFocus
             data-testid="password-input"
@@ -78,16 +79,107 @@ function PasswordModal({
             disabled={value.length !== 4}
             className={`w-full rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 py-3.5 text-[16px] font-bold text-white transition hover:from-blue-600 hover:to-purple-700 disabled:cursor-not-allowed disabled:from-gray-300 disabled:to-gray-400 ${FOCUS_RING}`}
           >
-            {isTr ? 'Giriş Yap' : 'Enter'}
+            {copy?.ui?.enter}
           </button>
         </form>
         <p className="mt-4 text-center text-[12px] text-gray-500">
-          {isTr
-            ? 'Şifrenizi bir kez girin, sonraki ziyaretlerde tekrar sorulmayacak.'
-            : 'Enter your password once; it will not be requested again during this session.'}
+          {copy?.ui?.passwordHelp}
         </p>
       </div>
     </div>
+  );
+}
+
+function LibrarySoon({
+  copy,
+  locale,
+  level,
+  section,
+}: {
+  copy?: DigitalContentCopy;
+  locale: string;
+  level: string;
+  section: string;
+}) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const access = useSubscriptionAccess(section);
+  const currentPath = localizePath(locale as any, `/digital-content/${level}/${section}`);
+  const encodedNext = encodeURIComponent(currentPath);
+  const placeholders = Array.from({ length: 8 }, (_, index) => index + 1);
+
+  return (
+    <section className="w-full py-12 md:py-16">
+      <div className="container max-w-[1200px]">
+        <div className="mb-10 rounded-lg border border-gray-200 bg-gray-50 px-6 py-10 text-center">
+          <span className="inline-flex rounded-full bg-gray-200 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-gray-700">
+            {copy?.library?.badge}
+          </span>
+          <h2 className="mt-4 font-display text-[30px] font-black text-gray-700 md:text-[42px]">
+            {copy?.library?.title}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-gray-500">
+            {copy?.library?.description}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {placeholders.map((id) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => {
+                if (!access.hasAccess) setModalOpen(true);
+              }}
+              className={`group relative aspect-[3/2] overflow-hidden rounded-lg border border-gray-200 bg-gray-100 p-4 text-left opacity-80 grayscale transition hover:-translate-y-0.5 hover:opacity-100 hover:shadow-lg ${FOCUS_RING}`}
+            >
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,#f5f5f5,#d9d9d9)]" />
+              <div className="relative flex h-full flex-col justify-between">
+                <span className="w-fit rounded-full bg-white/80 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-gray-600">
+                  {copy?.library?.badge}
+                </span>
+                <span className="text-[13px] font-bold text-gray-700">
+                  {getSectionTitle(section, copy)} {id}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {modalOpen ? (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/70 p-4">
+          <div className="relative w-full max-w-[440px] rounded-lg bg-white p-7 shadow-2xl">
+            <button
+              type="button"
+              onClick={() => setModalOpen(false)}
+              className={`absolute right-4 top-4 text-gray-400 transition hover:text-gray-700 ${FOCUS_RING}`}
+              aria-label={copy?.ui?.close}
+            >
+              <X className="h-5 w-5" aria-hidden />
+            </button>
+            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-700">
+              <UserPlus className="h-7 w-7" aria-hidden />
+            </div>
+            <h3 className="text-[24px] font-black text-gray-900">{copy?.library?.modalTitle}</h3>
+            <p className="mt-3 text-[14px] leading-6 text-gray-600">{copy?.library?.modalDescription}</p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <Link
+                href={`${localizePath(locale as any, '/register')}?next=${encodedNext}`}
+                className={`inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--gm-primary)] px-4 text-[13px] font-bold text-white ${FOCUS_RING}`}
+              >
+                {copy?.library?.registerCta}
+              </Link>
+              <Link
+                href={`${localizePath(locale as any, '/login')}?next=${encodedNext}`}
+                className={`inline-flex min-h-11 items-center justify-center rounded-md border border-gray-200 px-4 text-[13px] font-bold text-gray-800 ${FOCUS_RING}`}
+              >
+                {copy?.library?.loginCta}
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </section>
   );
 }
 
@@ -158,15 +250,14 @@ function ContentGrid({
 
 function VideoModal({
   video,
-  locale,
+  copy,
   onClose,
 }: {
   video: DigitalContentItem | null;
-  locale: string;
+  copy?: DigitalContentCopy;
   onClose: () => void;
 }) {
   if (!video) return null;
-  const isTr = locale === 'tr';
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4" onClick={onClose} data-testid="video-modal">
       <div className="relative w-full max-w-[900px] overflow-hidden rounded-2xl bg-black" onClick={(event) => event.stopPropagation()}>
@@ -174,7 +265,7 @@ function VideoModal({
           type="button"
           onClick={onClose}
           className={`absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white transition hover:bg-white/30 ${FOCUS_RING}`}
-          aria-label={isTr ? 'Kapat' : 'Close'}
+          aria-label={copy?.ui?.close}
         >
           <X className="h-5 w-5" aria-hidden />
         </button>
@@ -183,7 +274,7 @@ function VideoModal({
             <video src={video.videoUrl} controls autoPlay className="h-full w-full" />
           ) : (
             <p className="text-[16px] text-white">
-              🎬 {video.title} {isTr ? 'video oynatıcı (Video URL eklenecek)' : 'video player (Video URL will be added)'}
+              {video.title} {copy?.ui?.videoMissing}
             </p>
           )}
         </div>
@@ -199,13 +290,14 @@ export default function DigitalContentDetailClient({
   locale,
   level,
   section,
+  copy,
 }: {
   locale: string;
   level: string;
   section: string;
+  copy?: DigitalContentCopy;
 }) {
   const sectionMeta = DIGITAL_SECTIONS.find((item) => item.id === section);
-  const isTr = locale === 'tr';
   const currentColor = sectionMeta?.color ?? 'var(--gm-text)';
   const [verified, setVerified] = useState(!DIGITAL_PROTECTED_SECTIONS.includes(section));
   const [showPassword, setShowPassword] = useState(DIGITAL_PROTECTED_SECTIONS.includes(section));
@@ -215,7 +307,7 @@ export default function DigitalContentDetailClient({
   const [currentTrack, setCurrentTrack] = useState<DigitalContentItem | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const items = section === 'library' ? [] : getGeneratedItems(level, section);
+  const items = section === 'library' ? [] : getGeneratedItems(level, section, copy);
 
   useEffect(() => {
     if (!DIGITAL_PROTECTED_SECTIONS.includes(section)) {
@@ -253,7 +345,7 @@ export default function DigitalContentDetailClient({
       return;
     }
     setPassword('');
-    setPasswordError(isTr ? 'Yanlış şifre! Lütfen tekrar deneyin.' : 'Wrong password. Please try again.');
+    setPasswordError(copy?.ui?.passwordError || '');
   }
 
   function handleItemClick(item: DigitalContentItem) {
@@ -284,7 +376,7 @@ export default function DigitalContentDetailClient({
         <PasswordModal
           value={password}
           error={passwordError}
-          locale={locale}
+          copy={copy}
           onChange={(value) => {
             setPassword(value);
             setPasswordError('');
@@ -307,24 +399,18 @@ export default function DigitalContentDetailClient({
                 data-testid="back-to-digital-content"
               >
                 <ChevronLeft className="h-6 w-6" aria-hidden />
-                <span className="text-[15px] font-bold">{isTr ? 'Geri' : 'Back'}</span>
+                <span className="text-[15px] font-bold">{copy?.ui?.back}</span>
               </Link>
               <div className="flex-1">
                 <h1 className="font-display text-[28px] font-black md:text-[36px]" style={{ color: currentColor }}>
-                  {DIGITAL_LEVEL_TITLES[level]} - {DIGITAL_SECTION_TITLES[section]}
+                  {getLevelTitle(level, copy)} - {getSectionTitle(section, copy)}
                 </h1>
               </div>
             </div>
           </section>
 
           {section === 'library' ? (
-            <section className="w-full py-16">
-              <div className="container max-w-[1200px] text-center">
-                <p className="text-[18px] text-gray-500">
-                  📖 {isTr ? 'Library içeriği yakında eklenecek' : 'Library content will be added soon'}
-                </p>
-              </div>
-            </section>
+            <LibrarySoon copy={copy} locale={locale} level={level} section={section} />
           ) : (
             <ContentGrid
               items={items}
@@ -336,20 +422,20 @@ export default function DigitalContentDetailClient({
             />
           )}
 
-          <VideoModal video={selectedVideo} locale={locale} onClose={() => setSelectedVideo(null)} />
+          <VideoModal video={selectedVideo} copy={copy} onClose={() => setSelectedVideo(null)} />
 
           {section === 'musicland' && currentTrack ? (
             <div className="fixed inset-x-0 bottom-0 z-[9998] bg-gradient-to-r from-purple-900 to-purple-700 text-white shadow-2xl">
               <div className="container flex max-w-[1400px] items-center gap-4 px-6 py-4">
                 <div className="min-w-0 flex-1">
-                  <p className="mb-1 text-[11px] text-purple-200">{isTr ? 'Şu an çalıyor' : 'Now playing'}</p>
+                  <p className="mb-1 text-[11px] text-purple-200">{copy?.ui?.nowPlaying}</p>
                   <p className="truncate text-[15px] font-bold">{currentTrack.title}</p>
                 </div>
                 <button
                   type="button"
                   onClick={stopMusic}
                   className={`flex h-12 w-12 items-center justify-center rounded-full bg-white/20 transition hover:bg-white/30 ${FOCUS_RING}`}
-                  aria-label={isTr ? 'Durdur' : 'Stop'}
+                  aria-label={copy?.ui?.stop}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden>
                     <rect x="6" y="6" width="12" height="12" />

@@ -60,5 +60,11 @@
     "title": "Workshop İngilizce Seti | Atölye Tabanlı Anaokulu İngilizce Eğitimi",
     "description": "{{appName}} Workshop serisi: atölye tabanlı, uygulamalı anaokulu İngilizce eğitim seti. 4 seviye (Basic/Junior/Senior/PRO), oyun ve drama odaklı aktivitelerle çocuklar İngilizceyi yaşayarak öğrenir.",
     "keywords": "workshop ingilizce seti, atölye tabanlı ingilizce, anaokulu ingilizce workshop, woody workshop, uygulamalı ingilizce eğitimi"
+  },
+  "pageUi": {
+    "teacherSet": "Öğretmen Seti",
+    "studentSet": "Öğrenci Seti",
+    "closeVideo": "Videoyu kapat",
+    "playHero": "Workshop videosunu oynat"
   }
 }

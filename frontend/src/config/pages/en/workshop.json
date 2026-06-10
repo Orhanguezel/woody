@@ -60,5 +60,11 @@
     "title": "Workshop English Set | Workshop-Based Preschool English Education",
     "description": "{{appName}} Workshop series: a workshop-based, hands-on preschool English learning set. 4 levels (Basic/Junior/Senior/PRO), with play- and drama-focused activities children learn English by living it.",
     "keywords": "workshop english set, workshop-based english, preschool english workshop, woody workshop, hands-on english education"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Workshop video"
   }
 }

@@ -1,0 +1,1 @@
+export { registerWaitlistPublic } from './router';

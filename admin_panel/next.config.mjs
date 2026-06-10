@@ -51,6 +51,12 @@ const nextConfig = {
     const originOnly = String(raw)
       .replace(/\/+$/, '')
       .replace(/\/api(\/v\d+)?$/i, '');
+    const mediaOrigin = String(
+      process.env.PANEL_MEDIA_URL ||
+        process.env.PANEL_FRONTEND_URL ||
+        process.env.NEXT_PUBLIC_FRONTEND_URL ||
+        'http://127.0.0.1:3101',
+    ).replace(/\/+$/, '');
 
     return [
       {
@@ -63,6 +69,12 @@ const nextConfig = {
       {
         source: '/uploads/:path*',
         destination: `${originOnly}/uploads/:path*`,
+      },
+      // Referans medya dosyalari public frontend tarafinda durur. Admin dev/preview
+      // origin'inde de ayni goreli URL'ler kirilmadan calissin.
+      {
+        source: '/media/:path*',
+        destination: `${mediaOrigin}/media/:path*`,
       },
     ];
   },

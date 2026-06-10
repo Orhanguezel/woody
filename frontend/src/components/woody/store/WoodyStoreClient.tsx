@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { CheckCircle2, CreditCard, Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
 import { FOCUS_RING } from '@/lib/a11y';
 
@@ -245,6 +246,22 @@ export default function WoodyStoreClient({
             <input name="city" placeholder="Şehir" aria-label="Şehir" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
             <textarea name="address" required placeholder="Adres" aria-label="Adres" rows={3} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
             <textarea name="notes" placeholder="Sipariş notu" aria-label="Sipariş notu" rows={2} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <label className="flex items-start gap-2 text-xs leading-5 text-[var(--gm-text-dim)]">
+              <input required type="checkbox" className={`mt-1 h-4 w-4 accent-[var(--gm-primary)] ${FOCUS_RING}`} />
+              <span>
+                <Link href={`/${locale}/mesafeli-satis`} className="font-semibold underline">Mesafeli Satış Sözleşmesi</Link>
+                {' '}ve{' '}
+                <Link href={`/${locale}/on-bilgilendirme`} className="font-semibold underline">Ön Bilgilendirme Formu</Link>
+                {' '}metinlerini okudum, kabul ediyorum.
+              </span>
+            </label>
+            <label className="flex items-start gap-2 text-xs leading-5 text-[var(--gm-text-dim)]">
+              <input required type="checkbox" className={`mt-1 h-4 w-4 accent-[var(--gm-primary)] ${FOCUS_RING}`} />
+              <span>
+                <Link href={`/${locale}/kvkk`} className="font-semibold underline">KVKK</Link>
+                {' '}kapsamındaki bilgilendirmeyi okudum.
+              </span>
+            </label>
             <button
               type="submit"
               disabled={busy || !cart.length}

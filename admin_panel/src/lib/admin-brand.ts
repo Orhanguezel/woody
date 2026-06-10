@@ -1,9 +1,7 @@
-/**
- * Marka metinleri env uzerinden; kopyala-yapistir projelerde sabit string birakmamak icin.
- * .env: NEXT_PUBLIC_APP_NAME, NEXT_PUBLIC_ADMIN_BRAND_SUBTITLE (opsiyonel)
- */
+import adminBrandingDefaults from '@/config/admin-branding-defaults.json';
+
 export function getAdminAppName(): string {
-  return process.env.NEXT_PUBLIC_APP_NAME?.trim() || 'Admin';
+  return process.env.NEXT_PUBLIC_APP_NAME?.trim() || adminBrandingDefaults.app_name;
 }
 
 export function getAdminBrandSubtitle(): string {

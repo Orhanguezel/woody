@@ -1,6 +1,7 @@
 import JsonLd from '@/seo/JsonLd';
 import WoodyFallback from '@/components/woody/WoodyFallback';
 import DigitalContentHubClient from '@/components/woody/digital-content/DigitalContentHubClient';
+import type { DigitalContentCopy } from '@/components/woody/digital-content/digital-content-data';
 import { loadWoodyPageContent, loadWoodyProducts } from '@/components/woody/content-loader.server';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
 
@@ -24,7 +25,7 @@ export default async function DigitalContentPage({ params }: Props) {
   return (
     <>
       <JsonLd id="woody-digital-content" data={woodyPageGraph({ locale, pathname: PATHNAME, content: merged })} />
-      <DigitalContentHubClient locale={locale} />
+      <DigitalContentHubClient locale={locale} copy={merged.raw as DigitalContentCopy} />
     </>
   );
 }

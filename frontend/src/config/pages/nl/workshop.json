@@ -60,5 +60,11 @@
     "title": "Workshop Engelse Set | Op workshops gebaseerd voorschools Engels onderwijs",
     "description": "{{appName}} Workshopserie: een op workshops gebaseerde, praktische leerset voor voorschools Engels. 4 niveaus (Basic/Junior/Senior/PRO), met op spel en drama gerichte activiteiten, kinderen leren Engels door het te beleven.",
     "keywords": "workshop Engelse set, workshop gebaseerd Engels, workshop Engels voorschools, workshop houtachtig, praktijkgericht Engels onderwijs"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Workshop video"
   }
 }

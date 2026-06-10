@@ -60,5 +60,11 @@
     "title": "Taller de Inglés Set | Educación en inglés preescolar basada en talleres",
     "description": "Serie de talleres {{appName}}: un conjunto práctico de aprendizaje de inglés preescolar basado en talleres. 4 niveles (Basic/Junior/Senior/PRO), con actividades centradas en el juego y el teatro, los niños aprenden inglés viviéndolo.",
     "keywords": "set de taller de inglés, taller de inglés basado en, taller de inglés preescolar, taller de woody, educación práctica en inglés"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Workshop video"
   }
 }

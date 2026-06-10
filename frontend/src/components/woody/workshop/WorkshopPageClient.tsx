@@ -8,6 +8,12 @@ import { BookOpen, LibraryBig, Play, ShoppingBag, X } from 'lucide-react';
 import { FOCUS_RING } from '@/lib/a11y';
 
 import type { WoodyCard, WoodyPageContent } from '../content-loader.server';
+type WorkshopPageUi = {
+  teacherSet?: string;
+  studentSet?: string;
+  playHero?: string;
+  closeVideo?: string;
+};
 
 const HERO_VIDEO =
   '/media/woody/reference/7ieerlri_1%20kopyas%C4%B1%20kopyas%C4%B1%20(Video)%20(1).mp4';
@@ -47,13 +53,14 @@ export default function WorkshopPageClient({
   const [showVideo, setShowVideo] = useState(false);
   const levelsSection = content.sections?.[0];
   const exploreSection = content.sections?.[1];
+  const pageUi = ((content.raw as { pageUi?: WorkshopPageUi } | undefined)?.pageUi ?? {}) as WorkshopPageUi;
 
   useEffect(() => {
     heroVideoRef.current?.play().catch(() => {});
   }, []);
 
-  const teacherSet = locale === 'tr' ? 'Öğretmen Seti' : 'Teacher Set';
-  const studentSet = locale === 'tr' ? 'Öğrenci Seti' : 'Student Set';
+  const teacherSet = pageUi.teacherSet || '';
+  const studentSet = pageUi.studentSet || '';
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
@@ -70,7 +77,7 @@ export default function WorkshopPageClient({
             type="button"
             onClick={() => setShowVideo(true)}
             className={`mt-6 flex size-[70px] items-center justify-center rounded-full border-2 border-white/70 bg-transparent transition hover:scale-110 hover:border-white ${FOCUS_RING}`}
-            aria-label={locale === 'tr' ? 'Workshop videosunu oynat' : 'Play Workshop video'}
+            aria-label={pageUi.playHero}
           >
             <Play className="ml-1 size-7 text-white" fill="currentColor" aria-hidden />
           </button>
@@ -170,7 +177,7 @@ export default function WorkshopPageClient({
             type="button"
             onClick={() => setShowVideo(false)}
             className={`absolute right-6 top-6 z-[10001] text-white/80 transition hover:text-white ${FOCUS_RING}`}
-            aria-label={locale === 'tr' ? 'Videoyu kapat' : 'Close video'}
+            aria-label={pageUi.closeVideo}
           >
             <X className="size-9" aria-hidden />
           </button>

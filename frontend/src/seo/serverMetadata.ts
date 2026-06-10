@@ -210,16 +210,13 @@ function normalizeSeoTitle(value: string, siteName: string): string {
   let title = value.trim();
   if (!title) return '';
 
-  // A stale DB row may contain "{{appName}} ve Arkadaşları", which expands to
-  // "Woody ve Arkadaşları ve Arkadaşları". Collapse that before template logic.
+  // A stale DB row may repeat the brand suffix. Collapse that before template logic.
   title = title
-    .replace(/\b(Woody\s+ve\s+Arkadaşları)\s+ve\s+Arkadaşları\b/gi, '$1')
-    .replace(/\b(Woody\s+ve\s+Arkadaslari)\s+ve\s+Arkadaslari\b/gi, '$1')
     .replace(/\b(Woody\s+and\s+Friends)\s+and\s+Friends\b/gi, '$1');
 
   const escapedSite = siteName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const brandSuffix = new RegExp(
-    String.raw`\s*\|\s*(?:${escapedSite}|Woody\s+ve\s+Arkadaşları|Woody\s+ve\s+Arkadaslari|Woody\s+and\s+Friends)\s*$`,
+    String.raw`\s*\|\s*(?:${escapedSite}|Woody\s+and\s+Friends)\s*$`,
     'i',
   );
 
@@ -229,7 +226,7 @@ function normalizeSeoTitle(value: string, siteName: string): string {
 function titleContainsBrand(value: string, siteName: string): boolean {
   const normalized = value.toLowerCase();
   return normalized.includes(siteName.toLowerCase())
-    || /\bwoody(?:\s+(?:ve\s+arkadaşları|ve\s+arkadaslari|and\s+friends))?\b/i.test(value);
+    || /\bwoody\s+and\s+friends\b/i.test(value);
 }
 
 /* -------------------- DRY one-liner helper (FAZ 27 SEO refactor) -------------------- */

@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import { toast } from 'sonner';
-import { Trash2, RefreshCcw, Globe } from 'lucide-react';
+import { BookOpen, GraduationCap, Library, Newspaper, ShoppingBag, Trash2, RefreshCcw, Globe } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 async function revalidate(opts: { all?: boolean; path?: string }) {
-  const res = await fetch('/api/revalidate-proxy', {
+  const res = await fetch('/admin/api/revalidate-proxy', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(opts),
@@ -35,6 +35,41 @@ const CACHE_ACTIONS = [
     description: "Ana sayfanın cache'ini temizler.",
     icon: Globe,
     action: () => revalidate({ path: '/tr' }),
+  },
+  {
+    id: 'preschool',
+    label: 'Preschool',
+    description: "Okul serisi sayfasının cache'ini temizler.",
+    icon: GraduationCap,
+    action: () => revalidate({ path: '/tr/preschool' }),
+  },
+  {
+    id: 'workshop',
+    label: 'Workshop',
+    description: "Atölye serisi sayfasının cache'ini temizler.",
+    icon: BookOpen,
+    action: () => revalidate({ path: '/tr/workshop' }),
+  },
+  {
+    id: 'store',
+    label: 'Store',
+    description: "Mağaza ve ürün sayfalarının cache'ini temizler.",
+    icon: ShoppingBag,
+    action: () => revalidate({ path: '/tr/store' }),
+  },
+  {
+    id: 'library',
+    label: 'Library',
+    description: "Dijital kütüphane sayfasının cache'ini temizler.",
+    icon: Library,
+    action: () => revalidate({ path: '/tr/library' }),
+  },
+  {
+    id: 'blog',
+    label: 'Blog',
+    description: "Blog liste sayfasının cache'ini temizler.",
+    icon: Newspaper,
+    action: () => revalidate({ path: '/tr/blog' }),
   },
 ];
 

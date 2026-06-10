@@ -60,5 +60,11 @@
     "title": "Workshop-Englisch-Set | Workshopbasierter Englischunterricht im Vorschulalter",
     "description": "{{appName}} Workshop-Reihe: ein Workshop-basiertes, praktisches Englisch-Lernset für Vorschulkinder. In 4 Stufen (Basic/Junior/Senior/PRO) mit spiel- und dramafokussierten Aktivitäten lernen Kinder Englisch, indem sie es leben.",
     "keywords": "Workshop-Englisch-Set, Workshop-basiertes Englisch, Vorschul-Englisch-Workshop, Woody-Workshop, praktischer Englischunterricht"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Workshop video"
   }
 }

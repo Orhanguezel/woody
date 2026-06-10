@@ -60,5 +60,11 @@
     "title": "Set inglese per seminari | Insegnamento dell'inglese in età prescolare basato su laboratori",
     "description": "{{appName}} Serie di workshop: un set pratico per l'apprendimento dell'inglese in età prescolare basato su workshop. 4 livelli (Base/Junior/Senior/PRO), con attività incentrate sul gioco e sul teatro, i bambini imparano l'inglese vivendolo.",
     "keywords": "set di inglese per workshop, inglese basato su workshop, workshop di inglese prescolare, workshop su legno, educazione pratica dell'inglese"
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "playHero": "Play Workshop video"
   }
 }

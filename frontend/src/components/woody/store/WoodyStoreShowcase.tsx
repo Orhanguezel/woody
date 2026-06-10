@@ -7,6 +7,8 @@ import { ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
 import { WhatsAppLink } from '@/components/common/WhatsAppLink';
+import QuoteRequestForm, { type QuoteFormCopy } from '@/components/woody/quote/QuoteRequestForm';
+import WaitlistSignupForm, { type WaitlistFormCopy } from '@/components/woody/waitlist/WaitlistSignupForm';
 
 export type StoreCatalogCategory = {
   id: string;
@@ -30,6 +32,8 @@ export type StoreCatalog = {
   quoteMessage?: string;
   primaryCTA?: string;
   showQuoteButtons?: boolean;
+  quoteForm?: QuoteFormCopy;
+  waitlistForm?: WaitlistFormCopy;
   categories?: StoreCatalogCategory[];
   products?: StoreCatalogProduct[];
 };
@@ -148,6 +152,7 @@ export default function WoodyStoreShowcase({
                   <p className="text-[16px] font-bold text-gray-700 md:text-[18px]">
                     {isTr ? 'Çok yakında buradayız' : 'Coming soon'}
                   </p>
+                  <WaitlistSignupForm copy={catalog.waitlistForm} productKey={category.id} locale={locale} />
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-4">
@@ -183,17 +188,27 @@ export default function WoodyStoreShowcase({
                               {product.price}
                             </p>
                           ) : null}
-                          {showQuoteButtons ? (
-                            <WhatsAppLink
-                              phone={catalog.quoteWhatsApp}
-                              text={quoteMessage}
-                              className={`inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-3 py-2 text-[11px] font-bold text-white transition hover:bg-brand-dark md:w-auto md:text-[12px] ${FOCUS_RING}`}
-                              data-testid={`store-quote-btn-${product.id}`}
-                            >
-                              <MessageCircle className="h-3.5 w-3.5" aria-hidden />
-                              {quoteLabel}
-                            </WhatsAppLink>
-                          ) : null}
+                          <div className="flex w-full flex-wrap gap-2 md:w-auto">
+                            {showQuoteButtons ? (
+                              <WhatsAppLink
+                                phone={catalog.quoteWhatsApp}
+                                text={quoteMessage}
+                                className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-3 py-2 text-[11px] font-bold text-white transition hover:bg-brand-dark md:flex-none md:text-[12px] ${FOCUS_RING}`}
+                                data-testid={`store-quote-btn-${product.id}`}
+                              >
+                                <MessageCircle className="h-3.5 w-3.5" aria-hidden />
+                                {quoteLabel}
+                              </WhatsAppLink>
+                            ) : null}
+                            {catalog.quoteForm?.linkLabel ? (
+                              <a
+                                href="#quote-form"
+                                className={`inline-flex flex-1 items-center justify-center rounded-lg border border-gray-200 px-3 py-2 text-[11px] font-bold text-gray-800 transition hover:bg-gray-50 md:flex-none md:text-[12px] ${FOCUS_RING}`}
+                              >
+                                {catalog.quoteForm.linkLabel}
+                              </a>
+                            ) : null}
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -204,6 +219,8 @@ export default function WoodyStoreShowcase({
           </section>
         );
       })}
+
+      <QuoteRequestForm copy={catalog.quoteForm} source="store" />
     </main>
   );
 }

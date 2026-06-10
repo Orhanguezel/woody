@@ -6,7 +6,8 @@
 import type { ReactNode } from 'react';
 
 import { AppSidebar } from '@/app/(main)/admin/_components/sidebar/app-sidebar';
-import { getAdminAppName, getAdminBrandSubtitle } from '@/lib/admin-brand';
+import { getAdminBrandSubtitle } from '@/lib/admin-brand';
+import { fetchBrandingConfig } from '@/server/fetch-branding';
 
 import { Separator } from '@/components/ui/separator';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
@@ -20,8 +21,9 @@ import { ThemeSwitcher } from './_components/sidebar/theme-switcher';
 import AdminAuthGate from './_components/admin-auth-gate';
 import { AdminSettingsProvider } from './_components/admin-settings-provider';
 
-export default function Layout({ children }: Readonly<{ children: ReactNode }>) {
-  const headerTitle = getAdminAppName();
+export default async function Layout({ children }: Readonly<{ children: ReactNode }>) {
+  const branding = await fetchBrandingConfig();
+  const headerTitle = branding.app_name;
   const headerSub = getAdminBrandSubtitle();
   return (
     <AdminAuthGate>

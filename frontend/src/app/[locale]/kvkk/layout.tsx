@@ -26,6 +26,7 @@ export async function generateMetadata({
   return {
     ...base,
     title: pageTitle,
+    robots: { index: false, follow: false },
     ...(pageDescription ? { description: pageDescription } : {}),
     openGraph: {
       ...(base.openGraph || {}),
@@ -38,4 +39,3 @@ export async function generateMetadata({
 export default function KvkkLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

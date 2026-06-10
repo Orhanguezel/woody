@@ -12,30 +12,78 @@
       "eyebrow": "Level 1",
       "title": "BASIC",
       "items": [
-        { "title": "Storyland", "description": "16 interaktif video hikâye", "href": "/digital-content/basic/storyland" },
-        { "title": "Movieland", "description": "8 video", "href": "/digital-content/basic/movieland" },
-        { "title": "Musicland", "description": "8 şarkı", "href": "/digital-content/basic/musicland" },
-        { "title": "Library", "description": "Kitap içerikleri yakında eklenecek", "href": "/digital-content/basic/library" }
+        {
+          "title": "Storyland",
+          "description": "16 interaktif video hikâye",
+          "href": "/digital-content/basic/storyland"
+        },
+        {
+          "title": "Movieland",
+          "description": "8 video",
+          "href": "/digital-content/basic/movieland"
+        },
+        {
+          "title": "Musicland",
+          "description": "8 şarkı",
+          "href": "/digital-content/basic/musicland"
+        },
+        {
+          "title": "Library",
+          "description": "Kitap içerikleri yakında eklenecek",
+          "href": "/digital-content/basic/library"
+        }
       ]
     },
     {
       "eyebrow": "Level 2",
       "title": "JUNIOR",
       "items": [
-        { "title": "Storyland", "description": "16 interaktif video hikâye", "href": "/digital-content/junior/storyland" },
-        { "title": "Movieland", "description": "8 video", "href": "/digital-content/junior/movieland" },
-        { "title": "Musicland", "description": "8 şarkı", "href": "/digital-content/junior/musicland" },
-        { "title": "Library", "description": "Kitap içerikleri yakında eklenecek", "href": "/digital-content/junior/library" }
+        {
+          "title": "Storyland",
+          "description": "16 interaktif video hikâye",
+          "href": "/digital-content/junior/storyland"
+        },
+        {
+          "title": "Movieland",
+          "description": "8 video",
+          "href": "/digital-content/junior/movieland"
+        },
+        {
+          "title": "Musicland",
+          "description": "8 şarkı",
+          "href": "/digital-content/junior/musicland"
+        },
+        {
+          "title": "Library",
+          "description": "Kitap içerikleri yakında eklenecek",
+          "href": "/digital-content/junior/library"
+        }
       ]
     },
     {
       "eyebrow": "Level 3",
       "title": "SENIOR",
       "items": [
-        { "title": "Storyland", "description": "16 interaktif video hikâye", "href": "/digital-content/senior/storyland" },
-        { "title": "Movieland", "description": "8 video", "href": "/digital-content/senior/movieland" },
-        { "title": "Musicland", "description": "8 şarkı", "href": "/digital-content/senior/musicland" },
-        { "title": "Library", "description": "Kitap içerikleri yakında eklenecek", "href": "/digital-content/senior/library" }
+        {
+          "title": "Storyland",
+          "description": "16 interaktif video hikâye",
+          "href": "/digital-content/senior/storyland"
+        },
+        {
+          "title": "Movieland",
+          "description": "8 video",
+          "href": "/digital-content/senior/movieland"
+        },
+        {
+          "title": "Musicland",
+          "description": "8 şarkı",
+          "href": "/digital-content/senior/musicland"
+        },
+        {
+          "title": "Library",
+          "description": "Kitap içerikleri yakında eklenecek",
+          "href": "/digital-content/senior/library"
+        }
       ]
     }
   ],
@@ -44,5 +92,242 @@
     "title": "Dijital Kütüphane",
     "description": "{{appName}} dijital içerik dünyası: Basic, Junior ve Senior seviyeler için Storyland, Movieland, Musicland ve Library bölümleri.",
     "keywords": "woody digital, dijital içerik, storyland, movieland, musicland, çocuk ingilizce video"
+  },
+  "levelLabels": {
+    "basic": {
+      "title": "BASIC",
+      "subtitle": "Seviye 1",
+      "detailTitle": "BASIC Seviye 1"
+    },
+    "junior": {
+      "title": "JUNIOR",
+      "subtitle": "Seviye 2",
+      "detailTitle": "JUNIOR Seviye 2"
+    },
+    "senior": {
+      "title": "SENIOR",
+      "subtitle": "Seviye 3",
+      "detailTitle": "SENIOR Seviye 3"
+    }
+  },
+  "sectionLabels": {
+    "storyland": {
+      "title": "Storyland",
+      "description": "16 interaktif video hikaye"
+    },
+    "movieland": {
+      "title": "Movieland",
+      "description": "8 video"
+    },
+    "musicland": {
+      "title": "Musicland",
+      "description": "8 şarkı"
+    },
+    "library": {
+      "title": "Library",
+      "description": "Kitap içerikleri üyelikle açılacak"
+    }
+  },
+  "library": {
+    "badge": "Yakında",
+    "title": "Library yakında açılıyor",
+    "description": "Library içerikleri üyelik sistemiyle birlikte aktif olacak. Şimdilik kapakları gri önizleme olarak görebilirsiniz.",
+    "modalTitle": "Library için üyelik gerekli",
+    "modalDescription": "Bu alan üyelik sistemi devreye alındığında açılacak. Hesap oluşturarak veya giriş yaparak sonraki adıma hazır kalabilirsiniz.",
+    "registerCta": "Üye Ol",
+    "loginCta": "Giriş Yap"
+  },
+  "ui": {
+    "hubTitle": "Dijital İçerikler",
+    "publicBadge": "Herkese açık",
+    "close": "Kapat",
+    "back": "Dijital içeriklere dön",
+    "nowPlaying": "Çalıyor",
+    "stop": "Durdur",
+    "protectedTitle": "İçerik Korumalı",
+    "protectedDescription": "Bu içeriği görüntülemek için 4 haneli şifrenizi girin.",
+    "passwordLabel": "Dört haneli şifre",
+    "enter": "Giriş Yap",
+    "passwordHelp": "Şifrenizi bir kez girin, sonraki ziyaretlerde tekrar sorulmayacak.",
+    "passwordError": "Geçersiz şifre. Lütfen tekrar deneyin.",
+    "videoMissing": "Video bağlantısı henüz eklenmedi."
+  },
+  "musicland": {
+    "tracks": {
+      "basic": [
+        {
+          "id": 1,
+          "title": "Tema 1",
+          "topic": "Tema 1",
+          "audioUrl": "/media/woody/reference/iccoy0mm_theme%201%20.mp3",
+          "thumbnail": "/media/woody/reference/pxj6okjj_1.png"
+        },
+        {
+          "id": 2,
+          "title": "Tema 2",
+          "topic": "Tema 2",
+          "audioUrl": "/media/woody/reference/y3dz0w3v_theme%202.mp3",
+          "thumbnail": "/media/woody/reference/3r3f6uwx_2.png"
+        },
+        {
+          "id": 3,
+          "title": "Tema 3",
+          "topic": "Tema 3",
+          "audioUrl": "/media/woody/reference/lfgctcef_theme%203%20.mp3",
+          "thumbnail": "/media/woody/reference/fvlxvwww_3.png"
+        },
+        {
+          "id": 4,
+          "title": "Tema 4",
+          "topic": "Tema 4",
+          "audioUrl": "/media/woody/reference/6pfdm5c0_theme%204%20.mp3",
+          "thumbnail": "/media/woody/reference/5ukkudwy_4.png"
+        },
+        {
+          "id": 5,
+          "title": "Tema 5",
+          "topic": "Tema 5",
+          "audioUrl": "/media/woody/reference/w4djc170_Theme%205.mp3",
+          "thumbnail": "/media/woody/reference/9bh5jjnf_5.png"
+        },
+        {
+          "id": 6,
+          "title": "Tema 6",
+          "topic": "Tema 6",
+          "audioUrl": "/media/woody/reference/g2sj2m65_theme%206.mp3",
+          "thumbnail": "/media/woody/reference/9vonr43z_6.png"
+        },
+        {
+          "id": 7,
+          "title": "Tema 7 – Clothes",
+          "topic": "Clothes",
+          "audioUrl": "/media/woody/reference/2sncgdds_theme%207.mp3",
+          "thumbnail": "/media/woody/reference/73lilv7l_7.png"
+        },
+        {
+          "id": 8,
+          "title": "Tema 8",
+          "topic": "Tema 8",
+          "audioUrl": "/media/woody/reference/726lj4d9_theme%208.mp3",
+          "thumbnail": "/media/woody/reference/8ontm0a3_8.png"
+        }
+      ],
+      "junior": [
+        {
+          "id": 1,
+          "title": "Tema 1",
+          "topic": "Tema 1",
+          "audioUrl": "/media/woody/reference/r6xwf4fx_Theme%201.mp3",
+          "thumbnail": "/media/woody/reference/rn4hl66d_1.png"
+        },
+        {
+          "id": 2,
+          "title": "Tema 2",
+          "topic": "Tema 2",
+          "audioUrl": "/media/woody/reference/ypzzvi5i_theme%202.mp3",
+          "thumbnail": "/media/woody/reference/68recr7x_2.png"
+        },
+        {
+          "id": 3,
+          "title": "Tema 3",
+          "topic": "Tema 3",
+          "audioUrl": "/media/woody/reference/07v23187_theme%203%20.mp3",
+          "thumbnail": "/media/woody/reference/ex1xgfa1_3.png"
+        },
+        {
+          "id": 4,
+          "title": "Tema 4",
+          "topic": "Tema 4",
+          "audioUrl": "/media/woody/reference/kbi01h0d_theme%204%20.mp3",
+          "thumbnail": "/media/woody/reference/0skbimng_4.png"
+        },
+        {
+          "id": 5,
+          "title": "Tema 5",
+          "topic": "Tema 5",
+          "audioUrl": "/media/woody/reference/fqeyspb4_theme%205.mp3",
+          "thumbnail": "/media/woody/reference/uj8it9vz_5.png"
+        },
+        {
+          "id": 6,
+          "title": "Tema 6",
+          "topic": "Tema 6",
+          "audioUrl": "/media/woody/reference/c2eihyip_theme%206.mp3",
+          "thumbnail": "/media/woody/reference/22qudlvp_11.png"
+        },
+        {
+          "id": 7,
+          "title": "Tema 7",
+          "topic": "Tema 7",
+          "audioUrl": "/media/woody/reference/ttak76ty_theme%207.mp3",
+          "thumbnail": "/media/woody/reference/xvg3m6sd_13.png"
+        },
+        {
+          "id": 8,
+          "title": "Tema 8",
+          "topic": "Tema 8",
+          "audioUrl": "/media/woody/reference/hj56hh9t_theme%208%20.mp3",
+          "thumbnail": "/media/woody/reference/cnuuucdz_15.png"
+        }
+      ],
+      "senior": [
+        {
+          "id": 1,
+          "title": "Tema 1",
+          "topic": "Tema 1",
+          "audioUrl": "/media/woody/reference/9uqnvd3a_theme%201.mp3",
+          "thumbnail": "/media/woody/reference/ejpqg9mg_I%CC%87lk%20sayfa%20theme%201_Sayfa_1.jpg"
+        },
+        {
+          "id": 2,
+          "title": "Tema 2",
+          "topic": "Tema 2",
+          "audioUrl": "/media/woody/reference/ymbcni8l_theme%202%20.mp3",
+          "thumbnail": "/media/woody/reference/pxbe6piu_I%CC%87lk%20sayfa%20theme%201_Sayfa_2.jpg"
+        },
+        {
+          "id": 3,
+          "title": "Tema 3",
+          "topic": "Tema 3",
+          "audioUrl": "/media/woody/reference/k7dc3mmg_theme%203.mp3",
+          "thumbnail": "/media/woody/reference/uoftphsc_I%CC%87lk%20sayfa%20theme%201_Sayfa_3.jpg"
+        },
+        {
+          "id": 4,
+          "title": "Tema 4",
+          "topic": "Tema 4",
+          "audioUrl": "/media/woody/reference/87azrhhk_theme%204.mp3",
+          "thumbnail": "/media/woody/reference/kbd06i5m_I%CC%87lk%20sayfa%20theme%201_Sayfa_4.jpg"
+        },
+        {
+          "id": 5,
+          "title": "Tema 5",
+          "topic": "Tema 5",
+          "audioUrl": "/media/woody/reference/tuf69tq4_theme%205%20.mp3",
+          "thumbnail": "/media/woody/reference/bbn6tpbx_I%CC%87lk%20sayfa%20theme%201_Sayfa_5.jpg"
+        },
+        {
+          "id": 6,
+          "title": "Tema 6",
+          "topic": "Tema 6",
+          "audioUrl": "/media/woody/reference/u633wm8u_THEME%206.mp3",
+          "thumbnail": "/media/woody/reference/wh47lcep_I%CC%87lk%20sayfa%20theme%201_Sayfa_6.jpg"
+        },
+        {
+          "id": 7,
+          "title": "Tema 7",
+          "topic": "Tema 7",
+          "audioUrl": "/media/woody/reference/8620pn8i_THEME%207.mp3",
+          "thumbnail": "/media/woody/reference/w6y5frsb_I%CC%87lk%20sayfa%20theme%201_Sayfa_7.jpg"
+        },
+        {
+          "id": 8,
+          "title": "Tema 8",
+          "topic": "Tema 8",
+          "audioUrl": "/media/woody/reference/y64ptt3d_theme%208%20.mp3",
+          "thumbnail": "/media/woody/reference/ymtca4bt_I%CC%87lk%20sayfa%20theme%201_Sayfa_8.jpg"
+        }
+      ]
+    }
   }
 }

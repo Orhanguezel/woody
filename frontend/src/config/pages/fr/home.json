@@ -60,5 +60,12 @@
     "title": "{{appName}} et ses Amis | Anglais préscolaire",
     "description": "Ensembles d'apprentissage de l'anglais préscolaire, contenu numérique et plateforme de soutien aux enseignants.",
     "keywords": "programme d'anglais préscolaire Turquie, anglais de la petite enfance basé sur le jeu, ensemble d'apprentissage de l'anglais préscolaire, éducation anglaise de la petite enfance, système de préparation de Cambridge, anglais pour enfants, programme d'anglais pour 3-6 ans"
+  },
+  "digitalEntry": {
+    "eyebrow": "WOODY DIGITAL",
+    "title": "Enter Woody Digital in one click",
+    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
+    "cta": "Open Woody Digital",
+    "href": "/digital-content"
   }
 }

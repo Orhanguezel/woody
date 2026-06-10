@@ -70,5 +70,45 @@
     "title": "Engelse leersets voor kleuters | {{appName}} en Vrienden",
     "description": "{{appName}} Voorschoolse Engelse leerset: een op spel gebaseerd Engels programma voor jonge kinderen voor kinderen van 3 tot 6 jaar. Curriculum Engels voorschools met een Cambridge-voorbereidingssysteem. Leraren- en studentensets, Engels curriculum en lesplannen voor de kleuterschool.",
     "keywords": "voorschoolse Engelse leerset, voorschoolse Engelse programma Turkije, vroege kinderjaren Engelse set, Engels programma voor kleuterschool, Cambridge voorbereiding voorschoolse, 3-6 leeftijd Engels programma, voorschoolse Engelse serie"
+  },
+  "quoteForm": {
+    "title": "Request a quote for your school",
+    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
+    "linkLabel": "Quote Form",
+    "submit": "Send Quote Request",
+    "success": "Your request has been received. Our team will contact you shortly.",
+    "error": "The request could not be sent. Please check the information and try again.",
+    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "fields": {
+      "orgName": "Institution name",
+      "contactName": "Contact name",
+      "email": "Email",
+      "phone": "Phone",
+      "studentCount": "Student count",
+      "level": "Level",
+      "city": "City",
+      "district": "District",
+      "message": "Message"
+    },
+    "levels": {
+      "mixed": "Mixed level",
+      "basic": "Basic",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "pageUi": {
+    "teacherSet": "Teacher Set",
+    "studentSet": "Student Set",
+    "closeVideo": "Close video",
+    "videoWatch": "Watch Video",
+    "quote": "Get a Quote",
+    "playHero": "Play Preschool video",
+    "close": "Close",
+    "digitalTitle": "Woody Digital Content",
+    "digitalDescription": "Movieland, Storyland and Musicland enrich learning with video, stories and music.",
+    "digitalCta": "Open the digital world",
+    "quoteMessageTemplate": "Hello, I would like to get a quote for {{level}}.",
+    "proMessage": "PRO level training is delivered in Woody Academy."
   }
 }

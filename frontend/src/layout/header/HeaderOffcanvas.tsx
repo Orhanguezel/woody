@@ -254,7 +254,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
             <div className="flex flex-col gap-2 mb-8">
               <label htmlFor="lang-offcanvas" className="flex items-center gap-2 text-[0.72rem] tracking-[0.15em] uppercase text-brand-primary font-normal">
                 <IconGlobe size={14} />
-                <span>{ui('ui_header_language', 'Sprache')}</span>
+                <span>{ui('ui_header_language', resolvedLocale === 'tr' ? 'Dil' : 'Language')}</span>
               </label>
               <div className="relative">
                 <select

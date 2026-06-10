@@ -7,7 +7,7 @@
 
 import React, { useState, useMemo, FormEvent } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import {
   useSignupMutation,
@@ -25,9 +25,18 @@ import { getSampleEmailPlaceholder } from '@/lib/site-config';
 const Register: React.FC = () => {
   const router = useRouter();
   const locale = useLocaleShort();
+  const searchParams = useSearchParams();
   const { ui } = useUiSection('ui_auth', locale as any);
 
-  const loginHref = useMemo(() => localizePath(locale, '/login'), [locale]);
+  const nextHref = useMemo(() => {
+    const raw = searchParams.get('next') || '';
+    return raw.startsWith('/') ? raw : '';
+  }, [searchParams]);
+  const nextQuery = nextHref ? `&next=${encodeURIComponent(nextHref)}` : '';
+  const loginHref = useMemo(() => {
+    const base = localizePath(locale, '/login');
+    return nextHref ? `${base}?next=${encodeURIComponent(nextHref)}` : base;
+  }, [locale, nextHref]);
 
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
@@ -87,7 +96,7 @@ const Register: React.FC = () => {
       router.push(
         `${localizePath(locale, '/verify-email')}?mode=pending&email=${encodeURIComponent(
           email.trim(),
-        )}`,
+        )}${nextQuery}`,
       );
     } catch {
       // Error handled by signupState
@@ -260,7 +269,7 @@ const Register: React.FC = () => {
             </div>
           </div>
 
-          <SocialLoginButtons layout="row" />
+          <SocialLoginButtons nextHref={nextHref || undefined} layout="row" />
         </div>
       </div>
     </section>

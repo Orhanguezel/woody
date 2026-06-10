@@ -1,4 +1,11 @@
 export const HOME_LAYOUT_COMPONENT_OPTIONS = [
+  { key: 'WoodyHomeHero', label: 'Woody Hero (üst vitrin)' },
+  { key: 'WoodyGrayBanner', label: 'Woody öğrenme vurguları' },
+  { key: 'ZodiacGridSection', label: 'Öne çıkan kategoriler' },
+  { key: 'WoodySetZigzag', label: 'Woody setleri' },
+  { key: 'WoodyWhyCambridge', label: 'Neden Woody' },
+  { key: 'CertificationSection', label: 'Sertifikalar' },
+  { key: 'WoodyNewsCarousel', label: 'Woody yenilikler' },
   { key: 'HeroNew', label: 'Hero (üst vitrin)' },
   { key: 'BannerSlot', label: 'Banner alanı' },
   { key: 'PromisesSection', label: 'Özet / vaatler' },

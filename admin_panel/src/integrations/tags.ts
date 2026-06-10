@@ -199,6 +199,8 @@ export const tags = [
   'DigitalAsset',
   'DigitalAssets',
   'SchoolContentAccess',
+  'QuoteRequest',
+  'QuoteRequests',
 ] as const;
 
 export type tag = typeof tags[number];

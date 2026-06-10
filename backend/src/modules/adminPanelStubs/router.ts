@@ -194,48 +194,8 @@ export async function registerAdminPanelCommerceStubs(adminApi: FastifyInstance)
   );
   adminApi.patch('/payment-gateways/:id', async (_req, reply) => reply.send({ success: true }));
 
-  adminApi.get('/subscriptions', (req, reply) =>
-    emptySubscriptionList(reply, (req.query ?? {}) as Record<string, string>),
-  );
-  adminApi.get('/subscriptions/:id', (req, reply) => {
-    const { id } = req.params as { id: string };
-    return reply.send(stubSubscription(id));
-  });
-  adminApi.post('/subscriptions/:id/refund', async (_req, reply) => reply.send({ success: true }));
-
-  adminApi.get('/subscription-plans', (req, reply) =>
-    emptyPlanList(reply, (req.query ?? {}) as Record<string, string>),
-  );
-  adminApi.get('/subscription-plans/:id', (req, reply) => {
-    const { id } = req.params as { id: string };
-    return reply.send(stubPlan(id));
-  });
-  adminApi.post('/subscription-plans', async (req, reply) => {
-    const body = (req.body ?? {}) as Record<string, unknown>;
-    const id = randomUUID();
-    const periodRaw = asStr(body.period);
-    const period = ['monthly', 'yearly', 'lifetime'].includes(periodRaw) ? periodRaw : 'monthly';
-    return reply.send({
-      ...stubPlan(id),
-      code: asStr(body.code) || 'plan',
-      name_tr: asStr(body.name_tr) || 'Plan',
-      name_en: asStr(body.name_en) || 'Plan',
-      description_tr: body.description_tr != null ? asStr(body.description_tr) : null,
-      description_en: body.description_en != null ? asStr(body.description_en) : null,
-      price_minor: Number(body.price_minor) || 0,
-      currency: asStr(body.currency) || 'TRY',
-      period,
-      trial_days: Number(body.trial_days) || 0,
-      is_active: body.is_active === 1 || body.is_active === true ? 1 : 0,
-      display_order: Number(body.display_order) || 0,
-    });
-  });
-  adminApi.patch('/subscription-plans/:id', (req, reply) => {
-    const { id } = req.params as { id: string };
-    const body = (req.body ?? {}) as Record<string, unknown>;
-    return reply.send({ ...stubPlan(id), ...body, id });
-  });
-  adminApi.delete('/subscription-plans/:id', async (_req, reply) => reply.send({ success: true }));
+  // NOT: /subscriptions* ve /subscription-plans* gercek subscriptions modulune tasindi.
+  // Stub rotalari burada tutulursa FST_ERR_DUPLICATED_ROUTE olusur.
 
   adminApi.get('/support_tickets', async (_req, reply) => reply.send([]));
   adminApi.get('/support_tickets/:id', (req, reply) => {

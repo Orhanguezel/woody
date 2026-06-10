@@ -4,12 +4,14 @@
 // =============================================================
 
 import packageJson from '../../package.json';
+import adminBrandingDefaults from './admin-branding-defaults.json';
 
 const currentYear = new Date().getFullYear();
-const appName = process.env.NEXT_PUBLIC_APP_NAME || 'Woody and Friends Admin';
-const appCopyright = process.env.NEXT_PUBLIC_APP_COPYRIGHT || 'Woody and Friends';
-const appDescription = process.env.NEXT_PUBLIC_APP_DESCRIPTION || 'Woody and Friends yonetim paneli.';
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3094';
+const appName = process.env.NEXT_PUBLIC_APP_NAME?.trim() || adminBrandingDefaults.app_name;
+const appCopyright = process.env.NEXT_PUBLIC_APP_COPYRIGHT?.trim() || adminBrandingDefaults.app_copyright;
+const appDescription =
+  process.env.NEXT_PUBLIC_APP_DESCRIPTION?.trim() || adminBrandingDefaults.app_description;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || adminBrandingDefaults.site_url;
 
 export type AdminBrandingConfig = {
   app_name: string;
