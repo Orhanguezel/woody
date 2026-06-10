@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
+import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 
 export type StoreCatalogCategory = {
   id: string;
@@ -42,12 +43,11 @@ const categoryColors: Record<string, string> = {
 const comingSoonImage =
   '/media/woody/reference/ga68xbh7_Paragraf%20metniniz%20(4).png';
 
-function quoteHref(phone: string | undefined, message: string | undefined) {
-  const cleanPhone = (phone || '905331570373').replace(/\D/g, '');
-  const text =
+function quoteText(message: string | undefined) {
+  return (
     message ||
-    'Merhaba, okul setlerinizin fiyat bilgisi hakkında bilgi almak istiyorum.\n\nŞehir:\nOkul Adı:\nÖğrenci Sayısı:\nLütfen dijital kataloğunuzla birlikte fiyat teklifinizi iletebilir misiniz?';
-  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
+    'Merhaba, okul setlerinizin fiyat bilgisi hakkında bilgi almak istiyorum.\n\nŞehir:\nOkul Adı:\nÖğrenci Sayısı:\nLütfen dijital kataloğunuzla birlikte fiyat teklifinizi iletebilir misiniz?'
+  );
 }
 
 export default function WoodyStoreShowcase({
@@ -60,7 +60,7 @@ export default function WoodyStoreShowcase({
   const isTr = locale === 'tr';
   const categories = catalog.categories ?? [];
   const products = catalog.products ?? [];
-  const quoteUrl = quoteHref(catalog.quoteWhatsApp, catalog.quoteMessage);
+  const quoteMessage = quoteText(catalog.quoteMessage);
   const quoteLabel = String(catalog.primaryCTA || '').trim();
   const showQuoteButtons = catalog.showQuoteButtons !== false && Boolean(quoteLabel);
 
@@ -184,16 +184,15 @@ export default function WoodyStoreShowcase({
                             </p>
                           ) : null}
                           {showQuoteButtons ? (
-                            <a
-                              href={quoteUrl}
-                              target="_blank"
-                              rel="noreferrer"
+                            <WhatsAppLink
+                              phone={catalog.quoteWhatsApp}
+                              text={quoteMessage}
                               className={`inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-3 py-2 text-[11px] font-bold text-white transition hover:bg-brand-dark md:w-auto md:text-[12px] ${FOCUS_RING}`}
                               data-testid={`store-quote-btn-${product.id}`}
                             >
                               <MessageCircle className="h-3.5 w-3.5" aria-hidden />
                               {quoteLabel}
-                            </a>
+                            </WhatsAppLink>
                           ) : null}
                         </div>
                       </div>

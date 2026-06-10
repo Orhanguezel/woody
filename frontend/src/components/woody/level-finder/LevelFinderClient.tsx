@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { CheckCircle2, ChevronLeft, ChevronRight, Circle, ShoppingCart } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
+import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 
 type BlockKey = 'A' | 'B' | 'C';
 type LevelKey = 'basic' | 'junior' | 'senior';
@@ -124,14 +125,13 @@ export default function LevelFinderClient() {
                     Online Satış
                   </h2>
                   <p className="mb-4 text-[14px] text-gray-600">Bu seti hemen online olarak sipariş edebilirsiniz!</p>
-                  <a
-                    href={`https://wa.me/905331570373?text=${encodeURIComponent(message)}`}
-                    target="_blank"
-                    rel="noreferrer"
+                  <WhatsAppLink
+                    phone="905331570373"
+                    text={message}
                     className={`inline-flex items-center gap-3 rounded-xl bg-green-500 px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-green-600 ${FOCUS_RING}`}
                   >
                     WhatsApp ile Sipariş Ver
-                  </a>
+                  </WhatsAppLink>
                 </div>
                 <button
                   type="button"

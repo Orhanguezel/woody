@@ -14,6 +14,7 @@ import Link from 'next/link';
 
 import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
 import { useLocaleShort } from '@/i18n';
+import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 
 
 type Props = {
@@ -118,6 +119,11 @@ const ContactCtaCard: React.FC<Props> = ({
     return buildWhatsappHref(phoneRaw);
   }, [contactData, phoneRaw]);
 
+  const waPhone = useMemo(() => {
+    const wa = contactData?.whatsappNumber || contactData?.whatsapp;
+    return sanitizePhoneDigits(safeSettingString(wa || phoneRaw)).replace(/^\+/, '');
+  }, [contactData, phoneRaw]);
+
   const hasAny = !!phoneDisplay || !!telHref || !!waHref || !!contactHref || !!description;
 
   if (!hasAny) return null;
@@ -151,9 +157,7 @@ const ContactCtaCard: React.FC<Props> = ({
 
               <div className="sideber__contact-text">
                 <span>
-                  <a href={waHref} target="_blank" rel="noreferrer">
-                    {whatsappLabel}
-                  </a>
+                  <WhatsAppLink phone={waPhone}>{whatsappLabel}</WhatsAppLink>
                 </span>
               </div>
             </div>
@@ -162,9 +166,9 @@ const ContactCtaCard: React.FC<Props> = ({
           {/* CTA Buttons (match InfoContactCard buttons) */}
           <div className="mt-20">
             {waHref ? (
-              <a className="tp-btn w-100 mb-10" href={waHref} target="_blank" rel="noreferrer">
+              <WhatsAppLink phone={waPhone} className="tp-btn w-100 mb-10">
                 {whatsappLabel}
-              </a>
+              </WhatsAppLink>
             ) : null}
 
             {telHref ? (

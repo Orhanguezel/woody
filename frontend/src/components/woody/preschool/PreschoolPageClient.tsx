@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { BookOpen, ChevronRight, LibraryBig, Play, ShoppingBag, Target, X } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
+import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 
 import type { WoodyCard, WoodyPageContent, WoodySection } from '../content-loader.server';
 
@@ -248,18 +249,17 @@ export default function PreschoolPageClient({
                     />
                   </h3>
                   <p className="mb-3 mt-1 text-[13px] text-gray-500">{level.copy?.description}</p>
-                  <a
-                    href={`https://wa.me/905331570373?text=${encodeURIComponent(
+                  <WhatsAppLink
+                    phone="905331570373"
+                    text={
                       locale === 'tr'
                         ? `Merhaba, ${level.name} hakkında fiyat teklifi almak istiyorum.`
-                        : `Hello, I would like to get a quote for ${level.name}.`,
-                    )}`}
-                    target="_blank"
-                    rel="noreferrer"
+                        : `Hello, I would like to get a quote for ${level.name}.`
+                    }
                     className={`inline-flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-[13px] font-medium text-white shadow-sm transition hover:bg-green-600 md:text-[14px] ${FOCUS_RING}`}
                   >
                     {quote}
-                  </a>
+                  </WhatsAppLink>
                 </div>
               </article>
             ))}
