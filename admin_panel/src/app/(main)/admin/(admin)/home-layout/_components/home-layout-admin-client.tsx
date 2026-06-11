@@ -29,7 +29,7 @@ import {
   useCreateHomeSectionAdminMutation,
   type AdminHomeSectionDto,
 } from '@/integrations/hooks';
-import { HOME_LAYOUT_COMPONENT_OPTIONS } from '@/config/home-layout-components';
+import { HOME_LAYOUT_COMPONENT_OPTIONS, HOME_LAYOUT_COMPONENT_KEYS } from '@/config/home-layout-components';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -119,6 +119,11 @@ function SortableRow({ section, expanded, onToggleExpand, onPatch, onDelete, sav
             <Badge variant="outline" className="text-[10px] uppercase tracking-wider border-gm-border-soft text-gm-muted">
               {section.component_key}
             </Badge>
+            {!(HOME_LAYOUT_COMPONENT_KEYS as readonly string[]).includes(section.component_key) ? (
+              <Badge className="text-[10px] uppercase tracking-wider bg-gm-error/10 text-gm-error border border-gm-error/30">
+                Frontend&apos;de karşılığı yok — render edilmez
+              </Badge>
+            ) : null}
             <code className="text-[10px] text-gm-muted/70 font-mono">{section.slug}</code>
           </div>
           <div className="text-[11px] text-gm-muted mt-1">Sıra: {section.order_index}</div>

@@ -1,18 +1,14 @@
+// Anasayfa section secenekleri — WoodyHomePage.tsx renderers map'i ile BIREBIR ayni olmali.
+// (Listede olmayan component_key frontend'de SESSIZCE atlanir — admin'de uyari rozeti gosterilir.)
 export const HOME_LAYOUT_COMPONENT_OPTIONS = [
   { key: 'WoodyHomeHero', label: 'Woody Hero (üst vitrin)' },
-  { key: 'WoodyGrayBanner', label: 'Woody öğrenme vurguları' },
+  { key: 'WoodyGrayBanner', label: 'Öğrenme vurguları (Her Yaş İçin Setler)' },
   { key: 'ZodiacGridSection', label: 'Öne çıkan kategoriler' },
   { key: 'WoodySetZigzag', label: 'Woody setleri' },
+  { key: 'WoodyDigitalEntry', label: 'Woody Dijital girişi' },
+  { key: 'CertificationSection', label: 'Sertifikalar (Cambridge)' },
   { key: 'WoodyWhyCambridge', label: 'Neden Woody' },
-  { key: 'CertificationSection', label: 'Sertifikalar' },
   { key: 'WoodyNewsCarousel', label: 'Woody yenilikler' },
-  { key: 'HeroNew', label: 'Hero (üst vitrin)' },
-  { key: 'BannerSlot', label: 'Banner alanı' },
-  { key: 'PromisesSection', label: 'Özet / vaatler' },
-  { key: 'FeaturesNew', label: 'Özellikler (3 sütun)' },
-  { key: 'HomeIntroSection', label: 'Nasıl çalışır (adımlar)' },
-  { key: 'WelcomeBannerSection', label: 'Karşılama bandı' },
-  { key: 'HomeCTABanner', label: 'CTA bandı' },
 ] as const;
 
 export const HOME_LAYOUT_COMPONENT_KEYS = HOME_LAYOUT_COMPONENT_OPTIONS.map((o) => o.key);
