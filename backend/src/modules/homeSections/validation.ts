@@ -22,7 +22,8 @@ export const patchHomeSectionSchema = z.object({
 
 export const reorderHomeSectionsSchema = z.object({
   items: z.array(z.object({
-    id: z.string().min(32).max(36),
+    // id'ler UUID degil kisa slug olabilir (seed: 'home-hero' vb.) — min(32) reorder'i kiriyordu
+    id: z.string().trim().min(1).max(64),
     order_index: z.number().int().min(0).max(4294967295),
   })).min(1),
 });
