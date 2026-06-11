@@ -46,7 +46,8 @@ async function revalidateHomeCache() {
     const res = await fetch('/admin/api/revalidate-proxy', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ path: '/tr' }),
+      // Kok '/' + 10 dilin tamami ayri cache girdileri — layout-scope full purge sart
+      body: JSON.stringify({ all: true }),
     });
     return res.ok;
   } catch {
