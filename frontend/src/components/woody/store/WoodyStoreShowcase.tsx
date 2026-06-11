@@ -28,6 +28,7 @@ export type StoreCatalogProduct = {
 };
 
 export type StoreCatalog = {
+  ui?: Record<string, string>;
   quoteWhatsApp?: string;
   quoteMessage?: string;
   primaryCTA?: string;
@@ -90,14 +91,14 @@ export default function WoodyStoreShowcase({
           className={`inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-gray-600 transition hover:text-black ${FOCUS_RING}`}
         >
           <ChevronLeft className="size-5" aria-hidden />
-          {isTr ? 'GERİ' : 'BACK'}
+          {catalog.ui?.back || (isTr ? 'GERİ' : 'BACK')}
         </Link>
       </div>
 
       <section className="border-b border-gray-200 bg-white py-4 md:py-5">
         <div className="container max-w-[1000px] text-center">
           <p className="text-[15px] font-semibold text-gray-700 md:text-[17px]">
-            {isTr ? 'Okul öncesi İngilizce eğitim setleri' : 'Preschool English learning sets'}
+            {catalog.ui?.heroSubtitle || (isTr ? 'Okul öncesi İngilizce eğitim setleri' : 'Preschool English learning sets')}
           </p>
         </div>
       </section>
@@ -121,7 +122,7 @@ export default function WoodyStoreShowcase({
                       className={`inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3 py-1.5 text-[13px] font-bold transition hover:shadow-md ${FOCUS_RING}`}
                       style={{ color }}
                     >
-                      {isTr ? 'Seriye Git' : 'Go to Series'}
+                      {catalog.ui?.goToSeries || (isTr ? 'Seriye Git' : 'Go to Series')}
                       <ChevronRight className="h-3.5 w-3.5" aria-hidden />
                     </Link>
                   ) : null}
@@ -131,12 +132,12 @@ export default function WoodyStoreShowcase({
                 {category.id === 'okul-serisi' ? (
                   <div className="mt-3 space-y-1">
                     <p className="text-[13px] font-semibold text-gray-700 md:text-[14px]">
-                      {isTr ? 'Sınıf kullanımı içindir.' : 'Designed for classroom use.'}
+                      {catalog.ui?.classroomNote || (isTr ? 'Sınıf kullanımı içindir.' : 'Designed for classroom use.')}
                     </p>
                     <p className="text-[11px] text-gray-500 md:text-[12px]">
-                      {isTr
+                      {catalog.ui?.teacherSetNote || (isTr
                         ? '(Öğretmen seti, Mina Yayınevi anlaşması ile verilir. Sadece öğrenci seti almanız yeterlidir.)'
-                        : '(The teacher set is provided through Mina Publishing House agreements. Purchasing the student set is sufficient.)'}
+                        : '(The teacher set is provided through Mina Publishing House agreements. Purchasing the student set is sufficient.)')}
                     </p>
                   </div>
                 ) : category.description ? (
@@ -150,7 +151,7 @@ export default function WoodyStoreShowcase({
                     <Image src={comingSoonImage} alt={isTr ? 'Çok yakında' : 'Coming soon'} fill sizes="500px" className="object-cover" />
                   </div>
                   <p className="text-[16px] font-bold text-gray-700 md:text-[18px]">
-                    {isTr ? 'Çok yakında buradayız' : 'Coming soon'}
+                    {catalog.ui?.comingSoon || (isTr ? 'Çok yakında buradayız' : 'Coming soon')}
                   </p>
                   <WaitlistSignupForm copy={catalog.waitlistForm} productKey={category.id} locale={locale} />
                 </div>

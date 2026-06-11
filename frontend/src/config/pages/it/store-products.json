@@ -26,103 +26,118 @@
       "id": 1,
       "category": "okul-serisi",
       "name": "Set per studenti di livello base",
-      "description": "Livello principiante"
+      "description": "Livello principiante",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 2,
       "category": "okul-serisi",
       "name": "Set per studenti di livello junior",
-      "description": "Livello di sviluppo"
+      "description": "Livello di sviluppo",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 3,
       "category": "okul-serisi",
       "name": "Set per studenti di livello senior",
-      "description": "Livello avanzato"
+      "description": "Livello avanzato",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 7,
       "category": "atolye",
       "name": "Laboratorio Base",
       "description": "Pacchetto iniziale",
-      "price": "₺1,999"
+      "price": "₺1,999",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 8,
       "category": "atolye",
       "name": "Laboratorio Junior",
       "description": "Livello intermedio",
-      "price": "₺2,199"
+      "price": "₺2,199",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 9,
       "category": "atolye",
       "name": "Anziano d'officina",
       "description": "Livello avanzato",
-      "price": "₺2,399"
+      "price": "₺2,399",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 10,
       "category": "atolye",
       "name": "Officina PRO",
       "description": "Professionale",
-      "price": "₺2,699"
+      "price": "₺2,699",
+      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
       "id": 11,
       "category": "atolye",
       "name": "Set completo per officina",
       "description": "Tutto in uno",
-      "price": "₺7,999"
+      "price": "₺7,999",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 12,
       "category": "atolye",
       "name": "Materiale digitale",
       "description": "Accesso in linea",
-      "price": "₺499"
+      "price": "₺499",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 13,
       "category": "ozel-ders",
       "name": "Casa di base",
       "description": "Antipasto individuale",
-      "price": "₺1,499"
+      "price": "₺1,499",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 14,
       "category": "ozel-ders",
       "name": "Casa Junior",
       "description": "Sviluppo individuale",
-      "price": "₺1,699"
+      "price": "₺1,699",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 15,
       "category": "ozel-ders",
       "name": "Anziano domestico",
       "description": "Avanzato individuale",
-      "price": "₺1,899"
+      "price": "₺1,899",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 16,
       "category": "ozel-ders",
       "name": "Casa PRO",
       "description": "Professionista individuale",
-      "price": "₺2,099"
+      "price": "₺2,099",
+      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
       "id": 17,
       "category": "ozel-ders",
       "name": "Pacchetto lezioni private",
       "description": "4 livelli, scontati",
-      "price": "₺5,999"
+      "price": "₺5,999",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 18,
       "category": "ozel-ders",
       "name": "Biblioteca in linea",
       "description": "Accesso digitale",
-      "price": "₺399"
+      "price": "₺399",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     }
   ],
   "primaryCTA": "",

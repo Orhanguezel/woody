@@ -26,103 +26,118 @@
       "id": 1,
       "category": "okul-serisi",
       "name": "Basisniveau studentenset",
-      "description": "Beginnersniveau"
+      "description": "Beginnersniveau",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 2,
       "category": "okul-serisi",
       "name": "Studentenset op junior niveau",
-      "description": "Ontwikkelingsniveau"
+      "description": "Ontwikkelingsniveau",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 3,
       "category": "okul-serisi",
       "name": "Studentenset op senior niveau",
-      "description": "Gevorderd niveau"
+      "description": "Gevorderd niveau",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 7,
       "category": "atolie",
       "name": "Werkplaats Basis",
       "description": "Startpakket",
-      "price": "₺1,999"
+      "price": "₺1,999",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 8,
       "category": "atolie",
       "name": "Werkplaats Junior",
       "description": "Gemiddeld niveau",
-      "price": "₺2,199"
+      "price": "₺2,199",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 9,
       "category": "atolie",
       "name": "Werkplaats Senior",
       "description": "Gevorderd niveau",
-      "price": "₺2,399"
+      "price": "₺2,399",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 10,
       "category": "atolie",
       "name": "Werkplaats PRO",
       "description": "Professioneel",
-      "price": "₺2,699"
+      "price": "₺2,699",
+      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
       "id": 11,
       "category": "atolie",
       "name": "Werkplaats volledige set",
       "description": "Alles in één",
-      "price": "₺7,999"
+      "price": "₺7,999",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 12,
       "category": "atolie",
       "name": "Digitaal materiaal",
       "description": "Online-toegang",
-      "price": "₺499"
+      "price": "₺499",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 13,
       "category": "ozel-ders",
       "name": "Thuis Basis",
       "description": "Individuele starter",
-      "price": "₺1,499"
+      "price": "₺1,499",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 14,
       "category": "ozel-ders",
       "name": "Thuis Junior",
       "description": "Individuele ontwikkeling",
-      "price": "₺1,699"
+      "price": "₺1,699",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
       "id": 15,
       "category": "ozel-ders",
       "name": "Thuis Senior",
       "description": "Individueel gevorderd",
-      "price": "₺1,899"
+      "price": "₺1,899",
+      "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
       "id": 16,
       "category": "ozel-ders",
       "name": "Thuis PRO",
       "description": "Individuele professional",
-      "price": "₺2,099"
+      "price": "₺2,099",
+      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
       "id": 17,
       "category": "ozel-ders",
       "name": "Privélespakket",
       "description": "4 niveaus, met korting",
-      "price": "₺5,999"
+      "price": "₺5,999",
+      "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
       "id": 18,
       "category": "ozel-ders",
       "name": "Onlinebibliotheek",
       "description": "Digitale toegang",
-      "price": "₺399"
+      "price": "₺399",
+      "image": "/media/woody/reference/m4z26p5k_2.png"
     }
   ],
   "primaryCTA": "",
