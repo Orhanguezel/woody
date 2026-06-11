@@ -127,9 +127,11 @@ function SortableRow({ section, expanded, onToggleExpand, onPatch, onDelete, sav
           checked={!!section.is_active}
           onCheckedChange={(checked) => onPatch({ is_active: checked ? 1 : 0 })}
           disabled={saving}
-          className="data-[state=checked]:bg-gm-gold"
+          className="border border-gm-border-soft data-[state=checked]:bg-gm-gold data-[state=unchecked]:bg-gray-300"
         />
-        <span className="text-[10px] uppercase tracking-widest text-gm-muted w-10">
+        <span
+          className={`w-10 text-[10px] font-bold uppercase tracking-widest ${section.is_active ? 'text-gm-gold' : 'text-gm-error'}`}
+        >
           {section.is_active ? 'Aktif' : 'Pasif'}
         </span>
 
@@ -228,8 +230,9 @@ export default function HomeLayoutAdminClient() {
     const newIdx = items.findIndex((s) => s.id === over.id);
     if (oldIdx < 0 || newIdx < 0) return;
     const reordered = arrayMove(items, oldIdx, newIdx).map((s, i) => ({ ...s, order_index: (i + 1) * 10 }));
+    // id'ler UUID degil kisa slug olabilir ('home-hero') — uzunluk filtresi reorder'i kiriyordu
     const payload = reordered
-      .filter((s) => typeof s.id === 'string' && s.id.length >= 32)
+      .filter((s) => typeof s.id === 'string' && s.id.trim().length > 0)
       .map((s) => ({ id: s.id, order_index: s.order_index }));
     if (payload.length !== reordered.length || payload.length === 0) {
       toast.error('Sıralama kaydedilemedi');
