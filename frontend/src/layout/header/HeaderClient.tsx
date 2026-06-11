@@ -161,7 +161,18 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
     };
 
     if (initialMenuItems && initialMenuItems.length > 0) {
-      return mapReferenceFallback(sortMenu(initialMenuItems as MenuItemWithChildren[]));
+      // DB menusu TEK kaynak: admin'den eklenen ogeler (orn. Woody Dijital) dusurulmez.
+      // REFERENCE_NAV kilidi KALDIRILDI — yalnizca URL bazli dedupe yapilir.
+      const flat = flattenMenu(filterPublicMenu(sortMenu(initialMenuItems as MenuItemWithChildren[])));
+      const seen = new Set<string>();
+      const out: MenuItemWithChildren[] = [];
+      for (const item of flat) {
+        const key = cleanHashLink(String(item.url || ''));
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        out.push(item);
+      }
+      if (out.length > 0) return out;
     }
     // initialMenuItems boş ise (SSR fetch başarısız) — varsayılan linkleri locale'e göre üret
     const mapItem = (m: FallbackMenuItem): MenuItemWithChildren => ({

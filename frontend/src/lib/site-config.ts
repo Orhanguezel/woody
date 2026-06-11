@@ -92,7 +92,8 @@ export function getDefaultLogoAlt(): string {
 export function getPublicLogoUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_LOGO_URL?.trim();
   if (fromEnv) return fromEnv;
-  return getDefaultTokenBranding().logo_url || '/logo/logo.svg';
+  // /logo/logo.svg silindi — mevcut marka gorseline dus (JSON-LD org logo vb. 404 vermesin)
+  return getDefaultTokenBranding().logo_url || '/uploads/brand/woody-and-friends-optimized.webp';
 }
 
 export function getManifestPwaStrings(): { name: string; short_name: string; description: string } {

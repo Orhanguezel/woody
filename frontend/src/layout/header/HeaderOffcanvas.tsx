@@ -138,7 +138,20 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
       title: item.label[resolvedLocale] || item.label.tr || item.label.en,
       ...(item.children?.length ? { children: item.children.map(mapItem) } : {}),
     } as MenuItemWithChildren);
-    const source = list.length ? sortRecursive(list) : filterPublicMenu(FALLBACK_MENU.map(mapItem));
+    // DB menusu TEK kaynak (URL dedupe ile) — REFERENCE_NAV kilidi yalnizca API bos ise fallback.
+    if (list.length) {
+      const flat = sortRecursive(list);
+      const seen = new Set<string>();
+      const out: MenuItemWithChildren[] = [];
+      for (const item of flat) {
+        const key = cleanHashLink(String(item.url || ''));
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        out.push(item);
+      }
+      if (out.length > 0) return out;
+    }
+    const source = filterPublicMenu(FALLBACK_MENU.map(mapItem));
     return REFERENCE_NAV.map((ref, index) => {
       const apiItem = source.find((item) => cleanHashLink(String(item.url || '')) === ref.url);
       return {
