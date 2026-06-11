@@ -1,4 +1,4 @@
-const VERSION = 'pwa-v3';
+const VERSION = 'pwa-v4';
 const SHELL = `${VERSION}-shell`;
 const STATIC = `${VERSION}-static`;
 const PAGE = `${VERSION}-page`;
@@ -42,14 +42,16 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== location.origin || SKIP_RE.test(url.pathname)) return;
 
   if (request.mode === 'navigate') {
+    // NETWORK-FIRST: deploy sonrasi eski sayfa kabugu (eski menu/chunk) sunulmasin.
+    // Cache yalnizca offline fallback olarak kullanilir.
     event.respondWith(
-      caches.open(PAGE).then(async (cache) => {
-        const cached = await cache.match(request);
-        const fresh = fetch(request)
-          .then((response) => put(PAGE, request, response))
-          .catch(() => cached || caches.match(OFFLINE));
-        return cached || fresh;
-      }),
+      fetch(request)
+        .then((response) => put(PAGE, request, response))
+        .catch(async () => {
+          const cache = await caches.open(PAGE);
+          const cached = await cache.match(request);
+          return cached || caches.match(OFFLINE);
+        }),
     );
     return;
   }
