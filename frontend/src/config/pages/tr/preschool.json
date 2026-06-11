@@ -1,10 +1,10 @@
 {
-  "title": "{{appName}} Preschool Series",
+  "title": "{{appName}} Okul Serisi",
   "description": "{{appName}} Okul Serisi, kurumlara oyun temelli, planlı ve sürdürülebilir bir İngilizce eğitim altyapısı sunar.",
-  "eyebrow": "{{appName}} PRESCHOOL SERIES",
+  "eyebrow": "{{appName}} OKUL SERİSİ",
   "hero": {
-    "eyebrow": "{{appName}} PRESCHOOL SERIES",
-    "title": "Preschool",
+    "eyebrow": "{{appName}} OKUL SERİSİ",
+    "title": "Okul Serisi",
     "description": "{{appName}} Okul Serisi, kurumlara oyun temelli, planlı ve sürdürülebilir bir İngilizce eğitim altyapısı sunar.",
     "primaryCTA": "Demo Talep Et",
     "primaryHref": "/contact",

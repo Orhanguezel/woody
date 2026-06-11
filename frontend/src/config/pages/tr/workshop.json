@@ -1,10 +1,10 @@
 {
-  "title": "{{appName}} Workshop Series",
+  "title": "{{appName}} Atölye Serisi",
   "description": "Atölye serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
-  "eyebrow": "{{appName}} WORKSHOP SERIES",
+  "eyebrow": "{{appName}} ATÖLYE SERİSİ",
   "hero": {
-    "eyebrow": "{{appName}} WORKSHOP SERIES",
-    "title": "Workshop",
+    "eyebrow": "{{appName}} ATÖLYE SERİSİ",
+    "title": "Atölye Serisi",
     "description": "Atölye serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
     "primaryCTA": "Demo Talep Et",
     "primaryHref": "/contact",

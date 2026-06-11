@@ -1,10 +1,10 @@
 {
-  "title": "{{appName}} Home Tutor",
+  "title": "{{appName}} Ev & Özel Ders",
   "description": "Evde veya okulda, çocuğunuzun İngilizce yolculuğuna güvenle başlayın. {{appName}} ile eğlenceli ve etkili bir öğrenme deneyimi yaşayın.",
-  "eyebrow": "{{appName}} PRESCHOOL SERIES",
+  "eyebrow": "{{appName}} EV & ÖZEL DERS SERİSİ",
   "hero": {
-    "eyebrow": "{{appName}} PRESCHOOL SERIES",
-    "title": "Home & Tutor",
+    "eyebrow": "{{appName}} EV & ÖZEL DERS SERİSİ",
+    "title": "Ev & Özel Ders",
     "description": "Evde veya okulda, çocuğunuzun İngilizce yolculuğuna güvenle başlayın. {{appName}} ile eğlenceli ve etkili bir öğrenme deneyimi yaşayın.",
     "primaryCTA": "Demo Talep Et",
     "primaryHref": "/contact",
