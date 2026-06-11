@@ -157,43 +157,43 @@
       "basic": [
         {
           "id": 1,
-          "title": "Theme 1",
-          "topic": "Theme 1",
+          "title": "Theme 1 – Greetings & Classroom Communication",
+          "topic": "Greetings & Classroom Communication",
           "audioUrl": "/media/woody/reference/iccoy0mm_theme%201%20.mp3",
           "thumbnail": "/media/woody/reference/pxj6okjj_1.png"
         },
         {
           "id": 2,
-          "title": "Theme 2",
-          "topic": "Theme 2",
+          "title": "Theme 2 – Classroom Life & Objects",
+          "topic": "Classroom Life & Objects",
           "audioUrl": "/media/woody/reference/y3dz0w3v_theme%202.mp3",
           "thumbnail": "/media/woody/reference/3r3f6uwx_2.png"
         },
         {
           "id": 3,
-          "title": "Theme 3",
-          "topic": "Theme 3",
+          "title": "Theme 3 – Numbers & Colors",
+          "topic": "Numbers & Colors",
           "audioUrl": "/media/woody/reference/lfgctcef_theme%203%20.mp3",
           "thumbnail": "/media/woody/reference/fvlxvwww_3.png"
         },
         {
           "id": 4,
-          "title": "Theme 4",
-          "topic": "Theme 4",
+          "title": "Theme 4 – Animals",
+          "topic": "Animals",
           "audioUrl": "/media/woody/reference/6pfdm5c0_theme%204%20.mp3",
           "thumbnail": "/media/woody/reference/5ukkudwy_4.png"
         },
         {
           "id": 5,
-          "title": "Theme 5",
-          "topic": "Theme 5",
+          "title": "Theme 5 – Vegetables & Fruits",
+          "topic": "Vegetables & Fruits",
           "audioUrl": "/media/woody/reference/w4djc170_Theme%205.mp3",
           "thumbnail": "/media/woody/reference/9bh5jjnf_5.png"
         },
         {
           "id": 6,
-          "title": "Theme 6",
-          "topic": "Theme 6",
+          "title": "Theme 6 – My Body Parts & 5 Senses",
+          "topic": "My Body Parts & 5 Senses",
           "audioUrl": "/media/woody/reference/g2sj2m65_theme%206.mp3",
           "thumbnail": "/media/woody/reference/9vonr43z_6.png"
         },
@@ -206,8 +206,8 @@
         },
         {
           "id": 8,
-          "title": "Theme 8",
-          "topic": "Theme 8",
+          "title": "Theme 8 – Vehicles",
+          "topic": "Vehicles",
           "audioUrl": "/media/woody/reference/726lj4d9_theme%208.mp3",
           "thumbnail": "/media/woody/reference/8ontm0a3_8.png"
         }
@@ -328,6 +328,7 @@
           "thumbnail": "/media/woody/reference/ymtca4bt_I%CC%87lk%20sayfa%20theme%201_Sayfa_8.jpg"
         }
       ]
-    }
+    },
+    "intro": "ميوزيك لاند هو قسم Woody and Friends لأغاني الأطفال بالإنجليزية — أغنية أصلية لكل موضوع: التحيات، الأرقام والألوان، الحيوانات، الملابس والمزيد."
   }
 }

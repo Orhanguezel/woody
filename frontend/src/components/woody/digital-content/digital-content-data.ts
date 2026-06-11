@@ -66,6 +66,7 @@ export type DigitalContentCopy = {
   };
   ui?: Record<string, string>;
   musicland?: {
+    intro?: string;
     tracks?: Record<string, DigitalContentItem[]>;
   };
 };

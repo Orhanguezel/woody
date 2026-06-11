@@ -409,6 +409,25 @@ export default function DigitalContentDetailClient({
             </div>
           </section>
 
+          {section === 'musicland' ? (
+            <section className="w-full bg-white pt-8" data-testid="musicland-seo-intro">
+              <div className="container max-w-[1200px]">
+                {copy?.musicland?.intro ? (
+                  <p className="text-[15px] leading-relaxed text-gray-700 md:text-[16px]">{copy.musicland.intro}</p>
+                ) : null}
+                {items.some((item) => item.topic) ? (
+                  <ul className="mt-3 flex flex-wrap gap-2" aria-label="Themes">
+                    {items.filter((item) => item.topic).map((item) => (
+                      <li key={item.id} className="rounded-full bg-gray-100 px-3 py-1 text-[12px] font-bold text-gray-600">
+                        {item.topic}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            </section>
+          ) : null}
+
           {section === 'library' ? (
             <LibrarySoon copy={copy} locale={locale} level={level} section={section} />
           ) : (
