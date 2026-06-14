@@ -4,6 +4,8 @@ import { registerAdminPanelCommerceStubs } from '@/modules/adminPanelStubs/route
 import { registerSchoolsAdmin, registerSchoolsPublic } from '@/modules/schools';
 import { registerOrdersProjectAdmin } from '@/modules/orders';
 import { registerCheckoutPublic } from '@/modules/checkout';
+import { registerCatalogAdmin, registerCatalogPublic } from '@/modules/catalog';
+import { registerEntitlementsAdmin, registerEntitlementsPublic } from '@/modules/entitlements';
 import { registerQuoteRequestsAdmin, registerQuoteRequestsPublic } from '@/modules/quoteRequests';
 import { registerSubscriptionsAdmin, registerSubscriptionsPublic } from '@/modules/subscriptions';
 import { registerWaitlistPublic } from '@/modules/waitlist';
@@ -11,7 +13,9 @@ import { registerWaitlistPublic } from '@/modules/waitlist';
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerHomeLayoutPublic(api);
   await registerSchoolsPublic(api);
+  await registerCatalogPublic(api);
   await registerCheckoutPublic(api);
+  await registerEntitlementsPublic(api);
   await registerQuoteRequestsPublic(api);
   await registerSubscriptionsPublic(api);
   await registerWaitlistPublic(api);
@@ -28,6 +32,8 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerAdminPanelCommerceStubs(adminApi);
   await registerSchoolsAdmin(adminApi);
   await registerOrdersProjectAdmin(adminApi);
+  await registerCatalogAdmin(adminApi);
+  await registerEntitlementsAdmin(adminApi);
   await registerQuoteRequestsAdmin(adminApi);
   await registerSubscriptionsAdmin(adminApi);
 }

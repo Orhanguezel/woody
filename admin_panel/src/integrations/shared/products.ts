@@ -11,6 +11,16 @@ export type ProductAdminView = {
   category_id: string;
   sub_category_id: string | null;
   category_name: string | null;
+  series_id: string | null;
+  series_name: string | null;
+  series_slug: string | null;
+  level_id: string | null;
+  level_name: string | null;
+  level_slug: string | null;
+  level_rank: number | null;
+  purchase_mode: 'online' | 'quote';
+  is_free: boolean;
+  access_duration_days: number | null;
   price: number;
   image_url: string | null;
   images: string[];
@@ -57,6 +67,10 @@ export type ProductsListQuery = {
   q?: string;
   category_id?: string;
   sub_category_id?: string;
+  series_id?: string;
+  level_id?: string;
+  purchase_mode?: 'online' | 'quote';
+  is_free?: boolean;
   is_active?: boolean;
   limit?: number;
   offset?: number;
@@ -76,6 +90,11 @@ export type ProductUpsertBody = {
   price: number;
   category_id: string;
   sub_category_id?: string | null;
+  series_id?: string | null;
+  level_id?: string | null;
+  purchase_mode?: 'online' | 'quote';
+  is_free?: 0 | 1;
+  access_duration_days?: number | null;
   image_url?: string | null;
   images?: string[];
   storage_asset_id?: string | null;
@@ -152,6 +171,10 @@ function toItemType(value: unknown): ProductItemType {
   return 'product';
 }
 
+function toPurchaseMode(value: unknown): 'online' | 'quote' {
+  return toStr(value) === 'quote' ? 'quote' : 'online';
+}
+
 export function normalizeProductAdmin(raw: unknown): ProductAdminView {
   const r = (raw ?? {}) as Record<string, unknown>;
   return {
@@ -160,6 +183,16 @@ export function normalizeProductAdmin(raw: unknown): ProductAdminView {
     category_id: toStr(r.category_id),
     sub_category_id: toNullableStr(r.sub_category_id),
     category_name: toNullableStr(r.category_name),
+    series_id: toNullableStr(r.series_id),
+    series_name: toNullableStr(r.series_name),
+    series_slug: toNullableStr(r.series_slug),
+    level_id: toNullableStr(r.level_id),
+    level_name: toNullableStr(r.level_name),
+    level_slug: toNullableStr(r.level_slug),
+    level_rank: r.level_rank == null ? null : toNum(r.level_rank),
+    purchase_mode: toPurchaseMode(r.purchase_mode),
+    is_free: toBool(r.is_free),
+    access_duration_days: r.access_duration_days == null ? null : toNum(r.access_duration_days),
     price: toNum(r.price),
     image_url: toNullableStr(r.image_url),
     images: toStringArray(r.images),
@@ -214,6 +247,10 @@ export function toProductsListParams(query: ProductsListQuery): Record<string, u
   if (query.q) params.q = query.q;
   if (query.category_id) params.category_id = query.category_id;
   if (query.sub_category_id) params.sub_category_id = query.sub_category_id;
+  if (query.series_id) params.series_id = query.series_id;
+  if (query.level_id) params.level_id = query.level_id;
+  if (query.purchase_mode) params.purchase_mode = query.purchase_mode;
+  if (query.is_free !== undefined) params.is_free = query.is_free ? 1 : 0;
   if (query.is_active !== undefined) params.is_active = query.is_active ? 1 : 0;
   if (query.limit) params.limit = query.limit;
   if (query.offset) params.offset = query.offset;

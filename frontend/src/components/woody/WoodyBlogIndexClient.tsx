@@ -3,12 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { ArrowRight, ChevronDown, ChevronLeft, Search } from 'lucide-react';
+import { ArrowRight, ChevronDown, Search } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
 import { LayoutSeoBridge } from '@/seo';
 import { useLocaleShort } from '@/i18n';
+import WoodyPageLogoHeader from './WoodyPageLogoHeader';
 import type { WoodyFallbackBlogPost } from './blog-loader.server';
 
 // Blog breadcrumb logosu (akademi sayfasi deseni — ortalanmis marka logosu + geri linki)
@@ -66,7 +67,6 @@ export default function WoodyBlogIndexClient({
   faqItems?: WoodyBlogFaqItem[];
 }) {
   const locale = useLocaleShort();
-  const backLabel = locale === 'tr' ? 'GERİ' : 'BACK';
   const [openFaq, setOpenFaq] = useState(0);
   const posts = useMemo(() => initialPosts.filter((post) => post?.slug && post?.title), [initialPosts]);
   const visibleFaq = useMemo(() => (faqItems.length > 0 ? faqItems : fallbackFaq).slice(0, 8), [faqItems]);
@@ -82,37 +82,20 @@ export default function WoodyBlogIndexClient({
     <>
       <LayoutSeoBridge title={title} description={description} ogImage={posts[0]?.featured_image} noindex={false} />
       <main className="bg-[#fff9ee] text-[#24333f]">
-        {/* Breadcrumb / hero — akademi sayfasi deseni: ortalanmis Woody Blog logosu + geri linki */}
-        <section className="mt-[72px] bg-white py-8 md:py-10">
-          <div className="mx-auto flex max-w-[600px] flex-col items-center justify-center gap-4 px-6">
-            {/* Gorsel logo + SEO/erisilebilirlik icin gorunmez tek h1 */}
-            <h1 className="sr-only">{title}</h1>
-            <Image
-              src={BLOG_LOGO}
-              alt={title}
-              width={750}
-              height={492}
-              priority
-              className="h-auto w-full max-w-[450px] object-contain"
-            />
-            {activeCategory ? (
+        <WoodyPageLogoHeader
+          title={title}
+          locale={locale}
+          logoSrc={BLOG_LOGO}
+          logoAlt={title}
+          badge={
+            activeCategory ? (
               <div className="inline-flex items-center gap-2 rounded-full bg-[#f58220]/12 px-4 py-2 text-sm font-black text-[#d96f12] ring-1 ring-[#f58220]/30">
                 <Search className="h-4 w-4" aria-hidden />
                 {categoryLabel(activeCategory)}
               </div>
-            ) : null}
-          </div>
-        </section>
-
-        <div className="mx-auto max-w-[1400px] px-6 pt-2 md:px-16 lg:px-20">
-          <Link
-            href={`/${locale}`}
-            className={`inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-gray-600 transition hover:text-black ${FOCUS_RING}`}
-          >
-            <ChevronLeft className="size-5" aria-hidden />
-            {backLabel}
-          </Link>
-        </div>
+            ) : null
+          }
+        />
 
         {description ? (
           <div className="mx-auto max-w-[820px] px-6 pt-4 text-center">

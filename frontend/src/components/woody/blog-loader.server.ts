@@ -12,6 +12,10 @@ export type WoodyFallbackBlogPost = {
   created_at: string;
   updated_at?: string;
   content_html?: string;
+  meta_title?: string;
+  meta_description?: string;
+  focus_keyword?: string;
+  keywords?: string[];
   author?: string;
   category?: string;
 };

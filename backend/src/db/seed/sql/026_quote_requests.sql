@@ -10,8 +10,9 @@ CREATE TABLE IF NOT EXISTS `quote_requests` (
   `contact_name` VARCHAR(180) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(64) DEFAULT NULL,
+  `product_id` CHAR(36) DEFAULT NULL,
   `student_count` INT NOT NULL DEFAULT 0,
-  `level` ENUM('basic','junior','senior','mixed') NOT NULL DEFAULT 'mixed',
+  `level` ENUM('basic','junior','senior','pro','mixed') NOT NULL DEFAULT 'mixed',
   `city` VARCHAR(120) DEFAULT NULL,
   `district` VARCHAR(120) DEFAULT NULL,
   `message` TEXT DEFAULT NULL,
@@ -22,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `quote_requests` (
   PRIMARY KEY (`id`),
   KEY `quote_requests_status_idx` (`status`),
   KEY `quote_requests_email_idx` (`email`),
+  KEY `quote_requests_product_idx` (`product_id`),
   KEY `quote_requests_created_at_idx` (`created_at`),
   KEY `quote_requests_source_idx` (`source`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

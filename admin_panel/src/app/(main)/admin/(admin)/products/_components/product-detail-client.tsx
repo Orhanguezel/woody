@@ -2,7 +2,18 @@
 
 import * as React from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, ImageIcon, Package, Save, Search, Sparkles } from 'lucide-react';
+import {
+  ArrowLeft,
+  FileText,
+  ImageIcon,
+  LinkIcon,
+  Package,
+  Plus,
+  Save,
+  Search,
+  Sparkles,
+  Trash2,
+} from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Badge } from '@/components/ui/badge';
@@ -25,14 +36,22 @@ import {
 } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Switch } from '@/components/ui/switch';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import type { ProductAdminView, ProductUpsertBody } from '@/integrations/shared';
+import type { ProductContentUpsertBody } from '@/integrations/endpoints/admin/products_admin.endpoints';
 import {
+  useCreateProductContentAdminMutation,
   useCreateProductAdminMutation,
+  useDeleteProductContentAdminMutation,
   useGetProductAdminQuery,
+  useListLevelsAdminQuery,
+  useListProductContentsAdminQuery,
   useListProductCategoriesAdminQuery,
   useListProductSubcategoriesAdminQuery,
+  useListSeriesAdminQuery,
+  useUpdateProductContentAdminMutation,
   useUpdateProductAdminMutation,
 } from '@/integrations/hooks';
 
@@ -52,6 +71,11 @@ type ProductForm = {
   price: string;
   category_id: string;
   sub_category_id: string;
+  series_id: string;
+  level_id: string;
+  purchase_mode: 'online' | 'quote';
+  is_free: boolean;
+  access_duration_days: string;
   image_url: string;
   product_code: string;
   stock_quantity: string;
@@ -74,6 +98,11 @@ function emptyForm(locale: string): ProductForm {
     price: '0',
     category_id: '',
     sub_category_id: 'none',
+    series_id: 'none',
+    level_id: 'none',
+    purchase_mode: 'online',
+    is_free: false,
+    access_duration_days: '',
     image_url: '',
     product_code: '',
     stock_quantity: '0',
@@ -139,6 +168,11 @@ function productToForm(product: ProductAdminView): ProductForm {
     price: String(product.price),
     category_id: product.category_id,
     sub_category_id: product.sub_category_id ?? 'none',
+    series_id: product.series_id ?? 'none',
+    level_id: product.level_id ?? 'none',
+    purchase_mode: product.purchase_mode,
+    is_free: product.is_free,
+    access_duration_days: product.access_duration_days == null ? '' : String(product.access_duration_days),
     image_url: product.image_url ?? '',
     product_code: product.product_code ?? '',
     stock_quantity: String(product.stock_quantity),
@@ -164,17 +198,39 @@ export default function ProductDetailClient({ id }: { id: string }) {
 
   const productQ = useGetProductAdminQuery({ id, locale }, { skip: isNew });
   const categoriesQ = useListProductCategoriesAdminQuery({ locale });
+  const seriesQ = useListSeriesAdminQuery({ locale });
+  const levelsQ = useListLevelsAdminQuery({ locale });
   const subcategoriesQ = useListProductSubcategoriesAdminQuery({
     locale,
     categoryId: form.category_id || undefined,
   });
+  const contentsQ = useListProductContentsAdminQuery({ productId: id, locale }, { skip: isNew });
 
   const [createProduct, createState] = useCreateProductAdminMutation();
   const [updateProduct, updateState] = useUpdateProductAdminMutation();
+  const [createContent, createContentState] = useCreateProductContentAdminMutation();
+  const [updateContent, updateContentState] = useUpdateProductContentAdminMutation();
+  const [deleteContent, deleteContentState] = useDeleteProductContentAdminMutation();
   const saving = createState.isLoading || updateState.isLoading;
 
   const categories = categoriesQ.data ?? [];
   const subcategories = subcategoriesQ.data ?? [];
+  const series = seriesQ.data ?? [];
+  const levels = levelsQ.data ?? [];
+  const contents = contentsQ.data ?? [];
+
+  const [contentForm, setContentForm] = React.useState({
+    id: '',
+    kind: 'digital' as 'digital' | 'physical',
+    media_type: 'video' as NonNullable<ProductContentUpsertBody['media_type']>,
+    storage_asset_id: '',
+    external_url: '',
+    title: '',
+    description: '',
+    display_order: '0',
+    is_preview: false,
+    is_active: true,
+  });
 
   // Edit: (id, locale) basina bir kez form'u doldur
   const hydratedKey = React.useRef('');
@@ -205,6 +261,9 @@ export default function ProductDetailClient({ id }: { id: string }) {
     const price = Number(form.price);
     const stock = Number(form.stock_quantity);
     const orderNum = Number(form.order_num);
+    const accessDays = form.access_duration_days.trim()
+      ? Number(form.access_duration_days)
+      : null;
 
     if (!title || !slug || !categoryId) {
       toast.error('Başlık, slug ve kategori gerekli');
@@ -212,6 +271,10 @@ export default function ProductDetailClient({ id }: { id: string }) {
     }
     if (!Number.isFinite(price) || price < 0) {
       toast.error('Geçerli bir fiyat gir');
+      return null;
+    }
+    if (accessDays !== null && (!Number.isFinite(accessDays) || accessDays < 1)) {
+      toast.error('Erişim süresi boş veya pozitif gün olmalı');
       return null;
     }
 
@@ -224,6 +287,11 @@ export default function ProductDetailClient({ id }: { id: string }) {
       price,
       category_id: categoryId,
       sub_category_id: form.sub_category_id === 'none' ? null : form.sub_category_id,
+      series_id: form.series_id === 'none' ? null : form.series_id,
+      level_id: form.level_id === 'none' ? null : form.level_id,
+      purchase_mode: form.purchase_mode,
+      is_free: form.is_free ? 1 : 0,
+      access_duration_days: accessDays,
       image_url: form.image_url.trim() || null,
       images: form.image_url.trim() ? [form.image_url.trim()] : [],
       product_code: form.product_code.trim() || null,
@@ -251,6 +319,55 @@ export default function ProductDetailClient({ id }: { id: string }) {
         await updateProduct({ id, body }).unwrap();
         toast.success('Ürün güncellendi');
       }
+    } catch (error) {
+      toast.error(apiErrorMessage(error));
+    }
+  }
+
+  function resetContentForm() {
+    setContentForm({
+      id: '',
+      kind: 'digital',
+      media_type: 'video',
+      storage_asset_id: '',
+      external_url: '',
+      title: '',
+      description: '',
+      display_order: '0',
+      is_preview: false,
+      is_active: true,
+    });
+  }
+
+  async function saveContent() {
+    if (isNew) return;
+    const title = contentForm.title.trim();
+    if (!title) {
+      toast.error('İçerik başlığı gerekli');
+      return;
+    }
+    const body: ProductContentUpsertBody = {
+      locale,
+      kind: contentForm.kind,
+      media_type: contentForm.kind === 'digital' ? contentForm.media_type : null,
+      storage_asset_id: contentForm.storage_asset_id.trim() || null,
+      external_url: contentForm.external_url.trim() || null,
+      title,
+      description: contentForm.description.trim() || null,
+      display_order: Number(contentForm.display_order) || 0,
+      is_preview: contentForm.is_preview,
+      is_active: contentForm.is_active,
+    };
+    try {
+      if (contentForm.id) {
+        await updateContent({ productId: id, contentId: contentForm.id, body }).unwrap();
+        toast.success('İçerik güncellendi');
+      } else {
+        await createContent({ productId: id, body }).unwrap();
+        toast.success('İçerik eklendi');
+      }
+      resetContentForm();
+      contentsQ.refetch();
     } catch (error) {
       toast.error(apiErrorMessage(error));
     }
@@ -352,7 +469,22 @@ export default function ProductDetailClient({ id }: { id: string }) {
           <Skeleton className="h-96 rounded-[32px] bg-gm-surface/20" />
         </div>
       ) : (
-        <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] items-start">
+        <Tabs defaultValue="general" className="space-y-8">
+          <TabsList className="bg-gm-surface/20 border border-gm-border-soft rounded-full p-1">
+            <TabsTrigger value="general" className="rounded-full px-6 text-[10px] font-bold uppercase tracking-widest">
+              Genel
+            </TabsTrigger>
+            <TabsTrigger
+              value="contents"
+              disabled={isNew}
+              className="rounded-full px-6 text-[10px] font-bold uppercase tracking-widest"
+            >
+              İçerikler
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="general" className="mt-0">
+            <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] items-start">
           {/* Ürün bilgileri */}
           <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
             <CardHeader className="p-8 pb-4 bg-gm-surface/40 border-b border-gm-border-soft">
@@ -469,6 +601,82 @@ export default function ProductDetailClient({ id }: { id: string }) {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+              </div>
+
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="space-y-3">
+                  <Label className={LABEL_CLS}>Seri</Label>
+                  <Select value={form.series_id} onValueChange={(value) => updateForm('series_id', value)}>
+                    <SelectTrigger className={INPUT_CLS}>
+                      <SelectValue placeholder="Seri seç" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                      <SelectItem value="none">Yok</SelectItem>
+                      {series.map((item) => (
+                        <SelectItem key={item.id} value={item.id}>
+                          {item.name || item.code}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-3">
+                  <Label className={LABEL_CLS}>Seviye</Label>
+                  <Select value={form.level_id} onValueChange={(value) => updateForm('level_id', value)}>
+                    <SelectTrigger className={INPUT_CLS}>
+                      <SelectValue placeholder="Seviye seç" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                      <SelectItem value="none">Yok</SelectItem>
+                      {levels.map((item) => (
+                        <SelectItem key={item.id} value={item.id}>
+                          {item.name || item.code}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="grid gap-6 sm:grid-cols-3">
+                <div className="space-y-3">
+                  <Label className={LABEL_CLS}>Satış modu</Label>
+                  <Select
+                    value={form.purchase_mode}
+                    onValueChange={(value) => updateForm('purchase_mode', value as 'online' | 'quote')}
+                  >
+                    <SelectTrigger className={INPUT_CLS}>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                      <SelectItem value="online">Online</SelectItem>
+                      <SelectItem value="quote">Teklif</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-3">
+                  <Label htmlFor="p-access-days" className={LABEL_CLS}>
+                    Erişim süresi
+                  </Label>
+                  <Input
+                    id="p-access-days"
+                    inputMode="numeric"
+                    value={form.access_duration_days}
+                    onChange={(e) => updateForm('access_duration_days', e.target.value)}
+                    placeholder="Boş = süresiz"
+                    className={cn(INPUT_CLS, 'font-mono')}
+                  />
+                </div>
+                <div className="flex h-12 items-center justify-between self-end px-6 bg-gm-surface/20 rounded-2xl border border-gm-border-soft">
+                  <Label className="text-[10px] font-bold text-gm-muted tracking-widest uppercase cursor-pointer">
+                    Ücretsiz
+                  </Label>
+                  <Switch
+                    checked={form.is_free}
+                    onCheckedChange={(checked: boolean) => updateForm('is_free', checked)}
+                    className="data-[state=checked]:bg-gm-gold"
+                  />
                 </div>
               </div>
 
@@ -640,7 +848,233 @@ export default function ProductDetailClient({ id }: { id: string }) {
               </CardContent>
             </Card>
           </div>
-        </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="contents" className="mt-0">
+            <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr] items-start">
+              <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+                <CardHeader className="p-8 pb-4 bg-gm-surface/40 border-b border-gm-border-soft">
+                  <CardTitle className="font-serif text-2xl flex items-center gap-3">
+                    <FileText className="h-5 w-5 text-gm-gold" />
+                    İçerikler
+                  </CardTitle>
+                  <CardDescription className="font-serif italic text-gm-muted opacity-70">
+                    Dosya URL’i public yanıtta görünmez; erişim teslim ucundan yapılır.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="divide-y divide-gm-border-soft">
+                    {contentsQ.isFetching && contents.length === 0 ? (
+                      Array.from({ length: 3 }).map((_, index) => (
+                        <div key={index} className="p-6">
+                          <Skeleton className="h-12 w-full bg-gm-surface/20" />
+                        </div>
+                      ))
+                    ) : contents.length === 0 ? (
+                      <div className="p-12 text-center text-gm-muted font-serif italic">
+                        İçerik yok
+                      </div>
+                    ) : (
+                      contents.map((item) => (
+                        <div key={item.id} className="p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                          <div className="min-w-0 space-y-1">
+                            <div className="flex items-center gap-2">
+                              <Badge variant="outline" className="rounded-full border-gm-border-soft text-[9px] uppercase tracking-widest">
+                                {item.kind === 'physical' ? 'Matbu' : item.mediaType ?? 'Dijital'}
+                              </Badge>
+                              {item.isPreview ? (
+                                <Badge className="rounded-full bg-gm-success/10 text-gm-success text-[9px] uppercase tracking-widest">
+                                  Önizleme
+                                </Badge>
+                              ) : null}
+                              {!item.isActive ? (
+                                <Badge variant="secondary" className="rounded-full text-[9px] uppercase tracking-widest">
+                                  Pasif
+                                </Badge>
+                              ) : null}
+                            </div>
+                            <div className="font-serif text-xl text-gm-text truncate">{item.title}</div>
+                            <div className="text-[10px] text-gm-muted font-mono">
+                              Sıra {item.displayOrder} · {item.storageAssetId || item.externalUrl || '-'}
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="rounded-full"
+                              onClick={() =>
+                                setContentForm({
+                                  id: item.id,
+                                  kind: item.kind,
+                                  media_type: item.mediaType ?? 'video',
+                                  storage_asset_id: item.storageAssetId ?? '',
+                                  external_url: item.externalUrl ?? '',
+                                  title: item.title,
+                                  description: item.description ?? '',
+                                  display_order: String(item.displayOrder),
+                                  is_preview: item.isPreview,
+                                  is_active: item.isActive,
+                                })
+                              }
+                            >
+                              Düzenle
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              disabled={deleteContentState.isLoading}
+                              className="rounded-full hover:bg-gm-error/10 hover:text-gm-error"
+                              onClick={async () => {
+                                try {
+                                  await deleteContent({ productId: id, contentId: item.id }).unwrap();
+                                  toast.success('İçerik silindi');
+                                  contentsQ.refetch();
+                                } catch (error) {
+                                  toast.error(apiErrorMessage(error));
+                                }
+                              }}
+                            >
+                              <Trash2 className="size-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+                <CardHeader className="p-8 pb-4 bg-gm-surface/40 border-b border-gm-border-soft">
+                  <CardTitle className="font-serif text-2xl flex items-center gap-3">
+                    <Plus className="h-5 w-5 text-gm-gold" />
+                    {contentForm.id ? 'İçerik Düzenle' : 'İçerik Ekle'}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-8 space-y-5">
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <div className="space-y-3">
+                      <Label className={LABEL_CLS}>Tür</Label>
+                      <Select
+                        value={contentForm.kind}
+                        onValueChange={(value) =>
+                          setContentForm((prev) => ({ ...prev, kind: value as 'digital' | 'physical' }))
+                        }
+                      >
+                        <SelectTrigger className={INPUT_CLS}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                          <SelectItem value="digital">Dijital</SelectItem>
+                          <SelectItem value="physical">Matbu</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-3">
+                      <Label className={LABEL_CLS}>Medya</Label>
+                      <Select
+                        value={contentForm.media_type}
+                        disabled={contentForm.kind === 'physical'}
+                        onValueChange={(value) =>
+                          setContentForm((prev) => ({
+                            ...prev,
+                            media_type: value as NonNullable<ProductContentUpsertBody['media_type']>,
+                          }))
+                        }
+                      >
+                        <SelectTrigger className={INPUT_CLS}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                          {['video', 'pdf', 'audio', 'image', 'other'].map((item) => (
+                            <SelectItem key={item} value={item}>
+                              {item}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className={LABEL_CLS}>Başlık</Label>
+                    <Input
+                      value={contentForm.title}
+                      onChange={(e) => setContentForm((prev) => ({ ...prev, title: e.target.value }))}
+                      className={INPUT_CLS}
+                    />
+                  </div>
+                  <div className="space-y-3">
+                    <Label className={LABEL_CLS}>Açıklama</Label>
+                    <Textarea
+                      value={contentForm.description}
+                      onChange={(e) => setContentForm((prev) => ({ ...prev, description: e.target.value }))}
+                      className={cn(AREA_CLS, 'min-h-20')}
+                    />
+                  </div>
+                  <div className="space-y-3">
+                    <Label className={LABEL_CLS}>Storage asset ID</Label>
+                    <Input
+                      value={contentForm.storage_asset_id}
+                      onChange={(e) => setContentForm((prev) => ({ ...prev, storage_asset_id: e.target.value }))}
+                      className={cn(INPUT_CLS, 'font-mono')}
+                    />
+                  </div>
+                  <div className="space-y-3">
+                    <Label className={LABEL_CLS}>Harici URL</Label>
+                    <div className="relative">
+                      <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gm-muted/60" />
+                      <Input
+                        value={contentForm.external_url}
+                        onChange={(e) => setContentForm((prev) => ({ ...prev, external_url: e.target.value }))}
+                        className={cn(INPUT_CLS, 'pl-12 font-mono')}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid gap-5 sm:grid-cols-[1fr_1fr_1fr]">
+                    <div className="space-y-3">
+                      <Label className={LABEL_CLS}>Sıra</Label>
+                      <Input
+                        inputMode="numeric"
+                        value={contentForm.display_order}
+                        onChange={(e) => setContentForm((prev) => ({ ...prev, display_order: e.target.value }))}
+                        className={cn(INPUT_CLS, 'font-mono')}
+                      />
+                    </div>
+                    <div className="flex h-12 items-center justify-between self-end px-4 bg-gm-surface/20 rounded-2xl border border-gm-border-soft">
+                      <Label className="text-[10px] font-bold text-gm-muted tracking-widest uppercase">Önizleme</Label>
+                      <Switch
+                        checked={contentForm.is_preview}
+                        onCheckedChange={(value) => setContentForm((prev) => ({ ...prev, is_preview: value }))}
+                      />
+                    </div>
+                    <div className="flex h-12 items-center justify-between self-end px-4 bg-gm-surface/20 rounded-2xl border border-gm-border-soft">
+                      <Label className="text-[10px] font-bold text-gm-muted tracking-widest uppercase">Aktif</Label>
+                      <Switch
+                        checked={contentForm.is_active}
+                        onCheckedChange={(value) => setContentForm((prev) => ({ ...prev, is_active: value }))}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-end gap-3 pt-2">
+                    <Button variant="outline" onClick={resetContentForm} className="rounded-full">
+                      Temizle
+                    </Button>
+                    <Button
+                      onClick={saveContent}
+                      disabled={createContentState.isLoading || updateContentState.isLoading}
+                      className="rounded-full"
+                    >
+                      <Save className="mr-2 size-4" />
+                      Kaydet
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
       )}
 
       {/* Actions */}

@@ -18,6 +18,15 @@ type CheckoutBody = {
     city?: string;
     address?: string;
   };
+  shipping?: {
+    name?: string;
+    phone?: string;
+    address?: string;
+    city?: string;
+    district?: string;
+    postalCode?: string;
+    country?: string;
+  };
   items?: CheckoutItem[];
   notes?: string;
 };
@@ -27,6 +36,9 @@ type ProductRow = RowDataPacket & {
   price: string;
   title: string;
   category_name: string | null;
+  purchase_mode: 'online' | 'quote';
+  access_duration_days: number | null;
+  has_physical: number;
 };
 
 type OrderRow = RowDataPacket & {
@@ -93,7 +105,12 @@ async function getProducts(items: CheckoutItem[], locale: string) {
   const placeholders = ids.map(() => '?').join(', ');
   const [rows] = await pool.execute<ProductRow[]>(
     `
-      SELECT p.id, p.price, pi.title, ci.name AS category_name
+        SELECT p.id, p.price, pi.title, ci.name AS category_name
+             , p.purchase_mode, p.access_duration_days,
+               EXISTS(
+                 SELECT 1 FROM product_contents pc
+                  WHERE pc.product_id = p.id AND pc.kind = 'physical' AND pc.is_active = 1
+               ) AS has_physical
         FROM products p
         INNER JOIN product_i18n pi ON pi.product_id = p.id AND pi.locale = ?
         LEFT JOIN category_i18n ci ON ci.category_id = p.category_id AND ci.locale = ?
@@ -108,20 +125,63 @@ async function getProducts(items: CheckoutItem[], locale: string) {
 
 export async function registerCheckoutPublic(app: FastifyInstance) {
   app.get('/store/products', async (req) => {
-    const q = (req.query || {}) as { locale?: string };
+    const q = (req.query || {}) as {
+      locale?: string;
+      category?: string;
+      series?: string;
+      level?: string;
+      isFree?: string;
+    };
     const locale = clean(q.locale).slice(0, 8) || 'tr';
+    const filters: string[] = [];
+    const params: Array<string | number> = [locale, locale, locale, locale];
+    const category = clean(q.category);
+    const series = clean(q.series);
+    const level = clean(q.level);
+    const isFree = clean(q.isFree);
+    if (category) {
+      filters.push('(p.category_id = ? OR ci.slug = ?)');
+      params.push(category, category);
+    }
+    if (series) {
+      filters.push('(p.series_id = ? OR psi.slug = ? OR ps.code = ?)');
+      params.push(series, series, series);
+    }
+    if (level) {
+      filters.push('(p.level_id = ? OR pli.slug = ? OR pl.code = ?)');
+      params.push(level, level, level);
+    }
+    if (isFree) {
+      filters.push('p.is_free = ?');
+      params.push(isFree === '1' || isFree === 'true' ? 1 : 0);
+    }
     const [rows] = await pool.execute(
       `
-        SELECT p.id, p.price, p.image_url, p.stock_quantity, p.product_code,
+        SELECT p.id, p.price, p.image_url AS imageUrl, p.stock_quantity AS stockQuantity,
+               p.product_code AS productCode, p.purchase_mode AS purchaseMode,
+               p.is_free AS isFree, p.access_duration_days AS accessDurationDays,
+               EXISTS(
+                 SELECT 1 FROM product_contents pc
+                  WHERE pc.product_id = p.id AND pc.kind = 'physical' AND pc.is_active = 1
+               ) AS hasPhysical,
                pi.locale, pi.title, pi.slug, pi.description, pi.alt,
-               pi.meta_title, pi.meta_description
+               pi.meta_title AS metaTitle, pi.meta_description AS metaDescription,
+               ci.slug AS categorySlug, ci.name AS categoryName,
+               psi.slug AS seriesSlug, psi.name AS seriesName,
+               pli.slug AS levelSlug, pli.name AS levelName, pl.rank AS levelRank
           FROM products p
           INNER JOIN product_i18n pi ON pi.product_id = p.id AND pi.locale = ?
+          LEFT JOIN category_i18n ci ON ci.category_id = p.category_id AND ci.locale = ?
+          LEFT JOIN product_series ps ON ps.id = p.series_id
+          LEFT JOIN product_series_i18n psi ON psi.series_id = p.series_id AND psi.locale = ?
+          LEFT JOIN product_levels pl ON pl.id = p.level_id
+          LEFT JOIN product_level_i18n pli ON pli.level_id = p.level_id AND pli.locale = ?
          WHERE p.item_type = 'product'
            AND p.is_active = 1
+           ${filters.length ? `AND ${filters.join(' AND ')}` : ''}
          ORDER BY p.order_num ASC, p.created_at DESC
       `,
-      [locale],
+      params,
     );
     return rows;
   });
@@ -130,23 +190,48 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const { slug } = req.params as { slug: string };
     const q = (req.query || {}) as { locale?: string };
     const locale = clean(q.locale).slice(0, 8) || 'tr';
-    const [rows] = await pool.execute(
+    const [rows] = await pool.execute<RowDataPacket[]>(
       `
-        SELECT p.id, p.price, p.image_url, p.stock_quantity, p.product_code,
+        SELECT p.id, p.price, p.image_url AS imageUrl, p.stock_quantity AS stockQuantity,
+               p.product_code AS productCode, p.purchase_mode AS purchaseMode,
+               p.is_free AS isFree, p.access_duration_days AS accessDurationDays,
+               EXISTS(
+                 SELECT 1 FROM product_contents pc
+                  WHERE pc.product_id = p.id AND pc.kind = 'physical' AND pc.is_active = 1
+               ) AS hasPhysical,
                pi.locale, pi.title, pi.slug, pi.description, pi.alt,
-               pi.meta_title, pi.meta_description
+               pi.meta_title AS metaTitle, pi.meta_description AS metaDescription,
+               ci.slug AS categorySlug, ci.name AS categoryName,
+               psi.slug AS seriesSlug, psi.name AS seriesName,
+               pli.slug AS levelSlug, pli.name AS levelName, pl.rank AS levelRank
           FROM products p
           INNER JOIN product_i18n pi ON pi.product_id = p.id AND pi.locale = ?
+          LEFT JOIN category_i18n ci ON ci.category_id = p.category_id AND ci.locale = ?
+          LEFT JOIN product_series_i18n psi ON psi.series_id = p.series_id AND psi.locale = ?
+          LEFT JOIN product_levels pl ON pl.id = p.level_id
+          LEFT JOIN product_level_i18n pli ON pli.level_id = p.level_id AND pli.locale = ?
          WHERE pi.slug = ?
            AND p.item_type = 'product'
            AND p.is_active = 1
          LIMIT 1
       `,
-      [locale, slug],
+      [locale, locale, locale, locale, slug],
     );
     const [product] = rows as Record<string, unknown>[];
     if (!product) return reply.code(404).send({ error: { message: 'not_found' } });
-    return product;
+    const [contents] = await pool.execute<RowDataPacket[]>(
+      `
+        SELECT pc.id, pc.kind, pc.media_type AS mediaType, pci.title, pci.description,
+               pc.is_preview AS isPreview, pc.display_order AS displayOrder
+          FROM product_contents pc
+          INNER JOIN product_content_i18n pci ON pci.content_id = pc.id AND pci.locale = ?
+         WHERE pc.product_id = ?
+           AND pc.is_active = 1
+         ORDER BY pc.display_order ASC
+      `,
+      [locale, String(product.id)],
+    );
+    return { ...product, contents };
   });
 
   app.post('/checkout/orders', async (req, reply) => {
@@ -171,6 +256,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       const productId = clean(item.product_id);
       const product = products.get(productId);
       if (!product) return badRequest(reply, 'product_not_found');
+      if (product.purchase_mode !== 'online') return badRequest(reply, 'product_not_available_online');
       const quantity = Math.max(1, Math.min(99, Number(item.quantity) || 1));
       const unitPrice = Number(product.price);
       const lineTotal = unitPrice * quantity;
@@ -185,12 +271,41 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       ]);
     }
 
+    const hasPhysical = [...products.values()].some((product) => Number(product.has_physical) === 1);
+    const shipping = body.shipping || {};
+    const shippingName = clean(shipping.name) || clean(body.customer?.name);
+    const shippingPhone = clean(shipping.phone) || clean(body.customer?.phone);
+    const shippingAddress = clean(shipping.address) || clean(body.customer?.address);
+    const shippingCity = clean(shipping.city) || clean(body.customer?.city);
+    const shippingDistrict = clean(shipping.district);
+    const shippingPostalCode = clean(shipping.postalCode);
+    const shippingCountry = clean(shipping.country) || 'TR';
+    if (hasPhysical && (!shippingName || !shippingPhone || !shippingAddress || !shippingCity)) {
+      return badRequest(reply, 'shipping_address_required');
+    }
+
     await pool.execute(
       `
-        INSERT INTO orders (id, dealer_id, status, total, notes, payment_status)
-        VALUES (?, ?, 'pending', ?, ?, 'unpaid')
+        INSERT INTO orders (
+          id, dealer_id, status, total, notes, payment_status,
+          shipping_name, shipping_phone, shipping_address, shipping_city,
+          shipping_district, shipping_postal_code, shipping_country
+        )
+        VALUES (?, ?, 'pending', ?, ?, 'unpaid', ?, ?, ?, ?, ?, ?, ?)
       `,
-      [orderId, customerId, total.toFixed(2), clean(body.notes) || null],
+      [
+        orderId,
+        customerId,
+        total.toFixed(2),
+        clean(body.notes) || null,
+        shippingName || null,
+        shippingPhone || null,
+        shippingAddress || null,
+        shippingCity || null,
+        shippingDistrict || null,
+        shippingPostalCode || null,
+        shippingCountry,
+      ],
     );
 
     for (const row of orderItems) {
@@ -350,7 +465,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     if (!token || !conversationId) return reply.redirect(checkoutUrl('fail'));
 
     const [rows] = await pool.execute<OrderRow[]>(
-      'SELECT id, payment_status FROM orders WHERE payment_ref = ? LIMIT 1',
+      'SELECT id, dealer_id, payment_status FROM orders WHERE payment_ref = ? LIMIT 1',
       [conversationId],
     );
     const order = rows[0];
@@ -375,6 +490,44 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       `,
       [paid ? 'paid' : 'failed', paid ? 'confirmed' : 'pending', order.id],
     );
+    if (paid) {
+      const [items] = await pool.execute<RowDataPacket[]>(
+        `
+          SELECT oi.product_id, p.access_duration_days
+            FROM order_items oi
+            INNER JOIN products p ON p.id = oi.product_id
+           WHERE oi.order_id = ?
+        `,
+        [order.id],
+      );
+      for (const item of items) {
+        const durationDays = item.access_duration_days == null ? null : Number(item.access_duration_days);
+        await pool.execute(
+          `
+            INSERT INTO user_entitlements
+              (id, user_id, product_id, order_id, source, status, starts_at, expires_at, created_at, updated_at)
+            VALUES (
+              ?, ?, ?, ?, 'purchase', 'active', CURRENT_TIMESTAMP(3),
+              ${durationDays == null ? 'NULL' : 'DATE_ADD(CURRENT_TIMESTAMP(3), INTERVAL ? DAY)'},
+              CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+            )
+            ON DUPLICATE KEY UPDATE
+              order_id = VALUES(order_id),
+              source = 'purchase',
+              status = 'active',
+              expires_at = ${
+                durationDays == null
+                  ? 'NULL'
+                  : 'DATE_ADD(GREATEST(COALESCE(expires_at, CURRENT_TIMESTAMP(3)), CURRENT_TIMESTAMP(3)), INTERVAL ? DAY)'
+              },
+              updated_at = CURRENT_TIMESTAMP(3)
+          `,
+          durationDays == null
+            ? [randomUUID(), order.dealer_id, item.product_id, order.id]
+            : [randomUUID(), order.dealer_id, item.product_id, order.id, durationDays, durationDays],
+        );
+      }
+    }
     await pool.execute(
       `
         UPDATE payment_attempts

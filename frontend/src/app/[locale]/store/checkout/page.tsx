@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { CheckCircle2, XCircle } from 'lucide-react';
 
+import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
+import type { StoreUiCopy } from '@/components/woody/store/types';
+
 type Props = {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ payment?: string; order?: string }>;
@@ -10,6 +13,9 @@ export default async function StoreCheckoutResultPage({ params, searchParams }: 
   const { locale } = await params;
   const { payment, order } = await searchParams;
   const success = payment === 'success';
+  const content = await loadWoodyPageContent('store', locale);
+  const raw = (content?.raw ?? {}) as Record<string, unknown>;
+  const ui = raw.ui && typeof raw.ui === 'object' && !Array.isArray(raw.ui) ? raw.ui as StoreUiCopy : {};
 
   return (
     <main className="bg-[var(--gm-bg)] py-20 text-[var(--gm-text)]">
@@ -22,13 +28,11 @@ export default async function StoreCheckoutResultPage({ params, searchParams }: 
               <XCircle className="size-8 text-[var(--gm-error)]" aria-hidden />
             )}
             <h1 className="text-3xl font-semibold">
-              {success ? 'Ödeme alındı' : 'Ödeme tamamlanamadı'}
+              {success ? ui.checkoutSuccessTitle : ui.checkoutFailureTitle}
             </h1>
           </div>
           <p className="mt-5 leading-8 text-[var(--gm-text-dim)]">
-            {success
-              ? 'Siparişiniz kaydedildi ve ödeme onaylandı.'
-              : 'Ödeme sonucu başarısız görünüyor. Siparişinizi tekrar deneyebilirsiniz.'}
+            {success ? ui.checkoutSuccessDescription : ui.checkoutFailureDescription}
           </p>
           {order ? (
             <p className="mt-4 rounded-md border border-[var(--gm-border-soft)] p-3 font-mono text-sm">
@@ -39,7 +43,7 @@ export default async function StoreCheckoutResultPage({ params, searchParams }: 
             href={`/${locale}/store`}
             className="mt-8 inline-flex min-h-11 items-center rounded-md bg-[var(--gm-primary)] px-5 py-3 font-semibold text-[var(--gm-surface)]"
           >
-            Mağazaya dön
+            {ui.checkoutReturnToStore}
           </Link>
         </div>
       </div>

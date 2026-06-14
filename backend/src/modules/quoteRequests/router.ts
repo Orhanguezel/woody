@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { pool } from '@/db/client';
 
-const LEVELS = ['basic', 'junior', 'senior', 'mixed'] as const;
+const LEVELS = ['basic', 'junior', 'senior', 'pro', 'mixed'] as const;
 const STATUSES = ['new', 'contacted', 'quoted', 'won', 'lost'] as const;
 
 const quoteRequestSchema = z.object({
@@ -13,6 +13,7 @@ const quoteRequestSchema = z.object({
   contact_name: z.string().trim().min(2).max(180),
   email: z.string().trim().email().max(255),
   phone: z.string().trim().max(64).optional().nullable(),
+  productId: z.string().trim().max(64).optional().nullable(),
   student_count: z.coerce.number().int().min(1).max(100000),
   level: z.enum(LEVELS).default('mixed'),
   city: z.string().trim().max(120).optional().nullable(),
@@ -105,8 +106,8 @@ export async function registerQuoteRequestsPublic(app: FastifyInstance) {
     await pool.execute(
       `
         INSERT INTO quote_requests
-          (id, org_name, contact_name, email, phone, student_count, level, city, district, message, source)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          (id, org_name, contact_name, email, phone, product_id, student_count, level, city, district, message, source)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `,
       [
         id,
@@ -114,6 +115,7 @@ export async function registerQuoteRequestsPublic(app: FastifyInstance) {
         data.contact_name,
         data.email.toLowerCase(),
         nullable(data.phone),
+        nullable(data.productId),
         data.student_count,
         data.level,
         nullable(data.city),
@@ -152,11 +154,13 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
     const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
     const [rows] = await pool.execute(
       `
-        SELECT id, org_name, contact_name, email, phone, student_count, level, city, district,
-               message, status, source, created_at, updated_at
-          FROM quote_requests
+        SELECT qr.id, qr.org_name, qr.contact_name, qr.email, qr.phone, qr.product_id AS productId,
+               pi.title AS productTitle, qr.student_count, qr.level, qr.city, qr.district,
+               qr.message, qr.status, qr.source, qr.created_at, qr.updated_at
+          FROM quote_requests qr
+          LEFT JOIN product_i18n pi ON pi.product_id = qr.product_id AND pi.locale = 'tr'
           ${whereSql}
-         ORDER BY created_at DESC
+         ORDER BY qr.created_at DESC
          LIMIT ? OFFSET ?
       `,
       [...params, limit, offset],
@@ -173,10 +177,12 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
     const { id } = req.params as { id: string };
     const [rows] = await pool.execute(
       `
-        SELECT id, org_name, contact_name, email, phone, student_count, level, city, district,
-               message, status, source, created_at, updated_at
-          FROM quote_requests
-         WHERE id = ?
+        SELECT qr.id, qr.org_name, qr.contact_name, qr.email, qr.phone, qr.product_id AS productId,
+               pi.title AS productTitle, qr.student_count, qr.level, qr.city, qr.district,
+               qr.message, qr.status, qr.source, qr.created_at, qr.updated_at
+          FROM quote_requests qr
+          LEFT JOIN product_i18n pi ON pi.product_id = qr.product_id AND pi.locale = 'tr'
+         WHERE qr.id = ?
          LIMIT 1
       `,
       [id],
@@ -210,10 +216,12 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
 
     const [rows] = await pool.execute(
       `
-        SELECT id, org_name, contact_name, email, phone, student_count, level, city, district,
-               message, status, source, created_at, updated_at
-          FROM quote_requests
-         WHERE id = ?
+        SELECT qr.id, qr.org_name, qr.contact_name, qr.email, qr.phone, qr.product_id AS productId,
+               pi.title AS productTitle, qr.student_count, qr.level, qr.city, qr.district,
+               qr.message, qr.status, qr.source, qr.created_at, qr.updated_at
+          FROM quote_requests qr
+          LEFT JOIN product_i18n pi ON pi.product_id = qr.product_id AND pi.locale = 'tr'
+         WHERE qr.id = ?
          LIMIT 1
       `,
       [id],

@@ -70,6 +70,7 @@ export * from '@/integrations/endpoints/admin/llm_prompts_admin.endpoints';
 // Orders / Payments
 export * from '@/integrations/endpoints/admin/products_admin.endpoints';
 export * from '@/integrations/endpoints/admin/orders_admin.endpoints';
+export * from '@/integrations/endpoints/admin/entitlements_admin.endpoints';
 export * from '@/integrations/endpoints/admin/blog_admin.endpoints';
 export * from '@/integrations/endpoints/admin/subscriptions_admin.endpoints';
 export * from '@/integrations/endpoints/admin/schools_admin.endpoints';
@@ -87,3 +88,12 @@ export * from '@/integrations/endpoints/admin/banners_admin.endpoints';
 // Campaigns
 export * from '@/integrations/endpoints/admin/campaigns_admin.endpoints';
 export * from '@/integrations/endpoints/admin/consultant_applications_admin.endpoints';
+
+// Marketing / Social integrations (migrated from vistaseeds)
+export * from '@/integrations/endpoints/admin/twitter-admin-endpoints';
+export * from '@/integrations/endpoints/admin/google-ads-admin-endpoints';
+export * from '@/integrations/endpoints/admin/search-console-admin-endpoints';
+export * from '@/integrations/endpoints/admin/gtm-admin-endpoints';
+export * from '@/integrations/endpoints/admin/meta-admin-endpoints';
+export * from '@/integrations/endpoints/admin/google-connect-admin-endpoints';
+export * from '@/integrations/endpoints/admin/ga4-admin-endpoints';

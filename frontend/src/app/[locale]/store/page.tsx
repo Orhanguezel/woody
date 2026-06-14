@@ -3,7 +3,8 @@ import WoodyFallback from '@/components/woody/WoodyFallback';
 import WoodyStoreClient from '@/components/woody/store/WoodyStoreClient';
 import WoodyStoreShowcase from '@/components/woody/store/WoodyStoreShowcase';
 import type { StoreCatalog } from '@/components/woody/store/WoodyStoreShowcase';
-import { loadDbStoreProducts } from '@/components/woody/store/load-store-products.server';
+import { loadDbStoreProducts, loadDbStoreTaxonomy } from '@/components/woody/store/load-store-products.server';
+import type { StoreProduct, StoreProductFilters, StoreTaxonomy, StoreUiCopy } from '@/components/woody/store/types';
 import { loadWoodyPageContent, loadWoodyProducts } from '@/components/woody/content-loader.server';
 import { woodyMetadata, woodyStoreListingGraph } from '@/components/woody/seo';
 import { loadPageContent } from '@/config/pages/loader';
@@ -11,22 +12,81 @@ import { loadPageContent } from '@/config/pages/loader';
 const PAGE_KEY = 'store';
 const PATHNAME = '/store';
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ category?: string; series?: string; level?: string; isFree?: string }>;
+};
 
 function asStoreCatalog(content: Awaited<ReturnType<typeof loadWoodyPageContent>>, fallback: StoreCatalog | null): StoreCatalog {
   const raw = (content?.raw ?? {}) as Record<string, any>;
   const hero = raw.hero && typeof raw.hero === 'object' ? raw.hero : {};
+  const ui = raw.ui && typeof raw.ui === 'object' && !Array.isArray(raw.ui) ? raw.ui as StoreUiCopy : undefined;
 
   return {
     ...(fallback ?? {}),
+    ui: ui ?? fallback?.ui,
     quoteWhatsApp: raw.quoteWhatsApp ?? fallback?.quoteWhatsApp,
     quoteMessage: raw.quoteMessage ?? fallback?.quoteMessage,
     primaryCTA: raw.primaryCTA ?? hero.primaryCTA ?? fallback?.primaryCTA,
     showQuoteButtons: raw.showQuoteButtons,
     quoteForm: raw.quoteForm ?? fallback?.quoteForm,
     waitlistForm: raw.waitlistForm ?? fallback?.waitlistForm,
-    categories: Array.isArray(raw.categories) ? raw.categories : fallback?.categories,
-    products: Array.isArray(raw.products) ? raw.products : fallback?.products,
+    categories: fallback?.categories,
+    products: fallback?.products,
+  };
+}
+
+function money(value: number) {
+  return new Intl.NumberFormat('tr-TR', {
+    style: 'currency',
+    currency: 'TRY',
+    minimumFractionDigits: 2,
+  }).format(value);
+}
+
+function readFilters(raw: Awaited<Props['searchParams']>): StoreProductFilters {
+  const filters: StoreProductFilters = {};
+  if (raw.category) filters.category = raw.category;
+  if (raw.series) filters.series = raw.series;
+  if (raw.level) filters.level = raw.level;
+  if (raw.isFree === '1' || raw.isFree === 'true') filters.isFree = true;
+  if (raw.isFree === '0' || raw.isFree === 'false') filters.isFree = false;
+  return filters;
+}
+
+function catalogFromDb(taxonomy: StoreTaxonomy, products: StoreProduct[]): Pick<StoreCatalog, 'categories' | 'series' | 'levels' | 'products'> {
+  return {
+    categories: taxonomy.categories.map((category) => ({
+      id: category.slug,
+      name: category.name,
+      route:
+        category.slug === 'okul-serisi'
+          ? '/preschool'
+          : category.slug === 'atolye-serisi'
+            ? '/workshop'
+            : category.slug === 'ev-ozel-ders-serisi'
+              ? '/home-tutor'
+              : undefined,
+    })),
+    series: taxonomy.series,
+    levels: taxonomy.levels,
+    products: products.map((product) => ({
+      id: product.id,
+      category: product.categorySlug || '',
+      name: product.title,
+      slug: product.slug,
+      description: product.description,
+      price: product.isFree ? undefined : money(product.price),
+      image: product.image,
+      alt: product.alt,
+      seriesSlug: product.seriesSlug,
+      seriesName: product.seriesName,
+      levelSlug: product.levelSlug,
+      levelName: product.levelName,
+      purchaseMode: product.purchaseMode,
+      isFree: product.isFree,
+      hasPhysical: product.hasPhysical,
+    })),
   };
 }
 
@@ -36,11 +96,13 @@ export async function generateMetadata({ params }: Props) {
   return woodyMetadata({ locale, pageKey: PAGE_KEY, pathname: PATHNAME, content });
 }
 
-export default async function StorePage({ params }: Props) {
+export default async function StorePage({ params, searchParams }: Props) {
   const { locale } = await params;
-  const [content, dbProducts, catalog] = await Promise.all([
+  const filters = readFilters(await searchParams);
+  const [content, taxonomy, dbProducts, catalog] = await Promise.all([
     loadWoodyPageContent(PAGE_KEY, locale),
-    loadDbStoreProducts(locale),
+    loadDbStoreTaxonomy(locale),
+    loadDbStoreProducts(locale, filters),
     loadPageContent<StoreCatalog>('store-products', locale),
   ]);
   const fallbackProducts = dbProducts.length ? [] : await loadWoodyProducts('store-products', locale);
@@ -48,7 +110,8 @@ export default async function StorePage({ params }: Props) {
     return <WoodyFallback pageKey={PAGE_KEY} />;
   }
   const merged = content ?? { key: PAGE_KEY, title: PAGE_KEY };
-  const storeCatalog = asStoreCatalog(content, catalog ?? { products: fallbackProducts as any });
+  const dbCatalog = dbProducts.length || taxonomy.categories.length ? catalogFromDb(taxonomy, dbProducts) : null;
+  const storeCatalog = asStoreCatalog(content, dbCatalog ?? catalog ?? { products: fallbackProducts as any });
   const showCart = Boolean((content?.raw as any)?.showCart);
   const schemaProducts = dbProducts.length
     ? dbProducts
@@ -66,8 +129,8 @@ export default async function StorePage({ params }: Props) {
         id="woody-store"
         data={woodyStoreListingGraph({ locale, pathname: PATHNAME, content: merged, items: schemaProducts })}
       />
-      <WoodyStoreShowcase catalog={storeCatalog} locale={locale} />
-      {showCart && dbProducts.length ? <WoodyStoreClient products={dbProducts} locale={locale} /> : null}
+      <WoodyStoreShowcase catalog={storeCatalog} locale={locale} filters={filters} />
+      {showCart && dbProducts.length ? <WoodyStoreClient products={dbProducts} locale={locale} ui={storeCatalog.ui} /> : null}
     </>
   );
 }

@@ -21,6 +21,7 @@ import {
   MessageCircle,
   MessageSquare,
   Package,
+  Layers,
   Receipt,
   FileText,
   School,
@@ -29,6 +30,12 @@ import {
   Trash2,
   Users,
   Menu as MenuIcon,
+  Twitter,
+  BarChart3,
+  Search,
+  Activity,
+  Facebook,
+  Link2,
   type LucideIcon,
 } from 'lucide-react';
 import type { TranslateFn } from '@/i18n';
@@ -77,6 +84,9 @@ export type AdminNavItemKey =
   | 'orders'
   | 'quote_requests'
   | 'products'
+  | 'series'
+  | 'levels'
+  | 'entitlements'
   | 'blog'
   | 'schools'
   | 'payment_settings'
@@ -87,8 +97,16 @@ export type AdminNavItemKey =
   | 'llm_prompts'
   | 'banners'
   | 'campaigns'
+  | 'twitter'
+  | 'google_ads'
+  | 'search_console'
+  | 'ga4'
+  | 'gtm'
+  | 'meta'
+  | 'google_connect'
   | 'navigation'
-  | 'home_layout';
+  | 'home_layout'
+  | 'docs';
 
 export type AdminNavGroupKey = 'general' | 'content' | 'marketing' | 'communication' | 'system';
 
@@ -114,6 +132,9 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'users', url: '/admin/users', icon: Users },
       { key: 'schools', url: '/admin/schools', icon: School },
       { key: 'products', url: '/admin/products', icon: Package },
+      { key: 'series', url: '/admin/series', icon: Layers },
+      { key: 'levels', url: '/admin/levels', icon: Tag },
+      { key: 'entitlements', url: '/admin/entitlements', icon: CreditCard },
       { key: 'blog', url: '/admin/blog', icon: BookOpenText },
       { key: 'orders', url: '/admin/orders', icon: Package },
       { key: 'quote_requests', url: '/admin/quote-requests', icon: FileText },
@@ -139,6 +160,13 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
     items: [
       { key: 'banners', url: '/admin/banners', icon: ImageIcon },
       { key: 'campaigns', url: '/admin/campaigns', icon: Tag },
+      { key: 'twitter', url: '/admin/twitter', icon: Twitter },
+      { key: 'google_ads', url: '/admin/google-ads', icon: BarChart3 },
+      { key: 'search_console', url: '/admin/search-console', icon: Search },
+      { key: 'ga4', url: '/admin/ga4', icon: Activity },
+      { key: 'gtm', url: '/admin/gtm', icon: Tag },
+      { key: 'meta', url: '/admin/meta', icon: Facebook },
+      { key: 'google_connect', url: '/admin/google-connect', icon: Link2 },
     ],
   },
   {
@@ -156,6 +184,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'db', url: '/admin/db', icon: Database },
       { key: 'audit', url: '/admin/audit', icon: FileSearch },
       { key: 'llm_prompts', url: '/admin/llm-prompts', icon: Bot },
+      { key: 'docs', url: '/admin/docs', icon: BookOpenText },
     ],
   },
 ];
@@ -182,6 +211,9 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   orders: 'Siparişler',
   quote_requests: 'Teklif Talepleri',
   products: 'Ürünler',
+  series: 'Seriler',
+  levels: 'Seviyeler',
+  entitlements: 'Erişim Hakları',
   blog: 'Blog',
   schools: 'Okullar',
   wallet: 'Cüzdan',
@@ -193,8 +225,16 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   llm_prompts: 'AI Promptları',
   banners: 'Banner Yönetimi',
   campaigns: 'Kampanyalar',
+  twitter: 'Twitter / X',
+  google_ads: 'Google Ads',
+  search_console: 'Search Console',
+  ga4: 'Google Analytics 4',
+  gtm: 'Tag Manager',
+  meta: 'Meta',
+  google_connect: 'Google Bağlantısı',
   navigation: 'Menü & Footer',
   home_layout: 'Anasayfa Düzeni',
+  docs: 'Dokümantasyon',
 };
 
 // woody backend'inde KARSILIGI OLMAYAN admin ozellikleri — menude gizlenir

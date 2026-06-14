@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
+import WoodyPageLogoHeader from '../WoodyPageLogoHeader';
 import { DIGITAL_LEVELS, DIGITAL_SECTIONS, type DigitalContentCopy } from './digital-content-data';
 
 function playClickSound() {
@@ -26,22 +27,23 @@ export default function DigitalContentHubClient({
   copy?: DigitalContentCopy;
 }) {
   const footnote = copy?.footnote;
+  const title = copy?.hero?.title || copy?.ui?.hubTitle || '';
+  const description = copy?.hero?.description;
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <section className="w-full bg-white py-16 md:py-20">
+      <WoodyPageLogoHeader title={title || 'Woody Digital'} locale={locale} variant="digital" />
+
+      <section className="w-full bg-white py-8 md:py-10">
         <div className="container max-w-[1100px] text-center">
           {copy?.hero?.eyebrow ? (
             <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--gm-primary)]">
               {copy.hero.eyebrow}
             </p>
           ) : null}
-          <h1 className="font-display text-[42px] font-normal leading-tight text-gray-900 md:text-[52px] lg:text-[60px]">
-            {copy?.hero?.title || copy?.ui?.hubTitle || ''}
-          </h1>
-          {copy?.hero?.description ? (
-            <p className="mx-auto mt-5 max-w-3xl text-[16px] leading-7 text-gray-600">
-              {copy.hero.description}
+          {description ? (
+            <p className="mx-auto max-w-3xl text-[16px] font-semibold leading-7 text-gray-600">
+              {description}
             </p>
           ) : null}
         </div>

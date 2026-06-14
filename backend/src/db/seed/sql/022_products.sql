@@ -9,6 +9,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   `item_type` ENUM('product','sparepart','bereketfide') NOT NULL DEFAULT 'product',
   `category_id` CHAR(36) NOT NULL,
   `sub_category_id` CHAR(36) DEFAULT NULL,
+  `series_id` CHAR(36) DEFAULT NULL,
+  `level_id` CHAR(36) DEFAULT NULL,
+  `purchase_mode` ENUM('online','quote') NOT NULL DEFAULT 'online',
+  `is_free` TINYINT(1) NOT NULL DEFAULT 0,
+  `access_duration_days` INT DEFAULT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `image_url` LONGTEXT DEFAULT NULL,
   `storage_asset_id` CHAR(36) DEFAULT NULL,
@@ -42,6 +47,8 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `products_item_type_idx` (`item_type`),
   KEY `products_category_id_idx` (`category_id`),
   KEY `products_sub_category_id_idx` (`sub_category_id`),
+  KEY `idx_products_series` (`series_id`),
+  KEY `idx_products_level` (`level_id`),
   KEY `products_active_idx` (`is_active`),
   KEY `products_asset_idx` (`storage_asset_id`),
   KEY `products_order_idx` (`order_num`),
@@ -167,34 +174,3 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   KEY `product_images_order_idx` (`product_id`, `display_order`),
   CONSTRAINT `fk_product_images_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `products` (`id`, `item_type`, `category_id`, `sub_category_id`, `price`, `image_url`, `images`, `is_active`, `is_featured`, `order_num`, `product_code`, `stock_quantity`) VALUES
-('22111111-1111-4111-8111-000000000001', 'product', '21111111-1111-4111-8111-000000000001', '21211111-1111-4111-8111-000000000001', 2250.00, '/media/woody/reference/3jgyyil9_1.png', JSON_ARRAY('/media/woody/reference/3jgyyil9_1.png'), 1, 1, 10, 'WOODY-BASIC-STUDENT-SET', 100),
-('22111111-1111-4111-8111-000000000002', 'product', '21111111-1111-4111-8111-000000000001', '21211111-1111-4111-8111-000000000001', 2250.00, '/media/woody/reference/h5x59v59_3.png', JSON_ARRAY('/media/woody/reference/h5x59v59_3.png'), 1, 1, 20, 'WOODY-JUNIOR-STUDENT-SET', 100),
-('22111111-1111-4111-8111-000000000003', 'product', '21111111-1111-4111-8111-000000000001', '21211111-1111-4111-8111-000000000001', 2250.00, '/media/woody/reference/m4z26p5k_2.png', JSON_ARRAY('/media/woody/reference/m4z26p5k_2.png'), 1, 1, 30, 'WOODY-SENIOR-STUDENT-SET', 100)
-ON DUPLICATE KEY UPDATE
-  `category_id` = VALUES(`category_id`),
-  `sub_category_id` = VALUES(`sub_category_id`),
-  `price` = VALUES(`price`),
-  `image_url` = VALUES(`image_url`),
-  `images` = VALUES(`images`),
-  `is_active` = VALUES(`is_active`),
-  `is_featured` = VALUES(`is_featured`),
-  `order_num` = VALUES(`order_num`),
-  `stock_quantity` = VALUES(`stock_quantity`);
-
-INSERT INTO `product_i18n` (`product_id`, `locale`, `title`, `slug`, `description`, `alt`, `tags`, `specifications`, `meta_title`, `meta_description`) VALUES
-('22111111-1111-4111-8111-000000000001', 'tr', 'Basic Level Set Öğrenci Seti', 'basic-level-set-ogrenci-seti', 'Başlangıç seviyesi okul öncesi İngilizce öğrenci seti.', 'Basic Level Set Öğrenci Seti', JSON_ARRAY('basic','okul-serisi','ogrenci-seti'), JSON_OBJECT('Seviye','Basic','Seri','Okul Serisi','Kullanım','Sınıf'), 'Basic Level Set Öğrenci Seti', 'Basic seviye Woody Okul Serisi öğrenci seti.'),
-('22111111-1111-4111-8111-000000000001', 'en', 'Basic Level Student Set', 'basic-level-student-set', 'Beginner level preschool English student set.', 'Basic Level Student Set', JSON_ARRAY('basic','preschool-series','student-set'), JSON_OBJECT('Level','Basic','Series','Preschool Series','Use','Classroom'), 'Basic Level Student Set', 'Basic level Woody Preschool Series student set.'),
-('22111111-1111-4111-8111-000000000002', 'tr', 'Junior Level Set Öğrenci Seti', 'junior-level-set-ogrenci-seti', 'Gelişim seviyesi okul öncesi İngilizce öğrenci seti.', 'Junior Level Set Öğrenci Seti', JSON_ARRAY('junior','okul-serisi','ogrenci-seti'), JSON_OBJECT('Seviye','Junior','Seri','Okul Serisi','Kullanım','Sınıf'), 'Junior Level Set Öğrenci Seti', 'Junior seviye Woody Okul Serisi öğrenci seti.'),
-('22111111-1111-4111-8111-000000000002', 'en', 'Junior Level Student Set', 'junior-level-student-set', 'Development level preschool English student set.', 'Junior Level Student Set', JSON_ARRAY('junior','preschool-series','student-set'), JSON_OBJECT('Level','Junior','Series','Preschool Series','Use','Classroom'), 'Junior Level Student Set', 'Junior level Woody Preschool Series student set.'),
-('22111111-1111-4111-8111-000000000003', 'tr', 'Senior Level Set Öğrenci Seti', 'senior-level-set-ogrenci-seti', 'İleri seviye okul öncesi İngilizce öğrenci seti.', 'Senior Level Set Öğrenci Seti', JSON_ARRAY('senior','okul-serisi','ogrenci-seti'), JSON_OBJECT('Seviye','Senior','Seri','Okul Serisi','Kullanım','Sınıf'), 'Senior Level Set Öğrenci Seti', 'Senior seviye Woody Okul Serisi öğrenci seti.'),
-('22111111-1111-4111-8111-000000000003', 'en', 'Senior Level Student Set', 'senior-level-student-set', 'Advanced level preschool English student set.', 'Senior Level Student Set', JSON_ARRAY('senior','preschool-series','student-set'), JSON_OBJECT('Level','Senior','Series','Preschool Series','Use','Classroom'), 'Senior Level Student Set', 'Senior level Woody Preschool Series student set.')
-ON DUPLICATE KEY UPDATE
-  `title` = VALUES(`title`),
-  `description` = VALUES(`description`),
-  `alt` = VALUES(`alt`),
-  `tags` = VALUES(`tags`),
-  `specifications` = VALUES(`specifications`),
-  `meta_title` = VALUES(`meta_title`),
-  `meta_description` = VALUES(`meta_description`);

@@ -63,6 +63,7 @@ export default function AdminOrdersClient() {
   const [limit] = React.useState(20);
   const [status, setStatus] = React.useState<OrderStatus | 'all'>('all');
   const [paymentStatus, setPaymentStatus] = React.useState<PaymentStatus | 'all'>('all');
+  const [shippingPending, setShippingPending] = React.useState('all');
   const [searchInput, setSearchInput] = React.useState('');
   const [search, setSearch] = React.useState('');
 
@@ -71,6 +72,7 @@ export default function AdminOrdersClient() {
     limit,
     status: status === 'all' ? undefined : status,
     payment_status: paymentStatus === 'all' ? undefined : paymentStatus,
+    shipping_pending: shippingPending === 'pending' ? true : undefined,
     q: search || undefined,
   });
 
@@ -121,7 +123,7 @@ export default function AdminOrdersClient() {
 
       {/* Filters Card */}
       <Card className="bg-gm-bg-deep/50 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-md shadow-2xl">
-        <CardContent className="p-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4 items-end">
+        <CardContent className="p-8 grid gap-8 md:grid-cols-2 xl:grid-cols-5 items-end">
           <div className="space-y-3 md:col-span-2">
             <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">
               {t('filters.searchLabel')}
@@ -167,6 +169,21 @@ export default function AdminOrdersClient() {
               </SelectContent>
             </Select>
           </div>
+
+          <div className="space-y-3">
+            <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1 block">
+              Kargo
+            </Label>
+            <Select value={shippingPending} onValueChange={(v) => { setShippingPending(v); setPage(1); }}>
+              <SelectTrigger className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
+                <SelectItem value="all">Tümü</SelectItem>
+                <SelectItem value="pending">Kargo bekleyen</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </CardContent>
       </Card>
 
@@ -181,6 +198,7 @@ export default function AdminOrdersClient() {
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('table.amount')}</TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('table.status')}</TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('table.payment')}</TableHead>
+                <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">Kargo</TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-center text-gm-muted">{t('table.date')}</TableHead>
                 <TableHead className="py-6 px-8 text-right text-[10px] font-bold uppercase tracking-widest text-gm-muted">{t('table.actions')}</TableHead>
               </TableRow>
@@ -200,7 +218,7 @@ export default function AdminOrdersClient() {
                 ))
               ) : orders.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} className="py-24 text-center">
+                  <TableCell colSpan={8} className="py-24 text-center">
                     <div className="flex flex-col items-center gap-4 opacity-30">
                       <AlertCircle className="w-16 h-16 text-gm-gold/50" />
                       <span className="font-serif italic text-lg text-gm-muted">{t('table.empty')}</span>
@@ -258,6 +276,23 @@ export default function AdminOrdersClient() {
                         <CreditCard size={10} className="opacity-60" />
                         {order.payment_status.toUpperCase()}
                       </div>
+                    </TableCell>
+                    <TableCell className="py-6 text-center">
+                      {order.has_physical ? (
+                        <Badge
+                          variant="outline"
+                          className={cn(
+                            'rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border',
+                            order.shipped_at
+                              ? 'bg-gm-success/5 border-gm-success/20 text-gm-success'
+                              : 'bg-gm-warning/10 border-gm-warning/20 text-gm-warning',
+                          )}
+                        >
+                          {order.shipped_at ? 'Gönderildi' : 'Bekliyor'}
+                        </Badge>
+                      ) : (
+                        <span className="text-[10px] text-gm-muted">-</span>
+                      )}
                     </TableCell>
                     <TableCell className="py-6 text-center">
                       <div className="text-[10px] text-gm-muted font-mono flex items-center justify-center gap-2 tracking-tighter opacity-70">

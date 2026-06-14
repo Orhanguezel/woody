@@ -63,6 +63,7 @@ export type DigitalContentCopy = {
     modalDescription?: string;
     registerCta?: string;
     loginCta?: string;
+    goToLibrary?: string;
   };
   ui?: Record<string, string>;
   musicland?: {

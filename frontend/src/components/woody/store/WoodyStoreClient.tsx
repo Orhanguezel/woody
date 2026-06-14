@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { CheckCircle2, CreditCard, Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
 import { FOCUS_RING } from '@/lib/a11y';
 
-import type { StoreProduct } from './types';
+import type { StoreProduct, StoreUiCopy } from './types';
 
 type CartLine = {
   product: StoreProduct;
@@ -39,9 +39,11 @@ function inputValue(form: HTMLFormElement, name: string) {
 export default function WoodyStoreClient({
   products,
   locale,
+  ui = {},
 }: {
   products: StoreProduct[];
   locale: string;
+  ui?: StoreUiCopy;
 }) {
   const [cart, setCart] = React.useState<CartLine[]>([]);
   const [message, setMessage] = React.useState('');
@@ -49,6 +51,7 @@ export default function WoodyStoreClient({
   const [checkoutHtml, setCheckoutHtml] = React.useState('');
 
   const total = cart.reduce((sum, line) => sum + line.product.price * line.quantity, 0);
+  const hasPhysical = cart.some((line) => line.product.hasPhysical);
 
   function add(product: StoreProduct) {
     setMessage('');
@@ -83,7 +86,7 @@ export default function WoodyStoreClient({
     setCheckoutHtml('');
 
     if (!cart.length) {
-      setMessage('Sepet boş.');
+      setMessage(ui.cartEmpty || '');
       return;
     }
 
@@ -101,6 +104,15 @@ export default function WoodyStoreClient({
             city: inputValue(form, 'city'),
             address: inputValue(form, 'address'),
           },
+          shipping: {
+            name: inputValue(form, 'name'),
+            phone: inputValue(form, 'phone'),
+            address: inputValue(form, 'address'),
+            city: inputValue(form, 'city'),
+            district: inputValue(form, 'district'),
+            postalCode: inputValue(form, 'postalCode'),
+            country: inputValue(form, 'country') || 'TR',
+          },
           notes: inputValue(form, 'notes'),
           items: cart.map((line) => ({
             product_id: line.product.id,
@@ -109,7 +121,14 @@ export default function WoodyStoreClient({
         }),
       });
 
-      if (!orderRes.ok) throw new Error('Sipariş oluşturulamadı.');
+      if (!orderRes.ok) {
+        const err = await orderRes.json().catch(() => null) as { error?: { message?: string } } | null;
+        throw new Error(
+          err?.error?.message === 'shipping_address_required'
+            ? ui.shippingAddressRequired || ''
+            : ui.checkoutFailed || '',
+        );
+      }
       const order = (await orderRes.json()) as CheckoutResponse;
 
       const iyzicoRes = await fetch(`/api/v1/checkout/orders/${order.id}/iyzipay/initiate`, {
@@ -120,16 +139,16 @@ export default function WoodyStoreClient({
       if (!iyzicoRes.ok || !iyzico.checkoutFormContent) {
         setMessage(
           iyzico.error?.message === 'iyzico_feature_disabled'
-            ? 'Sipariş alındı. Iyzipay şu anda env ile kapalı.'
-            : 'Sipariş alındı, ödeme formu başlatılamadı.',
+            ? ui.orderReceivedIyzicoDisabled || ''
+            : ui.orderReceivedPaymentFailed || '',
         );
         setCart([]);
         return;
       }
       setCheckoutHtml(iyzico.checkoutFormContent);
-      setMessage(`Sipariş oluşturuldu: ${order.id}`);
+      setMessage(`${ui.orderCreated || ''} ${order.id}`.trim());
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Checkout tamamlanamadı.');
+      setMessage(error instanceof Error ? error.message : ui.checkoutFailed || '');
     } finally {
       setBusy(false);
     }
@@ -169,10 +188,10 @@ export default function WoodyStoreClient({
                   type="button"
                   onClick={() => add(product)}
                   className={`inline-flex min-h-10 items-center gap-2 rounded-md bg-[var(--gm-primary)] px-4 py-2 font-semibold text-[var(--gm-surface)] ${FOCUS_RING}`}
-                  aria-label={`${product.title} — sepete ekle`}
+                  aria-label={`${product.title} ${ui.addToCart || ''}`.trim()}
                 >
                   <ShoppingCart className="size-4" aria-hidden />
-                  Sepete ekle
+                  {ui.addToCart || ''}
                 </button>
               </div>
             </article>
@@ -182,7 +201,7 @@ export default function WoodyStoreClient({
         <aside className="h-fit rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-5 shadow-[var(--gm-shadow-card)]">
           <div className="flex items-center gap-2">
             <ShoppingCart className="size-5 text-[var(--gm-primary)]" aria-hidden />
-            <h2 className="text-xl font-semibold text-[var(--gm-text)]">Sepet</h2>
+            <h2 className="text-xl font-semibold text-[var(--gm-text)]">{ui.cart || ''}</h2>
           </div>
 
           <div className="mt-5 space-y-3">
@@ -229,37 +248,47 @@ export default function WoodyStoreClient({
               ))
             ) : (
               <p className="rounded-md border border-dashed border-[var(--gm-border)] p-5 text-sm text-[var(--gm-text-dim)]">
-                Sepete ürün ekleyerek checkout formunu aç.
+                {ui.cartEmpty || ''}
               </p>
             )}
           </div>
 
           <div className="mt-5 flex items-center justify-between border-t border-[var(--gm-border-soft)] pt-4">
-            <span className="font-semibold text-[var(--gm-text)]">Toplam</span>
+            <span className="font-semibold text-[var(--gm-text)]">{ui.total || ''}</span>
             <span className="text-xl font-bold text-[var(--gm-text)]">{money(total, 'TRY')}</span>
           </div>
 
           <form className="mt-5 space-y-3" onSubmit={submit}>
-            <input name="name" required placeholder="Ad Soyad" aria-label="Ad Soyad" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
-            <input name="email" required type="email" placeholder="E-posta" aria-label="E-posta" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
-            <input name="phone" placeholder="Telefon" aria-label="Telefon" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
-            <input name="city" placeholder="Şehir" aria-label="Şehir" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
-            <textarea name="address" required placeholder="Adres" aria-label="Adres" rows={3} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
-            <textarea name="notes" placeholder="Sipariş notu" aria-label="Sipariş notu" rows={2} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="name" required placeholder={ui.name || ''} aria-label={ui.name || ''} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="email" required type="email" placeholder={ui.email || ''} aria-label={ui.email || ''} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="phone" placeholder={ui.phone || ''} aria-label={ui.phone || ''} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="city" required={hasPhysical} placeholder={ui.city || ''} aria-label={ui.city || ''} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="district" placeholder={ui.district || ''} aria-label={ui.district || ''} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="postalCode" placeholder={ui.postalCode || ''} aria-label={ui.postalCode || ''} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <input name="country" placeholder={ui.country || ''} aria-label={ui.country || ''} defaultValue="TR" className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            <textarea name="address" required={hasPhysical} placeholder={ui.address || ''} aria-label={ui.address || ''} rows={3} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
+            {hasPhysical ? (
+              <p className="rounded-md bg-orange-50 px-3 py-2 text-xs font-semibold text-orange-800">
+                {ui.shippingFieldsRequired || ''}
+              </p>
+            ) : null}
+            <textarea name="notes" placeholder={ui.notes || ''} aria-label={ui.notes || ''} rows={2} className={`w-full rounded-md border border-[var(--gm-border)] bg-transparent px-3 py-2 ${FOCUS_RING}`} />
             <label className="flex items-start gap-2 text-xs leading-5 text-[var(--gm-text-dim)]">
               <input required type="checkbox" className={`mt-1 h-4 w-4 accent-[var(--gm-primary)] ${FOCUS_RING}`} />
               <span>
-                <Link href={`/${locale}/mesafeli-satis`} className="font-semibold underline">Mesafeli Satış Sözleşmesi</Link>
-                {' '}ve{' '}
-                <Link href={`/${locale}/on-bilgilendirme`} className="font-semibold underline">Ön Bilgilendirme Formu</Link>
-                {' '}metinlerini okudum, kabul ediyorum.
+                <Link href={`/${locale}/mesafeli-satis`} className="font-semibold underline">{ui.termsContract || ''}</Link>
+                {' '}
+                <Link href={`/${locale}/on-bilgilendirme`} className="font-semibold underline">{ui.termsInfo || ''}</Link>
+                {' '}
+                {ui.termsAccept || ''}
               </span>
             </label>
             <label className="flex items-start gap-2 text-xs leading-5 text-[var(--gm-text-dim)]">
               <input required type="checkbox" className={`mt-1 h-4 w-4 accent-[var(--gm-primary)] ${FOCUS_RING}`} />
               <span>
-                <Link href={`/${locale}/kvkk`} className="font-semibold underline">KVKK</Link>
-                {' '}kapsamındaki bilgilendirmeyi okudum.
+                <Link href={`/${locale}/kvkk`} className="font-semibold underline">{ui.termsKvkk || ''}</Link>
+                {' '}
+                {ui.termsKvkkAccept || ''}
               </span>
             </label>
             <button
@@ -268,7 +297,7 @@ export default function WoodyStoreClient({
               className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-[var(--gm-secondary)] px-5 py-3 font-semibold text-[var(--gm-surface)] disabled:cursor-not-allowed disabled:opacity-50 ${FOCUS_RING}`}
             >
               <CreditCard className="size-4" aria-hidden />
-              {busy ? 'Hazırlanıyor' : 'Iyzipay ile öde'}
+              {busy ? (ui.checkoutBusy || '') : (ui.payWithIyzico || '')}
             </button>
           </form>
 

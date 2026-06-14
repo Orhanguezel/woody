@@ -679,3 +679,37 @@ export type WithLocale<T> = T & { locale?: string | null };
 
 /** Re-export cleanParams from helpers */
 export { cleanParams } from '@/integrations/shared/utils/helpers';
+
+/**
+ * Extracts a human-readable error message from an unknown error object
+ * (RTK Query error shape or plain Error). Returns `fallback` if none found.
+ * Added for the marketing/social integration modules migrated from vistaseeds.
+ */
+/** DB boolean stored as a string ('true' | 'false'). */
+export type DbBoolString = 'true' | 'false';
+
+/** Coerce a boolean into the DB boolean-string representation. */
+export const toDbBoolString = (v: boolean): DbBoolString => (v ? 'true' : 'false');
+
+export function getErrorMessage(err: unknown, fallback = ''): string {
+  const source = err as {
+    data?: { message?: unknown; error?: { message?: unknown } };
+    error?: unknown;
+    message?: unknown;
+  };
+
+  const messageCandidates = [
+    source?.data?.error?.message,
+    source?.data?.message,
+    source?.error,
+    source?.message,
+  ];
+
+  for (const candidate of messageCandidates) {
+    if (typeof candidate === 'string' && candidate.trim()) {
+      return candidate;
+    }
+  }
+
+  return fallback;
+}

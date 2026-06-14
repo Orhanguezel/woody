@@ -11,6 +11,17 @@ export type BlogCategory =
   | 'okul-oncesi'
   | 'aile'
   | 'dijital-icerik'
+  | 'egitim-setleri'
+  | 'ders-plani'
+  | 'egitim-sistemleri'
+  | 'program-planlama'
+  | 'cambridge-sistemi'
+  | 'programlar'
+  | 'ogrenme-yontemleri'
+  | 'yas-gruplari'
+  | 'sistem-kurulumu'
+  | 'mufredat'
+  | 'ogretim-teknikleri'
   | 'ogretmen'
   | 'okul'
   | 'etkinlik'
@@ -36,8 +47,21 @@ export type BlogPostAdminView = {
   content: string;
   meta_title: string | null;
   meta_description: string | null;
+  seo_quality?: BlogSeoQualityScore | null;
   created_at: string | null;
   updated_at: string | null;
+};
+
+export type BlogSeoQualityScore = {
+  score: number;
+  level: 'fail' | 'publishable' | 'ready';
+  gate_passed: boolean;
+  word_count: number;
+  target_keyword: string;
+  keyword_occurrences: number;
+  keyword_density: number;
+  checks: Record<string, boolean>;
+  recommendations: string[];
 };
 
 export type BlogPostUpsertBody = {
@@ -107,6 +131,7 @@ export function normalizeBlogPostAdmin(raw: unknown): BlogPostAdminView {
     content: toStr(r.content),
     meta_title: toNullableStr(r.meta_title),
     meta_description: toNullableStr(r.meta_description),
+    seo_quality: (r.seo_quality as BlogSeoQualityScore | undefined) ?? null,
     created_at: toNullableStr(r.created_at),
     updated_at: toNullableStr(r.updated_at),
   };

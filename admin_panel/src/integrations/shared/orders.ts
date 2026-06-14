@@ -18,6 +18,17 @@ export type OrderAdminView = {
   user_email: string | null;
   user_name: string | null;
   order_notes: string | null;
+  shipping_name: string | null;
+  shipping_phone: string | null;
+  shipping_address: string | null;
+  shipping_city: string | null;
+  shipping_district: string | null;
+  shipping_postal_code: string | null;
+  shipping_country: string | null;
+  shipping_carrier: string | null;
+  shipping_tracking_no: string | null;
+  shipped_at: string | null;
+  has_physical: boolean;
   created_at: string | null;
   updated_at: string | null;
 };
@@ -64,6 +75,7 @@ export type OrdersListQuery = {
   limit?: number;
   status?: OrderStatus;
   payment_status?: PaymentStatus;
+  shipping_pending?: boolean;
   q?: string;
 };
 
@@ -71,6 +83,16 @@ export type OrderUpdateBody = {
   status?: OrderStatus;
   payment_status?: PaymentStatus;
   admin_note?: string;
+  shipping_name?: string | null;
+  shipping_phone?: string | null;
+  shipping_address?: string | null;
+  shipping_city?: string | null;
+  shipping_district?: string | null;
+  shipping_postal_code?: string | null;
+  shipping_country?: string | null;
+  shipping_carrier?: string | null;
+  shipping_tracking_no?: string | null;
+  shipped_at?: string | null;
 };
 
 export type PaymentGatewayView = {
@@ -147,6 +169,17 @@ export function normalizeOrderAdmin(raw: unknown): OrderAdminView {
     user_email: toNullableStr(r.user_email),
     user_name: toNullableStr(r.user_name || r.dealer_name),
     order_notes: toNullableStr(r.order_notes || r.notes),
+    shipping_name: toNullableStr(r.shipping_name),
+    shipping_phone: toNullableStr(r.shipping_phone),
+    shipping_address: toNullableStr(r.shipping_address),
+    shipping_city: toNullableStr(r.shipping_city),
+    shipping_district: toNullableStr(r.shipping_district),
+    shipping_postal_code: toNullableStr(r.shipping_postal_code),
+    shipping_country: toNullableStr(r.shipping_country),
+    shipping_carrier: toNullableStr(r.shipping_carrier),
+    shipping_tracking_no: toNullableStr(r.shipping_tracking_no),
+    shipped_at: toNullableStr(r.shipped_at),
+    has_physical: toBool(r.has_physical || r.hasPhysical),
     created_at: toNullableStr(r.created_at),
     updated_at: toNullableStr(r.updated_at),
   };
@@ -220,6 +253,7 @@ export function toOrdersListQuery(q: OrdersListQuery): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   if (q.status) out.status = q.status;
   if (q.payment_status) out.payment_status = q.payment_status;
+  if (q.shipping_pending) out.shipping_pending = '1';
   if (q.q) out.q = q.q;
   if (typeof q.page === 'number') out.page = q.page;
   if (typeof q.limit === 'number') out.limit = q.limit;

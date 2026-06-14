@@ -38,8 +38,10 @@ import {
 import { cn } from '@/lib/utils';
 import {
   useDeleteProductAdminMutation,
+  useListLevelsAdminQuery,
   useListProductCategoriesAdminQuery,
   useListProductsAdminQuery,
+  useListSeriesAdminQuery,
 } from '@/integrations/hooks';
 
 const LOCALES = ['tr', 'en'];
@@ -80,12 +82,22 @@ export default function ProductsListClient() {
   const [searchInput, setSearchInput] = React.useState('');
   const [search, setSearch] = React.useState('');
   const [categoryFilter, setCategoryFilter] = React.useState('all');
+  const [seriesFilter, setSeriesFilter] = React.useState('all');
+  const [levelFilter, setLevelFilter] = React.useState('all');
+  const [purchaseModeFilter, setPurchaseModeFilter] = React.useState('all');
+  const [freeFilter, setFreeFilter] = React.useState('all');
 
   const categoriesQ = useListProductCategoriesAdminQuery({ locale });
+  const seriesQ = useListSeriesAdminQuery({ locale });
+  const levelsQ = useListLevelsAdminQuery({ locale });
   const productsQ = useListProductsAdminQuery({
     locale,
     q: search || undefined,
     category_id: categoryFilter === 'all' ? undefined : categoryFilter,
+    series_id: seriesFilter === 'all' ? undefined : seriesFilter,
+    level_id: levelFilter === 'all' ? undefined : levelFilter,
+    purchase_mode: purchaseModeFilter === 'all' ? undefined : (purchaseModeFilter as 'online' | 'quote'),
+    is_free: freeFilter === 'all' ? undefined : freeFilter === 'yes',
     limit: 100,
     sort: 'order_num',
     order: 'asc',
@@ -94,7 +106,9 @@ export default function ProductsListClient() {
 
   const products = productsQ.data ?? [];
   const categories = categoriesQ.data ?? [];
-  const anyFetching = productsQ.isFetching || categoriesQ.isFetching;
+  const series = seriesQ.data ?? [];
+  const levels = levelsQ.data ?? [];
+  const anyFetching = productsQ.isFetching || categoriesQ.isFetching || seriesQ.isFetching || levelsQ.isFetching;
 
   function doSearch() {
     setSearch(searchInput.trim());
@@ -148,6 +162,8 @@ export default function ProductsListClient() {
             onClick={() => {
               productsQ.refetch();
               categoriesQ.refetch();
+              seriesQ.refetch();
+              levelsQ.refetch();
             }}
             disabled={anyFetching}
             className="rounded-full border-gm-border-soft px-8 h-12 bg-gm-surface/20 hover:bg-gm-surface transition-all font-bold tracking-widest uppercase text-[10px]"
@@ -170,8 +186,8 @@ export default function ProductsListClient() {
 
       {/* Filters Card */}
       <Card className="bg-gm-bg-deep/50 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-md shadow-2xl">
-        <CardContent className="p-8 grid gap-8 md:grid-cols-2 items-end">
-          <div className="space-y-3">
+        <CardContent className="p-8 grid gap-8 md:grid-cols-2 xl:grid-cols-6 items-end">
+          <div className="space-y-3 md:col-span-2">
             <Label className={LABEL_CLS}>Ara</Label>
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gm-muted/60" />
@@ -200,6 +216,64 @@ export default function ProductsListClient() {
               </SelectContent>
             </Select>
           </div>
+          <div className="space-y-3">
+            <Label className={LABEL_CLS}>Seri</Label>
+            <Select value={seriesFilter} onValueChange={setSeriesFilter}>
+              <SelectTrigger className={INPUT_CLS}>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                <SelectItem value="all">Tüm seriler</SelectItem>
+                {series.map((item) => (
+                  <SelectItem key={item.id} value={item.id}>
+                    {item.name || item.code}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-3">
+            <Label className={LABEL_CLS}>Seviye</Label>
+            <Select value={levelFilter} onValueChange={setLevelFilter}>
+              <SelectTrigger className={INPUT_CLS}>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                <SelectItem value="all">Tüm seviyeler</SelectItem>
+                {levels.map((item) => (
+                  <SelectItem key={item.id} value={item.id}>
+                    {item.name || item.code}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-3">
+            <Label className={LABEL_CLS}>Satış modu</Label>
+            <Select value={purchaseModeFilter} onValueChange={setPurchaseModeFilter}>
+              <SelectTrigger className={INPUT_CLS}>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                <SelectItem value="all">Tümü</SelectItem>
+                <SelectItem value="online">Online</SelectItem>
+                <SelectItem value="quote">Teklif</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-3">
+            <Label className={LABEL_CLS}>Ücretsiz</Label>
+            <Select value={freeFilter} onValueChange={setFreeFilter}>
+              <SelectTrigger className={INPUT_CLS}>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-popover border-gm-border-soft rounded-2xl">
+                <SelectItem value="all">Tümü</SelectItem>
+                <SelectItem value="yes">Ücretsiz</SelectItem>
+                <SelectItem value="no">Ücretli</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </CardContent>
       </Card>
 
@@ -214,6 +288,12 @@ export default function ProductsListClient() {
                 </TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   Kategori
+                </TableHead>
+                <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">
+                  Seri / Seviye
+                </TableHead>
+                <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
+                  Satış
                 </TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   Fiyat
@@ -255,7 +335,7 @@ export default function ProductsListClient() {
                 ))
               ) : products.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-24 text-center">
+                  <TableCell colSpan={8} className="py-24 text-center">
                     <div className="flex flex-col items-center gap-4 opacity-30">
                       <Package className="w-16 h-16 text-gm-gold/50" />
                       <span className="font-serif italic text-lg text-gm-muted">
@@ -299,6 +379,29 @@ export default function ProductsListClient() {
                     </TableCell>
                     <TableCell className="py-6 text-sm text-gm-muted">
                       {product.category_name ?? '-'}
+                    </TableCell>
+                    <TableCell className="py-6 text-sm text-gm-muted">
+                      <div className="flex flex-col gap-1">
+                        <span>{product.series_name ?? '-'}</span>
+                        <span className="text-[10px] font-mono opacity-60">
+                          {product.level_name ?? '-'}
+                        </span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-6 text-center">
+                      <div className="flex flex-col items-center gap-1.5">
+                        <Badge
+                          variant="outline"
+                          className="rounded-full border-gm-border-soft bg-gm-surface/20 text-[9px] font-bold uppercase tracking-widest"
+                        >
+                          {product.purchase_mode === 'quote' ? 'Teklif' : 'Online'}
+                        </Badge>
+                        {product.is_free ? (
+                          <span className="text-[9px] font-bold uppercase tracking-widest text-gm-success">
+                            Ücretsiz
+                          </span>
+                        ) : null}
+                      </div>
                     </TableCell>
                     <TableCell className="py-6 text-sm text-gm-text font-mono">
                       {formatMoney(product.price)}

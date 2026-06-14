@@ -65,3 +65,12 @@ export * from '@/integrations/shared/products';
 export * from '@/integrations/shared/orders';
 export * from '@/integrations/shared/schools';
 export * from '@/integrations/shared/quoteRequests';
+
+// Marketing / Social integrations (migrated from vistaseeds)
+export * from '@/integrations/shared/twitter';
+export * from '@/integrations/shared/google-ads';
+export * from '@/integrations/shared/ga4';
+export * from '@/integrations/shared/gtm';
+export * from '@/integrations/shared/search-console';
+export * from '@/integrations/shared/meta';
+export * from '@/integrations/shared/google-connect';

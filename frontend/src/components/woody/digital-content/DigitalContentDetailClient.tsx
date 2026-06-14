@@ -120,6 +120,12 @@ function LibrarySoon({
           <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-gray-500">
             {copy?.library?.description}
           </p>
+          <Link
+            href={localizePath(locale as any, '/me/library')}
+            className={`mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--gm-primary)] px-5 text-[13px] font-bold text-white ${FOCUS_RING}`}
+          >
+            {copy?.library?.goToLibrary}
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">

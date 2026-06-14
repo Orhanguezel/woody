@@ -51,6 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     safeStr(dbPost?.title) ||
     safeStr(page?.meta_title) ||
     safeStr(page?.title) ||
+    safeStr(fallbackPost?.meta_title) ||
     fallbackPost?.title ||
     titleFromSlug(slug, 'Blog Detail');
 
@@ -62,6 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     safeStr(dbPost?.meta_description) ||
     safeStr(dbPost?.summary) ||
     safeStr(dbPost?.content_html) ||
+    safeStr(fallbackPost?.meta_description) ||
     safeStr(fallbackPost?.summary) ||
     '';
   const pageDescription = rawDesc ? excerpt(rawDesc, 180) : '';

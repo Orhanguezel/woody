@@ -15,7 +15,8 @@ import {
   AlertCircle,
   CheckCircle2,
   Package,
-  History
+  History,
+  Truck
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -24,6 +25,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
   Select,
@@ -85,6 +87,18 @@ export default function AdminOrderDetailClient() {
   const [editStatus, setEditStatus] = React.useState<OrderStatus | ''>('');
   const [editPayment, setEditPayment] = React.useState<PaymentStatus | ''>('');
   const [editNote, setEditNote] = React.useState('');
+  const [shipping, setShipping] = React.useState({
+    shipping_name: '',
+    shipping_phone: '',
+    shipping_address: '',
+    shipping_city: '',
+    shipping_district: '',
+    shipping_postal_code: '',
+    shipping_country: '',
+    shipping_carrier: '',
+    shipping_tracking_no: '',
+    shipped_at: '',
+  });
   const [dirty, setDirty] = React.useState(false);
 
   React.useEffect(() => {
@@ -92,9 +106,26 @@ export default function AdminOrderDetailClient() {
       setEditStatus(order.status);
       setEditPayment(order.payment_status);
       setEditNote(order.order_notes ?? '');
+      setShipping({
+        shipping_name: order.shipping_name ?? '',
+        shipping_phone: order.shipping_phone ?? '',
+        shipping_address: order.shipping_address ?? '',
+        shipping_city: order.shipping_city ?? '',
+        shipping_district: order.shipping_district ?? '',
+        shipping_postal_code: order.shipping_postal_code ?? '',
+        shipping_country: order.shipping_country ?? '',
+        shipping_carrier: order.shipping_carrier ?? '',
+        shipping_tracking_no: order.shipping_tracking_no ?? '',
+        shipped_at: order.shipped_at ? order.shipped_at.slice(0, 16) : '',
+      });
       setDirty(false);
     }
   }, [order]);
+
+  function setShippingField(key: keyof typeof shipping, value: string) {
+    setShipping((prev) => ({ ...prev, [key]: value }));
+    setDirty(true);
+  }
 
   async function onSave() {
     if (!order) return;
@@ -102,6 +133,12 @@ export default function AdminOrderDetailClient() {
     if (editStatus && editStatus !== order.status) body.status = editStatus;
     if (editPayment && editPayment !== order.payment_status) body.payment_status = editPayment;
     if (editNote !== (order.order_notes ?? '')) body.admin_note = editNote || null;
+    for (const key of Object.keys(shipping) as Array<keyof typeof shipping>) {
+      const current = key === 'shipped_at' && order.shipped_at ? order.shipped_at.slice(0, 16) : (order[key] ?? '');
+      if (shipping[key] !== current) {
+        body[key] = shipping[key] || null;
+      }
+    }
 
     if (Object.keys(body).length === 0) {
       toast.info(t('messages.noChanges'));
@@ -310,6 +347,75 @@ export default function AdminOrderDetailClient() {
           </CardContent>
         </Card>
       </div>
+
+      <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+        <CardHeader className="p-8 pb-4 bg-gm-surface/40 border-b border-gm-border-soft">
+          <CardTitle className="font-serif text-2xl flex items-center gap-3">
+            <Truck className="h-5 w-5 text-gm-gold" /> Kargo
+            {order.has_physical ? (
+              <Badge variant="outline" className="ml-2 rounded-full border-gm-border-soft text-gm-muted">
+                {order.shipped_at ? 'Gönderildi' : 'Bekliyor'}
+              </Badge>
+            ) : null}
+          </CardTitle>
+          <CardDescription className="font-serif italic text-gm-muted opacity-70">
+            Matbu içerikli siparişlerde adres ve takip bilgileri.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="p-8 space-y-6">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Ad Soyad</Label>
+              <Input value={shipping.shipping_name} onChange={(e) => setShippingField('shipping_name', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Telefon</Label>
+              <Input value={shipping.shipping_phone} onChange={(e) => setShippingField('shipping_phone', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Ülke</Label>
+              <Input value={shipping.shipping_country} onChange={(e) => setShippingField('shipping_country', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+          </div>
+          <div className="space-y-3">
+            <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Adres</Label>
+            <Textarea
+              value={shipping.shipping_address}
+              onChange={(e) => setShippingField('shipping_address', e.target.value)}
+              rows={3}
+              className="bg-gm-surface/40 border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 text-sm"
+            />
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Şehir</Label>
+              <Input value={shipping.shipping_city} onChange={(e) => setShippingField('shipping_city', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">İlçe</Label>
+              <Input value={shipping.shipping_district} onChange={(e) => setShippingField('shipping_district', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Posta Kodu</Label>
+              <Input value={shipping.shipping_postal_code} onChange={(e) => setShippingField('shipping_postal_code', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Kargo Firması</Label>
+              <Input value={shipping.shipping_carrier} onChange={(e) => setShippingField('shipping_carrier', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Takip No</Label>
+              <Input value={shipping.shipping_tracking_no} onChange={(e) => setShippingField('shipping_tracking_no', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 font-mono" />
+            </div>
+            <div className="space-y-3">
+              <Label className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase ml-1">Gönderim Tarihi</Label>
+              <Input type="datetime-local" value={shipping.shipped_at} onChange={(e) => setShippingField('shipped_at', e.target.value)} className="bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Order Items Table */}
       <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
