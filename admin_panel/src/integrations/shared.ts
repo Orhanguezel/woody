@@ -66,7 +66,7 @@ export * from '@/integrations/shared/orders';
 export * from '@/integrations/shared/schools';
 export * from '@/integrations/shared/quoteRequests';
 
-// Marketing / Social integrations (migrated from vistaseeds)
+// Marketing / Social integrations
 export * from '@/integrations/shared/twitter';
 export * from '@/integrations/shared/google-ads';
 export * from '@/integrations/shared/ga4';

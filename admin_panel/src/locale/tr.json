@@ -4022,7 +4022,7 @@
           "linkedin": "AI Gönderi Yardımı",
           "youtube": "AI Gönderi Yardımı"
         },
-        "description": "{platform} için VistaSeeds tonuna uygun, iddiasız ve üretici odaklı taslak hazırlar.",
+        "description": "{platform} için Woody and Friends tonuna uygun, iddiasız ve üretici odaklı taslak hazırlar.",
         "templateLabel": "İçerik tipi",
         "productLabel": "Ürün bağlamı",
         "autoProduct": "Otomatik seç",
@@ -4298,7 +4298,7 @@
       "confirmPauseKeyword": "Bu anahtar kelime DURAKLATILACAK — bu sorgudan gösterim alınmaz. Devam edilsin mi?",
       "confirmEnableKeyword": "Bu anahtar kelime BAŞLATILACAK — harcama yeniden başlar. Devam edilsin mi?",
       "pmaxNoTerms": "Maks. Performans kampanyalarında klasik arama terimi raporu bulunmaz — Google hedeflemeyi ürün feed'i ve reklam öğeleri üzerinden otomatik yapar.",
-      "pmaxNoKeywords": "Maks. Performans kampanyalarında anahtar kelime kavramı yoktur; bu tablo yalnızca Arama kampanyaları için doludur (BereketFide, Haldefiyat).",
+      "pmaxNoKeywords": "Maks. Performans kampanyalarında anahtar kelime kavramı yoktur; bu tablo yalnızca Arama kampanyaları için doludur (Woody and Friends).",
       "emptyTable": "Seçilen dönemde veri yok.",
       "recommendations": "Google Önerileri",
       "recommendationsDesc": "Google'ın hesap için ürettiği otomatik öneriler — dönüşüm verisi biriktikçe çoğalır",
@@ -4496,7 +4496,7 @@
     "inspect": {
       "title": "URL İnceleme / Indexleme",
       "description": "Bir URL'nin Google'da indexli olup olmadığını kontrol et",
-      "placeholder": "https://www.vistaseeds.com.tr/...",
+      "placeholder": "https://www.woodyvearkadaslari.com/...",
       "check": "Kontrol Et",
       "checking": "Kontrol ediliyor...",
       "failed": "İnceleme başarısız",
@@ -4507,7 +4507,7 @@
     },
     "sitemaps": "Site Haritaları",
     "sm": {
-      "placeholder": "https://www.vistaseeds.com.tr/sitemap.xml",
+      "placeholder": "https://www.woodyvearkadaslari.com/sitemap.xml",
       "submit": "Gönder",
       "submitted": "Sitemap gönderildi.",
       "deleted": "Sitemap silindi.",

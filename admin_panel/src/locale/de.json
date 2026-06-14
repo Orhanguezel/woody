@@ -3806,7 +3806,7 @@
                     "linkedin": "KI-Beitragshilfe",
                     "youtube": "KI-Beitragshilfe"
                 },
-                "description": "Erstellt einen zurückhaltenden, auf Erzeuger ausgerichteten Entwurf im VistaSeeds-Ton für {platform}.",
+                "description": "Erstellt einen zurückhaltenden, auf Erzeuger ausgerichteten Entwurf im Woody and Friends-Ton für {platform}.",
                 "templateLabel": "Inhaltstyp",
                 "productLabel": "Produktkontext",
                 "autoProduct": "Automatisch auswählen",
@@ -4082,7 +4082,7 @@
             "confirmPauseKeyword": "Dieses Keyword wird PAUSIERT — für diese Suchanfrage gibt es keine Impressionen. Fortfahren?",
             "confirmEnableKeyword": "Dieses Keyword wird GESTARTET — die Ausgaben werden fortgesetzt. Fortfahren?",
             "pmaxNoTerms": "Performance-Max-Kampagnen haben keinen klassischen Suchbegriffsbericht — Google steuert das Targeting automatisch über den Produktfeed und die Anzeigen-Assets.",
-            "pmaxNoKeywords": "In Performance-Max-Kampagnen gibt es kein Keyword-Konzept; diese Tabelle ist nur für Such-Kampagnen gefüllt (BereketFide, Haldefiyat).",
+            "pmaxNoKeywords": "In Performance-Max-Kampagnen gibt es kein Keyword-Konzept; diese Tabelle ist nur für Such-Kampagnen gefüllt (Woody and Friends).",
             "emptyTable": "Keine Daten im ausgewählten Zeitraum.",
             "recommendations": "Google-Empfehlungen",
             "recommendationsDesc": "Die automatischen Empfehlungen von Google für das Konto — sie nehmen zu, je mehr Conversion-Daten gesammelt werden",
@@ -4280,7 +4280,7 @@
         "inspect": {
             "title": "URL-Prüfung / Indexierung",
             "description": "Prüfen Sie, ob eine URL in Google indexiert ist",
-            "placeholder": "https://www.vistaseeds.com.tr/...",
+            "placeholder": "https://www.woodyvearkadaslari.com/...",
             "check": "Prüfen",
             "checking": "Wird geprüft...",
             "failed": "Prüfung fehlgeschlagen",
@@ -4291,7 +4291,7 @@
         },
         "sitemaps": "Sitemaps",
         "sm": {
-            "placeholder": "https://www.vistaseeds.com.tr/sitemap.xml",
+            "placeholder": "https://www.woodyvearkadaslari.com/sitemap.xml",
             "submit": "Senden",
             "submitted": "Sitemap gesendet.",
             "deleted": "Sitemap gelöscht.",

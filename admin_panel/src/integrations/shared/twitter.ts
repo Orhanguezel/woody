@@ -176,10 +176,10 @@ export type PlatformSendConfig = {
 };
 
 export const PLATFORM_SEND_CONFIG: Record<SocialPlatform, PlatformSendConfig> = {
-  twitter: { maxLength: 280, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#VistaSeeds #yerlitohum" },
-  facebook: { maxLength: 5000, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#VistaSeeds #yerlitohum" },
-  instagram: { maxLength: 2200, mediaRequired: true, supportsStory: true, supportsLink: false, defaultTags: "#VistaSeeds #yerlitohum #tohum #sebzetohumu #tarım #çiftçi #sera #fide #üretici #tohumculuk" },
-  linkedin: { maxLength: 3000, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#VistaSeeds #tohum #tarım #ihracat" },
+  twitter: { maxLength: 280, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#WoodyandFriends #çocukeğitimi" },
+  facebook: { maxLength: 5000, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#WoodyandFriends #çocukeğitimi" },
+  instagram: { maxLength: 2200, mediaRequired: true, supportsStory: true, supportsLink: false, defaultTags: "#WoodyandFriends #çocukeğitimi #okulöncesi #anaokulu #ingilizce #çocuk #oyunlaöğren #eğitim" },
+  linkedin: { maxLength: 3000, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#WoodyandFriends #eğitim #çocukgelişimi" },
   youtube: { maxLength: 5000, mediaRequired: true, supportsStory: false, supportsLink: true, defaultTags: "" },
 };
 

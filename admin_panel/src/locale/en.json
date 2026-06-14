@@ -4101,7 +4101,7 @@
                     "linkedin": "AI Post Assist",
                     "youtube": "AI Post Assist"
                 },
-                "description": "Prepares a modest, grower-focused draft in the VistaSeeds tone for {platform}.",
+                "description": "Prepares a modest, grower-focused draft in the Woody and Friends tone for {platform}.",
                 "templateLabel": "Content type",
                 "productLabel": "Product context",
                 "autoProduct": "Auto select",
@@ -4377,7 +4377,7 @@
             "confirmPauseKeyword": "This keyword will be PAUSED — it will not get impressions for this query. Continue?",
             "confirmEnableKeyword": "This keyword will be STARTED — spending resumes. Continue?",
             "pmaxNoTerms": "Performance Max campaigns do not have a classic search terms report — Google does targeting automatically via the product feed and ad assets.",
-            "pmaxNoKeywords": "There is no keyword concept in Performance Max campaigns; this table is only populated for Search campaigns (BereketFide, Haldefiyat).",
+            "pmaxNoKeywords": "There is no keyword concept in Performance Max campaigns; this table is only populated for Search campaigns (Woody and Friends).",
             "emptyTable": "No data in the selected period.",
             "recommendations": "Google Recommendations",
             "recommendationsDesc": "Google's automatic recommendations for the account — they grow as conversion data accumulates",
@@ -4575,7 +4575,7 @@
         "inspect": {
             "title": "URL Inspection / Indexing",
             "description": "Check whether a URL is indexed in Google",
-            "placeholder": "https://www.vistaseeds.com.tr/...",
+            "placeholder": "https://www.woodyvearkadaslari.com/...",
             "check": "Check",
             "checking": "Checking...",
             "failed": "Inspection failed",
@@ -4586,7 +4586,7 @@
         },
         "sitemaps": "Sitemaps",
         "sm": {
-            "placeholder": "https://www.vistaseeds.com.tr/sitemap.xml",
+            "placeholder": "https://www.woodyvearkadaslari.com/sitemap.xml",
             "submit": "Submit",
             "submitted": "Sitemap submitted.",
             "deleted": "Sitemap deleted.",

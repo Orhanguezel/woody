@@ -221,7 +221,7 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
             rows={2}
             value={hashtags}
             onChange={(e) => setHashtags(e.target.value)}
-            placeholder="#VistaSeeds #yerlitohum"
+            placeholder="#WoodyandFriends #çocukeğitimi"
           />
         </div>
 
@@ -232,7 +232,7 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
             value={mediaUrl || ''}
             onChange={(url) => setMediaUrl(url || null)}
             disabled={sending}
-            folder="twitter/vistaseeds"
+            folder="twitter/woody"
             previewAspect="16x9"
             previewObjectFit="contain"
           />
