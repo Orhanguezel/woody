@@ -36,6 +36,7 @@ const API_KEYS = [
   // Google Ads API
   "google_ads_enabled",
   "google_ads_customer_id",
+  "google_ads_customer_label",
   "google_ads_login_customer_id",
   "google_ads_developer_token",
   "google_ads_client_id",
@@ -70,6 +71,7 @@ const EMPTY_FORM: ApiForm = {
   ga4_measurement_id: "",
   google_ads_enabled: "",
   google_ads_customer_id: "",
+  google_ads_customer_label: "",
   google_ads_login_customer_id: "",
   google_ads_developer_token: "",
   google_ads_client_id: "",
@@ -348,6 +350,7 @@ export const ApiSettingsTab: React.FC<ApiSettingsTabProps> = ({ locale }) => {
           <div className="grid gap-6 md:grid-cols-2">
             <ApiField id="google_ads_enabled" label="Aktif (true / false)" value={form.google_ads_enabled} onChange={(v) => handleChange("google_ads_enabled", v)} placeholder="true / false" disabled={busy} />
             <ApiField id="google_ads_customer_id" label="Customer ID" value={form.google_ads_customer_id} onChange={(v) => handleChange("google_ads_customer_id", v)} placeholder="5386730643" disabled={busy} />
+            <ApiField id="google_ads_customer_label" label="Hesap adı (panelde görünür)" value={form.google_ads_customer_label} onChange={(v) => handleChange("google_ads_customer_label", v)} placeholder="Mina yayınevi" disabled={busy} />
             <ApiField id="google_ads_login_customer_id" label="MCC (Login Customer ID)" value={form.google_ads_login_customer_id} onChange={(v) => handleChange("google_ads_login_customer_id", v)} placeholder="5200994833" disabled={busy} />
             <ApiField id="google_ads_developer_token" type="password" label="Developer Token" value={form.google_ads_developer_token} onChange={(v) => handleChange("google_ads_developer_token", v)} placeholder="Developer Token" disabled={busy} />
             <ApiField id="google_ads_client_id" type="password" label="OAuth Client ID" value={form.google_ads_client_id} onChange={(v) => handleChange("google_ads_client_id", v)} placeholder="...apps.googleusercontent.com" disabled={busy} />
