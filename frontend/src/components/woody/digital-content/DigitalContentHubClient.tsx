@@ -32,7 +32,12 @@ export default function DigitalContentHubClient({
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <WoodyPageLogoHeader title={title || 'Woody Digital'} locale={locale} variant="digital" />
+      <WoodyPageLogoHeader
+        title={title || 'Woody Digital'}
+        locale={locale}
+        logoSrc="/assets/woody/woody-digital-logo.png"
+        logoAlt={title || 'Woody Digital'}
+      />
 
       <section className="w-full bg-white py-8 md:py-10">
         <div className="container max-w-[1100px] text-center">
