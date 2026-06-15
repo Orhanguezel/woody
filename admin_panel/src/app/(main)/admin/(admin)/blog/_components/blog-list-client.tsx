@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { BookOpenText, Eye, ImageIcon, Plus, RefreshCcw, Search, Trash2 } from 'lucide-react';
+import { BookOpenText, Eye, Gauge, ImageIcon, Plus, RefreshCcw, Search, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -26,6 +26,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
+import type { BlogSeoQualityScore } from '@/integrations/shared';
 import {
   useDeleteBlogPostAdminMutation,
   useListBlogPostsAdminQuery,
@@ -72,6 +73,28 @@ function StatusPill({ status, active }: { status: string; active: boolean }) {
       <div className={cn('w-1 h-1 rounded-full', dot)} />
       {label}
     </div>
+  );
+}
+
+function QualityBadge({ q }: { q?: BlogSeoQualityScore | null }) {
+  if (!q) return <span className="text-sm text-gm-muted/40">—</span>;
+  const tone =
+    q.level === 'ready'
+      ? 'bg-gm-success/10 text-gm-success border-gm-success/20'
+      : q.level === 'publishable'
+        ? 'bg-gm-gold/10 text-gm-gold border-gm-gold/20'
+        : 'bg-gm-error/10 text-gm-error border-gm-error/20';
+  return (
+    <span
+      title={`${q.score}/100 · ${q.word_count} kelime${q.gate_passed ? '' : ' · sert kapı kaldı'}`}
+      className={cn(
+        'inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-bold tabular-nums',
+        tone,
+      )}
+    >
+      <Gauge className="size-3" />
+      {q.score}
+    </span>
   );
 }
 
@@ -193,6 +216,9 @@ export default function BlogListClient() {
                 <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   Durum
                 </TableHead>
+                <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
+                  Kalite
+                </TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   Yayın
                 </TableHead>
@@ -214,6 +240,9 @@ export default function BlogListClient() {
                     <TableCell className="py-6 text-center">
                       <Skeleton className="h-6 w-20 mx-auto bg-gm-surface/20 rounded-full" />
                     </TableCell>
+                    <TableCell className="py-6 text-center">
+                      <Skeleton className="h-6 w-12 mx-auto bg-gm-surface/20 rounded-full" />
+                    </TableCell>
                     <TableCell className="py-6">
                       <Skeleton className="h-4 w-20 bg-gm-surface/20" />
                     </TableCell>
@@ -224,7 +253,7 @@ export default function BlogListClient() {
                 ))
               ) : filteredPosts.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="py-24 text-center">
+                  <TableCell colSpan={6} className="py-24 text-center">
                     <div className="flex flex-col items-center gap-4 opacity-30">
                       <BookOpenText className="w-16 h-16 text-gm-gold/50" />
                       <span className="font-serif italic text-lg text-gm-muted">
@@ -271,6 +300,9 @@ export default function BlogListClient() {
                     </TableCell>
                     <TableCell className="py-6 text-center">
                       <StatusPill status={post.status} active={post.is_active} />
+                    </TableCell>
+                    <TableCell className="py-6 text-center">
+                      <QualityBadge q={post.seo_quality} />
                     </TableCell>
                     <TableCell className="py-6 text-sm text-gm-muted font-mono">
                       {formatDate(post.published_at, locale)}
