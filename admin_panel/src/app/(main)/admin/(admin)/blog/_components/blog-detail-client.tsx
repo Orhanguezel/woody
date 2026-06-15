@@ -41,6 +41,9 @@ import {
   useGetBlogPostAdminQuery,
   useUpdateBlogPostAdminMutation,
 } from '@/integrations/hooks';
+import { scoreBlogSeoQuality } from '@/integrations/shared/blog-seo-quality';
+import BlogContentEditor from './blog-content-editor';
+import BlogQualityPanel from './blog-quality-panel';
 
 const LOCALES = ['tr', 'en'];
 
@@ -157,6 +160,19 @@ export default function BlogDetailClient({ id }: { id: string }) {
   const [createPost, createState] = useCreateBlogPostAdminMutation();
   const [updatePost, updateState] = useUpdateBlogPostAdminMutation();
   const saving = createState.isLoading || updateState.isLoading;
+
+  const quality = React.useMemo(
+    () =>
+      scoreBlogSeoQuality({
+        title: form.title,
+        excerpt: form.excerpt,
+        content: form.content,
+        meta_title: form.meta_title,
+        meta_description: form.meta_description,
+        image_url: form.image_url,
+      }),
+    [form.title, form.excerpt, form.content, form.meta_title, form.meta_description, form.image_url],
+  );
 
   const hydratedKey = React.useRef('');
   React.useEffect(() => {
@@ -441,11 +457,9 @@ export default function BlogDetailClient({ id }: { id: string }) {
                 <Label htmlFor="b-content" className={LABEL_CLS}>
                   İçerik (HTML)
                 </Label>
-                <Textarea
-                  id="b-content"
+                <BlogContentEditor
                   value={form.content}
-                  onChange={(e) => updateForm('content', e.target.value)}
-                  className={cn(AREA_CLS, 'min-h-72 font-mono')}
+                  onChange={(value) => updateForm('content', value)}
                 />
               </div>
             </CardContent>
@@ -553,6 +567,8 @@ export default function BlogDetailClient({ id }: { id: string }) {
                 </div>
               </CardContent>
             </Card>
+
+            <BlogQualityPanel score={quality} />
           </div>
         </div>
       )}
