@@ -33,6 +33,24 @@ const API_KEYS = [
   "google_client_secret",
   "gtm_container_id",
   "ga4_measurement_id",
+  // Google Ads API
+  "google_ads_enabled",
+  "google_ads_customer_id",
+  "google_ads_login_customer_id",
+  "google_ads_developer_token",
+  "google_ads_client_id",
+  "google_ads_client_secret",
+  "google_ads_refresh_token",
+  // Google Marketing (GA4 Data API / GTM / Search Console / OAuth)
+  "ga4_property_id",
+  "gtm_account_id",
+  "gsc_site_url",
+  "google_oauth_redirect",
+  // Meta (Pixel / CAPI)
+  "meta_enabled",
+  "meta_pixel_id",
+  "meta_capi_token",
+  "meta_test_event_code",
   "cookie_consent",
   "firebase_project_id",
   "firebase_client_email",
@@ -50,6 +68,21 @@ const EMPTY_FORM: ApiForm = {
   google_client_secret: "",
   gtm_container_id: "",
   ga4_measurement_id: "",
+  google_ads_enabled: "",
+  google_ads_customer_id: "",
+  google_ads_login_customer_id: "",
+  google_ads_developer_token: "",
+  google_ads_client_id: "",
+  google_ads_client_secret: "",
+  google_ads_refresh_token: "",
+  ga4_property_id: "",
+  gtm_account_id: "",
+  gsc_site_url: "",
+  google_oauth_redirect: "",
+  meta_enabled: "",
+  meta_pixel_id: "",
+  meta_capi_token: "",
+  meta_test_event_code: "",
   cookie_consent: "",
   firebase_project_id: "",
   firebase_client_email: "",
@@ -58,6 +91,56 @@ const EMPTY_FORM: ApiForm = {
   iyzipay_secret_key: "",
   iyzipay_base_url: "",
 };
+
+const FIELD_INPUT_CLS =
+  "h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm font-mono text-gm-text transition-all";
+const FIELD_LABEL_CLS = "text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block";
+
+function ApiField({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder,
+  disabled,
+  type = "text",
+  full = false,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  type?: string;
+  full?: boolean;
+}) {
+  return (
+    <div className={full ? "md:col-span-2 space-y-2" : "space-y-2"}>
+      <Label htmlFor={id} className={FIELD_LABEL_CLS}>
+        {label}
+      </Label>
+      <Input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        disabled={disabled}
+        className={FIELD_INPUT_CLS}
+      />
+    </div>
+  );
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-gm-gold border-b border-gm-border-soft pb-3 flex items-center gap-2">
+      <span className="w-2 h-2 rounded-full bg-gm-gold/50" />
+      {children}
+    </h3>
+  );
+}
 
 function valueToString(v: unknown): string {
   if (v === null || v === undefined) return "";
@@ -256,6 +339,47 @@ export const ApiSettingsTab: React.FC<ApiSettingsTabProps> = ({ locale }) => {
                 className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm font-mono text-gm-text transition-all"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Google Ads API Section */}
+        <div className="space-y-6">
+          <SectionHeading>Google Ads API</SectionHeading>
+          <div className="grid gap-6 md:grid-cols-2">
+            <ApiField id="google_ads_enabled" label="Aktif (true / false)" value={form.google_ads_enabled} onChange={(v) => handleChange("google_ads_enabled", v)} placeholder="true / false" disabled={busy} />
+            <ApiField id="google_ads_customer_id" label="Customer ID" value={form.google_ads_customer_id} onChange={(v) => handleChange("google_ads_customer_id", v)} placeholder="5386730643" disabled={busy} />
+            <ApiField id="google_ads_login_customer_id" label="MCC (Login Customer ID)" value={form.google_ads_login_customer_id} onChange={(v) => handleChange("google_ads_login_customer_id", v)} placeholder="5200994833" disabled={busy} />
+            <ApiField id="google_ads_developer_token" type="password" label="Developer Token" value={form.google_ads_developer_token} onChange={(v) => handleChange("google_ads_developer_token", v)} placeholder="Developer Token" disabled={busy} />
+            <ApiField id="google_ads_client_id" type="password" label="OAuth Client ID" value={form.google_ads_client_id} onChange={(v) => handleChange("google_ads_client_id", v)} placeholder="...apps.googleusercontent.com" disabled={busy} />
+            <ApiField id="google_ads_client_secret" type="password" label="OAuth Client Secret" value={form.google_ads_client_secret} onChange={(v) => handleChange("google_ads_client_secret", v)} placeholder="GOCSPX-..." disabled={busy} />
+            <ApiField id="google_ads_refresh_token" type="password" full label="OAuth Refresh Token" value={form.google_ads_refresh_token} onChange={(v) => handleChange("google_ads_refresh_token", v)} placeholder="1//..." disabled={busy} />
+          </div>
+        </div>
+
+        {/* GA4 / GTM / Search Console Section */}
+        <div className="space-y-6">
+          <SectionHeading>GA4 / GTM / Search Console</SectionHeading>
+          <div className="grid gap-6 md:grid-cols-2">
+            <ApiField id="ga4_property_id" label="GA4 Property ID (Data API)" value={form.ga4_property_id} onChange={(v) => handleChange("ga4_property_id", v)} placeholder="500518307" disabled={busy} />
+            <ApiField id="gtm_account_id" label="GTM Account ID" value={form.gtm_account_id} onChange={(v) => handleChange("gtm_account_id", v)} placeholder="6307679412" disabled={busy} />
+            <ApiField id="gsc_site_url" full label="Search Console Site URL" value={form.gsc_site_url} onChange={(v) => handleChange("gsc_site_url", v)} placeholder="https://woodyvearkadaslari.com/  veya  sc-domain:woodyvearkadaslari.com" disabled={busy} />
+            <ApiField id="google_oauth_redirect" full label="Google OAuth Redirect URI" value={form.google_oauth_redirect} onChange={(v) => handleChange("google_oauth_redirect", v)} placeholder="https://.../admin/google-connect/callback" disabled={busy} />
+          </div>
+          <p className="text-[10px] font-serif italic text-gm-muted ml-4 opacity-80">
+            OAuth bağlantısı ve refresh token üretimi için{" "}
+            <code className="text-[9px] not-italic bg-gm-bg-deep px-1.5 py-0.5 rounded border border-gm-border-soft">/admin/google-connect</code>{" "}
+            sayfasını kullanın. Client ID / Secret / Refresh Token, üstteki Google Ads bölümüyle ortaktır.
+          </p>
+        </div>
+
+        {/* Meta (Pixel / CAPI) Section */}
+        <div className="space-y-6">
+          <SectionHeading>Meta (Pixel / Conversions API)</SectionHeading>
+          <div className="grid gap-6 md:grid-cols-2">
+            <ApiField id="meta_enabled" label="Aktif (true / false)" value={form.meta_enabled} onChange={(v) => handleChange("meta_enabled", v)} placeholder="true / false" disabled={busy} />
+            <ApiField id="meta_pixel_id" label="Pixel ID" value={form.meta_pixel_id} onChange={(v) => handleChange("meta_pixel_id", v)} placeholder="1234567890" disabled={busy} />
+            <ApiField id="meta_capi_token" type="password" full label="CAPI Access Token" value={form.meta_capi_token} onChange={(v) => handleChange("meta_capi_token", v)} placeholder="EAA..." disabled={busy} />
+            <ApiField id="meta_test_event_code" label="Test Event Code" value={form.meta_test_event_code} onChange={(v) => handleChange("meta_test_event_code", v)} placeholder="TEST12345" disabled={busy} />
           </div>
         </div>
 
