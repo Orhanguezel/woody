@@ -93,30 +93,38 @@ export type GoogleAdsCampaignsResp = {
   range: GoogleAdsDateRange;
 };
 
-/** micros → TL (para birimi hesabın kendi birimi) */
-export function microsToUnit(micros: number): string {
-  return (micros / 1_000_000).toLocaleString('tr-TR', { maximumFractionDigits: 2 });
+/** Güvenli sayı: undefined/null/NaN → 0 (boş/erişilemeyen veri panel'i çökertmesin). */
+function num(v: unknown): number {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : 0;
 }
 
-export function formatCtr(ctr: number): string {
-  return `%${(ctr * 100).toLocaleString('tr-TR', { maximumFractionDigits: 2 })}`;
+/** micros → TL (para birimi hesabın kendi birimi) */
+export function microsToUnit(micros: number | null | undefined): string {
+  return (num(micros) / 1_000_000).toLocaleString('tr-TR', { maximumFractionDigits: 2 });
+}
+
+export function formatCtr(ctr: number | null | undefined): string {
+  return `%${(num(ctr) * 100).toLocaleString('tr-TR', { maximumFractionDigits: 2 })}`;
 }
 
 /** CPA = maliyet / dönüşüm (para birimi). Dönüşüm yoksa "—". */
-export function formatCpa(costMicros: number, conversions: number): string {
-  if (!conversions) return '—';
-  return microsToUnit(costMicros / conversions);
+export function formatCpa(costMicros: number | null | undefined, conversions: number | null | undefined): string {
+  const c = num(conversions);
+  if (!c) return '—';
+  return microsToUnit(num(costMicros) / c);
 }
 
 /** ROAS = dönüşüm değeri / maliyet (×kat). Maliyet yoksa "—". */
-export function formatRoas(conversionsValue: number, costMicros: number): string {
-  if (!costMicros) return '—';
-  const roas = conversionsValue / (costMicros / 1_000_000);
+export function formatRoas(conversionsValue: number | null | undefined, costMicros: number | null | undefined): string {
+  const cost = num(costMicros);
+  if (!cost) return '—';
+  const roas = num(conversionsValue) / (cost / 1_000_000);
   return `×${roas.toLocaleString('tr-TR', { maximumFractionDigits: 2 })}`;
 }
 
-export function formatNumber(v: number): string {
-  return v.toLocaleString('tr-TR', { maximumFractionDigits: 2 });
+export function formatNumber(v: number | null | undefined): string {
+  return num(v).toLocaleString('tr-TR', { maximumFractionDigits: 2 });
 }
 
 /** POST /admin/google-ads/campaigns/:id/status */
