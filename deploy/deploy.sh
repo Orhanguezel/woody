@@ -109,8 +109,16 @@ cd "$DEPLOY_PATH"
 pm2 delete "${SLUG}-${suffix}" 2>/dev/null || true
 BUN_BIN="$BUN_BIN" pm2 start ecosystem.config.cjs --only "${SLUG}-${suffix}" --update-env
 pm2 save
-sleep 3
-ss -ltnp | grep ":${port}" >/dev/null || { echo "❌ ${suffix} portu ${port} acik degil"; pm2 logs "${SLUG}-${suffix}" --lines 40 --nostream; exit 1; }
+# Port acilana kadar ~60sn bekle (buyuk backend/Next build'leri 3sn'de bind etmez — yanlis-negatif onlenir)
+ok_port=0
+for i in \$(seq 1 30); do
+  sleep 2
+  if ss -ltnp 2>/dev/null | grep -q ":${port}"; then ok_port=1; break; fi
+  # PM2 process erkenden cokerse (errored/stopped) beklemeden cik
+  st=\$(pm2 jlist 2>/dev/null | python3 -c "import json,sys;d=json.load(sys.stdin);print(next((a['pm2_env']['status'] for a in d if a['name']=='${SLUG}-${suffix}'),'?'))" 2>/dev/null || echo '?')
+  if [ "\$st" = "errored" ] || [ "\$st" = "stopped" ]; then break; fi
+done
+if [ "\$ok_port" -ne 1 ]; then echo "❌ ${suffix} portu ${port} 60sn icinde acilmadi (durum: \${st:-?})"; pm2 logs "${SLUG}-${suffix}" --lines 40 --nostream; exit 1; fi
 echo "  → port ${port} OK"
 BASH
 }
