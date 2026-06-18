@@ -48,7 +48,7 @@
       "category": "atolye",
       "name": "Oficina Básica",
       "description": "Pacote inicial",
-      "price": "₺1,999",
+      "price": "₺1.999",
       "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
@@ -56,7 +56,7 @@
       "category": "atolye",
       "name": "Oficina Júnior",
       "description": "Nível intermediário",
-      "price": "₺2,199",
+      "price": "₺2.199",
       "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
@@ -64,7 +64,7 @@
       "category": "atolye",
       "name": "Oficina Sênior",
       "description": "Nível avançado",
-      "price": "₺2,399",
+      "price": "₺2.399",
       "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
@@ -72,7 +72,7 @@
       "category": "atolye",
       "name": "Oficina PRO",
       "description": "Profissional",
-      "price": "₺2,699",
+      "price": "₺2.699",
       "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
@@ -80,7 +80,7 @@
       "category": "atolye",
       "name": "Conjunto completo de oficina",
       "description": "Tudo em um",
-      "price": "₺7,999",
+      "price": "₺7.999",
       "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
@@ -96,7 +96,7 @@
       "category": "ozel-ders",
       "name": "Início Básico",
       "description": "Iniciante individual",
-      "price": "₺1,499",
+      "price": "₺1.499",
       "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
@@ -104,7 +104,7 @@
       "category": "ozel-ders",
       "name": "Início Júnior",
       "description": "Desenvolvimento individual",
-      "price": "₺1,699",
+      "price": "₺1.699",
       "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
@@ -112,7 +112,7 @@
       "category": "ozel-ders",
       "name": "Início Sênior",
       "description": "Individual avançado",
-      "price": "₺1,899",
+      "price": "₺1.899",
       "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
@@ -120,7 +120,7 @@
       "category": "ozel-ders",
       "name": "Início PRO",
       "description": "Profissional individual",
-      "price": "₺2,099",
+      "price": "₺2.099",
       "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
@@ -128,7 +128,7 @@
       "category": "ozel-ders",
       "name": "Pacote de aula particular",
       "description": "4 níveis, com desconto",
-      "price": "₺5,999",
+      "price": "₺5.999",
       "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
@@ -144,37 +144,37 @@
   "showQuoteButtons": false,
   "showCart": false,
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Solicite um orçamento para a sua escola",
+    "description": "Compartilhe os dados da sua instituição e prepararemos um orçamento com base no número de alunos, nível e necessidades.",
+    "linkLabel": "Formulário de Orçamento",
+    "submit": "Enviar Solicitação de Orçamento",
+    "success": "Sua solicitação foi recebida. Nossa equipe entrará em contato em breve.",
+    "error": "Não foi possível enviar a solicitação. Verifique as informações e tente novamente.",
+    "kvkkLabel": "Li o aviso de privacidade e concordo em ser contatado sobre esta solicitação de orçamento.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "orgName": "Nome da instituição",
+      "contactName": "Nome do contato",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "studentCount": "Número de alunos",
+      "level": "Nível",
+      "city": "Cidade",
+      "district": "Bairro",
+      "message": "Mensagem"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Nível misto",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "Mantenha-se informado",
+    "description": "Avisaremos você quando este produto for liberado.",
+    "emailPlaceholder": "Seu e-mail",
+    "submit": "Participar",
+    "success": "Você foi adicionado à lista de espera.",
+    "error": "Falha no cadastro. Tente novamente."
   }
 }

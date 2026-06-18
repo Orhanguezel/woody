@@ -62,9 +62,9 @@
     "keywords": "set de taller de inglés, taller de inglés basado en, taller de inglés preescolar, taller de woody, educación práctica en inglés"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Workshop video"
+    "teacherSet": "Conjunto del profesor",
+    "studentSet": "Conjunto del estudiante",
+    "closeVideo": "Cerrar video",
+    "playHero": "Reproducir video del Taller"
   }
 }

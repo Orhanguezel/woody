@@ -111,37 +111,37 @@
   "showCart": false,
   "showQuoteButtons": false,
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Demandez un devis pour votre école",
+    "description": "Communiquez les informations de votre établissement et nous préparerons un devis selon le nombre d'élèves, le niveau et les besoins.",
+    "linkLabel": "Formulaire de devis",
+    "submit": "Envoyer la demande de devis",
+    "success": "Votre demande a bien été reçue. Notre équipe vous contactera sous peu.",
+    "error": "La demande n'a pas pu être envoyée. Veuillez vérifier les informations et réessayer.",
+    "kvkkLabel": "J'ai lu la politique de confidentialité et j'accepte d'être contacté au sujet de cette demande de devis.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
+      "orgName": "Nom de l'établissement",
+      "contactName": "Nom du contact",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "studentCount": "Nombre d'élèves",
+      "level": "Niveau",
+      "city": "Ville",
+      "district": "Arrondissement",
       "message": "Message"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Niveau mixte",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "Restez informé",
+    "description": "Nous vous préviendrons lorsque ce produit sera disponible.",
+    "emailPlaceholder": "Votre e-mail",
+    "submit": "Rejoindre",
+    "success": "Vous avez été ajouté à la liste d'attente.",
+    "error": "L'inscription a échoué. Veuillez réessayer."
   }
 }

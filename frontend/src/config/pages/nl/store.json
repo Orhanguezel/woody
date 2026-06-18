@@ -36,27 +36,27 @@
         {
           "title": "Werkplaats Basis",
           "description": "Startpakket",
-          "price": "₺1,999"
+          "price": "₺1.999"
         },
         {
           "title": "Werkplaats Junior",
           "description": "Gemiddeld niveau",
-          "price": "₺2,199"
+          "price": "₺2.199"
         },
         {
           "title": "Werkplaats Senior",
           "description": "Gevorderd niveau",
-          "price": "₺2,399"
+          "price": "₺2.399"
         },
         {
           "title": "Werkplaats PRO",
           "description": "Professioneel",
-          "price": "₺2,699"
+          "price": "₺2.699"
         },
         {
           "title": "Werkplaats volledige set",
           "description": "Alles in één",
-          "price": "₺7,999"
+          "price": "₺7.999"
         },
         {
           "title": "Digitaal materiaal",
@@ -73,27 +73,27 @@
         {
           "title": "Thuis Basis",
           "description": "Individuele starter",
-          "price": "₺1,499"
+          "price": "₺1.499"
         },
         {
           "title": "Thuis Junior",
           "description": "Individuele ontwikkeling",
-          "price": "₺1,699"
+          "price": "₺1.699"
         },
         {
           "title": "Thuis Senior",
           "description": "Individueel gevorderd",
-          "price": "₺1,899"
+          "price": "₺1.899"
         },
         {
           "title": "Thuis PRO",
           "description": "Individuele professional",
-          "price": "₺2,099"
+          "price": "₺2.099"
         },
         {
           "title": "Privélespakket",
           "description": "4 niveaus, met korting",
-          "price": "₺5,999"
+          "price": "₺5.999"
         },
         {
           "title": "Onlinebibliotheek",
@@ -111,37 +111,37 @@
   "showCart": false,
   "showQuoteButtons": false,
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Vraag een offerte aan voor je school",
+    "description": "Deel de gegevens van je instelling en wij stellen een offerte op basis van aantal leerlingen, niveau en behoeften op.",
+    "linkLabel": "Offerteformulier",
+    "submit": "Offerteaanvraag verzenden",
+    "success": "Je aanvraag is ontvangen. Ons team neemt binnenkort contact met je op.",
+    "error": "De aanvraag kon niet worden verzonden. Controleer de gegevens en probeer het opnieuw.",
+    "kvkkLabel": "Ik heb de privacyverklaring gelezen en ga ermee akkoord om over deze offerteaanvraag gecontacteerd te worden.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
+      "orgName": "Naam van de instelling",
+      "contactName": "Naam contactpersoon",
+      "email": "E-mail",
+      "phone": "Telefoon",
+      "studentCount": "Aantal leerlingen",
+      "level": "Niveau",
+      "city": "Stad",
       "district": "District",
-      "message": "Message"
+      "message": "Bericht"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Gemengd niveau",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "Blijf op de hoogte",
+    "description": "We laten het je weten zodra dit product beschikbaar is.",
+    "emailPlaceholder": "Je e-mailadres",
+    "submit": "Aanmelden",
+    "success": "Je bent toegevoegd aan de wachtlijst.",
+    "error": "Aanmelden mislukt. Probeer het opnieuw."
   }
 }

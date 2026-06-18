@@ -62,9 +62,9 @@
     "keywords": "مجموعة ورشة عمل اللغة الإنجليزية، ورشة عمل اللغة الإنجليزية القائمة على ورشة عمل، ورشة عمل اللغة الإنجليزية لمرحلة ما قبل المدرسة، ورشة عمل خشبية، التدريب العملي على اللغة الإنجليزية"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Workshop video"
+    "teacherSet": "مجموعة المعلّم",
+    "studentSet": "مجموعة الطالب",
+    "closeVideo": "إغلاق الفيديو",
+    "playHero": "تشغيل فيديو الورشة"
   }
 }

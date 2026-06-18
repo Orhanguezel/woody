@@ -138,6 +138,13 @@ export const STATIC_UI: Record<string, Record<string, string>> = {
   'Go Back': { 'tr': 'Geri Dön', 'en': 'Go Back', 'de': 'Zurück', 'ar': 'العودة', 'fr': 'Retour', 'ru': 'Назад', 'es': 'Volver', 'it': 'Indietro', 'nl': 'Terug', 'pt-br': 'Voltar' },
   'CLICK': { 'tr': 'TIKLAYIN', 'en': 'CLICK', 'de': 'KLICKEN', 'ar': 'انقر', 'fr': 'CLIQUEZ', 'ru': 'НАЖМИТЕ', 'es': 'HAZ CLIC', 'it': 'CLICCA', 'nl': 'KLIK', 'pt-br': 'CLIQUE' },
   'Click to view': { 'tr': 'Görüntülemek için tıklayın', 'en': 'Click to view', 'de': 'Zum Ansehen klicken', 'ar': 'انقر للعرض', 'fr': 'Cliquez pour voir', 'ru': 'Нажмите для просмотра', 'es': 'Clic para ver', 'it': 'Clicca per vedere', 'nl': 'Klik om te bekijken', 'pt-br': 'Clique para ver' },
+  'Listening': { 'tr': 'Dinleme', 'en': 'Listening', 'de': 'Hören', 'ar': 'الاستماع', 'fr': 'Écoute', 'ru': 'Аудирование', 'es': 'Escucha', 'it': 'Ascolto', 'nl': 'Luisteren', 'pt-br': 'Compreensão Oral' },
+  'Speaking': { 'tr': 'Konuşma', 'en': 'Speaking', 'de': 'Sprechen', 'ar': 'التحدث', 'fr': 'Expression orale', 'ru': 'Говорение', 'es': 'Expresión oral', 'it': 'Conversazione', 'nl': 'Spreken', 'pt-br': 'Fala' },
+  'Reading': { 'tr': 'Okuma', 'en': 'Reading', 'de': 'Lesen', 'ar': 'القراءة', 'fr': 'Lecture', 'ru': 'Чтение', 'es': 'Lectura', 'it': 'Lettura', 'nl': 'Lezen', 'pt-br': 'Leitura' },
+  'Writing': { 'tr': 'Yazma', 'en': 'Writing', 'de': 'Schreiben', 'ar': 'الكتابة', 'fr': 'Écriture', 'ru': 'Письмо', 'es': 'Escritura', 'it': 'Scrittura', 'nl': 'Schrijven', 'pt-br': 'Escrita' },
+  'SCHOOL SERIES': { 'tr': 'OKUL SERISI', 'en': 'SCHOOL SERIES', 'de': 'SCHULSERIE', 'ar': 'سلسلة المدرسة', 'fr': 'SÉRIE ÉCOLE', 'ru': 'ШКОЛЬНАЯ СЕРИЯ', 'es': 'SERIE ESCOLAR', 'it': 'SERIE SCUOLA', 'nl': 'SCHOOLSERIE', 'pt-br': 'SÉRIE ESCOLAR' },
+  'WORKSHOP SERIES': { 'tr': 'ATOLYE SERISI', 'en': 'WORKSHOP SERIES', 'de': 'WORKSHOP-SERIE', 'ar': 'سلسلة الورشة', 'fr': 'SÉRIE ATELIER', 'ru': 'СЕРИЯ МАСТЕРСКОЙ', 'es': 'SERIE TALLER', 'it': 'SERIE WORKSHOP', 'nl': 'WORKSHOPSERIE', 'pt-br': 'SÉRIE WORKSHOP' },
+  'HOME TUTOR SERIES': { 'tr': 'EV OZEL DERS SERISI', 'en': 'HOME TUTOR SERIES', 'de': 'HEIMUNTERRICHT-SERIE', 'ar': 'سلسلة الدروس المنزلية', 'fr': 'SÉRIE COURS À DOMICILE', 'ru': 'СЕРИЯ ДОМАШНЕГО ОБУЧЕНИЯ', 'es': 'SERIE TUTORÍA EN CASA', 'it': 'SERIE LEZIONI A CASA', 'nl': 'THUISLES-SERIE', 'pt-br': 'SÉRIE AULA EM CASA' },
 };
 
 export const CATEGORY_LABELS: Record<string, Record<string, string>> = {

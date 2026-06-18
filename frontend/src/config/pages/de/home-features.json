@@ -22,7 +22,7 @@
       "body": "Lehrer- und Schülersätze schaffen eine Standardanwendungssprache innerhalb der Institution.",
       "meta": [
         "Lehrer",
-        "Student",
+        "Schüler",
         "Satz"
       ],
       "settingKey": "ui_feature_content_image",

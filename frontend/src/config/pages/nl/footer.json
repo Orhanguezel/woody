@@ -5,11 +5,26 @@
     "corporate": {
       "title": "Zakelijk",
       "links": [
-        { "label": "Prijzen & Pakketten", "href": "/fiyat" },
-        { "label": "Gratis demo aanvragen", "href": "/contact" },
-        { "label": "Veelgestelde vragen", "href": "/sss" },
-        { "label": "Gids voor Engels op de kleuterschool", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
-        { "label": "Blog", "href": "/blog" }
+        {
+          "label": "Prijzen & Pakketten",
+          "href": "/fiyat"
+        },
+        {
+          "label": "Gratis demo aanvragen",
+          "href": "/contact"
+        },
+        {
+          "label": "Veelgestelde vragen",
+          "href": "/sss"
+        },
+        {
+          "label": "Gids voor Engels op de kleuterschool",
+          "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        }
       ]
     },
     "contact": {

@@ -6,19 +6,19 @@
       "num": "01",
       "title": "Adequado à idade",
       "text": "Cada nível é projetado em torno da capacidade de atenção, das necessidades de brincadeira e do ritmo de repetição das crianças de 3 a 6 anos.",
-      "target": "AGE"
+      "target": "IDADE"
     },
     {
       "num": "02",
       "title": "Prático para professores",
       "text": "O fluxo de aula dá aos professores um caminho claro e reduz as diferenças de qualidade entre as instituições.",
-      "target": "CLASS"
+      "target": "TURMA"
     },
     {
       "num": "03",
       "title": "Sustentável para instituições",
       "text": "Os materiais físicos, o conteúdo digital e o fluxo da academia constroem um modelo de educação de longo prazo.",
-      "target": "SCHOOL"
+      "target": "ESCOLA"
     }
   ]
 }

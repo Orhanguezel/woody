@@ -48,7 +48,7 @@
       "category": "atolye",
       "name": "Laboratorio Base",
       "description": "Pacchetto iniziale",
-      "price": "₺1,999",
+      "price": "₺1.999",
       "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
@@ -56,7 +56,7 @@
       "category": "atolye",
       "name": "Laboratorio Junior",
       "description": "Livello intermedio",
-      "price": "₺2,199",
+      "price": "₺2.199",
       "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
@@ -64,7 +64,7 @@
       "category": "atolye",
       "name": "Anziano d'officina",
       "description": "Livello avanzato",
-      "price": "₺2,399",
+      "price": "₺2.399",
       "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
@@ -72,7 +72,7 @@
       "category": "atolye",
       "name": "Officina PRO",
       "description": "Professionale",
-      "price": "₺2,699",
+      "price": "₺2.699",
       "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
@@ -80,7 +80,7 @@
       "category": "atolye",
       "name": "Set completo per officina",
       "description": "Tutto in uno",
-      "price": "₺7,999",
+      "price": "₺7.999",
       "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
@@ -96,7 +96,7 @@
       "category": "ozel-ders",
       "name": "Casa di base",
       "description": "Antipasto individuale",
-      "price": "₺1,499",
+      "price": "₺1.499",
       "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
@@ -104,7 +104,7 @@
       "category": "ozel-ders",
       "name": "Casa Junior",
       "description": "Sviluppo individuale",
-      "price": "₺1,699",
+      "price": "₺1.699",
       "image": "/media/woody/reference/m4z26p5k_2.png"
     },
     {
@@ -112,7 +112,7 @@
       "category": "ozel-ders",
       "name": "Anziano domestico",
       "description": "Avanzato individuale",
-      "price": "₺1,899",
+      "price": "₺1.899",
       "image": "/media/woody/reference/3jgyyil9_1.png"
     },
     {
@@ -120,7 +120,7 @@
       "category": "ozel-ders",
       "name": "Casa PRO",
       "description": "Professionista individuale",
-      "price": "₺2,099",
+      "price": "₺2.099",
       "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
     },
     {
@@ -128,7 +128,7 @@
       "category": "ozel-ders",
       "name": "Pacchetto lezioni private",
       "description": "4 livelli, scontati",
-      "price": "₺5,999",
+      "price": "₺5.999",
       "image": "/media/woody/reference/h5x59v59_3.png"
     },
     {
@@ -144,37 +144,37 @@
   "showQuoteButtons": false,
   "showCart": false,
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Richiedi un preventivo per la tua scuola",
+    "description": "Condividi i dettagli del tuo istituto e prepareremo un preventivo in base al numero di studenti, al livello e alle esigenze.",
+    "linkLabel": "Modulo di preventivo",
+    "submit": "Invia richiesta di preventivo",
+    "success": "La tua richiesta è stata ricevuta. Il nostro team ti contatterà a breve.",
+    "error": "Impossibile inviare la richiesta. Controlla le informazioni e riprova.",
+    "kvkkLabel": "Ho letto l'informativa sulla privacy e acconsento a essere contattato in merito a questa richiesta di preventivo.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
+      "orgName": "Nome dell'istituto",
+      "contactName": "Nome del contatto",
       "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "phone": "Telefono",
+      "studentCount": "Numero di studenti",
+      "level": "Livello",
+      "city": "Città",
+      "district": "Distretto",
+      "message": "Messaggio"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Livello misto",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "Resta aggiornato",
+    "description": "Ti avviseremo quando questo prodotto sarà disponibile.",
+    "emailPlaceholder": "La tua email",
+    "submit": "Iscriviti",
+    "success": "Sei stato aggiunto alla lista d'attesa.",
+    "error": "Registrazione non riuscita. Riprova."
   }
 }

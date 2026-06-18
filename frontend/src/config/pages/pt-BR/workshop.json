@@ -62,9 +62,9 @@
     "keywords": "workshop de inglês, workshop de inglês, workshop de inglês pré-escolar, workshop woody, educação prática de inglês"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Workshop video"
+    "teacherSet": "Conjunto do Professor",
+    "studentSet": "Conjunto do Aluno",
+    "closeVideo": "Fechar vídeo",
+    "playHero": "Reproduzir vídeo do Workshop"
   }
 }

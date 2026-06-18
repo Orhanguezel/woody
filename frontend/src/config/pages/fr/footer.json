@@ -5,11 +5,26 @@
     "corporate": {
       "title": "Entreprise",
       "links": [
-        { "label": "Tarifs et forfaits", "href": "/fiyat" },
-        { "label": "Demande de démo gratuite", "href": "/contact" },
-        { "label": "Foire aux questions", "href": "/sss" },
-        { "label": "Guide de l'anglais préscolaire", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
-        { "label": "Blog", "href": "/blog" }
+        {
+          "label": "Tarifs et forfaits",
+          "href": "/fiyat"
+        },
+        {
+          "label": "Demande de démo gratuite",
+          "href": "/contact"
+        },
+        {
+          "label": "Foire aux questions",
+          "href": "/sss"
+        },
+        {
+          "label": "Guide de l'anglais préscolaire",
+          "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        }
       ]
     },
     "contact": {

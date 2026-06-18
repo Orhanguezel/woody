@@ -138,7 +138,7 @@ export default function WoodyAcademyPageClient({
                     return (
                       <div key={skill.labelEn} className={`flex items-center gap-2 rounded-lg px-4 py-3 ${skill.bgClass}`}>
                         <Icon className={`size-5 ${skill.iconClass}`} aria-hidden />
-                        <span className="text-[15px] font-medium text-gray-700">{locale === 'tr' ? skill.labelTr : skill.labelEn}</span>
+                        <span className="text-[15px] font-medium text-gray-700">{tUi(locale, skill.labelEn)}</span>
                       </div>
                     );
                   })}

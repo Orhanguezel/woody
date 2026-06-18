@@ -67,9 +67,9 @@
     "keywords": "tuteur à domicile anglais, cours particulier à domicile anglais, kit maison anglais préscolaire, tuteur à domicile woody, cours particulier enfants anglais"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Home Tutor video"
+    "teacherSet": "Coffret enseignant",
+    "studentSet": "Coffret élève",
+    "closeVideo": "Fermer la vidéo",
+    "playHero": "Lire la vidéo Home Tutor"
   }
 }

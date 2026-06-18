@@ -72,43 +72,43 @@
     "keywords": "voorschoolse Engelse leerset, voorschoolse Engelse programma Turkije, vroege kinderjaren Engelse set, Engels programma voor kleuterschool, Cambridge voorbereiding voorschoolse, 3-6 leeftijd Engels programma, voorschoolse Engelse serie"
   },
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Vraag een offerte aan voor je school",
+    "description": "Deel de gegevens van je instelling en wij stellen een offerte op basis van aantal leerlingen, niveau en behoeften op.",
+    "linkLabel": "Offerteformulier",
+    "submit": "Offerteaanvraag verzenden",
+    "success": "Je aanvraag is ontvangen. Ons team neemt binnenkort contact met je op.",
+    "error": "De aanvraag kon niet worden verzonden. Controleer de gegevens en probeer het opnieuw.",
+    "kvkkLabel": "Ik heb de privacyverklaring gelezen en ga ermee akkoord om over deze offerteaanvraag gecontacteerd te worden.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
+      "orgName": "Naam van de instelling",
+      "contactName": "Naam contactpersoon",
+      "email": "E-mail",
+      "phone": "Telefoon",
+      "studentCount": "Aantal leerlingen",
+      "level": "Niveau",
+      "city": "Stad",
       "district": "District",
-      "message": "Message"
+      "message": "Bericht"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Gemengd niveau",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "videoWatch": "Watch Video",
-    "quote": "Get a Quote",
-    "playHero": "Play Preschool video",
-    "close": "Close",
-    "digitalTitle": "Woody Digital Content",
-    "digitalDescription": "Movieland, Storyland and Musicland enrich learning with video, stories and music.",
-    "digitalCta": "Open the digital world",
-    "quoteMessageTemplate": "Hello, I would like to get a quote for {{level}}.",
-    "proMessage": "PRO level training is delivered in Woody Academy."
+    "teacherSet": "Docentenset",
+    "studentSet": "Leerlingenset",
+    "closeVideo": "Video sluiten",
+    "videoWatch": "Video bekijken",
+    "quote": "Vraag een offerte aan",
+    "playHero": "Preschool-video afspelen",
+    "close": "Sluiten",
+    "digitalTitle": "Woody Digital-inhoud",
+    "digitalDescription": "Movieland, Storyland en Musicland verrijken het leren met video, verhalen en muziek.",
+    "digitalCta": "Open de digitale wereld",
+    "quoteMessageTemplate": "Hallo, ik wil graag een offerte voor {{level}}.",
+    "proMessage": "PRO-niveautraining wordt aangeboden in Woody Academy."
   }
 }

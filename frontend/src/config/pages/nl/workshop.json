@@ -62,9 +62,9 @@
     "keywords": "workshop Engelse set, workshop gebaseerd Engels, workshop Engels voorschools, workshop houtachtig, praktijkgericht Engels onderwijs"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Workshop video"
+    "teacherSet": "Docentenset",
+    "studentSet": "Leerlingenset",
+    "closeVideo": "Video sluiten",
+    "playHero": "Workshop-video afspelen"
   }
 }

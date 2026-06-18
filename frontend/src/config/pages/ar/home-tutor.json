@@ -67,9 +67,9 @@
     "keywords": "مدرس اللغة الإنجليزية في المنزل، درس خاص في المنزل باللغة الإنجليزية، مجموعة اللغة الإنجليزية في مرحلة ما قبل المدرسة، مدرس منزلي خشبي، درس خاص للأطفال في اللغة الإنجليزية"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Home Tutor video"
+    "teacherSet": "مجموعة المعلّم",
+    "studentSet": "مجموعة الطالب",
+    "closeVideo": "إغلاق الفيديو",
+    "playHero": "تشغيل فيديو المعلّم المنزلي"
   }
 }

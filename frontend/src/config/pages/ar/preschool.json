@@ -72,43 +72,43 @@
     "keywords": "مجموعة تعلم اللغة الإنجليزية لمرحلة ما قبل المدرسة، برنامج اللغة الإنجليزية لمرحلة ما قبل المدرسة تركيا، مجموعة اللغة الإنجليزية في مرحلة الطفولة المبكرة، برنامج اللغة الإنجليزية لمرحلة ما قبل المدرسة، إعداد كامبريدج لمرحلة ما قبل المدرسة، برنامج اللغة الإنجليزية لعمر 3-6 سنوات، سلسلة اللغة الإنجليزية لمرحلة ما قبل المدرسة"
   },
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "اطلب عرض سعر لمدرستك",
+    "description": "شارك تفاصيل مؤسستك وسنُعدّ لك عرض سعر بناءً على عدد الطلاب والمستوى والاحتياجات.",
+    "linkLabel": "نموذج طلب عرض السعر",
+    "submit": "إرسال طلب عرض السعر",
+    "success": "تم استلام طلبك. سيتواصل معك فريقنا قريبًا.",
+    "error": "تعذّر إرسال الطلب. يرجى التحقق من المعلومات والمحاولة مرة أخرى.",
+    "kvkkLabel": "لقد قرأت إشعار الخصوصية وأوافق على أن يتم التواصل معي بخصوص طلب عرض السعر هذا.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "orgName": "اسم المؤسسة",
+      "contactName": "اسم جهة الاتصال",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "studentCount": "عدد الطلاب",
+      "level": "المستوى",
+      "city": "المدينة",
+      "district": "المنطقة",
+      "message": "الرسالة"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "مستوى مختلط",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "videoWatch": "Watch Video",
-    "quote": "Get a Quote",
-    "playHero": "Play Preschool video",
-    "close": "Close",
-    "digitalTitle": "Woody Digital Content",
-    "digitalDescription": "Movieland, Storyland and Musicland enrich learning with video, stories and music.",
-    "digitalCta": "Open the digital world",
-    "quoteMessageTemplate": "Hello, I would like to get a quote for {{level}}.",
-    "proMessage": "PRO level training is delivered in Woody Academy."
+    "teacherSet": "مجموعة المعلّم",
+    "studentSet": "مجموعة الطالب",
+    "closeVideo": "إغلاق الفيديو",
+    "videoWatch": "شاهد الفيديو",
+    "quote": "احصل على عرض سعر",
+    "playHero": "تشغيل فيديو ما قبل المدرسة",
+    "close": "إغلاق",
+    "digitalTitle": "محتوى Woody الرقمي",
+    "digitalDescription": "تُثري Movieland وStoryland وMusicland التعلّم بالفيديو والقصص والموسيقى.",
+    "digitalCta": "افتح العالم الرقمي",
+    "quoteMessageTemplate": "مرحبًا، أود الحصول على عرض سعر لـ {{level}}.",
+    "proMessage": "يُقدَّم تدريب مستوى PRO في Woody Academy."
   }
 }

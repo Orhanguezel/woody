@@ -6,19 +6,19 @@
       "num": "01",
       "title": "Adatto all'età",
       "text": "Ogni livello è progettato in base alla capacità di attenzione, alle esigenze di gioco e al ritmo di ripetizione dei bambini dai 3 ai 6 anni.",
-      "target": "AGE"
+      "target": "ETÀ"
     },
     {
       "num": "02",
       "title": "Pratico per gli insegnanti",
       "text": "Il flusso delle lezioni offre agli insegnanti un percorso chiaro e riduce le differenze di qualità tra gli istituti.",
-      "target": "CLASS"
+      "target": "CLASSE"
     },
     {
       "num": "03",
       "title": "Sostenibile per le istituzioni",
       "text": "I materiali fisici, i contenuti digitali e il flusso accademico costruiscono un modello educativo a lungo termine.",
-      "target": "SCHOOL"
+      "target": "SCUOLA"
     }
   ]
 }

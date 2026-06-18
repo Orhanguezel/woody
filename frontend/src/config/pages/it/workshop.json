@@ -62,9 +62,9 @@
     "keywords": "set di inglese per workshop, inglese basato su workshop, workshop di inglese prescolare, workshop su legno, educazione pratica dell'inglese"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Workshop video"
+    "teacherSet": "Set per insegnanti",
+    "studentSet": "Set per studenti",
+    "closeVideo": "Chiudi video",
+    "playHero": "Riproduci il video Workshop"
   }
 }

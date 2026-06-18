@@ -62,9 +62,9 @@
     "keywords": "ensemble d'anglais d'atelier, anglais en atelier, atelier d'anglais préscolaire, atelier boisé, enseignement pratique de l'anglais"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Workshop video"
+    "teacherSet": "Coffret enseignant",
+    "studentSet": "Coffret élève",
+    "closeVideo": "Fermer la vidéo",
+    "playHero": "Lire la vidéo Atelier"
   }
 }

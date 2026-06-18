@@ -6,19 +6,19 @@
       "num": "01",
       "title": "Apropiado para la edad",
       "text": "Cada nivel está diseñado en torno a la capacidad de atención, las necesidades de juego y el ritmo de repetición de niños de 3 a 6 años.",
-      "target": "AGE"
+      "target": "EDAD"
     },
     {
       "num": "02",
       "title": "Práctico para profesores",
       "text": "El flujo de lecciones brinda a los docentes un camino claro y reduce las diferencias de calidad entre instituciones.",
-      "target": "CLASS"
+      "target": "CLASE"
     },
     {
       "num": "03",
       "title": "Sostenible para las instituciones",
       "text": "Los materiales físicos, el contenido digital y el flujo académico construyen un modelo educativo a largo plazo.",
-      "target": "SCHOOL"
+      "target": "ESCUELA"
     }
   ]
 }

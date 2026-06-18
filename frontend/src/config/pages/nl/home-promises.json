@@ -6,13 +6,13 @@
       "num": "01",
       "title": "Geschikt voor de leeftijd",
       "text": "Elk niveau is ontworpen rond de aandachtsspanne, de speelbehoeften en het herhalingsritme van kinderen van 3 tot 6 jaar.",
-      "target": "AGE"
+      "target": "LEEFTIJD"
     },
     {
       "num": "02",
       "title": "Praktisch voor docenten",
       "text": "De lessenstroom geeft docenten een duidelijk pad en verkleint de kwaliteitsverschillen tussen instellingen.",
-      "target": "CLASS"
+      "target": "KLAS"
     },
     {
       "num": "03",

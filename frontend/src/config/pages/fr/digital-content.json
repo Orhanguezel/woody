@@ -1,9 +1,9 @@
 {
   "title": "{{appName}} Monde numérique",
   "description": "Bienvenue dans {{appName}} Digital World — Contenu Storyland, Movieland, Musicland et bibliothèque par niveau.",
-  "eyebrow": "DIGITAL CONTENT",
+  "eyebrow": "CONTENU NUMÉRIQUE",
   "hero": {
-    "eyebrow": "DIGITAL CONTENT",
+    "eyebrow": "CONTENU NUMÉRIQUE",
     "title": "Bienvenue dans le monde numérique de {{appName}}",
     "description": "Choisissez votre niveau, puis explorez les sections Storyland, Movieland, Musicland et Library."
   },
@@ -96,118 +96,118 @@
   "levelLabels": {
     "basic": {
       "title": "BASIC",
-      "subtitle": "Level 1",
-      "detailTitle": "BASIC Level 1"
+      "subtitle": "Niveau 1",
+      "detailTitle": "BASIC Niveau 1"
     },
     "junior": {
       "title": "JUNIOR",
-      "subtitle": "Level 2",
-      "detailTitle": "JUNIOR Level 2"
+      "subtitle": "Niveau 2",
+      "detailTitle": "JUNIOR Niveau 2"
     },
     "senior": {
       "title": "SENIOR",
-      "subtitle": "Level 3",
-      "detailTitle": "SENIOR Level 3"
+      "subtitle": "Niveau 3",
+      "detailTitle": "SENIOR Niveau 3"
     }
   },
   "sectionLabels": {
     "storyland": {
       "title": "Storyland",
-      "description": "16 interactive video stories"
+      "description": "16 histoires vidéo interactives"
     },
     "movieland": {
       "title": "Movieland",
-      "description": "8 videos"
+      "description": "8 vidéos"
     },
     "musicland": {
       "title": "Musicland",
-      "description": "8 songs"
+      "description": "8 chansons"
     },
     "library": {
-      "title": "Library",
-      "description": "Book content will open with membership"
+      "title": "Bibliothèque",
+      "description": "Le contenu du livre sera accessible avec l'adhésion"
     }
   },
   "library": {
     "badge": "Bientôt",
-    "title": "Library is coming soon",
-    "description": "Library content will open with the membership system. For now, covers are shown as gray previews.",
-    "modalTitle": "Membership required for Library",
-    "modalDescription": "This area will unlock when the membership system is enabled. Create an account or sign in to be ready.",
-    "registerCta": "Register",
-    "loginCta": "Log in"
+    "title": "La bibliothèque arrive bientôt",
+    "description": "Le contenu de la bibliothèque sera accessible avec le système d'adhésion. Pour l'instant, les couvertures sont affichées en aperçus grisés.",
+    "modalTitle": "Adhésion requise pour la bibliothèque",
+    "modalDescription": "Cette section sera débloquée lorsque le système d'adhésion sera activé. Créez un compte ou connectez-vous pour être prêt.",
+    "registerCta": "S'inscrire",
+    "loginCta": "Se connecter"
   },
   "ui": {
-    "hubTitle": "Digital Content",
+    "hubTitle": "Contenu numérique",
     "publicBadge": "Public",
     "close": "Fermer",
-    "back": "Back to digital content",
-    "nowPlaying": "Now playing",
-    "stop": "Stop",
-    "protectedTitle": "Protected Content",
-    "protectedDescription": "Enter your 4-digit password to view this content.",
-    "passwordLabel": "Four-digit password",
-    "enter": "Enter",
-    "passwordHelp": "Enter your password once; it will not be requested again during this session.",
-    "passwordError": "Invalid password. Please try again.",
-    "videoMissing": "The video link has not been added yet."
+    "back": "Retour au contenu numérique",
+    "nowPlaying": "En cours de lecture",
+    "stop": "Arrêter",
+    "protectedTitle": "Contenu protégé",
+    "protectedDescription": "Saisissez votre mot de passe à 4 chiffres pour voir ce contenu.",
+    "passwordLabel": "Mot de passe à quatre chiffres",
+    "enter": "Entrer",
+    "passwordHelp": "Saisissez votre mot de passe une fois ; il ne vous sera plus demandé pendant cette session.",
+    "passwordError": "Mot de passe invalide. Veuillez réessayer.",
+    "videoMissing": "Le lien de la vidéo n'a pas encore été ajouté."
   },
   "musicland": {
     "tracks": {
       "basic": [
         {
           "id": 1,
-          "title": "Theme 1 – Greetings & Classroom Communication",
-          "topic": "Greetings & Classroom Communication",
+          "title": "Thème 1 – Salutations et communication en classe",
+          "topic": "Salutations et communication en classe",
           "audioUrl": "/media/woody/reference/iccoy0mm_theme%201%20.mp3",
           "thumbnail": "/media/woody/reference/pxj6okjj_1.png"
         },
         {
           "id": 2,
-          "title": "Theme 2 – Classroom Life & Objects",
-          "topic": "Classroom Life & Objects",
+          "title": "Thème 2 – La vie en classe et les objets",
+          "topic": "La vie en classe et les objets",
           "audioUrl": "/media/woody/reference/y3dz0w3v_theme%202.mp3",
           "thumbnail": "/media/woody/reference/3r3f6uwx_2.png"
         },
         {
           "id": 3,
-          "title": "Theme 3 – Numbers & Colors",
-          "topic": "Numbers & Colors",
+          "title": "Thème 3 – Les nombres et les couleurs",
+          "topic": "Les nombres et les couleurs",
           "audioUrl": "/media/woody/reference/lfgctcef_theme%203%20.mp3",
           "thumbnail": "/media/woody/reference/fvlxvwww_3.png"
         },
         {
           "id": 4,
-          "title": "Theme 4 – Animals",
-          "topic": "Animals",
+          "title": "Thème 4 – Animaux",
+          "topic": "Animaux",
           "audioUrl": "/media/woody/reference/6pfdm5c0_theme%204%20.mp3",
           "thumbnail": "/media/woody/reference/5ukkudwy_4.png"
         },
         {
           "id": 5,
-          "title": "Theme 5 – Vegetables & Fruits",
-          "topic": "Vegetables & Fruits",
+          "title": "Thème 5 – Légumes et fruits",
+          "topic": "Légumes et fruits",
           "audioUrl": "/media/woody/reference/w4djc170_Theme%205.mp3",
           "thumbnail": "/media/woody/reference/9bh5jjnf_5.png"
         },
         {
           "id": 6,
-          "title": "Theme 6 – My Body Parts & 5 Senses",
-          "topic": "My Body Parts & 5 Senses",
+          "title": "Thème 6 – Les parties de mon corps et les 5 sens",
+          "topic": "Les parties de mon corps et les 5 sens",
           "audioUrl": "/media/woody/reference/g2sj2m65_theme%206.mp3",
           "thumbnail": "/media/woody/reference/9vonr43z_6.png"
         },
         {
           "id": 7,
-          "title": "Theme 7 – Clothes",
-          "topic": "Clothes",
+          "title": "Thème 7 – Vêtements",
+          "topic": "Vêtements",
           "audioUrl": "/media/woody/reference/2sncgdds_theme%207.mp3",
           "thumbnail": "/media/woody/reference/73lilv7l_7.png"
         },
         {
           "id": 8,
-          "title": "Theme 8 – Vehicles",
-          "topic": "Vehicles",
+          "title": "Thème 8 – Véhicules",
+          "topic": "Véhicules",
           "audioUrl": "/media/woody/reference/726lj4d9_theme%208.mp3",
           "thumbnail": "/media/woody/reference/8ontm0a3_8.png"
         }
@@ -215,57 +215,57 @@
       "junior": [
         {
           "id": 1,
-          "title": "Theme 1",
-          "topic": "Theme 1",
+          "title": "Thème 1",
+          "topic": "Thème 1",
           "audioUrl": "/media/woody/reference/r6xwf4fx_Theme%201.mp3",
           "thumbnail": "/media/woody/reference/rn4hl66d_1.png"
         },
         {
           "id": 2,
-          "title": "Theme 2",
-          "topic": "Theme 2",
+          "title": "Thème 2",
+          "topic": "Thème 2",
           "audioUrl": "/media/woody/reference/ypzzvi5i_theme%202.mp3",
           "thumbnail": "/media/woody/reference/68recr7x_2.png"
         },
         {
           "id": 3,
-          "title": "Theme 3",
-          "topic": "Theme 3",
+          "title": "Thème 3",
+          "topic": "Thème 3",
           "audioUrl": "/media/woody/reference/07v23187_theme%203%20.mp3",
           "thumbnail": "/media/woody/reference/ex1xgfa1_3.png"
         },
         {
           "id": 4,
-          "title": "Theme 4",
-          "topic": "Theme 4",
+          "title": "Thème 4",
+          "topic": "Thème 4",
           "audioUrl": "/media/woody/reference/kbi01h0d_theme%204%20.mp3",
           "thumbnail": "/media/woody/reference/0skbimng_4.png"
         },
         {
           "id": 5,
-          "title": "Theme 5",
-          "topic": "Theme 5",
+          "title": "Thème 5",
+          "topic": "Thème 5",
           "audioUrl": "/media/woody/reference/fqeyspb4_theme%205.mp3",
           "thumbnail": "/media/woody/reference/uj8it9vz_5.png"
         },
         {
           "id": 6,
-          "title": "Theme 6",
-          "topic": "Theme 6",
+          "title": "Thème 6",
+          "topic": "Thème 6",
           "audioUrl": "/media/woody/reference/c2eihyip_theme%206.mp3",
           "thumbnail": "/media/woody/reference/22qudlvp_11.png"
         },
         {
           "id": 7,
-          "title": "Theme 7",
-          "topic": "Theme 7",
+          "title": "Thème 7",
+          "topic": "Thème 7",
           "audioUrl": "/media/woody/reference/ttak76ty_theme%207.mp3",
           "thumbnail": "/media/woody/reference/xvg3m6sd_13.png"
         },
         {
           "id": 8,
-          "title": "Theme 8",
-          "topic": "Theme 8",
+          "title": "Thème 8",
+          "topic": "Thème 8",
           "audioUrl": "/media/woody/reference/hj56hh9t_theme%208%20.mp3",
           "thumbnail": "/media/woody/reference/cnuuucdz_15.png"
         }
@@ -273,57 +273,57 @@
       "senior": [
         {
           "id": 1,
-          "title": "Theme 1",
-          "topic": "Theme 1",
+          "title": "Thème 1",
+          "topic": "Thème 1",
           "audioUrl": "/media/woody/reference/9uqnvd3a_theme%201.mp3",
           "thumbnail": "/media/woody/reference/ejpqg9mg_I%CC%87lk%20sayfa%20theme%201_Sayfa_1.jpg"
         },
         {
           "id": 2,
-          "title": "Theme 2",
-          "topic": "Theme 2",
+          "title": "Thème 2",
+          "topic": "Thème 2",
           "audioUrl": "/media/woody/reference/ymbcni8l_theme%202%20.mp3",
           "thumbnail": "/media/woody/reference/pxbe6piu_I%CC%87lk%20sayfa%20theme%201_Sayfa_2.jpg"
         },
         {
           "id": 3,
-          "title": "Theme 3",
-          "topic": "Theme 3",
+          "title": "Thème 3",
+          "topic": "Thème 3",
           "audioUrl": "/media/woody/reference/k7dc3mmg_theme%203.mp3",
           "thumbnail": "/media/woody/reference/uoftphsc_I%CC%87lk%20sayfa%20theme%201_Sayfa_3.jpg"
         },
         {
           "id": 4,
-          "title": "Theme 4",
-          "topic": "Theme 4",
+          "title": "Thème 4",
+          "topic": "Thème 4",
           "audioUrl": "/media/woody/reference/87azrhhk_theme%204.mp3",
           "thumbnail": "/media/woody/reference/kbd06i5m_I%CC%87lk%20sayfa%20theme%201_Sayfa_4.jpg"
         },
         {
           "id": 5,
-          "title": "Theme 5",
-          "topic": "Theme 5",
+          "title": "Thème 5",
+          "topic": "Thème 5",
           "audioUrl": "/media/woody/reference/tuf69tq4_theme%205%20.mp3",
           "thumbnail": "/media/woody/reference/bbn6tpbx_I%CC%87lk%20sayfa%20theme%201_Sayfa_5.jpg"
         },
         {
           "id": 6,
-          "title": "Theme 6",
-          "topic": "Theme 6",
+          "title": "Thème 6",
+          "topic": "Thème 6",
           "audioUrl": "/media/woody/reference/u633wm8u_THEME%206.mp3",
           "thumbnail": "/media/woody/reference/wh47lcep_I%CC%87lk%20sayfa%20theme%201_Sayfa_6.jpg"
         },
         {
           "id": 7,
-          "title": "Theme 7",
-          "topic": "Theme 7",
+          "title": "Thème 7",
+          "topic": "Thème 7",
           "audioUrl": "/media/woody/reference/8620pn8i_THEME%207.mp3",
           "thumbnail": "/media/woody/reference/w6y5frsb_I%CC%87lk%20sayfa%20theme%201_Sayfa_7.jpg"
         },
         {
           "id": 8,
-          "title": "Theme 8",
-          "topic": "Theme 8",
+          "title": "Thème 8",
+          "topic": "Thème 8",
           "audioUrl": "/media/woody/reference/y64ptt3d_theme%208%20.mp3",
           "thumbnail": "/media/woody/reference/ymtca4bt_I%CC%87lk%20sayfa%20theme%201_Sayfa_8.jpg"
         }

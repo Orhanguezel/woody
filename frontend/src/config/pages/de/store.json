@@ -41,27 +41,27 @@
         {
           "title": "Workshop Basic",
           "description": "Starterpaket",
-          "price": "₺1,999"
+          "price": "₺1.999"
         },
         {
           "title": "Workshop Junior",
           "description": "Mittelstufe",
-          "price": "₺2,199"
+          "price": "₺2.199"
         },
         {
           "title": "Werkstatt-Senior",
           "description": "Fortgeschrittenes Niveau",
-          "price": "₺2,399"
+          "price": "₺2.399"
         },
         {
           "title": "Workshop PRO",
           "description": "Professional",
-          "price": "₺2,699"
+          "price": "₺2.699"
         },
         {
           "title": "Werkstatt-Komplettset",
           "description": "Alles in einem",
-          "price": "₺7,999"
+          "price": "₺7.999"
         },
         {
           "title": "Digitales Material",
@@ -78,27 +78,27 @@
         {
           "title": "Startseite Basic",
           "description": "Einzelstarter",
-          "price": "₺1,499"
+          "price": "₺1.499"
         },
         {
           "title": "Heim Junior",
           "description": "Individuelle Entwicklung",
-          "price": "₺1,699"
+          "price": "₺1.699"
         },
         {
           "title": "Heim-Senior",
           "description": "Individuelle Fortgeschrittene",
-          "price": "₺1,899"
+          "price": "₺1.899"
         },
         {
           "title": "Startseite PRO",
           "description": "Individueller Profi",
-          "price": "₺2,099"
+          "price": "₺2.099"
         },
         {
           "title": "Privatunterrichtspaket",
           "description": "4 Ebenen, ermäßigt",
-          "price": "₺5,999"
+          "price": "₺5.999"
         },
         {
           "title": "Online-Bibliothek",
@@ -114,37 +114,37 @@
     "keywords": "Woody Store, Englisch-Set für Vorschulkinder kaufen, Preis für Englisch-Lernset für Vorschulkinder, Shop für Englisch-Lernset"
   },
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Fordern Sie ein Angebot für Ihre Schule an",
+    "description": "Teilen Sie uns die Angaben zu Ihrer Einrichtung mit und wir erstellen ein Angebot basierend auf Schülerzahl, Niveau und Bedarf.",
+    "linkLabel": "Angebotsformular",
+    "submit": "Angebotsanfrage senden",
+    "success": "Ihre Anfrage ist eingegangen. Unser Team wird sich in Kürze bei Ihnen melden.",
+    "error": "Die Anfrage konnte nicht gesendet werden. Bitte überprüfen Sie die Angaben und versuchen Sie es erneut.",
+    "kvkkLabel": "Ich habe die Datenschutzhinweise gelesen und bin damit einverstanden, zu dieser Angebotsanfrage kontaktiert zu werden.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
+      "orgName": "Name der Einrichtung",
+      "contactName": "Ansprechpartner",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "studentCount": "Schülerzahl",
       "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "city": "Stadt",
+      "district": "Bezirk",
+      "message": "Nachricht"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Gemischtes Niveau",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "Bleiben Sie informiert",
+    "description": "Wir benachrichtigen Sie, sobald dieses Produkt verfügbar ist.",
+    "emailPlaceholder": "Ihre E-Mail",
+    "submit": "Beitreten",
+    "success": "Sie wurden zur Warteliste hinzugefügt.",
+    "error": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
   }
 }

@@ -52,7 +52,7 @@ export default function WoodySetZigzag({
             const image = card.image || meta.image;
             const reverse = index % 2 === 1;
             const ribbonText =
-              locale === 'tr' ? meta.ribbonTr : locale === 'ru' ? meta.ribbonRu : meta.ribbonEn;
+              tUi(locale, meta.ribbonEn);
             return (
               <Link
                 key={`${card.title}-${index}`}

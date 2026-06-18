@@ -111,37 +111,37 @@
   "showCart": false,
   "showQuoteButtons": false,
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "اطلب عرض سعر لمدرستك",
+    "description": "شارك تفاصيل مؤسستك وسنُعدّ لك عرض سعر بناءً على عدد الطلاب والمستوى والاحتياجات.",
+    "linkLabel": "نموذج طلب عرض السعر",
+    "submit": "إرسال طلب عرض السعر",
+    "success": "تم استلام طلبك. سيتواصل معك فريقنا قريبًا.",
+    "error": "تعذّر إرسال الطلب. يرجى التحقق من المعلومات والمحاولة مرة أخرى.",
+    "kvkkLabel": "لقد قرأت إشعار الخصوصية وأوافق على أن يتم التواصل معي بخصوص طلب عرض السعر هذا.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "orgName": "اسم المؤسسة",
+      "contactName": "اسم جهة الاتصال",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "studentCount": "عدد الطلاب",
+      "level": "المستوى",
+      "city": "المدينة",
+      "district": "المنطقة",
+      "message": "الرسالة"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "مستوى مختلط",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "ابقَ على اطّلاع",
+    "description": "سنُعلمك عند توفّر هذا المنتج.",
+    "emailPlaceholder": "بريدك الإلكتروني",
+    "submit": "انضم",
+    "success": "تمت إضافتك إلى قائمة الانتظار.",
+    "error": "فشل التسجيل. يرجى المحاولة مرة أخرى."
   }
 }

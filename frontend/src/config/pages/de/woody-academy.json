@@ -9,7 +9,7 @@
   },
   "sections": [
     {
-      "eyebrow": "Student",
+      "eyebrow": "Schüler",
       "title": "Cambridge-Zertifizierungsprozess",
       "description": "Im {{appName}}-Vorschulsystem werden die Schüler nach Abschluss der Basic-, Junior- und Senior-Reihen in das {{appName}}-Akademieprogramm eingeschrieben. Diese Phase ist die kritische Phase, in der der Student sein Englisch auf ein höheres Niveau bringt und sich auf den internationalen Zertifizierungsprozess vorbereitet. Studierende, die den {{appName}} Academy-Prozess abschließen, erhalten das Recht, Cambridge-Englischprüfungen abzulegen. Diese Prüfungen messen die Hör-, Sprech-, Lese- und Schreibfähigkeiten und bewerten das Sprachniveau des Schülers anhand internationaler Standards.",
       "items": [

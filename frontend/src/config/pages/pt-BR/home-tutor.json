@@ -67,9 +67,9 @@
     "keywords": "tutor doméstico de inglês, aula particular de inglês em casa, conjunto doméstico de inglês pré-escolar, tutor doméstico woody, aula particular de inglês para crianças"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Home Tutor video"
+    "teacherSet": "Conjunto do Professor",
+    "studentSet": "Conjunto do Aluno",
+    "closeVideo": "Fechar vídeo",
+    "playHero": "Reproduzir vídeo do Tutor em Casa"
   }
 }

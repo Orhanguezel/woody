@@ -111,37 +111,37 @@
   "showCart": false,
   "showQuoteButtons": false,
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Запросите предложение для вашей школы",
+    "description": "Поделитесь данными вашего учреждения, и мы подготовим предложение на основе количества учеников, уровня и потребностей.",
+    "linkLabel": "Форма запроса предложения",
+    "submit": "Отправить запрос предложения",
+    "success": "Ваш запрос получен. Наша команда свяжется с вами в ближайшее время.",
+    "error": "Запрос не удалось отправить. Пожалуйста, проверьте информацию и попробуйте снова.",
+    "kvkkLabel": "Я ознакомился с уведомлением о конфиденциальности и согласен на связь по поводу этого запроса предложения.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "orgName": "Название учреждения",
+      "contactName": "Контактное имя",
+      "email": "Эл. почта",
+      "phone": "Телефон",
+      "studentCount": "Количество учеников",
+      "level": "Уровень",
+      "city": "Город",
+      "district": "Район",
+      "message": "Сообщение"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Смешанный уровень",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "Будьте в курсе",
+    "description": "Мы уведомим вас, когда этот продукт станет доступен.",
+    "emailPlaceholder": "Ваша эл. почта",
+    "submit": "Присоединиться",
+    "success": "Вы добавлены в список ожидания.",
+    "error": "Регистрация не удалась. Пожалуйста, попробуйте снова."
   }
 }

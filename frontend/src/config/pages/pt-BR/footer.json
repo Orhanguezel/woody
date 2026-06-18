@@ -5,11 +5,26 @@
     "corporate": {
       "title": "Institucional",
       "links": [
-        { "label": "Preços e pacotes", "href": "/fiyat" },
-        { "label": "Solicitação de demonstração gratuita", "href": "/contact" },
-        { "label": "Perguntas frequentes", "href": "/sss" },
-        { "label": "Guia de inglês para pré-escola", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
-        { "label": "Blog", "href": "/blog" }
+        {
+          "label": "Preços e pacotes",
+          "href": "/fiyat"
+        },
+        {
+          "label": "Solicitação de demonstração gratuita",
+          "href": "/contact"
+        },
+        {
+          "label": "Perguntas frequentes",
+          "href": "/sss"
+        },
+        {
+          "label": "Guia de inglês para pré-escola",
+          "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        }
       ]
     },
     "contact": {

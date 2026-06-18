@@ -67,9 +67,9 @@
     "keywords": "thuisleraar Engels, privéles Engels aan huis, voorschoolse Engelse thuisset, Woody thuisleraar, privéles Engels voor kinderen"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Home Tutor video"
+    "teacherSet": "Docentenset",
+    "studentSet": "Leerlingenset",
+    "closeVideo": "Video sluiten",
+    "playHero": "Home Tutor-video afspelen"
   }
 }

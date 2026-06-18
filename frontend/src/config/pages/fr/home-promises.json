@@ -6,19 +6,19 @@
       "num": "01",
       "title": "Adapté à l'âge",
       "text": "Chaque niveau est conçu en fonction de la capacité d'attention, des besoins de jeu et du rythme de répétition des enfants âgés de 3 à 6 ans.",
-      "target": "AGE"
+      "target": "ÂGE"
     },
     {
       "num": "02",
       "title": "Pratique pour les enseignants",
       "text": "Le déroulement des cours donne aux enseignants un cheminement clair et réduit les différences de qualité entre les établissements.",
-      "target": "CLASS"
+      "target": "CLASSE"
     },
     {
       "num": "03",
       "title": "Durable pour les institutions",
       "text": "Le matériel physique, le contenu numérique et le flux académique construisent un modèle éducatif à long terme.",
-      "target": "SCHOOL"
+      "target": "ÉCOLE"
     }
   ]
 }

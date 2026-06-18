@@ -63,9 +63,9 @@
   },
   "digitalEntry": {
     "eyebrow": "WOODY DIGITAL",
-    "title": "Enter Woody Digital in one click",
-    "description": "Explore Storyland, Movieland, Musicland and Library directly without an extra level step.",
-    "cta": "Open Woody Digital",
+    "title": "ادخل إلى Woody Digital بنقرة واحدة",
+    "description": "استكشف Storyland وMovieland وMusicland والمكتبة مباشرةً دون خطوة مستوى إضافية.",
+    "cta": "افتح Woody Digital",
     "href": "/digital-content"
   }
 }

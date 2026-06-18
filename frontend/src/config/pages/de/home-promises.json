@@ -6,19 +6,19 @@
       "num": "01",
       "title": "Altersgerecht",
       "text": "Jede Ebene ist auf die Aufmerksamkeitsspanne, die Spielbedürfnisse und den Wiederholungsrhythmus von Kindern im Alter von 3 bis 6 Jahren ausgelegt.",
-      "target": "AGE"
+      "target": "ALTER"
     },
     {
       "num": "02",
       "title": "Praktisch für Lehrer",
       "text": "Der Unterrichtsablauf gibt Lehrern einen klaren Weg und verringert Qualitätsunterschiede zwischen Institutionen.",
-      "target": "CLASS"
+      "target": "KLASSE"
     },
     {
       "num": "03",
       "title": "Nachhaltig für Institutionen",
       "text": "Physische Materialien, digitale Inhalte und der Akademiefluss bilden ein langfristiges Bildungsmodell.",
-      "target": "SCHOOL"
+      "target": "SCHULE"
     }
   ]
 }

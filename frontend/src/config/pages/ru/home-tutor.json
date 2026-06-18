@@ -67,9 +67,9 @@
     "keywords": "домашний репетитор по английскому, частные уроки английского на дому, комплект английского для дошкольников, домашний репетитор Вуди, частный урок английского для детей"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Home Tutor video"
+    "teacherSet": "Комплект учителя",
+    "studentSet": "Комплект ученика",
+    "closeVideo": "Закрыть видео",
+    "playHero": "Воспроизвести видео Home Tutor"
   }
 }

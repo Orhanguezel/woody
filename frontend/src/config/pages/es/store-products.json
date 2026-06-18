@@ -144,37 +144,37 @@
   "showQuoteButtons": false,
   "showCart": false,
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Solicita una cotización para tu escuela",
+    "description": "Comparte los datos de tu institución y prepararemos una cotización según el número de estudiantes, el nivel y las necesidades.",
+    "linkLabel": "Formulario de cotización",
+    "submit": "Enviar solicitud de cotización",
+    "success": "Hemos recibido tu solicitud. Nuestro equipo se pondrá en contacto contigo en breve.",
+    "error": "No se pudo enviar la solicitud. Por favor, verifica la información e inténtalo de nuevo.",
+    "kvkkLabel": "He leído el aviso de privacidad y acepto ser contactado sobre esta solicitud de cotización.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "orgName": "Nombre de la institución",
+      "contactName": "Nombre de contacto",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "studentCount": "Número de estudiantes",
+      "level": "Nivel",
+      "city": "Ciudad",
+      "district": "Distrito",
+      "message": "Mensaje"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Nivel mixto",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "waitlistForm": {
-    "title": "Stay informed",
-    "description": "We will notify you when this product opens.",
-    "emailPlaceholder": "Your email",
-    "submit": "Join",
-    "success": "You have been added to the waitlist.",
-    "error": "Signup failed. Please try again."
+    "title": "Mantente informado",
+    "description": "Te notificaremos cuando este producto esté disponible.",
+    "emailPlaceholder": "Tu correo electrónico",
+    "submit": "Unirse",
+    "success": "Has sido añadido a la lista de espera.",
+    "error": "El registro falló. Por favor, inténtalo de nuevo."
   }
 }

@@ -62,9 +62,9 @@
     "keywords": "Workshop-Englisch-Set, Workshop-basiertes Englisch, Vorschul-Englisch-Workshop, Woody-Workshop, praktischer Englischunterricht"
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "playHero": "Play Workshop video"
+    "teacherSet": "Lehrer-Set",
+    "studentSet": "Schüler-Set",
+    "closeVideo": "Video schließen",
+    "playHero": "Workshop-Video abspielen"
   }
 }

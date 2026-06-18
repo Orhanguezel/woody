@@ -72,43 +72,43 @@
     "keywords": "conjunto de aprendizagem de inglês pré-escolar, programa de inglês pré-escolar Turquia, conjunto de inglês para primeira infância, programa de inglês para pré-escola, pré-escola de preparação para Cambridge, programa de inglês para 3 a 6 anos, série de inglês pré-escolar"
   },
   "quoteForm": {
-    "title": "Request a quote for your school",
-    "description": "Share your institution details and we will prepare a quote based on student count, level and needs.",
-    "linkLabel": "Quote Form",
-    "submit": "Send Quote Request",
-    "success": "Your request has been received. Our team will contact you shortly.",
-    "error": "The request could not be sent. Please check the information and try again.",
-    "kvkkLabel": "I have read the privacy notice and agree to be contacted about this quote request.",
+    "title": "Solicite um orçamento para a sua escola",
+    "description": "Compartilhe os dados da sua instituição e prepararemos um orçamento com base no número de alunos, nível e necessidades.",
+    "linkLabel": "Formulário de Orçamento",
+    "submit": "Enviar Solicitação de Orçamento",
+    "success": "Sua solicitação foi recebida. Nossa equipe entrará em contato em breve.",
+    "error": "Não foi possível enviar a solicitação. Verifique as informações e tente novamente.",
+    "kvkkLabel": "Li o aviso de privacidade e concordo em ser contatado sobre esta solicitação de orçamento.",
     "fields": {
-      "orgName": "Institution name",
-      "contactName": "Contact name",
-      "email": "Email",
-      "phone": "Phone",
-      "studentCount": "Student count",
-      "level": "Level",
-      "city": "City",
-      "district": "District",
-      "message": "Message"
+      "orgName": "Nome da instituição",
+      "contactName": "Nome do contato",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "studentCount": "Número de alunos",
+      "level": "Nível",
+      "city": "Cidade",
+      "district": "Bairro",
+      "message": "Mensagem"
     },
     "levels": {
-      "mixed": "Mixed level",
+      "mixed": "Nível misto",
       "basic": "Basic",
       "junior": "Junior",
       "senior": "Senior"
     }
   },
   "pageUi": {
-    "teacherSet": "Teacher Set",
-    "studentSet": "Student Set",
-    "closeVideo": "Close video",
-    "videoWatch": "Watch Video",
-    "quote": "Get a Quote",
-    "playHero": "Play Preschool video",
-    "close": "Close",
-    "digitalTitle": "Woody Digital Content",
-    "digitalDescription": "Movieland, Storyland and Musicland enrich learning with video, stories and music.",
-    "digitalCta": "Open the digital world",
-    "quoteMessageTemplate": "Hello, I would like to get a quote for {{level}}.",
-    "proMessage": "PRO level training is delivered in Woody Academy."
+    "teacherSet": "Conjunto do Professor",
+    "studentSet": "Conjunto do Aluno",
+    "closeVideo": "Fechar vídeo",
+    "videoWatch": "Assistir ao Vídeo",
+    "quote": "Solicitar Orçamento",
+    "playHero": "Reproduzir vídeo da Pré-escola",
+    "close": "Fechar",
+    "digitalTitle": "Conteúdo Digital Woody",
+    "digitalDescription": "Movieland, Storyland e Musicland enriquecem o aprendizado com vídeo, histórias e música.",
+    "digitalCta": "Abra o mundo digital",
+    "quoteMessageTemplate": "Olá, gostaria de receber um orçamento para {{level}}.",
+    "proMessage": "O treinamento de nível PRO é oferecido na Woody Academy."
   }
 }
