@@ -1,7 +1,7 @@
 // =============================================================
 // FILE: src/i18n/staticUi.ts  (STATIK 10-DIL UI METINLERI)
-// Phase 1: nav/blog/header/footer kodundaki `locale === 'tr' ? ... : ...` goc.
-// Anahtar = Ingilizce metin. Uzun vade: DB site_settings ui_* ile birlesir.
+// Phase 1: kodda sabit `locale === 'tr' ? TR : EN` UI metinleri + blog kategori etiketleri.
+// tUi(locale,en) UI metni; tCategory(locale,slug) blog kategori etiketi.
 // =============================================================
 
 export const STATIC_UI: Record<string, Record<string, string>> = {
@@ -53,6 +53,20 @@ export const STATIC_UI: Record<string, Record<string, string>> = {
   'Mobile navigation': { 'tr': 'Mobil menü', 'en': 'Mobile navigation', 'de': 'Mobile Navigation', 'ar': 'التنقل عبر الجوال', 'fr': 'Navigation mobile', 'ru': 'Мобильная навигация', 'es': 'Navegación móvil', 'it': 'Navigazione mobile', 'nl': 'Mobiele navigatie', 'pt-br': 'Navegação móvel' },
   'Menu': { 'tr': 'Menü', 'en': 'Menu', 'de': 'Menü', 'ar': 'القائمة', 'fr': 'Menu', 'ru': 'Меню', 'es': 'Menú', 'it': 'Menu', 'nl': 'Menu', 'pt-br': 'Menu' },
   'Sign out': { 'tr': 'Çıkış', 'en': 'Sign out', 'de': 'Abmelden', 'ar': 'تسجيل الخروج', 'fr': 'Se déconnecter', 'ru': 'Выйти', 'es': 'Cerrar sesión', 'it': 'Esci', 'nl': 'Uitloggen', 'pt-br': 'Sair' },
+  'Contact Us': { 'tr': 'Bize Ulaşın', 'en': 'Contact Us', 'de': 'Kontakt', 'ar': 'اتصل بنا', 'fr': 'Contactez-nous', 'ru': 'Связаться с нами', 'es': 'Contáctenos', 'it': 'Contattaci', 'nl': 'Contact', 'pt-br': 'Fale Conosco' },
+};
+
+export const CATEGORY_LABELS: Record<string, Record<string, string>> = {
+  'yas-gruplari': { 'tr': 'Yaş Grupları', 'en': 'Age Groups', 'de': 'Altersgruppen', 'ar': 'الفئات العمرية', 'fr': 'Tranches d\'âge', 'ru': 'Возрастные группы', 'es': 'Grupos de Edad', 'it': 'Fasce d\'Età', 'nl': 'Leeftijdsgroepen', 'pt-br': 'Faixas Etárias' },
+  'egitim-sistemleri': { 'tr': 'Eğitim Sistemleri', 'en': 'Education Systems', 'de': 'Bildungssysteme', 'ar': 'أنظمة التعليم', 'fr': 'Systèmes Éducatifs', 'ru': 'Системы образования', 'es': 'Sistemas Educativos', 'it': 'Sistemi Educativi', 'nl': 'Onderwijssystemen', 'pt-br': 'Sistemas Educacionais' },
+  'ogretim-teknikleri': { 'tr': 'Öğretim Teknikleri', 'en': 'Teaching Techniques', 'de': 'Lehrtechniken', 'ar': 'تقنيات التدريس', 'fr': 'Techniques d\'Enseignement', 'ru': 'Методы обучения', 'es': 'Técnicas de Enseñanza', 'it': 'Tecniche di Insegnamento', 'nl': 'Lestechnieken', 'pt-br': 'Técnicas de Ensino' },
+  'mufredat': { 'tr': 'Müfredat', 'en': 'Curriculum', 'de': 'Lehrplan', 'ar': 'المنهج الدراسي', 'fr': 'Programme', 'ru': 'Учебная программа', 'es': 'Currículo', 'it': 'Programma di Studi', 'nl': 'Curriculum', 'pt-br': 'Currículo' },
+  'aile': { 'tr': 'Aile', 'en': 'Family', 'de': 'Familie', 'ar': 'الأسرة', 'fr': 'Famille', 'ru': 'Семья', 'es': 'Familia', 'it': 'Famiglia', 'nl': 'Gezin', 'pt-br': 'Família' },
+  'ders-plani': { 'tr': 'Ders Planı', 'en': 'Lesson Plan', 'de': 'Unterrichtsplan', 'ar': 'خطة الدرس', 'fr': 'Plan de Cours', 'ru': 'План урока', 'es': 'Plan de Clase', 'it': 'Piano di Lezione', 'nl': 'Lesplan', 'pt-br': 'Plano de Aula' },
+  'dijital-icerik': { 'tr': 'Dijital İçerik', 'en': 'Digital Content', 'de': 'Digitale Inhalte', 'ar': 'المحتوى الرقمي', 'fr': 'Contenu Numérique', 'ru': 'Цифровой контент', 'es': 'Contenido Digital', 'it': 'Contenuti Digitali', 'nl': 'Digitale Content', 'pt-br': 'Conteúdo Digital' },
+  'egitim-setleri': { 'tr': 'Eğitim Setleri', 'en': 'Learning Sets', 'de': 'Lernsets', 'ar': 'مجموعات التعلم', 'fr': 'Kits d\'Apprentissage', 'ru': 'Учебные наборы', 'es': 'Kits de Aprendizaje', 'it': 'Kit di Apprendimento', 'nl': 'Leerpakketten', 'pt-br': 'Kits de Aprendizagem' },
+  'ogrenme-yontemleri': { 'tr': 'Öğrenme Yöntemleri', 'en': 'Learning Methods', 'de': 'Lernmethoden', 'ar': 'طرق التعلم', 'fr': 'Méthodes d\'Apprentissage', 'ru': 'Методы обучения', 'es': 'Métodos de Aprendizaje', 'it': 'Metodi di Apprendimento', 'nl': 'Leermethoden', 'pt-br': 'Métodos de Aprendizagem' },
+  'okul-oncesi': { 'tr': 'Okul Öncesi', 'en': 'Preschool', 'de': 'Vorschule', 'ar': 'ما قبل المدرسة', 'fr': 'Maternelle', 'ru': 'Дошкольное образование', 'es': 'Preescolar', 'it': 'Scuola dell\'Infanzia', 'nl': 'Voorschools', 'pt-br': 'Pré-Escola' },
 };
 
 /** Statik UI metni — gecerli dildeki karsiligi (yoksa EN fallback). */
@@ -60,4 +74,12 @@ export function tUi(locale: string, en: string): string {
   const row = STATIC_UI[en];
   if (!row) return en;
   return row[locale] ?? row.en ?? en;
+}
+
+/** Blog kategori slug -> gecerli dildeki etiket. Bilinmeyen slug: slug'i baslik-case yap. */
+export function tCategory(locale: string, slug: string | undefined): string {
+  if (!slug) return 'Woody Blog';
+  const row = CATEGORY_LABELS[slug];
+  if (row) return row[locale] ?? row.en ?? slug;
+  return slug.split('-').map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
 }

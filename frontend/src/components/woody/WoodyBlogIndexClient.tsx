@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { tUi } from '@/i18n/staticUi';
+import { tUi, tCategory } from '@/i18n/staticUi';
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
@@ -48,13 +48,6 @@ function formatDate(value: string | undefined, locale: string) {
   return date.toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' });
 }
 
-function categoryLabel(category: string | undefined) {
-  if (!category) return 'Woody Blog';
-  return category
-    .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ');
-}
 
 export default function WoodyBlogIndexClient({
   activeCategory,
@@ -91,7 +84,7 @@ export default function WoodyBlogIndexClient({
             activeCategory ? (
               <div className="inline-flex items-center gap-2 rounded-full bg-[#f58220]/12 px-4 py-2 text-sm font-black text-[#d96f12] ring-1 ring-[#f58220]/30">
                 <Search className="h-4 w-4" aria-hidden />
-                {categoryLabel(activeCategory)}
+                {tCategory(locale, activeCategory)}
               </div>
             ) : null
           }
@@ -170,7 +163,7 @@ export default function WoodyBlogIndexClient({
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex items-center justify-between gap-3 text-[11px] font-black uppercase tracking-[0.16em] text-[#f58220]">
-                    <span>{categoryLabel(post.category)}</span>
+                    <span>{tCategory(locale, post.category)}</span>
                     <span className="text-[#9a8a74]">{formatDate(post.created_at, locale)}</span>
                   </div>
                   <h3 className="mt-4 font-display text-xl font-black leading-tight text-[#24333f]">{post.title}</h3>

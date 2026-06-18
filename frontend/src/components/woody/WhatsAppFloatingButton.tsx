@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { FOCUS_RING } from '@/lib/a11y';
 import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
 import { useLocaleShort } from '@/i18n';
+import { tUi } from '@/i18n/staticUi';
 import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 
 function cleanPhone(value: unknown) {
@@ -26,13 +27,12 @@ export default function WhatsAppFloatingButton({ locale: localeProp }: { locale?
       ? 'Merhaba, Woody and Friends hakkında bilgi almak istiyorum.'
       : 'Hello, I would like information about Woody and Friends.';
 
-  const ariaLabel =
-    locale === 'tr' ? 'WhatsApp ile bize ulaşın' : 'Contact us on WhatsApp';
+  const ariaLabel = tUi(locale, 'Contact us on WhatsApp');
 
   return (
     <div className="fixed bottom-6 left-6 z-[900] flex flex-row-reverse items-center gap-3">
       <span className="hidden rounded-full bg-white px-4 py-2 text-[13px] font-semibold text-gray-700 shadow-[0_6px_18px_rgba(0,0,0,0.14)] md:inline-block">
-        {locale === 'tr' ? 'Bize Ulaşın' : 'Contact Us'}
+        {tUi(locale, 'Contact Us')}
       </span>
       <WhatsAppLink
         phone={phone}
