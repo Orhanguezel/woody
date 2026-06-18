@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { tUi } from '@/i18n/staticUi';
+
 import {
   Award,
   BadgeCheck,
@@ -41,10 +43,10 @@ export default function WoodyWhyCambridge({
   locale: string;
 }) {
   const items = getWhyItems(content).slice(0, 12);
-  const title = content?.eyebrow || (locale === 'tr' ? 'Neden Woody?' : 'Why Woody?');
+  const title = content?.eyebrow || (tUi(locale, 'Why Woody?'));
   const image = content?.image || WHY_WOODY_BG_IMAGES[0];
   const imageAlt =
-    content?.imageAlt || (locale === 'tr' ? 'Woody karakterleri' : 'Woody characters');
+    content?.imageAlt || (tUi(locale, 'Woody characters'));
 
   return (
     <section className="w-full bg-white py-10 md:py-16">

@@ -3,6 +3,8 @@
  * Uygulama metinleri için DB site_settings / ui_* anahtarları kullanılmaya devam eder.
  */
 import siteDefaults from '@/config/site-defaults.json';
+import { tUi } from '@/i18n/staticUi';
+
 import { normalizePublicApiBase } from '@/lib/normalize-public-api-base';
 import type { DesignTokens } from '@/lib/tokens/types';
 
@@ -314,7 +316,7 @@ export function getShareCardFooterTagline(): string {
 
 export function getSampleEmailPlaceholder(locale: string): string {
   const domain = process.env.NEXT_PUBLIC_SAMPLE_EMAIL_DOMAIN?.trim() || 'example.com';
-  const base = locale === 'tr' ? 'ornek' : 'user';
+  const base = tUi(locale, 'user');
   return `${base}@${domain}`;
 }
 

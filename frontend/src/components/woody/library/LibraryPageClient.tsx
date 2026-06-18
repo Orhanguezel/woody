@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { tUi } from '@/i18n/staticUi';
+
 import { FOCUS_RING } from '@/lib/a11y';
 
 import type { WoodyPageContent } from '../content-loader.server';
@@ -30,8 +32,8 @@ export default function LibraryPageClient({
 }) {
   const levels = content.sections?.[0]?.items ?? [];
   const paragraphs = splitHero(content.hero?.description || content.description);
-  const teacherLabel = locale === 'tr' ? 'öğretmen kitaplarını görmek için tıklayın' : 'teacher books';
-  const studentLabel = locale === 'tr' ? 'öğrenci kitaplarını görmek için tıklayın' : 'student books';
+  const teacherLabel = tUi(locale, 'teacher books');
+  const studentLabel = tUi(locale, 'student books');
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
@@ -83,7 +85,7 @@ export default function LibraryPageClient({
                         textUnderlineOffset: '4px',
                       }}
                     >
-                      {locale === 'tr' ? `${short} ${teacherLabel}` : `Click to view ${short} ${teacherLabel}`}
+                      {`${tUi(locale, 'Click to view')} ${short} ${teacherLabel}`}
                     </a>
                     <a
                       href={PREVIEW_URL}
@@ -94,7 +96,7 @@ export default function LibraryPageClient({
                         textUnderlineOffset: '4px',
                       }}
                     >
-                      {locale === 'tr' ? `${short} ${studentLabel}` : `Click to view ${short} ${studentLabel}`}
+                      {`${tUi(locale, 'Click to view')} ${short} ${studentLabel}`}
                     </a>
                   </div>
                 </div>

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { tUi } from '@/i18n/staticUi';
+
 import type React from 'react';
 
 import { buildPageMetadata } from '@/seo/server';
@@ -17,9 +19,7 @@ export async function generateMetadata({
     fallback: {
       title: 'Blog',
       description:
-        locale === 'tr'
-          ? 'Woody and Friends blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
-          : 'Woody and Friends blog posts on children English and digital learning.',
+        tUi(locale, 'Woody and Friends blog posts on children English and digital learning.'),
     },
   });
 }

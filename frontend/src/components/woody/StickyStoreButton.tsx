@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { tUi } from '@/i18n/staticUi';
+
 import { ShoppingBag } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -23,7 +25,7 @@ export default function StickyStoreButton({ locale: localeProp }: { locale?: str
     };
   }, []);
 
-  const label = locale === 'tr' ? 'Woody Store mağazası' : 'Woody Store shop';
+  const label = tUi(locale, 'Woody Store shop');
 
   return (
     <Link

@@ -1,4 +1,6 @@
 import { buildPageMetadata } from '@/seo/server';
+import { tUi } from '@/i18n/staticUi';
+
 import type { Metadata } from 'next';
 import type React from 'react';
 
@@ -14,11 +16,9 @@ export async function generateMetadata({
     pageKey: 'contact',
     pathname: '/contact',
     fallback: {
-      title: locale === 'tr' ? 'İletişim' : 'Contact',
+      title: tUi(locale, 'Contact'),
       description:
-        locale === 'tr'
-          ? 'Woody and Friends ile iletişime geçin.'
-          : 'Contact Woody and Friends.',
+        tUi(locale, 'Contact Woody and Friends.'),
     },
   });
 }

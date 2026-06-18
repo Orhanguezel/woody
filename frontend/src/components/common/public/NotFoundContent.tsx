@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import { useRouter } from 'next/navigation';
 import { Home, ArrowLeft, Timer } from 'lucide-react';
 import { useUiSection } from '@/i18n';
@@ -82,7 +84,7 @@ export function NotFoundContent({ locale, homePath }: Props) {
             className="flex items-center gap-2 px-10 py-4 border-2 border-border-medium text-text-primary rounded-full font-bold hover:border-brand-primary hover:bg-bg-card transition-all whitespace-nowrap active:scale-95"
           >
             <ArrowLeft className="w-5 h-5" />
-            {locale === 'tr' ? 'Geri Dön' : (locale === 'de' ? 'Zurück' : 'Go Back')}
+            {tUi(locale, 'Go Back')}
           </button>
         </div>
       </div>

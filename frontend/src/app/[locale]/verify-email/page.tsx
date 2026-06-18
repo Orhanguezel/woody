@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -55,15 +57,11 @@ export default function VerifyEmailPage() {
   const titleText =
     locale === 'de'
       ? 'E-Mail bestätigen'
-      : locale === 'tr'
-        ? 'E-postayı Doğrula'
-        : 'Verify Email';
+      : tUi(locale, 'Verify Email');
   const resendLabel =
     locale === 'de'
       ? 'Bestätigungs-E-Mail erneut senden'
-      : locale === 'tr'
-        ? 'Doğrulama e-postasını yeniden gönder'
-        : 'Resend verification email';
+      : tUi(locale, 'Resend verification email');
 
   return (
     <section className="bg-bg-primary py-20 min-h-screen flex items-center justify-center">
@@ -80,9 +78,7 @@ export default function VerifyEmailPage() {
               <p className="text-text-secondary mb-2">
                 {locale === 'de'
                   ? 'Wir haben Ihnen eine Bestätigungs-E-Mail gesendet.'
-                  : locale === 'tr'
-                    ? 'Size bir doğrulama e-postası gönderdik.'
-                    : 'We sent you a verification email.'}
+                  : tUi(locale, 'We sent you a verification email.')}
               </p>
               {email ? (
                 <p className="text-sm font-medium text-text-primary mb-6">{email}</p>
@@ -111,7 +107,7 @@ export default function VerifyEmailPage() {
                   href={nextHref}
                   className="inline-block w-full border border-border-light bg-bg-card text-text-primary font-semibold py-3 px-6 rounded-sm hover:bg-bg-card-hover transition-all"
                 >
-                  {locale === 'de' ? 'Zum Profil' : locale === 'tr' ? 'Profile Git' : 'Go to Profile'}
+                  {locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
                 </Link>
               </div>
               {message ? <p className="mt-4 text-sm text-text-secondary">{message}</p> : null}
@@ -122,9 +118,7 @@ export default function VerifyEmailPage() {
               <p className="text-text-secondary">
                 {locale === 'de'
                   ? 'E-Mail wird verifiziert...'
-                  : locale === 'tr'
-                    ? 'E-posta doğrulanıyor...'
-                    : 'Verifying your email...'}
+                  : tUi(locale, 'Verifying your email...')}
               </p>
             </>
           ) : status === 'success' ? (
@@ -137,22 +131,18 @@ export default function VerifyEmailPage() {
               <h2 className="text-2xl font-serif font-light text-text-primary mb-3">
                 {locale === 'de'
                   ? 'E-Mail bestätigt!'
-                  : locale === 'tr'
-                    ? 'E-posta doğrulandı!'
-                    : 'Email Verified!'}
+                  : tUi(locale, 'Email Verified!')}
               </h2>
               <p className="text-text-secondary mb-6">
                 {locale === 'de'
                   ? 'Ihre E-Mail-Adresse wurde erfolgreich verifiziert.'
-                  : locale === 'tr'
-                    ? 'E-posta adresiniz başarıyla doğrulandı.'
-                    : 'Your email address has been successfully verified.'}
+                  : tUi(locale, 'Your email address has been successfully verified.')}
               </p>
               <Link
                 href={nextHref}
                 className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all"
               >
-                {locale === 'de' ? 'Zum Profil' : locale === 'tr' ? 'Profile Git' : 'Go to Profile'}
+                {locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
               </Link>
             </>
           ) : status === 'no_token' ? (
@@ -165,22 +155,18 @@ export default function VerifyEmailPage() {
               <h2 className="text-2xl font-serif font-light text-text-primary mb-3">
                 {locale === 'de'
                   ? 'Ungültiger Link'
-                  : locale === 'tr'
-                    ? 'Geçersiz Bağlantı'
-                    : 'Invalid Link'}
+                  : tUi(locale, 'Invalid Link')}
               </h2>
               <p className="text-text-secondary mb-6">
                 {locale === 'de'
                   ? 'Kein Verifizierungstoken gefunden.'
-                  : locale === 'tr'
-                    ? 'Doğrulama tokeni bulunamadı.'
-                    : 'No verification token found.'}
+                  : tUi(locale, 'No verification token found.')}
               </p>
               <Link
                 href={localizePath(locale, '/register')}
                 className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all"
               >
-                {locale === 'de' ? 'Zur Registrierung' : locale === 'tr' ? 'Kayıta Dön' : 'Back to Register'}
+                {locale === 'de' ? 'Zur Registrierung' : tUi(locale, 'Back to Register')}
               </Link>
             </>
           ) : (
@@ -193,23 +179,19 @@ export default function VerifyEmailPage() {
               <h2 className="text-2xl font-serif font-light text-text-primary mb-3">
                 {locale === 'de'
                   ? 'Verifizierung fehlgeschlagen'
-                  : locale === 'tr'
-                    ? 'Doğrulama Başarısız'
-                    : 'Verification Failed'}
+                  : tUi(locale, 'Verification Failed')}
               </h2>
               <p className="text-text-secondary mb-6">
                 {message ||
                   (locale === 'de'
                     ? 'Der Link ist ungültig oder abgelaufen.'
-                    : locale === 'tr'
-                      ? 'Bağlantı geçersiz veya süresi dolmuş.'
-                      : 'The link is invalid or has expired.')}
+                    : tUi(locale, 'The link is invalid or has expired.'))}
               </p>
               <Link
                 href={nextHref}
                 className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all"
               >
-                {locale === 'de' ? 'Zum Profil' : locale === 'tr' ? 'Profile Git' : 'Go to Profile'}
+                {locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
               </Link>
             </>
           )}

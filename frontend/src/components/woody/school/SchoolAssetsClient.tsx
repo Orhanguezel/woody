@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { tUi } from '@/i18n/staticUi';
+
 import { Download, FileText, Lock, RefreshCcw } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -33,17 +35,15 @@ export default function SchoolAssetsClient() {
               Woody School
             </p>
             <h1 className="mt-3 font-display text-[clamp(2rem,5vw,4rem)] font-extrabold leading-[1] text-[var(--gm-text)]">
-              {locale === 'tr' ? 'Atanan dijital içerikler' : 'Assigned digital content'}
+              {tUi(locale, 'Assigned digital content')}
             </h1>
             <p className="mt-4 max-w-2xl text-[var(--gm-text-dim)]">
-              {locale === 'tr'
-                ? 'Okul hesabınıza tanımlanan içerikler burada görünür. Dosya bağlantıları girişli okul kullanıcısı için korunur.'
-                : 'Content assigned to your school account appears here. File links are protected for signed-in school users.'}
+              {tUi(locale, 'Content assigned to your school account appears here. File links are protected for signed-in school users.')}
             </p>
           </div>
           <Button variant="outline" onClick={() => refetch()} disabled={isFetching}>
             <RefreshCcw className={`mr-2 size-4 ${isFetching ? 'animate-spin' : ''}`} />
-            {locale === 'tr' ? 'Yenile' : 'Refresh'}
+            {tUi(locale, 'Refresh')}
           </Button>
         </div>
 
@@ -51,18 +51,16 @@ export default function SchoolAssetsClient() {
           <section className="rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-8 text-center shadow-[var(--gm-shadow-soft)]">
             <Lock className="mx-auto mb-4 size-9 text-[var(--gm-primary)]" aria-hidden />
             <h2 className="text-xl font-bold text-[var(--gm-text)]">
-              {locale === 'tr' ? 'Giriş gerekli' : 'Sign-in required'}
+              {tUi(locale, 'Sign-in required')}
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[var(--gm-text-dim)]">
-              {locale === 'tr'
-                ? 'Atanan okul içeriklerini görmek için okul kullanıcısı hesabıyla giriş yapın.'
-                : 'Sign in with a school user account to view assigned school content.'}
+              {tUi(locale, 'Sign in with a school user account to view assigned school content.')}
             </p>
             <Link
               href={localizePath(locale, '/login')}
               className={`mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--gm-primary)] px-5 font-bold text-[var(--gm-surface)] ${FOCUS_RING}`}
             >
-              {locale === 'tr' ? 'Giriş yap' : 'Sign in'}
+              {tUi(locale, 'Sign in')}
             </Link>
           </section>
         ) : null}
@@ -77,9 +75,7 @@ export default function SchoolAssetsClient() {
 
         {!isUnauthorized && !isLoading && data.length === 0 ? (
           <section className="rounded-lg border border-dashed border-[var(--gm-border)] bg-[var(--gm-surface)] p-8 text-center text-[var(--gm-text-dim)]">
-            {locale === 'tr'
-              ? 'Bu okul hesabına atanmış aktif içerik yok.'
-              : 'There is no active content assigned to this school account.'}
+            {tUi(locale, 'There is no active content assigned to this school account.')}
           </section>
         ) : null}
 
@@ -96,29 +92,29 @@ export default function SchoolAssetsClient() {
                 <h2 className="text-lg font-bold text-[var(--gm-text)]">{asset.title}</h2>
                 <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <dt className="text-[var(--gm-muted)]">{locale === 'tr' ? 'Seviye' : 'Level'}</dt>
+                    <dt className="text-[var(--gm-muted)]">{tUi(locale, 'Level')}</dt>
                     <dd className="font-bold text-[var(--gm-text)]">{labelFor(asset.level)}</dd>
                   </div>
                   <div>
-                    <dt className="text-[var(--gm-muted)]">{locale === 'tr' ? 'Ürün' : 'Product'}</dt>
+                    <dt className="text-[var(--gm-muted)]">{tUi(locale, 'Product')}</dt>
                     <dd className="font-bold text-[var(--gm-text)]">{labelFor(asset.product)}</dd>
                   </div>
                   <div>
-                    <dt className="text-[var(--gm-muted)]">{locale === 'tr' ? 'Tip' : 'Type'}</dt>
+                    <dt className="text-[var(--gm-muted)]">{tUi(locale, 'Type')}</dt>
                     <dd className="font-bold text-[var(--gm-text)]">{asset.asset_type}</dd>
                   </div>
                   <div>
-                    <dt className="text-[var(--gm-muted)]">{locale === 'tr' ? 'Okul' : 'School'}</dt>
+                    <dt className="text-[var(--gm-muted)]">{tUi(locale, 'School')}</dt>
                     <dd className="font-bold text-[var(--gm-text)]">{asset.school_name || '-'}</dd>
                   </div>
                 </dl>
                 <a
                   href={`/api/v1/school/assets/${encodeURIComponent(asset.id)}/file`}
                   className={`mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[var(--gm-primary)] px-5 font-bold text-[var(--gm-surface)] ${FOCUS_RING}`}
-                  aria-label={locale === 'tr' ? `${asset.title} dosyasını aç` : `Open ${asset.title} file`}
+                  aria-label={`${asset.title} – ${tUi(locale, 'Open file')}`}
                 >
                   <Download className="size-5" aria-hidden />
-                  {locale === 'tr' ? 'Dosyayı aç' : 'Open file'}
+                  {tUi(locale, 'Open file')}
                 </a>
               </article>
             ))}

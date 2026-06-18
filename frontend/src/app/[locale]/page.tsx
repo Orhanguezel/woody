@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { tUi } from '@/i18n/staticUi';
+
 import React from 'react';
 import HomeContent from '@/components/containers/home/HomeContent';
 import { fetchHomeLayout } from '@/components/containers/home/fetchHomeLayout.server';
@@ -22,11 +24,9 @@ export async function generateMetadata({
     pageKey: 'home',
     pathname: normPath('/'),
     fallback: {
-      title: locale === 'tr' ? 'Woody and Friends | Okul Öncesi İngilizce' : 'Woody and Friends | Preschool English',
+      title: tUi(locale, 'Woody and Friends | Preschool English'),
       description:
-        locale === 'tr'
-          ? 'Okul öncesi İngilizce eğitim setleri, dijital içerikler ve öğretmen destek platformu.'
-          : 'Preschool English learning sets, digital content, and teacher support platform.',
+        tUi(locale, 'Preschool English learning sets, digital content, and teacher support platform.'),
     },
   });
 }

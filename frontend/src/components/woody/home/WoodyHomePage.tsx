@@ -1,4 +1,6 @@
 import React from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 
 import type { WoodyPageContent } from '../content-loader.server';
@@ -44,10 +46,10 @@ function ZodiacGridSection({
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center">
           <span className="section-label">
-            {locale === 'tr' ? 'ÖNE ÇIKANLAR' : 'FEATURED'}
+            {tUi(locale, 'FEATURED')}
           </span>
           <h2 className="mt-4 font-serif text-[clamp(2rem,4vw,3.4rem)] font-light text-[var(--gm-text)]">
-            {locale === 'tr' ? 'Woody serilerini keşfedin' : 'Explore Woody series'}
+            {tUi(locale, 'Explore Woody series')}
           </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
@@ -67,7 +69,7 @@ function ZodiacGridSection({
                 <p className="mt-3 text-sm leading-6 text-[var(--gm-text-dim)]">{card.description}</p>
               ) : null}
               <span className="mt-6 inline-block text-[11px] font-bold uppercase tracking-[0.24em] text-[var(--gm-muted)] transition group-hover:text-[var(--gm-gold)]">
-                {locale === 'tr' ? 'İncele' : 'Explore'}
+                {tUi(locale, 'Explore')}
               </span>
             </Link>
           ))}

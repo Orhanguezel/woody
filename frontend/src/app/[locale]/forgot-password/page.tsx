@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, FormEvent } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 import { useRequestPasswordResetMutation } from '@/integrations/rtk/hooks';
 import { useLocaleShort, useUiSection } from '@/i18n';
@@ -28,9 +30,7 @@ export default function ForgotPasswordPage() {
       setFormError(
         locale === 'de'
           ? 'Bitte geben Sie Ihre E-Mail-Adresse ein.'
-          : locale === 'tr'
-            ? 'Lütfen e-posta adresinizi girin.'
-            : 'Please enter your email address.',
+          : tUi(locale, 'Please enter your email address.'),
       );
       return;
     }
@@ -56,22 +56,18 @@ export default function ForgotPasswordPage() {
             <h2 className="text-2xl font-serif font-light text-text-primary mb-3">
               {locale === 'de'
                 ? 'E-Mail gesendet'
-                : locale === 'tr'
-                  ? 'E-posta Gönderildi'
-                  : 'Email Sent'}
+                : tUi(locale, 'Email Sent')}
             </h2>
             <p className="text-text-secondary mb-6">
               {locale === 'de'
                 ? 'Wenn ein Konto mit dieser E-Mail-Adresse existiert, haben wir Ihnen einen Link zum Zurücksetzen des Passworts gesendet.'
-                : locale === 'tr'
-                  ? 'Bu e-posta adresiyle bir hesap varsa, şifre sıfırlama bağlantısı gönderildi. Lütfen e-postanızı kontrol edin.'
-                  : 'If an account with that email exists, we have sent a password reset link. Please check your email.'}
+                : tUi(locale, 'If an account with that email exists, we have sent a password reset link. Please check your email.')}
             </p>
             <Link
               href={loginHref}
               className={`inline-block rounded-sm bg-brand-primary px-6 py-3 text-sm font-bold uppercase tracking-widest text-text-on-dark transition-all hover:bg-brand-hover ${FOCUS_RING}`}
             >
-              {locale === 'de' ? 'Zurück zum Login' : locale === 'tr' ? 'Giriş Sayfasına Dön' : 'Back to Login'}
+              {locale === 'de' ? 'Zurück zum Login' : tUi(locale, 'Back to Login')}
             </Link>
           </div>
         </div>
@@ -92,16 +88,12 @@ export default function ForgotPasswordPage() {
             <h3 className="text-3xl font-serif font-light text-text-primary mb-3">
               {locale === 'de'
                 ? 'Passwort vergessen'
-                : locale === 'tr'
-                  ? 'Şifremi Unuttum'
-                  : 'Forgot Password'}
+                : tUi(locale, 'Forgot Password')}
             </h3>
             <p className="text-text-secondary leading-relaxed">
               {locale === 'de'
                 ? 'Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen.'
-                : locale === 'tr'
-                  ? 'E-posta adresinizi girin, size şifre sıfırlama bağlantısı gönderelim.'
-                  : 'Enter your email address and we will send you a reset link.'}
+                : tUi(locale, 'Enter your email address and we will send you a reset link.')}
             </p>
           </div>
 
@@ -141,8 +133,8 @@ export default function ForgotPasswordPage() {
               disabled={isLoading}
             >
               {isLoading
-                ? (locale === 'de' ? 'Wird gesendet...' : locale === 'tr' ? 'Gönderiliyor...' : 'Sending...')
-                : (locale === 'de' ? 'Link senden' : locale === 'tr' ? 'Bağlantı Gönder' : 'Send Reset Link')}
+                ? (locale === 'de' ? 'Wird gesendet...' : tUi(locale, 'Sending...'))
+                : (locale === 'de' ? 'Link senden' : tUi(locale, 'Send Reset Link'))}
             </button>
           </form>
 
@@ -151,7 +143,7 @@ export default function ForgotPasswordPage() {
               href={loginHref}
               className={`rounded-sm text-sm text-text-secondary transition-all hover:text-brand-primary ${FOCUS_RING}`}
             >
-              {locale === 'de' ? '← Zurück zum Login' : locale === 'tr' ? '← Giriş Sayfasına Dön' : '← Back to Login'}
+              {locale === 'de' ? '← Zurück zum Login' : tUi(locale, '← Back to Login')}
             </Link>
           </div>
         </div>

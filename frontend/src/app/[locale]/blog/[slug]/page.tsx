@@ -1,4 +1,6 @@
 import React from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import type { Metadata } from 'next';
 import BlogDetails from '@/components/containers/blog/BlogDetails';
 import Banner from '@/layout/banner/Breadcrum';
@@ -123,17 +125,15 @@ export default async function BlogDetailsPage({ params }: PageProps) {
     (Array.isArray(page?.images) ? safeStr(page.images[0]) : '');
   const faqItems = [
     {
-      question: locale === 'tr' ? 'Bu içerik nasıl hazırlanıyor?' : 'How is this content prepared?',
+      question: tUi(locale, 'How is this content prepared?'),
       answer:
         locale === 'tr'
           ? `${app} blog içerikleri editoryal kontrol ve konu araştırması ilkeleriyle hazırlanır.`
           : `${app} blog content is prepared with editorial review and topic research.`,
     },
     {
-      question: locale === 'tr' ? 'Bu yazı profesyonel tavsiye yerine geçer mi?' : 'Does this article replace professional advice?',
-      answer: locale === 'tr'
-        ? 'Hayır. Blog yazıları genel bilgilendirme sunar; kişisel durumlar için ilgili uzmana başvurmanız önerilir.'
-        : 'No. Blog articles provide general information; for personal situations consult a relevant professional.',
+      question: tUi(locale, 'Does this article replace professional advice?'),
+      answer: tUi(locale, 'No. Blog articles provide general information; for personal situations consult a relevant professional.'),
     },
   ];
 
@@ -172,11 +172,11 @@ export default async function BlogDetailsPage({ params }: PageProps) {
       ) : (
         <BlogDetails />
       )}
-      <FaqAccordion items={faqItems} title={locale === 'tr' ? 'Bu Yazı Hakkında Sorular' : 'Questions About This Article'} />
+      <FaqAccordion items={faqItems} title={tUi(locale, 'Questions About This Article')} />
       <section className="container mx-auto px-4 pb-16">
         <div className="rounded-2xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/55 p-6">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gm-gold)]">
-            {locale === 'tr' ? 'Editoryal ekip' : 'Editorial team'}
+            {tUi(locale, 'Editorial team')}
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-[var(--gm-text)]">{editorialName}</h2>
           <p className="mt-3 text-[var(--gm-text-dim)]">

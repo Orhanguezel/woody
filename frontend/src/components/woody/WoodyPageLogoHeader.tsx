@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 
@@ -21,7 +23,7 @@ export default function WoodyPageLogoHeader({
   logoAlt,
   badge,
 }: Props) {
-  const backLabel = locale === 'tr' ? 'GERİ' : 'BACK';
+  const backLabel = tUi(locale, 'BACK');
 
   return (
     <>

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { tUi } from '@/i18n/staticUi';
+
 import type React from 'react';
 
 import { buildPageMetadata } from '@/seo/server';
@@ -15,11 +17,9 @@ export async function generateMetadata({
     pageKey: 'faqs',
     pathname: '/faqs',
     fallback: {
-      title: locale === 'tr' ? 'Sık Sorulan Sorular' : 'Frequently Asked Questions',
+      title: tUi(locale, 'Frequently Asked Questions'),
       description:
-        locale === 'tr'
-          ? 'Woody and Friends hakkında sık sorulan sorular.'
-          : 'Frequently asked questions about Woody and Friends.',
+        tUi(locale, 'Frequently asked questions about Woody and Friends.'),
     },
   });
 }

@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 
 import { FOCUS_RING } from '@/lib/a11y';
@@ -25,13 +27,11 @@ export default function WoodySetZigzag({
   if (!cards.length) return null;
   const introTitle =
     intro?.title ||
-    (locale === 'tr' ? 'Hangi Woody Set Sizin Icin Uygun?' : 'Which Woody Set Is Right for You?');
+    (tUi(locale, 'Which Woody Set Is Right for You?'));
   const introDescription =
     intro?.description ||
-    (locale === 'tr'
-      ? 'Kurumunuza veya kullanim alaniniza en uygun Woody setini secin. Her set, farkli ihtiyaclara gore ozel olarak yapilandirilmistir.'
-      : 'Choose the Woody set that best fits your institution or use case. Each set is structured for a different learning context.');
-  const clickLabel = locale === 'tr' ? 'TIKLAYIN' : locale === 'ru' ? 'НАЖМИТЕ' : 'CLICK';
+    (tUi(locale, 'Choose the Woody set that best fits your institution or use case. Each set is structured for a different learning context.'));
+  const clickLabel = tUi(locale, 'CLICK');
 
   return (
     <section className="bg-white py-12 lg:py-20">

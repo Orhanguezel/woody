@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { tUi } from '@/i18n/staticUi';
+
 import type { WoodyPageContent } from '../content-loader.server';
 import { CERTIFICATE_IMAGES } from './home-copy';
 
@@ -12,14 +14,10 @@ export default function CertificationSection({
 }) {
   const heading =
     content?.title ||
-    (locale === 'tr'
-      ? 'Woody ile Cambridge English Sertifika Sistemine Geçiş'
-      : 'Transition to the Cambridge English Certificate System with Woody');
+    (tUi(locale, 'Transition to the Cambridge English Certificate System with Woody'));
   const subtitle =
     content?.description ||
-    (locale === 'tr'
-      ? 'Çocukları erken yaşta uluslararası standartta İngilizce eğitimle buluşturan, yapılandırılmış ve oyun temelli öğrenme modeli.'
-      : 'A structured, play-based learning model that introduces children to international-standard English education early.');
+    (tUi(locale, 'A structured, play-based learning model that introduces children to international-standard English education early.'));
   return (
     <section className="w-full bg-white pb-0 pt-6">
       <div className="mx-auto max-w-[1200px] px-6">

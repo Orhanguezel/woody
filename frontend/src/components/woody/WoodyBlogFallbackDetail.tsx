@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 
 import { FOCUS_RING } from '@/lib/a11y';
@@ -28,7 +30,7 @@ export default function WoodyBlogFallbackDetail({
             href={localizePath(locale, '/blog')}
             className={`rounded-sm text-sm font-semibold uppercase tracking-[0.16em] text-[var(--gm-gold-deep)] ${FOCUS_RING}`}
           >
-            {locale === 'tr' ? 'Bloga dön' : 'Back to blog'}
+            {tUi(locale, 'Back to blog')}
           </Link>
           {post.category ? (
             <p className="mt-8 text-xs font-bold uppercase tracking-[0.24em] text-[var(--gm-primary)]">

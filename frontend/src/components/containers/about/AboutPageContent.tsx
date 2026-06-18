@@ -6,6 +6,8 @@
 'use client';
 
 import React, { useMemo, useCallback } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Image from 'next/image';
 
 // RTK – Custom Pages Public
@@ -320,7 +322,7 @@ const AboutPageContent: React.FC = () => {
           <section className="mt-12">
             <div className="text-center mb-8">
               <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-[var(--gm-primary)] mb-2">
-                ✦ {locale === 'tr' ? 'Farkımız' : locale === 'de' ? 'Unsere Stärke' : 'Our Edge'} ✦
+                ✦ {tUi(locale, 'Our Edge')} ✦
               </p>
               <h2 className="text-2xl md:text-3xl font-serif text-[var(--gm-text)]">{copy.differentiatorsTitle}</h2>
             </div>
@@ -342,7 +344,7 @@ const AboutPageContent: React.FC = () => {
 
           <div className="mt-12 rounded-3xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-7 md:p-10 shadow-[var(--gm-shadow-soft)]">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gm-primary)]">
-              {locale === 'tr' ? 'Editoryal ekip' : locale === 'de' ? 'Redaktionsteam' : 'Editorial team'}
+              {tUi(locale, 'Editorial team')}
             </p>
             <h2 className="mt-2 text-2xl font-serif text-[var(--gm-text)]">{getPublicAppName()}</h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--gm-text-dim)]">{copy.authorBio}</p>

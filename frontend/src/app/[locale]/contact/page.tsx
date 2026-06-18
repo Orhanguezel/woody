@@ -1,5 +1,7 @@
 import ContactRouteClient from './ContactRouteClient';
 
+import { tUi } from '@/i18n/staticUi';
+
 import JsonLd from '@/seo/JsonLd';
 import { breadcrumbSchema, graph, localBusiness } from '@/seo/jsonld';
 import {
@@ -27,7 +29,7 @@ export default async function ContactRoutePage({ params }: Props) {
         data={graph([
           breadcrumbSchema([
             { name: app, item: `${siteUrl}/${locale}` },
-            { name: locale === 'tr' ? 'İletişim' : 'Contact', item: pageUrl },
+            { name: tUi(locale, 'Contact'), item: pageUrl },
           ]),
           localBusiness({
             id: `${siteUrl}/#local-business`,
@@ -48,7 +50,7 @@ export default async function ContactRoutePage({ params }: Props) {
                 }
               : {}),
             logo: logoUrl,
-            areaServed: locale === 'tr' ? 'Türkiye' : 'Turkey',
+            areaServed: tUi(locale, 'Turkey'),
           }),
         ])}
       />

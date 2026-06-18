@@ -1,6 +1,8 @@
 'use client';
 
 import { Play, X } from 'lucide-react';
+import { tUi } from '@/i18n/staticUi';
+
 import { useEffect, useRef, useState } from 'react';
 
 import { FOCUS_RING } from '@/lib/a11y';
@@ -61,7 +63,7 @@ export default function WoodyHomeHero({ content, locale }: { content: WoodyPageC
           type="button"
           onClick={() => setShowVideo(true)}
           className={`group mb-6 flex size-[70px] cursor-pointer items-center justify-center rounded-full border-2 border-white/70 bg-transparent transition-all duration-300 hover:scale-110 hover:border-white ${FOCUS_RING}`}
-          aria-label={locale === 'tr' ? 'Tanıtım videosunu oynat' : 'Play intro video'}
+          aria-label={tUi(locale, 'Play intro video')}
         >
           <Play size={26} className="ml-1 text-white/80 group-hover:text-white" fill="white" fillOpacity={0.8} />
         </button>
@@ -112,7 +114,7 @@ export default function WoodyHomeHero({ content, locale }: { content: WoodyPageC
             type="button"
             onClick={() => setShowVideo(false)}
             className={`absolute right-6 top-6 z-[1110] bg-transparent text-white/80 transition-colors hover:text-white ${FOCUS_RING}`}
-            aria-label={locale === 'tr' ? 'Videoyu kapat' : 'Close video'}
+            aria-label={tUi(locale, 'Close video')}
           >
             <X size={36} />
           </button>

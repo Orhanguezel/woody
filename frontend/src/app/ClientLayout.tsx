@@ -1,6 +1,8 @@
 'use client';
 
 import React, { Fragment, useMemo, useEffect } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import { usePathname, useSearchParams } from 'next/navigation';
 import Header from '../layout/header/Header';
 import type { PublicMenuItemDto } from '@/integrations/shared';
@@ -114,7 +116,7 @@ export default function ClientLayout({
       <AnalyticsScripts />
       <GAViewPages />
       <a href="#main-content" className="skip-link">
-        {locale === 'tr' ? 'Ana içeriğe geç' : 'Skip to main content'}
+        {tUi(locale, 'Skip to main content')}
       </a>
       
       <Header brand={brand} locale={locale} initialMenuItems={initialMenuItems} />

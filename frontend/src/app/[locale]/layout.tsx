@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { tUi } from '@/i18n/staticUi';
+
 import { Suspense } from 'react';
 
 import { Providers } from '../providers';
@@ -46,11 +48,9 @@ export async function generateMetadata({
     pageKey: 'home',
     pathname: '/',
     fallback: {
-      title: locale === 'tr' ? 'Woody and Friends | Okul Öncesi İngilizce' : 'Woody and Friends | Preschool English',
+      title: tUi(locale, 'Woody and Friends | Preschool English'),
       description:
-        locale === 'tr'
-          ? 'Okul öncesi İngilizce eğitim setleri, dijital içerikler ve öğretmen destek platformu.'
-          : 'Preschool English learning sets, digital content, and teacher support platform.',
+        tUi(locale, 'Preschool English learning sets, digital content, and teacher support platform.'),
     },
   });
 }

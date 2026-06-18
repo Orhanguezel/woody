@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 import { ChevronLeft, Headphones, MessageCircle, PenLine, Check, BookOpen, ArrowRight, Star } from 'lucide-react';
 
@@ -71,7 +73,7 @@ export default function WoodyAcademyPageClient({
   const studentCertificate = student.items?.[1];
   const teacherTraining = teacher.items?.[0];
   const teacherAdvantage = teacher.items?.[1];
-  const backLabel = locale === 'tr' ? 'GERİ' : 'BACK';
+  const backLabel = tUi(locale, 'BACK');
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
@@ -125,7 +127,7 @@ export default function WoodyAcademyPageClient({
               ))}
               <div className="pt-4">
                 <h3 className="mb-4 text-[22px] font-bold text-text-secondary md:text-[26px]">
-                  {locale === 'tr' ? 'Cambridge Sertifika Yolculuğu' : 'Cambridge Certification Journey'}
+                  {tUi(locale, 'Cambridge Certification Journey')}
                 </h3>
                 <p className="mb-4 text-[16px] leading-relaxed text-gray-700 md:text-[17px]">
                   {studentSentences[3]}
@@ -220,7 +222,7 @@ export default function WoodyAcademyPageClient({
               <>
                 <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-md md:p-10">
                   <h3 className="mb-5 text-[24px] font-bold text-text-secondary md:text-[28px]">
-                    {locale === 'tr' ? 'Sertifika Süreci' : 'Certification Process'}
+                    {tUi(locale, 'Certification Process')}
                   </h3>
                   <p className="text-[16px] leading-relaxed text-gray-700 md:text-[17px]">{teacherAdvantage.description}</p>
                 </div>
@@ -232,9 +234,7 @@ export default function WoodyAcademyPageClient({
             ) : null}
             <div className="rounded-2xl border border-brand-primary-light/30 bg-white p-8 shadow-sm md:p-10">
               <p className="text-center text-[16px] leading-relaxed text-gray-800 md:text-[17px]">
-                {locale === 'tr'
-                  ? 'Woody Academy öğretmen programı, kurum içindeki tüm öğretmenleri sistemli bir gelişim sürecine dahil eder ve bu süreci uluslararası geçerliliğe sahip Cambridge TKT sertifikası ile destekler.'
-                  : 'The Woody Academy teacher program includes all teachers in a structured development process and supports it with an internationally recognized Cambridge TKT certificate.'}
+                {tUi(locale, 'The Woody Academy teacher program includes all teachers in a structured development process and supports it with an internationally recognized Cambridge TKT certificate.')}
               </p>
             </div>
           </div>

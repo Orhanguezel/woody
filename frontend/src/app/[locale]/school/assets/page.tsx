@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { tUi } from '@/i18n/staticUi';
+
 import SchoolAssetsClient from '@/components/woody/school/SchoolAssetsClient';
 import { buildPageMetadata } from '@/seo/serverMetadata';
 
@@ -12,11 +14,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     pageKey: 'school-assets',
     pathname: '/school/assets',
     fallback: {
-      title: locale === 'tr' ? 'Okul Dijital İçerikleri' : 'School Digital Content',
+      title: tUi(locale, 'School Digital Content'),
       description:
-        locale === 'tr'
-          ? 'Okul hesabına atanmış Woody dijital içerikleri.'
-          : 'Woody digital content assigned to the school account.',
+        tUi(locale, 'Woody digital content assigned to the school account.'),
     },
   });
 }

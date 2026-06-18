@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { tUi } from '@/i18n/staticUi';
+
 import WoodyBlogIndexClient from '@/components/woody/WoodyBlogIndexClient';
 import JsonLd from '@/seo/JsonLd';
 import { breadcrumbSchema, graph, itemList } from '@/seo/jsonld';
@@ -19,11 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     pageKey: 'blog',
     pathname: '/blog',
     fallback: {
-      title: locale === 'tr' ? 'Blog' : 'Blog',
+      title: tUi(locale, 'Blog'),
       description:
-        locale === 'tr'
-          ? 'Woody and Friends blog yazıları, çocuk İngilizcesi ve dijital öğrenme notları.'
-          : 'Woody and Friends blog posts on children English and digital learning.',
+        tUi(locale, 'Woody and Friends blog posts on children English and digital learning.'),
     },
   });
 }

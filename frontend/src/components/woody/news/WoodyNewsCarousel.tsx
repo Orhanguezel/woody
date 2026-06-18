@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
 
@@ -46,10 +48,10 @@ export default function WoodyNewsCarousel({
     setActiveIndex(nextIndex);
   };
 
-  const title = titleProp || (locale === 'tr' ? 'Woody Yenilikler' : 'Woody News');
-  const previous = locale === 'tr' ? 'Onceki haber' : 'Previous update';
-  const next = locale === 'tr' ? 'Sonraki haber' : 'Next update';
-  const close = locale === 'tr' ? 'Videoyu kapat' : 'Close video';
+  const title = titleProp || (tUi(locale, 'Woody News'));
+  const previous = tUi(locale, 'Previous update');
+  const next = tUi(locale, 'Next update');
+  const close = tUi(locale, 'Close video');
 
   return (
     <section className="w-full bg-gradient-to-b from-white to-gray-50 py-16 md:py-20">
