@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -29,11 +31,11 @@ export default function BlogHomeSection({ locale: explicitLocale }: { locale?: s
   const blogHref = useMemo(() => localizePath(locale, '/blog'), [locale]);
 
   const title = safeStr(ui('ui_blog_home_title', ''))
-    || (locale === 'de' ? 'Aktuelle Beitraege' : locale === 'tr' ? 'Son Yazilar' : 'Latest Posts');
+    || (tUi(locale, 'Latest Posts'));
   const viewAll = safeStr(ui('ui_blog_home_view_all', ''))
-    || (locale === 'de' ? 'Alle Beitraege' : locale === 'tr' ? 'Tumunu Gor' : 'View All');
+    || (tUi(locale, 'View All'));
   const readMore = safeStr(ui('ui_blog_home_read_more', ''))
-    || (locale === 'de' ? 'Weiterlesen' : locale === 'tr' ? 'Devamini oku' : 'Read more');
+    || (tUi(locale, 'Read more'));
 
   if (!isLoading && featured.length === 0) return null;
 

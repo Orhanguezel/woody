@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
@@ -243,7 +245,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
         aria-modal="true"
         role="dialog"
         aria-hidden={!open}
-        aria-label={resolvedLocale === 'tr' ? 'Mobil menü' : 'Mobile navigation'}
+        aria-label={tUi(resolvedLocale, 'Mobile navigation')}
       >
         <div className="h-full overflow-y-auto p-8">
           <div className="flex flex-col h-full">
@@ -267,7 +269,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
             <div className="flex flex-col gap-2 mb-8">
               <label htmlFor="lang-offcanvas" className="flex items-center gap-2 text-[0.72rem] tracking-[0.15em] uppercase text-brand-primary font-normal">
                 <IconGlobe size={14} />
-                <span>{ui('ui_header_language', resolvedLocale === 'tr' ? 'Dil' : 'Language')}</span>
+                <span>{ui('ui_header_language', tUi(resolvedLocale, 'Language'))}</span>
               </label>
               <div className="relative">
                 <select
@@ -290,7 +292,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
             </div>
 
             {/* Menu */}
-            <nav className="mb-8 flex-1" aria-label={resolvedLocale === 'tr' ? 'Menü' : 'Menu'}>
+            <nav className="mb-8 flex-1" aria-label={tUi(resolvedLocale, 'Menu')}>
               <ul className="flex flex-col">
                 {headerMenuItems.map((it) => renderMenuItem(it, 0))}
                 {isMenuLoading && (
@@ -316,7 +318,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
                   className={`flex items-center justify-center gap-2 rounded-md bg-brand-primary px-4 py-3 text-sm font-medium text-bg-primary transition-all hover:bg-brand-hover ${FOCUS_RING}`}
                 >
                   <IconLogIn size={16} />
-                  <span>{ui('ui_header_logout', resolvedLocale === 'tr' ? 'Çıkış' : 'Sign out')}</span>
+                  <span>{ui('ui_header_logout', tUi(resolvedLocale, 'Sign out'))}</span>
                 </Link>
               </div>
             )}
@@ -324,7 +326,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
             {/* Contact */}
             <div className="mt-auto pt-6 border-t border-border-light">
               <p className="text-[0.72rem] tracking-[0.15em] uppercase text-brand-primary mb-4">
-                {ui('ui_header_contact_info', resolvedLocale === 'tr' ? 'İletişim' : 'Contact')}
+                {ui('ui_header_contact_info', tUi(resolvedLocale, 'Contact'))}
               </p>
               <ul className="space-y-4">
                 {effectiveBrand.website && (
@@ -350,7 +352,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
                     <Link
                       href={safePhone ? `tel:${safePhone}` : localizePath(resolvedLocale, '/contact')}
                       className={`rounded-md text-sm text-text-secondary transition-colors hover:text-brand-primary ${FOCUS_RING}`}
-                      aria-label={resolvedLocale === 'tr' ? `Telefon: ${effectiveBrand.phone}` : `Phone: ${effectiveBrand.phone}`}
+                      aria-label={`${tUi(resolvedLocale, 'Phone')}: ${effectiveBrand.phone}`}
                     >
                       {effectiveBrand.phone}
                     </Link>
@@ -364,7 +366,7 @@ const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand,
                     <Link
                       href={`mailto:${effectiveBrand.email}`}
                       className={`rounded-md text-sm text-text-secondary transition-colors hover:text-brand-primary ${FOCUS_RING}`}
-                      aria-label={resolvedLocale === 'tr' ? `E-posta: ${effectiveBrand.email}` : `Email: ${effectiveBrand.email}`}
+                      aria-label={`${tUi(resolvedLocale, 'Email')}: ${effectiveBrand.email}`}
                     >
                       {effectiveBrand.email}
                     </Link>

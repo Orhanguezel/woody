@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 import { Mail, MessageCircle, Phone } from 'lucide-react';
 
@@ -32,11 +34,11 @@ const cleanHashLink = (href: string) => {
 
 function fallbackFooterLinks(locale: string): FooterLink[] {
   return [
-    { id: 'preschool', url: '/preschool', title: locale === 'tr' ? 'Okul' : 'School' },
-    { id: 'workshop', url: '/workshop', title: locale === 'tr' ? 'Atölye' : 'Workshop' },
-    { id: 'home-tutor', url: '/home-tutor', title: locale === 'tr' ? 'Ev & Özel Ders' : 'Home & Private Lesson' },
+    { id: 'preschool', url: '/preschool', title: tUi(locale, 'School') },
+    { id: 'workshop', url: '/workshop', title: tUi(locale, 'Workshop') },
+    { id: 'home-tutor', url: '/home-tutor', title: tUi(locale, 'Home & Private Lesson') },
     { id: 'academy', url: '/woody-academy', title: 'Woody Academy' },
-    { id: 'library', url: '/library', title: locale === 'tr' ? 'Kütüphane' : 'Library' },
+    { id: 'library', url: '/library', title: tUi(locale, 'Library') },
     { id: 'store', url: '/store', title: 'Woody Store' },
     { id: 'blog', url: '/blog', title: 'Blog' },
   ];
@@ -106,7 +108,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             <Link
               href={homeHref}
               className={`mb-6 flex items-start no-underline rounded-md ${FOCUS_RING}`}
-              aria-label={locale === 'tr' ? 'Ana sayfa' : 'Home'}
+              aria-label={tUi(locale, 'Home')}
             >
               <SiteLogo
                 variant="light"
@@ -118,16 +120,14 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             <p className="max-w-[320px] text-[14px] leading-relaxed text-gray-400">
               {ui(
                 'ui_footer_tagline',
-                locale === 'tr'
-                  ? 'Okul öncesi İngilizce eğitiminde oyun temelli ve sistemli öğrenme modeli.'
-                  : 'A play-based and structured preschool English learning model.',
+                tUi(locale, 'A play-based and structured preschool English learning model.'),
               )}
             </p>
           </div>
 
           <div>
             <h4 className="mb-6 text-[16px] font-semibold tracking-wide text-white">
-              {locale === 'tr' ? 'Kurumsal' : 'Corporate'}
+              {tUi(locale, 'Corporate')}
             </h4>
             <ul className="m-0 list-none space-y-3 p-0">
               {menuItems.map((item) => (
@@ -145,7 +145,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
 
           <div>
             <h4 className="mb-6 text-[16px] font-semibold tracking-wide text-white">
-              {locale === 'tr' ? 'İletişim' : 'Contact'}
+              {tUi(locale, 'Contact')}
             </h4>
             <ul className="m-0 list-none space-y-4 p-0 text-[14px] text-gray-400">
               {phone ? (
@@ -154,7 +154,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                   <a
                     href={`tel:${normalizePhone(phone)}`}
                     className={`rounded-md hover:text-white ${FOCUS_RING}`}
-                    aria-label={locale === 'tr' ? `Telefon: ${phone}` : `Phone: ${phone}`}
+                    aria-label={`${tUi(locale, 'Phone')}: ${phone}`}
                   >
                     {phone}
                   </a>
@@ -166,7 +166,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                   <a
                     href={`tel:${normalizePhone(secondPhone)}`}
                     className={`rounded-md hover:text-white ${FOCUS_RING}`}
-                    aria-label={locale === 'tr' ? `Telefon: ${secondPhone}` : `Phone: ${secondPhone}`}
+                    aria-label={`${tUi(locale, 'Phone')}: ${secondPhone}`}
                   >
                     {secondPhone}
                   </a>
@@ -179,9 +179,9 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`rounded-md hover:text-[var(--gm-success)] ${FOCUS_RING}`}
-                  aria-label={locale === 'tr' ? 'WhatsApp ile iletişime geçin' : 'Contact us on WhatsApp'}
+                  aria-label={tUi(locale, 'Contact us on WhatsApp')}
                 >
-                  {locale === 'tr' ? 'WhatsApp ile iletişime geçin' : 'Contact us on WhatsApp'}
+                  {tUi(locale, 'Contact us on WhatsApp')}
                 </a>
               </li>
               {email ? (
@@ -190,7 +190,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                   <a
                     href={`mailto:${email}`}
                     className={`rounded-md hover:text-white ${FOCUS_RING}`}
-                    aria-label={locale === 'tr' ? `E-posta: ${email}` : `Email: ${email}`}
+                    aria-label={`${tUi(locale, 'Email')}: ${email}`}
                   >
                     {email}
                   </a>
@@ -199,7 +199,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             </ul>
 
             <h4 className="mb-4 mt-8 text-[16px] font-semibold tracking-wide text-white">
-              {locale === 'tr' ? 'Bizi Takip Edin' : 'Follow Us'}
+              {tUi(locale, 'Follow Us')}
             </h4>
             <SocialLinks socials={socials} size="lg" tone="dark" />
           </div>
@@ -211,11 +211,11 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             target="_blank"
             rel="noopener noreferrer"
             className={`group mx-auto block max-w-[600px] rounded-lg bg-white/5 p-4 text-center no-underline transition-all duration-300 hover:bg-white/10 ${FOCUS_RING}`}
-            aria-label={locale === 'tr' ? 'Woody Academy öğretmen başvurusu' : 'Woody Academy teacher application'}
+            aria-label={tUi(locale, 'Woody Academy teacher application')}
           >
             <p className="mb-1 text-[12px] text-gray-400 md:text-[13px]">Woody Academy Kariyer</p>
             <p className="flex items-center justify-center gap-1 text-[13px] font-medium text-white md:text-[14px]">
-              <span>{locale === 'tr' ? 'Öğretmen Başvurusu' : 'Teacher Application'}</span>
+              <span>{tUi(locale, 'Teacher Application')}</span>
               <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
                 →
               </span>
@@ -226,7 +226,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
         <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-200 md:flex-row">
           <p className="text-white/85">
             &copy; {new Date().getFullYear()} {getCopyrightHolder()}.{' '}
-            {ui('ui_footer_rights', locale === 'tr' ? 'TÜM HAKLARI SAKLIDIR.' : 'ALL RIGHTS RESERVED.')}
+            {ui('ui_footer_rights', tUi(locale, 'ALL RIGHTS RESERVED.'))}
           </p>
           <div className="flex gap-6 text-[11px] uppercase tracking-[0.1em]">
             <a

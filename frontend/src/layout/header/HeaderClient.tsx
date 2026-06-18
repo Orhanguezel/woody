@@ -1,6 +1,8 @@
 'use client';
 
 import React, { Fragment, useEffect, useMemo, useState } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Languages, Menu, ShoppingBag, X } from 'lucide-react';
@@ -203,7 +205,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
 
       <header className="relative z-[1000]">
         <nav
-          aria-label={locale === 'tr' ? 'Ana menü' : 'Main navigation'}
+          aria-label={tUi(locale, 'Main navigation')}
           className={`fixed left-0 right-0 top-0 z-50 border-b border-transparent bg-white transition-all duration-500
             ${scrolled
               ? 'shadow-sm'
@@ -214,7 +216,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
             <Link
               href={homeHref}
               className={`flex shrink-0 items-center no-underline group rounded-md ${FOCUS_RING}`}
-              aria-label={locale === 'tr' ? 'Ana sayfa' : 'Home'}
+              aria-label={tUi(locale, 'Home')}
             >
               <SiteLogo
                 alt={resolvedBrand.name}
@@ -284,10 +286,10 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               <details className="group/lang relative">
                 <summary
                   className={`flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-md border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/70 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--gm-text)] ${FOCUS_RING}`}
-                  aria-label={ui('ui_header_language', locale === 'tr' ? 'Dil seçimi' : 'Language selection')}
+                  aria-label={ui('ui_header_language', tUi(locale, 'Language selection'))}
                 >
                   <Languages className="size-4 text-[var(--gm-primary)]" aria-hidden />
-                  {ui('ui_header_language', locale === 'tr' ? 'Dil' : 'Language')}
+                  {ui('ui_header_language', tUi(locale, 'Language'))}
                   <ChevronDown className="size-3 transition group-open/lang:rotate-180" aria-hidden />
                 </summary>
                 <div className="absolute right-0 top-full mt-2 min-w-44 rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-3 shadow-[var(--gm-shadow-card)]">
@@ -298,10 +300,10 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
                 <Link
                   href={profileHref}
                   className={`inline-flex items-center gap-2 rounded-md text-[12px] font-bold uppercase tracking-[0.18em] text-[var(--gm-text)] transition-colors hover:text-[var(--gm-gold-deep)] ${FOCUS_RING}`}
-                  aria-label={locale === 'tr' ? 'Profilim' : 'My profile'}
+                  aria-label={tUi(locale, 'My profile')}
                 >
                   <IconUser className="w-4 h-4" />
-                  {locale === 'tr' ? 'Profil' : 'Profile'}
+                  {tUi(locale, 'Profile')}
                 </Link>
               )}
             </div>
@@ -312,7 +314,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
             <details className="group/lang relative">
               <summary
                 className={`flex cursor-pointer list-none items-center rounded-md border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/70 p-2 text-[var(--gm-text)] ${FOCUS_RING}`}
-                aria-label={ui('ui_header_language', locale === 'tr' ? 'Dil seçimi' : 'Language selection')}
+                aria-label={ui('ui_header_language', tUi(locale, 'Language selection'))}
               >
                 <Languages className="size-4" aria-hidden />
               </summary>
@@ -324,7 +326,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               <Link
                 href={localizePath(locale, '/profile')}
                 className={`rounded-md p-2 text-[var(--gm-text)] ${FOCUS_RING}`}
-                aria-label={locale === 'tr' ? 'Profilim' : 'My profile'}
+                aria-label={tUi(locale, 'My profile')}
               >
                 <IconUser className="w-5 h-5" aria-hidden />
               </Link>
@@ -333,8 +335,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
               type="button"
               aria-label={
                 mobileOpen
-                  ? (locale === 'tr' ? 'Mobil menüyü kapat' : 'Close mobile menu')
-                  : (locale === 'tr' ? 'Mobil menüyü aç' : 'Open mobile menu')
+                  ? (tUi(locale, 'Close mobile menu'))
+                  : (tUi(locale, 'Open mobile menu'))
               }
               aria-expanded={mobileOpen}
               aria-controls="header-mobile-nav"
@@ -351,7 +353,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ brand, locale: localeProp, 
         <div
           id="header-mobile-nav"
           aria-hidden={!mobileOpen}
-          aria-label={locale === 'tr' ? 'Mobil menü' : 'Mobile menu'}
+          aria-label={tUi(locale, 'Mobile menu')}
           className={`fixed left-0 right-0 top-[72px] z-[49] border-t border-gray-100 bg-white px-6 py-4 shadow-lg transition-all duration-300 md:hidden
             ${mobileOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0 pointer-events-none'}`}
         >

@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useCallback, useMemo } from 'react';
+import { tUi } from '@/i18n/staticUi';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -105,7 +107,7 @@ const BlogPageContent: React.FC<{
   }, [locale, renderedItems]);
 
   const readMore = t('ui_blog_read_more',
-    locale === 'de' ? 'Weiterlesen' : locale === 'tr' ? 'Devamini oku' : 'Read more'
+    tUi(locale, 'Read more')
   );
 
   return (
@@ -168,7 +170,7 @@ const BlogPageContent: React.FC<{
                     : 'border-[var(--gm-primary)] bg-[var(--gm-primary)] text-[var(--gm-surface)]'
                 }`}
               >
-                {locale === 'tr' ? 'Tümü' : locale === 'de' ? 'Alle' : 'All'}
+                {tUi(locale, 'All')}
               </Link>
               {categoryFilters.map((category) => (
                 <Link

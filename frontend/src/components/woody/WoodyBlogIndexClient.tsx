@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import { tUi } from '@/i18n/staticUi';
+
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { ArrowRight, ChevronDown, Search } from 'lucide-react';
@@ -70,11 +72,9 @@ export default function WoodyBlogIndexClient({
   const [openFaq, setOpenFaq] = useState(0);
   const posts = useMemo(() => initialPosts.filter((post) => post?.slug && post?.title), [initialPosts]);
   const visibleFaq = useMemo(() => (faqItems.length > 0 ? faqItems : fallbackFaq).slice(0, 8), [faqItems]);
-  const title = bannerTitleOverride || (locale === 'tr' ? 'Okul Öncesi İngilizce Eğitimi Hakkında Her Şey' : 'Everything About Preschool English Education');
+  const title = bannerTitleOverride || (tUi(locale, 'Everything About Preschool English Education'));
   const description =
-    locale === 'tr'
-      ? 'Anaokulu İngilizce eğitimi, oyun temelli öğrenme, Cambridge hazırlık ve Woody sistemi hakkında kapsamlı rehberler.'
-      : 'Guides about preschool English education, play-based learning, Cambridge readiness and the Woody system.';
+    tUi(locale, 'Guides about preschool English education, play-based learning, Cambridge readiness and the Woody system.');
   const localGuideHref = localizePath(locale as any, '/lokal/istanbul-anaokulu-ingilizce-egitimi');
   const levelFinderHref = localizePath(locale as any, '/level-finder');
 
@@ -110,20 +110,16 @@ export default function WoodyBlogIndexClient({
           >
             <div className="p-7 md:p-10">
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#f58220]">
-                {locale === 'tr' ? 'Kapsamli Rehber' : 'Complete Guide'}
+                {tUi(locale, 'Complete Guide')}
               </p>
               <h2 className="mt-3 font-display text-3xl font-black leading-tight text-[#24333f] md:text-5xl">
-                {locale === 'tr'
-                  ? 'Anaokulu İngilizce Eğitimi Kapsamlı Rehber'
-                  : 'Complete Preschool English Education Guide'}
+                {tUi(locale, 'Complete Preschool English Education Guide')}
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-8 text-[#5f6871]">
-                {locale === 'tr'
-                  ? 'Okul öncesi İngilizce sistemini kurmak, öğretmen akışını planlamak ve veliye güven veren bir program sunmak için uzun form rehber.'
-                  : 'A long-form guide for building a preschool English system, planning teacher flow and presenting a trusted program to families.'}
+                {tUi(locale, 'A long-form guide for building a preschool English system, planning teacher flow and presenting a trusted program to families.')}
               </p>
               <span className="mt-7 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#0c8f74]">
-                {locale === 'tr' ? 'Rehberi oku' : 'Read guide'}
+                {tUi(locale, 'Read guide')}
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
               </span>
             </div>
@@ -143,16 +139,14 @@ export default function WoodyBlogIndexClient({
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#0c8f74]">
-                {locale === 'tr' ? 'Yazilar' : 'Articles'}
+                {tUi(locale, 'Articles')}
               </p>
               <h2 className="mt-2 font-display text-4xl font-black text-[#24333f]">
-                {locale === 'tr' ? 'Son Blog Yazıları' : 'Latest Blog Posts'}
+                {tUi(locale, 'Latest Blog Posts')}
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-[#68727b]">
-              {locale === 'tr'
-                ? 'Ders planı, set seçimi, Cambridge hazırlık ve oyun temelli öğrenme başlıkları tek yerde.'
-                : 'Lesson planning, set selection, Cambridge readiness and play-based learning in one place.'}
+              {tUi(locale, 'Lesson planning, set selection, Cambridge readiness and play-based learning in one place.')}
             </p>
           </div>
 
@@ -182,7 +176,7 @@ export default function WoodyBlogIndexClient({
                   <h3 className="mt-4 font-display text-xl font-black leading-tight text-[#24333f]">{post.title}</h3>
                   <p className="mt-3 line-clamp-4 text-sm leading-7 text-[#68727b]">{post.summary}</p>
                   <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-black text-[#0c8f74]">
-                    {locale === 'tr' ? 'Devamını oku' : 'Read more'}
+                    {tUi(locale, 'Read more')}
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
                   </span>
                 </div>
@@ -196,18 +190,16 @@ export default function WoodyBlogIndexClient({
             <div>
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#f58220]">FAQ</p>
               <h2 className="mt-3 font-display text-4xl font-black leading-tight text-[#24333f]">
-                {locale === 'tr' ? 'Woody Hakkında Sık Sorulanlar' : 'Frequently Asked About Woody'}
+                {tUi(locale, 'Frequently Asked About Woody')}
               </h2>
               <p className="mt-5 text-base leading-8 text-[#68727b]">
-                {locale === 'tr'
-                  ? 'Blogdaki ana soruların kısa yanıtları: problem, çözüm ve uygulama odağıyla.'
-                  : 'Short answers to key blog questions, with problem, solution and classroom focus.'}
+                {tUi(locale, 'Short answers to key blog questions, with problem, solution and classroom focus.')}
               </p>
               <Link
                 href={levelFinderHref}
                 className={`mt-8 inline-flex items-center gap-2 rounded-full bg-[#f58220] px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-white shadow-[0_12px_30px_rgba(245,130,32,0.28)] transition hover:bg-[#d96f12] ${FOCUS_RING}`}
               >
-                {locale === 'tr' ? 'Seviye bulucu' : 'Level finder'}
+                {tUi(locale, 'Level finder')}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             </div>
@@ -230,12 +222,12 @@ export default function WoodyBlogIndexClient({
                       <div className="border-t border-[#eadfce] px-5 py-5 text-sm leading-7 text-[#68727b]">
                         {item.problem ? (
                           <p>
-                            <strong className="text-[#24333f]">{locale === 'tr' ? 'Sorun: ' : 'Problem: '}</strong>
+                            <strong className="text-[#24333f]">{tUi(locale, 'Problem: ')}</strong>
                             {item.problem}
                           </p>
                         ) : null}
                         <p className={item.problem ? 'mt-3' : ''}>
-                          <strong className="text-[#24333f]">{locale === 'tr' ? 'Çözüm: ' : 'Solution: '}</strong>
+                          <strong className="text-[#24333f]">{tUi(locale, 'Solution: ')}</strong>
                           {item.solution || item.answer}
                         </p>
                       </div>
