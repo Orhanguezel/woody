@@ -2,10 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import WoodyBlogIndexClient from '@/components/woody/WoodyBlogIndexClient';
-import {
-  loadFallbackBlogPosts,
-  loadFallbackBlogPostsByCategory,
-} from '@/components/woody/blog-loader.server';
+import { loadFallbackBlogPostsByCategory } from '@/components/woody/blog-loader.server';
 import { loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
 import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 import JsonLd from '@/seo/JsonLd';
@@ -15,6 +12,12 @@ import { loadPageContent } from '@/config/pages/loader';
 import type { WoodyBlogFaqItem } from '@/components/woody/WoodyBlogIndexClient';
 
 type Props = { params: Promise<{ category: string; locale: string }> };
+
+// Blog index/detay gibi dinamik render: serverMetadata origin cozumleyici son care
+// olarak headers() kullaniyor; bu sayfa generateStaticParams ile statik prerender
+// edilirse headers() statik baglamda DYNAMIC_SERVER_USAGE atip 500 doner (9 kategori
+// x 10 dil = 90 URL). force-dynamic ile headers() legal hale gelir.
+export const dynamic = 'force-dynamic';
 
 const BLOG_CATEGORIES = [
   'genel',
@@ -64,13 +67,6 @@ function categoryTitle(category: string, locale: string) {
     mevsimsel: 'Seasonal',
   };
   return (locale === 'tr' ? tr : en)[category] || category;
-}
-
-export async function generateStaticParams() {
-  const posts = await loadFallbackBlogPosts('tr');
-  const categories = new Set(posts.map((post) => post.category).filter(Boolean));
-  BLOG_CATEGORIES.forEach((category) => categories.add(category));
-  return Array.from(categories).map((category) => ({ category }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

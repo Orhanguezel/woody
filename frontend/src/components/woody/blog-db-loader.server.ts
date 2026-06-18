@@ -65,9 +65,13 @@ function normalizeBlogPost(row: unknown): WoodyDbBlogPost | null {
   };
 }
 
-export async function loadDbBlogPosts(locale: string, category?: string): Promise<WoodyDbBlogPost[]> {
+export async function loadDbBlogPosts(
+  locale: string,
+  category?: string,
+  limit = 12,
+): Promise<WoodyDbBlogPost[]> {
   try {
-    const params = new URLSearchParams({ locale, limit: '12' });
+    const params = new URLSearchParams({ locale, limit: String(limit) });
     if (category) params.set('category', category);
     const res = await fetch(`${apiBase()}/blog?${params.toString()}`, {
       next: { revalidate: 60, tags: ['blog_posts'] },

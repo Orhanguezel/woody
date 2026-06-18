@@ -6,8 +6,13 @@ import {
   WOODY_LOCALES,
   WOODY_PAGE_ROUTES,
 } from '@/components/woody/routes';
-import { loadFallbackBlogPosts } from '@/components/woody/blog-loader.server';
+import { loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
 import { loadWoodyProducts } from '@/components/woody/content-loader.server';
+
+// Sitemap blog verisini canli API'den (DB i18n) ceker; build aninda backend her zaman
+// erisilebilir olmayabilir -> statik uretimde blog bos kalir. Runtime'da uret + 1s ISR cache.
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 const BASE_URL = getPublicSiteOrigin();
 type WoodyLocale = (typeof WOODY_LOCALES)[number];
@@ -40,28 +45,45 @@ type SitemapRoute = {
   priority: number;
   lastModified?: Date | string;
   pathByLocale?: Partial<Record<WoodyLocale, string>>;
+  // Ceviri-farkinda: verilirse URL + hreflang yalniz bu dillerde uretilir.
+  // Verilmezse statik sayfa/urun gibi tum dillerde var sayilir (eski davranis).
+  locales?: readonly WoodyLocale[];
 };
+
+function routeLocales(route: SitemapRoute): readonly WoodyLocale[] {
+  if (route.locales) return route.locales;
+  return route.trOnly ? [WOODY_DEFAULT_LOCALE] : WOODY_LOCALES;
+}
 
 function buildAlternates(route: SitemapRoute): { languages: Record<string, string> } {
   const languages: Record<string, string> = {};
-  const locales: readonly WoodyLocale[] = route.trOnly ? [WOODY_DEFAULT_LOCALE] : WOODY_LOCALES;
+  const locales = routeLocales(route);
   for (const loc of locales) {
     languages[loc] = `${BASE_URL}/${loc}${route.pathByLocale?.[loc] ?? route.path}`;
   }
-  languages['x-default'] = `${BASE_URL}/${WOODY_DEFAULT_LOCALE}${route.pathByLocale?.[WOODY_DEFAULT_LOCALE] ?? route.path}`;
+  // x-default: varsa default (tr), yoksa mevcut ilk dil
+  const xdef = locales.includes(WOODY_DEFAULT_LOCALE) ? WOODY_DEFAULT_LOCALE : locales[0];
+  if (xdef) {
+    languages['x-default'] = `${BASE_URL}/${xdef}${route.pathByLocale?.[xdef] ?? route.path}`;
+  }
   return { languages };
 }
 
 async function blogRoutes(): Promise<SitemapRoute[]> {
+  // DB i18n tabanli: her dil icin yalniz O DILDE cevirisi olan yazilar doner
+  // (backend blog_posts_i18n inner-join). Boylece cevirisi olmayan dil sitemap'e girmez.
   const postsByLocale = await Promise.all(
     WOODY_LOCALES.map(async (locale) => ({
       locale,
-      posts: await loadFallbackBlogPosts(locale),
+      // API limit ust siniri 50; >50 yazi olursa burada sayfalama gerekir
+      posts: await loadDbBlogPosts(locale, undefined, 50),
     })),
   );
   const byId = new Map<string, SitemapRoute>();
+  const localesWithPosts = new Set<WoodyLocale>();
 
   for (const { locale, posts } of postsByLocale) {
+    if (posts.length > 0) localesWithPosts.add(locale);
     for (const post of posts) {
       const key = post.id || post.slug;
       if (!key || !post.slug) continue;
@@ -70,19 +92,24 @@ async function blogRoutes(): Promise<SitemapRoute[]> {
         priority: 0.65,
         lastModified: post.updated_at || post.created_at,
         pathByLocale: {},
+        locales: [] as WoodyLocale[],
       };
       existing.pathByLocale = {
         ...(existing.pathByLocale ?? {}),
         [locale]: `/blog/${post.slug}`,
       };
+      existing.locales = [...((existing.locales as WoodyLocale[]) ?? []), locale];
       if (locale === WOODY_DEFAULT_LOCALE) existing.path = `/blog/${post.slug}`;
       byId.set(key, existing);
     }
   }
 
-  const categoryRoutes = WOODY_BLOG_CATEGORIES.map((category) => ({
+  // Kategori sayfalari yalniz cevirili yazisi olan dillerde anlamli (yoksa bos/ince liste)
+  const categoryLocales = WOODY_LOCALES.filter((l) => localesWithPosts.has(l));
+  const categoryRoutes: SitemapRoute[] = WOODY_BLOG_CATEGORIES.map((category) => ({
     path: `/blog/category/${category}`,
     priority: 0.62,
+    locales: categoryLocales,
   }));
 
   return [...categoryRoutes, ...Array.from(byId.values())];
@@ -113,7 +140,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   return routes.flatMap((route) =>
-    ((route.trOnly ? [WOODY_DEFAULT_LOCALE] : WOODY_LOCALES) as readonly WoodyLocale[]).map((locale) => ({
+    routeLocales(route).map((locale) => ({
       url: `${BASE_URL}/${locale}${route.pathByLocale?.[locale] ?? route.path}`,
       lastModified: route.lastModified ?? now,
       changeFrequency: 'weekly' as const,
