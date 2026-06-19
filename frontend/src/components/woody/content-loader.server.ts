@@ -156,23 +156,30 @@ async function readJsonFile(filePath: string): Promise<unknown | null> {
 
 async function readPageJson(key: string, locale: string): Promise<JsonObject | null> {
   const dbRaw = await readPageSettingJson(key, locale);
-  if (dbRaw) return dbRaw;
 
+  // Config JSON (ayni key) — her zaman yukle ki DB eksik olsa da fallback olsun
+  let configJson: JsonObject | null = null;
   const fromLoader = await loadPageContent<unknown>(key, locale, { injectAppName: false });
-  if (isRecord(fromLoader)) return key === 'home' ? mergeHomeBannerSetting(fromLoader, locale) : fromLoader;
-
-  const candidates = [
-    path.join(PAGES_DIR, locale, `${key}.json`),
-    path.join(PAGES_DIR, locale.split('-')[0] || locale, `${key}.json`),
-    path.join(PAGES_DIR, `${key}.json`),
-  ];
-
-  for (const filePath of candidates) {
-    const raw = await readJsonFile(filePath);
-    if (raw) return pickLocaleBranch(raw, locale);
+  if (isRecord(fromLoader)) {
+    configJson = key === 'home' ? await mergeHomeBannerSetting(fromLoader, locale) : fromLoader;
+  } else {
+    const candidates = [
+      path.join(PAGES_DIR, locale, `${key}.json`),
+      path.join(PAGES_DIR, locale.split('-')[0] || locale, `${key}.json`),
+      path.join(PAGES_DIR, `${key}.json`),
+    ];
+    for (const filePath of candidates) {
+      const raw = await readJsonFile(filePath);
+      if (raw) { configJson = pickLocaleBranch(raw, locale); break; }
+    }
   }
 
-  return null;
+  // DB varsa: config TABAN + DB OVERRIDE (shallow). Boylece DB'de olmayan ust-duzey
+  // anahtarlar (quoteForm, pageUi, ui ...) config'ten gelir; admin'in DB'de ezdigi alanlar korunur.
+  if (dbRaw) {
+    return isRecord(configJson) ? { ...configJson, ...dbRaw } : dbRaw;
+  }
+  return configJson;
 }
 
 async function readPageSettingJson(key: string, locale: string): Promise<JsonObject | null> {
