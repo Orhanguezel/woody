@@ -176,5 +176,18 @@
     "submit": "Aanmelden",
     "success": "Je bent toegevoegd aan de wachtlijst.",
     "error": "Aanmelden mislukt. Probeer het opnieuw."
+  },
+  "ui": {
+    "addToCart": "In winkelwagen",
+    "all": "Alle",
+    "back": "Terug",
+    "classroomNote": "Ontworpen voor gebruik in de klas.",
+    "comingSoon": "Binnenkort",
+    "free": "Gratis",
+    "freeWatch": "Gratis bekijken",
+    "goToSeries": "Naar de serie",
+    "heroSubtitle": "Engels-leersets voor kleuters",
+    "quoteCta": "Offerte aanvragen",
+    "teacherSetNote": "(De docentenset wordt geleverd via afspraken met Mina Publishing. Het kopen van de leerlingenset is voldoende.)"
   }
 }

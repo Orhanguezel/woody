@@ -176,5 +176,18 @@
     "submit": "Join",
     "success": "You have been added to the waitlist.",
     "error": "Signup failed. Please try again."
+  },
+  "ui": {
+    "addToCart": "Add to cart",
+    "all": "All",
+    "back": "Back",
+    "classroomNote": "Designed for classroom use.",
+    "comingSoon": "Coming soon",
+    "free": "Free",
+    "freeWatch": "Watch free",
+    "goToSeries": "Go to series",
+    "heroSubtitle": "Preschool English learning sets",
+    "quoteCta": "Request a quote",
+    "teacherSetNote": "(The teacher set is provided through agreements with Mina Publishing. Purchasing the student set is sufficient.)"
   }
 }

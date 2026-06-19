@@ -99,11 +99,12 @@ export async function generateMetadata({ params }: Props) {
 export default async function StorePage({ params, searchParams }: Props) {
   const { locale } = await params;
   const filters = readFilters(await searchParams);
-  const [content, taxonomy, dbProducts, catalog] = await Promise.all([
+  const [content, taxonomy, dbProducts, catalog, storeConfig] = await Promise.all([
     loadWoodyPageContent(PAGE_KEY, locale),
     loadDbStoreTaxonomy(locale),
     loadDbStoreProducts(locale, filters),
     loadPageContent<StoreCatalog>('store-products', locale),
+    loadPageContent<Record<string, any>>('store', locale),
   ]);
   const fallbackProducts = dbProducts.length ? [] : await loadWoodyProducts('store-products', locale);
   if (!content && !dbProducts.length && !fallbackProducts.length && !catalog?.products?.length) {
@@ -112,6 +113,16 @@ export default async function StorePage({ params, searchParams }: Props) {
   const merged = content ?? { key: PAGE_KEY, title: PAGE_KEY };
   const dbCatalog = dbProducts.length || taxonomy.categories.length ? catalogFromDb(taxonomy, dbProducts) : null;
   const storeCatalog = asStoreCatalog(content, dbCatalog ?? catalog ?? { products: fallbackProducts as any });
+  // DB page_store eksik olabilir (orn. tr quoteForm icermiyor) -> config store.json kopyasindan tamamla
+  storeCatalog.quoteForm = storeCatalog.quoteForm ?? storeConfig?.quoteForm;
+  // ui store-products.json'da tanimli; DB/dbCatalog eksik anahtarlari oradan tamamla
+  storeCatalog.ui = { ...((catalog as any)?.ui ?? {}), ...(storeConfig?.ui ?? {}), ...(storeCatalog.ui ?? {}) };
+  storeCatalog.quoteWhatsApp = storeCatalog.quoteWhatsApp ?? storeConfig?.quoteWhatsApp;
+  storeCatalog.quoteMessage = storeCatalog.quoteMessage ?? storeConfig?.quoteMessage;
+  // Teklif-bazli magaza: fiyat istemci payload'ina/HTML'e hic yansimasin
+  if (Array.isArray(storeCatalog.products)) {
+    storeCatalog.products = storeCatalog.products.map((p: any) => ({ ...p, price: undefined }));
+  }
   const showCart = Boolean((content?.raw as any)?.showCart);
   const schemaProducts = dbProducts.length
     ? dbProducts
@@ -127,7 +138,7 @@ export default async function StorePage({ params, searchParams }: Props) {
     <>
       <JsonLd
         id="woody-store"
-        data={woodyStoreListingGraph({ locale, pathname: PATHNAME, content: merged, items: schemaProducts })}
+        data={woodyStoreListingGraph({ locale, pathname: PATHNAME, content: merged, items: schemaProducts.map((p: any) => ({ ...p, price: undefined })) })}
       />
       <WoodyStoreShowcase catalog={storeCatalog} locale={locale} filters={filters} />
       {showCart && dbProducts.length ? <WoodyStoreClient products={dbProducts} locale={locale} ui={storeCatalog.ui} /> : null}

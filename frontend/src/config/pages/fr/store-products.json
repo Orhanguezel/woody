@@ -176,5 +176,18 @@
     "submit": "Rejoindre",
     "success": "Vous avez été ajouté à la liste d'attente.",
     "error": "L'inscription a échoué. Veuillez réessayer."
+  },
+  "ui": {
+    "addToCart": "Ajouter au panier",
+    "all": "Tout",
+    "back": "Retour",
+    "classroomNote": "Conçu pour une utilisation en classe.",
+    "comingSoon": "Bientôt disponible",
+    "free": "Gratuit",
+    "freeWatch": "Regarder gratuitement",
+    "goToSeries": "Aller à la série",
+    "heroSubtitle": "Coffrets d'apprentissage de l'anglais pour la maternelle",
+    "quoteCta": "Demander un devis",
+    "teacherSetNote": "(Le coffret enseignant est fourni dans le cadre d'accords avec Mina Publishing. L'achat du coffret élève suffit.)"
   }
 }

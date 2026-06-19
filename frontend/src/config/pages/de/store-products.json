@@ -178,11 +178,16 @@
     "error": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
   },
   "ui": {
-    "back": "ZURÜCK",
+    "back": "Zurück",
     "heroSubtitle": "Englisch-Lernsets für die Vorschule",
     "goToSeries": "Zur Serie",
     "classroomNote": "Für den Einsatz im Klassenzimmer konzipiert.",
-    "teacherSetNote": "(Das Lehrerset wird über Vereinbarungen mit dem Mina-Verlag bereitgestellt. Der Kauf des Schülersets ist ausreichend.)",
-    "comingSoon": "Bald verfügbar"
+    "teacherSetNote": "(Das Lehrerset wird im Rahmen von Vereinbarungen mit Mina Publishing bereitgestellt. Der Kauf des Schülersets ist ausreichend.)",
+    "comingSoon": "Demnächst",
+    "addToCart": "In den Warenkorb",
+    "all": "Alle",
+    "free": "Kostenlos",
+    "freeWatch": "Kostenlos ansehen",
+    "quoteCta": "Angebot anfordern"
   }
 }

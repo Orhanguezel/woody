@@ -94,7 +94,6 @@ export function woodyProductGraph(args: {
   const siteUrl = getPublicSiteOrigin();
   const app = getPublicAppName();
   const pageUrl = `${siteUrl}/${args.locale}${args.pathname}`;
-  const price = parsePrice(args.item.price);
 
   return graph([
     breadcrumbSchema([
@@ -106,14 +105,8 @@ export function woodyProductGraph(args: {
       description: args.item.description,
       image: absolutize(args.item.image, siteUrl),
       brand: app,
-      offers: Number.isFinite(price) && price > 0
-        ? {
-            price,
-            priceCurrency: args.item.currency || 'TRY',
-            availability: 'https://schema.org/InStock',
-            url: pageUrl,
-          }
-        : undefined,
+      // Teklif-bazli magaza: fiyat frontende/JSON-LD'ye yansitilmaz
+      offers: undefined,
     }),
   ]);
 }
@@ -146,8 +139,6 @@ export function woodyStoreListingGraph(args: {
   for (const item of args.items) {
     const name = item.title || item.name;
     if (!name) continue;
-    const price = parsePrice(item.price);
-    const itemUrl = item.slug ? `${siteUrl}/${args.locale}/store/${encodeURIComponent(item.slug)}` : pageUrl;
     nodes.push(
       product({
         name,
@@ -155,14 +146,8 @@ export function woodyStoreListingGraph(args: {
         image: absolutize(item.image, siteUrl),
         sku: String(item.id || item.slug || name),
         brand: app,
-        offers: price > 0
-          ? {
-              price,
-              priceCurrency: item.currency || 'TRY',
-              availability: 'https://schema.org/InStock',
-              url: itemUrl,
-            }
-          : undefined,
+        // Teklif-bazli magaza: fiyat JSON-LD'ye yansitilmaz
+        offers: undefined,
       }),
     );
   }

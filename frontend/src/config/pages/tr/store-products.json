@@ -176,5 +176,18 @@
     "submit": "Kaydol",
     "success": "Bekleme listesine eklendiniz.",
     "error": "Kayıt alınamadı. Lütfen tekrar deneyin."
+  },
+  "ui": {
+    "addToCart": "Sepete ekle",
+    "all": "Tümü",
+    "back": "Geri",
+    "classroomNote": "Sınıf içi kullanım için tasarlandı.",
+    "comingSoon": "Çok yakında",
+    "free": "Ücretsiz",
+    "freeWatch": "Ücretsiz izle",
+    "goToSeries": "Seriye git",
+    "heroSubtitle": "Okul öncesi İngilizce öğrenme setleri",
+    "quoteCta": "Teklif iste",
+    "teacherSetNote": "(Öğretmen seti, Mina Yayınevi ile yapılan anlaşmalar kapsamında sağlanır. Öğrenci setini satın almak yeterlidir.)"
   }
 }

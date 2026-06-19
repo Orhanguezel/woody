@@ -176,5 +176,18 @@
     "submit": "Unirse",
     "success": "Has sido añadido a la lista de espera.",
     "error": "El registro falló. Por favor, inténtalo de nuevo."
+  },
+  "ui": {
+    "addToCart": "Añadir al carrito",
+    "all": "Todo",
+    "back": "Atrás",
+    "classroomNote": "Diseñado para uso en el aula.",
+    "comingSoon": "Próximamente",
+    "free": "Gratis",
+    "freeWatch": "Ver gratis",
+    "goToSeries": "Ir a la serie",
+    "heroSubtitle": "Sets de aprendizaje de inglés para preescolar",
+    "quoteCta": "Solicitar presupuesto",
+    "teacherSetNote": "(El set del profesor se proporciona mediante acuerdos con Mina Publishing. Basta con comprar el set del alumno.)"
   }
 }

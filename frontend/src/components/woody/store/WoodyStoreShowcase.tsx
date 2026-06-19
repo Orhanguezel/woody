@@ -265,11 +265,6 @@ export default function WoodyStoreShowcase({
                               ) : null}
                             </div>
                           ) : null}
-                          {product.price && !product.isFree ? (
-                            <p className="text-[12px] font-black leading-tight text-gray-800 md:text-[13px]">
-                              {product.price}
-                            </p>
-                          ) : null}
                           <div className="flex w-full flex-wrap gap-2 md:w-auto">
                             {product.purchaseMode === 'quote' ? (
                               <WhatsAppLink

@@ -14,13 +14,6 @@ type LibraryItem = {
   remainingDays?: number | null;
 };
 
-function money(value: number, currency: string) {
-  return new Intl.NumberFormat('tr-TR', {
-    style: 'currency',
-    currency: currency || 'TRY',
-    minimumFractionDigits: 2,
-  }).format(value);
-}
 
 function remainingText(item: LibraryItem | null, ui: StoreUiCopy) {
   if (!item) return '';
@@ -122,9 +115,6 @@ export default function WoodyStoreProductDetail({
           ) : null}
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            {!product.isFree && product.purchaseMode !== 'quote' ? (
-              <p className="text-2xl font-black">{money(product.price, product.currency)}</p>
-            ) : null}
             {product.purchaseMode === 'online' ? (
               product.isFree ? (
                 <button

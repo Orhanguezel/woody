@@ -83,7 +83,6 @@ export default async function RootLayout({
       description: getOrgJsonLdDescription(locale),
       ...(contact.phone ? { telephone: contact.phone } : {}),
       ...(contact.email ? { email: contact.email } : {}),
-      priceRange: '₺149-₺3500',
       areaServed: 'TR',
     }),
     website({

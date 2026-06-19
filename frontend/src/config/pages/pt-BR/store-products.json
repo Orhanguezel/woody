@@ -176,5 +176,18 @@
     "submit": "Participar",
     "success": "Você foi adicionado à lista de espera.",
     "error": "Falha no cadastro. Tente novamente."
+  },
+  "ui": {
+    "addToCart": "Adicionar ao carrinho",
+    "all": "Todos",
+    "back": "Voltar",
+    "classroomNote": "Desenvolvido para uso em sala de aula.",
+    "comingSoon": "Em breve",
+    "free": "Grátis",
+    "freeWatch": "Assistir grátis",
+    "goToSeries": "Ir para a série",
+    "heroSubtitle": "Kits de aprendizado de inglês para a educação infantil",
+    "quoteCta": "Solicitar orçamento",
+    "teacherSetNote": "(O kit do professor é fornecido por meio de acordos com a Mina Publishing. Basta comprar o kit do aluno.)"
   }
 }

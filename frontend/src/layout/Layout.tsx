@@ -532,8 +532,7 @@ export default function Layout({
         url: cleanString(effectiveBrand.website) || base,
         logo: siteLogoUrl || undefined,
         sameAs: sameAs.length ? sameAs : placeholderSameAs,
-        description: getOrgJsonLdDescription(String(locale)),
-        priceRange: '₺149-₺3500',
+        description: getOrgJsonLdDescription(String(locale)),
         areaServed: 'TR',
       }),
       website({

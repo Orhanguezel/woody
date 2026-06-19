@@ -176,5 +176,18 @@
     "submit": "Iscriviti",
     "success": "Sei stato aggiunto alla lista d'attesa.",
     "error": "Registrazione non riuscita. Riprova."
+  },
+  "ui": {
+    "addToCart": "Aggiungi al carrello",
+    "all": "Tutti",
+    "back": "Indietro",
+    "classroomNote": "Progettato per l'uso in classe.",
+    "comingSoon": "Prossimamente",
+    "free": "Gratis",
+    "freeWatch": "Guarda gratis",
+    "goToSeries": "Vai alla serie",
+    "heroSubtitle": "Set per l'apprendimento dell'inglese per la scuola dell'infanzia",
+    "quoteCta": "Richiedi un preventivo",
+    "teacherSetNote": "(Il set per l'insegnante è fornito tramite accordi con Mina Publishing. È sufficiente acquistare il set per lo studente.)"
   }
 }
