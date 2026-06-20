@@ -43,7 +43,13 @@
     "gtmContainerId": "",
     "facebookPixelId": "",
     "googleSiteVerification": "",
-    "bingSiteVerification": ""
+    "bingSiteVerification": "",
+    "googleAdsConversionId": "AW-17456893817",
+    "googleAdsConversionLabels": {
+      "form": "7Pj-CPXUy8IcEPmejIRB",
+      "whatsapp": "-QLJCPjUy8IcEPmejIRB",
+      "phone": "iienCPvUy8IcEPmejIRB"
+    }
   },
   "i18n": {
     "defaultLocale": "tr"

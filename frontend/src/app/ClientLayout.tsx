@@ -11,6 +11,7 @@ import ScrollProgress from '../layout/ScrollProgress';
 
 import AnalyticsScripts from '../features/analytics/AnalyticsScripts';
 import GAViewPages from '../features/analytics/GAViewPages';
+import PhoneConversionListener from '../features/analytics/PhoneConversionListener';
 import CookieConsentBanner from '../layout/banner/CookieConsentBanner';
 import PwaRegistration from '../components/system/PwaRegistration';
 import { resetLayoutSeo } from '../seo';
@@ -115,6 +116,7 @@ export default function ClientLayout({
       <PwaRegistration />
       <AnalyticsScripts />
       <GAViewPages />
+      <PhoneConversionListener />
       <a href="#main-content" className="skip-link">
         {tUi(locale, 'Skip to main content')}
       </a>

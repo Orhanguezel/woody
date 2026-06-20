@@ -11,7 +11,7 @@
 import Script from 'next/script';
 import { useEffect, useMemo } from 'react';
 import { useAnalyticsSettings } from './useAnalyticsSettings';
-import { getAnalyticsConsentEventName } from '@/lib/site-config';
+import { getAnalyticsConsentEventName, getDefaultGoogleAdsConversionId } from '@/lib/site-config';
 
 declare global {
   interface Window {
@@ -52,6 +52,13 @@ export default function AnalyticsScripts() {
   const hasGtm = useMemo(() => isValidGtmId(gtmId), [gtmId]);
   const hasGa = useMemo(() => isValidGa4Id(ga4Id), [ga4Id]);
   const hasFbPixel = useMemo(() => isValidFbPixelId(facebookPixelId), [facebookPixelId]);
+
+  // Google Ads dönüşüm etiketi (AW-XXXX). GTM yoksa GA4 gtag üzerinden yüklenir.
+  const adsConversionId = useMemo(() => getDefaultGoogleAdsConversionId(), []);
+  const hasAds = useMemo(
+    () => /^AW-\d+$/.test(adsConversionId) && !hasGtm && hasGa,
+    [adsConversionId, hasGtm, hasGa],
+  );
 
   // GTM noscript (Document kullanılmıyorsa pratik)
   useEffect(() => {
@@ -184,6 +191,7 @@ export default function AnalyticsScripts() {
                     anonymize_ip: true,
                     send_page_view: false
                   });
+                  ${hasAds ? `window.gtag('config', '${adsConversionId}');` : ''}
                 `}
               </Script>
             </>

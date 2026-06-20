@@ -261,6 +261,25 @@ export function getDefaultGoogleSiteVerification(): string {
   return String(analytics.googleSiteVerification || '').trim();
 }
 
+export function getDefaultGoogleAdsConversionId(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID?.trim();
+  if (fromEnv) return fromEnv;
+  const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
+  return String(analytics.googleAdsConversionId || '').trim();
+}
+
+export type GoogleAdsConversionKind = 'form' | 'whatsapp' | 'phone';
+
+export function getDefaultGoogleAdsConversionLabels(): Record<GoogleAdsConversionKind, string> {
+  const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
+  const labels = (analytics.googleAdsConversionLabels || {}) as Record<string, unknown>;
+  return {
+    form: String(labels.form || '').trim(),
+    whatsapp: String(labels.whatsapp || '').trim(),
+    phone: String(labels.phone || '').trim(),
+  };
+}
+
 export function getDefaultBingSiteVerification(): string {
   const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
   return String(analytics.bingSiteVerification || '').trim();

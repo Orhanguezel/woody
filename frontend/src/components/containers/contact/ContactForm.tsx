@@ -9,6 +9,7 @@ import { safeStr, isValidEmail} from '@/integrations/shared';
 
 import { localizePath } from '@/integrations/shared';
 import { AUTH_FIELD_CLS, FOCUS_RING } from '@/lib/a11y';
+import { reportAdsConversion } from '@/lib/ads-conversion';
 
 type ContactFormTranslations = {
   formTitle: string;
@@ -139,6 +140,8 @@ export default function ContactForm({ locale, t }: Props) {
 
     try {
       await createContact(payload).unwrap();
+      // Google Ads lead dönüşümü (birincil): iletişim formu gönderildi.
+      reportAdsConversion('form');
       toast.success(t.success || 'Sent');
       setFirstName('');
       setLastName('');
