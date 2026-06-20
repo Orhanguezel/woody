@@ -296,6 +296,14 @@ export async function buildMetadataFromSeo(
 ): Promise<Metadata> {
   const baseUrl = await getRuntimeBaseUrl();
 
+  // Google/Bing Search Console dogrulama meta etiketleri (DB site_settings, locale '*')
+  const googleSiteVerification = String(
+    (await fetchSetting('google_site_verification', '*', { revalidate: 600 }))?.value || '',
+  ).trim();
+  const bingSiteVerification = String(
+    (await fetchSetting('bing_site_verification', '*', { revalidate: 600 }))?.value || '',
+  ).trim();
+
   const active = await resolveActiveLocales(args.activeLocales);
   const defaultLocale = await getDefaultLocale();
   const locale = normLocaleShort(args.locale, FALLBACK_LOCALE);
@@ -388,6 +396,16 @@ export async function buildMetadataFromSeo(
     robots: robotsNoindex
       ? { index: false, follow: false }
       : { index: robotsIndex, follow: robotsFollow },
+
+    // Search Console dogrulama (deger DB'de varsa <meta name="google-site-verification"> basilir)
+    ...(googleSiteVerification || bingSiteVerification
+      ? {
+          verification: {
+            ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+            ...(bingSiteVerification ? { other: { 'msvalidate.01': bingSiteVerification } } : {}),
+          },
+        }
+      : {}),
   };
 
   return metadata;

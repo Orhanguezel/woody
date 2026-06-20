@@ -117,13 +117,14 @@ export default function AnalyticsScripts() {
               var v = granted ? 'granted' : 'denied';
               window.__analyticsConsentGranted = (v === 'granted');
 
-              // Update consent (gtag / Consent Mode)
+              // Update consent (gtag / Consent Mode v2)
+              // Kullanici "Tumunu Kabul Et" deyince analytics + reklam (remarketing/donusum) izni birlikte verilir.
+              // Reddedince hepsi 'denied' kalir (Google Ads consent-mode'da modellenmis/anonim calisir).
               window.gtag('consent', 'update', {
                 analytics_storage: v,
-                // keep ads denied by default unless you explicitly enable marketing later
-                ad_storage: 'denied',
-                ad_user_data: 'denied',
-                ad_personalization: 'denied'
+                ad_storage: v,
+                ad_user_data: v,
+                ad_personalization: v
               });
 
               // Notify GTM (or any listener)
