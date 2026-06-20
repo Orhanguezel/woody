@@ -99,12 +99,14 @@ export async function generateMetadata({ params }: Props) {
 export default async function StorePage({ params, searchParams }: Props) {
   const { locale } = await params;
   const filters = readFilters(await searchParams);
-  const [content, taxonomy, dbProducts, catalog, storeConfig] = await Promise.all([
+  const [content, taxonomy, dbProducts, catalog, storeConfig, freeProbe] = await Promise.all([
     loadWoodyPageContent(PAGE_KEY, locale),
     loadDbStoreTaxonomy(locale),
     loadDbStoreProducts(locale, filters),
     loadPageContent<StoreCatalog>('store-products', locale),
     loadPageContent<Record<string, any>>('store', locale),
+    // "Ücretsiz" filtre pill'i yalnizca gercekten ucretsiz urun varsa gosterilsin (global kontrol, cache'li)
+    filters.isFree === true ? loadDbStoreProducts(locale, filters) : loadDbStoreProducts(locale, { isFree: true }),
   ]);
   const fallbackProducts = dbProducts.length ? [] : await loadWoodyProducts('store-products', locale);
   if (!content && !dbProducts.length && !fallbackProducts.length && !catalog?.products?.length) {
@@ -119,6 +121,7 @@ export default async function StorePage({ params, searchParams }: Props) {
   storeCatalog.ui = { ...((catalog as any)?.ui ?? {}), ...(storeConfig?.ui ?? {}), ...(storeCatalog.ui ?? {}) };
   storeCatalog.quoteWhatsApp = storeCatalog.quoteWhatsApp ?? storeConfig?.quoteWhatsApp;
   storeCatalog.quoteMessage = storeCatalog.quoteMessage ?? storeConfig?.quoteMessage;
+  storeCatalog.hasFreeProducts = freeProbe.length > 0;
   // Teklif-bazli magaza: fiyat istemci payload'ina/HTML'e hic yansimasin
   if (Array.isArray(storeCatalog.products)) {
     storeCatalog.products = storeCatalog.products.map((p: any) => ({ ...p, price: undefined }));
