@@ -79,7 +79,6 @@ const PILL_BASE =
   'rounded-full px-4 py-2 text-[12px] font-black uppercase tracking-[0.04em] ring-1 transition';
 const PILL_ON = 'bg-[#f58220] text-white ring-[#f58220] shadow-[0_8px_22px_rgba(245,130,32,0.28)]';
 const PILL_OFF = 'bg-white text-[#5f6871] ring-[#eadfce] hover:ring-[#f58220] hover:text-[#d96f12]';
-const PILL_DISABLED = 'cursor-not-allowed bg-[#fbf4e7] text-[#cbb89a] ring-[#f0e4d0]';
 
 // Bir urunun verilen filtre kombinasyonuyla eslesip eslesmedigi (AND semantigi)
 function matchesFilters(product: StoreCatalogProduct, f: StoreProductFilters): boolean {
@@ -93,21 +92,12 @@ function matchesFilters(product: StoreCatalogProduct, f: StoreProductFilters): b
 function FilterPill({
   href,
   active,
-  disabled,
   children,
 }: {
   href: string;
   active: boolean;
-  disabled?: boolean;
   children: React.ReactNode;
 }) {
-  if (disabled && !active) {
-    return (
-      <span className={`${PILL_BASE} ${PILL_DISABLED}`} aria-disabled="true">
-        {children}
-      </span>
-    );
-  }
   return (
     <Link href={href} className={`${PILL_BASE} ${active ? PILL_ON : PILL_OFF} ${FOCUS_RING}`}>
       {children}
@@ -161,7 +151,8 @@ export default function WoodyStoreShowcase({
   );
   const hasFreeProducts = products.some((product) => product.isFree);
 
-  // Bir facet degeri, mevcut diger filtrelerle birlikte >=1 urun veriyorsa secilebilir
+  // Bir facet degeri, mevcut diger filtrelerle birlikte >=1 urun veriyorsa secilebilir.
+  // Secilebilir olmayan (ve aktif olmayan) secenekler hic gosterilmez — gri yigin yerine temiz liste.
   const seriesEnabled = (slug: string) =>
     products.some((product) => matchesFilters(product, { ...filters, series: slug }));
   const levelEnabled = (slug: string) =>
@@ -169,6 +160,9 @@ export default function WoodyStoreShowcase({
   const freeEnabled = products.some((product) =>
     matchesFilters(product, { ...filters, isFree: true }),
   );
+  const visibleSeries = series.filter((item) => seriesEnabled(item.slug) || filters.series === item.slug);
+  const visibleLevels = levels.filter((item) => levelEnabled(item.slug) || filters.level === item.slug);
+  const showFree = Boolean(hasFreeProducts && ui.free && (freeEnabled || filters.isFree === true));
 
   // Bos kategoriler yalnizca filtresiz "tumu" gorunumunde gosterilir (yakinda + bekleme listesi)
   const comingSoonCategories = !hasActiveFilter
@@ -214,47 +208,44 @@ export default function WoodyStoreShowcase({
           ))}
         </div>
 
-        {series.length || levels.length || (hasFreeProducts && ui.free) ? (
+        {visibleSeries.length || visibleLevels.length || showFree ? (
           <div className="mt-3 flex flex-col flex-wrap items-center justify-center gap-3 border-t border-[#f0dcb6]/60 pt-4 sm:flex-row">
-            {series.length ? (
+            {visibleSeries.length ? (
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <span className="text-[11px] font-black uppercase tracking-[0.12em] text-[#9a8a74]">
                   {tUi(locale, 'Series')}
                 </span>
-                {series.map((item) => (
+                {visibleSeries.map((item) => (
                   <FilterPill
                     key={`series-${item.id}`}
                     href={filterHref(locale, filters, { series: filters.series === item.slug ? undefined : item.slug })}
                     active={filters.series === item.slug}
-                    disabled={!seriesEnabled(item.slug)}
                   >
                     {item.name}
                   </FilterPill>
                 ))}
               </div>
             ) : null}
-            {levels.length ? (
+            {visibleLevels.length ? (
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <span className="text-[11px] font-black uppercase tracking-[0.12em] text-[#9a8a74]">
                   {tUi(locale, 'Level')}
                 </span>
-                {levels.map((item) => (
+                {visibleLevels.map((item) => (
                   <FilterPill
                     key={`level-${item.id}`}
                     href={filterHref(locale, filters, { level: filters.level === item.slug ? undefined : item.slug })}
                     active={filters.level === item.slug}
-                    disabled={!levelEnabled(item.slug)}
                   >
                     {item.name}
                   </FilterPill>
                 ))}
               </div>
             ) : null}
-            {hasFreeProducts && ui.free ? (
+            {showFree ? (
               <FilterPill
                 href={filterHref(locale, filters, { isFree: filters.isFree ? undefined : true })}
                 active={filters.isFree === true}
-                disabled={!freeEnabled}
               >
                 {ui.free}
               </FilterPill>
