@@ -101,6 +101,20 @@ Sorun: `?category=özel-ders-serisi&series=ogretmen&level=senior` gibi kombinasy
 - [x] Commit `d9905ff` + `d9cfaca`, deploy edildi, canlı doğrulandı
 - Sonuç: tıklayarak 0-sonuç durumuna **düşülemiyor**; yalnızca manuel/eski URL 0 verebilir → "Filtreleri temizle" ile kurtarma
 
+## Faz 8 — "Eski tasarım / sayfa değişiyor" kök-neden (cache) ✅ TAMAM
+
+Sorun: kullanıcı bazen yeni bazen ESKİ tasarımı görüyordu ("sayfa bile değişiyor"). Sunucu (curl) hep yeni dönüyordu → istemci/ara cache sorunu.
+
+**Kök neden:** [next.config.js](frontend/next.config.js) `headers()` — `/store` sayfası statik içerik listesindeydi:
+`Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400`. Filtreye göre değişen dinamik mağaza, deploy sonrası **eski HTML'i 24 saate kadar "stale" servis ediyordu** (tarayıcı/cache). SW network-first olsa da fetch'in kendisi cache'ten eski geliyordu.
+
+- [x] `/store` listesi stale-cache listesinden çıkarıldı → `private, no-cache, no-store, must-revalidate`
+- [x] `/store/<slug>` ürün detayı cache'li bırakıldı (değişmez içerik)
+- [x] SW `VERSION` v4→v5 (aktivasyonda eski sayfa cache'leri silinir)
+- [x] Commit `d7d1f02`, deploy edildi, canlı başlıklar + tasarım doğrulandı
+- **Kullanıcı tarafı tek seferlik:** mevcut sekmede eski kopya hâlâ cache'te → bir kez **hard refresh** (Ctrl+Shift+R) veya SW unregister; sonrası `no-store` ile kalıcı taze.
+- DNS not: woodyvearkadaslari.com → 46.202.194.115 (VPS SSR); GitHub Pages eski kopyası DNS'te değil.
+
 ## Açık Kararlar (kullanıcı onayı bekleyen)
 
 1. Filtre etiketleri ("Seri"/"Seviye") eklensin mi, yoksa sadece görsel ayraç mı?
