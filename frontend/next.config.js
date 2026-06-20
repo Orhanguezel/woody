@@ -154,6 +154,15 @@ const nextConfig = {
       },
     ];
 
+    // Filtreye gore degisen dinamik sayfalar (magaza listesi) — asla stale/eski servis edilmesin.
+    // public + stale-while-revalidate, deploy sonrasi tarayiciya eski tasarimi gosteriyordu.
+    const dynamicNoStaleCache = [
+      {
+        key: 'Cache-Control',
+        value: 'private, no-cache, no-store, must-revalidate',
+      },
+    ];
+
     return [
       {
         source: '/:path*',
@@ -165,15 +174,21 @@ const nextConfig = {
       },
       {
         source:
-          `/:locale(${LOCALE_ROUTE_GROUP})/:page(preschool|workshop|home-tutor|woody-academy|library|blog|store|digital-content|faqs|editorial-policy|contact|terms|privacy-policy|cookie-policy|kvkk)`,
+          `/:locale(${LOCALE_ROUTE_GROUP})/:page(preschool|workshop|home-tutor|woody-academy|library|blog|digital-content|faqs|editorial-policy|contact|terms|privacy-policy|cookie-policy|kvkk)`,
         headers: staticContentCache,
       },
       {
         source: `/:locale(${LOCALE_ROUTE_GROUP})/blog/:path*`,
         headers: staticContentCache,
       },
+      // Magaza LISTESI (filtreli, dinamik): stale cache yok
       {
-        source: `/:locale(${LOCALE_ROUTE_GROUP})/store/:path*`,
+        source: `/:locale(${LOCALE_ROUTE_GROUP})/store`,
+        headers: dynamicNoStaleCache,
+      },
+      // Magaza urun DETAY sayfalari (/store/<slug>): cache'lenebilir kalsin
+      {
+        source: `/:locale(${LOCALE_ROUTE_GROUP})/store/:path+`,
         headers: staticContentCache,
       },
       {

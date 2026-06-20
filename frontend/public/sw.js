@@ -1,4 +1,4 @@
-const VERSION = 'pwa-v4';
+const VERSION = 'pwa-v5';
 const SHELL = `${VERSION}-shell`;
 const STATIC = `${VERSION}-static`;
 const PAGE = `${VERSION}-page`;
