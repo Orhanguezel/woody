@@ -57,7 +57,11 @@ export default function GAViewPages() {
     const send = (url: string) => {
       try {
         if (typeof window === 'undefined') return;
-        if (window.__analyticsConsentGranted !== true) return;
+        // NOT: page_view'i onaya göre BURADA engellemiyoruz. Consent Mode v2
+        // (AnalyticsScripts'teki gtag consent default 'denied') zaten devrede:
+        // onay yokken gtag cookieless/modellenmiş ping gönderir (KVKK/GDPR uyumlu),
+        // onay verilince tam ölçüm yapar. Sert JS engeli Consent Mode'u bozuyordu
+        // (onaysız sayfalarda etiket hiç ateşlenmiyor → "Etiketli değil").
 
         const path = (url || '/').split(/[?#]/)[0] || '/';
         const abs = window.location.origin + path;
