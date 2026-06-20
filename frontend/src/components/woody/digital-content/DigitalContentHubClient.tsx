@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
 import WoodyPageLogoHeader from '../WoodyPageLogoHeader';
-import { DIGITAL_LEVELS, DIGITAL_SECTIONS, type DigitalContentCopy } from './digital-content-data';
+import { DIGITAL_LEVELS, DIGITAL_OPEN_SECTIONS, DIGITAL_SECTIONS, type DigitalContentCopy } from './digital-content-data';
 
 function playClickSound() {
   try {
@@ -82,38 +82,60 @@ export default function DigitalContentHubClient({
                 <div className="grid grid-cols-2 gap-3">
                   {DIGITAL_SECTIONS.map((section) => {
                     const Icon = section.icon;
-                    const isLibrary = section.id === 'library';
+                    const isOpen = DIGITAL_OPEN_SECTIONS.includes(section.id);
                     const isMusicland = section.id === 'musicland';
                     const sectionLabel = copy?.sectionLabels?.[section.id];
-                    const color = isLibrary ? '#8E8E8E' : section.color;
+                    // Acik olmayanlar (Storyland/Movieland/Library) "Yakinda" + gri + tiklanamaz
+                    const color = isOpen ? section.color : '#8E8E8E';
+                    const comingSoonBadge = sectionLabel?.badge || copy?.library?.badge;
+
+                    const inner = (
+                      <>
+                        {!isOpen ? (
+                          <span className="absolute right-3 top-3 rounded-full bg-gray-200 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-gray-700">
+                            {comingSoonBadge}
+                          </span>
+                        ) : null}
+                        <Icon className="h-7 w-7" style={{ color }} strokeWidth={2.5} aria-hidden />
+                        <h3 className="mt-3 text-[14px] font-black" style={{ color }}>
+                          {sectionLabel?.title || section.name}
+                        </h3>
+                        <p className="mt-2 text-[12px] leading-5 text-gray-500">
+                          {sectionLabel?.description}
+                        </p>
+                        {isMusicland ? (
+                          <span className="mt-3 inline-flex rounded-full bg-purple-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-purple-800">
+                            {copy?.ui?.publicBadge}
+                          </span>
+                        ) : null}
+                      </>
+                    );
+
+                    if (!isOpen) {
                       return (
-                        <Link
+                        <div
                           key={section.id}
-                          href={localizePath(locale as any, `/digital-content/${level.id}/${section.id}`)}
-                          onClick={playClickSound}
-                          aria-label={`${copy?.levelLabels?.[level.id]?.title || level.name} ${sectionLabel?.title || section.name}`}
-                          className={`group relative min-h-36 rounded-lg border bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 ${isLibrary ? 'grayscale' : ''} ${FOCUS_RING}`}
+                          aria-disabled="true"
+                          className="relative min-h-36 cursor-not-allowed rounded-lg border bg-white p-4 opacity-80 grayscale"
                           style={{ borderColor: `${color}55` }}
                         >
-                          {isLibrary ? (
-                            <span className="absolute right-3 top-3 rounded-full bg-gray-200 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-gray-700">
-                              {copy?.library?.badge || sectionLabel?.badge}
-                            </span>
-                          ) : null}
-                          <Icon className="h-7 w-7" style={{ color }} strokeWidth={2.5} aria-hidden />
-                          <h3 className="mt-3 text-[14px] font-black" style={{ color }}>
-                            {sectionLabel?.title || section.name}
-                          </h3>
-                          <p className="mt-2 text-[12px] leading-5 text-gray-500">
-                            {sectionLabel?.description}
-                          </p>
-                          {isMusicland ? (
-                            <span className="mt-3 inline-flex rounded-full bg-purple-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-purple-800">
-                              {copy?.ui?.publicBadge}
-                            </span>
-                          ) : null}
-                        </Link>
+                          {inner}
+                        </div>
                       );
+                    }
+
+                    return (
+                      <Link
+                        key={section.id}
+                        href={localizePath(locale as any, `/digital-content/${level.id}/${section.id}`)}
+                        onClick={playClickSound}
+                        aria-label={`${copy?.levelLabels?.[level.id]?.title || level.name} ${sectionLabel?.title || section.name}`}
+                        className={`group relative min-h-36 rounded-lg border bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 ${FOCUS_RING}`}
+                        style={{ borderColor: `${color}55` }}
+                      >
+                        {inner}
+                      </Link>
+                    );
                   })}
                 </div>
               </section>

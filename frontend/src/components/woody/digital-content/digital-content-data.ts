@@ -17,6 +17,10 @@ export const DIGITAL_VALID_PASSWORDS = [
 
 export const DIGITAL_PROTECTED_SECTIONS = ['storyland', 'movieland'];
 
+// Su an yalnizca Musicland herkese acik. Storyland/Movieland (ucretli olacak) + Library "Yakinda".
+// Acik olmayan bolumler hub'da gri + "Yakinda" rozeti + tiklanamaz.
+export const DIGITAL_OPEN_SECTIONS: string[] = ['musicland'];
+
 export const DIGITAL_LEVELS = [
   { id: 'basic', name: 'BASIC', subtitle: 'Level 1', color: 'var(--level-basic)' },
   { id: 'junior', name: 'JUNIOR', subtitle: 'Level 2', color: 'var(--level-junior)' },
