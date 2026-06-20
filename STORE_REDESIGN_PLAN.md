@@ -73,13 +73,33 @@
 - [x] SEO: `woodyStoreListingGraph` / metadata dokunulmadı
 - [x] A11y: `FOCUS_RING` tüm tıklanabilir öğelerde, görsel `alt`, `h1/h2/h3` hiyerarşisi korundu
 
-## Faz 6 — Deploy
+## Faz 6 — Deploy ✅ TAMAM
 
 - [x] `bun run build` lokalde başarılı (exit 0; `/[locale]/store` → ƒ Dynamic)
-- [ ] Branch commit + push — **kullanıcı onayı bekliyor**
-- [ ] VPS / GitHub Pages hedefine deploy + canlı `/tr/store` son kontrol — **kullanıcı onayı bekliyor**
+- [x] Commit `9ed2cb8` + push → `origin/feat/sosyal-medya-entegrasyonlar`
+- [x] VPS deploy `./deploy/deploy.sh frontend` (rsync→build→PM2 `woody-frontend:3101` restart, exit 0)
+- [x] Canlı `https://woodyvearkadaslari.com/tr/store` → **HTTP 200**, yeni tasarım, 17 ürün
+- [x] Canlı filtre doğrulama: okul-serisi→3, ev-ozel-ders→4, hikaye-kitaplari→3; boş kategoriler→yakında kartı
+
+### Faz 6 Canlı Veri Gözlemleri (admin aksiyonu gerektirir, kod değil)
+- Canlı taksonomi **7 kategori** (lokal seed sadece 3'tü — eski/azaltılmış). Screenshot'taki pill'ler aslında **doğruymuş**.
+- **4 kategori boş** (atolye-serisi, etkinlik-kartlari, ogrenme-setleri, ozel-ders-serisi) → "Tümü"de alttaki kompakt yakında+bekleme listesi kartlarında çıkıyor (tasarım gereği).
+- **7 ürün kategorisiz** (`categorySlug=null`) → ızgarada görünür ama kart üstünde kategori etiketi boş. → _Admin panelden kategori atanmalı._
+- Bazı ürünlerde görsel yok → placeholder devrede (admin görsel ekleyebilir).
 
 ---
+
+## Faz 7 — Faceted Filtre (0-sonuç çıkmaz sokağı düzeltmesi) ✅ TAMAM
+
+Sorun: `?category=özel-ders-serisi&series=ogretmen&level=senior` gibi kombinasyonlar **0 ürün** veriyordu (filtreler birbirinden habersizdi).
+
+- [x] page.tsx artık **tüm ürünleri filtresiz** yükler; filtreleme + faceting client-side
+- [x] Ürünü olmayan kategoriler filtre çubuğundan **gizlenir** (yalnızca "yakında" bölümünde)
+- [x] Seri/Seviye/Ücretsiz seçenekleri mevcut seçimle ≥1 ürün vermiyorsa **gösterilmez** (gri yığın değil, gizleme)
+- [x] Bir grupta seçilebilir seçenek yoksa grup (etiketiyle) hiç render edilmez
+- [x] Sonuç sayacı gerçek filtrelenmiş sayıyı gösterir
+- [x] Commit `d9905ff` + `d9cfaca`, deploy edildi, canlı doğrulandı
+- Sonuç: tıklayarak 0-sonuç durumuna **düşülemiyor**; yalnızca manuel/eski URL 0 verebilir → "Filtreleri temizle" ile kurtarma
 
 ## Açık Kararlar (kullanıcı onayı bekleyen)
 
