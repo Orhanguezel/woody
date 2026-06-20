@@ -79,16 +79,35 @@ const PILL_BASE =
   'rounded-full px-4 py-2 text-[12px] font-black uppercase tracking-[0.04em] ring-1 transition';
 const PILL_ON = 'bg-[#f58220] text-white ring-[#f58220] shadow-[0_8px_22px_rgba(245,130,32,0.28)]';
 const PILL_OFF = 'bg-white text-[#5f6871] ring-[#eadfce] hover:ring-[#f58220] hover:text-[#d96f12]';
+const PILL_DISABLED = 'cursor-not-allowed bg-[#fbf4e7] text-[#cbb89a] ring-[#f0e4d0]';
+
+// Bir urunun verilen filtre kombinasyonuyla eslesip eslesmedigi (AND semantigi)
+function matchesFilters(product: StoreCatalogProduct, f: StoreProductFilters): boolean {
+  if (f.category && product.category !== f.category) return false;
+  if (f.series && product.seriesSlug !== f.series) return false;
+  if (f.level && product.levelSlug !== f.level) return false;
+  if (f.isFree !== undefined && Boolean(product.isFree) !== f.isFree) return false;
+  return true;
+}
 
 function FilterPill({
   href,
   active,
+  disabled,
   children,
 }: {
   href: string;
   active: boolean;
+  disabled?: boolean;
   children: React.ReactNode;
 }) {
+  if (disabled && !active) {
+    return (
+      <span className={`${PILL_BASE} ${PILL_DISABLED}`} aria-disabled="true">
+        {children}
+      </span>
+    );
+  }
   return (
     <Link href={href} className={`${PILL_BASE} ${active ? PILL_ON : PILL_OFF} ${FOCUS_RING}`}>
       {children}
@@ -133,6 +152,24 @@ export default function WoodyStoreShowcase({
     (filters.isFree ? ui.free : '') ||
     '';
 
+  // Gosterilecek urunler — filtreleme bellekte (tum urun seti uzerinden)
+  const filtered = products.filter((product) => matchesFilters(product, filters));
+
+  // FACETING: yalnizca urunu olan kategoriler filtrede; bos olanlar "yakinda" bolumunde
+  const categoriesWithProducts = categories.filter((category) =>
+    products.some((product) => product.category === category.id),
+  );
+  const hasFreeProducts = products.some((product) => product.isFree);
+
+  // Bir facet degeri, mevcut diger filtrelerle birlikte >=1 urun veriyorsa secilebilir
+  const seriesEnabled = (slug: string) =>
+    products.some((product) => matchesFilters(product, { ...filters, series: slug }));
+  const levelEnabled = (slug: string) =>
+    products.some((product) => matchesFilters(product, { ...filters, level: slug }));
+  const freeEnabled = products.some((product) =>
+    matchesFilters(product, { ...filters, isFree: true }),
+  );
+
   // Bos kategoriler yalnizca filtresiz "tumu" gorunumunde gosterilir (yakinda + bekleme listesi)
   const comingSoonCategories = !hasActiveFilter
     ? categories.filter((category) => !products.some((product) => product.category === category.id))
@@ -166,7 +203,7 @@ export default function WoodyStoreShowcase({
           <FilterPill href={`/${locale}/store`} active={!hasActiveFilter}>
             {ui.all || ''}
           </FilterPill>
-          {categories.map((category) => (
+          {categoriesWithProducts.map((category) => (
             <FilterPill
               key={category.id}
               href={filterHref(locale, {}, { category: category.id })}
@@ -177,7 +214,7 @@ export default function WoodyStoreShowcase({
           ))}
         </div>
 
-        {series.length || levels.length || (catalog.hasFreeProducts && ui.free) ? (
+        {series.length || levels.length || (hasFreeProducts && ui.free) ? (
           <div className="mt-3 flex flex-col flex-wrap items-center justify-center gap-3 border-t border-[#f0dcb6]/60 pt-4 sm:flex-row">
             {series.length ? (
               <div className="flex flex-wrap items-center justify-center gap-2">
@@ -189,6 +226,7 @@ export default function WoodyStoreShowcase({
                     key={`series-${item.id}`}
                     href={filterHref(locale, filters, { series: filters.series === item.slug ? undefined : item.slug })}
                     active={filters.series === item.slug}
+                    disabled={!seriesEnabled(item.slug)}
                   >
                     {item.name}
                   </FilterPill>
@@ -205,16 +243,18 @@ export default function WoodyStoreShowcase({
                     key={`level-${item.id}`}
                     href={filterHref(locale, filters, { level: filters.level === item.slug ? undefined : item.slug })}
                     active={filters.level === item.slug}
+                    disabled={!levelEnabled(item.slug)}
                   >
                     {item.name}
                   </FilterPill>
                 ))}
               </div>
             ) : null}
-            {catalog.hasFreeProducts && ui.free ? (
+            {hasFreeProducts && ui.free ? (
               <FilterPill
                 href={filterHref(locale, filters, { isFree: filters.isFree ? undefined : true })}
                 active={filters.isFree === true}
+                disabled={!freeEnabled}
               >
                 {ui.free}
               </FilterPill>
@@ -223,10 +263,10 @@ export default function WoodyStoreShowcase({
         ) : null}
 
         {/* Sonuç sayacı + filtreleri temizle */}
-        {products.length || hasActiveFilter ? (
+        {filtered.length || hasActiveFilter ? (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-[13px] font-bold text-[#68727b]">
             <span>
-              {products.length} {tUi(locale, 'products')}
+              {filtered.length} {tUi(locale, 'products')}
             </span>
             {hasActiveFilter ? (
               <Link
@@ -277,9 +317,9 @@ export default function WoodyStoreShowcase({
 
       {/* Urun listesi — tek birlesik izgara (filtreye gore) */}
       <section className="container max-w-[1100px] py-10 lg:py-12">
-        {products.length ? (
+        {filtered.length ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => {
+            {filtered.map((product) => {
               const category = categories.find((item) => item.id === product.category);
               return (
                 <article
