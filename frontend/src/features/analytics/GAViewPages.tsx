@@ -47,10 +47,23 @@ export default function GAViewPages() {
   const hasAnyAnalytics = hasGtm || hasGa || hasFbPixel;
 
   const lastAbsUrlRef = useRef<string>('');
+  const firstRunRef = useRef<boolean>(true);
 
   useEffect(() => {
     if (!hasAnyAnalytics) return;
-    
+
+    // İlk sayfa görüntüleme platformların kendi init'i ile gönderilir
+    // (GA4: gtag config send_page_view:true; GTM: gtm.js; FB: fbq init).
+    // GAViewPages yalnızca sonraki SPA route değişimlerini raporlar → çift sayım olmaz.
+    if (firstRunRef.current) {
+      firstRunRef.current = false;
+      lastAbsUrlRef.current =
+        typeof window !== 'undefined'
+          ? window.location.origin + (pathname || '/')
+          : '';
+      return;
+    }
+
     // Simulate current URL
     const nextUrl = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
 

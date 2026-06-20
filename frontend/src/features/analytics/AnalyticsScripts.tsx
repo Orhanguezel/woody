@@ -186,10 +186,12 @@ export default function AnalyticsScripts() {
 
                   window.gtag('js', new Date());
 
-                  // send_page_view:false => SPA page_view GAViewPages will send
+                  // send_page_view:true => ilk sayfa görüntüleme gtag config ile her
+                  // yüklemede gönderilir (Consent Mode uyumlu: onaysız cookieless ping).
+                  // SPA route değişimleri GAViewPages ile gönderilir (ilk yüklemeyi atlar).
                   window.gtag('config', '${String(ga4Id)}', {
                     anonymize_ip: true,
-                    send_page_view: false
+                    send_page_view: true
                   });
                   ${hasAds ? `window.gtag('config', '${adsConversionId}');` : ''}
                 `}
