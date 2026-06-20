@@ -122,7 +122,6 @@ export default function WoodyStoreShowcase({
   const ui = catalog.ui ?? {};
   const quoteLabel = String(catalog.primaryCTA || '').trim();
   const quoteCta = quoteLabel || ui.quoteCta || '';
-  const onlineCta = ui.addToCart || '';
   const freeCta = ui.freeWatch || '';
 
   const hasActiveFilter = Boolean(
@@ -318,8 +317,8 @@ export default function WoodyStoreShowcase({
                   className="group flex min-h-full flex-col overflow-hidden rounded-lg bg-white shadow-[0_14px_42px_rgba(49,64,79,0.10)] ring-1 ring-[#eadfce] transition hover:-translate-y-1 hover:shadow-[0_20px_58px_rgba(49,64,79,0.15)]"
                   data-testid={`store-product-${product.id}`}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-linear-to-br from-[#fff3e0] to-[#eef6f3] p-3">
-                    {product.image ? (
+                  {(() => {
+                    const media = product.image ? (
                       <Image
                         src={product.image}
                         alt={product.alt || product.name}
@@ -334,8 +333,16 @@ export default function WoodyStoreShowcase({
                           {category?.name || ''}
                         </span>
                       </div>
-                    )}
-                  </div>
+                    );
+                    const cls = 'relative block aspect-[4/3] overflow-hidden bg-linear-to-br from-[#fff3e0] to-[#eef6f3] p-3';
+                    return product.slug ? (
+                      <Link href={`/${locale}/store/${product.slug}`} className={cls} aria-label={product.name}>
+                        {media}
+                      </Link>
+                    ) : (
+                      <div className={cls}>{media}</div>
+                    );
+                  })()}
 
                   <div className="flex flex-1 flex-col p-5">
                     <div className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-[0.14em]">
@@ -346,7 +353,13 @@ export default function WoodyStoreShowcase({
                     </div>
 
                     <h3 className="mt-3 line-clamp-2 font-display text-lg font-black leading-tight text-[#24333f]">
-                      {product.name}
+                      {product.slug ? (
+                        <Link href={`/${locale}/store/${product.slug}`} className={`transition hover:text-[#d96f12] ${FOCUS_RING}`}>
+                          {product.name}
+                        </Link>
+                      ) : (
+                        product.name
+                      )}
                     </h3>
                     {product.description ? (
                       <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#68727b]">{product.description}</p>
@@ -368,7 +381,16 @@ export default function WoodyStoreShowcase({
                     ) : null}
 
                     <div className="mt-auto flex flex-wrap gap-2 pt-5">
-                      {product.purchaseMode === 'quote' ? (
+                      {/* Sepet/fiyat sonraki faza birakildi — tum (ucretsiz olmayan) urunler teklif-bazli */}
+                      {product.isFree && product.slug ? (
+                        <Link
+                          href={`/${locale}/store/${product.slug}`}
+                          className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[12px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
+                        >
+                          {freeCta}
+                          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                        </Link>
+                      ) : (
                         <WhatsAppLink
                           phone={catalog.quoteWhatsApp}
                           text={quoteText(catalog.quoteMessage, product.name)}
@@ -378,15 +400,7 @@ export default function WoodyStoreShowcase({
                           <MessageCircle className="h-4 w-4" aria-hidden />
                           {quoteCta}
                         </WhatsAppLink>
-                      ) : product.slug ? (
-                        <Link
-                          href={`/${locale}/store/${product.slug}`}
-                          className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[12px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
-                        >
-                          {product.isFree ? freeCta : onlineCta}
-                          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-                        </Link>
-                      ) : null}
+                      )}
                       {catalog.quoteForm?.linkLabel ? (
                         <a
                           href="#quote-form"

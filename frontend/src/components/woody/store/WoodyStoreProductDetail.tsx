@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { LockKeyhole, PlayCircle, ShoppingCart, Truck } from 'lucide-react';
+import { LockKeyhole, PlayCircle, Truck } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
 import type { StoreProduct, StoreUiCopy } from './types';
@@ -115,32 +115,23 @@ export default function WoodyStoreProductDetail({
           ) : null}
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            {product.purchaseMode === 'online' ? (
-              product.isFree ? (
-                <button
-                  type="button"
-                  onClick={addFreeToLibrary}
-                  disabled={busy}
-                  className={`inline-flex min-h-12 items-center gap-2 rounded-md bg-brand-primary px-5 py-3 font-bold text-white disabled:opacity-60 ${FOCUS_RING}`}
-                >
-                  <PlayCircle className="size-4" aria-hidden />
-                  {busy ? (ui.freeAdding || '') : (ui.freeWatch || '')}
-                </button>
-              ) : (
-                <Link
-                  href="#checkout"
-                  className={`inline-flex min-h-12 items-center gap-2 rounded-md bg-brand-primary px-5 py-3 font-bold text-white ${FOCUS_RING}`}
-                >
-                  <ShoppingCart className="size-4" aria-hidden />
-                  {ui.addToCart || ''}
-                </Link>
-              )
+            {/* Sepet/odeme sonraki faza birakildi — ucretsiz disindaki urunler teklif-bazli */}
+            {product.purchaseMode === 'online' && product.isFree ? (
+              <button
+                type="button"
+                onClick={addFreeToLibrary}
+                disabled={busy}
+                className={`inline-flex min-h-12 items-center gap-2 rounded-md bg-brand-primary px-5 py-3 font-bold text-white disabled:opacity-60 ${FOCUS_RING}`}
+              >
+                <PlayCircle className="size-4" aria-hidden />
+                {busy ? (ui.freeAdding || '') : (ui.freeWatch || '')}
+              </button>
             ) : (
               <Link
-                href={`/${locale}/store`}
+                href={`/${locale}/store#quote-form`}
                 className={`inline-flex min-h-12 items-center rounded-md bg-brand-primary px-5 py-3 font-bold text-white ${FOCUS_RING}`}
               >
-                {ui.requestQuote || ''}
+                {ui.quoteCta || ui.requestQuote || ''}
               </Link>
             )}
           </div>
