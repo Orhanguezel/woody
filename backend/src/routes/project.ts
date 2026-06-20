@@ -7,6 +7,7 @@ import { registerCheckoutPublic } from '@/modules/checkout';
 import { registerCatalogAdmin, registerCatalogPublic } from '@/modules/catalog';
 import { registerEntitlementsAdmin, registerEntitlementsPublic } from '@/modules/entitlements';
 import { registerQuoteRequestsAdmin, registerQuoteRequestsPublic } from '@/modules/quoteRequests';
+import { registerContactsAdmin, registerContactsPublic } from '@/modules/contacts';
 import { registerSubscriptionsAdmin, registerSubscriptionsPublic } from '@/modules/subscriptions';
 import { registerWaitlistPublic } from '@/modules/waitlist';
 
@@ -17,6 +18,7 @@ export async function registerProjectPublic(api: FastifyInstance) {
   await registerCheckoutPublic(api);
   await registerEntitlementsPublic(api);
   await registerQuoteRequestsPublic(api);
+  await registerContactsPublic(api);
   await registerSubscriptionsPublic(api);
   await registerWaitlistPublic(api);
 
@@ -35,5 +37,6 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerCatalogAdmin(adminApi);
   await registerEntitlementsAdmin(adminApi);
   await registerQuoteRequestsAdmin(adminApi);
+  await registerContactsAdmin(adminApi);
   await registerSubscriptionsAdmin(adminApi);
 }
