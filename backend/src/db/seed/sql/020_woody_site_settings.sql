@@ -16,8 +16,10 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 ('ss-woody-app-locales', 'app_locales', '*', '[{"code":"tr","label":"TR","is_default":true,"is_active":true},{"code":"en","label":"EN","is_default":false,"is_active":true},{"code":"de","label":"DE","is_default":false,"is_active":true},{"code":"ar","label":"AR","is_default":false,"is_active":true},{"code":"fr","label":"FR","is_default":false,"is_active":true},{"code":"ru","label":"RU","is_default":false,"is_active":true},{"code":"es","label":"ES","is_default":false,"is_active":true},{"code":"it","label":"IT","is_default":false,"is_active":true},{"code":"nl","label":"NL","is_default":false,"is_active":true},{"code":"pt-br","label":"PT-BR","is_default":false,"is_active":true}]'),
 ('ss-woody-footer-copyright', 'footer_copyright', '*', '"© 2026 Woody and Friends. Tüm hakları saklıdır."'),
 ('ss-woody-footer-keywords', 'footer_keywords', '*', '["Woody and Friends","okul öncesi İngilizce","çocuk İngilizce","dijital içerik","hikaye"]'),
-('ss-woody-ga4', 'ga4_measurement_id', '*', '"G-0D7LYLF51K"'),
-('ss-woody-gtm', 'gtm_container_id', '*', '"dogaadmin"'),
+-- NOT: Gercek Woody GA4/GTM ID'leri admin panel > Site Settings > API'den girilir (DB override eder).
+-- Sablon placeholder'lari (G-0D7LYLF51K / dogaadmin) KALDIRILDI; yabanci hesaba veri sizdiriyordu.
+('ss-woody-ga4', 'ga4_measurement_id', '*', '""'),
+('ss-woody-gtm', 'gtm_container_id', '*', '""'),
 ('ss-woody-site-logo', 'site_logo', '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
 ('ss-woody-site-logo-dark', 'site_logo_dark', '*', '"/uploads/brand/woody-and-friends-optimized.webp"'),
 ('ss-woody-site-logo-light', 'site_logo_light', '*', '"/assets/woody/woody-footer-v2.png"'),
