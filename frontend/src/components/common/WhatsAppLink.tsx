@@ -3,7 +3,6 @@
 import * as React from 'react';
 
 import { buildWhatsAppHref, buildWhatsAppWebHref, isMobileUserAgent } from '@/lib/whatsapp';
-import { reportAdsConversion } from '@/lib/ads-conversion';
 
 type WhatsAppLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
   phone?: string | null;
@@ -24,9 +23,9 @@ export function WhatsAppLink({ phone, text, children, ...rest }: WhatsAppLinkPro
         page_path: window.location.pathname,
         phone: phone || undefined,
       });
-      // Google Ads lead dönüşümü: WhatsApp tıklaması (yeni sekme açıldığı için
-      // navigasyonu beklemeye gerek yok, url verilmez).
-      reportAdsConversion('whatsapp');
+      // Not: Google Ads WhatsApp lead dönüşümü artık merkezi
+      // AdsConversionClicks (document delegated listener) ile tetikleniyor;
+      // burada tekrar tetiklenmez (çift sayım önlenir).
     } catch {
       // Analytics is optional.
     }
