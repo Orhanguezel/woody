@@ -3,6 +3,7 @@
 import { FormEvent, useState } from 'react';
 
 import { FOCUS_RING } from '@/lib/a11y';
+import { reportAdsConversion } from '@/lib/ads-conversion';
 
 export type QuoteFormCopy = {
   title?: string;
@@ -75,6 +76,8 @@ export default function QuoteRequestForm({ copy, source }: Props) {
         student_count: Number(form.student_count),
         level: form.level,
       });
+      // Google Ads lead donusumu (form etiketi)
+      reportAdsConversion('form');
       setForm(initialForm());
       setStatus('success');
     } catch {
