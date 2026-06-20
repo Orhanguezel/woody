@@ -115,6 +115,17 @@ Sorun: kullanıcı bazen yeni bazen ESKİ tasarımı görüyordu ("sayfa bile de
 - **Kullanıcı tarafı tek seferlik:** mevcut sekmede eski kopya hâlâ cache'te → bir kez **hard refresh** (Ctrl+Shift+R) veya SW unregister; sonrası `no-store` ile kalıcı taze.
 - DNS not: woodyvearkadaslari.com → 46.202.194.115 (VPS SSR); GitHub Pages eski kopyası DNS'te değil.
 
+## Faz 9 — "Sepete Ekle" kaldırıldı (teklif-bazlı, sepet sonraki faz) ✅ TAMAM
+
+Karar: fiyatlar yok, sepet/ödeme sonraki faza bırakıldı → mağaza şimdilik tamamen teklif-bazlı.
+
+- [x] Liste: online ürünlerde `ui.addToCart` ("Sepete ekle") kaldırıldı → **"Teklif İste"** (WhatsApp); ücretsizler "Ücretsiz izle"
+- [x] Ürün görseli + başlığı **detay sayfasına link** (sepet linki kalkınca detay erişimi korunsun)
+- [x] Detay sayfası: sepet/`#checkout` butonu → **"Teklif İste"** (`/store#quote-form`), `ShoppingCart` ikonu kaldırıldı
+- [x] Commit `159e872`, deploy + canlı doğrulandı (35 "Teklif iste", 0 ShoppingCart, görünür "Sepete ekle" yok)
+- Not: `ui.addToCart` değeri config/DB'de duruyor ama artık **render edilmiyor** (yalnızca veri payload'unda, görünmez). Sepet fazında tekrar kullanılabilir.
+- [ ] Sepet/ödeme (İyzipay) fazı — ileride: WoodyStoreClient + checkout + fiyatlar geri açılacak
+
 ## Açık Kararlar (kullanıcı onayı bekleyen)
 
 1. Filtre etiketleri ("Seri"/"Seviye") eklensin mi, yoksa sadece görsel ayraç mı?
