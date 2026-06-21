@@ -188,8 +188,18 @@ async function readPageSettingJson(key: string, locale: string): Promise<JsonObj
 
   const row = await fetchSetting(settingKey, locale, { revalidate: 60 });
   const value = row?.value;
-  if (isRecord(value)) return value;
-  return null;
+  if (!isRecord(value)) return null;
+
+  // DB ayari istenen dile ait DEGILse (backend tr'ye fallback ettiyse) override ETME.
+  // Aksi halde non-TR sayfalar (es/fr/it/nl/pt-BR/ru/ar) cevrili JSON yerine
+  // Turkce DB icerigini gosterir → Google "duplicate" sayar, indexlemez.
+  // Sadece satir gercekten o dile aitse (orn. tr, de) override uygulanir.
+  const matched = String((row as { locale?: string })?.locale ?? '').trim().toLowerCase();
+  const requested = String(locale ?? '').trim().toLowerCase();
+  if (matched && requested && matched !== requested && matched !== requested.split('-')[0]) {
+    return null;
+  }
+  return value;
 }
 
 async function mergeHomeBannerSetting(raw: JsonObject, locale: string): Promise<JsonObject> {
