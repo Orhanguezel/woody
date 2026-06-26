@@ -23,7 +23,9 @@ export const WHY_WOODY_BG_IMAGES = [
   '/assets/woody/sections/why-woody-bg-2.webp',
 ] as const;
 export const CERTIFICATE_IMAGES = [
-  { alt: 'Cambridge English', src: '/assets/woody/sections/cert-7.webp' },
+  // Cambridge onayli "We prepare for Cambridge English Qualifications" hazirlik-merkezi logosu
+  // (Cambridge marka kullanim politikasi geregi onceki logo kaldirilip resmi olanla degistirildi).
+  { alt: 'We prepare for Cambridge English Qualifications', src: '/assets/woody/sections/cert-cambridge-prepare.webp' },
   { alt: 'British Side', src: '/assets/woody/sections/cert-8.webp' },
   { alt: 'Woody Academy', src: '/assets/woody/sections/cert-9.webp' },
 ] as const;
