@@ -1,5 +1,4 @@
 import JsonLd from '@/seo/JsonLd';
-import WoodyFallback from '@/components/woody/WoodyFallback';
 import WoodyStoreClient from '@/components/woody/store/WoodyStoreClient';
 import WoodyStoreShowcase from '@/components/woody/store/WoodyStoreShowcase';
 import type { StoreCatalog } from '@/components/woody/store/WoodyStoreShowcase';
@@ -11,6 +10,8 @@ import { loadPageContent } from '@/config/pages/loader';
 
 const PAGE_KEY = 'store';
 const PATHNAME = '/store';
+
+export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -108,9 +109,6 @@ export default async function StorePage({ params, searchParams }: Props) {
     loadPageContent<Record<string, any>>('store', locale),
   ]);
   const fallbackProducts = dbProducts.length ? [] : await loadWoodyProducts('store-products', locale);
-  if (!content && !dbProducts.length && !fallbackProducts.length && !catalog?.products?.length) {
-    return <WoodyFallback pageKey={PAGE_KEY} />;
-  }
   const merged = content ?? { key: PAGE_KEY, title: PAGE_KEY };
   const dbCatalog = dbProducts.length || taxonomy.categories.length ? catalogFromDb(taxonomy, dbProducts) : null;
   const storeCatalog = asStoreCatalog(content, dbCatalog ?? catalog ?? { products: fallbackProducts as any });

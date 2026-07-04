@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getPublicSiteOrigin } from '@/lib/site-config';
 import {
-  allWoodyDigitalPaths,
   WOODY_DEFAULT_LOCALE,
   WOODY_LOCALES,
   WOODY_PAGE_ROUTES,
@@ -23,10 +22,8 @@ const LEGACY_STATIC_PAGES = [
   '/terms',
   '/privacy-policy',
   '/cookie-policy',
-  '/kvkk',
 ] as const;
 
-const WOODY_DIGITAL_PAGES = allWoodyDigitalPaths();
 const WOODY_BLOG_CATEGORIES = [
   'genel',
   'haber',
@@ -133,7 +130,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       trOnly: Boolean(route.trOnly),
       priority: route.priority ?? 0.7,
     })),
-    ...WOODY_DIGITAL_PAGES.map((path) => ({ path, trOnly: false, priority: 0.75 })),
     ...(await blogRoutes()),
     ...(await storeProductRoutes()),
     ...LEGACY_STATIC_PAGES.map((path) => ({ path, trOnly: false, priority: 0.55 })),

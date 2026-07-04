@@ -1,7 +1,6 @@
 // =============================================================
 // FILE: src/proxy.ts (Next.js 16+ — eski middleware.ts deprecated)
-// Locale prefix routing — kök URL `/` Türkçe içeriği gösterir
-// (internal rewrite to /tr, URL bar'da `/` kalır).
+// Locale prefix routing — locale'siz URL'ler default locale'e redirect edilir.
 // /en, /de gibi diğer dilleri olduğu gibi geçirir.
 // =============================================================
 
@@ -12,10 +11,10 @@ import { NextRequest, NextResponse } from 'next/server';
 const SUPPORTED_LOCALES = ['tr', 'en', 'de', 'ar', 'fr', 'ru', 'es', 'it', 'nl', 'pt-br'] as const;
 const DEFAULT_LOCALE = 'tr';
 
-// Non-locale path prefixes (admin, api vs.) — 'media' diskten dogrudan servis edilir, locale'e rewrite EDILMEZ
+// Non-locale path prefixes (admin, api vs.) — 'media' diskten dogrudan servis edilir, locale'e redirect EDILMEZ
 const NON_LOCALE_PREFIXES = ['admin', 'api', 'uploads', 'media', 'public', 'static', 'images', 'assets'];
 
-// Static file extensions — middleware'i atla (video/ses dahil; yoksa .mp4/.mp3 /tr'ye rewrite olup 404 doner)
+// Static file extensions — middleware'i atla (video/ses dahil; yoksa .mp4/.mp3 /tr'ye redirect olup 404 doner)
 const STATIC_EXT_RE = /\.(?:ico|png|jpg|jpeg|gif|svg|webp|avif|woff2?|ttf|otf|eot|css|js|mjs|map|txt|xml|json|webmanifest|mp4|webm|mov|m4v|mp3|m4a|wav|ogg|pdf)$/i;
 
 export function proxy(req: NextRequest) {
@@ -45,10 +44,12 @@ export function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // Locale prefix YOK → default locale'e internal rewrite (URL bar'da `/` kalır)
+  // Locale prefix YOK → default locale'e 308 REDIRECT (URL /tr/...'ye DEĞİŞİR)
+  // ESKİ (HATALI): NextResponse.rewrite → /preschool + /tr/preschool ikisi de 200 = KOPYA.
+  // Redirect kopyayı ortadan kaldırır; sitemap/canonical zaten /tr/... kullanıyor.
   const url = req.nextUrl.clone();
   url.pathname = `/${DEFAULT_LOCALE}${pathname === '/' ? '' : pathname}`;
-  return NextResponse.rewrite(url);
+  return NextResponse.redirect(url, 308);
 }
 
 export const config = {
