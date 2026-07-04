@@ -71,5 +71,15 @@
     "studentSet": "Coffret élève",
     "closeVideo": "Fermer la vidéo",
     "playHero": "Lire la vidéo Home Tutor"
+  },
+  "guide": {
+    "title": "Comment se déroule le modèle à domicile et en cours particuliers ?",
+    "paragraphs": [
+      "La Série à Domicile et Cours Particuliers est un modèle d'application plus personnel qui place au centre, dans un travail en tête-à-tête ou à deux, la durée d'attention de l'enfant, ses connaissances actuelles en anglais et le soutien de la famille. Au lieu du rythme d'une classe chargée, elle recourt à de courtes répétitions, à des activités ludiques et à un soutien numérique qui avancent au rythme de l'enfant. Cette structure crée une routine d'anglais plus calme et plus facile à suivre pour les enfants qui travaillent à la maison avec un parent ou les élèves qui prennent des cours particuliers.",
+      "Dans le modèle individuel, l'enseignant ou le parent peut observer de près quels mots l'enfant retient, quelles consignes lui posent problème et dans quel jeu il parle plus à l'aise. Le déroulé du cours est assoupli selon cette observation : parfois l'écoute et l'imitation passent en premier, parfois la répétition se fait avec une histoire, une chanson, un jeu de cartes ou une courte tâche orale. Ainsi le programme cesse d'être un simple ensemble de supports et devient un parcours d'apprentissage qui suit les progrès réels de l'enfant et peut se poursuivre à la maison.",
+      "Au niveau Basic, l'enfant gagne en confiance avec le vocabulaire de base, les couleurs, les objets, les émotions et les consignes simples. Au niveau Junior, les réponses courtes et les phrases simples deviennent plus visibles. Au niveau Senior, l'enfant suit ce qu'il entend, donne du sens à l'histoire et parle de façon plus autonome. Au niveau PRO, la préparation à la lecture et à l'écriture, des structures plus longues et des activités qui soutiennent le passage à l'école sont mises en avant. Cette distinction de niveaux garde l'objectif clair dans l'usage à domicile et en cours particuliers et permet à la famille de suivre plus facilement les progrès.",
+      "Dans le travail à la maison, la continuité se construit par de courtes répétitions régulières. Sans devoir faire un long cours chaque jour, l'enfant revoit le même mot dans une carte, une chanson, une histoire et un jeu. Le professeur particulier ou le parent choisit l'activité suivante en observant l'intérêt de l'enfant entre ces répétitions ; ainsi le programme avance sans forcer l'enfant, mais sans le laisser inactif non plus.",
+      "Cette série répond aussi plus clairement à la question des familles : par quel niveau commencer. Lorsque le testeur de niveau, la bibliothèque numérique et la structure des ensembles de la boutique sont utilisés ensemble, le parent voit d'abord le besoin de l'enfant, examine ensuite le matériel approprié et, si nécessaire, obtient le soutien d'un établissement. Cela transforme l'apprentissage de l'anglais à la maison, d'un essai sans plan en un processus d'apprentissage que l'on peut suivre."
+    ]
   }
 }

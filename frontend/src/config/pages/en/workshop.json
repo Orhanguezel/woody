@@ -66,5 +66,15 @@
     "studentSet": "Student Set",
     "closeVideo": "Close video",
     "playHero": "Play Workshop video"
+  },
+  "guide": {
+    "title": "How is the workshop model applied?",
+    "paragraphs": [
+      "The Workshop Series is designed for institutions, language workshops and after-school programs that want to build more intensive interaction with a small number of children. The goal is to create a lively environment where children use English through play, drama, matching, movement and short tasks, rather than a lesson flow in which they merely repeat it. For this reason, in the workshop every child speaks more, touches the materials more often, and the teacher can follow each child's response instantly.",
+      "The small-group structure allows faster feedback and more flexible repetition than the classroom series. The teacher can rebuild the same learning outcome through different types of games, adjusting the steps of listening, imitation, short answers, pair work and role play to the group's energy. In the workshop model the aim is not only to teach vocabulary, but for the child to understand an English instruction, respond within a game, and hold simple communication with a friend.",
+      "At the Basic level, a safe start and core vocabulary come to the fore. At the Junior level, children combine patterns to produce longer answers. At the Senior level, listening comprehension, short dialogue and story following increase. At the PRO level, preparation for reading and writing, project language and more academic structures are supported. This distinction ensures that the workshop is not just the same-looking cards at every level, and that the institution chooses a clear path of application based on age, level and group goals.",
+      "In workshop practice, the most important point for the teacher is that every activity is tied to an observable purpose. In one game the child repeats colors, while in another activity they use the same words with movement commands; later they reinforce the knowledge with a short story or matching task. This cycle reduces boredom in the small group and helps the student use the same learning outcome in different contexts.",
+      "For institutions, the Workshop Series can be adapted to different schedules such as a demo lesson, a weekend activity, an after-school club or a boutique language program. When physical materials and the digital library are used together, the teacher reduces pre-lesson preparation and can also explain to parents more clearly which skills the child is working on at which level."
+    ]
   }
 }

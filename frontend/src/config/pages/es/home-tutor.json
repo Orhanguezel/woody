@@ -71,5 +71,15 @@
     "studentSet": "Conjunto del estudiante",
     "closeVideo": "Cerrar video",
     "playHero": "Reproducir video de Home Tutor"
+  },
+  "guide": {
+    "title": "¿Cómo funciona el modelo en casa y con clases particulares?",
+    "paragraphs": [
+      "La Serie en Casa y Clases Particulares es un modelo de aplicación más personal que, en el trabajo individual o en parejas, sitúa en el centro la capacidad de atención del niño, sus conocimientos actuales de inglés y el apoyo de la familia. En lugar del ritmo de un aula concurrida, utiliza repeticiones breves, actividades basadas en el juego y apoyo digital que avanzan al ritmo del niño. Esta estructura crea una rutina de inglés más tranquila y fácil de seguir para los niños que estudian en casa con un padre o para los alumnos que reciben clases particulares.",
+      "En el modelo individual, el docente o el padre puede observar de cerca qué palabras recuerda el niño, con qué instrucciones tiene dificultades y en qué juego habla con más soltura. El desarrollo de la clase se flexibiliza según esta observación: a veces la escucha y la imitación van primero, a veces la repetición se hace con un cuento, una canción, un juego de cartas o una breve tarea de habla. Así el programa deja de ser un solo conjunto de materiales y se convierte en un camino de aprendizaje que sigue el progreso real del niño y puede mantenerse en casa.",
+      "En el nivel Basic, el niño gana confianza con vocabulario básico, colores, objetos, emociones e instrucciones sencillas. En el nivel Junior, las respuestas cortas y las oraciones simples se vuelven más visibles. En el nivel Senior, el niño sigue lo que escucha, da sentido a la historia y habla de forma más independiente. En el nivel PRO, se destacan la preparación para la lectura y la escritura, estructuras más largas y actividades que apoyan la transición a la escuela. Esta distinción de niveles mantiene claro el objetivo en el uso en casa y en clases particulares y permite a la familia seguir el progreso con más facilidad.",
+      "En el estudio en casa, la continuidad se construye con repeticiones breves pero regulares. Sin tener que hacer una clase larga cada día, el niño vuelve a ver la misma palabra dentro de una tarjeta, una canción, un cuento y un juego. El profesor particular o el padre elige la siguiente actividad observando el interés del niño entre estas repeticiones; así el programa avanza sin forzar al niño, pero sin dejarlo inactivo.",
+      "Esta serie también da una respuesta más clara a la pregunta de las familias sobre desde qué nivel empezar. Cuando el buscador de nivel, la biblioteca digital y la estructura de sets de la tienda se usan juntos, el padre ve primero la necesidad del niño, luego examina el material adecuado y, si es necesario, recibe apoyo de una institución. Esto convierte el estudio del inglés en casa, de un intento sin plan en un proceso de aprendizaje que se puede seguir."
+    ]
   }
 }

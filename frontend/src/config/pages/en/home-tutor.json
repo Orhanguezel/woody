@@ -71,5 +71,15 @@
     "studentSet": "Student Set",
     "closeVideo": "Close video",
     "playHero": "Play Home Tutor video"
+  },
+  "guide": {
+    "title": "How does the home and private tutoring model work?",
+    "paragraphs": [
+      "The Home and Private Tutoring Series is a more personal application model that puts the child's attention span, current English knowledge and family support at the center of one-to-one or two-student work. Instead of a crowded classroom flow, it uses short repetitions, game-based activities and digital support that progress at the child's own pace. This structure creates a calmer and more trackable English routine for children studying at home with a parent or students taking private lessons.",
+      "In the individual model, the teacher or parent can closely observe which words the child remembers, which instructions they struggle with, and in which game they speak more comfortably. The lesson flow is flexed according to this observation: sometimes listening and imitation come first, sometimes repetition is done with a story, song, card game or short speaking task. In this way the program stops being a single set of materials and turns into a learning path that tracks the child's real progress and can be sustained at home.",
+      "At the Basic level, the child gains confidence with basic vocabulary, colors, objects, emotions and simple instructions. At the Junior level, short answers and simple sentences become more visible. At the Senior level, the child follows what they hear, makes sense of the story and speaks more independently. At the PRO level, preparation for reading and writing, longer patterns and activities that support the transition to school come to the fore. This level distinction keeps the goal clear in home and private lesson use and lets the family follow progress more easily.",
+      "In home study, continuity is built through short but regular repetitions. Without having to do a long lesson every day, the child sees the same word again within a card, song, story and game. The private tutor or parent chooses the next activity by observing the child's interest between these repetitions; in this way the program moves forward without pushing the child too hard, but also without leaving them idle.",
+      "This series also gives a clearer answer to families' question of which level to start from. When the level finder, the digital library and the set structure in the store are used together, the parent first sees the child's need, then examines suitable materials and, if necessary, receives support from an institution. This turns studying English at home from an unplanned trial into a trackable learning process."
+    ]
   }
 }

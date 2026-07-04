@@ -42,6 +42,8 @@ function setIntro(description?: string) {
   return first.endsWith('.') ? first : `${first}.`;
 }
 
+type WorkshopGuide = { title?: string; paragraphs?: string[] };
+
 export default function WorkshopPageClient({
   content,
   locale,
@@ -54,6 +56,7 @@ export default function WorkshopPageClient({
   const levelsSection = content.sections?.[0];
   const exploreSection = content.sections?.[1];
   const pageUi = ((content.raw as { pageUi?: WorkshopPageUi } | undefined)?.pageUi ?? {}) as WorkshopPageUi;
+  const guide = ((content.raw as { guide?: WorkshopGuide } | undefined)?.guide ?? {}) as WorkshopGuide;
 
   useEffect(() => {
     heroVideoRef.current?.play().catch(() => {});
@@ -107,6 +110,23 @@ export default function WorkshopPageClient({
           </p>
         </div>
       </section>
+
+      {guide.paragraphs?.length ? (
+        <section className="bg-white py-12 md:py-16">
+          <div className="mx-auto max-w-[960px] px-6 md:px-12">
+            {guide.title ? (
+              <h2 className="text-center text-[28px] font-black tracking-tight text-gray-950 md:text-[36px]">
+                {guide.title}
+              </h2>
+            ) : null}
+            <div className="mt-7 space-y-5 text-[16px] leading-8 text-gray-700 md:text-[18px]">
+              {guide.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="bg-gray-50 py-10 md:py-14">
         <div className="mx-auto max-w-[1100px] px-6 md:px-12">

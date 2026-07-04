@@ -66,5 +66,15 @@
     "studentSet": "Conjunto del estudiante",
     "closeVideo": "Cerrar video",
     "playHero": "Reproducir video del Taller"
+  },
+  "guide": {
+    "title": "¿Cómo se aplica el modelo de taller?",
+    "paragraphs": [
+      "La Serie Taller está diseñada para instituciones, talleres de idiomas y programas extraescolares que desean establecer una interacción más intensa con un número reducido de niños. El objetivo es crear un entorno vivo en el que los niños usen el inglés mediante el juego, la dramatización, las asociaciones, el movimiento y tareas breves, en lugar de una clase en la que solo lo repiten. Por eso, en el taller cada niño interviene más, toca los materiales con mayor frecuencia y el docente puede seguir al instante la reacción del niño.",
+      "La estructura de grupo pequeño ofrece una retroalimentación más rápida y una repetición más flexible que la serie de aula. El docente puede reconstruir el mismo aprendizaje con distintos tipos de juegos y ajustar los pasos de escucha, imitación, respuesta corta, trabajo en parejas y juego de roles según la energía del grupo. En el modelo de taller el objetivo no es solo enseñar vocabulario, sino que el niño comprenda una instrucción en inglés, responda dentro de un juego y establezca una comunicación sencilla con un compañero.",
+      "En el nivel Basic destacan un comienzo seguro y el vocabulario básico. En el nivel Junior los niños combinan estructuras para producir respuestas más largas. En el nivel Senior aumentan la comprensión auditiva, los diálogos cortos y el seguimiento de historias. En el nivel PRO se apoyan la preparación para la lectura y la escritura, el lenguaje de proyectos y estructuras más académicas. Esta distinción garantiza que el taller no sea solo las mismas tarjetas en todos los niveles y que la institución elija un camino de aplicación claro según la edad, el nivel y los objetivos del grupo.",
+      "En la práctica del taller, lo más importante para el docente es que cada actividad esté vinculada a un propósito observable. En un juego el niño repite los colores, mientras que en otra actividad usa las mismas palabras con órdenes de movimiento; luego afianza lo aprendido con un cuento corto o una tarea de asociación. Este ciclo reduce el aburrimiento en el grupo pequeño y ayuda al alumno a usar el mismo aprendizaje en distintos contextos.",
+      "Para las instituciones, la Serie Taller puede adaptarse a distintos calendarios, como una clase de demostración, una actividad de fin de semana, un club extraescolar o un programa de idiomas boutique. Cuando los materiales físicos y la biblioteca digital se usan juntos, el docente reduce la preparación previa a la clase y puede explicar a los padres con mayor claridad qué habilidades trabaja el niño y en qué nivel."
+    ]
   }
 }

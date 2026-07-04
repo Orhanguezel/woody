@@ -71,5 +71,15 @@
     "studentSet": "Conjunto do Aluno",
     "closeVideo": "Fechar vídeo",
     "playHero": "Reproduzir vídeo do Tutor em Casa"
+  },
+  "guide": {
+    "title": "Como funciona o modelo em casa e de aulas particulares?",
+    "paragraphs": [
+      "A Série em Casa e Aulas Particulares é um modelo de aplicação mais pessoal que, no trabalho individual ou em duplas, coloca no centro o tempo de atenção da criança, seu conhecimento atual de inglês e o apoio da família. Em vez do ritmo de uma sala lotada, usa repetições curtas, atividades baseadas em brincadeiras e apoio digital que avançam no ritmo da criança. Essa estrutura cria uma rotina de inglês mais tranquila e fácil de acompanhar para crianças que estudam em casa com um dos pais ou alunos que têm aulas particulares.",
+      "No modelo individual, o professor ou o pai/mãe pode observar de perto quais palavras a criança lembra, com quais instruções tem dificuldade e em qual jogo fala com mais desenvoltura. O andamento da aula é flexibilizado conforme essa observação: às vezes a escuta e a imitação vêm primeiro, às vezes a repetição é feita com uma história, uma canção, um jogo de cartas ou uma breve tarefa de fala. Assim o programa deixa de ser um único conjunto de materiais e se torna um caminho de aprendizagem que acompanha o progresso real da criança e pode ser mantido em casa.",
+      "No nível Basic, a criança ganha confiança com vocabulário básico, cores, objetos, emoções e instruções simples. No nível Junior, as respostas curtas e as frases simples ficam mais visíveis. No nível Senior, a criança acompanha o que ouve, dá sentido à história e fala de forma mais independente. No nível PRO, destacam-se a preparação para a leitura e a escrita, estruturas mais longas e atividades que apoiam a transição para a escola. Essa distinção de níveis mantém o objetivo claro no uso em casa e em aulas particulares e permite que a família acompanhe o progresso com mais facilidade.",
+      "No estudo em casa, a continuidade é construída com repetições curtas, mas regulares. Sem precisar fazer uma aula longa todos os dias, a criança vê a mesma palavra novamente dentro de um cartão, uma canção, uma história e um jogo. O professor particular ou o pai/mãe escolhe a próxima atividade observando o interesse da criança entre essas repetições; assim o programa avança sem forçar a criança, mas também sem deixá-la ociosa.",
+      "Essa série também dá uma resposta mais clara à pergunta das famílias sobre por qual nível começar. Quando o localizador de nível, a biblioteca digital e a estrutura de conjuntos da loja são usados juntos, o pai/mãe primeiro vê a necessidade da criança, depois examina o material adequado e, se necessário, recebe apoio de uma instituição. Isso transforma o estudo de inglês em casa, de uma tentativa sem plano em um processo de aprendizagem que se pode acompanhar."
+    ]
   }
 }
