@@ -213,7 +213,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             className={`group mx-auto block max-w-[600px] rounded-lg bg-white/5 p-4 text-center no-underline transition-all duration-300 hover:bg-white/10 ${FOCUS_RING}`}
             aria-label={tUi(locale, 'Woody Academy teacher application')}
           >
-            <p className="mb-1 text-[12px] text-gray-400 md:text-[13px]">Woody Academy Kariyer</p>
+            <p className="mb-1 text-[12px] text-gray-400 md:text-[13px]">Woody Academy {tUi(locale, 'Career')}</p>
             <p className="flex items-center justify-center gap-1 text-[13px] font-medium text-white md:text-[14px]">
               <span>{tUi(locale, 'Teacher Application')}</span>
               <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>

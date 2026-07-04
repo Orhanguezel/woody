@@ -520,8 +520,15 @@ export function useUiSection(section: UiSectionKey, localeOverride?: string): Ui
   // 1) Section bazlı JSON override (ui_header, ui_footer, ...)
   const json = useMemo<Record<string, unknown>>(() => {
     const row = allUiMap.get(section);
-    return row ? tryParseJsonObject(row.value) : {};
-  }, [allUiMap, section]);
+    if (!row) return {};
+    // API, istenen dilde satır yoksa TR satırını fallback döner. O durumda
+    // section override'ı KULLANMA → lokalize hardFallback (tUi) devreye girsin.
+    // Aksi halde TR metni tüm dillere sızar (footer tagline/rights, header "DİL").
+    const rowLoc = normShortLocale((row as { locale?: unknown }).locale);
+    const wantLoc = normShortLocale(locale);
+    if (wantLoc && rowLoc && rowLoc !== wantLoc) return {};
+    return tryParseJsonObject(row.value);
+  }, [allUiMap, section, locale]);
 
   // 2) Tekil key'ler (ui_header_nav_home gibi) → label extraction
   const keyMap = useMemo(() => {
