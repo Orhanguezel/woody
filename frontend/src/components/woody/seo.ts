@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { buildPageMetadata } from '@/seo/serverMetadata';
-import { breadcrumbSchema, faqSchema, graph, localBusiness, product } from '@/seo/jsonld';
+import { breadcrumbSchema, faqSchema, graph, localBusiness } from '@/seo/jsonld';
 import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 
 import type { WoodyCard, WoodyPageContent } from './content-loader.server';
@@ -19,12 +19,6 @@ function parsePrice(value: string | number | undefined): number {
       : numeric.replace(/\.(?=\d{3}(?:\D|$))/g, '');
   const parsed = Number(normalized);
   return Number.isFinite(parsed) ? parsed : 0;
-}
-
-function absolutize(url: string | undefined, siteUrl: string): string | undefined {
-  if (!url) return undefined;
-  if (/^https?:\/\//i.test(url)) return url;
-  return `${siteUrl}${url.startsWith('/') ? url : `/${url}`}`;
 }
 
 export async function woodyMetadata(args: {
@@ -95,19 +89,14 @@ export function woodyProductGraph(args: {
   const app = getPublicAppName();
   const pageUrl = `${siteUrl}/${args.locale}${args.pathname}`;
 
+  // Teklif-bazli magaza: urunlerde fiyat/gecerli yorum yok -> Product rich snippet
+  // icin gereken offers/review/aggregateRating uretilemez. Gecersiz Product node
+  // basmak yerine (GSC "Product snippets" hatasi) yalniz BreadcrumbList birakilir.
   return graph([
     breadcrumbSchema([
       { name: app, item: `${siteUrl}/${args.locale}` },
       { name: args.item.title, item: pageUrl },
     ]),
-    product({
-      name: args.item.title,
-      description: args.item.description,
-      image: absolutize(args.item.image, siteUrl),
-      brand: app,
-      // Teklif-bazli magaza: fiyat frontende/JSON-LD'ye yansitilmaz
-      offers: undefined,
-    }),
   ]);
 }
 
@@ -129,28 +118,13 @@ export function woodyStoreListingGraph(args: {
   const siteUrl = getPublicSiteOrigin();
   const app = getPublicAppName();
   const pageUrl = `${siteUrl}/${args.locale}${args.pathname}`;
-  const nodes = [
+  // Teklif-bazli magaza: fiyat/gecerli yorum yok -> gecerli Product markup uretilemez.
+  // Listeleme sayfasinda Product node basilmaz (GSC Product-snippet hatasi olmasin);
+  // yalniz BreadcrumbList birakilir. args.items ileride fiyat eklenirse kullanilacak.
+  return graph([
     breadcrumbSchema([
       { name: app, item: `${siteUrl}/${args.locale}` },
       { name: args.content.title, item: pageUrl },
     ]),
-  ];
-
-  for (const item of args.items) {
-    const name = item.title || item.name;
-    if (!name) continue;
-    nodes.push(
-      product({
-        name,
-        description: item.description,
-        image: absolutize(item.image, siteUrl),
-        sku: String(item.id || item.slug || name),
-        brand: app,
-        // Teklif-bazli magaza: fiyat JSON-LD'ye yansitilmaz
-        offers: undefined,
-      }),
-    );
-  }
-
-  return graph(nodes);
+  ]);
 }
