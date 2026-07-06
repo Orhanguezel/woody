@@ -57,7 +57,7 @@ export const env = {
   },
 
   JWT_SECRET: requireEnv('JWT_SECRET'),
-  COOKIE_SECRET: process.env.COOKIE_SECRET ?? 'project-cookie-secret-change-in-production',
+  COOKIE_SECRET: process.env.COOKIE_SECRET || (() => { throw new Error("Missing required env: COOKIE_SECRET"); })(),
   CORS_ORIGIN,
 
   PUBLIC_URL: process.env.PUBLIC_URL ?? 'http://localhost:8086',
