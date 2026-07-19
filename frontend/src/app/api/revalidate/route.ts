@@ -1,7 +1,9 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SECRET = process.env.REVALIDATE_SECRET || 'local-revalidate-secret';
+// Sabit varsayilan YOK: fallback olsaydi env'siz her kurulum ayni bilinen
+// secret'i kullanir ve herkes cache revalidation tetikleyebilirdi.
+const SECRET = process.env.REVALIDATE_SECRET;
 
 const ALLOWED_ORIGINS = [
   process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:3094',
@@ -29,6 +31,12 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json().catch(() => ({}));
   const { secret, path, all } = body as { secret?: string; path?: string; all?: boolean };
+
+  // SECRET tanimsizsa ONCE reddet: aksi halde env eksikken saldirganin
+  // gonderdigi undefined, undefined !== undefined -> false uretip auth'u bypass eder.
+  if (!SECRET) {
+    return NextResponse.json({ error: 'revalidate_not_configured' }, { status: 500, headers });
+  }
 
   if (secret !== SECRET) {
     return NextResponse.json({ error: 'invalid_secret' }, { status: 401, headers });

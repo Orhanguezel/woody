@@ -4,12 +4,16 @@ const FRONTEND_INTERNAL_URL =
   process.env.PANEL_FRONTEND_URL ||
   process.env.NEXT_PUBLIC_FRONTEND_URL ||
   'http://127.0.0.1:3101';
-const REVALIDATE_SECRET =
-  process.env.REVALIDATE_SECRET ||
-  process.env.NEXT_PUBLIC_REVALIDATE_SECRET ||
-  'dev-only-set-REVALIDATE_SECRET';
+// NEXT_PUBLIC_ fallback KALDIRILDI: bu bir route handler, zaten sunucuda calisir.
+// NEXT_PUBLIC_ prefix'i degeri client bundle'a bake edip tarayiciya sizdiriyordu.
+// Sabit varsayilan da yok (fail-closed).
+const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET;
 
 export async function POST(req: NextRequest) {
+  if (!REVALIDATE_SECRET) {
+    return NextResponse.json({ error: 'REVALIDATE_SECRET tanimli degil' }, { status: 500 });
+  }
+
   try {
     const body = await req.json();
 
