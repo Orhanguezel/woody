@@ -23,6 +23,8 @@ export type WoodyDbBlogPost = WoodyFallbackBlogPost & {
   published_at?: string;
   meta_title?: string;
   meta_description?: string;
+  // Per-locale slug alternatifleri (hreflang/canonical dogru per-locale slug icin)
+  alternates?: Array<{ locale: string; slug: string }>;
 };
 
 function apiBase() {
@@ -62,6 +64,11 @@ function normalizeBlogPost(row: unknown): WoodyDbBlogPost | null {
     published_at: publishedAt || undefined,
     meta_title: post.meta_title || undefined,
     meta_description: post.meta_description || undefined,
+    alternates: Array.isArray((post as { alternates?: unknown }).alternates)
+      ? ((post as { alternates: Array<{ locale?: unknown; slug?: unknown }> }).alternates
+          .map((a) => ({ locale: String(a?.locale || '').trim(), slug: String(a?.slug || '').trim() }))
+          .filter((a) => a.locale && a.slug))
+      : undefined,
   };
 }
 

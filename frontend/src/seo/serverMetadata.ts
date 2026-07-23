@@ -30,6 +30,8 @@ import {
 } from '@/integrations/shared';
 import { getLocaleDescriptionFallback, getPublicAppName } from '@/lib/site-config';
 
+const WOODY_CANONICAL_LOCALES = ['tr', 'en', 'de', 'ar', 'fr', 'ru', 'es', 'it', 'nl', 'pt-br'] as const;
+
 /**
  * ✅ Server runtime base URL (proxy-safe).
  * Öncelik:
@@ -92,6 +94,9 @@ function toOgLocale(l: string): string {
 async function resolveActiveLocales(provided?: string[]) {
   const list = provided && provided.length ? provided : await fetchActiveLocales();
   const normalized = uniq(list.map((l) => normLocaleShort(l, FALLBACK_LOCALE))).filter(Boolean);
+  if (normalized.length < WOODY_CANONICAL_LOCALES.length) {
+    return [...WOODY_CANONICAL_LOCALES];
+  }
   if (!normalized.length) normalized.push(FALLBACK_LOCALE);
   return normalized;
 }
@@ -288,6 +293,10 @@ type BuildMetadataArgs = {
   locale: string;
   pathname?: string; // locale-prefixsiz path: "/" veya "/blog"
   activeLocales?: string[];
+  // Per-locale path override (locale -> "/blog/<o-dilin-slug'i>"). Cevrili slug'li
+  // sayfalar (blog) icin: hreflang/canonical her dilin KENDI slug'ini kullanir.
+  // Verildiginde hreflang yalniz bu map'teki diller icin uretilir.
+  localizedPaths?: Record<string, string>;
 };
 
 export async function buildMetadataFromSeo(
@@ -346,16 +355,24 @@ export async function buildMetadataFromSeo(
   const robotsFollow = asBool(rb.follow) ?? true;
 
   const pathname = normPath(args.pathname);
+  // Per-locale path (cevrili slug) override; yoksa generic pathname (locale-swap).
+  const lp = args.localizedPaths;
+  const pathFor = (l: string) => normPath(lp?.[l] ?? args.pathname);
 
-  // ✅ canonical SSR tek kaynak
-  const canonical = absUrlJoin(baseUrl, localizedPath(locale, pathname, defaultLocale));
+  // ✅ canonical SSR tek kaynak — mevcut dilin KENDI slug'i
+  const canonical = absUrlJoin(baseUrl, localizedPath(locale, pathFor(locale), defaultLocale));
 
-  // ✅ hreflang SSR tek kaynak
+  // ✅ hreflang SSR tek kaynak — her dil kendi slug'iyla; override varsa yalniz
+  // ceviri bulunan diller (yoksa olmayan slug'a hreflang uretmeyelim).
+  const hreflangLocales = lp ? active.filter((l) => lp[l]) : active;
   const languages: Record<string, string> = {};
-  for (const l of active) {
-    languages[l] = absUrlJoin(baseUrl, localizedPath(l, pathname, defaultLocale));
+  for (const l of hreflangLocales) {
+    languages[l] = absUrlJoin(baseUrl, localizedPath(l, pathFor(l), defaultLocale));
   }
-  languages['x-default'] = absUrlJoin(baseUrl, localizedPath(defaultLocale, pathname, defaultLocale));
+  const xDefaultLocale = lp ? (lp[defaultLocale] ? defaultLocale : hreflangLocales[0]) : defaultLocale;
+  if (xDefaultLocale) {
+    languages['x-default'] = absUrlJoin(baseUrl, localizedPath(xDefaultLocale, pathFor(xDefaultLocale), defaultLocale));
+  }
 
   const ogLocale = toOgLocale(locale);
   const ogAltLocales = active

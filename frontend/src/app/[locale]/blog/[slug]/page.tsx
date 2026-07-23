@@ -46,7 +46,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const page = dbPost ? null : await fetchCustomPagePublicBySlug({ slug, locale });
   const fallbackPost = dbPost || page ? null : await findFallbackBlogPost(slug, locale);
 
-  const base = await buildMetadataFromSeo(seo, { locale, pathname });
+  // Blog slug'lari dile gore CEVRILI -> hreflang/canonical her dilin KENDI slug'ini
+  // kullanmali. dbPost.alternates (backend'den) -> per-locale path map. Yoksa generic.
+  const localizedPaths = dbPost?.alternates?.length
+    ? Object.fromEntries(dbPost.alternates.map((a) => [a.locale, `/blog/${a.slug}`]))
+    : undefined;
+
+  const base = await buildMetadataFromSeo(seo, {
+    locale,
+    pathname,
+    ...(localizedPaths ? { localizedPaths } : {}),
+  });
 
   const pageTitle =
     safeStr(dbPost?.meta_title) ||
