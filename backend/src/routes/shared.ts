@@ -14,6 +14,7 @@ import { registerSubCategoriesAdmin } from '@shared/shared-backend/modules/subca
 import { registerProducts } from '@shared/shared-backend/modules/products/router';
 import { registerProductsAdmin } from '@shared/shared-backend/modules/products/admin.routes';
 import { registerMail } from '@shared/shared-backend/modules/mail-api';
+import { registerCustomPages, registerCustomPagesAdmin } from '@shared/shared-backend/modules/customPages';
 import { registerFooterSectionsPublic, registerPopupsPublicStub } from '@/modules/footerStub';
 // Sosyal medya & pazarlama entegrasyonları (yalnızca admin)
 import { registerTwitterAdmin } from '@shared/shared-backend/modules/twitter';
@@ -41,6 +42,8 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerBlog(api);
   // POST /api/v1/mail/test + /mail/send — admin panel SMTP test/gonderim (requireAuth)
   await registerMail(api);
+  // GET /api/v1/custom-pages — yasal metinler + kurumsal sayfalar (CMS, public)
+  await registerCustomPages(api);
 }
 
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
@@ -54,6 +57,8 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
   await registerProductsAdmin(adminApi);
   await registerOrdersAdmin(adminApi);
   await registerBlogAdmin(adminApi);
+  // CMS custom pages (yasal metinler + kurumsal sayfalar) — admin CRUD
+  await registerCustomPagesAdmin(adminApi);
   // Sosyal medya & pazarlama entegrasyonları
   await registerTwitterAdmin(adminApi);
   await registerGoogleAdsAdmin(adminApi);
