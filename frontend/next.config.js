@@ -216,6 +216,9 @@ const nextConfig = {
       { source: '/:locale/privacy-policy', destination: '/:locale/gizlilik', permanent: true },
       { source: '/:locale/cookie-policy', destination: '/:locale/cerez-politikasi', permanent: true },
       { source: '/:locale/terms', destination: '/:locale/kullanim-sartlari', permanent: true },
+      // Iceriksiz orphan yasal template route'lari -> ilgili kanonik sayfaya.
+      { source: '/:locale/privacy-notice', destination: '/:locale/gizlilik', permanent: true },
+      { source: '/:locale/legal-notice', destination: '/:locale/kvkk', permanent: true },
     ];
   },
 };
