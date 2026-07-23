@@ -19,9 +19,11 @@ type WoodyLocale = (typeof WOODY_LOCALES)[number];
 const LEGACY_STATIC_PAGES = [
   '/faqs',
   '/contact',
-  '/terms',
-  '/privacy-policy',
-  '/cookie-policy',
+  // Yasal sayfalar — kanonik TR-slug'lar (EN-slug'lar /gizlilik vb.'ye 301 redirect).
+  '/kvkk',
+  '/gizlilik',
+  '/cerez-politikasi',
+  '/kullanim-sartlari',
 ] as const;
 
 const WOODY_BLOG_CATEGORIES = [

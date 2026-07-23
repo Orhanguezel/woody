@@ -240,7 +240,7 @@ const Register: React.FC = () => {
                 required
               />
               <label htmlFor="reg-rules" className="text-sm text-text-secondary leading-snug">
-                <Link href={localizePath(locale, '/terms')} target="_blank" rel="noopener noreferrer" className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`}>Kullanım Koşullarını</Link> ve{' '}
+                <Link href={localizePath(locale, '/kullanim-sartlari')} target="_blank" rel="noopener noreferrer" className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`}>Kullanım Koşullarını</Link> ve{' '}
                 <Link href={localizePath(locale, '/kvkk')} target="_blank" rel="noopener noreferrer" className={`rounded-sm text-brand-primary hover:underline ${FOCUS_RING}`}>KVKK Aydınlatma Metnini</Link> okudum, kabul ediyorum.
               </label>
             </div>

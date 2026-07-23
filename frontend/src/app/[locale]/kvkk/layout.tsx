@@ -26,7 +26,7 @@ export async function generateMetadata({
   return {
     ...base,
     title: pageTitle,
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     ...(pageDescription ? { description: pageDescription } : {}),
     openGraph: {
       ...(base.openGraph || {}),

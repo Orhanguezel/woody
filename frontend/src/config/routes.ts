@@ -12,9 +12,9 @@ export const ROUTES = {
   contact: '/contact',
   faqs: '/faqs',
   legal: {
-    terms: '/terms',
-    privacy: '/privacy-policy',
-    cookie: '/cookie-policy',
+    terms: '/kullanim-sartlari',
+    privacy: '/gizlilik',
+    cookie: '/cerez-politikasi',
     kvkk: '/kvkk',
   },
 } as const;

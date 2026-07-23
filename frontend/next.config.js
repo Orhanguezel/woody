@@ -130,8 +130,7 @@ const nextConfig = {
         : [];
     return [
       ...devApiV1,
-      { source: '/:locale/about', destination: '/:locale?section=promises' },
-      { source: '/:locale/hakkimizda', destination: '/:locale?section=promises' },
+      { source: '/:locale/hakkimizda', destination: '/:locale/about' },
       { source: '/:locale/how-it-works', destination: '/:locale?section=hybrid_model' },
       { source: '/:locale/nasil-calisir', destination: '/:locale?section=hybrid_model' },
       { source: '/:locale/referanslar', destination: '/:locale?section=testimonials' },
@@ -141,7 +140,6 @@ const nextConfig = {
       { source: '/:locale/popular', destination: '/:locale?section=consultants_popular' },
       { source: '/:locale/trust', destination: '/:locale?section=trust' },
       { source: '/:locale/privacy', destination: '/:locale?section=trust' },
-      { source: '/:locale/gizlilik', destination: '/:locale?section=trust' },
       { source: '/uploads/:path*', destination: `${backendUrl}/uploads/:path*` },
     ];
   },
@@ -200,9 +198,24 @@ const nextConfig = {
 
   async redirects() {
     return [
+      { source: '/:locale/store/1', destination: '/:locale/store/basic-level-set-ogrenci-seti-0001', permanent: true },
+      { source: '/:locale/store/2', destination: '/:locale/store/junior-level-set-ogrenci-seti-0002', permanent: true },
+      { source: '/:locale/store/3', destination: '/:locale/store/senior-level-set-ogrenci-seti-0003', permanent: true },
+      { source: '/:locale/store/7', destination: '/:locale/store/atolye-basic-0007', permanent: true },
+      { source: '/:locale/store/8', destination: '/:locale/store/atolye-junior-0008', permanent: true },
+      { source: '/:locale/store/9', destination: '/:locale/store/atolye-senior-0009', permanent: true },
+      { source: '/:locale/store/10', destination: '/:locale/store/atolye-pro-000a', permanent: true },
+      { source: '/:locale/store/13', destination: '/:locale/store/home-basic-000d', permanent: true },
+      { source: '/:locale/store/14', destination: '/:locale/store/home-junior-000e', permanent: true },
+      { source: '/:locale/store/15', destination: '/:locale/store/home-senior-000f', permanent: true },
+      { source: '/:locale/store/16', destination: '/:locale/store/home-pro-0010', permanent: true },
       { source: '/:locale/gutschein', destination: '/:locale', permanent: true },
       { source: '/:locale/services', destination: '/:locale/consultants', permanent: true },
       { source: '/:locale/appointment', destination: '/:locale/consultants', permanent: true },
+      // Yasal sayfa duplicate URL konsolidasyonu: EN-slug -> TR-slug (kanonik) 301.
+      { source: '/:locale/privacy-policy', destination: '/:locale/gizlilik', permanent: true },
+      { source: '/:locale/cookie-policy', destination: '/:locale/cerez-politikasi', permanent: true },
+      { source: '/:locale/terms', destination: '/:locale/kullanim-sartlari', permanent: true },
     ];
   },
 };

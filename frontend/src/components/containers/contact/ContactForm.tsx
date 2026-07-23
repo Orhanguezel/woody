@@ -112,8 +112,8 @@ export default function ContactForm({ locale, t }: Props) {
     agree: `${formId}-agree`,
   };
 
-  const privacyHref = useMemo(() => localizePath(locale, '/privacy-policy'), [locale]);
-  const termsHref = useMemo(() => localizePath(locale, '/terms'), [locale]);
+  const privacyHref = useMemo(() => localizePath(locale, '/gizlilik'), [locale]);
+  const termsHref = useMemo(() => localizePath(locale, '/kullanim-sartlari'), [locale]);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

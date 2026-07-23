@@ -341,7 +341,7 @@
         "items": [
           {
             "id": "fb-terms",
-            "url": "/terms",
+            "url": "/kullanim-sartlari",
             "label": {
               "tr": "Kullanım Şartları",
               "en": "Terms",
@@ -350,7 +350,7 @@
           },
           {
             "id": "fb-privacy",
-            "url": "/privacy-policy",
+            "url": "/gizlilik",
             "label": {
               "tr": "Gizlilik Politikası",
               "en": "Privacy Policy",
@@ -359,7 +359,7 @@
           },
           {
             "id": "fb-cookie",
-            "url": "/cookie-policy",
+            "url": "/cerez-politikasi",
             "label": {
               "tr": "Çerez Politikası",
               "en": "Cookie Policy",
