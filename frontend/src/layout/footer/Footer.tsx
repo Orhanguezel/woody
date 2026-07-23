@@ -44,6 +44,33 @@ function fallbackFooterLinks(locale: string): FooterLink[] {
   ];
 }
 
+const LEGAL_LABELS: Record<string, { url: string; labels: Record<string, string> }> = {
+  kvkk: {
+    url: '/kvkk',
+    labels: { tr: 'KVKK', en: 'Privacy Notice', de: 'Datenschutzhinweis', ar: 'إشعار الخصوصية', fr: 'Avis de confidentialité', ru: 'Конфиденциальность (KVKK)', es: 'Aviso de privacidad', it: 'Privacy (KVKK)', nl: 'Privacyverklaring', 'pt-br': 'Aviso de Privacidade' },
+  },
+  privacy: {
+    url: '/gizlilik',
+    labels: { tr: 'Gizlilik Politikası', en: 'Privacy Policy', de: 'Datenschutz', ar: 'سياسة الخصوصية', fr: 'Confidentialité', ru: 'Политика конфиденциальности', es: 'Política de privacidad', it: 'Privacy', nl: 'Privacybeleid', 'pt-br': 'Política de Privacidade' },
+  },
+  cookies: {
+    url: '/cerez-politikasi',
+    labels: { tr: 'Çerez Politikası', en: 'Cookie Policy', de: 'Cookie-Richtlinie', ar: 'ملفات تعريف الارتباط', fr: 'Cookies', ru: 'Файлы cookie', es: 'Cookies', it: 'Cookie', nl: 'Cookiebeleid', 'pt-br': 'Cookies' },
+  },
+  terms: {
+    url: '/kullanim-sartlari',
+    labels: { tr: 'Kullanım Koşulları', en: 'Terms of Use', de: 'Nutzungsbedingungen', ar: 'شروط الاستخدام', fr: 'Conditions d’utilisation', ru: 'Условия использования', es: 'Términos de uso', it: 'Termini di utilizzo', nl: 'Gebruiksvoorwaarden', 'pt-br': 'Termos de Uso' },
+  },
+};
+
+function getLegalLinks(locale: string): FooterLink[] {
+  return Object.entries(LEGAL_LABELS).map(([id, cfg]) => ({
+    id,
+    url: cfg.url,
+    title: cfg.labels[locale] || cfg.labels.en,
+  }));
+}
+
 const normalizePhone = (value: string) => value.replace(/\s+/g, '');
 const normalizeWhatsApp = (value: string) => value.replace(/[^\d]/g, '');
 
@@ -222,6 +249,21 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             </p>
           </a>
         </div>
+
+        <nav
+          aria-label={tUi(locale, 'Legal')}
+          className="mb-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-white/10 pt-6 text-[12px]"
+        >
+          {getLegalLinks(locale).map((link) => (
+            <Link
+              key={link.id}
+              href={localizePath(locale, link.url)}
+              className={`text-gray-300 transition-colors hover:text-white ${FOCUS_RING}`}
+            >
+              {link.title}
+            </Link>
+          ))}
+        </nav>
 
         <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-200 md:flex-row">
           <p className="text-white/85">
