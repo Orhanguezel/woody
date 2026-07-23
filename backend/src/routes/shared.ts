@@ -13,6 +13,7 @@ import { registerSubCategories } from '@shared/shared-backend/modules/subcategor
 import { registerSubCategoriesAdmin } from '@shared/shared-backend/modules/subcategories/admin.routes';
 import { registerProducts } from '@shared/shared-backend/modules/products/router';
 import { registerProductsAdmin } from '@shared/shared-backend/modules/products/admin.routes';
+import { registerMail } from '@shared/shared-backend/modules/mail-api';
 import { registerFooterSectionsPublic, registerPopupsPublicStub } from '@/modules/footerStub';
 // Sosyal medya & pazarlama entegrasyonları (yalnızca admin)
 import { registerTwitterAdmin } from '@shared/shared-backend/modules/twitter';
@@ -38,6 +39,8 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerProducts(api);
   await registerOrders(api);
   await registerBlog(api);
+  // POST /api/v1/mail/test + /mail/send — admin panel SMTP test/gonderim (requireAuth)
+  await registerMail(api);
 }
 
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
