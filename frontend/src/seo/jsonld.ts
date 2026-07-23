@@ -34,9 +34,17 @@ export function org(input: {
   url: string;
   logo?: string;
   sameAs?: string[];
+  telephone?: string;
+  email?: string;
   description?: string;
   priceRange?: string;
   areaServed?: string | string[];
+  contactPoint?: Array<{
+    telephone?: string;
+    email?: string;
+    contactType: string;
+    availableLanguage?: string[];
+  }>;
 }): Thing {
   return {
     '@type': ['Organization', 'ProfessionalService'],
@@ -45,6 +53,19 @@ export function org(input: {
     url: input.url,
     ...(input.logo ? { logo: input.logo } : {}),
     ...(input.sameAs?.length ? { sameAs: input.sameAs } : {}),
+    ...(input.telephone ? { telephone: input.telephone } : {}),
+    ...(input.email ? { email: input.email } : {}),
+    ...(input.contactPoint?.length
+      ? {
+          contactPoint: input.contactPoint.map((point) => ({
+            '@type': 'ContactPoint',
+            contactType: point.contactType,
+            ...(point.telephone ? { telephone: point.telephone } : {}),
+            ...(point.email ? { email: point.email } : {}),
+            ...(point.availableLanguage?.length ? { availableLanguage: point.availableLanguage } : {}),
+          })),
+        }
+      : {}),
     ...(input.description ? { description: input.description } : {}),
     ...(input.priceRange ? { priceRange: input.priceRange } : {}),
     ...(input.areaServed
@@ -395,7 +416,7 @@ export function articleEnhanced(input: {
   image?: string | string[];
   datePublished: string; // ISO
   dateModified?: string; // ISO
-  author?: { name: string; url?: string; jobTitle?: string };
+  author?: { name: string; url?: string; jobTitle?: string; sameAs?: string[]; image?: string };
   publisherId?: string; // organization @id
   url?: string;
   speakableSelectors?: string[]; // CSS selectors — örn ["h1","[data-speakable]"]
@@ -415,10 +436,12 @@ export function articleEnhanced(input: {
 
   if (input.author) {
     (node as any).author = {
-      '@type': 'Person',
+      '@type': input.author.name.toLowerCase().includes('editorial team') ? 'Organization' : 'Person',
       name: input.author.name,
       ...(input.author.url ? { url: input.author.url } : {}),
       ...(input.author.jobTitle ? { jobTitle: input.author.jobTitle } : {}),
+      ...(input.author.image ? { image: input.author.image } : {}),
+      ...(input.author.sameAs?.length ? { sameAs: input.author.sameAs } : {}),
     };
   }
 

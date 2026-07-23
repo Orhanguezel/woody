@@ -17,7 +17,7 @@
   },
   "site": {
     "originFallback": "https://woodyvearkadaslari.com",
-    "apiBaseFallback": "http://127.0.0.1:8086/api/v1"
+    "apiBaseFallback": "http://127.0.0.1:8101/api/v1"
   },
   "contact": {
     "companyName": "Woody and Friends",
@@ -115,6 +115,16 @@
   },
   "editorial": {
     "teamNameTemplate": "{{appName}} Editorial Team"
+  },
+  "author": {
+    "name": "Yalçın Karakuş",
+    "jobTitle": "Kurucu & Okul Öncesi İngilizce Eğitim İçerik Geliştiricisi",
+    "url": "/about",
+    "image": "",
+    "sameAs": [],
+    "bioTr": "Yalçın Karakuş, çocukların İngilizceyle erken yaşta doğal ve keyifli bir şekilde tanışması hedefiyle {{appName}} okul öncesi İngilizce eğitim setini geliştiren Mina Yayınevi'nin kurucusudur. Okul öncesi dönemde dil edinimi, hikâye temelli öğrenme ve dijital eğitim içerikleri üzerine çalışıyor; öğretmenler ve ebeveynler için yaşa uygun, oyunla öğreten materyaller tasarlıyor.",
+    "bioEn": "Yalçın Karakuş is the founder of Mina Yayınevi, the publisher behind the {{appName}} preschool English learning system, dedicated to introducing children to English early, naturally and joyfully. He works on early-age language acquisition, story-based learning and digital educational content, designing age-appropriate, play-based materials for teachers and parents.",
+    "knowsAbout": ["Okul öncesi İngilizce eğitimi", "Erken yaşta dil edinimi", "Hikâye temelli öğrenme", "Dijital eğitim içerikleri", "Çocuk yayıncılığı"]
   },
   "manifest": {
     "nameKey": "manifest.name",

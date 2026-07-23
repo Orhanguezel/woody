@@ -10,7 +10,7 @@ import { buildMetadataFromSeo, fetchSeoObject, fetchCustomPagePublicBySlug } fro
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld';
 import FaqAccordion from '@/components/common/FaqAccordion';
-import { getEditorialTeamName, getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
+import { getEditorialTeamName, getPublicAppName, getPublicSiteOrigin, getSiteAuthor } from '@/lib/site-config';
 import { findFallbackBlogPost, loadFallbackBlogPosts } from '@/components/woody/blog-loader.server';
 import { loadDbBlogPost, loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
 import WoodyBlogFallbackDetail from '@/components/woody/WoodyBlogFallbackDetail';
@@ -117,6 +117,29 @@ export default async function BlogDetailsPage({ params }: PageProps) {
   const app = getPublicAppName();
   const editorialName = getEditorialTeamName();
   const siteUrl = getPublicSiteOrigin();
+  const siteAuthor = getSiteAuthor(locale);
+  const aboutUrl = `${siteUrl}/${locale}/about`;
+  const postAuthorName = safeStr(dbPost?.author) || safeStr(fallbackPost?.author);
+  // Gercek kisi yazar (E-E-A-T): post yazari bos, site yazariyla ayni VEYA generic bir
+  // editor/ekip adiysa zengin Person (jobTitle/sameAs) kullan; admin gercek farkli bir
+  // yazar girmisse yalniz adiyla goster.
+  const _pa = postAuthorName.trim().toLowerCase();
+  const isGenericEditorial =
+    !_pa ||
+    _pa === siteAuthor.name.trim().toLowerCase() ||
+    _pa === editorialName.trim().toLowerCase() ||
+    /edit(o|ö)r|editorial|ekib|ekip|team|takım/i.test(_pa);
+  const isSiteAuthor = isGenericEditorial;
+  const displayAuthorName = isSiteAuthor ? siteAuthor.name : postAuthorName;
+  const articleAuthor = isSiteAuthor
+    ? {
+        name: siteAuthor.name,
+        url: aboutUrl,
+        jobTitle: siteAuthor.jobTitle,
+        ...(siteAuthor.image ? { image: siteAuthor.image } : {}),
+        ...(siteAuthor.sameAs.length ? { sameAs: siteAuthor.sameAs } : {}),
+      }
+    : { name: postAuthorName, url: aboutUrl };
   const pageUrl = `${siteUrl}/${locale}/blog/${encodeURIComponent(slug)}`;
   const image =
     safeStr(dbPost?.featured_image) ||
@@ -153,10 +176,10 @@ export default async function BlogDetailsPage({ params }: PageProps) {
             image: image ? absUrlJoin(siteUrl, image) : undefined,
             datePublished: dbPost?.created_at || page?.created_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
             dateModified: dbPost?.updated_at || dbPost?.created_at || page?.updated_at || page?.created_at || fallbackPost?.updated_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
-            author: { name: editorialName, url: `${siteUrl}/${locale}/about` },
+            author: articleAuthor,
             publisherId: `${siteUrl}/#org`,
             url: pageUrl,
-            speakableSelectors: ['h1', '[data-speakable]'],
+            speakableSelectors: ['h1'],
             inLanguage: locale,
           }),
           faqSchema(faqItems),
@@ -175,14 +198,21 @@ export default async function BlogDetailsPage({ params }: PageProps) {
       <FaqAccordion items={faqItems} title={tUi(locale, 'Questions About This Article')} />
       <section className="container mx-auto px-4 pb-16">
         <div className="rounded-2xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/55 p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gm-gold)]">
-            {tUi(locale, 'Editorial team')}
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-(--gm-gold)">
+            {locale === 'tr' ? 'Yazar' : 'Author'}
           </p>
-          <h2 className="mt-2 text-2xl font-semibold text-[var(--gm-text)]">{editorialName}</h2>
+          <h2 className="mt-2 text-2xl font-semibold text-[var(--gm-text)]">
+            {displayAuthorName}
+          </h2>
+          {isSiteAuthor && siteAuthor.jobTitle ? (
+            <p className="mt-1 text-sm font-medium text-(--gm-gold)">{siteAuthor.jobTitle}</p>
+          ) : null}
           <p className="mt-3 text-[var(--gm-text-dim)]">
-            {locale === 'tr'
-              ? `${app} editörleri içerikleri sade, sorumlu ve uygulanabilir bir dille hazırlar.`
-              : `${app} editors prepare content in clear, responsible, and practical language.`}
+            {isSiteAuthor && siteAuthor.bio
+              ? siteAuthor.bio
+              : locale === 'tr'
+                ? `${app} editörleri içerikleri sade, sorumlu ve uygulanabilir bir dille hazırlar.`
+                : `${app} editors prepare content in clear, responsible, and practical language.`}
           </p>
         </div>
       </section>

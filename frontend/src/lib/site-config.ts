@@ -311,6 +311,38 @@ export function getEditorialTeamName(): string {
   return tpl ? resolveBrandTemplate(tpl) : getPublicAppName();
 }
 
+export type SiteAuthor = {
+  name: string;
+  jobTitle: string;
+  url: string;
+  image: string;
+  sameAs: string[];
+  bio: string;
+  knowsAbout: string[];
+};
+
+/**
+ * Blog/makale ve /about icin gercek yazar (kisi) bilgisi — config-driven
+ * (site-defaults.author), env ile override edilebilir. Author JSON-LD + byline.
+ */
+export function getSiteAuthor(locale?: string): SiteAuthor {
+  const raw = (siteDefaults as { author?: Record<string, unknown> }).author || {};
+  const origin = getPublicSiteOrigin();
+  const name = resolveBrandTemplate(String(raw.name || '').trim()) || getPublicAppName();
+  const jobTitle = resolveBrandTemplate(String(raw.jobTitle || '').trim());
+  const urlPath = String(raw.url || '/about').trim();
+  const url = urlPath.startsWith('http')
+    ? urlPath
+    : `${origin}${locale ? `/${locale}` : ''}${urlPath.startsWith('/') ? urlPath : `/${urlPath}`}`;
+  const rawImage = String(raw.image || '').trim();
+  const image = rawImage ? (rawImage.startsWith('http') ? rawImage : `${origin}${rawImage.startsWith('/') ? rawImage : `/${rawImage}`}`) : '';
+  const sameAs = Array.isArray(raw.sameAs) ? (raw.sameAs as unknown[]).map((s) => String(s).trim()).filter(Boolean) : [];
+  const bioRaw = String((locale === 'tr' ? raw.bioTr : raw.bioEn) || raw.bioTr || '').trim();
+  const bio = resolveBrandTemplate(bioRaw);
+  const knowsAbout = Array.isArray(raw.knowsAbout) ? (raw.knowsAbout as unknown[]).map((s) => String(s).trim()).filter(Boolean) : [];
+  return { name, jobTitle, url, image, sameAs, bio, knowsAbout };
+}
+
 export function getCookieConsentStorageKey(version: string): string {
   const slug = process.env.NEXT_PUBLIC_COOKIE_CONSENT_KEY_PREFIX?.trim() || 'site';
   return `${slug}_cookie_consent_v${version}`;
