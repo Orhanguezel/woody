@@ -9,7 +9,19 @@ import { getPublicSiteOrigin } from '@/lib/site-config';
 
 const BASE_URL = getPublicSiteOrigin();
 
-const COMMON_DISALLOW = ['/api/', '/admin/', '/me/', '/*/me/', '/*/profile/', '/*/school/assets'];
+const COMMON_DISALLOW = [
+  '/api/',
+  '/admin/',
+  '/me/',
+  '/*/me/',
+  '/*/profile/',
+  '/*/school/assets',
+  // Dekoratif arka plan videolari (.mp4, muted/loop hero background) — "izlenebilir
+  // icerik" degil. Google video crawler'i "Video izleme sayfasinda yer almiyor" hatasi
+  // veriyordu. Gercek icerik videolari YouTube'da (VideoObject embedUrl) — etkilenmez.
+  // Gorseller (.jpg/.png) crawl'a acik kalir; sadece ham .mp4 kapatilir.
+  '/*.mp4$',
+];
 
 /** AI crawler bot listesi — explicit allow ile site içeriğine erişim onaylanır. */
 const AI_BOTS = [
