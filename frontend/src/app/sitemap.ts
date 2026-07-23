@@ -6,7 +6,7 @@ import {
   WOODY_PAGE_ROUTES,
 } from '@/components/woody/routes';
 import { loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
-import { loadWoodyProducts } from '@/components/woody/content-loader.server';
+import { loadDbStoreProducts } from '@/components/woody/store/load-store-products.server';
 
 // Sitemap blog verisini canli API'den (DB i18n) ceker; build aninda backend her zaman
 // erisilebilir olmayabilir -> statik uretimde blog bos kalir. Runtime'da uret + 1s ISR cache.
@@ -115,9 +115,12 @@ async function blogRoutes(): Promise<SitemapRoute[]> {
 }
 
 async function storeProductRoutes(): Promise<SitemapRoute[]> {
-  const products = await loadWoodyProducts('store-products', WOODY_DEFAULT_LOCALE);
+  // Gercek DB urunleri (gercek slug) — store sayfasiyla ayni kaynak. Onceden config'ten
+  // okunuyordu; config'te slug yok -> normalizeCard slug=id yapip /store/2 gibi REDIRECT
+  // eden numerik URL'ler sitemap'e giriyordu (GSC "Yonlendirmeli sayfa"). Duzeltildi.
+  const products = await loadDbStoreProducts(WOODY_DEFAULT_LOCALE);
   return products
-    .filter((product) => product.slug)
+    .filter((product) => product.slug && !/^\d+$/.test(String(product.slug)))
     .map((product) => ({
       path: `/store/${product.slug}`,
       priority: 0.72,
