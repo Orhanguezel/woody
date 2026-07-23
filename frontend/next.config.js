@@ -219,6 +219,35 @@ const nextConfig = {
       // Iceriksiz orphan yasal template route'lari -> ilgili kanonik sayfaya.
       { source: '/:locale/privacy-notice', destination: '/:locale/gizlilik', permanent: true },
       { source: '/:locale/legal-notice', destination: '/:locale/kvkk', permanent: true },
+
+      // --- Eski WordPress/woodymagaza site yapisi -> yeni (GSC "Bulunamadi 404" gideri) ---
+      // Ozel woodymagaza alt-yollari (catch-all'dan ONCE gelmeli):
+      { source: '/woodymagaza/blog/:path*', destination: '/tr/blog', permanent: true },
+      { source: '/woodymagaza/urun/:path*', destination: '/tr/store', permanent: true },
+      { source: '/woodymagaza/kategori/:path*', destination: '/tr/store', permanent: true },
+      { source: '/woodymagaza/iletisim', destination: '/tr/contact', permanent: true },
+      { source: '/woodymagaza/giris-yap', destination: '/tr/login', permanent: true },
+      { source: '/woodymagaza/kayit-ol', destination: '/tr/register', permanent: true },
+      { source: '/woodymagaza/:path*', destination: '/tr', permanent: true },
+      { source: '/woodymagaza', destination: '/tr', permanent: true },
+      // Eski icerik sayfalari — locale'li (gecerli locale'lerle sinirli):
+      { source: '/:locale(tr|en|de|ar|fr|ru|es|it|nl|pt-br)/fiyatlar', destination: '/:locale/store', permanent: true },
+      { source: '/:locale(tr|en|de|ar|fr|ru|es|it|nl|pt-br)/demo-talep', destination: '/:locale/contact', permanent: true },
+      { source: '/:locale(tr|en|de|ar|fr|ru|es|it|nl|pt-br)/ev-basic', destination: '/:locale/home-tutor', permanent: true },
+      { source: '/:locale(tr|en|de|ar|fr|ru|es|it|nl|pt-br)/ev-junior', destination: '/:locale/home-tutor', permanent: true },
+      { source: '/:locale(tr|en|de|ar|fr|ru|es|it|nl|pt-br)/local/:path*', destination: '/:locale/preschool', permanent: true },
+      { source: '/:locale(tr|en|de|ar|fr|ru|es|it|nl|pt-br)/sss', destination: '/:locale/faqs', permanent: true },
+      // Eski icerik sayfalari — locale'siz (eski WP kok URL'leri):
+      { source: '/fiyatlar', destination: '/tr/store', permanent: true },
+      { source: '/fiyat', destination: '/tr/store', permanent: true },
+      { source: '/demo-talep', destination: '/tr/contact', permanent: true },
+      { source: '/ev-basic', destination: '/tr/home-tutor', permanent: true },
+      { source: '/ev-junior', destination: '/tr/home-tutor', permanent: true },
+      { source: '/ogrenci-junior', destination: '/tr/home-tutor', permanent: true },
+      { source: '/sss', destination: '/tr/faqs', permanent: true },
+      { source: '/gallery', destination: '/tr', permanent: true },
+      { source: '/anaokulu-ingilizce-egitimi-kapsamli-rehber', destination: '/tr/preschool', permanent: true },
+      { source: '/local/istanbul-anaokulu-ingilizce-egitimi', destination: '/tr/preschool', permanent: true },
     ];
   },
 };
