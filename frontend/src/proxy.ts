@@ -39,9 +39,13 @@ export function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // Locale prefix var ve destekli — olduğu gibi geç
+  // Locale prefix var ve destekli — olduğu gibi geç.
+  // x-pathname: RootLayout <html lang> için (headers() path'i başka türlü göremez;
+  // eski x-next-url/x-invoke-path Next tarafından set edilmiyordu → lang hep 'tr' kalıyordu).
   if (firstSeg && (SUPPORTED_LOCALES as readonly string[]).includes(firstSeg)) {
-    return NextResponse.next();
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set('x-pathname', pathname);
+    return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
   // Locale prefix YOK → default locale'e 308 REDIRECT (URL /tr/...'ye DEĞİŞİR)

@@ -50,7 +50,9 @@ const SUPPORTED_LOCALES = ['tr', 'en', 'de'];
 /** Extract locale from the request URL pathname (e.g. /en/about → "en") */
 async function resolveHtmlLang(): Promise<string> {
   const h = await headers();
-  const pathname = h.get('x-next-url') || h.get('x-invoke-path') || '';
+  // x-pathname proxy.ts'te set edilir; x-next-url/x-invoke-path Next tarafından
+  // SET EDİLMİYOR (ölü fallback) — onlarla lang her locale'de 'tr' kalıyordu.
+  const pathname = h.get('x-pathname') || h.get('x-next-url') || h.get('x-invoke-path') || '';
   const seg = pathname.split('/').filter(Boolean)[0] || '';
   if (SUPPORTED_LOCALES.includes(seg)) return seg;
   return 'tr';
