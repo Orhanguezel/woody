@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
 import { tUi } from '@/i18n/staticUi';
 
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
   useConfirmEmailVerificationMutation,
@@ -13,7 +13,7 @@ import { useLocaleShort } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
 
 export default function VerifyEmailPage() {
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const token = searchParams.get('token');
   const mode = searchParams.get('mode');
   const email = searchParams.get('email');

@@ -9,7 +9,8 @@
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
+import { usePathname } from 'next/navigation';
 
 import { useLocaleShort } from '@/i18n';
 import { useGetSiteSettingByKeyQuery } from '@/integrations/rtk/hooks';
@@ -85,7 +86,7 @@ function buildShareLinks(input: { url: string; title?: string; text?: string }) 
 
 export default function SocialShare(props: SocialShareProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const locale = useLocaleShort();
 
   const showLabel = props.showLabel ?? true;

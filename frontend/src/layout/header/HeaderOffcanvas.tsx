@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
 import { tUi } from '@/i18n/staticUi';
 
 import Link from 'next/link';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 import { SiteLogo } from '@/layout/SiteLogo';
 import { useLocaleShort, switchLocale, useActiveLocales } from '@/i18n';
@@ -71,7 +72,7 @@ const cleanHashLink = (href: string) => {
 const HeaderOffcanvas: React.FC<HeaderOffcanvasProps> = ({ open, onClose, brand, locale: localeProp }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const asPath = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
 
   const resolvedLocale = useLocaleShort(localeProp);

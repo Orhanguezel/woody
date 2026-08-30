@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, Suspense } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
+import { usePathname } from 'next/navigation';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -9,7 +10,7 @@ NProgress.configure({ showSpinner: false, trickleSpeed: 120 });
 
 function NProgressHandler() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
 
   useEffect(() => {
     NProgress.done();

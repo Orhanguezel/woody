@@ -1,7 +1,12 @@
-import './globals.css';
+// =============================================================
+// FILE: src/app/root-shell.tsx
+// Cift root layout icin ortak <html> kabugu + kok metadata/viewport ureticileri.
+// (2026-08-30 lang refactor: <html lang> artik headers()'tan DEGIL, layout'un
+// kendi locale bilgisinden gelir — statik prerender'da da dogru cikar.
+// headers() KULLANMA: generateStaticParams'li segmentlerde DYNAMIC_SERVER_USAGE 500.)
+// =============================================================
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { headers } from 'next/headers';
 import { brandFontVariableClassName } from '@/lib/fonts/brand-fonts';
 import { fetchSetting } from '@/i18n/server';
 import { fetchDesignTokens } from '@/lib/tokens/fetchTokens.server';
@@ -14,7 +19,7 @@ import {
   getRootLayoutTitleTemplate,
 } from '@/lib/site-config';
 
-export async function generateViewport(): Promise<Viewport> {
+export async function buildRootViewport(): Promise<Viewport> {
   let themeColor = getDefaultTokenBranding().theme_color;
   try {
     const row = await fetchSetting('design_tokens', '*', { revalidate: 300 });
@@ -45,20 +50,8 @@ function extractUrl(val: unknown): string {
   return '';
 }
 
-const SUPPORTED_LOCALES = ['tr', 'en', 'de'];
-
-/** Extract locale from the request URL pathname (e.g. /en/about → "en") */
-async function resolveHtmlLang(): Promise<string> {
-  const h = await headers();
-  // x-pathname proxy.ts'te set edilir; x-next-url/x-invoke-path Next tarafından
-  // SET EDİLMİYOR (ölü fallback) — onlarla lang her locale'de 'tr' kalıyordu.
-  const pathname = h.get('x-pathname') || h.get('x-next-url') || h.get('x-invoke-path') || '';
-  const seg = pathname.split('/').filter(Boolean)[0] || '';
-  if (SUPPORTED_LOCALES.includes(seg)) return seg;
-  return 'tr';
-}
-
-export async function generateMetadata(): Promise<Metadata> {
+/** Kok metadata: metadataBase, title template, manifest, ikonlar, site dogrulamalari. */
+export async function buildRootMetadata(): Promise<Metadata> {
   const favicon = await fetchSetting('site_favicon', '*');
   const faviconUrl = extractUrl(favicon?.value) || '/favicon.svg';
 
@@ -91,9 +84,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 
   if (gscCode) {
-    metadata.verification = {
-      google: gscCode,
-    };
+    metadata.verification = { google: gscCode };
   }
 
   if (bingCode) {
@@ -109,8 +100,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return metadata;
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const lang = await resolveHtmlLang();
+/** Ortak <html> kabugu — lang cagiran layout'tan gelir (params.locale ya da varsayilan). */
+export async function RootHtmlShell({
+  lang,
+  children,
+}: {
+  lang: string;
+  children: React.ReactNode;
+}) {
   // Tema mode'u design_tokens içindeki bg_base luminance'ından hesapla (preset'ten gelir).
   // Kullanıcı manuel toggle yaparsa client-side override eder (localStorage).
   const tokens = await fetchDesignTokens();

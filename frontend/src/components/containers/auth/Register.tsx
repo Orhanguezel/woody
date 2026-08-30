@@ -6,8 +6,9 @@
 'use client';
 
 import React, { useState, useMemo, FormEvent } from 'react';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import {
   useSignupMutation,
@@ -25,7 +26,7 @@ import { getSampleEmailPlaceholder } from '@/lib/site-config';
 const Register: React.FC = () => {
   const router = useRouter();
   const locale = useLocaleShort();
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const { ui } = useUiSection('ui_auth', locale as any);
 
   const nextHref = useMemo(() => {

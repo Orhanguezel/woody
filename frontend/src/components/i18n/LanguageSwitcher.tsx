@@ -4,7 +4,8 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
+import { useRouter, usePathname } from 'next/navigation';
 
 import { FOCUS_RING } from '@/lib/a11y';
 import { useActiveLocales, switchLocale } from '@/i18n';
@@ -48,7 +49,7 @@ function resolveCurrentLocaleFromPath(asPath: string, activeLocales: string[]): 
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const asPath = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
 
   const { locales, isLoading } = useActiveLocales();

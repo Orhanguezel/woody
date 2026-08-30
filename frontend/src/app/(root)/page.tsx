@@ -3,8 +3,8 @@ import React, { Suspense } from 'react';
 import { Inter, Playfair_Display } from 'next/font/google';
 
 import HomeContent from '@/components/containers/home/HomeContent';
-import { Providers } from './providers';
-import ClientLayout from './ClientLayout';
+import { Providers } from '../providers';
+import ClientLayout from '../ClientLayout';
 import { getDefaultLocale } from '@/i18n/server';
 import { buildMetadataFromSeo, fetchSeoObject } from '@/seo/server';
 

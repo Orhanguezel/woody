@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Suspense } from 'react';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
 import HeroNew from './HeroNew';
 import BannerSlot from './BannerSlot';
 import type { HomeSection } from './fetchHomeLayout.server';
@@ -22,7 +23,6 @@ const REGISTRY: Record<string, any> = {
   HomeCTABanner,
 };
 
-import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 interface Props {
@@ -34,7 +34,7 @@ interface Props {
 }
 
 export default function HomeLayoutRenderer({ layout, locale, featuresImageUrls, homeCopies }: Props) {
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const sectionParam = searchParams.get('section');
 
   useEffect(() => {

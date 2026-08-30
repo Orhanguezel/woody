@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, FormEvent } from 'react';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
 import { tUi } from '@/i18n/staticUi';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useConfirmPasswordResetMutation } from '@/integrations/rtk/hooks';
 import { useLocaleShort } from '@/i18n';
 import { localizePath, normalizeError } from '@/integrations/shared';
@@ -12,7 +12,7 @@ import { AUTH_FIELD_CLS, FOCUS_RING } from '@/lib/a11y';
 
 export default function PasswordResetPage() {
   const locale = useLocaleShort();
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const token = searchParams.get('token');
 
   const [password, setPassword] = useState('');

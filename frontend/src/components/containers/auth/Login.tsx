@@ -8,6 +8,7 @@
 'use client';
 
 import React, { useState, useMemo, FormEvent } from 'react';
+import { useClientSearchParams } from '@/lib/useClientSearchParams';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -17,7 +18,6 @@ import {
 } from '@/integrations/rtk/hooks';
 import { tokenStore } from '@/integrations/rtk/token';
 import { normalizeError } from '@/integrations/shared';
-import { useSearchParams } from 'next/navigation';
 import SocialLoginButtons from '@/components/auth/SocialLoginButtons';
 
 // i18n
@@ -33,7 +33,7 @@ function trimSlash(x: string) {
 const Login: React.FC = () => {
   const router = useRouter();
   const locale = useLocaleShort();
-  const searchParams = useSearchParams();
+  const searchParams = useClientSearchParams();
   const { ui } = useUiSection('ui_auth', locale as any);
 
   // Login sonrası dönüş URL'i: ?next=/tr/profile gibi güvenli yerel sayfalara döner.
