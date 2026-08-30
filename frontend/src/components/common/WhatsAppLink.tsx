@@ -18,17 +18,9 @@ type WhatsAppLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'hr
 export function WhatsAppLink({ phone, text, children, ...rest }: WhatsAppLinkProps) {
   const [href, setHref] = React.useState(() => buildWhatsAppHref(phone, text));
   const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
-    try {
-      window.gtag?.('event', 'whatsapp_click', {
-        page_path: window.location.pathname,
-        phone: phone || undefined,
-      });
-      // Not: Google Ads WhatsApp lead dönüşümü artık merkezi
-      // AdsConversionClicks (document delegated listener) ile tetikleniyor;
-      // burada tekrar tetiklenmez (çift sayım önlenir).
-    } catch {
-      // Analytics is optional.
-    }
+    // Not: hem Google Ads WhatsApp dönüşümü hem GA4 'whatsapp_click' olayı artık
+    // merkezi AdsConversionClicks (document delegated listener) → reportAdsConversion
+    // zincirinden geçiyor. Burada tekrar tetiklenmez (çift sayım önlenir).
     rest.onClick?.(event);
   };
 

@@ -1,0 +1,1 @@
+export { registerContentSourcePublic } from './router';

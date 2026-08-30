@@ -10,6 +10,7 @@ import { registerQuoteRequestsAdmin, registerQuoteRequestsPublic } from '@/modul
 import { registerContactsAdmin, registerContactsPublic } from '@/modules/contacts';
 import { registerSubscriptionsAdmin, registerSubscriptionsPublic } from '@/modules/subscriptions';
 import { registerWaitlistPublic } from '@/modules/waitlist';
+import { registerContentSourcePublic } from '@/modules/contentSource';
 
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerHomeLayoutPublic(api);
@@ -21,6 +22,8 @@ export async function registerProjectPublic(api: FastifyInstance) {
   await registerContactsPublic(api);
   await registerSubscriptionsPublic(api);
   await registerWaitlistPublic(api);
+  // Tanitio icerik kaynagi kontrati v1.3 — GET /content-source/articles + /products
+  await registerContentSourcePublic(api);
 
   // Notifications: backend'de gercek modul yok; admin paneli sidebar'i
   // /notifications/unread-count'u 60sn'de bir polling yapip 404 + retry dongusu uretiyordu.

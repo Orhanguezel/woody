@@ -15,6 +15,30 @@ import {
 export type { GoogleAdsConversionKind };
 
 /**
+ * Ads dönüşümünün GA4 karşılığı. Site lead-gen (e-ticaret değil) — GA4 tarafında
+ * purchase/add_to_cart yok, lead olayları var. Tek çağrı noktası burası olduğu
+ * için (ContactForm.onSubmit + AdsConversionClicks) olay tam bir kez atılır.
+ */
+const GA4_EVENT: Record<GoogleAdsConversionKind, string> = {
+  form: 'generate_lead',
+  whatsapp: 'whatsapp_click',
+  phone: 'phone_click',
+};
+
+function reportGa4Lead(kind: GoogleAdsConversionKind): void {
+  const gtag = window.gtag;
+  if (typeof gtag !== 'function') return;
+  try {
+    gtag('event', GA4_EVENT[kind], {
+      page_path: window.location.pathname,
+      lead_channel: kind,
+    });
+  } catch {
+    // Analytics opsiyonel — dönüşüm/navigasyon akışını asla bozmaz.
+  }
+}
+
+/**
  * Bir lead dönüşümünü Google Ads'e bildirir.
  * @param kind   'form' | 'whatsapp' | 'phone'
  * @param url    (opsiyonel) dönüşüm sonrası yönlendirilecek URL — verilirse
@@ -22,6 +46,10 @@ export type { GoogleAdsConversionKind };
  */
 export function reportAdsConversion(kind: GoogleAdsConversionKind, url?: string): void {
   if (typeof window === 'undefined') return;
+
+  // GA4 lead olayi Ads etiketinden BAGIMSIZ atilir: etiket/ID eksik olsa bile
+  // GA4 raporlarinda lead gorunur.
+  reportGa4Lead(kind);
 
   const gtag = window.gtag;
   const conversionId = getDefaultGoogleAdsConversionId();
