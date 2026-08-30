@@ -173,7 +173,7 @@ export default function WoodyStoreShowcase({
     : [];
 
   return (
-    <main className="bg-[#fff9ee] text-[#24333f]">
+    <main className="bg-white text-[#24333f]">
       <WoodyPageLogoHeader
         title="Woody Store"
         locale={locale}

@@ -119,3 +119,13 @@ Kural: her fazın sonunda `bun run build` yeşil + ilgili doğrulama maddesi iş
 - [ ] Müşteriye kusur listesi iletildi (5.1–5.5)
 - [ ] `project.portfolio.json` + `projects:scan` güncel
 - [x] Deploy + canlı smoke test
+
+## Faz 6 — SEO bulgu turu (2026-08-30 akşam, ekosistem oturumuyla ortak)
+
+- [x] 6 sayfa title 30-60 karaktere (workshop/home-tutor/woody-academy/blog/library/store; canlı `seo_pages` admin API + config tr/en + 020 seed) — suffix payı hesaba katıldı
+- [x] Store SEO: "yaşa uygun set" niyeti (title + heroSubtitle) + Seviye Bulucu'ya ageCta butonu (ekosistem devri)
+- [x] nginx: kök istek `location = / { return 308 /tr; }` apex 443'te — Next proxy hop'u kalktı (canlı conf yedeği: /root/woody.conf.yedek-20260830; repo conf canlıdan FARKLI, aynen basılmaz)
+- [x] Blog yanlış-locale kopya fix: generateStaticParams locale-başına slug; yanlış dilde slug → 308 doğru URL'ye; bilinmeyen slug → 404 (eski: her slug 200 + self-canonical → GSC 1527/765 kök nedeni; bulgu: ekosistem oturumu)
+- [x] sameAs kontrolü: 3 sosyal profil (YouTube/FB/IG) zaten tüm sayfalarda JSON-LD'de — denetim aracı ölçememiş, iş çıkmadı
+- [ ] Lighthouse derin işler: kullanılmayan JS, TTI 4.1s, kontrast/dokunma hedefleri (ayrı tur)
+- [ ] GEO: Wikipedia/Wikidata + sosyal profil tamamlama — ekosistem oturumu Orhan'a raporluyor

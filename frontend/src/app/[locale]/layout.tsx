@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { tUi } from '@/i18n/staticUi';
 
-import { Suspense } from 'react';
 
 import { Providers } from '../providers';
 import ClientLayout from '../ClientLayout';
@@ -108,11 +107,12 @@ export default async function RootLayout({
         <JsonLd data={jsonLdData} id="site-graph" />
         <ScrollAnchorFixer />
         <Providers>
-          <Suspense fallback={null}>
-            <ClientLayout locale={locale} initialMenuItems={initialMenuItems}>
-              {children}
-            </ClientLayout>
-          </Suspense>
+          {/* Suspense KALDIRILDI (2026-08-30): children'i sarmak tum sayfalari stream
+              ediyor, notFound()/redirect() hep 200 donuyordu (soft-404 fabrikasi).
+              useSearchParams ihtiyaci ClientLayout icindeki kucuk Suspense adasinda. */}
+          <ClientLayout locale={locale} initialMenuItems={initialMenuItems}>
+            {children}
+          </ClientLayout>
         </Providers>
       </div>
     </ThemeProvider>

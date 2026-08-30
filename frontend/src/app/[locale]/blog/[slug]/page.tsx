@@ -1,4 +1,5 @@
 import React from 'react';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { tUi } from '@/i18n/staticUi';
 
 import type { Metadata } from 'next';
@@ -21,15 +22,40 @@ type PageProps = {
 };
 
 export async function generateStaticParams() {
-  const posts = await loadDbBlogPosts('tr').then((rows) =>
-    rows.length > 0 ? rows : loadFallbackBlogPosts('tr'),
+  // GSC cift-indeks fix (2026-08-30): her locale YALNIZ KENDI slug'lariyla prerender edilir.
+  // Eski hali tr slug'larini 10 locale'e carpiyordu -> /fr/blog/<tr-slug> gibi ~10x kopya
+  // sayfa 200 + self-canonical donuyordu (1527 index / 765 degil tablosunun ana kaynagi).
+  const perLocale = await Promise.all(
+    WOODY_LOCALES.map(async (locale) => {
+      const rows = await loadDbBlogPosts(locale);
+      // Fallback icerik Turkce — yalniz tr'de slug kaynagi olabilir
+      const posts = rows.length > 0 ? rows : locale === 'tr' ? await loadFallbackBlogPosts('tr') : [];
+      return posts.map((post) => ({ locale, slug: post.slug }));
+    }),
   );
-  return WOODY_LOCALES.flatMap((locale) =>
-    posts.map((post) => ({
-      locale,
-      slug: post.slug,
-    })),
-  );
+  return perLocale.flat();
+}
+
+/**
+ * Yanlis-locale slug cozumu: slug istenen dilde yoksa dogru URL'ye 308.
+ * - Baska dilde DB'de varsa: istenen dilin kendi slug'i (alternates) varsa ona,
+ *   yoksa yazinin gercek locale URL'ine yonlendir.
+ * - Hicbir dilde yoksa ama tr fallback listesindeyse /tr'ye yonlendir.
+ * - Hicbir yerde yoksa notFound() (eski davranis: her slug'a 200 -> soft-404 fabrikasi).
+ */
+async function redirectOrNotFound(slug: string, locale: string): Promise<never> {
+  for (const other of WOODY_LOCALES) {
+    if (other === locale) continue;
+    const post = await loadDbBlogPost(slug, other);
+    if (post) {
+      const alt = post.alternates?.find((a) => a.locale === locale && a.slug);
+      permanentRedirect(alt ? `/${locale}/blog/${alt.slug}` : `/${other}/blog/${slug}`);
+    }
+  }
+  if (locale !== 'tr' && (await findFallbackBlogPost(slug, 'tr'))) {
+    permanentRedirect(`/tr/blog/${slug}`);
+  }
+  notFound();
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -41,7 +67,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const dbPost = slug ? await loadDbBlogPost(slug, locale) : null;
   const page = dbPost ? null : await fetchCustomPagePublicBySlug({ slug, locale });
-  const fallbackPost = dbPost || page ? null : await findFallbackBlogPost(slug, locale);
+  // Fallback icerik Turkce — diger dillerde metadata uretme (sayfa zaten 308/404 verir)
+  const fallbackPost =
+    dbPost || page || locale !== 'tr' ? null : await findFallbackBlogPost(slug, locale);
+
+  // 308/404 karari BURADA verilmeli: sayfa govdesi stream'e basladiktan sonra status
+  // degistirilemez (page icindeki notFound() 200 + not-found govdesi uretiyordu).
+  // generateMetadata head'den once beklenir -> status kodu dogru cikar.
+  if (!dbPost && !page && !fallbackPost && slug) {
+    await redirectOrNotFound(slug, locale);
+  }
 
   // Blog slug'lari dile gore CEVRILI -> hreflang/canonical her dilin KENDI slug'ini
   // kullanmali. dbPost.alternates (backend'den) -> per-locale path map. Yoksa generic.
@@ -109,7 +144,12 @@ export default async function BlogDetailsPage({ params }: PageProps) {
   const slug = safeStr(p?.slug);
   const dbPost = slug ? await loadDbBlogPost(slug, locale) : null;
   const page = dbPost ? null : slug ? await fetchCustomPagePublicBySlug({ slug, locale }) : null;
-  const fallbackPost = dbPost || page ? null : await findFallbackBlogPost(slug, locale);
+  // Fallback icerik Turkce — yalniz tr'de dogrudan render edilir (kopya-indeks fix)
+  const fallbackPost =
+    dbPost || page || locale !== 'tr' ? null : await findFallbackBlogPost(slug, locale);
+  if (!dbPost && !page && !fallbackPost && slug) {
+    await redirectOrNotFound(slug, locale);
+  }
   const title = safeStr(dbPost?.title) || safeStr(page?.title) || fallbackPost?.title || titleFromSlug(slug, 'Blog Detail');
   const description = excerpt(
     safeStr(dbPost?.summary) ||

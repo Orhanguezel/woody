@@ -146,7 +146,7 @@ export default function CheckoutPurchaseClient({
   }
 
   return (
-    <main className="min-h-screen bg-[#fff9ee] py-14 text-[#24333f]">
+    <main className="min-h-screen bg-[#fff9ee] pb-14 pt-28 text-[#24333f] lg:pt-32">
       <div className="container max-w-[960px]">
         <Link
           href={`/${locale}/store`}
