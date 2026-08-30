@@ -19,7 +19,7 @@ Kural: her fazın sonunda `bun run build` yeşil + ilgili doğrulama maddesi iş
 - [x] 4 poster karesi (JPEG/WebP, videoyla aynı adla `-poster` eki)
 - [x] 9 kart PNG → ~800×1200 WebP (`ev-{basic,junior,senior}.webp`, `mini-school-{ogretmen,ogrenci}-{basic,junior,senior}.webp`)
 - [x] Hedef klasör: `frontend/public/media/woody/revize-2026-08/`
-- [ ] VPS'e senkron (deploy notu: `frontend/public/media` git dışı, rsync ile gider)
+- [x] VPS'e senkron (deploy notu: `frontend/public/media` git dışı, rsync ile gider)
 - [x] Kaynak klasörler `.gitignore`'da
 
 ## Faz 2 — Sayfa revizyonları (Mini School + Ev & Özel Ders)
@@ -100,8 +100,8 @@ Kural: her fazın sonunda `bun run build` yeşil + ilgili doğrulama maddesi iş
 
 - [ ] PayTR mağaza hesabı bilgileri (merchant_id/key/salt) — **müşteri/Orhan**
 - [ ] PayTR panelinde bildirim URL tanımı: `https://woodyvearkadaslari.com/api/v1/checkout/paytr/callback`
-- [ ] Nginx: callback route dışarı açık, rate-limit muafiyeti
-- [ ] VPS env + `pm2 restart`
+- [x] Nginx: callback route dışarı açık, rate-limit muafiyeti
+- [ ] VPS env + `pm2 restart` (PAYTR blogu eklenmedi — flag yokken varsayilan false/fail-closed; merchant bilgileriyle birlikte eklenecek)
 - [ ] Test modunda uçtan uca ödeme (test kartı) → başarılı/başarısız/hash-mismatch üç senaryo
 - [ ] `PAYTR_TEST_MODE=false` + gerçek düşük tutarlı doğrulama
 
@@ -118,4 +118,4 @@ Kural: her fazın sonunda `bun run build` yeşil + ilgili doğrulama maddesi iş
 - [x] GA4 e-ticaret olayları: `begin_checkout`, `purchase` (mevcut GA4 G-0D7LYLF51K)
 - [ ] Müşteriye kusur listesi iletildi (5.1–5.5)
 - [ ] `project.portfolio.json` + `projects:scan` güncel
-- [ ] Deploy + canlı smoke test
+- [x] Deploy + canlı smoke test
