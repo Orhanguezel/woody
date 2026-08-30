@@ -179,6 +179,14 @@ async function main() {
       let content = String(row.content);
       let ok = true;
       for (const [oldStr, newStr] of post.replaces) {
+        if (countOccurrences(content, newStr) > 0) {
+          // Yeni metin zaten içerikte: bu op onceki kosuda uygulanmis —
+          // LINKPARA gibi "append" tarzi replace'lerde eski metin hala
+          // eslestigi icin bu kontrol olmadan ikinci kosu CIFT ekleme yapar.
+          console.log(`SKIP ${post.slug}: op zaten uygulanmış: "${newStr.slice(0, 60)}..."`);
+          ok = false;
+          break;
+        }
         const n = countOccurrences(content, oldStr);
         if (n !== 1) {
           console.log(`SKIP ${post.slug}: hedef ${n} kez geçiyor (1 bekleniyor): "${oldStr.slice(0, 60)}..."`);
@@ -233,6 +241,47 @@ async function main() {
         console.log(`${APPLY ? 'APPLY' : 'PLAN '} page_preschool(tr): seo.title "${current?.seo?.title}" → "${(PRESCHOOL_PATCH.seo as any).title}"; hero.title "${current?.hero?.title}" → "${(PRESCHOOL_PATCH.hero as any).title}"; secondaryHref "${current?.hero?.secondaryHref}" → "/store"`);
         if (APPLY) {
           await connection.execute("UPDATE site_settings SET value = ? WHERE id = ?", [after, psRow.id]);
+        }
+        changed += 1;
+      }
+    }
+
+    // seo_pages(tr).preschool — serverMetadata'da page_preschool.seo'dan ONCELIKLI
+    // katman; guncellenmezse canli <title> eski "Egitim Setleri" kalir (revalidate 600s).
+    const NEW_TITLE = 'Anaokulu İngilizce Eğitim Sistemi | Woody and Friends';
+    const NEW_DESC =
+      'Woody and Friends Okul Serisi; kitap, öğretmen planı, oyun ve StoryLand/MusicLand dijital içeriğini tek anaokulu İngilizce eğitim sistemi olarak birleştirir. Kurumunuz için görüşme talep edin.';
+    const [spRows] = await connection.query<mysql.RowDataPacket[]>(
+      "SELECT id, value FROM site_settings WHERE `key` = 'seo_pages' AND locale = 'tr' LIMIT 1",
+    );
+    const spRow = spRows[0];
+    if (!spRow) {
+      console.log('SKIP seo_pages: tr satırı yok');
+      skipped += 1;
+    } else {
+      const spCurrent = typeof spRow.value === 'string' ? JSON.parse(spRow.value) : spRow.value;
+      const ps = spCurrent?.preschool;
+      if (!ps || typeof ps !== 'object') {
+        console.log('SKIP seo_pages: preschool girdisi yok');
+        skipped += 1;
+      } else if (ps.title === NEW_TITLE) {
+        console.log('SKIP seo_pages.preschool: değişiklik yok (idempotent)');
+      } else {
+        const spNext = {
+          ...spCurrent,
+          preschool: {
+            ...ps,
+            title: NEW_TITLE,
+            description: NEW_DESC,
+            og: { ...(ps.og ?? {}), title: NEW_TITLE, description: NEW_DESC },
+          },
+        };
+        console.log(`${APPLY ? 'APPLY' : 'PLAN '} seo_pages.preschool(tr): title "${ps.title}" → "${NEW_TITLE}"`);
+        if (APPLY) {
+          await connection.execute('UPDATE site_settings SET value = ? WHERE id = ?', [
+            JSON.stringify(spNext),
+            spRow.id,
+          ]);
         }
         changed += 1;
       }
