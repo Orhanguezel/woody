@@ -153,7 +153,7 @@
     "free": "Free",
     "freeWatch": "Watch free",
     "goToSeries": "Go to series",
-    "heroSubtitle": "Preschool English learning sets",
+    "heroSubtitle": "Age-appropriate preschool English learning sets — physical kit and digital platform together.",
     "quoteCta": "Request a quote",
     "teacherSetNote": "(The teacher set is provided through agreements with Mina Publishing. Purchasing the student set is sufficient.)",
     "productVideo": "Product Video",
@@ -178,6 +178,7 @@
     "checkoutFailureTitle": "Payment Failed",
     "checkoutFailureDescription": "The payment could not be completed. If your card was not charged, you can try again.",
     "checkoutReturnToStore": "Back to Store",
-    "termsKvkkAccept": "I have read and accept the privacy (KVKK) notice."
+    "termsKvkkAccept": "I have read and accept the privacy (KVKK) notice.",
+    "ageCta": "Find the Right Set for Your Age"
   }
 }

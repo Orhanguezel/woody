@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     pageKey: 'blog',
     pathname: '/blog',
     fallback: {
-      title: tUi(locale, 'Blog'),
+      title: tUi(locale, 'Blog – Çocuklar İçin İngilizce Rehberi'),
       description:
         tUi(locale, 'Woody and Friends blog posts on children English and digital learning.'),
     },

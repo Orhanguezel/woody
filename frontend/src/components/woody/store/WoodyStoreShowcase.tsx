@@ -191,6 +191,15 @@ export default function WoodyStoreShowcase({
       {ui.heroSubtitle ? (
         <div className="mx-auto max-w-[820px] px-6 pt-4 text-center">
           <p className="text-base font-semibold leading-7 text-[#5f6871] md:text-lg">{ui.heroSubtitle}</p>
+          {ui.ageCta ? (
+            <Link
+              href={localizePath(locale as never, '/level-finder')}
+              className={`mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#0c8f74] px-5 py-2.5 text-[13px] font-black text-white transition hover:bg-[#0a7a63] ${FOCUS_RING}`}
+            >
+              <GraduationCap className="h-4 w-4" aria-hidden />
+              {ui.ageCta}
+            </Link>
+          ) : null}
         </div>
       ) : null}
 

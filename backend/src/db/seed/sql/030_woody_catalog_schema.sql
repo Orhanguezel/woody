@@ -565,3 +565,10 @@ INSERT INTO `product_content_i18n` (`content_id`, `locale`, `title`, `descriptio
 ('pc000000000000000000f', 'pt-br', 'Fiziksel Set Kutusu', NULL)
 ON DUPLICATE KEY UPDATE
   `title` = VALUES(`title`);
+
+-- Veri hijyeni (2026-08-30): 'okul-serisi' / 'atolye-serisi' sluglarinin dogru seed
+-- kategorilerine bagli olmasini garanti eder. Fresh kurulumda no-op; canli DB'de eski
+-- (21111111-...) kategori kayitlarina sapmis slug satirlarini tasir (cift-slug kategoriler
+-- urun listesinde satir cogaltiyordu).
+UPDATE category_i18n SET category_id='c0000000000000000001' WHERE slug='okul-serisi';
+UPDATE category_i18n SET category_id='c0000000000000000002' WHERE slug='atolye-serisi';
