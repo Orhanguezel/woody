@@ -7,7 +7,10 @@
     "build": "bun x tsc -p tsconfig.json && bun x tsc-alias -p tsconfig.json",
     "start:bun": "bun dist/index.js",
     "db:seed": "bun src/db/seed/index.ts",
-    "db:seed:nodrop": "bun src/db/seed/index.ts --no-drop"
+    "db:seed:nodrop": "bun src/db/seed/index.ts --no-drop",
+    "seo:sync-pages": "bun src/scripts/syncWoodySeoPages.ts",
+    "seo:sync-og-assets": "bun src/scripts/syncWoodyOgAssets.ts",
+    "seo:backfill-templates": "bun src/scripts/backfillWoodySeoTemplates.ts"
   },
   "dependencies": {
     "@shared/shared-backend": "workspace:*",

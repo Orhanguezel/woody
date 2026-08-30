@@ -2452,6 +2452,8 @@
         "explore": "Keşfet",
         "blog": "Blog",
         "blog-post": "Blog Yazısı",
+        "store-product": "Mağaza Ürünü",
+        "digital-product": "Dijital Ürün",
         "about": "Hakkımızda",
         "contact": "İletişim",
         "faqs": "S.S.S.",
@@ -2467,7 +2469,7 @@
         "cerez-politikasi": "Çerez politikası",
         "cookie-policy": "Cookie policy",
         "privacy-policy": "Privacy policy",
-        "terms": "Şartlar"
+        "terms": "Kullanım Şartları"
       }
     },
     "payment": {

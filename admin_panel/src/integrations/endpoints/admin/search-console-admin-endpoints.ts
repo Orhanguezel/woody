@@ -12,6 +12,10 @@ import type {
   GscIndexRefreshArgs,
   GscIndexRefreshResp,
   GscIndexResp,
+  GscEntityIndexArgs,
+  GscEntityIndexResp,
+  GscEntityInspectArgs,
+  GscIndexItem,
   GscOverviewResp,
   GscPageQueriesResp,
   GscQueryArgs,
@@ -59,6 +63,14 @@ export const searchConsoleAdminApi = baseApi.injectEndpoints({
       query: (): FetchArgs => ({ url: `${SEARCH_CONSOLE_ADMIN_BASE}/index` }),
       providesTags: ['Settings'],
     }),
+    gscEntityIndex: b.query<GscEntityIndexResp, GscEntityIndexArgs>({
+      query: (params): FetchArgs => ({ url: `${SEARCH_CONSOLE_ADMIN_BASE}/entity-index`, params }),
+      providesTags: ['Settings'],
+    }),
+    gscEntityInspect: b.mutation<GscIndexItem, GscEntityInspectArgs>({
+      query: (body): FetchArgs => ({ url: `${SEARCH_CONSOLE_ADMIN_BASE}/entity-inspect`, method: 'POST', body }),
+      invalidatesTags: ['Settings'],
+    }),
     gscIndexRefresh: b.mutation<GscIndexRefreshResp, GscIndexRefreshArgs>({
       query: (body): FetchArgs => ({ url: `${SEARCH_CONSOLE_ADMIN_BASE}/index/refresh`, method: "POST", body }),
       invalidatesTags: ['Settings'],
@@ -78,5 +90,7 @@ export const {
   useGscDeleteSitemapMutation,
   useGscInspectMutation,
   useGscIndexQuery,
+  useGscEntityIndexQuery,
+  useGscEntityInspectMutation,
   useGscIndexRefreshMutation,
 } = searchConsoleAdminApi;

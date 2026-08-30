@@ -44,8 +44,17 @@ import {
 import { scoreBlogSeoQuality } from '@/integrations/shared/blog-seo-quality';
 import BlogContentEditor from './blog-content-editor';
 import BlogQualityPanel from './blog-quality-panel';
+import { IndexStatusPanel } from '@/app/(main)/admin/_components/common/IndexStatusPanel';
+import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
 
-const LOCALES = ['tr', 'en'];
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// Blog i18n TAM locale kodu kullanır (ör. "pt-br") — bölge ekini KIRPMA.
+const toFullLocale = (v: unknown): string =>
+  String(v ?? '')
+    .trim()
+    .toLowerCase()
+    .replace('_', '-');
 
 const BLOG_CATEGORIES: { value: BlogCategory; label: string }[] = [
   { value: 'genel', label: 'Genel' },
@@ -151,12 +160,27 @@ export default function BlogDetailClient({ id }: { id: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isNew = id === 'new';
-  const initialLocale = (searchParams.get('locale') || 'tr').toLowerCase();
+  const initialLocale = toFullLocale(searchParams.get('locale') || 'tr');
 
-  const [locale, setLocale] = React.useState(LOCALES.includes(initialLocale) ? initialLocale : 'tr');
+  // SEO, blog ve ürün editörleri aynı merkezî app_locales kaynağını kullanır.
+  const { codes: LOCALES } = useContentLocales();
+
+  const [locale, setLocale] = React.useState(initialLocale || 'tr');
+
+  // app_locales yüklenince, seçili locale listede yoksa güvenli değere çek.
+  React.useEffect(() => {
+    if (LOCALES.length && !LOCALES.includes(locale)) {
+      setLocale(LOCALES.includes(initialLocale) ? initialLocale : LOCALES[0]);
+    }
+  }, [LOCALES, locale, initialLocale]);
   const [form, setForm] = React.useState<BlogForm>(() => emptyForm(locale));
+  // Gerçek blog_post_id — URL slug ile açıldığında GET yanıtından çözülür; mutasyonlar bunu kullanır.
+  const [postId, setPostId] = React.useState<string | null>(
+    isNew ? null : UUID_RE.test(id) ? id : null,
+  );
+  const queryKey = postId ?? id;
 
-  const postQ = useGetBlogPostAdminQuery({ id, locale }, { skip: isNew });
+  const postQ = useGetBlogPostAdminQuery({ id: queryKey, locale }, { skip: isNew });
   const [createPost, createState] = useCreateBlogPostAdminMutation();
   const [updatePost, updateState] = useUpdateBlogPostAdminMutation();
   const saving = createState.isLoading || updateState.isLoading;
@@ -179,11 +203,18 @@ export default function BlogDetailClient({ id }: { id: string }) {
     if (isNew) return;
     const data = postQ.data;
     if (!data) return;
-    const key = `${id}:${locale}`;
+    const key = `${data.id}:${locale}`;
     if (hydratedKey.current === key) return;
     hydratedKey.current = key;
     setForm(postToForm(data));
-  }, [isNew, id, locale, postQ.data]);
+    setPostId(data.id);
+    // Adres çubuğunda id yerine slug göster; locale değişince o dilin slug'ına senkronla.
+    if (data.slug && data.slug !== id) {
+      router.replace(`/admin/blog/${encodeURIComponent(data.slug)}?locale=${encodeURIComponent(locale)}`, {
+        scroll: false,
+      });
+    }
+  }, [isNew, id, locale, postQ.data, router]);
 
   React.useEffect(() => {
     if (!isNew) return;
@@ -228,11 +259,11 @@ export default function BlogDetailClient({ id }: { id: string }) {
     if (!body) return;
     try {
       if (isNew) {
-        const created = await createPost(body).unwrap();
+        await createPost(body).unwrap();
         toast.success('Blog yazısı oluşturuldu');
-        router.replace(`/admin/blog/${created.id}?locale=${encodeURIComponent(locale)}`);
+        router.replace(`/admin/blog/${encodeURIComponent(body.slug)}?locale=${encodeURIComponent(locale)}`);
       } else {
-        await updatePost({ id, body }).unwrap();
+        await updatePost({ id: postId ?? id, body }).unwrap();
         toast.success('Blog yazısı güncellendi');
       }
     } catch (error) {
@@ -569,6 +600,8 @@ export default function BlogDetailClient({ id }: { id: string }) {
             </Card>
 
             <BlogQualityPanel score={quality} />
+
+            <IndexStatusPanel type="blog" locale={locale} slug={form.slug} disabled={isNew} />
           </div>
         </div>
       )}

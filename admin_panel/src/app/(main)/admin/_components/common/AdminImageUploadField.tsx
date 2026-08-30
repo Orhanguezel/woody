@@ -60,6 +60,7 @@ export type AdminImageUploadFieldProps = {
 
   previewAspect?: '16x9' | '4x3' | '1x1';
   previewObjectFit?: 'cover' | 'contain';
+  requiredDimensions?: { width: number; height: number };
 };
 
 const norm = (v: unknown) => String(v ?? '').trim();
@@ -212,6 +213,7 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
 
   previewAspect = '16x9',
   previewObjectFit = 'cover',
+  requiredDimensions,
 }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [createAssetAdmin, { isLoading: isUploading }] = useCreateAssetAdminMutation();
@@ -283,6 +285,29 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
       }
 
       try {
+        if (requiredDimensions && !uploadFile.type.includes('svg')) {
+          const dimensions = await new Promise<{ width: number; height: number }>((resolve, reject) => {
+            const objectUrl = URL.createObjectURL(uploadFile);
+            const image = new window.Image();
+            image.onload = () => {
+              URL.revokeObjectURL(objectUrl);
+              resolve({ width: image.naturalWidth, height: image.naturalHeight });
+            };
+            image.onerror = () => {
+              URL.revokeObjectURL(objectUrl);
+              reject(new Error('Görsel boyutları okunamadı.'));
+            };
+            image.src = objectUrl;
+          });
+          if (
+            dimensions.width !== requiredDimensions.width ||
+            dimensions.height !== requiredDimensions.height
+          ) {
+            throw new Error(
+              `Görsel tam ${requiredDimensions.width}×${requiredDimensions.height} olmalıdır. Seçilen: ${dimensions.width}×${dimensions.height}.`,
+            );
+          }
+        }
         const res = await createAssetAdmin({
           file: uploadFile,
           bucket,
@@ -298,6 +323,7 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
         console.error('[AdminImageUpload] upload failed:', JSON.stringify(err, null, 2), err);
         const msg =
           err?.data?.error?.message ||
+          err?.message ||
           err?.data?.message ||
           err?.error ||
           err?.message ||

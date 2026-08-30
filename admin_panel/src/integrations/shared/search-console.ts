@@ -50,6 +50,26 @@ export type GscIndexRefreshResp = {
   items: GscIndexItem[];
 };
 
+// İçerik tipi (blog/ürün) bazlı indeks durumu: slug -> indeks item haritası.
+export type GscEntityIndexCategory = GscIndexCategory | 'unchecked';
+export type GscEntityIndexArgs = { type: 'blog' | 'product'; locale: string };
+export type GscEntityInspectArgs = { type: 'blog' | 'product'; locale: string; slug: string };
+export type GscEntityIndexResp = {
+  type: 'blog' | 'product';
+  locale: string;
+  items: Record<string, GscIndexItem>;
+  summary: Record<GscEntityIndexCategory, number>;
+};
+
+// Liste sayfalarındaki indeks rozeti için ortak renk + kısa etiket.
+export const GSC_CATEGORY_META: Record<GscEntityIndexCategory, { label: string; tone: string }> = {
+  indexed: { label: 'İndexli', tone: 'bg-gm-success/10 text-gm-success border-gm-success/20' },
+  not_indexed: { label: 'İndexsiz', tone: 'bg-gm-gold/10 text-gm-gold border-gm-gold/20' },
+  issue: { label: 'Sorun', tone: 'bg-gm-error/10 text-gm-error border-gm-error/20' },
+  unknown: { label: 'Bilinmiyor', tone: 'bg-gm-muted/10 text-gm-muted border-gm-border-soft' },
+  unchecked: { label: 'Denetlenmedi', tone: 'bg-gm-muted/5 text-gm-muted/60 border-gm-border-soft' },
+};
+
 export function formatGscCtr(ctr: number): string {
   return `%${(ctr * 100).toLocaleString('tr-TR', { maximumFractionDigits: 1 })}`;
 }

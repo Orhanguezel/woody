@@ -289,7 +289,7 @@ export default function AdminSiteSettingsClient() {
               {tab === "branding" && <BrandingSettingsTab />}
               {tab === "general" && <GeneralSettingsTab locale={locale} />}
               {tab === "page_content" && <PageContentTab locale={locale} />}
-              {tab === "seo" && <SeoSettingsTab locale={locale} />}
+              {tab === "seo" && <SeoSettingsTab locale={locale} onLocaleChange={setLocale} />}
               {tab === "api" && <ApiSettingsTab locale={locale} />}
               {tab === "smtp" && <SmtpSettingsTab locale={locale} />}
               {tab === "custom_css" && <CustomCssTab />}

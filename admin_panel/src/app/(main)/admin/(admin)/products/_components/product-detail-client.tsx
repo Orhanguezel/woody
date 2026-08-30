@@ -54,8 +54,13 @@ import {
   useUpdateProductContentAdminMutation,
   useUpdateProductAdminMutation,
 } from '@/integrations/hooks';
+import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
+import { IndexStatusPanel } from '@/app/(main)/admin/_components/common/IndexStatusPanel';
+import { scoreProductSeoQuality } from '@/integrations/shared/product-seo-quality';
+import ProductSeoQualityPanel from './product-seo-quality-panel';
 
-const LOCALES = ['tr', 'en'];
+// Ürün id'si saf hex (tire yok); slug tire içerir. URL'de slug kullanılsın diye ayırt eder.
+const PRODUCT_ID_RE = /^[0-9a-f]{12,}$/i;
 
 const INPUT_CLS =
   'bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm';
@@ -193,10 +198,17 @@ export default function ProductDetailClient({ id }: { id: string }) {
   const isNew = id === 'new';
   const initialLocale = (searchParams.get('locale') || 'tr').toLowerCase();
 
-  const [locale, setLocale] = React.useState(LOCALES.includes(initialLocale) ? initialLocale : 'tr');
+  const { codes: LOCALES } = useContentLocales();
+  const [locale, setLocale] = React.useState(initialLocale || 'tr');
   const [form, setForm] = React.useState<ProductForm>(() => emptyForm(locale));
 
-  const productQ = useGetProductAdminQuery({ id, locale }, { skip: isNew });
+  // Gerçek product_id — URL slug ile açıldığında GET yanıtından çözülür; API çağrıları bunu kullanır.
+  const [productId, setProductId] = React.useState<string | null>(
+    isNew ? null : PRODUCT_ID_RE.test(id) ? id : null,
+  );
+  const pid = productId ?? id;
+
+  const productQ = useGetProductAdminQuery({ id: pid, locale }, { skip: isNew });
   const categoriesQ = useListProductCategoriesAdminQuery({ locale });
   const seriesQ = useListSeriesAdminQuery({ locale });
   const levelsQ = useListLevelsAdminQuery({ locale });
@@ -204,7 +216,11 @@ export default function ProductDetailClient({ id }: { id: string }) {
     locale,
     categoryId: form.category_id || undefined,
   });
-  const contentsQ = useListProductContentsAdminQuery({ productId: id, locale }, { skip: isNew });
+  // İçerikler gerçek product_id gerektirir; slug çözülene kadar bekle.
+  const contentsQ = useListProductContentsAdminQuery(
+    { productId: productId ?? '', locale },
+    { skip: isNew || !productId },
+  );
 
   const [createProduct, createState] = useCreateProductAdminMutation();
   const [updateProduct, updateState] = useUpdateProductAdminMutation();
@@ -212,6 +228,10 @@ export default function ProductDetailClient({ id }: { id: string }) {
   const [updateContent, updateContentState] = useUpdateProductContentAdminMutation();
   const [deleteContent, deleteContentState] = useDeleteProductContentAdminMutation();
   const saving = createState.isLoading || updateState.isLoading;
+  const seoQuality = React.useMemo(
+    () => scoreProductSeoQuality(form),
+    [form],
+  );
 
   const categories = categoriesQ.data ?? [];
   const subcategories = subcategoriesQ.data ?? [];
@@ -238,11 +258,18 @@ export default function ProductDetailClient({ id }: { id: string }) {
     if (isNew) return;
     const data = productQ.data;
     if (!data) return;
-    const key = `${id}:${locale}`;
+    const key = `${data.id}:${locale}`;
     if (hydratedKey.current === key) return;
     hydratedKey.current = key;
     setForm(productToForm(data));
-  }, [isNew, id, locale, productQ.data]);
+    setProductId(data.id);
+    // Adres çubuğunda id yerine slug göster; locale değişince o dilin slug'ına senkronla.
+    if (data.slug && data.slug !== id) {
+      router.replace(`/admin/products/${encodeURIComponent(data.slug)}?locale=${encodeURIComponent(locale)}`, {
+        scroll: false,
+      });
+    }
+  }, [isNew, id, locale, productQ.data, router]);
 
   // New: locale degisince form.locale'i guncelle (girilen veriyi koru)
   React.useEffect(() => {
@@ -312,11 +339,11 @@ export default function ProductDetailClient({ id }: { id: string }) {
     if (!body) return;
     try {
       if (isNew) {
-        const created = await createProduct(body).unwrap();
+        const created: { id: string } = await createProduct(body).unwrap();
         toast.success('Ürün oluşturuldu');
-        router.replace(`/admin/products/${created.id}?locale=${encodeURIComponent(locale)}`);
+        router.replace(`/admin/products/${encodeURIComponent(form.slug.trim() || created.id)}?locale=${encodeURIComponent(locale)}`);
       } else {
-        await updateProduct({ id, body }).unwrap();
+        await updateProduct({ id: pid, body }).unwrap();
         toast.success('Ürün güncellendi');
       }
     } catch (error) {
@@ -360,10 +387,10 @@ export default function ProductDetailClient({ id }: { id: string }) {
     };
     try {
       if (contentForm.id) {
-        await updateContent({ productId: id, contentId: contentForm.id, body }).unwrap();
+        await updateContent({ productId: pid, contentId: contentForm.id, body }).unwrap();
         toast.success('İçerik güncellendi');
       } else {
-        await createContent({ productId: id, body }).unwrap();
+        await createContent({ productId: pid, body }).unwrap();
         toast.success('İçerik eklendi');
       }
       resetContentForm();
@@ -847,6 +874,10 @@ export default function ProductDetailClient({ id }: { id: string }) {
                 </div>
               </CardContent>
             </Card>
+
+            <ProductSeoQualityPanel score={seoQuality} />
+
+            <IndexStatusPanel type="product" locale={locale} slug={form.slug} disabled={isNew} />
           </div>
             </div>
           </TabsContent>
@@ -928,7 +959,7 @@ export default function ProductDetailClient({ id }: { id: string }) {
                               className="rounded-full hover:bg-gm-error/10 hover:text-gm-error"
                               onClick={async () => {
                                 try {
-                                  await deleteContent({ productId: id, contentId: item.id }).unwrap();
+                                  await deleteContent({ productId: pid, contentId: item.id }).unwrap();
                                   toast.success('İçerik silindi');
                                   contentsQ.refetch();
                                 } catch (error) {

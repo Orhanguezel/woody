@@ -30,9 +30,10 @@ import type { BlogSeoQualityScore } from '@/integrations/shared';
 import {
   useDeleteBlogPostAdminMutation,
   useListBlogPostsAdminQuery,
+  useGscEntityIndexQuery,
 } from '@/integrations/hooks';
-
-const LOCALES = ['tr', 'en'];
+import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
+import { IndexBadge } from '@/app/(main)/admin/_components/common/IndexBadge';
 
 const INPUT_CLS =
   'bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm';
@@ -103,9 +104,12 @@ export default function BlogListClient() {
   const [searchInput, setSearchInput] = React.useState('');
   const [search, setSearch] = React.useState('');
 
+  const { codes: LOCALES } = useContentLocales();
   const postsQ = useListBlogPostsAdminQuery({ locale });
+  const indexQ = useGscEntityIndexQuery({ type: 'blog', locale });
   const [deletePost, deleteState] = useDeleteBlogPostAdminMutation();
 
+  const indexItems = indexQ.data?.items ?? {};
   const posts = postsQ.data ?? [];
   const filteredPosts = React.useMemo(() => {
     const q = search.toLocaleLowerCase('tr-TR');
@@ -126,8 +130,9 @@ export default function BlogListClient() {
     }
   }
 
-  const editHref = (id: string) =>
-    `/admin/blog/${encodeURIComponent(id)}?locale=${encodeURIComponent(locale)}`;
+  // URL'de id yerine slug (yoksa id fallback). Detay sayfası slug'ı blog_post_id'ye çözer.
+  const editHref = (post: { id: string; slug?: string | null }) =>
+    `/admin/blog/${encodeURIComponent(post.slug || post.id)}?locale=${encodeURIComponent(locale)}`;
 
   return (
     <div className="space-y-8 pb-12 animate-in fade-in duration-700">
@@ -217,7 +222,10 @@ export default function BlogListClient() {
                   Durum
                 </TableHead>
                 <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
-                  Kalite
+                  SEO
+                </TableHead>
+                <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
+                  İndeks
                 </TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   Yayın
@@ -243,6 +251,9 @@ export default function BlogListClient() {
                     <TableCell className="py-6 text-center">
                       <Skeleton className="h-6 w-12 mx-auto bg-gm-surface/20 rounded-full" />
                     </TableCell>
+                    <TableCell className="py-6 text-center">
+                      <Skeleton className="h-6 w-16 mx-auto bg-gm-surface/20 rounded-full" />
+                    </TableCell>
                     <TableCell className="py-6">
                       <Skeleton className="h-4 w-20 bg-gm-surface/20" />
                     </TableCell>
@@ -253,7 +264,7 @@ export default function BlogListClient() {
                 ))
               ) : filteredPosts.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-24 text-center">
+                  <TableCell colSpan={7} className="py-24 text-center">
                     <div className="flex flex-col items-center gap-4 opacity-30">
                       <BookOpenText className="w-16 h-16 text-gm-gold/50" />
                       <span className="font-serif italic text-lg text-gm-muted">
@@ -284,7 +295,7 @@ export default function BlogListClient() {
                         </div>
                         <div className="min-w-0">
                           <Link
-                            href={editHref(post.id)}
+                            href={editHref(post)}
                             className="font-serif text-lg text-gm-text group-hover:text-gm-primary transition-colors block truncate"
                           >
                             {post.title || '-'}
@@ -304,6 +315,9 @@ export default function BlogListClient() {
                     <TableCell className="py-6 text-center">
                       <QualityBadge q={post.seo_quality} />
                     </TableCell>
+                    <TableCell className="py-6 text-center">
+                      <IndexBadge item={indexItems[post.slug]} />
+                    </TableCell>
                     <TableCell className="py-6 text-sm text-gm-muted font-mono">
                       {formatDate(post.published_at, locale)}
                     </TableCell>
@@ -315,7 +329,7 @@ export default function BlogListClient() {
                           size="icon"
                           className="rounded-full hover:bg-gm-gold/10 hover:text-gm-gold transition-colors"
                         >
-                          <Link prefetch={false} href={editHref(post.id)}>
+                          <Link prefetch={false} href={editHref(post)}>
                             <Eye className="size-4" />
                           </Link>
                         </Button>

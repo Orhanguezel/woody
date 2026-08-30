@@ -36,15 +36,43 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
+import { Gauge } from 'lucide-react';
 import {
   useDeleteProductAdminMutation,
   useListLevelsAdminQuery,
   useListProductCategoriesAdminQuery,
   useListProductsAdminQuery,
   useListSeriesAdminQuery,
+  useGscEntityIndexQuery,
 } from '@/integrations/hooks';
+import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
+import { IndexBadge } from '@/app/(main)/admin/_components/common/IndexBadge';
 
-const LOCALES = ['tr', 'en'];
+// Ürünler için hafif on-page SEO tamlık sinyali (blog'daki quality gauge'in ürün karşılığı).
+function productSeoSignal(p: {
+  meta_title?: string | null;
+  meta_description?: string | null;
+  description?: string | null;
+  image_url?: string | null;
+}): { score: number; tone: string; label: string } {
+  const mt = (p.meta_title ?? '').trim();
+  const md = (p.meta_description ?? '').trim();
+  const desc = (p.description ?? '').trim();
+  const checks = [
+    mt.length >= 30 && mt.length <= 70,
+    md.length >= 100 && md.length <= 180,
+    desc.length >= 120,
+    Boolean((p.image_url ?? '').trim()),
+  ];
+  const score = checks.filter(Boolean).length;
+  const tone =
+    score >= 4
+      ? 'bg-gm-success/10 text-gm-success border-gm-success/20'
+      : score >= 2
+        ? 'bg-gm-gold/10 text-gm-gold border-gm-gold/20'
+        : 'bg-gm-error/10 text-gm-error border-gm-error/20';
+  return { score, tone, label: `${score}/4` };
+}
 
 const INPUT_CLS =
   'bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm';
@@ -102,6 +130,9 @@ export default function ProductsListClient() {
     sort: 'order_num',
     order: 'asc',
   });
+  const { codes: LOCALES } = useContentLocales();
+  const indexQ = useGscEntityIndexQuery({ type: 'product', locale });
+  const indexItems = indexQ.data?.items ?? {};
   const [deleteProduct, deleteState] = useDeleteProductAdminMutation();
 
   const products = productsQ.data ?? [];
@@ -123,8 +154,9 @@ export default function ProductsListClient() {
     }
   }
 
-  const editHref = (id: string) =>
-    `/admin/products/${encodeURIComponent(id)}?locale=${encodeURIComponent(locale)}`;
+  // URL'de id yerine slug (yoksa id fallback). Detay sayfası slug'ı product_id'ye çözer.
+  const editHref = (product: { id: string; slug?: string | null }) =>
+    `/admin/products/${encodeURIComponent(product.slug || product.id)}?locale=${encodeURIComponent(locale)}`;
 
   return (
     <div className="space-y-8 pb-12 animate-in fade-in duration-700">
@@ -304,6 +336,12 @@ export default function ProductsListClient() {
                 <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   Durum
                 </TableHead>
+                <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
+                  SEO
+                </TableHead>
+                <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
+                  İndeks
+                </TableHead>
                 <TableHead className="py-6 px-8 text-right text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   İşlem
                 </TableHead>
@@ -335,7 +373,7 @@ export default function ProductsListClient() {
                 ))
               ) : products.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={8} className="py-24 text-center">
+                  <TableCell colSpan={10} className="py-24 text-center">
                     <div className="flex flex-col items-center gap-4 opacity-30">
                       <Package className="w-16 h-16 text-gm-gold/50" />
                       <span className="font-serif italic text-lg text-gm-muted">
@@ -366,7 +404,7 @@ export default function ProductsListClient() {
                         </div>
                         <div className="min-w-0">
                           <Link
-                            href={editHref(product.id)}
+                            href={editHref(product)}
                             className="font-serif text-lg text-gm-text group-hover:text-gm-primary transition-colors block truncate"
                           >
                             {product.title}
@@ -419,6 +457,26 @@ export default function ProductsListClient() {
                         ) : null}
                       </div>
                     </TableCell>
+                    <TableCell className="py-6 text-center">
+                      {(() => {
+                        const s = productSeoSignal(product);
+                        return (
+                          <span
+                            title={`On-page SEO tamlığı: ${s.score}/4 (meta title, meta açıklama, açıklama, görsel)`}
+                            className={cn(
+                              'inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-bold tabular-nums',
+                              s.tone,
+                            )}
+                          >
+                            <Gauge className="size-3" />
+                            {s.label}
+                          </span>
+                        );
+                      })()}
+                    </TableCell>
+                    <TableCell className="py-6 text-center">
+                      <IndexBadge item={indexItems[product.slug]} />
+                    </TableCell>
                     <TableCell className="py-6 px-8 text-right">
                       <div className="flex justify-end gap-1 opacity-30 group-hover:opacity-100 transition-all">
                         <Button
@@ -427,7 +485,7 @@ export default function ProductsListClient() {
                           size="icon"
                           className="rounded-full hover:bg-gm-gold/10 hover:text-gm-gold transition-colors"
                         >
-                          <Link prefetch={false} href={editHref(product.id)}>
+                          <Link prefetch={false} href={editHref(product)}>
                             <Eye className="size-4" />
                           </Link>
                         </Button>

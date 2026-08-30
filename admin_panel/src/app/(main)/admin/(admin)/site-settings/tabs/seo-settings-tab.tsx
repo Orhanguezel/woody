@@ -10,6 +10,13 @@ import React, { useMemo, useState } from "react";
 
 import { ChevronDown, ChevronUp, Globe, Save } from "lucide-react";
 import { toast } from "sonner";
+import {
+  WOODY_SEO_LOCALES,
+  WOODY_SEO_PAGE_CATALOG,
+  normalizeWoodyPageSeoConfig,
+  type WoodyPageSeoConfig,
+  type WoodySeoPageDefinition,
+} from "@shared/shared-types/woody-seo-catalog";
 
 import { AdminImageUploadField } from "@/app/(main)/admin/_components/common/AdminImageUploadField";
 import { Badge } from "@/components/ui/badge";
@@ -18,42 +25,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useAdminTranslations } from "@/i18n";
-import { useGetSiteSettingAdminByKeyQuery, useUpdateSiteSettingAdminMutation } from "@/integrations/hooks";
+import {
+  useGetSiteSettingAdminByKeyQuery,
+  useCreateAssetAdminMutation,
+  useUpdateSiteSettingAdminMutation,
+} from "@/integrations/hooks";
+import { useContentLocales } from "@/app/(main)/admin/_components/common/useContentLocales";
 import { getDefaultSiteNameForSeo, getPublicSiteHostname } from "@/lib/admin-brand";
 import { cn } from "@/lib/utils";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
 
-// Sayfa anahtarlari — sablon frontend route listesi (SEO formu).
-const PAGE_KEYS = [
-  { key: "home", path: "/" },
-  { key: "blog", path: "/blog" },
-  { key: "blog-post", path: "/blog/[slug]" },
-  { key: "about", path: "/about" },
-  { key: "contact", path: "/contact" },
-  { key: "faqs", path: "/faqs" },
-  { key: "profile", path: "/profile" },
-  { key: "login", path: "/login" },
-  { key: "register", path: "/register" },
-  { key: "editorial-policy", path: "/editorial-policy" },
-  { key: "kvkk", path: "/kvkk" },
-  { key: "gizlilik", path: "/gizlilik" },
-  { key: "kullanim-sartlari", path: "/kullanim-sartlari" },
-  { key: "cerez-politikasi", path: "/cerez-politikasi" },
-  { key: "cookie-policy", path: "/cookie-policy" },
-  { key: "privacy-policy", path: "/privacy-policy" },
-  { key: "privacy-notice", path: "/privacy-notice" },
-  { key: "legal-notice", path: "/legal-notice" },
-  { key: "terms", path: "/terms" },
-] as const;
-
-type PageSeo = {
-  title: string;
-  description: string;
-  og_image: string;
-  no_index: boolean;
-};
+const PAGE_KEYS = WOODY_SEO_PAGE_CATALOG;
 
 function coerce(v: any): any {
   if (typeof v === "string") {
@@ -66,27 +51,31 @@ function coerce(v: any): any {
   return v;
 }
 
-function extractPages(raw: any): Record<string, PageSeo> {
+function extractRawPages(raw: any): Record<string, unknown> {
   const obj = coerce(raw?.value ?? raw) ?? {};
-  const result: Record<string, PageSeo> = {};
+  return obj && typeof obj === "object" && !Array.isArray(obj) ? obj : {};
+}
+
+function extractPages(raw: any): Record<string, WoodyPageSeoConfig> {
+  const obj = extractRawPages(raw);
+  const result: Record<string, WoodyPageSeoConfig> = {};
   for (const cfg of PAGE_KEYS) {
-    const p = obj[cfg.key];
-    result[cfg.key] = {
-      title: String(p?.title ?? ""),
-      description: String(p?.description ?? ""),
-      og_image: String(p?.og_image ?? ""),
-      no_index: Boolean(p?.no_index),
-    };
+    result[cfg.key] = normalizeWoodyPageSeoConfig(obj[cfg.key], cfg);
   }
   return result;
 }
 
 export type SeoSettingsTabProps = {
   locale: string;
+  onLocaleChange: (locale: string) => void;
   settingPrefix?: string;
 };
 
-export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingPrefix }) => {
+export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({
+  locale,
+  onLocaleChange,
+  settingPrefix,
+}) => {
   const adminLocale = usePreferencesStore((s) => s.adminLocale);
   const t = useAdminTranslations(adminLocale || undefined);
   const fullKey = `${settingPrefix || ""}seo_pages`;
@@ -95,15 +84,19 @@ export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingP
     { key: fullKey, locale },
     { refetchOnMountOrArgChange: true },
   );
+  const { codes: contentLocales, loading: localesLoading } = useContentLocales();
 
   const [updateSetting, { isLoading: isSaving }] = useUpdateSiteSettingAdminMutation();
-  const busy = isLoading || isFetching || isSaving;
+  const [createAsset] = useCreateAssetAdminMutation();
+  const [isMaterializing, setIsMaterializing] = useState(false);
+  const busy = isLoading || isFetching || isSaving || isMaterializing;
 
   const previewDomain = useMemo(() => getPublicSiteHostname(), []);
+  const publicSiteOrigin = useMemo(() => `https://${previewDomain}`, [previewDomain]);
   const defaultSiteLabel = useMemo(() => getDefaultSiteNameForSeo(), []);
 
   const serverPages = useMemo(() => extractPages(data), [data]);
-  const [localPages, setLocalPages] = useState<Record<string, PageSeo> | null>(null);
+  const [localPages, setLocalPages] = useState<Record<string, WoodyPageSeoConfig> | null>(null);
   const [expandedKeys, setExpandedKeys] = useState<Set<string>>(new Set(["home"]));
 
   React.useEffect(() => {
@@ -124,25 +117,99 @@ export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingP
   const expandAll = () => setExpandedKeys(new Set(PAGE_KEYS.map((c) => c.key)));
   const collapseAll = () => setExpandedKeys(new Set());
 
-  const updatePage = (key: string, patch: Partial<PageSeo>) => {
+  const updatePage = (key: string, patch: Partial<WoodyPageSeoConfig>) => {
     setLocalPages((prev) => {
       const base = prev ?? serverPages;
       return { ...base, [key]: { ...base[key], ...patch } };
     });
   };
 
+  const updateOg = (key: string, patch: Partial<WoodyPageSeoConfig["og"]>) => {
+    setLocalPages((prev) => {
+      const base = prev ?? serverPages;
+      return {
+        ...base,
+        [key]: {
+          ...base[key],
+          og: { ...base[key].og, ...patch },
+        },
+      };
+    });
+  };
+
   const handleSave = async () => {
     if (!localPages) return;
+    setIsMaterializing(true);
     try {
-      await updateSetting({ key: fullKey, locale, value: localPages as any }).unwrap();
+      const mergedPages = { ...extractRawPages(data), ...localPages };
+      await updateSetting({
+        key: fullKey,
+        locale,
+        value: mergedPages as any,
+      }).unwrap();
+      await fetch("/api/revalidate-proxy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ all: true, indexNow: true }),
+      }).catch(() => null);
+
+      const materializedPages = { ...mergedPages } as Record<string, unknown>;
+      for (const definition of currentDefinitions) {
+        const config = normalizeWoodyPageSeoConfig(localPages[definition.key], definition);
+        if (config.og.mode !== "generated") continue;
+
+        const response = await fetch(
+          `${publicSiteOrigin}/og/${encodeURIComponent(locale)}/${encodeURIComponent(definition.key)}?v=${Date.now()}`,
+          { cache: "no-store" },
+        );
+        if (!response.ok) throw new Error(`${definition.key} OG görseli üretilemedi`);
+        const blob = await response.blob();
+        const file = new File([blob], `${definition.key}.png`, { type: "image/png" });
+        const asset = await createAsset({
+          file,
+          bucket: "public",
+          folder: `seo/og/${locale}`,
+          metadata: {
+            module_key: "seo",
+            kind: "generated-og",
+            page: definition.key,
+            locale,
+          },
+        }).unwrap();
+        const generatedImage = String(asset?.url || "").trim();
+        if (!generatedImage) throw new Error(`${definition.key} storage URL alınamadı`);
+        materializedPages[definition.key] = {
+          ...config,
+          og: { ...config.og, generated_image: generatedImage },
+        };
+      }
+
+      await updateSetting({
+        key: fullKey,
+        locale,
+        value: materializedPages as any,
+      }).unwrap();
+      setLocalPages(extractPages({ value: materializedPages }));
       toast.success(t("admin.siteSettings.seo.inline.saved", {}, "SEO ayarları kaydedildi"));
       await refetch();
     } catch (err: any) {
       toast.error(err?.data?.error?.message || t("admin.siteSettings.seo.inline.saveError", {}, "Kayıt hatası"));
+    } finally {
+      setIsMaterializing(false);
     }
   };
 
   const isDirty = localPages && JSON.stringify(localPages) !== JSON.stringify(serverPages);
+  const currentDefinitions = PAGE_KEYS.filter((page) => !page.trOnly || locale === "tr");
+  const localeOptions = contentLocales.filter((code) =>
+    WOODY_SEO_LOCALES.includes(code as (typeof WOODY_SEO_LOCALES)[number]),
+  );
+  const absoluteAssetUrl = (value: string) => {
+    const url = String(value || "").trim();
+    if (!url) return "";
+    if (/^https?:\/\//i.test(url)) return url;
+    return `${publicSiteOrigin}${url.startsWith("/") ? "" : "/"}${url}`;
+  };
 
   return (
     <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
@@ -161,12 +228,20 @@ export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingP
             </CardDescription>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Badge
-              variant="outline"
-              className="border-gm-gold/30 bg-gm-gold/5 text-gm-gold px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em]"
-            >
-              {locale}
-            </Badge>
+            <div className="w-48">
+              <Select value={locale} onValueChange={onLocaleChange} disabled={busy || localesLoading}>
+                <SelectTrigger className="h-10 rounded-2xl border-gm-gold/30 bg-gm-gold/5 text-gm-gold uppercase">
+                  <SelectValue placeholder="Dil seçin" />
+                </SelectTrigger>
+                <SelectContent>
+                  {localeOptions.map((code) => (
+                    <SelectItem key={code} value={code}>
+                      {code.toUpperCase()}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
             {isDirty && (
               <Badge
                 variant="outline"
@@ -222,8 +297,8 @@ export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingP
         </div>
 
         <div className="space-y-4">
-          {PAGE_KEYS.map((cfg) => {
-            const page = pages[cfg.key] || { title: "", description: "", og_image: "", no_index: false };
+        {currentDefinitions.map((cfg) => {
+            const page = pages[cfg.key] || normalizeWoodyPageSeoConfig({}, cfg);
             const isExpanded = expandedKeys.has(cfg.key);
             const pageLabel = t(`admin.siteSettings.seo.pageLabels.${cfg.key}`, null, cfg.key);
 
@@ -346,16 +421,122 @@ export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingP
                           />
                         </div>
 
-                        <div className="bg-gm-surface/20 border border-gm-border-soft rounded-3xl p-5">
-                          <AdminImageUploadField
-                            label={t("admin.siteSettings.seo.inline.ogImage", null, "OG Görsel (1200×630)")}
-                            folder={`seo/${cfg.key}`}
-                            bucket="public"
-                            metadata={{ module_key: "seo", page: cfg.key, locale }}
-                            value={page.og_image}
-                            onChange={(url) => updatePage(cfg.key, { og_image: url })}
+                        <div className="space-y-2">
+                          <Label className="ml-1 block text-[10px] font-bold uppercase tracking-[0.15em] text-gm-muted">
+                            {t("admin.siteSettings.seo.inline.fieldKeywords", null, "Anahtar kelimeler")}
+                          </Label>
+                          <Input
+                            value={page.keywords}
+                            onChange={(e) => updatePage(cfg.key, { keywords: e.target.value })}
                             disabled={busy}
+                            className="h-12 rounded-2xl border-gm-border-soft bg-gm-bg-deep text-sm text-gm-text"
+                            placeholder="okul öncesi İngilizce, çocuklar için İngilizce"
                           />
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="ml-1 block text-[10px] font-bold uppercase tracking-[0.15em] text-gm-muted">
+                            {t("admin.siteSettings.seo.inline.fieldCanonical", null, "Canonical yol (opsiyonel)")}
+                          </Label>
+                          <Input
+                            value={page.canonical_path}
+                            onChange={(e) => updatePage(cfg.key, { canonical_path: e.target.value })}
+                            disabled={busy || cfg.dynamic}
+                            className="h-12 rounded-2xl border-gm-border-soft bg-gm-bg-deep font-mono text-sm text-gm-text"
+                            placeholder={cfg.path}
+                          />
+                        </div>
+
+                        <div className="space-y-5 rounded-3xl border border-gm-border-soft bg-gm-surface/20 p-5">
+                          <div className="space-y-2">
+                            <Label className="text-[10px] font-bold uppercase tracking-[0.15em] text-gm-muted">
+                              {t("admin.siteSettings.seo.inline.ogMode", null, "OG görsel modu")}
+                            </Label>
+                            <Select
+                              value={page.og.mode}
+                              onValueChange={(value: "generated" | "custom" | "content") =>
+                                updateOg(cfg.key, { mode: value })
+                              }
+                              disabled={busy}
+                            >
+                              <SelectTrigger className="h-12 rounded-2xl border-gm-border-soft bg-gm-bg-deep">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="generated">Otomatik markalı görsel</SelectItem>
+                                <SelectItem value="custom">Özel 1200×630 görsel</SelectItem>
+                                {cfg.dynamic ? <SelectItem value="content">İçerik görseli + otomatik fallback</SelectItem> : null}
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          <div className="grid gap-4 md:grid-cols-2">
+                            <div className="space-y-2">
+                              <Label className="text-[10px] font-bold uppercase tracking-[0.15em] text-gm-muted">
+                                OG başlığı
+                              </Label>
+                              <Input
+                                value={page.og.title}
+                                onChange={(e) => updateOg(cfg.key, { title: e.target.value })}
+                                disabled={busy}
+                                className="h-11 rounded-2xl border-gm-border-soft bg-gm-bg-deep text-sm"
+                                placeholder={page.title || "SEO başlığını kullan"}
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label className="text-[10px] font-bold uppercase tracking-[0.15em] text-gm-muted">
+                                OG üst etiketi
+                              </Label>
+                              <Input
+                                value={page.og.eyebrow}
+                                onChange={(e) => updateOg(cfg.key, { eyebrow: e.target.value })}
+                                disabled={busy}
+                                className="h-11 rounded-2xl border-gm-border-soft bg-gm-bg-deep text-sm"
+                                placeholder="Woody and Friends"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <Label className="text-[10px] font-bold uppercase tracking-[0.15em] text-gm-muted">
+                              OG açıklaması
+                            </Label>
+                            <Textarea
+                              value={page.og.description}
+                              onChange={(e) => updateOg(cfg.key, { description: e.target.value })}
+                              disabled={busy}
+                              rows={2}
+                              className="rounded-2xl border-gm-border-soft bg-gm-bg-deep text-sm"
+                              placeholder={page.description || "SEO açıklamasını kullan"}
+                            />
+                          </div>
+
+                          {page.og.mode === "custom" ? (
+                            <AdminImageUploadField
+                              label={t("admin.siteSettings.seo.inline.ogImage", null, "OG Görsel (1200×630)")}
+                              helperText="JPG, PNG veya WebP; önerilen ölçü tam 1200×630."
+                              folder={`seo/${cfg.key}/${locale}`}
+                              bucket="public"
+                              metadata={{ module_key: "seo", page: cfg.key, locale }}
+                              value={page.og.custom_image}
+                              onChange={(url) => updateOg(cfg.key, { custom_image: url })}
+                              disabled={busy}
+                              requiredDimensions={{ width: 1200, height: 630 }}
+                            />
+                          ) : null}
+
+                          <div className="space-y-2">
+                            <Label className="text-[10px] font-bold uppercase tracking-[0.15em] text-gm-muted">
+                              OG alternatif metni
+                            </Label>
+                            <Input
+                              value={page.og.alt}
+                              onChange={(e) => updateOg(cfg.key, { alt: e.target.value })}
+                              disabled={busy}
+                              className="h-11 rounded-2xl border-gm-border-soft bg-gm-bg-deep text-sm"
+                              placeholder={page.og.title || page.title}
+                            />
+                          </div>
                         </div>
 
                         <div className="flex items-center gap-4 bg-gm-surface/20 border border-gm-border-soft rounded-2xl p-4">
@@ -404,15 +585,24 @@ export const SeoSettingsTab: React.FC<SeoSettingsTabProps> = ({ locale, settingP
                           </Label>
                           <div className="overflow-hidden rounded-[20px] border border-gm-border-soft bg-gm-bg-deep shadow-inner flex flex-col">
                             <div className="aspect-[1.91/1] bg-gm-surface/50 border-b border-gm-border-soft relative flex items-center justify-center">
-                              {page.og_image ? (
+                              {page.og.mode === "custom" && page.og.custom_image ? (
                                 // eslint-disable-next-line @next/next/no-img-element
                                 <img
-                                  src={page.og_image}
+                                  src={absoluteAssetUrl(page.og.custom_image)}
                                   alt=""
                                   className="absolute inset-0 h-full w-full object-cover"
                                   onError={(e) => {
                                     (e.target as HTMLImageElement).style.display = "none";
                                   }}
+                                />
+                              ) : page.og.mode === "generated" ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                src={absoluteAssetUrl(
+                                  page.og.generated_image || `/og/${locale}/${cfg.key}`,
+                                )}
+                                  alt=""
+                                  className="absolute inset-0 h-full w-full object-cover"
                                 />
                               ) : (
                                 <div className="text-center space-y-2 opacity-50">
