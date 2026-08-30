@@ -27,8 +27,20 @@ export default function AdsConversionClicks() {
         return;
       }
       if (/(^https?:)?\/\/(wa\.me|(web\.|api\.|chat\.)?whatsapp\.com)/i.test(href)) {
+        // Yalnız telefon hedefli linkler lead'dir: wa.me/<numara> veya
+        // .../send?phone=<numara>. Blog paylaşım linkleri (wa.me/?text=...)
+        // telefon içermez → lead dönüşümü SAYILMAZ (Ads/GA4 şişmesin).
+        let phoneTarget = false;
+        try {
+          const u = new URL(href, window.location.href);
+          phoneTarget =
+            /^\/\+?\d{6,}/.test(u.pathname) || /\d{6,}/.test(u.searchParams.get('phone') ?? '');
+        } catch {
+          // URL parse edilemezse eski davranış: lead say (yanlış negatif olmasın).
+          phoneTarget = true;
+        }
         // WhatsApp linki yeni sekmede açılır → navigasyonu beklemeye gerek yok.
-        reportAdsConversion('whatsapp');
+        if (phoneTarget) reportAdsConversion('whatsapp');
       }
     };
     document.addEventListener('click', onClick, { capture: true });
