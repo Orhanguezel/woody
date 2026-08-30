@@ -32,14 +32,19 @@ export default function CheckoutPurchaseClient({
   product,
   locale,
   ui,
+  quoteWhatsApp,
+  quoteMessage,
 }: {
   product: StoreProduct;
   locale: string;
   ui: StoreUiCopy;
+  quoteWhatsApp?: string;
+  quoteMessage?: string;
 }) {
   const [step, setStep] = useState<Step>('form');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [paymentUnavailable, setPaymentUnavailable] = useState(false);
   const [iframeUrl, setIframeUrl] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [form, setForm] = useState({
@@ -113,6 +118,11 @@ export default function CheckoutPurchaseClient({
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ locale }),
       });
+      if (payRes.status === 503) {
+        // Odeme servisi henuz acik degil — siparis alindi, WhatsApp yedegi goster
+        setPaymentUnavailable(true);
+        return;
+      }
       if (!payRes.ok) throw new Error('paytr_failed');
       const pay = (await payRes.json()) as { iframeUrl?: string };
       if (!pay.iframeUrl) throw new Error('paytr_failed');
@@ -234,6 +244,20 @@ export default function CheckoutPurchaseClient({
                 <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-[13px] font-semibold text-red-700" role="alert">
                   {error}
                 </p>
+              ) : null}
+
+              {paymentUnavailable && quoteWhatsApp ? (
+                <div className="mt-4 rounded-lg bg-[#eef6f3] px-4 py-3" role="alert">
+                  <p className="text-[13px] font-semibold text-[#0c8f74]">{ui.checkoutFailed}</p>
+                  <a
+                    href={`https://wa.me/${quoteWhatsApp}?text=${encodeURIComponent((quoteMessage || '').replace(/\{\{product\}\}/g, product.title))}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#0c8f74] px-4 py-2 text-[13px] font-black text-white transition hover:bg-[#0a7a63] ${FOCUS_RING}`}
+                  >
+                    WhatsApp
+                  </a>
+                </div>
               ) : null}
 
               <button

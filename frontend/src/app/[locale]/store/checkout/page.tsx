@@ -15,27 +15,41 @@ type Props = {
   searchParams: Promise<{ payment?: string; order?: string; product?: string }>;
 };
 
-async function loadUi(locale: string): Promise<StoreUiCopy> {
+type CheckoutCopy = { ui: StoreUiCopy; quoteWhatsApp?: string; quoteMessage?: string };
+
+async function loadUi(locale: string): Promise<CheckoutCopy> {
   const [content, storeProducts] = await Promise.all([
     loadWoodyPageContent('store', locale),
-    loadPageContent<{ ui?: StoreUiCopy }>('store-products', locale),
+    loadPageContent<{ ui?: StoreUiCopy; quoteWhatsApp?: string; quoteMessage?: string }>('store-products', locale),
   ]);
   const raw = (content?.raw ?? {}) as Record<string, unknown>;
   const dbUi = raw.ui && typeof raw.ui === 'object' && !Array.isArray(raw.ui) ? (raw.ui as StoreUiCopy) : {};
   // config store-products.json ui taban; DB page_store.ui ustune biner
-  return { ...(storeProducts?.ui ?? {}), ...dbUi };
+  return {
+    ui: { ...(storeProducts?.ui ?? {}), ...dbUi },
+    quoteWhatsApp: (raw.quoteWhatsApp as string) || storeProducts?.quoteWhatsApp,
+    quoteMessage: (raw.quoteMessage as string) || storeProducts?.quoteMessage,
+  };
 }
 
 export default async function StoreCheckoutPage({ params, searchParams }: Props) {
   const { locale } = await params;
   const { payment, order, product: productSlug } = await searchParams;
-  const ui = await loadUi(locale);
+  const { ui, quoteWhatsApp, quoteMessage } = await loadUi(locale);
 
   // Satin alma akisi: /store/checkout?product=<slug> (REVIZE 2026-08-30, PayTR)
   if (productSlug && !payment) {
     const product = await loadDbStoreProduct(productSlug, locale);
     if (product && product.purchaseMode === 'online' && !product.isFree) {
-      return <CheckoutPurchaseClient product={product} locale={locale} ui={ui} />;
+      return (
+        <CheckoutPurchaseClient
+          product={product}
+          locale={locale}
+          ui={ui}
+          quoteWhatsApp={quoteWhatsApp}
+          quoteMessage={quoteMessage}
+        />
+      );
     }
   }
 
