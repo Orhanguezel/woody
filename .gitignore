@@ -174,3 +174,7 @@ docs/
 /node_modules
 /packages
 /docs
+/reports
+
+# GZL private project manifest
+project.portfolio.private.json

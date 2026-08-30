@@ -1,9 +1,24 @@
 {
-  "title": "Woody ve Arkadaşları",
-  "slug": "woody",
-  "summary": "Anaokulu İngilizce eğitim setleri, dijital içerik kütüphanesi, öğretmen akademisi ve mağazayı tek çatıda toplayan çok dilli eğitim platformu.",
-  "description": "woodyvearkadaslari.com'un Next.js 16 + Fastify yeniden inşası. Eski CSR (Emergent/PHP) site SSR/SSG'ye taşınıyor; 10 dil için gerçek hreflang (next-intl), zengin JSON-LD şema (Product offers, Article author, FAQPage, LocalBusiness), llms.txt ve güvenlik başlıkları ile GEO/SEO skoru hedefleniyor. Kapsam: anasayfa, preschool, workshop, home-tutor, woody-academy, library, blog, store ve 12 dijital içerik ürün sayfası.",
-  "category": "WEB APPLICATION",
+  "schemaVersion": 2,
+  "project": {
+    "key": "woody",
+    "title": "Woody ve Arkadaşları",
+    "summary": "Anaokulu İngilizce eğitim setleri, dijital içerik kütüphanesi, öğretmen akademisi ve mağazayı tek çatıda toplayan çok dilli eğitim platformu.",
+    "description": "woodyvearkadaslari.com'un Next.js 16 + Fastify yeniden inşası. Eski CSR (Emergent/PHP) site SSR/SSG'ye taşınıyor; 10 dil için gerçek hreflang (next-intl), zengin JSON-LD şema (Product offers, Article author, FAQPage, LocalBusiness), llms.txt ve güvenlik başlıkları ile GEO/SEO skoru hedefleniyor. Kapsam: anasayfa, preschool, workshop, home-tutor, woody-academy, library, blog, store ve 12 dijital içerik ürün sayfası.",
+    "category": "custom-software",
+    "status": "live",
+    "ownership": "client",
+    "owner": {
+      "id": "mina-yayinevi",
+      "name": "Mina Yayınevi",
+      "kind": "company"
+    },
+    "group": {
+      "id": "independent",
+      "name": "Bağımsız Projeler"
+    },
+    "productType": "client-project"
+  },
   "services": [
     "Frontend Development",
     "Backend Development",
@@ -11,7 +26,7 @@
     "i18n / Localization",
     "Admin Panel"
   ],
-  "techs": [
+  "technologies": [
     "Next.js 16",
     "React 19",
     "TypeScript",
@@ -30,24 +45,46 @@
     "Yerel SEO (İstanbul anaokulu İngilizce eğitimi)",
     "Zengin JSON-LD şema + llms.txt"
   ],
-  "designHighlights": [
-    "Eski canlı tasarımın SSR sürümüne sadık taşınması",
-    "Çocuk dostu, marka renkli arayüz",
-    "Erişilebilirlik ve Core Web Vitals odaklı"
+  "timeline": {
+    "startedAt": "2026-06-02",
+    "targetEndAt": null,
+    "completedAt": null,
+    "progressPercent": null
+  },
+  "links": {
+    "website": "https://woodyvearkadaslari.com",
+    "demo": null,
+    "repository": null
+  },
+  "media": [
+    {
+      "id": "cover",
+      "role": "cover",
+      "src": "docs/portfolio/crm-concept-woody.svg",
+      "alt": "Woody ve Arkadaslari panel konsept gorseli",
+      "caption": "Kaynak: kendi uretimimiz. Kullanim hakki onaylandi (2026-08-16); Dis yayin izni acildi (2026-08-16).",
+      "displayPermission": true,
+      "rightsConfirmed": true
+    }
   ],
-  "featured": false,
-  "displayOrder": 100,
-  "clientName": "Mina Yayınevi",
-  "status": "in-development",
-  "startDate": "2026-06-02",
-  "completeDate": null,
-  "completionTimeLabel": "Devam ediyor",
-  "repoUrl": null,
-  "websiteUrl": "https://woodyvearkadaslari.com",
-  "demoUrl": null,
-  "featuredImage": "/assets/imgs/work/img-1.png",
-  "featuredImageAlt": "Woody ve Arkadaşları platform kapak görseli",
-  "resumeTitle": "Woody ve Arkadaşları",
-  "resumeSubtitle": "WEB APPLICATION",
-  "excludeFromPortfolio": false
+  "channels": {
+    "website": {
+      "enabled": false,
+      "disabledReason": "CRM v2 geçişinde web yayın içeriği ve izinleri kullanıcı onayı bekliyor"
+    },
+    "bionluk": {
+      "enabled": false,
+      "disabledReason": "CRM v2 geçişinde Bionluk içeriği ve ticari uygunluk kullanıcı onayı bekliyor"
+    }
+  },
+  "publication": {
+    "privacy": "public",
+    "displayPermission": true
+  },
+  "management": {
+    "priority": "normal",
+    "controlPlane": "gzl-gelir-crm",
+    "lastChangedBy": "orhan"
+  },
+  "updatedAt": "2026-08-16T13:46:45.513Z"
 }

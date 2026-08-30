@@ -106,9 +106,9 @@ server {
 Ayrıca apex server bloğunda `server_name`'in `www` içermediğinden emin ol.
 
 **Kontrol listesi:**
-- [ ] `curl -I https://www.woodyvearkadaslari.com/tr` → `301 Location: https://woodyvearkadaslari.com/tr`
+- [x] `curl -I https://www.woodyvearkadaslari.com/tr` → `301 Location: https://woodyvearkadaslari.com/tr`
 - [x] SSL sertifikası www SAN'ı kapsıyor (yoksa certbot ile ekle)
-- [ ] `nginx -t && systemctl reload nginx`
+- [x] `nginx -t && systemctl reload nginx`
 
 ---
 
@@ -152,7 +152,13 @@ curl -s https://woodyvearkadaslari.com/sitemap.xml | grep -c "<loc>"            
 - [ ] GSC → Sitemaps → `sitemap.xml` yeniden gönder
 - [ ] GSC → Sayfalar → "Kopya, kullanıcı-seçili canonical yok" ve "noindex" için **Doğrulamayı Başlat**
 - [ ] Birkaç örnek URL'de "URL İncele → Dizine eklenmeyi iste"
-- [ ] Toplu yeniden kontrol: `ekosistem-sosyal-medya/backend/scripts/woody-gsc-index-audit.ts` tekrar çalıştır (bu analizin scripti), indeksli oranı ölç
+- [x] Toplu yeniden kontrol: `ekosistem-sosyal-medya/backend/scripts/woody-gsc-index-audit.ts` tekrar çalıştır (bu analizin scripti), indeksli oranı ölç
+
+**Codex audit sonucu (2026-07-04):**
+- Sitemap URL sayısı: **521** (`digital-content/*/*` leaf yok, `/kvkk` yok)
+- GSC URL Inspection dağılımı: **273 Submitted and indexed**, **108 Discovered - currently not indexed**, **100 URL is unknown to Google**, **34 Duplicate without user-selected canonical**, **3 Crawled - currently not indexed**, **2 Duplicate, Google chose different canonical than user**, **1 Not found (404)**
+- `/en/store` canlıda 200; GSC hâlâ eski `NOT_FOUND` kaydını gösteriyor. Panelden URL Inspection + indexing request gerekiyor.
+- Tam JSON çıktı: `/tmp/woody-gsc-audit.json`
 
 ---
 
@@ -160,8 +166,8 @@ curl -s https://woodyvearkadaslari.com/sitemap.xml | grep -c "<loc>"            
 
 - [x] `/preschool`, `/store`, `/` locale'siz URL'ler **308 redirect** veriyor (200 değil)
 - [x] Redirect loop yok; `/tr/...` sayfaları 200
-- [ ] Sitemap yalnız `index,follow` URL içeriyor (~521), digital leaf + kvkk yok
-- [ ] www → apex 301
+- [x] Sitemap yalnız `index,follow` URL içeriyor (~521), digital leaf + kvkk yok
+- [x] www → apex 301
 - [x] `bun run build` temiz
 - [x] 10 dilde `/store` 200
 
