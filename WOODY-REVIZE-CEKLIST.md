@@ -127,5 +127,9 @@ Kural: her fazın sonunda `bun run build` yeşil + ilgili doğrulama maddesi iş
 - [x] nginx: kök istek `location = / { return 308 /tr; }` apex 443'te — Next proxy hop'u kalktı (canlı conf yedeği: /root/woody.conf.yedek-20260830; repo conf canlıdan FARKLI, aynen basılmaz)
 - [x] Blog yanlış-locale kopya fix: generateStaticParams locale-başına slug; yanlış dilde slug → 308 doğru URL'ye; bilinmeyen slug → 404 (eski: her slug 200 + self-canonical → GSC 1527/765 kök nedeni; bulgu: ekosistem oturumu)
 - [x] sameAs kontrolü: 3 sosyal profil (YouTube/FB/IG) zaten tüm sayfalarda JSON-LD'de — denetim aracı ölçememiş, iş çıkmadı
+- [x] Blog yanlış-locale 308/404 CANLIDA doğrulandı (uydurma→404, /fr/<tr-slug>→308→doğru slug→200)
+- [x] KÖK ONARIM: [locale]/layout Suspense'i children'ı sarıyordu → tüm sayfalarda notFound/redirect 200 dönüyordu; RouteEffects adasına taşındı, site geneli statü kodları düzeldi
+- [ ] SEED DRIFT (ekosistem oturumu, 2026-08-30): canlı blog_posts i18n (6 yazı tr) + page_preschool tr, 024/033/020 seed'lerinden İLERİDE — canlıya full nodrop seed ÇALIŞTIRMA; sonraki seed bakımında canlı içerik seed'e geri taşınacak
+- [ ] <html lang> statik prerender'da hep "tr" (peer'in x-pathname fix'i prerender'da çalışmıyor) — root layout refactor kararı bekliyor (peer ile koordineli)
 - [ ] Lighthouse derin işler: kullanılmayan JS, TTI 4.1s, kontrast/dokunma hedefleri (ayrı tur)
 - [ ] GEO: Wikipedia/Wikidata + sosyal profil tamamlama — ekosistem oturumu Orhan'a raporluyor
