@@ -31,8 +31,8 @@
       ]
     },
     {
-      "eyebrow": "Atölye Serisi",
-      "title": "Atölye Serisi",
+      "eyebrow": "Mini School Serisi",
+      "title": "Mini School Serisi",
       "description": "Atölye ve kurs merkezleri için",
       "items": [
         {
@@ -107,7 +107,7 @@
   ],
   "seo": {
     "title": "Store | Woody Eğitim Setleri",
-    "description": "{{appName}} okul öncesi İngilizce eğitim setleri mağazası. Okul Serisi, Atölye Serisi ve Özel Ders Serisi ürünleri için güncel fiyatlar ve teklif.",
+    "description": "{{appName}} okul öncesi İngilizce eğitim setleri mağazası. Okul Serisi, Mini School Serisi ve Özel Ders Serisi ürünleri için güncel fiyatlar ve teklif.",
     "keywords": "woody store, anaokulu ingilizce seti satın al, okul öncesi ingilizce eğitim seti fiyat, ingilizce eğitim seti mağaza"
   },
   "quoteForm": {

@@ -16,6 +16,8 @@ type ApiProduct = {
   description?: string;
   imageUrl?: string | null;
   image_url?: string | null;
+  videoUrl?: string | null;
+  video_url?: string | null;
   alt?: string | null;
   price?: string | number;
   categorySlug?: string | null;
@@ -86,6 +88,7 @@ function normalizeProduct(row: unknown): StoreProduct | null {
     slug: String(product.slug || id),
     description: String(product.description || '') || undefined,
     image: product.imageUrl || product.image_url || undefined,
+    videoUrl: product.videoUrl || product.video_url || undefined,
     alt: product.alt || title,
     price: toPrice(product.price),
     currency: 'TRY',

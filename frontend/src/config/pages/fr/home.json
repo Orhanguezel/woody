@@ -31,14 +31,14 @@
         },
         {
           "badge": "Pour les petits groupes",
-          "title": "Atelier",
+          "title": "Mini School",
           "description": "Conçu pour des petits groupes de 3 à 5 personnes. Le contenu et les jeux sont organisés pour une interaction plus intensive et une participation individuelle. Offre une structure de candidature plus ciblée et plus rapide.",
           "features": [
             "Pour les petits groupes de 3 à 5 personnes",
             "Interaction intensive et participation individuelle",
             "Une structure plus ciblée et plus rapide"
           ],
-          "cta": "Explorez la série Atelier",
+          "cta": "Explorez la série Mini School",
           "href": "/workshop"
         },
         {

@@ -1,1 +1,1 @@
-export { registerCheckoutPublic } from './router';
+export { registerCheckoutPublic, registerCheckoutAdmin } from './router';

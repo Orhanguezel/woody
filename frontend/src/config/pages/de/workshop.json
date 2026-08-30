@@ -1,11 +1,11 @@
 {
-  "title": "{{appName}} Workshop-Reihe",
-  "description": "Mit der Workshop-Reihe hören Kinder nicht nur Englisch; Sie spielen es, wenden es an und leben es. Bieten Sie mit {{appName}} einen lebendigeren und effektiveren Lernprozess.",
-  "eyebrow": "{{appName}} WORKSHOP-REIHE",
+  "title": "{{appName}} Mini School Reihe",
+  "description": "Mit der Mini School Reihe hören Kinder nicht nur Englisch; Sie spielen es, wenden es an und leben es. Bieten Sie mit {{appName}} einen lebendigeren und effektiveren Lernprozess.",
+  "eyebrow": "{{appName}} MINI SCHOOL REIHE",
   "hero": {
-    "eyebrow": "{{appName}} WORKSHOP-REIHE",
-    "title": "Werkstatt",
-    "description": "Mit der Workshop-Reihe hören Kinder nicht nur Englisch; Sie spielen es, wenden es an und leben es. Bieten Sie mit {{appName}} einen lebendigeren und effektiveren Lernprozess.",
+    "eyebrow": "{{appName}} MINI SCHOOL REIHE",
+    "title": "Mini School Reihe",
+    "description": "Mit der Mini School Reihe hören Kinder nicht nur Englisch; Sie spielen es, wenden es an und leben es. Bieten Sie mit {{appName}} einen lebendigeren und effektiveren Lernprozess.",
     "primaryCTA": "Fordern Sie eine Demo an",
     "primaryHref": "/contact",
     "secondaryCTA": "Preise anzeigen",
@@ -15,7 +15,7 @@
     {
       "eyebrow": "Ebenen",
       "title": "Entdecken Sie den Inhalt der Serie anhand von Video-Komplettlösungen",
-      "description": "Die Workshop-Reihe besteht aus zwei separaten Sets. Entdecken Sie ihre Inhalte anhand von Video-Komplettlösungen. Die Serie umfasst vier Level: Basic, Junior, Senior und PRO.",
+      "description": "Die Mini School Reihe besteht aus zwei separaten Sets. Entdecken Sie ihre Inhalte anhand von Video-Komplettlösungen. Die Serie umfasst vier Level: Basic, Junior, Senior und PRO.",
       "items": [
         {
           "badge": "BASIC",
@@ -65,16 +65,13 @@
     "teacherSet": "Lehrer-Set",
     "studentSet": "Schüler-Set",
     "closeVideo": "Video schließen",
-    "playHero": "Workshop-Video abspielen"
+    "playHero": "Mini School Video abspielen",
+    "videoCaption": "Inhaltsvideo der Mini School Reihe",
+    "videoWatch": "Video ansehen",
+    "buyCta": "Jetzt kaufen"
   },
-  "guide": {
-    "title": "Wie wird das Atelier-Modell umgesetzt?",
-    "paragraphs": [
-      "Die Atelier-Reihe ist für Einrichtungen, Sprachwerkstätten und Nachmittagsprogramme konzipiert, die mit einer kleinen Anzahl von Kindern eine intensivere Interaktion aufbauen möchten. Ziel ist es, statt eines Unterrichtsablaufs, in dem die Kinder Englisch nur wiederholen, eine lebendige Umgebung zu schaffen, in der sie die Sprache durch Spiel, Rollenspiel, Zuordnen, Bewegung und kurze Aufgaben verwenden. Deshalb kommt im Atelier jedes Kind häufiger zu Wort, berührt das Material öfter, und die Lehrkraft kann die Reaktion des Kindes sofort verfolgen.",
-      "Die Kleingruppenstruktur ermöglicht schnelleres Feedback und flexiblere Wiederholung als die Klassenreihe. Die Lehrkraft kann dasselbe Lernziel mit verschiedenen Spielarten neu aufbauen und die Schritte Hören, Nachahmen, Kurzantwort, Partnerarbeit und Rollenspiel an die Energie der Gruppe anpassen. Im Atelier-Modell ist das Ziel nicht nur, Wörter zu vermitteln, sondern dass das Kind eine englische Anweisung versteht, im Spiel antwortet und einfache Kommunikation mit einem Freund führt.",
-      "Auf der Basic-Stufe stehen ein sicherer Start und der Grundwortschatz im Vordergrund. Auf der Junior-Stufe kombinieren die Kinder Muster und bilden längere Antworten. Auf der Senior-Stufe nehmen Hörverständnis, kurze Dialoge und das Verfolgen von Geschichten zu. Auf der PRO-Stufe werden die Vorbereitung auf das Lesen und Schreiben, die Projektsprache und stärker akademische Strukturen unterstützt. Diese Unterscheidung sorgt dafür, dass das Atelier nicht auf jeder Stufe nur aus gleich aussehenden Karten besteht und die Einrichtung je nach Alter, Niveau und Gruppenziel einen klaren Umsetzungsweg wählt.",
-      "In der Atelier-Praxis ist der wichtigste Punkt für die Lehrkraft, dass jede Aktivität an ein beobachtbares Ziel gebunden ist. In einem Spiel wiederholt das Kind Farben, in einer anderen Aktivität verwendet es dieselben Wörter mit Bewegungsbefehlen; später festigt es das Gelernte mit einer kurzen Geschichte oder einer Zuordnungsaufgabe. Dieser Kreislauf verringert die Langeweile in der Kleingruppe und hilft dem Kind, dasselbe Lernziel in verschiedenen Kontexten zu nutzen.",
-      "Für Einrichtungen lässt sich die Atelier-Reihe an unterschiedliche Zeitpläne anpassen, etwa an eine Demostunde, eine Wochenendaktivität, einen Nachmittagsclub oder ein Boutique-Sprachprogramm. Wenn physische Materialien und die digitale Bibliothek zusammen genutzt werden, reduziert die Lehrkraft die Vorbereitung vor dem Unterricht und kann den Eltern auch deutlicher erklären, welche Fähigkeiten das Kind auf welcher Stufe übt."
-    ]
+  "media": {
+    "contentVideo": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+    "contentVideoPoster": "/media/woody/revize-2026-08/mini-school-tanitim-poster.jpg"
   }
 }

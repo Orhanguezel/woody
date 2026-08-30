@@ -7,7 +7,7 @@
   "headline": "<em>L'anglais par le jeu</em>, la confiance à travers les histoires et la continuité grâce au contenu numérique<br/>— <strong>un système d'apprentissage complet pour les écoles maternelles</strong>.",
   "lead": "{{appName}} rassemble des matériaux physiques, des personnages anglophones, du contenu numérique et l'approche de Cambridge dans un seul système.",
   "tagline": "Un modèle d'anglais préscolaire traçable pour les écoles, les enseignants et les familles.",
-  "socialProof": "L'école maternelle, l'atelier, le tuteur à domicile, la bibliothèque numérique et l'académie fonctionnent sous un même toit.",
+  "socialProof": "L'école maternelle, le Mini School, le tuteur à domicile, la bibliothèque numérique et l'académie fonctionnent sous un même toit.",
   "metrics": [
     {
       "value": "3-6",
@@ -26,7 +26,7 @@
   "showcaseProgress": "Basique → Junior → Senior → PRO",
   "showcaseQuestion": "Quelle série correspond à votre institution ?",
   "showcaseOptionA": "A) École maternelle",
-  "showcaseOptionB": "B) Atelier",
+  "showcaseOptionB": "B) Mini School",
   "showcaseOptionC": "C) Tuteur à domicile",
   "showcaseOptionD": "D) Académie",
   "showcaseXpLabel": "Apprentissage",

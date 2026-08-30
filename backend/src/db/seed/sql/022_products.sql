@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `access_duration_days` INT DEFAULT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `image_url` LONGTEXT DEFAULT NULL,
+  `video_url` LONGTEXT DEFAULT NULL,
   `storage_asset_id` CHAR(36) DEFAULT NULL,
   `images` JSON DEFAULT (JSON_ARRAY()),
   `storage_image_ids` JSON DEFAULT (JSON_ARRAY()),

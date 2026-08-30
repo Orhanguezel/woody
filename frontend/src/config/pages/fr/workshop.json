@@ -1,11 +1,11 @@
 {
-  "title": "Série d'ateliers {{appName}}",
-  "description": "Avec la série d'ateliers, les enfants n'écoutent pas seulement l'anglais ; ils le jouent, l'appliquent et le vivent. Offrez un processus d'apprentissage plus vivant et plus efficace avec {{appName}}.",
-  "eyebrow": "SÉRIE D'ATELIER {{appName}}",
+  "title": "Série Mini School {{appName}}",
+  "description": "Avec la série Mini School, les enfants n'écoutent pas seulement l'anglais ; ils le jouent, l'appliquent et le vivent. Offrez un processus d'apprentissage plus vivant et plus efficace avec {{appName}}.",
+  "eyebrow": "SÉRIE MINI SCHOOL {{appName}}",
   "hero": {
-    "eyebrow": "SÉRIE D'ATELIER {{appName}}",
-    "title": "Atelier",
-    "description": "Avec la série d'ateliers, les enfants n'écoutent pas seulement l'anglais ; ils le jouent, l'appliquent et le vivent. Offrez un processus d'apprentissage plus vivant et plus efficace avec {{appName}}.",
+    "eyebrow": "SÉRIE MINI SCHOOL {{appName}}",
+    "title": "Série Mini School",
+    "description": "Avec la série Mini School, les enfants n'écoutent pas seulement l'anglais ; ils le jouent, l'appliquent et le vivent. Offrez un processus d'apprentissage plus vivant et plus efficace avec {{appName}}.",
     "primaryCTA": "Demander une démo",
     "primaryHref": "/contact",
     "secondaryCTA": "Voir les prix",
@@ -15,7 +15,7 @@
     {
       "eyebrow": "Niveaux",
       "title": "Découvrez le contenu de la série à travers des vidéos pas à pas",
-      "description": "La série d'ateliers se compose de deux ensembles distincts. Découvrez leur contenu à travers des présentations vidéo. La série comporte quatre niveaux : Basic, Junior, Senior et PRO.",
+      "description": "La série Mini School se compose de deux ensembles distincts. Découvrez leur contenu à travers des présentations vidéo. La série comporte quatre niveaux : Basic, Junior, Senior et PRO.",
       "items": [
         {
           "badge": "BASIC",
@@ -65,16 +65,13 @@
     "teacherSet": "Coffret enseignant",
     "studentSet": "Coffret élève",
     "closeVideo": "Fermer la vidéo",
-    "playHero": "Lire la vidéo Atelier"
+    "playHero": "Lire la vidéo Mini School",
+    "videoCaption": "Vidéo de contenu de la série Mini School",
+    "videoWatch": "Regarder la vidéo",
+    "buyCta": "Acheter"
   },
-  "guide": {
-    "title": "Comment le modèle atelier est-il mis en œuvre ?",
-    "paragraphs": [
-      "La Série Atelier est conçue pour les établissements, les ateliers de langue et les programmes périscolaires qui souhaitent établir une interaction plus intense avec un petit nombre d'enfants. L'objectif est de créer un environnement vivant où les enfants utilisent l'anglais à travers le jeu, le théâtre, les associations, le mouvement et de courtes tâches, plutôt qu'un déroulé de cours où ils se contentent de le répéter. C'est pourquoi, dans l'atelier, chaque enfant prend plus souvent la parole, manipule plus fréquemment le matériel, et l'enseignant peut suivre instantanément la réaction de l'enfant.",
-      "La structure en petit groupe offre un retour plus rapide et une répétition plus souple que la série en classe. L'enseignant peut reconstruire le même acquis avec différents types de jeux et ajuster les étapes d'écoute, d'imitation, de réponse courte, de travail en binôme et de jeu de rôle selon l'énergie du groupe. Dans le modèle atelier, l'objectif n'est pas seulement d'enseigner du vocabulaire, mais que l'enfant comprenne une consigne en anglais, réponde au sein d'un jeu et établisse une communication simple avec un camarade.",
-      "Au niveau Basic, un démarrage sûr et le vocabulaire de base sont mis en avant. Au niveau Junior, les enfants combinent des structures pour produire des réponses plus longues. Au niveau Senior, la compréhension orale, les courts dialogues et le suivi d'histoires progressent. Au niveau PRO, la préparation à la lecture et à l'écriture, la langue de projet et des structures plus académiques sont soutenues. Cette distinction garantit que l'atelier ne se limite pas à des cartes identiques à chaque niveau et que l'établissement choisit un chemin d'application clair selon l'âge, le niveau et les objectifs du groupe.",
-      "Dans la pratique de l'atelier, le point le plus important pour l'enseignant est que chaque activité soit reliée à un objectif observable. Dans un jeu, l'enfant répète les couleurs, tandis que dans une autre activité il utilise les mêmes mots avec des consignes de mouvement ; il consolide ensuite ses connaissances avec une courte histoire ou une tâche d'association. Ce cycle réduit l'ennui dans le petit groupe et aide l'élève à utiliser le même acquis dans différents contextes.",
-      "Pour les établissements, la Série Atelier peut s'adapter à différents calendriers : cours de démonstration, activité du week-end, club périscolaire ou programme de langue boutique. Lorsque les supports physiques et la bibliothèque numérique sont utilisés ensemble, l'enseignant réduit la préparation avant le cours et peut aussi expliquer plus clairement aux parents quelles compétences l'enfant travaille et à quel niveau."
-    ]
+  "media": {
+    "contentVideo": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+    "contentVideoPoster": "/media/woody/revize-2026-08/mini-school-tanitim-poster.jpg"
   }
 }

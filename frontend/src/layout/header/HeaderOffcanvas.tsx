@@ -51,7 +51,7 @@ const REFERENCE_NAV = [
   { id: 'ref-home', url: '/', labels: { tr: 'HOME', en: 'HOME', de: 'HOME' } },
   { id: 'ref-store', url: '/store', labels: { tr: 'WOODY STORE', en: 'WOODY STORE', de: 'WOODY STORE' } },
   { id: 'ref-preschool', url: '/preschool', labels: { tr: 'OKUL', en: 'SCHOOL', de: 'SCHULE' } },
-  { id: 'ref-workshop', url: '/workshop', labels: { tr: 'ATÖLYE', en: 'WORKSHOP', de: 'WORKSHOP' } },
+  { id: 'ref-workshop', url: '/workshop', labels: { tr: 'MINI SCHOOL', en: 'MINI SCHOOL', de: 'MINI SCHOOL' } },
   { id: 'ref-home-tutor', url: '/home-tutor', labels: { tr: 'EV & ÖZEL DERS', en: 'HOME & PRIVATE LESSON', de: 'ZUHAUSE & EINZELUNTERRICHT' } },
   { id: 'ref-academy', url: '/woody-academy', labels: { tr: 'WOODY ACADEMY', en: 'WOODY ACADEMY', de: 'WOODY ACADEMY' } },
   { id: 'ref-blog', url: '/blog', labels: { tr: 'BLOG', en: 'BLOG', de: 'BLOG' } },

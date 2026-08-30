@@ -3,141 +3,108 @@
   "quoteMessage": "Hola, me gustaría obtener información sobre los precios de sus juegos escolares.\n\nCiudad:\nNombre de la escuela:\nNúmero de estudiantes:\n¿Podría compartir su cotización junto con su catálogo digital?",
   "categories": [
     {
-      "id": "okul-serisi",
-      "name": "Serie preescolar",
-      "description": "",
-      "route": "/preschool"
-    },
-    {
-      "id": "atolye",
-      "name": "Serie de talleres",
-      "description": "Para talleres y centros de cursos.",
+      "id": "atolye-serisi",
+      "name": "Mini School Serisi",
+      "description": "Atölye ve kurs merkezleri için",
       "route": "/workshop"
     },
     {
-      "id": "ozel-ders",
-      "name": "Serie de lecciones privadas",
-      "description": "Para profesores de clases particulares y a domicilio",
+      "id": "ev-ozel-ders-serisi",
+      "name": "Ev-Özel Ders Serisi",
+      "description": "Ev ve özel ders öğretmenleri için",
       "route": "/home-tutor"
     }
   ],
   "products": [
     {
-      "id": 1,
-      "category": "okul-serisi",
-      "name": "Conjunto de estudiantes de nivel básico",
-      "description": "Nivel principiante",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
+      "id": "ms-ogretmen-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Öğretmen Seti",
+      "description": "Başlangıç seviyesi öğretmen seti",
+      "price": "1.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 2,
-      "category": "okul-serisi",
-      "name": "Conjunto de estudiantes de nivel junior",
-      "description": "Nivel de desarrollo",
-      "image": "/media/woody/reference/h5x59v59_3.png"
+      "id": "ms-ogretmen-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Öğretmen Seti",
+      "description": "Gelişim seviyesi öğretmen seti",
+      "price": "2.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 3,
-      "category": "okul-serisi",
-      "name": "Conjunto de estudiantes de nivel superior",
-      "description": "nivel avanzado",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ms-ogretmen-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Öğretmen Seti",
+      "description": "İleri seviye öğretmen seti",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 7,
-      "category": "atolie",
-      "name": "Taller Básico",
-      "description": "Paquete de inicio",
-      "price": "₺1,999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ms-ogrenci-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Öğrenci Seti",
+      "description": "Başlangıç seviyesi öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 8,
-      "category": "atolie",
-      "name": "Taller Junior",
-      "description": "nivel intermedio",
-      "price": "₺2,199",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
+      "id": "ms-ogrenci-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Öğrenci Seti",
+      "description": "Gelişim seviyesi öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 9,
-      "category": "atolie",
-      "name": "Taller Senior",
-      "description": "nivel avanzado",
-      "price": "₺2,399",
-      "image": "/media/woody/reference/h5x59v59_3.png"
+      "id": "ms-ogrenci-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Öğrenci Seti",
+      "description": "İleri seviye öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 10,
-      "category": "atolie",
-      "name": "Taller PRO",
-      "description": "Profesional",
-      "price": "₺2,699",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
+      "id": "ev-basic",
+      "category": "ev-ozel-ders-serisi",
+      "name": "Basic Level Set Öğrenci Seti",
+      "description": "Başlangıç seviyesi özel ders öğrenci seti.",
+      "price": "3.000 TL",
+      "image": "/media/woody/revize-2026-08/ev-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-basic.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 11,
-      "category": "atolie",
-      "name": "Conjunto completo del taller",
-      "description": "Todo en uno",
-      "price": "₺7,999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ev-junior",
+      "category": "ev-ozel-ders-serisi",
+      "name": "Junior Level Set Öğrenci Seti",
+      "description": "Gelişim seviyesi özel ders öğrenci seti.",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/ev-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-junior.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 12,
-      "category": "atolie",
-      "name": "Materiales digitales",
-      "description": "Acceso en línea",
-      "price": "₺499",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 13,
-      "category": "ozel-ders",
-      "name": "Inicio Básico",
-      "description": "entrante individual",
-      "price": "₺1,499",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 14,
-      "category": "ozel-ders",
-      "name": "Inicio Júnior",
-      "description": "Desarrollo individual",
-      "price": "₺1,699",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 15,
-      "category": "ozel-ders",
-      "name": "Inicio Mayores",
-      "description": "individual avanzado",
-      "price": "₺1,899",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 16,
-      "category": "ozel-ders",
-      "name": "Inicio PRO",
-      "description": "Profesional individual",
-      "price": "₺2,099",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
-    },
-    {
-      "id": 17,
-      "category": "ozel-ders",
-      "name": "Paquete de lecciones privadas",
-      "description": "4 niveles, con descuento",
-      "price": "₺5,999",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 18,
-      "category": "ozel-ders",
-      "name": "Biblioteca en línea",
-      "description": "Acceso digital",
-      "price": "₺399",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ev-senior",
+      "category": "ev-ozel-ders-serisi",
+      "name": "Senior Level Set Öğrenci Seti",
+      "description": "İleri seviye özel ders öğrenci seti.",
+      "price": "4.250 TL",
+      "image": "/media/woody/revize-2026-08/ev-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
+      "purchaseMode": "online"
     }
   ],
   "primaryCTA": "",
@@ -188,6 +155,29 @@
     "goToSeries": "Ir a la serie",
     "heroSubtitle": "Sets de aprendizaje de inglés para preescolar",
     "quoteCta": "Solicitar presupuesto",
-    "teacherSetNote": "(El set del profesor se proporciona mediante acuerdos con Mina Publishing. Basta con comprar el set del alumno.)"
+    "teacherSetNote": "(El set del profesor se proporciona mediante acuerdos con Mina Publishing. Basta con comprar el set del alumno.)",
+    "productVideo": "Video del producto",
+    "buyNow": "Comprar ahora",
+    "quantity": "Cantidad",
+    "payWithPaytr": "Pagar con tarjeta",
+    "minOrderNote1": "Los sets de estudiante se compran a partir de 3 unidades.",
+    "minOrderNote2": "Un set de profesor es suficiente para un grupo de estudiantes.",
+    "minOrderNote3": "Por lo tanto, basta con comprar tantos sets de estudiante como estudiantes tenga.",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "city": "Ciudad",
+    "district": "Distrito",
+    "postalCode": "Código postal",
+    "total": "Total",
+    "checkoutBusy": "Procesando…",
+    "checkoutFailed": "No se pudo iniciar el pago. Inténtelo de nuevo.",
+    "checkoutSuccessTitle": "Pago recibido",
+    "checkoutSuccessDescription": "Su pedido ha sido confirmado. Los detalles se enviarán a su correo electrónico.",
+    "checkoutFailureTitle": "Pago fallido",
+    "checkoutFailureDescription": "El pago no se pudo completar. Si no se realizó el cargo, puede intentarlo de nuevo.",
+    "checkoutReturnToStore": "Volver a la tienda",
+    "termsKvkkAccept": "He leído y acepto el aviso de privacidad (KVKK)."
   }
 }

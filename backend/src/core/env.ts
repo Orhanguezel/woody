@@ -68,6 +68,13 @@ export const env = {
   IYZICO_SECRET_KEY: process.env.IYZICO_SECRET_KEY || '',
   IYZICO_BASE_URL: process.env.IYZICO_BASE_URL || 'https://sandbox-api.iyzipay.com',
 
+  // PayTR — secret fallback YASAK: anahtarlar bos ise ozellik kapali kalir (503), varsayilan deger verilmez
+  FEATURE_PAYTR_PAYMENT: parseEnvBool(process.env.FEATURE_PAYTR_PAYMENT, false),
+  PAYTR_MERCHANT_ID: process.env.PAYTR_MERCHANT_ID || '',
+  PAYTR_MERCHANT_KEY: process.env.PAYTR_MERCHANT_KEY || '',
+  PAYTR_MERCHANT_SALT: process.env.PAYTR_MERCHANT_SALT || '',
+  PAYTR_TEST_MODE: parseEnvBool(process.env.PAYTR_TEST_MODE, true),
+
   STORAGE_DRIVER: (process.env.STORAGE_DRIVER || 'local').toLowerCase() as 'local' | 'cloudinary',
   LOCAL_STORAGE_ROOT: process.env.LOCAL_STORAGE_ROOT || '',
   LOCAL_STORAGE_BASE_URL: process.env.LOCAL_STORAGE_BASE_URL || '/uploads',

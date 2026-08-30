@@ -31,8 +31,8 @@
       ]
     },
     {
-      "eyebrow": "Workshop Series",
-      "title": "Workshop Series",
+      "eyebrow": "Mini School Series",
+      "title": "Mini School Series",
       "description": "For workshops and course centers",
       "items": [
         {
@@ -107,7 +107,7 @@
   ],
   "seo": {
     "title": "Store | Woody Learning Sets",
-    "description": "{{appName}} preschool English learning sets store. Current prices and quotes for Preschool Series, Workshop Series, and Private Lesson Series products.",
+    "description": "{{appName}} preschool English learning sets store. Current prices and quotes for Preschool Series, Mini School Series, and Private Lesson Series products.",
     "keywords": "woody store, buy preschool english set, preschool english learning set price, english learning set store"
   },
   "quoteForm": {

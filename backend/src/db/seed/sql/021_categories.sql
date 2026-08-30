@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `sub_category_i18n` (
 
 INSERT INTO `categories` (`id`, `module_key`, `image_url`, `alt`, `icon`, `is_active`, `is_featured`, `display_order`) VALUES
 ('c0000000000000000001', 'store', '/assets/woody/store-books.svg', 'Woody Okul Serisi', 'BookOpen', 1, 1, 10),
-('c0000000000000000002', 'store', '/assets/woody/store-cards.svg', 'Woody Atölye Serisi', 'Layers', 1, 1, 20),
+('c0000000000000000002', 'store', '/assets/woody/store-cards.svg', 'Woody Mini School Serisi', 'Layers', 1, 1, 20),
 ('c0000000000000000003', 'store', '/assets/woody/store-sets.svg', 'Woody Ev-Özel Ders Serisi', 'Package', 1, 1, 30)
 ON DUPLICATE KEY UPDATE
   `module_key` = VALUES(`module_key`),
@@ -87,8 +87,8 @@ ON DUPLICATE KEY UPDATE
 INSERT INTO `category_i18n` (`category_id`, `locale`, `name`, `slug`, `description`, `alt`, `meta_title`, `meta_description`) VALUES
 ('c0000000000000000001', 'tr', 'Okul Serisi', 'okul-serisi', 'Okul öncesi kurumlar için Woody öğrenci setleri.', 'Woody Okul Serisi', 'Woody Okul Serisi', 'Anaokulları için Woody okul serisi öğrenci setleri.'),
 ('c0000000000000000001', 'en', 'Preschool Series', 'preschool-series', 'Woody student sets for preschool institutions.', 'Woody Preschool Series', 'Woody Preschool Series', 'Woody Preschool Series student sets for schools.'),
-('c0000000000000000002', 'tr', 'Atölye Serisi', 'atolye-serisi', 'Atölye ve kurs merkezleri için Woody setleri.', 'Woody Atölye Serisi', 'Woody Atölye Serisi', 'Atölye ve kurslar için Woody İngilizce setleri.'),
-('c0000000000000000002', 'en', 'Workshop Series', 'workshop-series', 'Woody sets for workshops and course centers.', 'Woody Workshop Series', 'Woody Workshop Series', 'Woody English sets for workshops and courses.'),
+('c0000000000000000002', 'tr', 'Mini School Serisi', 'atolye-serisi', 'Atölye ve kurs merkezleri için Woody setleri.', 'Woody Mini School Serisi', 'Woody Mini School Serisi', 'Atölye ve kurslar için Woody İngilizce setleri.'),
+('c0000000000000000002', 'en', 'Mini School Series', 'workshop-series', 'Woody sets for workshops and course centers.', 'Woody Mini School Series', 'Woody Mini School Series', 'Woody English sets for workshops and courses.'),
 ('c0000000000000000003', 'tr', 'Ev-Özel Ders Serisi', 'ev-ozel-ders-serisi', 'Ev ve özel ders öğretmenleri için Woody setleri.', 'Woody Ev-Özel Ders Serisi', 'Woody Ev-Özel Ders Serisi', 'Ev ve özel ders için Woody İngilizce setleri.'),
 ('c0000000000000000003', 'en', 'Home-Private Lesson Series', 'home-private-lesson-series', 'Woody sets for home and private lesson teachers.', 'Woody Home-Private Lesson Series', 'Woody Home-Private Lesson Series', 'Woody English sets for home and private lessons.')
 ON DUPLICATE KEY UPDATE

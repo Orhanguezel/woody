@@ -72,3 +72,21 @@ CREATE TABLE IF NOT EXISTS `payment_attempts` (
   KEY `payment_attempts_created_at_idx` (`created_at`),
   CONSTRAINT `fk_payment_attempts_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- PayTR server-to-server callback denetim kaydi (REVIZE 2026-08-30).
+-- Her deneme loglanir (hash dogrulanamayan dahil) — admin panelden SSH'siz izlenir.
+CREATE TABLE IF NOT EXISTS `paytr_callback_logs` (
+  `id` CHAR(36) NOT NULL,
+  `merchant_oid` VARCHAR(64) DEFAULT NULL,
+  `status` VARCHAR(32) DEFAULT NULL,
+  `total_amount` DECIMAL(12,2) DEFAULT NULL,
+  `source_ip` VARCHAR(64) DEFAULT NULL,
+  `outcome` VARCHAR(32) NOT NULL DEFAULT 'received',
+  `detail` VARCHAR(500) DEFAULT NULL,
+  `payload` JSON DEFAULT NULL,
+  `received_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  PRIMARY KEY (`id`),
+  KEY `paytr_cb_logs_oid_idx` (`merchant_oid`),
+  KEY `paytr_cb_logs_outcome_idx` (`outcome`),
+  KEY `paytr_cb_logs_received_at_idx` (`received_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

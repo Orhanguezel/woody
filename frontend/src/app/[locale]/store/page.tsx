@@ -38,11 +38,8 @@ function asStoreCatalog(content: Awaited<ReturnType<typeof loadWoodyPageContent>
 }
 
 function money(value: number) {
-  return new Intl.NumberFormat('tr-TR', {
-    style: 'currency',
-    currency: 'TRY',
-    minimumFractionDigits: 2,
-  }).format(value);
+  // PDF revizyonu (2026-08-30): fiyat bicimi "3.000 TL"
+  return `${new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 }).format(value)} TL`;
 }
 
 function readFilters(raw: Awaited<Props['searchParams']>): StoreProductFilters {
@@ -56,8 +53,13 @@ function readFilters(raw: Awaited<Props['searchParams']>): StoreProductFilters {
 }
 
 function catalogFromDb(taxonomy: StoreTaxonomy, products: StoreProduct[]): Pick<StoreCatalog, 'categories' | 'series' | 'levels' | 'products'> {
+  // S6 (2026-08-30): Okul Serisi store'dan kaldirildi — urunu olmayan okul-serisi
+  // kategorisi filtrede de "yakinda" kartinda da gorunmez; okul sayfasindan ulasilir.
+  const visibleCategories = taxonomy.categories.filter(
+    (category) => category.slug !== 'okul-serisi' || products.some((p) => p.categorySlug === 'okul-serisi'),
+  );
   return {
-    categories: taxonomy.categories.map((category) => ({
+    categories: visibleCategories.map((category) => ({
       id: category.slug,
       name: category.name,
       route:
@@ -79,6 +81,7 @@ function catalogFromDb(taxonomy: StoreTaxonomy, products: StoreProduct[]): Pick<
       description: product.description,
       price: product.isFree ? undefined : money(product.price),
       image: product.image,
+      videoUrl: product.videoUrl,
       alt: product.alt,
       seriesSlug: product.seriesSlug,
       seriesName: product.seriesName,
@@ -118,9 +121,11 @@ export default async function StorePage({ params, searchParams }: Props) {
   storeCatalog.ui = { ...((catalog as any)?.ui ?? {}), ...(storeConfig?.ui ?? {}), ...(storeCatalog.ui ?? {}) };
   storeCatalog.quoteWhatsApp = storeCatalog.quoteWhatsApp ?? storeConfig?.quoteWhatsApp;
   storeCatalog.quoteMessage = storeCatalog.quoteMessage ?? storeConfig?.quoteMessage;
-  // Teklif-bazli magaza: fiyat istemci payload'ina/HTML'e hic yansimasin
+  // S3 (2026-08-30): online satilan urunlerde fiyat gorunur; teklif-bazlilarda gizli kalir
   if (Array.isArray(storeCatalog.products)) {
-    storeCatalog.products = storeCatalog.products.map((p: any) => ({ ...p, price: undefined }));
+    storeCatalog.products = storeCatalog.products.map((p: any) =>
+      p.purchaseMode === 'online' && !p.isFree ? p : { ...p, price: undefined },
+    );
   }
   const showCart = Boolean((content?.raw as any)?.showCart);
   const schemaProducts = dbProducts.length

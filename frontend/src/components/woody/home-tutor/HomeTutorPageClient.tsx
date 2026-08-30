@@ -8,19 +8,27 @@ import { BookOpen, LibraryBig, Play, ShoppingBag, Target, X } from 'lucide-react
 import { FOCUS_RING } from '@/lib/a11y';
 
 import type { WoodyCard, WoodyPageContent } from '../content-loader.server';
+import { LEVEL_MEDIA, LEVEL_UNDERLINE, type LevelMedia } from '../sets/level-media';
+
 type HomeTutorPageUi = {
   teacherSet?: string;
   studentSet?: string;
   playHero?: string;
   closeVideo?: string;
+  videoCaptionBasic?: string;
+  videoCaptionJunior?: string;
+  videoCaptionSenior?: string;
+  videoWatch?: string;
+  buyCta?: string;
 };
 
-const HERO_VIDEO = '/media/woody/reference/iztyqa5u_Rexy%20and%20egg%20(4).mp4';
-const COMING_SOON_IMAGE =
-  '/media/woody/reference/kg4rjgb3_Paragraf%20metniniz%20(4).png';
-const LEVEL_COMING_SOON_IMAGE =
-  '/media/woody/reference/b5pl9rqg_Paragraf%20metniniz%20(4).png';
-const LEVEL_UNDERLINE = ['bg-level-basic', 'bg-level-junior', 'bg-level-senior', 'bg-level-pro'] as const;
+type HomeTutorMedia = {
+  heroVideo?: string;
+  contentVideos?: Array<{ level?: string; src?: string; poster?: string }>;
+};
+
+// Icerik katmani (config/DB) deger vermezse kullanilan notr yedek.
+const FALLBACK_HERO_VIDEO = '/media/woody/reference/iztyqa5u_Rexy%20and%20egg%20(4).mp4';
 const EXPLORE_IMAGES = [
   '/media/woody/reference/onplu2u5_Seviye%20Bulucu%20sembolu%CC%88.png',
   '/media/woody/reference/5dxwajw5_Ads%C4%B1z%20tasar%C4%B1m%20(44).png',
@@ -34,8 +42,6 @@ function localizedHref(locale: string, href?: string) {
   return href.startsWith('/') ? `/${locale}${href}` : `/${locale}/${href}`;
 }
 
-type HomeTutorGuide = { title?: string; paragraphs?: string[] };
-
 export default function HomeTutorPageClient({
   content,
   locale,
@@ -45,23 +51,35 @@ export default function HomeTutorPageClient({
 }) {
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [showVideo, setShowVideo] = useState(false);
+  const [selectedLevel, setSelectedLevel] = useState<LevelMedia | null>(null);
+  const [levelVideoUrl, setLevelVideoUrl] = useState<string | null>(null);
   const levelsSection = content.sections?.[0];
   const exploreSection = content.sections?.[1];
-  const pageUi = ((content.raw as { pageUi?: HomeTutorPageUi } | undefined)?.pageUi ?? {}) as HomeTutorPageUi;
-  const guide = ((content.raw as { guide?: HomeTutorGuide } | undefined)?.guide ?? {}) as HomeTutorGuide;
+  const raw = (content.raw ?? {}) as { pageUi?: HomeTutorPageUi; media?: HomeTutorMedia };
+  const pageUi = raw.pageUi ?? {};
+  const media = raw.media ?? {};
 
   useEffect(() => {
     heroVideoRef.current?.play().catch(() => {});
   }, []);
 
-  const teacherSet = pageUi.teacherSet || '';
-  const studentSet = pageUi.studentSet || '';
+  const heroVideo = media.heroVideo || FALLBACK_HERO_VIDEO;
+  const captionByLevel: Record<string, string | undefined> = {
+    basic: pageUi.videoCaptionBasic,
+    junior: pageUi.videoCaptionJunior,
+    senior: pageUi.videoCaptionSenior,
+  };
+  const contentVideos = (media.contentVideos ?? []).filter((video) => Boolean(video?.src));
+  const levels = (levelsSection?.items ?? []).map((copy, index) => ({
+    copy,
+    media: LEVEL_MEDIA[index],
+  }));
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <section className="relative mt-[72px] h-[50vh] min-h-[400px] overflow-hidden">
         <video ref={heroVideoRef} muted playsInline loop autoPlay className="absolute inset-0 size-full object-cover">
-          <source src={HERO_VIDEO} type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
@@ -95,39 +113,34 @@ export default function HomeTutorPageClient({
         </div>
       </section>
 
-      {guide.paragraphs?.length ? (
-        <section className="bg-white py-12 md:py-16">
-          <div className="mx-auto max-w-[960px] px-6 md:px-12">
-            {guide.title ? (
-              <h2 className="text-center text-[28px] font-black tracking-tight text-gray-950 md:text-[36px]">
-                {guide.title}
-              </h2>
-            ) : null}
-            <div className="mt-7 space-y-5 text-[16px] leading-8 text-gray-700 md:text-[18px]">
-              {guide.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+      {contentVideos.length ? (
+        <section className="bg-gray-50 py-10 md:py-14">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {contentVideos.map((video) => (
+                <div key={video.src} className="mx-auto w-full max-w-[380px]">
+                  <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-2xl">
+                    {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                    <video
+                      src={video.src}
+                      poster={video.poster}
+                      controls
+                      preload="none"
+                      playsInline
+                      className="size-full object-cover"
+                    />
+                  </div>
+                  {captionByLevel[video.level ?? ''] ? (
+                    <p className="mt-4 text-center text-[16px] font-bold tracking-wide text-gray-800 md:text-[18px]">
+                      {captionByLevel[video.level ?? '']}
+                    </p>
+                  ) : null}
+                </div>
               ))}
             </div>
           </div>
         </section>
       ) : null}
-
-      <section className="bg-gray-50 py-10 md:py-14">
-        <div className="mx-auto max-w-[1100px] px-6 md:px-12">
-          <div className="flex flex-col items-center gap-6 md:flex-row md:gap-10">
-            {[teacherSet, studentSet].map((label) => (
-              <div key={label} className="w-full flex-1">
-                <div className="relative aspect-video overflow-hidden rounded-2xl bg-white shadow-2xl">
-                  <Image src={COMING_SOON_IMAGE} alt={label} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-[center_15%]" />
-                </div>
-                <p className="mt-4 text-center text-[18px] font-bold tracking-wide text-gray-800 md:text-[22px]">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-[1200px] px-6 md:px-12">
@@ -135,19 +148,42 @@ export default function HomeTutorPageClient({
             {levelsSection?.title}
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
-            {(levelsSection?.items ?? []).map((level, index) => (
-              <article key={level.title} className="group">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-gray-200 shadow-lg">
-                  <Image src={LEVEL_COMING_SOON_IMAGE} alt={level.title} fill sizes="(max-width: 1024px) 50vw, 25vw" className="object-cover" />
+            {levels.map(({ copy, media: levelMedia }, index) => (
+              <article key={copy.title} className="group">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition duration-500 group-hover:scale-[1.03] group-hover:shadow-2xl">
+                  {levelMedia ? (
+                    <Image src={levelMedia.image} alt={copy.title} fill sizes="(max-width: 1024px) 50vw, 25vw" className="object-cover" />
+                  ) : null}
+                  {levelMedia?.student || levelMedia?.teacher ? (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedLevel(levelMedia)}
+                        className={`flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[13px] font-medium text-gray-900 shadow-lg transition hover:bg-gray-100 md:text-[14px] ${FOCUS_RING}`}
+                      >
+                        <Play className="size-4" fill="currentColor" aria-hidden />
+                        {pageUi.videoWatch}
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
                 <div className="mt-4 text-center">
                   <h3 className="relative inline-block text-[16px] font-semibold text-gray-800 md:text-[18px]">
-                    {level.title}
+                    {copy.title}
                     <span
                       className={`absolute bottom-0 left-0 h-[3px] w-0 transition-all duration-500 group-hover:w-full ${LEVEL_UNDERLINE[index % LEVEL_UNDERLINE.length]}`}
                     />
                   </h3>
-                  <p className="mt-1 text-[13px] text-gray-500">{level.description}</p>
+                  <p className="mb-3 mt-1 text-[13px] text-gray-500">{copy.description}</p>
+                  {pageUi.buyCta ? (
+                    <Link
+                      href={localizedHref(locale, '/store')}
+                      className={`inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-orange-600 md:text-[14px] ${FOCUS_RING}`}
+                    >
+                      <ShoppingBag className="size-4" aria-hidden />
+                      {pageUi.buyCta}
+                    </Link>
+                  ) : null}
                 </div>
               </article>
             ))}
@@ -175,6 +211,52 @@ export default function HomeTutorPageClient({
         </div>
       </section>
 
+      {selectedLevel ? (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/90 p-4">
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedLevel(null);
+              setLevelVideoUrl(null);
+            }}
+            className={`absolute right-6 top-6 z-[10001] text-white/80 transition hover:text-white ${FOCUS_RING}`}
+            aria-label={pageUi.closeVideo}
+          >
+            <X className="size-9" aria-hidden />
+          </button>
+          {levelVideoUrl ? (
+            <div className="aspect-[9/16] h-[85vh] max-w-full">
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <video src={levelVideoUrl} controls autoPlay playsInline className="size-full rounded-lg object-contain" />
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-[20px] font-bold text-white">{selectedLevel.name}</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {selectedLevel.teacher ? (
+                  <button
+                    type="button"
+                    onClick={() => setLevelVideoUrl(selectedLevel.teacher ?? null)}
+                    className={`rounded-lg bg-white px-5 py-2.5 text-[14px] font-medium text-gray-900 transition hover:bg-gray-100 ${FOCUS_RING}`}
+                  >
+                    {pageUi.teacherSet}
+                  </button>
+                ) : null}
+                {selectedLevel.student ? (
+                  <button
+                    type="button"
+                    onClick={() => setLevelVideoUrl(selectedLevel.student ?? null)}
+                    className={`rounded-lg bg-white px-5 py-2.5 text-[14px] font-medium text-gray-900 transition hover:bg-gray-100 ${FOCUS_RING}`}
+                  >
+                    {pageUi.studentSet}
+                  </button>
+                ) : null}
+              </div>
+            </div>
+          )}
+        </div>
+      ) : null}
+
       {showVideo ? (
         <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/90 p-4">
           <button
@@ -186,7 +268,8 @@ export default function HomeTutorPageClient({
             <X className="size-9" aria-hidden />
           </button>
           <div className="aspect-video w-full max-w-[1000px]">
-            <video src={HERO_VIDEO} controls autoPlay className="size-full rounded-lg" />
+            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+            <video src={heroVideo} controls autoPlay className="size-full rounded-lg" />
           </div>
         </div>
       ) : null}

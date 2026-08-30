@@ -6,141 +6,108 @@
   "showCart": false,
   "categories": [
     {
-      "id": "okul-serisi",
-      "name": "Okul Serisi",
-      "description": "",
-      "route": "/preschool"
-    },
-    {
-      "id": "atolye",
-      "name": "Atölye Serisi",
+      "id": "atolye-serisi",
+      "name": "Mini School Serisi",
       "description": "Atölye ve kurs merkezleri için",
       "route": "/workshop"
     },
     {
-      "id": "ozel-ders",
-      "name": "Özel Ders Serisi",
+      "id": "ev-ozel-ders-serisi",
+      "name": "Ev-Özel Ders Serisi",
       "description": "Ev ve özel ders öğretmenleri için",
       "route": "/home-tutor"
     }
   ],
   "products": [
     {
-      "id": 1,
-      "category": "okul-serisi",
+      "id": "ms-ogretmen-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Öğretmen Seti",
+      "description": "Başlangıç seviyesi öğretmen seti",
+      "price": "1.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogretmen-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Öğretmen Seti",
+      "description": "Gelişim seviyesi öğretmen seti",
+      "price": "2.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogretmen-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Öğretmen Seti",
+      "description": "İleri seviye öğretmen seti",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogrenci-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Öğrenci Seti",
+      "description": "Başlangıç seviyesi öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogrenci-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Öğrenci Seti",
+      "description": "Gelişim seviyesi öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogrenci-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Öğrenci Seti",
+      "description": "İleri seviye öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ev-basic",
+      "category": "ev-ozel-ders-serisi",
       "name": "Basic Level Set Öğrenci Seti",
-      "description": "Başlangıç seviyesi",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
+      "description": "Başlangıç seviyesi özel ders öğrenci seti.",
+      "price": "3.000 TL",
+      "image": "/media/woody/revize-2026-08/ev-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-basic.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 2,
-      "category": "okul-serisi",
+      "id": "ev-junior",
+      "category": "ev-ozel-ders-serisi",
       "name": "Junior Level Set Öğrenci Seti",
-      "description": "Gelişim seviyesi",
-      "image": "/media/woody/reference/h5x59v59_3.png"
+      "description": "Gelişim seviyesi özel ders öğrenci seti.",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/ev-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-junior.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 3,
-      "category": "okul-serisi",
+      "id": "ev-senior",
+      "category": "ev-ozel-ders-serisi",
       "name": "Senior Level Set Öğrenci Seti",
-      "description": "İleri seviye",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 7,
-      "category": "atolye",
-      "name": "Atölye Basic",
-      "description": "Başlangıç paketi",
-      "price": "₺1.999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 8,
-      "category": "atolye",
-      "name": "Atölye Junior",
-      "description": "Orta seviye",
-      "price": "₺2.199",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 9,
-      "category": "atolye",
-      "name": "Atölye Senior",
-      "description": "İleri seviye",
-      "price": "₺2.399",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 10,
-      "category": "atolye",
-      "name": "Atölye PRO",
-      "description": "Profesyonel",
-      "price": "₺2.699",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
-    },
-    {
-      "id": 11,
-      "category": "atolye",
-      "name": "Atölye Tam Set",
-      "description": "Hepsi bir arada",
-      "price": "₺7.999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 12,
-      "category": "atolye",
-      "name": "Dijital Materyal",
-      "description": "Online erişim",
-      "price": "₺499",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 13,
-      "category": "ozel-ders",
-      "name": "Home Basic",
-      "description": "Bireysel başlangıç",
-      "price": "₺1.499",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 14,
-      "category": "ozel-ders",
-      "name": "Home Junior",
-      "description": "Bireysel gelişim",
-      "price": "₺1.699",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 15,
-      "category": "ozel-ders",
-      "name": "Home Senior",
-      "description": "Bireysel ileri",
-      "price": "₺1.899",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 16,
-      "category": "ozel-ders",
-      "name": "Home PRO",
-      "description": "Bireysel profesyonel",
-      "price": "₺2.099",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
-    },
-    {
-      "id": 17,
-      "category": "ozel-ders",
-      "name": "Özel Ders Paketi",
-      "description": "4 seviye kampanyalı",
-      "price": "₺5.999",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 18,
-      "category": "ozel-ders",
-      "name": "Online Kütüphane",
-      "description": "Dijital erişim",
-      "price": "₺399",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "description": "İleri seviye özel ders öğrenci seti.",
+      "price": "4.250 TL",
+      "image": "/media/woody/revize-2026-08/ev-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
+      "purchaseMode": "online"
     }
   ],
   "quoteForm": {
@@ -188,6 +155,29 @@
     "goToSeries": "Seriye git",
     "heroSubtitle": "Okul öncesi İngilizce öğrenme setleri",
     "quoteCta": "Teklif iste",
-    "teacherSetNote": "(Öğretmen seti, Mina Yayınevi ile yapılan anlaşmalar kapsamında sağlanır. Öğrenci setini satın almak yeterlidir.)"
+    "teacherSetNote": "(Öğretmen seti, Mina Yayınevi ile yapılan anlaşmalar kapsamında sağlanır. Öğrenci setini satın almak yeterlidir.)",
+    "productVideo": "Ürün Videosu",
+    "buyNow": "Şimdi Satın Al",
+    "quantity": "Adet",
+    "payWithPaytr": "Kart ile Öde",
+    "minOrderNote1": "Öğrenci setleri en az 3 adet satın alınabilir.",
+    "minOrderNote2": "1 öğretmen seti, 1 grup öğrenci için yeterlidir.",
+    "minOrderNote3": "Bu nedenle yalnızca öğrenci sayınız kadar öğrenci seti satın almanız yeterli olur.",
+    "name": "Ad Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "address": "Adres",
+    "city": "İl",
+    "district": "İlçe",
+    "postalCode": "Posta Kodu",
+    "total": "Toplam",
+    "checkoutBusy": "İşleniyor…",
+    "checkoutFailed": "Ödeme başlatılamadı. Lütfen tekrar deneyin.",
+    "checkoutSuccessTitle": "Ödeme Alındı",
+    "checkoutSuccessDescription": "Siparişiniz onaylandı. Sipariş bilgileriniz e-posta adresinize gönderilecek.",
+    "checkoutFailureTitle": "Ödeme Tamamlanamadı",
+    "checkoutFailureDescription": "Ödeme işlemi tamamlanamadı. Kartınızdan ücret çekilmediyse tekrar deneyebilirsiniz.",
+    "checkoutReturnToStore": "Mağazaya Dön",
+    "termsKvkkAccept": "KVKK aydınlatma metnini okudum, onaylıyorum."
   }
 }

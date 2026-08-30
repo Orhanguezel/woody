@@ -178,3 +178,8 @@ docs/
 
 # GZL private project manifest
 project.portfolio.private.json
+
+# musteri kaynak materyali (ham video/gorsel — repoya girmez)
+/website/
+/mini school.mp4/
+/ev serisi tanıtım video/

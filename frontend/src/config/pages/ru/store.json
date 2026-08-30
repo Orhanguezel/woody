@@ -29,8 +29,8 @@
       ]
     },
     {
-      "eyebrow": "Серия семинаров",
-      "title": "Серия семинаров",
+      "eyebrow": "Серия Mini School",
+      "title": "Серия Mini School",
       "description": "Для мастерских и учебных центров",
       "items": [
         {
@@ -105,7 +105,7 @@
   ],
   "seo": {
     "title": "Магазин | Наборы для обучения {{appName}}",
-    "description": "{{appName}} Магазин дошкольных наборов для изучения английского языка. Текущие цены и расценки на продукты серии Preschool Series, Workshop Series и Private Lesson Series.",
+    "description": "{{appName}} Магазин дошкольных наборов для изучения английского языка. Текущие цены и расценки на продукты серии Preschool Series, Mini School Series и Private Lesson Series.",
     "keywords": "магазин Woody, купить набор английского для дошкольников, набор для изучения английского для дошкольников цена, магазин наборов для изучения английского"
   },
   "showCart": false,

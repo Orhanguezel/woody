@@ -6,141 +6,108 @@
   "showCart": false,
   "categories": [
     {
-      "id": "okul-serisi",
-      "name": "Preschool Series",
-      "description": "",
-      "route": "/preschool"
-    },
-    {
-      "id": "atolye",
-      "name": "Workshop Series",
+      "id": "atolye-serisi",
+      "name": "Mini School Series",
       "description": "For workshops and course centers",
       "route": "/workshop"
     },
     {
-      "id": "ozel-ders",
-      "name": "Private Lesson Series",
+      "id": "ev-ozel-ders-serisi",
+      "name": "Home & Private Lesson Series",
       "description": "For home and private lesson teachers",
       "route": "/home-tutor"
     }
   ],
   "products": [
     {
-      "id": 1,
-      "category": "okul-serisi",
+      "id": "ms-ogretmen-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Teacher Set",
+      "description": "Beginner level teacher set",
+      "price": "1.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogretmen-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Teacher Set",
+      "description": "Development level teacher set",
+      "price": "2.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogretmen-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Teacher Set",
+      "description": "Advanced level teacher set",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogrenci-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Student Set",
+      "description": "Beginner level student set",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogrenci-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Student Set",
+      "description": "Development level student set",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ms-ogrenci-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Student Set",
+      "description": "Advanced level student set",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
+    },
+    {
+      "id": "ev-basic",
+      "category": "ev-ozel-ders-serisi",
       "name": "Basic Level Student Set",
-      "description": "Beginner level",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
+      "description": "Beginner level home tutoring student set.",
+      "price": "3.000 TL",
+      "image": "/media/woody/revize-2026-08/ev-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-basic.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 2,
-      "category": "okul-serisi",
+      "id": "ev-junior",
+      "category": "ev-ozel-ders-serisi",
       "name": "Junior Level Student Set",
-      "description": "Development level",
-      "image": "/media/woody/reference/h5x59v59_3.png"
+      "description": "Development level home tutoring student set.",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/ev-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-junior.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 3,
-      "category": "okul-serisi",
+      "id": "ev-senior",
+      "category": "ev-ozel-ders-serisi",
       "name": "Senior Level Student Set",
-      "description": "Advanced level",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 7,
-      "category": "atolye",
-      "name": "Workshop Basic",
-      "description": "Starter package",
-      "price": "₺1,999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 8,
-      "category": "atolye",
-      "name": "Workshop Junior",
-      "description": "Intermediate level",
-      "price": "₺2,199",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 9,
-      "category": "atolye",
-      "name": "Workshop Senior",
-      "description": "Advanced level",
-      "price": "₺2,399",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 10,
-      "category": "atolye",
-      "name": "Workshop PRO",
-      "description": "Professional",
-      "price": "₺2,699",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
-    },
-    {
-      "id": 11,
-      "category": "atolye",
-      "name": "Workshop Full Set",
-      "description": "All in one",
-      "price": "₺7,999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 12,
-      "category": "atolye",
-      "name": "Digital Material",
-      "description": "Online access",
-      "price": "₺499",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 13,
-      "category": "ozel-ders",
-      "name": "Home Basic",
-      "description": "Individual starter",
-      "price": "₺1,499",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 14,
-      "category": "ozel-ders",
-      "name": "Home Junior",
-      "description": "Individual development",
-      "price": "₺1,699",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 15,
-      "category": "ozel-ders",
-      "name": "Home Senior",
-      "description": "Individual advanced",
-      "price": "₺1,899",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 16,
-      "category": "ozel-ders",
-      "name": "Home PRO",
-      "description": "Individual professional",
-      "price": "₺2,099",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
-    },
-    {
-      "id": 17,
-      "category": "ozel-ders",
-      "name": "Private Lesson Package",
-      "description": "4 levels, discounted",
-      "price": "₺5,999",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 18,
-      "category": "ozel-ders",
-      "name": "Online Library",
-      "description": "Digital access",
-      "price": "₺399",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "description": "Advanced level home tutoring student set.",
+      "price": "4.250 TL",
+      "image": "/media/woody/revize-2026-08/ev-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
+      "purchaseMode": "online"
     }
   ],
   "quoteForm": {
@@ -188,6 +155,29 @@
     "goToSeries": "Go to series",
     "heroSubtitle": "Preschool English learning sets",
     "quoteCta": "Request a quote",
-    "teacherSetNote": "(The teacher set is provided through agreements with Mina Publishing. Purchasing the student set is sufficient.)"
+    "teacherSetNote": "(The teacher set is provided through agreements with Mina Publishing. Purchasing the student set is sufficient.)",
+    "productVideo": "Product Video",
+    "buyNow": "Buy Now",
+    "quantity": "Quantity",
+    "payWithPaytr": "Pay by Card",
+    "minOrderNote1": "Student sets can be purchased in quantities of at least 3.",
+    "minOrderNote2": "One teacher set is enough for one group of students.",
+    "minOrderNote3": "Therefore it is enough to buy only as many student sets as you have students.",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "district": "District",
+    "postalCode": "Postal Code",
+    "total": "Total",
+    "checkoutBusy": "Processing…",
+    "checkoutFailed": "Payment could not be started. Please try again.",
+    "checkoutSuccessTitle": "Payment Received",
+    "checkoutSuccessDescription": "Your order has been confirmed. Order details will be sent to your email address.",
+    "checkoutFailureTitle": "Payment Failed",
+    "checkoutFailureDescription": "The payment could not be completed. If your card was not charged, you can try again.",
+    "checkoutReturnToStore": "Back to Store",
+    "termsKvkkAccept": "I have read and accept the privacy (KVKK) notice."
   }
 }

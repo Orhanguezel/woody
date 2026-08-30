@@ -3,141 +3,108 @@
   "quoteMessage": "Hallo, ik wil graag prijsinformatie ontvangen over uw schoolsets.\n\nStad:\nSchoolnaam:\nAantal studenten:\nKunt u uw prijsopgave samen met uw digitale catalogus delen?",
   "categories": [
     {
-      "id": "okul-serisi",
-      "name": "Voorschoolse serie",
-      "description": "",
-      "route": "/preschool"
-    },
-    {
-      "id": "atolye",
-      "name": "Workshop-serie",
-      "description": "Voor workshops en cursuscentra",
+      "id": "atolye-serisi",
+      "name": "Mini School Serisi",
+      "description": "Atölye ve kurs merkezleri için",
       "route": "/workshop"
     },
     {
-      "id": "ozel-ders",
-      "name": "Privélessenserie",
-      "description": "Voor thuis- en privélesleraren",
+      "id": "ev-ozel-ders-serisi",
+      "name": "Ev-Özel Ders Serisi",
+      "description": "Ev ve özel ders öğretmenleri için",
       "route": "/home-tutor"
     }
   ],
   "products": [
     {
-      "id": 1,
-      "category": "okul-serisi",
-      "name": "Basisniveau studentenset",
-      "description": "Beginnersniveau",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
+      "id": "ms-ogretmen-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Öğretmen Seti",
+      "description": "Başlangıç seviyesi öğretmen seti",
+      "price": "1.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 2,
-      "category": "okul-serisi",
-      "name": "Studentenset op junior niveau",
-      "description": "Ontwikkelingsniveau",
-      "image": "/media/woody/reference/h5x59v59_3.png"
+      "id": "ms-ogretmen-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Öğretmen Seti",
+      "description": "Gelişim seviyesi öğretmen seti",
+      "price": "2.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 3,
-      "category": "okul-serisi",
-      "name": "Studentenset op senior niveau",
-      "description": "Gevorderd niveau",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ms-ogretmen-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Öğretmen Seti",
+      "description": "İleri seviye öğretmen seti",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogretmen-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 7,
-      "category": "atolie",
-      "name": "Werkplaats Basis",
-      "description": "Startpakket",
-      "price": "₺1.999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ms-ogrenci-basic",
+      "category": "atolye-serisi",
+      "name": "Basic Öğrenci Seti",
+      "description": "Başlangıç seviyesi öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 8,
-      "category": "atolie",
-      "name": "Werkplaats Junior",
-      "description": "Gemiddeld niveau",
-      "price": "₺2.199",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
+      "id": "ms-ogrenci-junior",
+      "category": "atolye-serisi",
+      "name": "Junior Öğrenci Seti",
+      "description": "Gelişim seviyesi öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 9,
-      "category": "atolie",
-      "name": "Werkplaats Senior",
-      "description": "Gevorderd niveau",
-      "price": "₺2.399",
-      "image": "/media/woody/reference/h5x59v59_3.png"
+      "id": "ms-ogrenci-senior",
+      "category": "atolye-serisi",
+      "name": "Senior Öğrenci Seti",
+      "description": "İleri seviye öğrenci seti",
+      "price": "2.500 TL",
+      "image": "/media/woody/revize-2026-08/mini-school-ogrenci-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 10,
-      "category": "atolie",
-      "name": "Werkplaats PRO",
-      "description": "Professioneel",
-      "price": "₺2.699",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
+      "id": "ev-basic",
+      "category": "ev-ozel-ders-serisi",
+      "name": "Basic Level Set Öğrenci Seti",
+      "description": "Başlangıç seviyesi özel ders öğrenci seti.",
+      "price": "3.000 TL",
+      "image": "/media/woody/revize-2026-08/ev-basic.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-basic.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 11,
-      "category": "atolie",
-      "name": "Werkplaats volledige set",
-      "description": "Alles in één",
-      "price": "₺7.999",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ev-junior",
+      "category": "ev-ozel-ders-serisi",
+      "name": "Junior Level Set Öğrenci Seti",
+      "description": "Gelişim seviyesi özel ders öğrenci seti.",
+      "price": "3.750 TL",
+      "image": "/media/woody/revize-2026-08/ev-junior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-junior.mp4",
+      "purchaseMode": "online"
     },
     {
-      "id": 12,
-      "category": "atolie",
-      "name": "Digitaal materiaal",
-      "description": "Online-toegang",
-      "price": "₺499",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 13,
-      "category": "ozel-ders",
-      "name": "Thuis Basis",
-      "description": "Individuele starter",
-      "price": "₺1.499",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 14,
-      "category": "ozel-ders",
-      "name": "Thuis Junior",
-      "description": "Individuele ontwikkeling",
-      "price": "₺1.699",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
-    },
-    {
-      "id": 15,
-      "category": "ozel-ders",
-      "name": "Thuis Senior",
-      "description": "Individueel gevorderd",
-      "price": "₺1.899",
-      "image": "/media/woody/reference/3jgyyil9_1.png"
-    },
-    {
-      "id": 16,
-      "category": "ozel-ders",
-      "name": "Thuis PRO",
-      "description": "Individuele professional",
-      "price": "₺2.099",
-      "image": "/media/woody/reference/6qg348xf_Preschool%20Basic%20(297%20x%20210%20mm)%20(Instagram%20Go%CC%88nderisi%20(45)).png"
-    },
-    {
-      "id": 17,
-      "category": "ozel-ders",
-      "name": "Privélespakket",
-      "description": "4 niveaus, met korting",
-      "price": "₺5.999",
-      "image": "/media/woody/reference/h5x59v59_3.png"
-    },
-    {
-      "id": 18,
-      "category": "ozel-ders",
-      "name": "Onlinebibliotheek",
-      "description": "Digitale toegang",
-      "price": "₺399",
-      "image": "/media/woody/reference/m4z26p5k_2.png"
+      "id": "ev-senior",
+      "category": "ev-ozel-ders-serisi",
+      "name": "Senior Level Set Öğrenci Seti",
+      "description": "İleri seviye özel ders öğrenci seti.",
+      "price": "4.250 TL",
+      "image": "/media/woody/revize-2026-08/ev-senior.webp",
+      "videoUrl": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
+      "purchaseMode": "online"
     }
   ],
   "primaryCTA": "",
@@ -188,6 +155,29 @@
     "goToSeries": "Naar de serie",
     "heroSubtitle": "Engels-leersets voor kleuters",
     "quoteCta": "Offerte aanvragen",
-    "teacherSetNote": "(De docentenset wordt geleverd via afspraken met Mina Publishing. Het kopen van de leerlingenset is voldoende.)"
+    "teacherSetNote": "(De docentenset wordt geleverd via afspraken met Mina Publishing. Het kopen van de leerlingenset is voldoende.)",
+    "productVideo": "Productvideo",
+    "buyNow": "Nu kopen",
+    "quantity": "Aantal",
+    "payWithPaytr": "Betalen met kaart",
+    "minOrderNote1": "Leerlingsets zijn verkrijgbaar vanaf 3 stuks.",
+    "minOrderNote2": "Eén docentenset is voldoende voor één groep leerlingen.",
+    "minOrderNote3": "Het is dus voldoende om evenveel leerlingsets te kopen als u leerlingen heeft.",
+    "name": "Volledige naam",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "address": "Adres",
+    "city": "Stad",
+    "district": "Wijk",
+    "postalCode": "Postcode",
+    "total": "Totaal",
+    "checkoutBusy": "Bezig met verwerken…",
+    "checkoutFailed": "De betaling kon niet worden gestart. Probeer het opnieuw.",
+    "checkoutSuccessTitle": "Betaling ontvangen",
+    "checkoutSuccessDescription": "Uw bestelling is bevestigd. De gegevens worden naar uw e-mailadres gestuurd.",
+    "checkoutFailureTitle": "Betaling mislukt",
+    "checkoutFailureDescription": "De betaling kon niet worden voltooid. Als uw kaart niet is belast, kunt u het opnieuw proberen.",
+    "checkoutReturnToStore": "Terug naar de winkel",
+    "termsKvkkAccept": "Ik heb de privacyverklaring (KVKK) gelezen en accepteer deze."
   }
 }

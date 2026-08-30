@@ -1,11 +1,11 @@
 {
-  "title": "Serie di seminari {{appName}}",
-  "description": "Con la serie di workshop, i bambini non si limitano ad ascoltare l'inglese; lo suonano, lo applicano e lo vivono. Offri un processo di apprendimento più vivace ed efficace con {{appName}}.",
-  "eyebrow": "SERIE DI WORKSHOP {{appName}}",
+  "title": "Serie Mini School {{appName}}",
+  "description": "Con la serie Mini School, i bambini non si limitano ad ascoltare l'inglese; lo suonano, lo applicano e lo vivono. Offri un processo di apprendimento più vivace ed efficace con {{appName}}.",
+  "eyebrow": "SERIE MINI SCHOOL {{appName}}",
   "hero": {
-    "eyebrow": "SERIE DI WORKSHOP {{appName}}",
-    "title": "Officina",
-    "description": "Con la serie di workshop, i bambini non si limitano ad ascoltare l'inglese; lo suonano, lo applicano e lo vivono. Offri un processo di apprendimento più vivace ed efficace con {{appName}}.",
+    "eyebrow": "SERIE MINI SCHOOL {{appName}}",
+    "title": "Serie Mini School",
+    "description": "Con la serie Mini School, i bambini non si limitano ad ascoltare l'inglese; lo suonano, lo applicano e lo vivono. Offri un processo di apprendimento più vivace ed efficace con {{appName}}.",
     "primaryCTA": "Richiedi una dimostrazione",
     "primaryHref": "/contact",
     "secondaryCTA": "Visualizza i prezzi",
@@ -15,7 +15,7 @@
     {
       "eyebrow": "Livelli",
       "title": "Scopri i contenuti della serie attraverso video tutorial",
-      "description": "La serie Workshop è composta da due set separati. Scopri i loro contenuti attraverso video tutorial. La serie ha quattro livelli: Base, Junior, Senior e PRO.",
+      "description": "La serie Mini School è composta da due set separati. Scopri i loro contenuti attraverso video tutorial. La serie ha quattro livelli: Base, Junior, Senior e PRO.",
       "items": [
         {
           "badge": "BASIC",
@@ -65,16 +65,13 @@
     "teacherSet": "Set per insegnanti",
     "studentSet": "Set per studenti",
     "closeVideo": "Chiudi video",
-    "playHero": "Riproduci il video Workshop"
+    "playHero": "Riproduci il video Mini School",
+    "videoCaption": "Video dei contenuti della serie Mini School",
+    "videoWatch": "Guarda il video",
+    "buyCta": "Acquista"
   },
-  "guide": {
-    "title": "Come si applica il modello del laboratorio?",
-    "paragraphs": [
-      "La Serie Laboratorio è pensata per istituzioni, laboratori linguistici e programmi extrascolastici che desiderano costruire un'interazione più intensa con un piccolo numero di bambini. L'obiettivo è creare un ambiente vivace in cui i bambini usano l'inglese attraverso il gioco, la drammatizzazione, gli abbinamenti, il movimento e brevi compiti, anziché una lezione in cui si limitano a ripeterlo. Per questo, nel laboratorio ogni bambino prende la parola più spesso, tocca i materiali più frequentemente e l'insegnante può seguire immediatamente la reazione del bambino.",
-      "La struttura in piccolo gruppo offre un riscontro più rapido e una ripetizione più flessibile rispetto alla serie in classe. L'insegnante può ricostruire lo stesso obiettivo di apprendimento con diversi tipi di gioco e regolare i passaggi di ascolto, imitazione, risposta breve, lavoro in coppia e gioco di ruolo in base all'energia del gruppo. Nel modello laboratorio l'obiettivo non è solo insegnare vocaboli, ma far sì che il bambino comprenda un comando in inglese, risponda all'interno di un gioco e stabilisca una comunicazione semplice con un compagno.",
-      "Al livello Basic emergono un avvio sicuro e il lessico di base. Al livello Junior i bambini combinano le strutture per produrre risposte più lunghe. Al livello Senior aumentano la comprensione orale, i brevi dialoghi e il seguire una storia. Al livello PRO vengono sostenuti la preparazione alla lettura e alla scrittura, il linguaggio dei progetti e strutture più accademiche. Questa distinzione garantisce che il laboratorio non sia solo le stesse carte a ogni livello e che l'istituzione scelga un percorso di applicazione chiaro in base all'età, al livello e agli obiettivi del gruppo.",
-      "Nella pratica del laboratorio, il punto più importante per l'insegnante è che ogni attività sia legata a uno scopo osservabile. In un gioco il bambino ripete i colori, mentre in un'altra attività usa le stesse parole con comandi di movimento; in seguito consolida le conoscenze con una breve storia o un compito di abbinamento. Questo ciclo riduce la noia nel piccolo gruppo e aiuta l'alunno a usare lo stesso apprendimento in contesti diversi.",
-      "Per le istituzioni, la Serie Laboratorio può essere adattata a calendari diversi, come una lezione demo, un'attività del fine settimana, un club extrascolastico o un programma linguistico boutique. Quando i materiali fisici e la biblioteca digitale vengono usati insieme, l'insegnante riduce la preparazione prima della lezione e può anche spiegare ai genitori in modo più chiaro quali competenze il bambino sta lavorando e a quale livello."
-    ]
+  "media": {
+    "contentVideo": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+    "contentVideoPoster": "/media/woody/revize-2026-08/mini-school-tanitim-poster.jpg"
   }
 }

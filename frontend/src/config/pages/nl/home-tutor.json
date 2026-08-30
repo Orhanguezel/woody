@@ -70,16 +70,30 @@
     "teacherSet": "Docentenset",
     "studentSet": "Leerlingenset",
     "closeVideo": "Video sluiten",
-    "playHero": "Home Tutor-video afspelen"
+    "playHero": "Home Tutor-video afspelen",
+    "videoCaptionBasic": "Inhoudsvideo Home-serie Basic",
+    "videoCaptionJunior": "Inhoudsvideo Home-serie Junior",
+    "videoCaptionSenior": "Inhoudsvideo Home-serie Senior",
+    "videoWatch": "Video bekijken",
+    "buyCta": "Nu kopen"
   },
-  "guide": {
-    "title": "Hoe verloopt het model voor thuis en bijles?",
-    "paragraphs": [
-      "De Reeks voor Thuis en Bijles is een persoonlijker toepassingsmodel dat bij een-op-een- of tweetalwerk de aandachtsspanne van het kind, de huidige Engelse kennis en de steun van het gezin centraal stelt. In plaats van het tempo van een volle klas gebruikt het korte herhalingen, spelgebaseerde activiteiten en digitale ondersteuning die in het tempo van het kind voortgaan. Deze structuur creëert een rustigere en beter te volgen Engelse routine voor kinderen die thuis met een ouder werken of leerlingen die bijles krijgen.",
-      "In het individuele model kan de leerkracht of ouder van dichtbij zien welke woorden het kind onthoudt, bij welke aanwijzingen het moeite heeft en in welk spel het vrijer praat. Het lesverloop wordt op basis van deze observatie soepeler gemaakt: soms komen luisteren en nadoen eerst, soms wordt herhaald met een verhaal, een lied, een kaartspel of een korte spreektaak. Zo is het programma niet langer één set materialen, maar wordt het een leerpad dat de echte vooruitgang van het kind volgt en ook thuis kan worden voortgezet.",
-      "Op het Basic-niveau krijgt het kind vertrouwen met basiswoordenschat, kleuren, voorwerpen, emoties en eenvoudige aanwijzingen. Op het Junior-niveau worden korte antwoorden en eenvoudige zinnen zichtbaarder. Op het Senior-niveau volgt het kind wat het hoort, begrijpt het verhaal en spreekt het zelfstandiger. Op het PRO-niveau komen de voorbereiding op lezen en schrijven, langere patronen en activiteiten die de overgang naar school ondersteunen naar voren. Dit niveauonderscheid houdt het doel duidelijk bij gebruik thuis en bij bijles en laat het gezin de vooruitgang gemakkelijker volgen.",
-      "Bij thuis studeren wordt continuïteit opgebouwd met korte maar regelmatige herhalingen. Zonder elke dag een lange les te hoeven doen, ziet het kind hetzelfde woord opnieuw binnen een kaart, een lied, een verhaal en een spel. De bijlesleerkracht of ouder kiest de volgende activiteit door tussen deze herhalingen de interesse van het kind te observeren; zo gaat het programma vooruit zonder het kind te veel te belasten, maar ook zonder het werkeloos te laten.",
-      "Deze reeks geeft ook een duidelijker antwoord op de vraag van gezinnen met welk niveau ze moeten beginnen. Wanneer de niveauzoeker, de digitale bibliotheek en de setstructuur in de winkel samen worden gebruikt, ziet de ouder eerst de behoefte van het kind, bekijkt daarna het passende materiaal en krijgt indien nodig ondersteuning van een instelling. Zo verandert Engels leren thuis van een ongeplande poging in een te volgen leerproces."
+  "media": {
+    "contentVideos": [
+      {
+        "level": "basic",
+        "src": "/media/woody/revize-2026-08/home-tutor-basic.mp4",
+        "poster": "/media/woody/revize-2026-08/home-tutor-basic-poster.jpg"
+      },
+      {
+        "level": "junior",
+        "src": "/media/woody/revize-2026-08/home-tutor-junior.mp4",
+        "poster": "/media/woody/revize-2026-08/home-tutor-junior-poster.jpg"
+      },
+      {
+        "level": "senior",
+        "src": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
+        "poster": "/media/woody/revize-2026-08/home-tutor-senior-poster.jpg"
+      }
     ]
   }
 }

@@ -1,11 +1,11 @@
 {
-  "title": "Série de workshops {{appName}}",
-  "description": "Com a série de workshops, as crianças não ouvem apenas inglês; eles tocam, aplicam e vivem. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
-  "eyebrow": "SÉRIE DE OFICINAS {{appName}}",
+  "title": "Série Mini School {{appName}}",
+  "description": "Com a série Mini School, as crianças não ouvem apenas inglês; eles tocam, aplicam e vivem. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
+  "eyebrow": "SÉRIE MINI SCHOOL {{appName}}",
   "hero": {
-    "eyebrow": "SÉRIE DE OFICINAS {{appName}}",
-    "title": "Oficina",
-    "description": "Com a série de workshops, as crianças não ouvem apenas inglês; eles tocam, aplicam e vivem. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
+    "eyebrow": "SÉRIE MINI SCHOOL {{appName}}",
+    "title": "Série Mini School",
+    "description": "Com a série Mini School, as crianças não ouvem apenas inglês; eles tocam, aplicam e vivem. Ofereça um processo de aprendizagem mais animado e eficaz com {{appName}}.",
     "primaryCTA": "Solicite uma demonstração",
     "primaryHref": "/contact",
     "secondaryCTA": "Ver preços",
@@ -15,7 +15,7 @@
     {
       "eyebrow": "Níveis",
       "title": "Descubra o conteúdo da série por meio de vídeos passo a passo",
-      "description": "A série de workshops consiste em dois conjuntos separados. Descubra seu conteúdo por meio de vídeos passo a passo. A série tem quatro níveis: Básico, Júnior, Sênior e PRO.",
+      "description": "A série Mini School consiste em dois conjuntos separados. Descubra seu conteúdo por meio de vídeos passo a passo. A série tem quatro níveis: Básico, Júnior, Sênior e PRO.",
       "items": [
         {
           "badge": "BASIC",
@@ -65,16 +65,13 @@
     "teacherSet": "Conjunto do Professor",
     "studentSet": "Conjunto do Aluno",
     "closeVideo": "Fechar vídeo",
-    "playHero": "Reproduzir vídeo do Workshop"
+    "playHero": "Reproduzir vídeo do Mini School",
+    "videoCaption": "Vídeo de conteúdo da série Mini School",
+    "videoWatch": "Assistir ao Vídeo",
+    "buyCta": "Comprar"
   },
-  "guide": {
-    "title": "Como o modelo de oficina é aplicado?",
-    "paragraphs": [
-      "A Série Oficina foi criada para instituições, oficinas de idiomas e programas no contraturno que desejam construir uma interação mais intensa com um número pequeno de crianças. O objetivo é criar um ambiente vivo em que as crianças usam o inglês por meio de brincadeiras, dramatização, associações, movimento e tarefas curtas, em vez de uma aula em que apenas o repetem. Por isso, na oficina cada criança fala mais, toca os materiais com mais frequência e o professor consegue acompanhar na hora a reação da criança.",
-      "A estrutura de grupo pequeno oferece um retorno mais rápido e uma repetição mais flexível do que a série em sala de aula. O professor pode reconstruir o mesmo objetivo de aprendizagem com diferentes tipos de jogos e ajustar as etapas de escuta, imitação, resposta curta, trabalho em duplas e dramatização conforme a energia do grupo. No modelo de oficina, o objetivo não é apenas ensinar vocabulário, mas fazer com que a criança entenda um comando em inglês, responda dentro de um jogo e estabeleça uma comunicação simples com um colega.",
-      "No nível Basic, destacam-se um começo seguro e o vocabulário básico. No nível Junior, as crianças combinam estruturas para produzir respostas mais longas. No nível Senior, aumentam a compreensão auditiva, os diálogos curtos e o acompanhamento de histórias. No nível PRO, apoiam-se a preparação para a leitura e a escrita, a linguagem de projetos e estruturas mais acadêmicas. Essa distinção garante que a oficina não seja apenas os mesmos cartões em todos os níveis e que a instituição escolha um caminho claro de aplicação conforme a idade, o nível e os objetivos do grupo.",
-      "Na prática da oficina, o ponto mais importante para o professor é que cada atividade esteja ligada a um objetivo observável. Em um jogo, a criança repete as cores, enquanto em outra atividade usa as mesmas palavras com comandos de movimento; depois, reforça o conhecimento com uma história curta ou uma tarefa de associação. Esse ciclo reduz o tédio no grupo pequeno e ajuda o aluno a usar o mesmo objetivo de aprendizagem em contextos diferentes.",
-      "Para as instituições, a Série Oficina pode ser adaptada a diferentes calendários, como uma aula de demonstração, uma atividade de fim de semana, um clube no contraturno ou um programa de idiomas boutique. Quando os materiais físicos e a biblioteca digital são usados juntos, o professor reduz o preparo antes da aula e também consegue explicar aos pais com mais clareza quais habilidades a criança está trabalhando e em qual nível."
-    ]
+  "media": {
+    "contentVideo": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+    "contentVideoPoster": "/media/woody/revize-2026-08/mini-school-tanitim-poster.jpg"
   }
 }

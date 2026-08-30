@@ -70,16 +70,30 @@
     "teacherSet": "Öğretmen Seti",
     "studentSet": "Öğrenci Seti",
     "closeVideo": "Videoyu kapat",
-    "playHero": "Home Tutor videosunu oynat"
+    "playHero": "Home Tutor videosunu oynat",
+    "videoCaptionBasic": "Basic ev serisi içerik videosu",
+    "videoCaptionJunior": "Junior ev serisi içerik videosu",
+    "videoCaptionSenior": "Senior ev serisi içerik videosu",
+    "videoWatch": "Video İzle",
+    "buyCta": "Satın Al"
   },
-  "guide": {
-    "title": "Ev ve özel ders modeli nasıl ilerler?",
-    "paragraphs": [
-      "Ev ve Özel Ders Serisi, birebir veya iki kişilik çalışmalarda çocuğun dikkat süresini, mevcut İngilizce bilgisini ve aile desteğini merkeze alan daha kişisel bir uygulama modelidir. Kalabalık sınıf akışı yerine çocuğun hızına göre ilerleyen kısa tekrarlar, oyun temelli etkinlikler ve dijital destek kullanılır. Bu yapı, evde ebeveynle çalışan çocuklar veya özel ders alan öğrenciler için daha sakin ve takip edilebilir bir İngilizce rutini oluşturur.",
-      "Bireysel modelde öğretmen ya da ebeveyn, çocuğun hangi kelimeleri hatırladığını, hangi yönergelerde zorlandığını ve hangi oyunda daha rahat konuştuğunu yakından görebilir. Ders akışı bu gözleme göre esnetilir: bazen dinleme ve taklit öne alınır, bazen hikâye, şarkı, kart oyunu veya kısa konuşma göreviyle tekrar yapılır. Böylece program tek bir materyal seti olmaktan çıkar; çocuğun gerçek ilerlemesini izleyen, evde de sürdürülebilen bir öğrenme yoluna dönüşür.",
-      "Basic seviyede çocuk temel kelime, renk, nesne, duygu ve basit yönergelerle güven kazanır. Junior seviyede kısa cevaplar ve basit cümleler daha görünür hale gelir. Senior seviyede çocuk dinlediğini takip eder, hikâyeyi anlamlandırır ve daha bağımsız konuşur. PRO seviyede okuma-yazmaya hazırlık, daha uzun kalıplar ve okul geçişine destek veren etkinlikler öne çıkar. Bu seviye ayrımı, ev ve özel ders kullanımında hedefin net kalmasını ve ailenin ilerlemeyi daha rahat takip etmesini sağlar.",
-      "Ev çalışmasında süreklilik kısa ama düzenli tekrarlarla kurulur. Çocuk her gün uzun bir ders yapmak zorunda kalmadan, aynı kelimeyi kart, şarkı, hikâye ve oyun içinde yeniden görür. Özel ders öğretmeni ya da ebeveyn bu tekrarlar arasında çocuğun ilgisini izleyerek bir sonraki etkinliği seçer; böylece program çocuğu zorlamadan ama boş da bırakmadan ilerler.",
-      "Bu seri, ailelerin hangi seviyeden başlamalıyız sorusuna da daha net cevap verir. Seviye bulucu, dijital kütüphane ve mağazadaki set yapısı birlikte kullanıldığında ebeveyn önce çocuğun ihtiyacını görür, sonra uygun materyali inceler ve gerekirse kurumdan destek alır. Bu da evde İngilizce çalışmayı plansız bir deneme yerine izlenebilir bir öğrenme sürecine çevirir."
+  "media": {
+    "contentVideos": [
+      {
+        "level": "basic",
+        "src": "/media/woody/revize-2026-08/home-tutor-basic.mp4",
+        "poster": "/media/woody/revize-2026-08/home-tutor-basic-poster.jpg"
+      },
+      {
+        "level": "junior",
+        "src": "/media/woody/revize-2026-08/home-tutor-junior.mp4",
+        "poster": "/media/woody/revize-2026-08/home-tutor-junior-poster.jpg"
+      },
+      {
+        "level": "senior",
+        "src": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
+        "poster": "/media/woody/revize-2026-08/home-tutor-senior-poster.jpg"
+      }
     ]
   }
 }

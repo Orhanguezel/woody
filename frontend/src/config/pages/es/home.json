@@ -31,14 +31,14 @@
         },
         {
           "badge": "Para grupos pequeños",
-          "title": "Taller",
+          "title": "Mini School",
           "description": "Diseñado para grupos pequeños de 3 a 5 personas. El contenido y los juegos están organizados para una interacción más intensiva y una participación individual. Ofrece una estructura de aplicación más enfocada y de ritmo rápido.",
           "features": [
             "Para grupos pequeños de 3 a 5 personas",
             "Interacción intensiva y participación individual",
             "Una estructura más enfocada y de ritmo rápido"
           ],
-          "cta": "Explorar la serie de taller",
+          "cta": "Explorar la serie Mini School",
           "href": "/workshop"
         },
         {

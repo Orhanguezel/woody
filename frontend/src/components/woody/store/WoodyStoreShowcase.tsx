@@ -1,8 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ChevronRight, GraduationCap, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, GraduationCap, MessageCircle, Play, ShoppingCart, X } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
 import { tUi } from '@/i18n/staticUi';
@@ -29,6 +30,7 @@ export type StoreCatalogProduct = {
   description?: string;
   price?: string;
   image?: string;
+  videoUrl?: string;
   alt?: string;
   seriesSlug?: string;
   seriesName?: string;
@@ -114,6 +116,8 @@ export default function WoodyStoreShowcase({
   locale: string;
   filters?: StoreProductFilters;
 }) {
+  // S4 (2026-08-30): "Urun Videosu" 9:16 modal durumu
+  const [productVideo, setProductVideo] = useState<{ url: string; title: string } | null>(null);
   const categories = catalog.categories ?? [];
   const products = catalog.products ?? [];
   const series = catalog.series ?? [];
@@ -190,8 +194,10 @@ export default function WoodyStoreShowcase({
         </div>
       ) : null}
 
-      {/* Filtre cubugu — kategoriler (birincil) + seri/seviye/ucretsiz (ikincil) */}
+      {/* Filtre cubugu — kategoriler (birincil) + seri/seviye/ucretsiz (ikincil).
+          S1 (2026-08-30): beyaz yumusak kart icinde — "kabalik durmasin" */}
       <section className="container max-w-[1100px] pt-8">
+        <div className="rounded-2xl bg-white px-4 py-5 shadow-[0_10px_30px_rgba(49,64,79,0.06)] ring-1 ring-[#f2e9d8] md:px-6">
         <div className="flex flex-wrap items-center justify-center gap-2">
           <FilterPill href={`/${locale}/store`} active={!hasActiveFilter}>
             {ui.all || ''}
@@ -268,6 +274,7 @@ export default function WoodyStoreShowcase({
             ) : null}
           </div>
         ) : null}
+        </div>
       </section>
 
       {/* Aktif kategori baglami — not + seriye git linki */}
@@ -305,10 +312,11 @@ export default function WoodyStoreShowcase({
         </section>
       ) : null}
 
-      {/* Urun listesi — tek birlesik izgara (filtreye gore) */}
+      {/* Urun listesi — tek birlesik izgara (filtreye gore).
+          S2/S7 (2026-08-30): 3'lu izgara — ev serisi tek sira, mini school ustte 3 ogretmen + altta 3 ogrenci */}
       <section className="container max-w-[1100px] py-10 lg:py-12">
         {filtered.length ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((product) => {
               const category = categories.find((item) => item.id === product.category);
               return (
@@ -380,8 +388,34 @@ export default function WoodyStoreShowcase({
                       </div>
                     ) : null}
 
+                    {/* S3/S4 (2026-08-30): online urun = fiyat + Urun Videosu + Simdi Satin Al */}
+                    {product.purchaseMode === 'online' && !product.isFree && product.price ? (
+                      <div className="mt-auto pt-5">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-display text-[22px] font-black text-[#d96f12]">{product.price}</span>
+                          {product.videoUrl ? (
+                            <button
+                              type="button"
+                              onClick={() => setProductVideo({ url: product.videoUrl!, title: product.name })}
+                              className={`inline-flex items-center gap-1.5 rounded-full border border-[#eadfce] bg-white px-3 py-2 text-[12px] font-black text-[#5f6871] transition hover:border-[#f58220] hover:text-[#d96f12] ${FOCUS_RING}`}
+                              data-testid={`store-video-btn-${product.id}`}
+                            >
+                              <Play className="h-3.5 w-3.5" fill="currentColor" aria-hidden />
+                              {ui.productVideo || ''}
+                            </button>
+                          ) : null}
+                        </div>
+                        <Link
+                          href={`/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`}
+                          className={`mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[13px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
+                          data-testid={`store-buy-btn-${product.id}`}
+                        >
+                          <ShoppingCart className="h-4 w-4" aria-hidden />
+                          {ui.buyNow || ''}
+                        </Link>
+                      </div>
+                    ) : (
                     <div className="mt-auto flex flex-wrap gap-2 pt-5">
-                      {/* Sepet/fiyat sonraki faza birakildi — tum (ucretsiz olmayan) urunler teklif-bazli */}
                       {product.isFree && product.slug ? (
                         <Link
                           href={`/${locale}/store/${product.slug}`}
@@ -410,6 +444,7 @@ export default function WoodyStoreShowcase({
                         </a>
                       ) : null}
                     </div>
+                    )}
                   </div>
                 </article>
               );
@@ -429,6 +464,19 @@ export default function WoodyStoreShowcase({
             />
           </div>
         )}
+
+        {/* S9 (2026-08-30): mini school not seridi — "en az 3 adet" bilgileri aynen korunur */}
+        {filtered.some((product) => product.category === 'atolye-serisi') &&
+        (ui.minOrderNote1 || ui.minOrderNote2 || ui.minOrderNote3) ? (
+          <div className="mt-8 grid gap-4 rounded-2xl bg-white px-5 py-5 shadow-[0_10px_30px_rgba(49,64,79,0.06)] ring-1 ring-[#f2e9d8] md:grid-cols-3">
+            {[ui.minOrderNote1, ui.minOrderNote2, ui.minOrderNote3].filter(Boolean).map((note) => (
+              <div key={note} className="flex items-start gap-2.5">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#0c8f74]" aria-hidden />
+                <p className="text-[13px] font-semibold leading-6 text-[#5f6871]">{note}</p>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </section>
 
       {/* Yakinda olan kategoriler (yalnizca filtresiz gorunumde) */}
@@ -465,6 +513,27 @@ export default function WoodyStoreShowcase({
       ) : null}
 
       <QuoteRequestForm copy={catalog.quoteForm} source="store" />
+
+      {/* S4 (2026-08-30): Urun Videosu — 9:16 dikey modal */}
+      {productVideo ? (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/90 p-4">
+          <button
+            type="button"
+            onClick={() => setProductVideo(null)}
+            className={`absolute right-6 top-6 z-[10001] text-white/80 transition hover:text-white ${FOCUS_RING}`}
+            aria-label={ui.back || 'X'}
+          >
+            <X className="size-9" aria-hidden />
+          </button>
+          <div className="flex flex-col items-center gap-3">
+            <p className="max-w-[80vw] truncate text-[16px] font-bold text-white">{productVideo.title}</p>
+            <div className="aspect-[9/16] h-[80vh] max-w-full">
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <video src={productVideo.url} controls autoPlay playsInline className="size-full rounded-lg object-contain" />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }

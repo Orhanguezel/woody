@@ -19,7 +19,7 @@ export const STATIC_UI: Record<string, Record<string, string>> = {
   'Latest Posts': { 'tr': 'Son Yazilar', 'en': 'Latest Posts', 'de': 'Neueste Beiträge', 'ar': 'أحدث المقالات', 'fr': 'Derniers articles', 'ru': 'Последние записи', 'es': 'Últimas Entradas', 'it': 'Ultimi articoli', 'nl': 'Nieuwste berichten', 'pt-br': 'Últimas Publicações' },
   'View All': { 'tr': 'Tumunu Gor', 'en': 'View All', 'de': 'Alle ansehen', 'ar': 'عرض الكل', 'fr': 'Voir tout', 'ru': 'Смотреть все', 'es': 'Ver Todo', 'it': 'Vedi tutti', 'nl': 'Alles bekijken', 'pt-br': 'Ver Todos' },
   'School': { 'tr': 'Okul', 'en': 'School', 'de': 'Schule', 'ar': 'المدرسة', 'fr': 'École', 'ru': 'Школа', 'es': 'Escuela', 'it': 'Scuola', 'nl': 'School', 'pt-br': 'Escola' },
-  'Workshop': { 'tr': 'Atölye', 'en': 'Workshop', 'de': 'Workshop', 'ar': 'ورشة العمل', 'fr': 'Atelier', 'ru': 'Мастерская', 'es': 'Taller', 'it': 'Laboratorio', 'nl': 'Workshop', 'pt-br': 'Oficina' },
+  'Workshop': { 'tr': 'Mini School', 'en': 'Mini School', 'de': 'Mini School', 'ar': 'Mini School', 'fr': 'Mini School', 'ru': 'Mini School', 'es': 'Mini School', 'it': 'Mini School', 'nl': 'Mini School', 'pt-br': 'Mini School' },
   'Home & Private Lesson': { 'tr': 'Ev & Özel Ders', 'en': 'Home & Private Lesson', 'de': 'Zuhause & Privatunterricht', 'ar': 'الدروس المنزلية والخصوصية', 'fr': 'Cours à domicile & particulier', 'ru': 'Домашние и частные уроки', 'es': 'Clase en Casa y Particular', 'it': 'Lezione a domicilio e privata', 'nl': 'Thuis & privéles', 'pt-br': 'Aula em Casa & Particular' },
   'Library': { 'tr': 'Kütüphane', 'en': 'Library', 'de': 'Bibliothek', 'ar': 'المكتبة', 'fr': 'Bibliothèque', 'ru': 'Библиотека', 'es': 'Biblioteca', 'it': 'Biblioteca', 'nl': 'Bibliotheek', 'pt-br': 'Biblioteca' },
   'Home': { 'tr': 'Ana sayfa', 'en': 'Home', 'de': 'Startseite', 'ar': 'الرئيسية', 'fr': 'Accueil', 'ru': 'Главная', 'es': 'Inicio', 'it': 'Home', 'nl': 'Home', 'pt-br': 'Início' },
@@ -147,7 +147,7 @@ export const STATIC_UI: Record<string, Record<string, string>> = {
   'Reading': { 'tr': 'Okuma', 'en': 'Reading', 'de': 'Lesen', 'ar': 'القراءة', 'fr': 'Lecture', 'ru': 'Чтение', 'es': 'Lectura', 'it': 'Lettura', 'nl': 'Lezen', 'pt-br': 'Leitura' },
   'Writing': { 'tr': 'Yazma', 'en': 'Writing', 'de': 'Schreiben', 'ar': 'الكتابة', 'fr': 'Écriture', 'ru': 'Письмо', 'es': 'Escritura', 'it': 'Scrittura', 'nl': 'Schrijven', 'pt-br': 'Escrita' },
   'SCHOOL SERIES': { 'tr': 'OKUL SERISI', 'en': 'SCHOOL SERIES', 'de': 'SCHULSERIE', 'ar': 'سلسلة المدرسة', 'fr': 'SÉRIE ÉCOLE', 'ru': 'ШКОЛЬНАЯ СЕРИЯ', 'es': 'SERIE ESCOLAR', 'it': 'SERIE SCUOLA', 'nl': 'SCHOOLSERIE', 'pt-br': 'SÉRIE ESCOLAR' },
-  'WORKSHOP SERIES': { 'tr': 'ATOLYE SERISI', 'en': 'WORKSHOP SERIES', 'de': 'WORKSHOP-SERIE', 'ar': 'سلسلة الورشة', 'fr': 'SÉRIE ATELIER', 'ru': 'СЕРИЯ МАСТЕРСКОЙ', 'es': 'SERIE TALLER', 'it': 'SERIE WORKSHOP', 'nl': 'WORKSHOPSERIE', 'pt-br': 'SÉRIE WORKSHOP' },
+  'WORKSHOP SERIES': { 'tr': 'MINI SCHOOL SERISI', 'en': 'MINI SCHOOL SERIES', 'de': 'MINI SCHOOL SERIE', 'ar': 'سلسلة MINI SCHOOL', 'fr': 'SÉRIE MINI SCHOOL', 'ru': 'СЕРИЯ MINI SCHOOL', 'es': 'SERIE MINI SCHOOL', 'it': 'SERIE MINI SCHOOL', 'nl': 'MINI SCHOOL-SERIE', 'pt-br': 'SÉRIE MINI SCHOOL' },
   'HOME TUTOR SERIES': { 'tr': 'EV OZEL DERS SERISI', 'en': 'HOME TUTOR SERIES', 'de': 'HEIMUNTERRICHT-SERIE', 'ar': 'سلسلة الدروس المنزلية', 'fr': 'SÉRIE COURS À DOMICILE', 'ru': 'СЕРИЯ ДОМАШНЕГО ОБУЧЕНИЯ', 'es': 'SERIE TUTORÍA EN CASA', 'it': 'SERIE LEZIONI A CASA', 'nl': 'THUISLES-SERIE', 'pt-br': 'SÉRIE AULA EM CASA' },
 };
 

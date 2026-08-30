@@ -3,7 +3,7 @@ import { registerHomeLayoutPublic, registerHomeSectionsAdmin } from '@/modules/h
 import { registerAdminPanelCommerceStubs } from '@/modules/adminPanelStubs/router';
 import { registerSchoolsAdmin, registerSchoolsPublic } from '@/modules/schools';
 import { registerOrdersProjectAdmin } from '@/modules/orders';
-import { registerCheckoutPublic } from '@/modules/checkout';
+import { registerCheckoutPublic, registerCheckoutAdmin } from '@/modules/checkout';
 import { registerCatalogAdmin, registerCatalogPublic } from '@/modules/catalog';
 import { registerEntitlementsAdmin, registerEntitlementsPublic } from '@/modules/entitlements';
 import { registerQuoteRequestsAdmin, registerQuoteRequestsPublic } from '@/modules/quoteRequests';
@@ -37,6 +37,7 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerAdminPanelCommerceStubs(adminApi);
   await registerSchoolsAdmin(adminApi);
   await registerOrdersProjectAdmin(adminApi);
+  await registerCheckoutAdmin(adminApi);
   await registerCatalogAdmin(adminApi);
   await registerEntitlementsAdmin(adminApi);
   await registerQuoteRequestsAdmin(adminApi);

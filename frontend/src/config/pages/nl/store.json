@@ -29,8 +29,8 @@
       ]
     },
     {
-      "eyebrow": "Workshop-serie",
-      "title": "Workshop-serie",
+      "eyebrow": "Mini School-serie",
+      "title": "Mini School-serie",
       "description": "Voor workshops en cursuscentra",
       "items": [
         {
@@ -105,7 +105,7 @@
   ],
   "seo": {
     "title": "Winkel | {{appName}} Leersets",
-    "description": "{{appName}} winkel voor kleuterschool Engelse leersets. Huidige prijzen en offertes voor producten uit de Preschool Series, Workshop Series en Private Lesson Series.",
+    "description": "{{appName}} winkel voor kleuterschool Engelse leersets. Huidige prijzen en offertes voor producten uit de Preschool Series, Mini School Series en Private Lesson Series.",
     "keywords": "Woody winkel, voorschoolse Engelse set kopen, prijs voor voorschoolse Engelse leerset, winkel voor Engelse leerset"
   },
   "showCart": false,

@@ -10,9 +10,9 @@ import { SET_SERIES_MEDIA, localizeHomeHref } from '../home/home-copy';
 
 function ctaFor(index: number, locale: string) {
   if (locale === 'tr') {
-    return ['Okul Serisini İncele', 'Atölye Serisini İncele', 'Ev Serisini İncele'][index] || 'İncele';
+    return ['Okul Serisini İncele', 'Mini School Serisini İncele', 'Ev Serisini İncele'][index] || 'İncele';
   }
-  return ['Explore School Series', 'Explore Workshop Series', 'Explore Home Series'][index] || 'Explore';
+  return ['Explore School Series', 'Explore Mini School Series', 'Explore Home Series'][index] || 'Explore';
 }
 
 export default function WoodySetZigzag({

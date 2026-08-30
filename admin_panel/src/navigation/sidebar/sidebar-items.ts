@@ -82,6 +82,7 @@ export type AdminNavItemKey =
   | 'chat'
   | 'wallet'
   | 'orders'
+  | 'paytr_logs'
   | 'quote_requests'
   | 'products'
   | 'series'
@@ -137,6 +138,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'entitlements', url: '/admin/entitlements', icon: CreditCard },
       { key: 'blog', url: '/admin/blog', icon: BookOpenText },
       { key: 'orders', url: '/admin/orders', icon: Package },
+      { key: 'paytr_logs', url: '/admin/paytr-logs', icon: CreditCard },
       { key: 'quote_requests', url: '/admin/quote-requests', icon: FileText },
       { key: 'subscriptions', url: '/admin/subscriptions', icon: CreditCard },
       { key: 'subscription_plans', url: '/admin/subscription-plans', icon: Receipt },
@@ -209,6 +211,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   support: 'Destek',
   chat: 'Chat & AI',
   orders: 'Siparişler',
+  paytr_logs: 'PayTR Kayıtları',
   quote_requests: 'Teklif Talepleri',
   products: 'Ürünler',
   series: 'Seriler',

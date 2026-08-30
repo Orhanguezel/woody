@@ -31,14 +31,14 @@
         },
         {
           "badge": "Para pequenos grupos",
-          "title": "Oficina",
+          "title": "Mini School",
           "description": "Projetado para pequenos grupos de 3 a 5 pessoas. Conteúdo e jogos são organizados para interação mais intensa e participação individual. Oferece uma estrutura de aplicativos mais focada e rápida.",
           "features": [
             "Para pequenos grupos de 3 a 5 pessoas",
             "Interação intensa e participação individual",
             "Uma estrutura mais focada e ágil"
           ],
-          "cta": "Explore a série Oficina",
+          "cta": "Explore a série Mini School",
           "href": "/workshop"
         },
         {

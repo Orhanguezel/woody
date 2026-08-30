@@ -1,11 +1,11 @@
 {
-  "title": "{{appName}} Atölye Serisi",
-  "description": "Atölye serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
-  "eyebrow": "{{appName}} ATÖLYE SERİSİ",
+  "title": "{{appName}} Mini School Serisi",
+  "description": "Mini School serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
+  "eyebrow": "{{appName}} MINI SCHOOL SERİSİ",
   "hero": {
-    "eyebrow": "{{appName}} ATÖLYE SERİSİ",
-    "title": "Atölye Serisi",
-    "description": "Atölye serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
+    "eyebrow": "{{appName}} MINI SCHOOL SERİSİ",
+    "title": "Mini School Serisi",
+    "description": "Mini School serisiyle çocuklar, İngilizceyi sadece dinlemez; oynar, uygular ve yaşar. {{appName}} ile daha canlı ve etkili bir öğrenme süreci sunun.",
     "primaryCTA": "Demo Talep Et",
     "primaryHref": "/contact",
     "secondaryCTA": "Fiyatları İncele",
@@ -15,7 +15,7 @@
     {
       "eyebrow": "Seviyeler",
       "title": "Serilerin İçeriklerini Video Anlatımlarıyla Keşfedin",
-      "description": "Atölye Serisi iki ayrı setten oluşur. İçerikleri video anlatımlarıyla keşfedin. Seriler dört seviyeden oluşur: Basic, Junior, Senior ve PRO.",
+      "description": "Mini School Serisi iki ayrı setten oluşur. İçerikleri video anlatımlarıyla keşfedin. Seri dört seviyeden oluşur: Basic, Junior, Senior ve PRO.",
       "items": [
         {
           "badge": "BASIC",
@@ -65,16 +65,13 @@
     "teacherSet": "Öğretmen Seti",
     "studentSet": "Öğrenci Seti",
     "closeVideo": "Videoyu kapat",
-    "playHero": "Workshop videosunu oynat"
+    "playHero": "Mini School videosunu oynat",
+    "videoCaption": "Mini school serisi içerik videosu",
+    "videoWatch": "Video İzle",
+    "buyCta": "Satın Al"
   },
-  "guide": {
-    "title": "Atölye modeli nasıl uygulanır?",
-    "paragraphs": [
-      "Atölye Serisi, az sayıda çocukla daha yoğun etkileşim kurmak isteyen kurumlar, dil atölyeleri ve okul sonrası programlar için tasarlanır. Amaç, çocukların İngilizceyi yalnızca tekrar ettiği bir ders akışı yerine oyun, drama, eşleşme, hareket ve kısa görevlerle kullandığı canlı bir ortam oluşturmaktır. Bu nedenle atölyede her çocuk daha fazla söz alır, materyale daha sık dokunur ve öğretmen çocuğun tepkisini anında takip edebilir.",
-      "Küçük grup yapısı, sınıf serisine göre daha hızlı geri bildirim ve daha esnek tekrar imkânı verir. Öğretmen aynı kazanımı farklı oyun türleriyle yeniden kurabilir; dinleme, taklit, kısa cevap, ikili çalışma ve rol yapma adımlarını grubun enerjisine göre ayarlayabilir. Atölye modelinde hedef sadece kelime öğretmek değil, çocuğun İngilizce komutu anlaması, oyun içinde yanıt vermesi ve arkadaşıyla basit iletişim kurmasıdır.",
-      "Basic seviyede güvenli başlangıç ve temel söz varlığı öne çıkar. Junior seviyede çocuklar kalıpları birleştirerek daha uzun cevaplar üretir. Senior seviyede dinlediğini anlama, kısa diyalog ve hikâye takibi artar. PRO seviyede ise okuma-yazmaya hazırlık, proje dili ve daha akademik yapılar desteklenir. Bu ayrım, atölyenin her seviyede aynı görünen kartlardan ibaret kalmamasını; kurumun yaş, seviye ve grup hedeflerine göre net bir uygulama yolu seçmesini sağlar.",
-      "Atölye uygulamasında öğretmen için en önemli konu, her etkinliğin gözlenebilir bir amaca bağlanmasıdır. Bir oyunda çocuk renkleri tekrar ederken, başka bir etkinlikte aynı kelimeleri hareket komutlarıyla kullanır; daha sonra kısa bir hikâye ya da eşleşme göreviyle bilgiyi pekiştirir. Bu döngü, küçük grupta sıkılmayı azaltır ve öğrencinin aynı kazanımı farklı bağlamlarda kullanmasına yardım eder.",
-      "Kurumlar için Atölye Serisi, demo ders, hafta sonu etkinliği, okul sonrası kulüp veya butik dil programı gibi farklı takvimlere uyarlanabilir. Fiziksel materyaller ve dijital kütüphane birlikte kullanıldığında öğretmen ders öncesi hazırlığı azaltır, veliye de çocuğun hangi seviyede hangi becerileri çalıştığını daha açık anlatabilir."
-    ]
+  "media": {
+    "contentVideo": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
+    "contentVideoPoster": "/media/woody/revize-2026-08/mini-school-tanitim-poster.jpg"
   }
 }

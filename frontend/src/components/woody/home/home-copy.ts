@@ -48,9 +48,9 @@ export const SET_SERIES_MEDIA = [
   {
     accent: 'var(--gm-success)',
     image: '/media/woody/reference/7q4grria_7.png',
-    ribbonTr: 'ATOLYE SERISI',
-    ribbonEn: 'WORKSHOP SERIES',
-    ribbonRu: 'СЕРИЯ МАСТЕРСКОЙ',
+    ribbonTr: 'MINI SCHOOL SERISI',
+    ribbonEn: 'MINI SCHOOL SERIES',
+    ribbonRu: 'СЕРИЯ MINI SCHOOL',
   },
   {
     accent: '#9B59B6',
@@ -134,7 +134,7 @@ export function getSetCards(home: WoodyPageContent, setPages: WoodyPageContent[]
       page.key === 'preschool'
         ? 'Okul'
         : page.key === 'workshop'
-          ? 'Atölye'
+          ? 'Mini School'
           : 'Ev & Özel Ders',
     features: page.sections?.flatMap((section) => section.items?.map((item) => item.title) ?? []).slice(0, 4) ?? [],
   }));

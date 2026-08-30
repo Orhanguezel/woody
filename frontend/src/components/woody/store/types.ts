@@ -4,6 +4,7 @@ export type StoreProduct = {
   slug: string;
   description?: string;
   image?: string;
+  videoUrl?: string;
   alt?: string;
   price: number;
   currency: string;
@@ -111,6 +112,13 @@ export type StoreUiCopy = Partial<Record<
   | 'postalCode'
   | 'preview'
   | 'productDetail'
+  | 'productVideo'
+  | 'buyNow'
+  | 'quantity'
+  | 'minOrderNote1'
+  | 'minOrderNote2'
+  | 'minOrderNote3'
+  | 'payWithPaytr'
   | 'quoteCta'
   | 'refresh'
   | 'remainingDays'

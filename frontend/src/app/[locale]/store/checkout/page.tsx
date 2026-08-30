@@ -2,23 +2,47 @@ import Link from 'next/link';
 import { CheckCircle2, XCircle } from 'lucide-react';
 
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
+import { loadDbStoreProduct } from '@/components/woody/store/load-store-products.server';
+import CheckoutPurchaseClient from '@/components/woody/store/CheckoutPurchaseClient';
+import CheckoutResultTracker from '@/components/woody/store/CheckoutResultTracker';
 import type { StoreUiCopy } from '@/components/woody/store/types';
+import { loadPageContent } from '@/config/pages/loader';
+
+export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ payment?: string; order?: string }>;
+  searchParams: Promise<{ payment?: string; order?: string; product?: string }>;
 };
 
-export default async function StoreCheckoutResultPage({ params, searchParams }: Props) {
-  const { locale } = await params;
-  const { payment, order } = await searchParams;
-  const success = payment === 'success';
-  const content = await loadWoodyPageContent('store', locale);
+async function loadUi(locale: string): Promise<StoreUiCopy> {
+  const [content, storeProducts] = await Promise.all([
+    loadWoodyPageContent('store', locale),
+    loadPageContent<{ ui?: StoreUiCopy }>('store-products', locale),
+  ]);
   const raw = (content?.raw ?? {}) as Record<string, unknown>;
-  const ui = raw.ui && typeof raw.ui === 'object' && !Array.isArray(raw.ui) ? raw.ui as StoreUiCopy : {};
+  const dbUi = raw.ui && typeof raw.ui === 'object' && !Array.isArray(raw.ui) ? (raw.ui as StoreUiCopy) : {};
+  // config store-products.json ui taban; DB page_store.ui ustune biner
+  return { ...(storeProducts?.ui ?? {}), ...dbUi };
+}
 
+export default async function StoreCheckoutPage({ params, searchParams }: Props) {
+  const { locale } = await params;
+  const { payment, order, product: productSlug } = await searchParams;
+  const ui = await loadUi(locale);
+
+  // Satin alma akisi: /store/checkout?product=<slug> (REVIZE 2026-08-30, PayTR)
+  if (productSlug && !payment) {
+    const product = await loadDbStoreProduct(productSlug, locale);
+    if (product && product.purchaseMode === 'online' && !product.isFree) {
+      return <CheckoutPurchaseClient product={product} locale={locale} ui={ui} />;
+    }
+  }
+
+  const success = payment === 'success';
   return (
     <main className="bg-[var(--gm-bg)] py-20 text-[var(--gm-text)]">
+      {success && order ? <CheckoutResultTracker orderId={order} /> : null}
       <div className="container max-w-2xl">
         <div className="rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-8 shadow-[var(--gm-shadow-card)]">
           <div className="flex items-center gap-3">

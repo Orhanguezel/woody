@@ -31,14 +31,14 @@
         },
         {
           "badge": "For Small Groups",
-          "title": "Workshop",
+          "title": "Mini School",
           "description": "Designed for small groups of 3–5 people. Content and games are arranged for more intensive interaction and individual participation. Offers a more focused and fast-paced application structure.",
           "features": [
             "For small groups of 3–5 people",
             "Intensive interaction and individual participation",
             "A more focused and fast-paced structure"
           ],
-          "cta": "Explore Workshop Series",
+          "cta": "Explore Mini School Series",
           "href": "/workshop"
         },
         {

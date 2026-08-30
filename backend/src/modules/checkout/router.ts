@@ -1,7 +1,14 @@
 import { randomUUID } from 'crypto';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import type { RowDataPacket } from 'mysql2/promise';
-import { createCheckoutForm, retrieveCheckoutForm } from '@shared/shared-backend/modules/payments';
+import {
+  createCheckoutForm,
+  retrieveCheckoutForm,
+  createPaytrToken,
+  verifyPaytrCallback,
+  encodePaytrBasket,
+  toPaytrCurrency,
+} from '@shared/shared-backend/modules/payments';
 import { env } from '@/core/env';
 import { pool } from '@/db/client';
 
@@ -60,11 +67,92 @@ function clean(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
-function checkoutUrl(status: string, orderId?: string) {
+function checkoutUrl(status: string, orderId?: string, locale = 'tr') {
   const base = env.FRONTEND_URL.replace(/\/$/, '');
   const params = new URLSearchParams({ payment: status });
   if (orderId) params.set('order', orderId);
-  return `${base}/tr/store/checkout?${params.toString()}`;
+  return `${base}/${locale}/store/checkout?${params.toString()}`;
+}
+
+// Basarili odeme sonrasi dijital erisim haklarini tanimlar (iyzico + paytr ortak)
+async function grantOrderEntitlements(orderId: string, dealerId: string) {
+  const [items] = await pool.execute<RowDataPacket[]>(
+    `
+      SELECT oi.product_id, p.access_duration_days
+        FROM order_items oi
+        INNER JOIN products p ON p.id = oi.product_id
+       WHERE oi.order_id = ?
+    `,
+    [orderId],
+  );
+  for (const item of items) {
+    const durationDays = item.access_duration_days == null ? null : Number(item.access_duration_days);
+    await pool.execute(
+      `
+        INSERT INTO user_entitlements
+          (id, user_id, product_id, order_id, source, status, starts_at, expires_at, created_at, updated_at)
+        VALUES (
+          ?, ?, ?, ?, 'purchase', 'active', CURRENT_TIMESTAMP(3),
+          ${durationDays == null ? 'NULL' : 'DATE_ADD(CURRENT_TIMESTAMP(3), INTERVAL ? DAY)'},
+          CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+        )
+        ON DUPLICATE KEY UPDATE
+          order_id = VALUES(order_id),
+          source = 'purchase',
+          status = 'active',
+          expires_at = ${
+            durationDays == null
+              ? 'NULL'
+              : 'DATE_ADD(GREATEST(COALESCE(expires_at, CURRENT_TIMESTAMP(3)), CURRENT_TIMESTAMP(3)), INTERVAL ? DAY)'
+          },
+          updated_at = CURRENT_TIMESTAMP(3)
+      `,
+      durationDays == null
+        ? [randomUUID(), dealerId, item.product_id, orderId]
+        : [randomUUID(), dealerId, item.product_id, orderId, durationDays, durationDays],
+    );
+  }
+}
+
+// PayTR merchant_oid yalnizca alfanumerik olabilir — UUID tiresiz + 'WD' oneki (34 char, payment_ref CHAR(36))
+function paytrMerchantOid(orderId: string) {
+  return `WD${orderId.replace(/-/g, '')}`;
+}
+
+function paytrConfigured() {
+  return Boolean(env.PAYTR_MERCHANT_ID && env.PAYTR_MERCHANT_KEY && env.PAYTR_MERCHANT_SALT);
+}
+
+async function logPaytrCallback(entry: {
+  merchantOid?: string;
+  status?: string;
+  totalAmount?: string;
+  sourceIp?: string;
+  outcome: string;
+  detail?: string;
+  payload?: unknown;
+}) {
+  try {
+    const amount = Number(entry.totalAmount);
+    await pool.execute(
+      `
+        INSERT INTO paytr_callback_logs (id, merchant_oid, status, total_amount, source_ip, outcome, detail, payload)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `,
+      [
+        randomUUID(),
+        entry.merchantOid || null,
+        entry.status || null,
+        Number.isFinite(amount) ? (amount / 100).toFixed(2) : null,
+        entry.sourceIp || null,
+        entry.outcome,
+        entry.detail ? entry.detail.slice(0, 500) : null,
+        entry.payload ? JSON.stringify(entry.payload) : null,
+      ],
+    );
+  } catch {
+    // loglama callback akisini asla bozmaz
+  }
 }
 
 async function ensureCustomer(customer: CheckoutBody['customer']) {
@@ -157,7 +245,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     }
     const [rows] = await pool.execute(
       `
-        SELECT p.id, p.price, p.image_url AS imageUrl, p.stock_quantity AS stockQuantity,
+        SELECT p.id, p.price, p.image_url AS imageUrl, p.video_url AS videoUrl, p.stock_quantity AS stockQuantity,
                p.product_code AS productCode, p.purchase_mode AS purchaseMode,
                p.is_free AS isFree, p.access_duration_days AS accessDurationDays,
                EXISTS(
@@ -192,7 +280,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const locale = clean(q.locale).slice(0, 8) || 'tr';
     const [rows] = await pool.execute<RowDataPacket[]>(
       `
-        SELECT p.id, p.price, p.image_url AS imageUrl, p.stock_quantity AS stockQuantity,
+        SELECT p.id, p.price, p.image_url AS imageUrl, p.video_url AS videoUrl, p.stock_quantity AS stockQuantity,
                p.product_code AS productCode, p.purchase_mode AS purchaseMode,
                p.is_free AS isFree, p.access_duration_days AS accessDurationDays,
                EXISTS(
@@ -491,42 +579,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       [paid ? 'paid' : 'failed', paid ? 'confirmed' : 'pending', order.id],
     );
     if (paid) {
-      const [items] = await pool.execute<RowDataPacket[]>(
-        `
-          SELECT oi.product_id, p.access_duration_days
-            FROM order_items oi
-            INNER JOIN products p ON p.id = oi.product_id
-           WHERE oi.order_id = ?
-        `,
-        [order.id],
-      );
-      for (const item of items) {
-        const durationDays = item.access_duration_days == null ? null : Number(item.access_duration_days);
-        await pool.execute(
-          `
-            INSERT INTO user_entitlements
-              (id, user_id, product_id, order_id, source, status, starts_at, expires_at, created_at, updated_at)
-            VALUES (
-              ?, ?, ?, ?, 'purchase', 'active', CURRENT_TIMESTAMP(3),
-              ${durationDays == null ? 'NULL' : 'DATE_ADD(CURRENT_TIMESTAMP(3), INTERVAL ? DAY)'},
-              CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
-            )
-            ON DUPLICATE KEY UPDATE
-              order_id = VALUES(order_id),
-              source = 'purchase',
-              status = 'active',
-              expires_at = ${
-                durationDays == null
-                  ? 'NULL'
-                  : 'DATE_ADD(GREATEST(COALESCE(expires_at, CURRENT_TIMESTAMP(3)), CURRENT_TIMESTAMP(3)), INTERVAL ? DAY)'
-              },
-              updated_at = CURRENT_TIMESTAMP(3)
-          `,
-          durationDays == null
-            ? [randomUUID(), order.dealer_id, item.product_id, order.id]
-            : [randomUUID(), order.dealer_id, item.product_id, order.id, durationDays, durationDays],
-        );
-      }
+      await grantOrderEntitlements(order.id, order.dealer_id);
     }
     await pool.execute(
       `
@@ -538,5 +591,230 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     );
 
     return reply.redirect(checkoutUrl(paid ? 'success' : 'fail', order.id));
+  });
+
+  // ============ PayTR (REVIZE 2026-08-30) ============
+  // QuickEcommerce PayTRService mimarisinin portu — iFrame API.
+
+  app.post('/checkout/orders/:id/paytr/initiate', async (req: FastifyRequest, reply) => {
+    if (!env.FEATURE_PAYTR_PAYMENT) {
+      return reply.code(503).send({ error: { message: 'paytr_feature_disabled' } });
+    }
+    if (!paytrConfigured()) {
+      return reply.code(503).send({ error: { message: 'paytr_not_configured' } });
+    }
+    const { id } = req.params as { id: string };
+    const body = (req.body || {}) as { locale?: string };
+    const locale = clean(body.locale).slice(0, 8) || 'tr';
+
+    const [rows] = await pool.execute<RowDataPacket[]>(
+      `
+        SELECT o.id, o.dealer_id, o.total, o.status, o.payment_status,
+               o.shipping_name, o.shipping_phone, o.shipping_address, o.shipping_city,
+               u.email AS customer_email, u.full_name AS customer_name
+          FROM orders o
+          INNER JOIN users u ON u.id = o.dealer_id
+         WHERE o.id = ?
+         LIMIT 1
+      `,
+      [id],
+    );
+    const order = rows[0];
+    if (!order) return reply.code(404).send({ error: { message: 'order_not_found' } });
+    if (order.payment_status === 'paid') return badRequest(reply, 'already_paid');
+
+    const totalKurus = Math.round(Number(order.total) * 100);
+    if (!Number.isFinite(totalKurus) || totalKurus <= 0) return badRequest(reply, 'invalid_total');
+
+    const [itemRows] = await pool.execute<RowDataPacket[]>(
+      `
+        SELECT oi.quantity, oi.unit_price, pi.title
+          FROM order_items oi
+          LEFT JOIN product_i18n pi ON pi.product_id = oi.product_id AND pi.locale = ?
+         WHERE oi.order_id = ?
+      `,
+      [locale, id],
+    );
+    const basket = encodePaytrBasket(
+      itemRows.map((item) => ({
+        name: String(item.title || 'Set'),
+        priceKurus: Math.round(Number(item.unit_price) * 100),
+        quantity: Number(item.quantity) || 1,
+      })),
+    );
+
+    const merchantOid = paytrMerchantOid(id);
+    await pool.execute(
+      `
+        UPDATE orders
+           SET payment_ref = ?, payment_method = 'paytr', payment_status = 'pending',
+               updated_at = CURRENT_TIMESTAMP(3)
+         WHERE id = ?
+      `,
+      [merchantOid, id],
+    );
+    await pool.execute(
+      `
+        INSERT INTO payment_attempts (id, order_id, payment_ref, provider, status, amount, request_payload)
+        VALUES (?, ?, ?, 'paytr', 'pending', ?, ?)
+        ON DUPLICATE KEY UPDATE
+          status = 'pending', updated_at = CURRENT_TIMESTAMP(3)
+      `,
+      [randomUUID(), id, merchantOid, Number(order.total).toFixed(2), JSON.stringify({ source: 'public_checkout', locale })],
+    );
+
+    try {
+      const result = await createPaytrToken(
+        {
+          merchantId: env.PAYTR_MERCHANT_ID,
+          merchantKey: env.PAYTR_MERCHANT_KEY,
+          merchantSalt: env.PAYTR_MERCHANT_SALT,
+          testMode: env.PAYTR_TEST_MODE,
+        },
+        {
+          merchantOid,
+          email: String(order.customer_email || ''),
+          paymentAmountKurus: totalKurus,
+          userIp: req.ip || '127.0.0.1',
+          userBasket: basket,
+          currency: toPaytrCurrency('TRY'),
+          okUrl: checkoutUrl('success', id, locale),
+          failUrl: checkoutUrl('failed', id, locale),
+          userName: String(order.shipping_name || order.customer_name || ''),
+          userAddress: [order.shipping_address, order.shipping_city].filter(Boolean).join(', '),
+          userPhone: String(order.shipping_phone || ''),
+          lang: locale === 'tr' ? 'tr' : 'en',
+        },
+      );
+      return { provider: 'paytr', token: result.token, iframeUrl: result.iframeUrl, merchantOid };
+    } catch (error) {
+      await pool.execute(
+        `
+          UPDATE payment_attempts
+             SET status = 'failed', last_error = ?, updated_at = CURRENT_TIMESTAMP(3)
+           WHERE payment_ref = ?
+        `,
+        [String((error as Error).message || 'paytr_init_failed').slice(0, 500), merchantOid],
+      );
+      await pool.execute(
+        "UPDATE orders SET payment_status = 'failed' WHERE id = ? AND payment_status = 'pending'",
+        [id],
+      );
+      return reply.code(502).send({ error: { message: 'paytr_init_failed' } });
+    }
+  });
+
+  // PayTR server-to-server bildirimi — auth YOK, yanit DAIMA duz metin "OK"
+  // (aksi halde PayTR bildirimi tekrar tekrar gonderir).
+  app.post('/checkout/paytr/callback', async (req, reply) => {
+    const payload = (req.body || {}) as Record<string, string>;
+    const base = {
+      merchantOid: payload.merchant_oid,
+      status: payload.status,
+      totalAmount: payload.total_amount,
+      sourceIp: req.ip,
+      payload,
+    };
+
+    if (!env.FEATURE_PAYTR_PAYMENT || !paytrConfigured()) {
+      await logPaytrCallback({ ...base, outcome: 'feature_disabled' });
+      return reply.type('text/plain').send('OK');
+    }
+
+    const verification = verifyPaytrCallback(
+      { merchantKey: env.PAYTR_MERCHANT_KEY, merchantSalt: env.PAYTR_MERCHANT_SALT },
+      payload,
+    );
+    if (!verification.verified) {
+      // Dogrulanamayan istek siparise DOKUNMAZ ama loglanir; yine OK doneriz.
+      await logPaytrCallback({ ...base, outcome: 'hash_mismatch', detail: 'HMAC dogrulamasi basarisiz' });
+      return reply.type('text/plain').send('OK');
+    }
+
+    const [rows] = await pool.execute<OrderRow[]>(
+      'SELECT id, dealer_id, payment_status FROM orders WHERE payment_ref = ? LIMIT 1',
+      [verification.merchantOid],
+    );
+    const order = rows[0];
+    if (!order) {
+      await logPaytrCallback({ ...base, outcome: 'order_not_found' });
+      return reply.type('text/plain').send('OK');
+    }
+    if (order.payment_status === 'paid') {
+      // Idempotent: ayni bildirim ikinci kez islenmez
+      await logPaytrCallback({ ...base, outcome: 'duplicate', detail: `order: ${order.id}` });
+      return reply.type('text/plain').send('OK');
+    }
+
+    const paid = verification.status === 'success';
+    await pool.execute(
+      `
+        UPDATE orders
+           SET payment_status = ?, status = ?, updated_at = CURRENT_TIMESTAMP(3)
+         WHERE id = ?
+      `,
+      [paid ? 'paid' : 'failed', paid ? 'confirmed' : 'pending', order.id],
+    );
+    if (paid) {
+      await grantOrderEntitlements(order.id, order.dealer_id);
+    }
+    await pool.execute(
+      `
+        UPDATE payment_attempts
+           SET status = ?, callback_payload = ?, updated_at = CURRENT_TIMESTAMP(3)
+         WHERE payment_ref = ?
+      `,
+      [paid ? 'succeeded' : 'failed', JSON.stringify(payload), verification.merchantOid],
+    );
+    await logPaytrCallback({ ...base, outcome: 'processed', detail: `order: ${order.id} -> ${paid ? 'paid' : 'failed'}` });
+
+    return reply.type('text/plain').send('OK');
+  });
+}
+
+// Admin: PayTR callback loglari (SSH'siz izleme) — QE paytr-logs ekraninin API'si
+export async function registerCheckoutAdmin(app: FastifyInstance) {
+  app.get('/paytr/callback-logs', async (req) => {
+    const q = (req.query || {}) as { page?: string; limit?: string; outcome?: string; merchant_oid?: string };
+    const page = Math.max(1, Number(q.page) || 1);
+    const limit = Math.min(100, Math.max(1, Number(q.limit) || 25));
+    const filters: string[] = [];
+    const params: Array<string | number> = [];
+    if (clean(q.outcome)) {
+      filters.push('outcome = ?');
+      params.push(clean(q.outcome));
+    }
+    if (clean(q.merchant_oid)) {
+      filters.push('merchant_oid = ?');
+      params.push(clean(q.merchant_oid));
+    }
+    const where = filters.length ? `WHERE ${filters.join(' AND ')}` : '';
+    const [rows] = await pool.execute<RowDataPacket[]>(
+      `
+        SELECT id, merchant_oid, status, total_amount, source_ip, outcome, detail, received_at
+          FROM paytr_callback_logs
+          ${where}
+         ORDER BY received_at DESC
+         LIMIT ${limit} OFFSET ${(page - 1) * limit}
+      `,
+      params,
+    );
+    const [countRows] = await pool.execute<RowDataPacket[]>(
+      `SELECT COUNT(*) AS total FROM paytr_callback_logs ${where}`,
+      params,
+    );
+    return { items: rows, total: Number(countRows[0]?.total || 0), page, limit };
+  });
+
+  app.get('/paytr/callback-logs/stats', async () => {
+    const [rows] = await pool.execute<RowDataPacket[]>(
+      `
+        SELECT outcome, COUNT(*) AS count
+          FROM paytr_callback_logs
+         GROUP BY outcome
+         ORDER BY count DESC
+      `,
+    );
+    return { outcomes: rows };
   });
 }
