@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import type React from 'react';
 
-import { normPath } from '@/integrations/shared';
-import { buildMetadataFromSeo, fetchSeoObject, fetchUiSectionObject, readUiText } from '@/seo/server';
+import { buildPageMetadata, fetchUiSectionObject, readUiText } from '@/seo/server';
 
 export async function generateMetadata({
   params,
@@ -11,29 +10,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  const [seo, ui] = await Promise.all([
-    fetchSeoObject(locale),
-    fetchUiSectionObject('ui_kvkk', locale),
-  ]);
-
-  const base = await buildMetadataFromSeo(seo, { locale, pathname: normPath('/kvkk') });
+  const ui = await fetchUiSectionObject('ui_kvkk', locale);
 
   const pageTitle =
     readUiText(ui, 'ui_kvkk_meta_title') || readUiText(ui, 'ui_kvkk_page_title', 'Privacy Notice');
   const pageDescription =
     readUiText(ui, 'ui_kvkk_meta_description') || readUiText(ui, 'ui_kvkk_page_description', '');
 
-  return {
-    ...base,
-    title: pageTitle,
-    robots: { index: true, follow: true },
-    ...(pageDescription ? { description: pageDescription } : {}),
-    openGraph: {
-      ...(base.openGraph || {}),
+  return buildPageMetadata({
+    locale,
+    pageKey: 'kvkk',
+    pathname: '/kvkk',
+    fallback: {
       title: pageTitle,
-      ...(pageDescription ? { description: pageDescription } : {}),
+      description: pageDescription,
     },
-  };
+  });
 }
 
 export default function KvkkLayout({ children }: { children: React.ReactNode }) {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { tUi } from '@/i18n/staticUi';
 
 import React from 'react';
+import { preload } from 'react-dom';
 import HomeContent from '@/components/containers/home/HomeContent';
 import { fetchHomeLayout } from '@/components/containers/home/fetchHomeLayout.server';
 import JsonLd from '@/seo/JsonLd';
@@ -11,6 +12,15 @@ import { woodyPageGraph } from '@/components/woody/seo';
 
 import { normPath } from '@/integrations/shared';
 import { buildPageMetadata } from '@/seo/server';
+
+function preloadHomeHeroAssets() {
+  preload('/assets/woody/sections/hero-poster.webp', {
+    as: 'image',
+    fetchPriority: 'high',
+    type: 'image/webp',
+    media: '(min-width: 768px)',
+  } as Parameters<typeof preload>[1]);
+}
 
 export async function generateMetadata({
   params,
@@ -37,6 +47,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  preloadHomeHeroAssets();
   const [content, preschool, workshop, homeTutor, whyContent, newsContent, layout] = await Promise.all([
     loadWoodyPageContent('home', locale),
     loadWoodyPageContent('preschool', locale),

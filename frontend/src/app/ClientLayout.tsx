@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useMemo, useEffect } from 'react';
+import React, { Fragment, useMemo, useEffect, useState } from 'react';
 import { tUi } from '@/i18n/staticUi';
 
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -32,6 +32,7 @@ export default function ClientLayout({
 }) {
   // Keep layout light: Header already fetches dynamic brand/settings on its own.
   const brand = useMemo(() => ({ name: getPublicAppName() }), []);
+  const [analyticsReady, setAnalyticsReady] = useState(false);
   
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -40,6 +41,27 @@ export default function ClientLayout({
      // Reset SEO store on route change
      resetLayoutSeo();
   }, [pathname, searchParams]);
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let idleId: number | undefined;
+    const startAnalytics = () => setAnalyticsReady(true);
+
+    timeoutId = setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(startAnalytics, { timeout: 2500 });
+      } else {
+        startAnalytics();
+      }
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (idleId && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, []);
 
   // Sync <html lang="..."> with current locale
   useEffect(() => {
@@ -114,9 +136,13 @@ export default function ClientLayout({
   return (
     <Fragment>
       <PwaRegistration />
-      <AnalyticsScripts />
-      <GAViewPages />
-      <AdsConversionClicks />
+      {analyticsReady ? (
+        <>
+          <AnalyticsScripts />
+          <GAViewPages />
+          <AdsConversionClicks />
+        </>
+      ) : null}
       <a href="#main-content" className="skip-link">
         {tUi(locale, 'Skip to main content')}
       </a>

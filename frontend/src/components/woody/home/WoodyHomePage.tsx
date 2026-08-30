@@ -141,8 +141,16 @@ export default function WoodyHomePage({
 
   return (
     <main className="bg-[var(--gm-bg)] text-[var(--gm-text)]">
-      {sectionKeys.map((key) => (
-        <React.Fragment key={key}>{renderers[key]}</React.Fragment>
+      {sectionKeys.map((key, index) => (
+        <React.Fragment key={key}>
+          {index === 0 ? (
+            renderers[key]
+          ) : (
+            <div style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 720px' }}>
+              {renderers[key]}
+            </div>
+          )}
+        </React.Fragment>
       ))}
     </main>
   );

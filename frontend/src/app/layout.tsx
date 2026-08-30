@@ -9,7 +9,6 @@ import { detectThemeMode } from '@/lib/tokens/detectThemeMode';
 import {
   getDefaultTokenBranding,
   getDefaultBingSiteVerification,
-  getHtmlMetaDescriptionForLocale,
   getPublicSiteOrigin,
   getRootLayoutTitleDefault,
   getRootLayoutTitleTemplate,
@@ -110,7 +109,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = await resolveHtmlLang();
-  const htmlDescription = getHtmlMetaDescriptionForLocale(lang);
   // Tema mode'u design_tokens içindeki bg_base luminance'ından hesapla (preset'ten gelir).
   // Kullanıcı manuel toggle yaparsa client-side override eder (localStorage).
   const tokens = await fetchDesignTokens();
@@ -124,7 +122,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <head>
-        <meta name="description" content={htmlDescription} />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { buildPageMetadata } from '@/seo/serverMetadata';
 import { breadcrumbSchema, faqSchema, graph, localBusiness } from '@/seo/jsonld';
-import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
+import { getDefaultContactInfo, getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 
 import type { WoodyCard, WoodyPageContent } from './content-loader.server';
 
@@ -47,6 +47,15 @@ export function woodyPageGraph(args: {
 }) {
   const siteUrl = getPublicSiteOrigin();
   const app = getPublicAppName();
+  const contact = getDefaultContactInfo();
+  const contactDigits = String(contact.phone || contact.phones?.[0] || '0324 358 03 73').replace(/\D/g, '');
+  const telephone = contactDigits
+    ? contactDigits.startsWith('90')
+      ? `+${contactDigits}`
+      : contactDigits.startsWith('0')
+        ? `+90${contactDigits.slice(1)}`
+        : `+90${contactDigits}`
+    : undefined;
   const pageUrl = `${siteUrl}/${args.locale}${args.pathname === '/' ? '' : args.pathname}`;
   const crumbs = [
     { name: app, item: `${siteUrl}/${args.locale}` },
@@ -58,24 +67,83 @@ export function woodyPageGraph(args: {
     nodes.push({
       '@type': 'EducationalOrganization',
       '@id': `${pageUrl}#educational-organization`,
-      name: args.content.title,
+      name: app,
+      alternateName: 'Woody ve Arkadaşları',
       description: args.content.description,
       url: pageUrl,
-      provider: { '@id': `${siteUrl}/#org` },
+      parentOrganization: {
+        '@type': 'Organization',
+        name: 'Mina Yayınevi',
+      },
     });
   }
 
   if (args.schemaType === 'LocalBusiness') {
+    const localities: Array<[string, string]> = [
+      ['/lokal/istanbul', 'Istanbul'],
+      ['/lokal/ankara', 'Ankara'],
+      ['/lokal/izmir', 'Izmir'],
+      ['/lokal/bursa', 'Bursa'],
+    ];
+    const addressLocality = localities.find(([prefix]) => args.pathname.includes(prefix))?.[1] || 'Mersin';
     nodes.push(
       localBusiness({
         name: app,
         description: args.content.description || args.content.title,
         url: pageUrl,
+        ...(telephone ? { telephone } : {}),
+        ...(contact.email ? { email: contact.email } : {}),
+        address: {
+          addressCountry: 'TR',
+          addressLocality,
+          ...(contact.address?.streetAddress ? { streetAddress: contact.address.streetAddress } : {}),
+          ...(contact.address?.postalCode ? { postalCode: contact.address.postalCode } : {}),
+          ...(contact.address?.addressRegion ? { addressRegion: contact.address.addressRegion } : {}),
+        },
       }),
     );
   }
 
   if (args.content.faq?.length) nodes.push(faqSchema(args.content.faq));
+
+  if (args.pathname === '/preschool') {
+    nodes.push(
+      {
+        '@type': 'VideoObject',
+        '@id': `${pageUrl}#video-teacher-set`,
+        name: `${app} ogretmen seti video anlatimi`,
+        description: 'Woody and Friends okul oncesi Ingilizce ogretmen seti ve uygulama akisina genel bakis.',
+        thumbnailUrl: 'https://img.youtube.com/vi/4dATV4o4q2s/hqdefault.jpg',
+        uploadDate: '2026-01-01',
+        embedUrl: 'https://www.youtube.com/embed/4dATV4o4q2s',
+        publisher: { '@id': `${siteUrl}/#org` },
+        inLanguage: args.locale,
+      },
+      {
+        '@type': 'VideoObject',
+        '@id': `${pageUrl}#video-student-set`,
+        name: `${app} ogrenci seti video anlatimi`,
+        description: 'Woody and Friends okul oncesi Ingilizce ogrenci seti, materyal ve dijital destek tanitimi.',
+        thumbnailUrl: 'https://img.youtube.com/vi/H1DextqOeX0/hqdefault.jpg',
+        uploadDate: '2026-01-01',
+        embedUrl: 'https://www.youtube.com/embed/H1DextqOeX0',
+        publisher: { '@id': `${siteUrl}/#org` },
+        inLanguage: args.locale,
+      },
+    );
+  }
+
+  if (['/preschool', '/workshop', '/woody-academy'].includes(args.pathname)) {
+    nodes.push({
+      '@type': 'Course',
+      '@id': `${pageUrl}#course`,
+      name: args.content.title,
+      description: args.content.description || args.content.hero?.description || args.content.title,
+      url: pageUrl,
+      provider: { '@id': `${siteUrl}/#org` },
+      inLanguage: args.locale,
+    });
+  }
 
   return graph(nodes);
 }

@@ -5,6 +5,7 @@ export const fontSans = Inter({
   variable: '--font-inter',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
+  preload: false,
   fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
 });
 
@@ -13,6 +14,7 @@ export const fontDisplay = Fredoka({
   variable: '--font-fredoka',
   display: 'swap',
   weight: ['500', '600', '700'],
+  preload: false,
   fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
 });
 
@@ -40,6 +42,7 @@ export const fontQuicksand = Quicksand({
   variable: '--font-quicksand',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
+  preload: false,
   fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
 });
 
@@ -48,6 +51,7 @@ export const fontBaloo = Baloo_2({
   variable: '--font-baloo',
   display: 'swap',
   weight: ['700', '800'],
+  preload: false,
   fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
 });
 

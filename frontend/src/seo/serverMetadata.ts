@@ -11,6 +11,10 @@ import 'server-only';
 
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
+import {
+  getWoodySeoPageDefinition,
+  normalizeWoodyPageSeoConfig,
+} from '@shared/shared-types/woody-seo-catalog';
 
 import { fetchSetting, fetchActiveLocales, getDefaultLocale, type JsonLike } from '@/i18n/server';
 
@@ -191,6 +195,8 @@ export function mergeSeoPageIntoSeo(
   const title = asStr(pageSeo.title);
   const description = asStr(pageSeo.description);
   const ogImage = asStr(pageSeo.og_image);
+  const ogAlt = asStr(pageSeo.og_alt);
+  const keywords = asStr(pageSeo.keywords);
   const noIndex = asBool(pageSeo.no_index);
 
   const openGraph = asObj(seo.open_graph) || {};
@@ -200,9 +206,11 @@ export function mergeSeoPageIntoSeo(
     ...seo,
     ...(title ? { title_default: title } : {}),
     ...(description ? { description } : {}),
+    ...(keywords ? { keywords } : {}),
     open_graph: {
       ...openGraph,
       ...(ogImage ? { images: [ogImage] } : {}),
+      ...(ogAlt ? { image_alt: ogAlt } : {}),
     },
     robots: {
       ...robots,
@@ -271,18 +279,51 @@ export async function buildPageMetadata(args: {
     fetchSeoObject(args.locale, args.activeLocales),
     fetchSeoPageObject(args.locale, args.pageKey),
   ]);
+  const definition = getWoodySeoPageDefinition(args.pageKey);
+  const normalized = definition
+    ? normalizeWoodyPageSeoConfig(pageSeoRaw, definition)
+    : null;
+  const interpolate = (value: string, fallback: string) => {
+    if (!definition?.dynamic) return value || fallback;
+    return (value || fallback)
+      .replace(/\{\{\s*title\s*\}\}|\{\s*title\s*\}/gi, args.fallback?.title || '')
+      .replace(
+        /\{\{\s*description\s*\}\}|\{\s*description\s*\}/gi,
+        args.fallback?.description || '',
+      )
+      .trim();
+  };
+  const generatedOgPath = `/og/${encodeURIComponent(args.locale)}/${encodeURIComponent(args.pageKey)}`;
+  const selectedOgImage = normalized
+    ? normalized.og.mode === 'custom'
+      ? normalized.og.custom_image
+      : normalized.og.mode === 'content'
+        ? args.fallback?.ogImage || generatedOgPath
+        : normalized.og.generated_image || generatedOgPath
+    : asStr(pageSeoRaw.og_image) || args.fallback?.ogImage || '';
 
   // DB'de boş olan alanları sayfanın hardcoded fallback'iyle doldur
   const pageSeo: Record<string, any> = {
     ...pageSeoRaw,
-    title: asStr(pageSeoRaw.title) || args.fallback?.title || '',
-    description: asStr(pageSeoRaw.description) || args.fallback?.description || '',
-    og_image: asStr(pageSeoRaw.og_image) || args.fallback?.ogImage || '',
+    title: normalized
+      ? interpolate(normalized.title, args.fallback?.title || '')
+      : asStr(pageSeoRaw.title) || args.fallback?.title || '',
+    description:
+      normalized
+        ? interpolate(normalized.description, args.fallback?.description || '')
+        : asStr(pageSeoRaw.description) || args.fallback?.description || '',
+    keywords: normalized?.keywords || asStr(pageSeoRaw.keywords),
+    canonical_path: normalized?.canonical_path || asStr(pageSeoRaw.canonical_path),
+    no_index: normalized?.no_index ?? asBool(pageSeoRaw.no_index),
+    og_image: selectedOgImage,
+    og_alt: normalized
+      ? interpolate(normalized.og.alt || normalized.og.title || normalized.title, args.fallback?.title || '')
+      : '',
   };
 
   return buildMetadataFromSeo(mergeSeoPageIntoSeo(seo, pageSeo), {
     locale: args.locale,
-    pathname: args.pathname,
+    pathname: asStr(pageSeo.canonical_path) || args.pathname,
     activeLocales: args.activeLocales,
   });
 }
@@ -330,10 +371,12 @@ export async function buildMetadataFromSeo(
     '';
 
   const description = rawDescription || getLocaleDescriptionFallback(locale);
+  const keywords = asStr(seo.keywords);
 
   // Open Graph
   const og = asObj(seo.open_graph) || {};
   const ogType = (asStr(og.type) || 'website') as any;
+  const ogImageAlt = asStr(og.image_alt);
 
   // ✅ SINGLE SOURCE: og.images[]
   // Legacy support: og.image varsa images[0] gibi davran
@@ -384,6 +427,7 @@ export async function buildMetadataFromSeo(
 
     title: { absolute: finalTitle },
     ...(description ? { description } : {}),
+    ...(keywords ? { keywords: keywords.split(',').map((item) => item.trim()).filter(Boolean) } : {}),
 
     alternates: {
       canonical,
@@ -399,7 +443,9 @@ export async function buildMetadataFromSeo(
       ...(description ? { description } : {}),
       locale: ogLocale,
       ...(ogAltLocales.length ? { alternateLocale: ogAltLocales } : {}),
-      ...(ogImages.length ? { images: ogImages.map((url) => ({ url })) } : {}),
+      ...(ogImages.length
+        ? { images: ogImages.map((url) => ({ url, ...(ogImageAlt ? { alt: ogImageAlt } : {}) })) }
+        : {}),
     },
 
     twitter: {

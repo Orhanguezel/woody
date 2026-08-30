@@ -17,7 +17,7 @@ import { getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 
 type Props = { params: Promise<{ locale: string; level: string; product: string }> };
 
-function musiclandMetadata(locale: string, level: string, product: string, copy?: DigitalContentCopy): Metadata {
+async function musiclandMetadata(locale: string, level: string, product: string, copy?: DigitalContentCopy): Promise<Metadata> {
   const levelTitle = getLevelTitle(level, copy);
   const sectionTitle = getSectionTitle(product, copy);
   const tracks = getMusiclandTracks(level, copy);
@@ -27,12 +27,21 @@ function musiclandMetadata(locale: string, level: string, product: string, copy?
     ? `${title}: ${topics}`
     : copy?.sectionLabels?.[product]?.description || title;
 
+  const metadata = await woodyMetadata({
+    locale,
+    pageKey: 'digital-product',
+    pathname: `/digital-content/${level}/${product}`,
+    content: {
+      key: 'digital-product',
+      title,
+      description,
+      seo: { title, description },
+    },
+  });
   return {
-    title,
-    description,
+    ...metadata,
     // Library is intentionally hidden from search until subscription content is ready.
     robots: product === 'library' ? { index: false, follow: false } : { index: true, follow: true },
-    openGraph: { title, description, type: 'website' },
   };
 }
 

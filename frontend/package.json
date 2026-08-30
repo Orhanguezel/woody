@@ -19,10 +19,10 @@
     "lh:autorun": "lhci autorun --config=./lighthouserc.cjs",
     "lh:collect": "lhci collect --config=./lighthouserc.cjs",
     "seo:schema": "node scripts/validate-jsonld.mjs",
+    "seo:validate-og": "bun scripts/validate-seo-og.ts",
     "indexnow:ping": "bun scripts/indexnow-ping.ts"
   },
   "dependencies": {
-    "@shared/shared-ui": "workspace:*",
     "@fortawesome/fontawesome-free": "^6.4.0",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
@@ -43,6 +43,8 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "@react-oauth/google": "^0.13.5",
     "@reduxjs/toolkit": "^2.9.0",
+    "@shared/shared-types": "workspace:*",
+    "@shared/shared-ui": "workspace:*",
     "@toast-ui/editor": "^3.2.2",
     "aos": "^2.3.4",
     "axios": "^1.12.2",

@@ -104,12 +104,12 @@ export default function WoodyNewsCarousel({
                   <div className="relative aspect-[3/4] w-full bg-gray-100">
                     {item.video ? (
                       <>
-                        <video
-                          src={item.video}
-                          className="absolute inset-0 size-full object-contain"
-                          muted
-                          playsInline
-                          preload="metadata"
+                        <Image
+                          src={image}
+                          alt={item.title}
+                          fill
+                          sizes="260px"
+                          className={item.fitImage ? 'object-contain p-2' : 'object-cover'}
                         />
                         <span className="absolute inset-0 flex items-center justify-center bg-black/30">
                           <span className="flex size-16 items-center justify-center rounded-full bg-white/90 text-gray-900">

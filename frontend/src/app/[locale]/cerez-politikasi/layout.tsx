@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import type React from 'react';
 
-import { normPath } from '@/integrations/shared';
-import { buildMetadataFromSeo, fetchSeoObject, fetchUiSectionObject, readUiText } from '@/seo/server';
+import { buildPageMetadata, fetchUiSectionObject, readUiText } from '@/seo/server';
 
 export async function generateMetadata({
   params,
@@ -11,12 +10,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  const [seo, ui] = await Promise.all([
-    fetchSeoObject(locale),
-    fetchUiSectionObject('ui_cookie_policy', locale),
-  ]);
-
-  const base = await buildMetadataFromSeo(seo, { locale, pathname: normPath('/cerez-politikasi') });
+  const ui = await fetchUiSectionObject('ui_cookie_policy', locale);
 
   const pageTitle =
     readUiText(ui, 'ui_cookie_policy_meta_title') ||
@@ -25,16 +19,15 @@ export async function generateMetadata({
     readUiText(ui, 'ui_cookie_policy_meta_description') ||
     readUiText(ui, 'ui_cookie_policy_page_description', '');
 
-  return {
-    ...base,
-    title: pageTitle,
-    ...(pageDescription ? { description: pageDescription } : {}),
-    openGraph: {
-      ...(base.openGraph || {}),
+  return buildPageMetadata({
+    locale,
+    pageKey: 'cookie-policy',
+    pathname: '/cerez-politikasi',
+    fallback: {
       title: pageTitle,
-      ...(pageDescription ? { description: pageDescription } : {}),
+      description: pageDescription,
     },
-  };
+  });
 }
 
 export default function CookieLayout({ children }: { children: React.ReactNode }) {

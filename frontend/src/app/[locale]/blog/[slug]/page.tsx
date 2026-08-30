@@ -6,7 +6,7 @@ import BlogDetails from '@/components/containers/blog/BlogDetails';
 import Banner from '@/layout/banner/Breadcrum';
 import { safeStr, titleFromSlug, excerpt } from '@/integrations/shared';
 import { normPath, absUrlJoin } from '@/integrations/shared';
-import { buildMetadataFromSeo, fetchSeoObject, fetchCustomPagePublicBySlug } from '@/seo/server';
+import { buildPageMetadata, fetchCustomPagePublicBySlug } from '@/seo/server';
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld';
 import FaqAccordion from '@/components/common/FaqAccordion';
@@ -39,10 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const pathname = normPath(`/blog/${slug || ''}`);
 
-  const [seo, dbPost] = await Promise.all([
-    fetchSeoObject(locale),
-    slug ? loadDbBlogPost(slug, locale) : Promise.resolve(null),
-  ]);
+  const dbPost = slug ? await loadDbBlogPost(slug, locale) : null;
   const page = dbPost ? null : await fetchCustomPagePublicBySlug({ slug, locale });
   const fallbackPost = dbPost || page ? null : await findFallbackBlogPost(slug, locale);
 
@@ -51,12 +48,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const localizedPaths = dbPost?.alternates?.length
     ? Object.fromEntries(dbPost.alternates.map((a) => [a.locale, `/blog/${a.slug}`]))
     : undefined;
-
-  const base = await buildMetadataFromSeo(seo, {
-    locale,
-    pathname,
-    ...(localizedPaths ? { localizedPaths } : {}),
-  });
 
   const pageTitle =
     safeStr(dbPost?.meta_title) ||
@@ -86,24 +77,30 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     safeStr(fallbackPost?.featured_image) ||
     (Array.isArray((page as any)?.images) ? safeStr((page as any).images[0]) : '');
 
-  const baseUrl = base.metadataBase?.toString() || '';
-  const imageAbs = imageRaw ? absUrlJoin(baseUrl, imageRaw) : '';
-
-  return {
-    ...base,
-    title: pageTitle,
-    ...(pageDescription ? { description: pageDescription } : {}),
-    openGraph: {
-      ...(base.openGraph || {}),
+  const metadata = await buildPageMetadata({
+    locale,
+    pageKey: 'blog-post',
+    pathname,
+    fallback: {
       title: pageTitle,
-      ...(pageDescription ? { description: pageDescription } : {}),
-      ...(imageAbs ? { images: [{ url: imageAbs }] } : {}),
+      description: pageDescription,
+      ogImage: imageRaw,
     },
-    twitter: {
-      ...(base.twitter || {}),
-      ...(imageAbs ? { images: [imageAbs] } : {}),
-    },
-  };
+  });
+  if (localizedPaths) {
+    const siteUrl = metadata.metadataBase?.toString().replace(/\/+$/, '') || getPublicSiteOrigin();
+    metadata.alternates = {
+      ...metadata.alternates,
+      canonical: absUrlJoin(siteUrl, `/${locale}${localizedPaths[locale] || pathname}`),
+      languages: Object.fromEntries(
+        Object.entries(localizedPaths).map(([code, path]) => [
+          code,
+          absUrlJoin(siteUrl, `/${code}${path}`),
+        ]),
+      ),
+    };
+  }
+  return metadata;
 }
 
 export default async function BlogDetailsPage({ params }: PageProps) {

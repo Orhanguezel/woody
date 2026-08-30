@@ -12,7 +12,7 @@ const SUPPORTED_LOCALES = ['tr', 'en', 'de', 'ar', 'fr', 'ru', 'es', 'it', 'nl',
 const DEFAULT_LOCALE = 'tr';
 
 // Non-locale path prefixes (admin, api vs.) — 'media' diskten dogrudan servis edilir, locale'e redirect EDILMEZ
-const NON_LOCALE_PREFIXES = ['admin', 'api', 'uploads', 'media', 'public', 'static', 'images', 'assets'];
+const NON_LOCALE_PREFIXES = ['admin', 'api', 'og', 'uploads', 'media', 'public', 'static', 'images', 'assets'];
 
 // Static file extensions — middleware'i atla (video/ses dahil; yoksa .mp4/.mp3 /tr'ye redirect olup 404 doner)
 const STATIC_EXT_RE = /\.(?:ico|png|jpg|jpeg|gif|svg|webp|avif|woff2?|ttf|otf|eot|css|js|mjs|map|txt|xml|json|webmanifest|mp4|webm|mov|m4v|mp3|m4a|wav|ogg|pdf)$/i;

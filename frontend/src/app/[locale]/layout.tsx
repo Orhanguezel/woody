@@ -83,6 +83,14 @@ export default async function RootLayout({
       description: getOrgJsonLdDescription(locale),
       ...(contact.phone ? { telephone: contact.phone } : {}),
       ...(contact.email ? { email: contact.email } : {}),
+      contactPoint: [
+        {
+          contactType: 'customer support',
+          ...(contact.phone ? { telephone: contact.phone } : {}),
+          ...(contact.email ? { email: contact.email } : {}),
+          availableLanguage: ['tr', 'en'],
+        },
+      ],
       areaServed: 'TR',
     }),
     website({

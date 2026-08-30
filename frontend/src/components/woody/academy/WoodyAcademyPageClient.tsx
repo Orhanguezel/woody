@@ -78,7 +78,7 @@ export default function WoodyAcademyPageClient({
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <section className="mt-[72px] bg-white py-8 md:py-10">
-        <div className="mx-auto flex max-w-[600px] items-center justify-center px-6">
+        <div className="mx-auto flex max-w-[760px] flex-col items-center justify-center px-6 text-center">
           <Image
             src={ACADEMY_LOGO}
             alt={content.title}
@@ -87,6 +87,14 @@ export default function WoodyAcademyPageClient({
             priority
             className="h-auto w-full max-w-[450px] object-contain"
           />
+          <h1 className="mt-6 text-[34px] font-black leading-tight text-gray-950 md:text-[48px]">
+            {content.hero?.title || content.title}
+          </h1>
+          {content.hero?.description || content.description ? (
+            <p className="mt-4 max-w-2xl text-[16px] leading-7 text-gray-600 md:text-[18px]">
+              {content.hero?.description || content.description}
+            </p>
+          ) : null}
         </div>
       </section>
 

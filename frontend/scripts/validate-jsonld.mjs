@@ -9,11 +9,18 @@ const CASES = [
   },
   {
     path: '/tr/preschool',
-    types: ['Organization', 'WebSite', 'EducationalOrganization', 'BreadcrumbList'],
+    types: [
+      'Organization',
+      'WebSite',
+      'EducationalOrganization',
+      'BreadcrumbList',
+      'Course',
+      'VideoObject',
+    ],
   },
   {
-    path: '/tr/store/1',
-    types: ['Organization', 'WebSite', 'Product', 'BreadcrumbList'],
+    path: '/tr/store/basic-level-set-ogrenci-seti-0001',
+    types: ['Organization', 'WebSite', 'BreadcrumbList'],
   },
   {
     path: '/tr/blog/anaokulu-ingilizce-ders-plani-nasil-hazirlanir',
@@ -24,7 +31,7 @@ const CASES = [
     types: ['Organization', 'WebSite', 'FAQPage', 'BreadcrumbList'],
   },
   {
-    path: '/tr/contact',
+    path: '/tr/lokal/istanbul-anaokulu-ingilizce-egitimi',
     types: ['Organization', 'WebSite', 'LocalBusiness', 'BreadcrumbList'],
   },
 ];
@@ -86,17 +93,7 @@ const validators = {
     return ['name', 'url', 'publisher'].filter((key) => !present(node[key]));
   },
   EducationalOrganization(node) {
-    return ['name', 'url', 'provider'].filter((key) => !present(node[key]));
-  },
-  Product(node) {
-    const missing = ['name', 'description', 'offers'].filter((key) => !present(node[key]));
-    const offers = Array.isArray(node.offers) ? node.offers[0] : node.offers;
-    if (offers && typeof offers === 'object') {
-      for (const key of ['price', 'priceCurrency', 'availability', 'url']) {
-        if (!present(offers[key])) missing.push(`offers.${key}`);
-      }
-    }
-    return missing;
+    return ['name', 'url', 'parentOrganization'].filter((key) => !present(node[key]));
   },
   Article(node) {
     return ['headline', 'datePublished', 'author', 'publisher', 'mainEntityOfPage'].filter(
@@ -113,7 +110,24 @@ const validators = {
     return missing;
   },
   LocalBusiness(node) {
-    return ['name', 'description', 'url', 'logo'].filter((key) => !present(node[key]));
+    const missing = ['name', 'description', 'url', 'telephone', 'address'].filter(
+      (key) => !present(node[key]),
+    );
+    if (present(node.telephone) && !/^\+[1-9]\d{7,14}$/.test(String(node.telephone))) {
+      missing.push('telephone (must be E.164)');
+    }
+    for (const key of ['streetAddress', 'addressLocality', 'postalCode', 'addressCountry']) {
+      if (!present(node.address?.[key])) missing.push(`address.${key}`);
+    }
+    return missing;
+  },
+  Course(node) {
+    return ['name', 'description', 'provider'].filter((key) => !present(node[key]));
+  },
+  VideoObject(node) {
+    return ['name', 'description', 'thumbnailUrl', 'uploadDate'].filter(
+      (key) => !present(node[key]),
+    );
   },
   BreadcrumbList(node) {
     const missing = [];
@@ -154,4 +168,3 @@ async function validateCase(testCase) {
 for (const testCase of CASES) {
   await validateCase(testCase);
 }
-

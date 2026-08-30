@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Cambridge education system — Woody and Friends">
+  <defs>
+    <linearGradient id="bgC" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12315C"/>
+      <stop offset="1" stop-color="#0B1F3A"/>
+    </linearGradient>
+    <linearGradient id="shieldC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFC21E"/>
+      <stop offset="1" stop-color="#FF6A00"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgC)"/>
+  <!-- dekoratif daireler -->
+  <circle cx="690" cy="80" r="140" fill="#ffffff" opacity="0.06"/>
+  <circle cx="110" cy="390" r="110" fill="#ffffff" opacity="0.05"/>
+  <circle cx="720" cy="380" r="70" fill="#FF6A00" opacity="0.12"/>
+
+  <!-- Mezuniyet kepi + kitap (rozet) -->
+  <g transform="translate(120 118)">
+    <!-- kitap -->
+    <rect x="-8" y="150" width="216" height="70" rx="12" fill="#ffffff" opacity="0.95"/>
+    <rect x="92" y="150" width="16" height="70" fill="#FF6A00"/>
+    <!-- kep -->
+    <g transform="translate(100 96)">
+      <polygon points="0,-42 118,0 0,42 -118,0" fill="url(#shieldC)"/>
+      <polygon points="0,-16 70,8 0,32 -70,8" fill="#0B1F3A"/>
+      <rect x="86" y="-2" width="6" height="58" fill="#FFC21E"/>
+      <circle cx="89" cy="60" r="9" fill="#FFC21E"/>
+    </g>
+  </g>
+
+  <!-- Kalkan / seviye rozeti -->
+  <g transform="translate(470 96)">
+    <path d="M100 0 L188 34 V150 C188 210 150 250 100 272 C50 250 12 210 12 150 V34 Z" fill="url(#shieldC)"/>
+    <path d="M100 22 L166 48 V150 C166 196 138 228 100 246 C62 228 34 196 34 150 V48 Z" fill="#ffffff"/>
+    <text x="100" y="120" font-family="'Fredoka','Segoe UI',sans-serif" font-size="30" font-weight="800" fill="#0B1F3A" text-anchor="middle">Pre-A1</text>
+    <text x="100" y="156" font-family="'Fredoka','Segoe UI',sans-serif" font-size="24" font-weight="700" fill="#FF6A00" text-anchor="middle">A1</text>
+    <text x="100" y="190" font-family="'Fredoka','Segoe UI',sans-serif" font-size="24" font-weight="700" fill="#12315C" text-anchor="middle">A2</text>
+    <path d="M64 214 h72 M74 234 h52" stroke="#E3E8F0" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- yildizlar -->
+  <g fill="#FFC21E" opacity="0.9">
+    <path d="M300 60 l9 20 22 3 -16 15 4 22 -19 -11 -19 11 4 -22 -16 -15 22 -3z"/>
+  </g>
+
+  <!-- Baslik seridi -->
+  <g transform="translate(0 336)">
+    <rect x="60" y="0" width="680" height="84" rx="22" fill="#ffffff"/>
+    <text x="90" y="52" font-family="'Fredoka','Segoe UI',sans-serif" font-size="42" font-weight="800" fill="#0B1F3A">Cambridge</text>
+    <text x="710" y="34" font-family="'Fredoka','Segoe UI',sans-serif" font-size="19" font-weight="700" fill="#FF6A00" text-anchor="end">Woody and Friends</text>
+    <text x="710" y="60" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="600" fill="#5B6472" text-anchor="end">Okul Oncesi Yaklasim</text>
+  </g>
+</svg>

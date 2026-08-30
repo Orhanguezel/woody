@@ -17,8 +17,6 @@ const BASE_URL = getPublicSiteOrigin();
 type WoodyLocale = (typeof WOODY_LOCALES)[number];
 
 const LEGACY_STATIC_PAGES = [
-  '/faqs',
-  '/contact',
   // Yasal sayfalar — kanonik TR-slug'lar (EN-slug'lar /gizlilik vb.'ye 301 redirect).
   '/kvkk',
   '/gizlilik',

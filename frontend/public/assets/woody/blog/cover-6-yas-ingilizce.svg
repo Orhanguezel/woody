@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="English for 6 year olds — Woody and Friends">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC21E"/>
+      <stop offset="1" stop-color="#FF6A00"/>
+    </linearGradient>
+    <linearGradient id="band6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1F3A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0B1F3A" stop-opacity="0.30"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg6)"/>
+  <!-- dekoratif daireler -->
+  <circle cx="680" cy="70" r="130" fill="#ffffff" opacity="0.12"/>
+  <circle cx="90" cy="400" r="100" fill="#ffffff" opacity="0.10"/>
+  <circle cx="740" cy="360" r="60" fill="#ffffff" opacity="0.10"/>
+  <rect width="800" height="450" fill="url(#band6)"/>
+
+  <!-- Buyuk 6 balonu -->
+  <g transform="translate(96 150)">
+    <circle cx="70" cy="70" r="92" fill="#ffffff"/>
+    <text x="70" y="118" font-family="'Fredoka','Segoe UI',sans-serif" font-size="150" font-weight="800" fill="#FF6A00" text-anchor="middle">6</text>
+  </g>
+
+  <!-- ABC bloklari -->
+  <g font-family="'Fredoka','Segoe UI',sans-serif" font-weight="800" font-size="52" text-anchor="middle">
+    <g transform="translate(320 120)">
+      <rect x="0" y="0" width="86" height="86" rx="14" fill="#ffffff"/>
+      <text x="43" y="60" fill="#E23B2E">A</text>
+    </g>
+    <g transform="translate(418 92) rotate(-8)">
+      <rect x="0" y="0" width="86" height="86" rx="14" fill="#2FB37A"/>
+      <text x="43" y="60" fill="#ffffff">B</text>
+    </g>
+    <g transform="translate(520 128) rotate(6)">
+      <rect x="0" y="0" width="86" height="86" rx="14" fill="#3C78D8"/>
+      <text x="43" y="60" fill="#ffffff">C</text>
+    </g>
+  </g>
+
+  <!-- 1 2 3 rozetleri -->
+  <g font-family="'Fredoka','Segoe UI',sans-serif" font-weight="800" font-size="34" text-anchor="middle">
+    <g transform="translate(330 232)"><circle cx="26" cy="26" r="26" fill="#ffffff"/><text x="26" y="38" fill="#FF6A00">1</text></g>
+    <g transform="translate(392 232)"><circle cx="26" cy="26" r="26" fill="#FFE08A"/><text x="26" y="38" fill="#0B1F3A">2</text></g>
+    <g transform="translate(454 232)"><circle cx="26" cy="26" r="26" fill="#ffffff"/><text x="26" y="38" fill="#FF6A00">3</text></g>
+  </g>
+
+  <!-- yildizlar -->
+  <g fill="#FFF3C4">
+    <path d="M596 60 l10 22 24 3 -18 17 5 24 -21 -12 -21 12 5 -24 -18 -17 24 -3z"/>
+    <path d="M250 300 l7 15 16 2 -12 11 3 16 -14 -8 -14 8 3 -16 -12 -11 16 -2z" opacity="0.85"/>
+  </g>
+
+  <!-- Baslik seridi -->
+  <g transform="translate(0 336)">
+    <rect x="60" y="0" width="680" height="84" rx="22" fill="#ffffff"/>
+    <text x="90" y="52" font-family="'Fredoka','Segoe UI',sans-serif" font-size="40" font-weight="800" fill="#0B1F3A">English for Kids</text>
+    <text x="710" y="34" font-family="'Fredoka','Segoe UI',sans-serif" font-size="19" font-weight="700" fill="#FF6A00" text-anchor="end">Woody and Friends</text>
+    <text x="710" y="60" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="600" fill="#5B6472" text-anchor="end">Okul Oncesi Ingilizce</text>
+  </g>
+</svg>
