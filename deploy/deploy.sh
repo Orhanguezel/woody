@@ -81,6 +81,10 @@ rsync -avz --delete \
   --exclude='.DS_Store' \
   -e "ssh ${SSH_OPTS[*]}" \
   "$ROOT/" "$SSH_TARGET:$DEPLOY_PATH/"
+# Kaynak calisma dizininin modu (ornegin mktemp worktree 0700) rsync ile hedef
+# kokune tasinabilir. Nginx'in /media ve /uploads aliaslarina ulasabilmesi icin
+# deploy kokunun her senaryoda gecilebilir kalmasini garanti et.
+remote "chmod 755 '$DEPLOY_PATH'"
 ok "Senkronize edildi"
 
 # ─── 2. Bun workspaces install ───────────────────────────────────────────────────
