@@ -43,3 +43,20 @@ UPDATE `category_i18n`
 UPDATE `category_i18n`
    SET `name` = 'Ev & Özel Ders Serisi'
  WHERE `category_id` = 'c0000000000000000003' AND `name` = 'Ev-Özel Ders Serisi';
+
+-- 4) Mini School icinde sira: PDF s.1'de UST sira ogrenci, ALT sira ogretmen.
+--    Canlida tersiydi (ogretmen 40-60, ogrenci 70-90) — referansa cekildi.
+UPDATE `products` SET `order_num` = 40 WHERE `product_code` = 'WOODY-MINI-SCHOOL-OGRENCI-BASIC';
+UPDATE `products` SET `order_num` = 50 WHERE `product_code` = 'WOODY-MINI-SCHOOL-OGRENCI-JUNIOR';
+UPDATE `products` SET `order_num` = 60 WHERE `product_code` = 'WOODY-MINI-SCHOOL-OGRENCI-SENIOR';
+UPDATE `products` SET `order_num` = 70 WHERE `product_code` = 'WOODY-ATOLYE-BASIC';
+UPDATE `products` SET `order_num` = 80 WHERE `product_code` = 'WOODY-ATOLYE-JUNIOR';
+UPDATE `products` SET `order_num` = 90 WHERE `product_code` = 'WOODY-ATOLYE-SENIOR';
+
+-- 5) EKSIK CEVIRI: Mini School kategorisinin (c0000000000000000002) 'en' satiri yoktu.
+--    taxonomy sorgusu INNER JOIN oldugu icin kategori EN'de hic donmuyor, urunler de
+--    kategorisiz kaliyordu -> EN magazada Mini School bolumu hic gorunmedi.
+INSERT INTO `category_i18n` (`category_id`, `locale`, `name`, `slug`, `description`)
+VALUES ('c0000000000000000002', 'en', 'Mini School Series', 'mini-school-series',
+        'For courses, workshops and small group lessons.')
+ON DUPLICATE KEY UPDATE `name` = VALUES(`name`), `description` = VALUES(`description`);

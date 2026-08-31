@@ -118,6 +118,11 @@ export default function WoodyStoreShowcase({
     items: visible.filter((product) => product.category === slug),
   }));
 
+  // GUVENLIK AGI: kategorisi cozulemeyen urun (o dilde category_i18n cevirisi yoksa
+  // API bos categorySlug doner) gruplama yuzunden KAYBOLMASIN — bassiz bir blokta
+  // yine de listelenir. EN'de Mini School boyle dusmustu (2026-08-31).
+  const ungrouped = visible.filter((product) => !product.category);
+
   const minOrderNotes = [ui.minOrderNote1, ui.minOrderNote2, ui.minOrderNote3].filter(Boolean);
 
   function ProductCard({ product }: { product: StoreCatalogProduct }) {
@@ -306,11 +311,23 @@ export default function WoodyStoreShowcase({
             ) : null}
           </section>
         ))
-      ) : (
+      ) : null}
+
+      {ungrouped.length ? (
+        <section className="container max-w-[1100px] pt-8 lg:pt-10">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-6">
+            {ungrouped.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {!groups.length && !ungrouped.length ? (
         <section className="container max-w-[1100px] py-14">
           <p className="text-center font-display text-xl font-black text-[#24333f]">{ui.comingSoon || ''}</p>
         </section>
-      )}
+      ) : null}
 
       <div className="pb-14" />
 
