@@ -14,7 +14,7 @@ type Props = {
 
 const BANNER_SPACING: Record<BannerVariant, string> = {
   default: 'py-32 md:py-40',
-  legal: 'py-[clamp(2.5rem,4vw,4rem)]',
+  legal: 'pt-20 pb-10 md:py-16',
 };
 
 const Banner: React.FC<Props> = ({ title, variant = 'default' }) => {
