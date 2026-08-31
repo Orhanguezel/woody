@@ -23,9 +23,9 @@ export default function LegalNoticePage() {
       <LayoutSeoBridge title={bannerTitle} noindex={false} />
       <Banner title={bannerTitle} variant="legal" />
 
-      <section className="container mx-auto py-16 px-4 bg-bg-primary">
+      <main className="bg-(--gm-bg) min-h-screen">
         <LegalNoticePageContent />
-      </section>
+      </main>
     </>
   );
 }
