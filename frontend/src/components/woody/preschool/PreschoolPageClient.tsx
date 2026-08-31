@@ -133,19 +133,19 @@ export default function PreschoolPageClient({
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <section className="relative mt-[72px] h-[50vh] min-h-[400px] overflow-hidden">
+      <section className="relative mt-[72px] overflow-hidden">
         <video ref={heroVideoRef} muted playsInline loop className="absolute inset-0 size-full object-cover">
           <source src={HERO_VIDEO} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
-          <h1 className="font-display text-[60px] font-black uppercase leading-none tracking-[0.1em] text-white drop-shadow-2xl md:text-[90px] lg:text-[120px]">
+        <div className="relative z-10 flex min-h-[620px] flex-col items-center justify-center px-4 pb-24 pt-10 text-center text-white sm:min-h-[600px] sm:px-6 md:min-h-[620px] md:py-24">
+          <h1 className="font-display text-[clamp(2.65rem,13vw,3.75rem)] font-black uppercase leading-[0.92] tracking-[0.06em] text-white drop-shadow-2xl md:text-[80px] md:tracking-[0.08em] lg:text-[104px]">
             {content.hero?.title || content.title}
           </h1>
           <button
             type="button"
             onClick={() => setHeroOpen(true)}
-            className={`mt-6 flex size-[70px] items-center justify-center rounded-full border-2 border-white/70 bg-transparent transition hover:scale-110 hover:border-white ${FOCUS_RING}`}
+            className={`mt-6 flex size-[70px] shrink-0 items-center justify-center rounded-full border-2 border-white/70 bg-transparent transition hover:scale-110 hover:border-white ${FOCUS_RING}`}
             aria-label={pageUi.playHero}
           >
             <Play className="ml-1 size-7 text-white" fill="currentColor" aria-hidden />
@@ -166,7 +166,7 @@ export default function PreschoolPageClient({
 
       <section className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-400 py-4 shadow-md">
         <div className="mx-auto max-w-[1400px] px-6">
-          <h2 className="text-center font-display text-[24px] font-bold tracking-[0.15em] text-white drop-shadow md:text-[32px]">
+          <h2 className="text-center font-display text-[22px] font-bold leading-tight tracking-[0.08em] text-white drop-shadow sm:text-[24px] sm:tracking-[0.12em] md:text-[32px] md:tracking-[0.15em]">
             {content.eyebrow}
           </h2>
         </div>
