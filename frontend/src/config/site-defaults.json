@@ -28,8 +28,11 @@
     ],
     "whatsapp": "0533 157 03 73",
     "address": {
-      "addressCountry": "TR",
-      "addressLocality": "Türkiye Geneli"
+      "streetAddress": "Akkent Mah. 7. Cadde, Bilimkent Sitesi, Balım Apt. altı No: 7",
+      "addressLocality": "Yenişehir",
+      "addressRegion": "Mersin",
+      "postalCode": "33000",
+      "addressCountry": "TR"
     },
     "businessHours": []
   },
