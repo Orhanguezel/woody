@@ -195,7 +195,7 @@ export default function WoodyStoreShowcase({
                   <button
                     type="button"
                     onClick={() => setProductVideo({ url: product.videoUrl!, title: product.name })}
-                    className={`hidden items-center gap-1.5 rounded-full border border-[#eadfce] bg-white px-3 py-2 text-[12px] font-black text-[#5f6871] transition hover:border-[#f58220] hover:text-[#d96f12] sm:inline-flex ${FOCUS_RING}`}
+                    className={`inline-flex w-full basis-full items-center justify-center gap-1.5 rounded-full border border-[#eadfce] bg-white px-2 py-2 text-[11px] font-black text-[#5f6871] transition hover:border-[#f58220] hover:text-[#d96f12] sm:w-auto sm:basis-auto sm:px-3 sm:text-[12px] ${FOCUS_RING}`}
                     data-testid={`store-video-btn-${product.id}`}
                   >
                     <Play className="h-3.5 w-3.5" fill="currentColor" aria-hidden />

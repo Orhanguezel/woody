@@ -32,7 +32,7 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 ('ss-available-locales', 'available_locales', '*', '["tr"]'),
 ('ss-footer-copyright',  'footer_copyright',  '*', '"© 2026 AppName. Tum haklari saklidir."'),
 ('ss-footer-keywords',   'footer_keywords',   '*', '["web","icerik","yonetim","AppName"]'),
-('ss-developer-branding','developer_branding','*', '{"name":"GWD","full_name":"Guzel Web Design","url":"https://guezelwebdesign.com"}'),
+('ss-developer-branding','developer_branding','*', '{"name":"GWD","full_name":"Guzel Web Design","label":"DESIGNED BY GUEZELWEB","url":"https://gzlteknoloji.com/"}'),
 ('ss-storage-driver',    'storage_driver',    '*', '"local"'),
 ('ss-app-locales',       'app_locales',       '*', '[{"code":"tr","label":"TR","is_default":true,"is_active":true}]'),
 ('ss-facebook-pixel-id', 'facebook_pixel_id', '*', '""'),

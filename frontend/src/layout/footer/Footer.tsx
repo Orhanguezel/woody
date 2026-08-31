@@ -100,6 +100,13 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
   const { data: companyBrandSetting } = useGetSiteSettingByKeyQuery({ key: 'company_brand', locale });
   const { data: contactInfoSetting } = useGetSiteSettingByKeyQuery({ key: 'contact_info', locale });
   const { data: socialsSetting } = useGetSiteSettingByKeyQuery({ key: 'socials', locale });
+  // Gelistirici kunyesi kodda YAZMAZ — site_settings.developer_branding'den gelir.
+  // Admin panel kunyesi (admin-footer.tsx) zaten bu anahtari okuyordu; site footer'i
+  // URL'yi koda gomuyordu, ajans alan adi degisince iki yer ayrisiyordu.
+  const { data: developerBrandingSetting } = useGetSiteSettingByKeyQuery({
+    key: 'developer_branding',
+    locale,
+  });
   const { data: footerMenuData } = useListMenuItemsQuery({
     location: 'footer',
     is_active: true,
@@ -131,6 +138,12 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
         title: item.title || item.slug || 'Link',
       }));
   }, [footerMenuData, locale]);
+
+  const developer = (developerBrandingSetting?.value ?? {}) as Record<string, unknown>;
+  const developerUrl = String(developer.url || '').trim();
+  const developerLabel =
+    String(developer.label || '').trim() ||
+    String(developer.full_name || '').trim();
 
   const contact = (contactInfoSetting?.value ?? {}) as Record<string, unknown>;
   const phones = Array.isArray(contact.phones)
@@ -290,17 +303,19 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             &copy; {new Date().getFullYear()} {getCopyrightHolder()}.{' '}
             {ui('ui_footer_rights', tUi(locale, 'ALL RIGHTS RESERVED.'))}
           </p>
-          <div className="flex gap-6 text-[11px] uppercase tracking-[0.1em]">
-            <a
-              href="https://guezelwebdesign.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`rounded-md transition-colors hover:text-white ${FOCUS_RING}`}
-              aria-label="Designed by Guezel Web Design"
-            >
-              DESIGNED BY GUEZELWEB
-            </a>
-          </div>
+          {developerUrl && developerLabel ? (
+            <div className="flex gap-6 text-[11px] uppercase tracking-[0.1em]">
+              <a
+                href={developerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`rounded-md transition-colors hover:text-white ${FOCUS_RING}`}
+                aria-label={developerLabel}
+              >
+                {developerLabel}
+              </a>
+            </div>
+          ) : null}
         </div>
       </div>
     </footer>
