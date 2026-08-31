@@ -9,6 +9,7 @@ import {
   extractHtmlFromAny,
 } from '@/integrations/shared';
 import { useLocaleShort } from '@/i18n';
+import { LEGAL_CONTENT_SECTION_CLASS } from './legalLayout';
 
 type Props = {
   /** custom_pages.module_key — icerik admin panelden bu anahtarla yonetilir. */
@@ -52,7 +53,7 @@ const CmsLegalPageContent: React.FC<Props> = ({ moduleKey }) => {
   }, [page]);
 
   return (
-    <section className="relative min-h-[60vh] py-16 lg:py-24 overflow-hidden">
+    <section className={LEGAL_CONTENT_SECTION_CLASS}>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-(--gm-gold)/5 rounded-full blur-[120px]" />
         <div className="absolute top-1/2 -left-32 w-[400px] h-[400px] bg-(--gm-primary)/5 rounded-full blur-[100px]" />

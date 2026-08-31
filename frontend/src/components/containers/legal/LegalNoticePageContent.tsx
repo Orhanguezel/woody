@@ -9,6 +9,7 @@ import {
   extractHtmlFromAny,
 } from '@/integrations/shared';
 import { useLocaleShort, useUiSection } from '@/i18n';
+import { LEGAL_CONTENT_SECTION_CLASS } from './legalLayout';
 
 const LegalNoticePageContent: React.FC = () => {
   const locale = useLocaleShort();
@@ -32,7 +33,7 @@ const LegalNoticePageContent: React.FC = () => {
   }, [page]);
 
   return (
-    <section className="relative min-h-[60vh] py-16 lg:py-24 overflow-hidden">
+    <section className={LEGAL_CONTENT_SECTION_CLASS}>
       {/* Background Decor - Spiritual/Celestial Theme */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-(--gm-gold)/5 rounded-full blur-[120px]" />

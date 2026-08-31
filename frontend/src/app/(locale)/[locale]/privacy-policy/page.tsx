@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <LayoutSeoBridge title={bannerTitle} noindex={false} />
-      <Banner title={bannerTitle} />
+      <Banner title={bannerTitle} variant="legal" />
 
       <main className="bg-(--gm-bg) min-h-screen">
         <PrivacyPolicyPageContent />

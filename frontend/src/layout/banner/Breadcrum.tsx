@@ -5,9 +5,19 @@ import Link from 'next/link';
 import { useResolvedLocale, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
 
-type Props = { title: string };
+type BannerVariant = 'default' | 'legal';
 
-const Banner: React.FC<Props> = ({ title }) => {
+type Props = {
+  title: string;
+  variant?: BannerVariant;
+};
+
+const BANNER_SPACING: Record<BannerVariant, string> = {
+  default: 'py-32 md:py-40',
+  legal: 'py-[clamp(2.5rem,4vw,4rem)]',
+};
+
+const Banner: React.FC<Props> = ({ title, variant = 'default' }) => {
   const locale = useResolvedLocale();
   const { ui } = useUiSection('ui_banner', locale);
   const homeHref = localizePath(locale, '/');
@@ -15,7 +25,8 @@ const Banner: React.FC<Props> = ({ title }) => {
   return (
     <section
       data-header-overlay="true"
-      className="relative py-32 md:py-40 overflow-hidden bg-background"
+      data-banner-variant={variant}
+      className={`relative overflow-hidden bg-background ${BANNER_SPACING[variant]}`}
     >
       {/* Grain texture */}
       <div

@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
+import PaytrSettingsCard from './_components/paytr-settings-card';
 
 const IYZIPAY_KEYS = ['iyzipay_api_key', 'iyzipay_secret_key', 'iyzipay_base_url'] as const;
 type IyziKey = (typeof IYZIPAY_KEYS)[number];
@@ -95,14 +96,10 @@ export default function PaymentSettingsPage() {
           </div>
           <h1 className="font-serif text-4xl text-gm-text flex items-center gap-3">
             <CreditCard className="w-7 h-7 text-gm-gold" />
-            {t('admin.siteSettings.api.iyzipaySection', null, 'Ödeme Ayarları (Iyzipay)')}
+            Ödeme Ayarları
           </h1>
           <p className="text-gm-muted text-sm font-serif italic opacity-70">
-            {t(
-              'admin.siteSettings.api.iyzipayDesc',
-              null,
-              'Iyzipay ödeme entegrasyonu — global ayardır (locale=*). Sandbox/prod URL’ye dikkat.',
-            )}
+            Ödeme sağlayıcı bilgileri — global ayardır (locale=*).
           </p>
         </div>
         <div className="flex items-center bg-gm-surface/20 px-6 py-4 rounded-[24px] border border-gm-border-soft backdrop-blur-sm shadow-lg">
@@ -119,9 +116,19 @@ export default function PaymentSettingsPage() {
         </div>
       </div>
 
-      {/* Form Card */}
+      {/* PayTR — aktif odeme saglayicisi */}
+      <PaytrSettingsCard />
+
+      {/* Iyzipay */}
       <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
         <CardContent className="p-8 space-y-6">
+          <div className="space-y-1">
+            <h2 className="font-serif text-2xl text-gm-text">Iyzipay</h2>
+            <p className="rounded-2xl bg-amber-500/10 px-5 py-3 text-[13px] font-semibold text-amber-600">
+              Bu alan yalnızca site_settings’e yazar; backend Iyzipay anahtarlarını hâlâ .env’den
+              okur. Aktif sağlayıcı PayTR’dir.
+            </p>
+          </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="iyzipay_api_key" className={LABEL}>

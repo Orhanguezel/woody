@@ -21,7 +21,7 @@ export default function CookiePolicyPage() {
   return (
     <>
       <LayoutSeoBridge title={bannerTitle} noindex={false} />
-      <Banner title={bannerTitle} />
+      <Banner title={bannerTitle} variant="legal" />
 
       <section className="container mx-auto py-16 px-4 bg-bg-primary">
         <CookiePolicyPageContent />

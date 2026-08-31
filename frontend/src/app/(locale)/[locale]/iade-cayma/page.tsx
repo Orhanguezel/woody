@@ -12,7 +12,7 @@ export default function RefundPolicyPage() {
   return (
     <>
       <LayoutSeoBridge title={FALLBACK_TITLE} noindex={false} />
-      <Banner title={FALLBACK_TITLE} />
+      <Banner title={FALLBACK_TITLE} variant="legal" />
 
       <main className="bg-(--gm-bg) min-h-screen">
         <CmsLegalPageContent moduleKey={MODULE_KEY} />

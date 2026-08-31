@@ -10,7 +10,14 @@ import {
   toPaytrCurrency,
 } from '@shared/shared-backend/modules/payments';
 import { env } from '@/core/env';
+import { maskSecret } from '@/core/secretBox';
 import { pool } from '@/db/client';
+import {
+  invalidatePaytrConfigCache,
+  isPaytrUsable,
+  loadPaytrConfig,
+  savePaytrSettings,
+} from './paytrConfig';
 
 type CheckoutItem = {
   product_id?: string;
@@ -119,9 +126,8 @@ function paytrMerchantOid(orderId: string) {
   return `WD${orderId.replace(/-/g, '')}`;
 }
 
-function paytrConfigured() {
-  return Boolean(env.PAYTR_MERCHANT_ID && env.PAYTR_MERCHANT_KEY && env.PAYTR_MERCHANT_SALT);
-}
+// PayTR yapilandirmasi artik admin panelden (site_settings) gelir, env yedektir.
+// Bkz. ./paytrConfig.ts — kaynak sirasi ve fail-closed davranis orada.
 
 async function logPaytrCallback(entry: {
   merchantOid?: string;
@@ -597,10 +603,11 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
   // QuickEcommerce PayTRService mimarisinin portu — iFrame API.
 
   app.post('/checkout/orders/:id/paytr/initiate', async (req: FastifyRequest, reply) => {
-    if (!env.FEATURE_PAYTR_PAYMENT) {
+    const paytr = await loadPaytrConfig();
+    if (!paytr.enabled) {
       return reply.code(503).send({ error: { message: 'paytr_feature_disabled' } });
     }
-    if (!paytrConfigured()) {
+    if (!isPaytrUsable(paytr)) {
       return reply.code(503).send({ error: { message: 'paytr_not_configured' } });
     }
     const { id } = req.params as { id: string };
@@ -666,10 +673,10 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     try {
       const result = await createPaytrToken(
         {
-          merchantId: env.PAYTR_MERCHANT_ID,
-          merchantKey: env.PAYTR_MERCHANT_KEY,
-          merchantSalt: env.PAYTR_MERCHANT_SALT,
-          testMode: env.PAYTR_TEST_MODE,
+          merchantId: paytr.merchantId,
+          merchantKey: paytr.merchantKey,
+          merchantSalt: paytr.merchantSalt,
+          testMode: paytr.testMode,
         },
         {
           merchantOid,
@@ -716,13 +723,14 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       payload,
     };
 
-    if (!env.FEATURE_PAYTR_PAYMENT || !paytrConfigured()) {
+    const paytr = await loadPaytrConfig();
+    if (!isPaytrUsable(paytr)) {
       await logPaytrCallback({ ...base, outcome: 'feature_disabled' });
       return reply.type('text/plain').send('OK');
     }
 
     const verification = verifyPaytrCallback(
-      { merchantKey: env.PAYTR_MERCHANT_KEY, merchantSalt: env.PAYTR_MERCHANT_SALT },
+      { merchantKey: paytr.merchantKey, merchantSalt: paytr.merchantSalt },
       payload,
     );
     if (!verification.verified) {
@@ -816,5 +824,65 @@ export async function registerCheckoutAdmin(app: FastifyInstance) {
       `,
     );
     return { outcomes: rows };
+  });
+
+  // ---------- PayTR magaza ayarlari (admin panel) ----------
+  // Sirlar DB'de sifreli durur; buradan ASLA duz metin donmez, yalniz maske.
+
+  app.get('/paytr/settings', async () => {
+    const config = await loadPaytrConfig();
+    return {
+      enabled: config.enabled,
+      testMode: config.testMode,
+      merchantId: config.merchantId,
+      hasMerchantKey: Boolean(config.merchantKey),
+      hasMerchantSalt: Boolean(config.merchantSalt),
+      merchantKeyPreview: maskSecret(config.merchantKey),
+      merchantSaltPreview: maskSecret(config.merchantSalt),
+      ready: isPaytrUsable(config),
+      source: config.source,
+      decryptFailed: config.decryptFailed,
+      callbackUrl: `${env.FRONTEND_URL.replace(/\/$/, '')}/api/v1/checkout/paytr/callback`,
+    };
+  });
+
+  app.put('/paytr/settings', async (req, reply) => {
+    const body = (req.body || {}) as Record<string, unknown>;
+
+    const asBool = (value: unknown) =>
+      typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : undefined;
+
+    const merchantId = typeof body.merchantId === 'string' ? body.merchantId.trim() : undefined;
+    if (merchantId !== undefined && merchantId && !/^[0-9]{3,20}$/.test(merchantId)) {
+      return reply.code(400).send({ error: { message: 'merchant_id_invalid' } });
+    }
+
+    const config = await savePaytrSettings({
+      enabled: asBool(body.enabled),
+      testMode: asBool(body.testMode),
+      merchantId,
+      merchantKey: typeof body.merchantKey === 'string' ? body.merchantKey : undefined,
+      merchantSalt: typeof body.merchantSalt === 'string' ? body.merchantSalt : undefined,
+    });
+
+    return {
+      enabled: config.enabled,
+      testMode: config.testMode,
+      merchantId: config.merchantId,
+      hasMerchantKey: Boolean(config.merchantKey),
+      hasMerchantSalt: Boolean(config.merchantSalt),
+      merchantKeyPreview: maskSecret(config.merchantKey),
+      merchantSaltPreview: maskSecret(config.merchantSalt),
+      ready: isPaytrUsable(config),
+      source: config.source,
+      decryptFailed: config.decryptFailed,
+    };
+  });
+
+  // Cache'i elle bosalt — DB'ye disaridan mudahale edildiginde 30sn beklenmesin.
+  app.post('/paytr/settings/refresh', async () => {
+    invalidatePaytrConfigCache();
+    const config = await loadPaytrConfig();
+    return { ready: isPaytrUsable(config), source: config.source };
   });
 }

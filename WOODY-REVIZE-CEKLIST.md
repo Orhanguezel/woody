@@ -138,9 +138,29 @@ istediği site kontrolleri ve karşılıkları:
       şu an "Yenişehir / MERSİN 33000". Admin panel → Özel Sayfalar'dan düzenlenir.
 - [ ] Kargo firması adı ve iade gönderim adresi netleşince metinlere yazılmalı
 
+### PayTR ayarları admin panele taşındı (2026-08-31)
+
+Kullanıcı kararı: ödeme yapılandırması `.env` yerine panelden yönetilir.
+
+- [x] `backend/src/core/secretBox.ts` — AES-256-GCM seal/open, anahtar **JWT_SECRET'ten HKDF**
+      ile türetilir (yeni env değişkeni yok). Neden: sırlar düz metin yazılsa her mysqldump
+      yedeği çalışan bir ödeme kimliği taşırdı.
+- [x] `backend/src/modules/checkout/paytrConfig.ts` — kaynak sırası **DB (panel) → env → kapalı**.
+      Alan bazında çözümlenir, 30 sn cache, `invalidatePaytrConfigCache()`. Fail-closed korunur:
+      hiçbir katmanda yoksa 503, varsayılan değer üretilmez.
+- [x] Admin uçları: `GET/PUT /admin/paytr/settings`, `POST /admin/paytr/settings/refresh`.
+      **Sır asla düz metin dönmez** — yalnız `••••1234` maskesi + `hasMerchantKey` bayrağı.
+      Boş gönderilen sır alanı mevcut değeri korur.
+- [x] `/admin/payment-settings` ekranına PayTR kartı: açık/kapalı + test modu anahtarları,
+      merchant id/key/salt, alan başına kaynak rozeti (Panel / .env / Yok), hazır-değil uyarısı,
+      PayTR paneline yapıştırılacak bildirim URL'si (kopyala düğmesi)
+- [x] Iyzipay kartına dürüstlük notu: o form yalnız site_settings'e yazıyor, backend hâlâ
+      env okuyor (aktif sağlayıcı PayTR)
+
 ### Ops / dış bağımlılık
 
-- [ ] PayTR mağaza hesabı bilgileri (merchant_id/key/salt) — **müşteri/Orhan**
+- [ ] PayTR **Merchant Key + Salt** — panel → Bilgi sayfasından alınıp `/admin/payment-settings`'e
+      girilecek. Mağaza No `742589` biliniyor; Key/Salt **henüz iletilmedi**.
 - [ ] PayTR panelinde bildirim URL tanımı: `https://woodyvearkadaslari.com/api/v1/checkout/paytr/callback`
 - [x] Nginx: callback route dışarı açık, rate-limit muafiyeti
 - [ ] VPS env + `pm2 restart` (PAYTR blogu eklenmedi — flag yokken varsayilan false/fail-closed; merchant bilgileriyle birlikte eklenecek)

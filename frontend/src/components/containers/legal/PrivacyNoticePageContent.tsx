@@ -9,6 +9,7 @@ import {
   extractHtmlFromAny,
 } from '@/integrations/shared';
 import { useLocaleShort, useUiSection } from '@/i18n';
+import { LEGAL_CONTENT_SECTION_CLASS } from './legalLayout';
 
 const PrivacyNoticePageContent: React.FC = () => {
   const locale = useLocaleShort();
@@ -31,7 +32,7 @@ const PrivacyNoticePageContent: React.FC = () => {
   }, [page]);
 
   return (
-    <section className="bg-bg-primary relative min-h-[60vh] py-20 lg:py-32">
+    <section className={`${LEGAL_CONTENT_SECTION_CLASS} bg-bg-primary`}>
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-20 -right-20 w-96 h-96 bg-bg-card-hover rounded-full mix-blend-multiply filter blur-3xl opacity-50" />
