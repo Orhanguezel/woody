@@ -886,7 +886,8 @@
       "llm_prompts": "AI Prompt Yönetimi",
       "banners": "Banner Yönetimi",
       "campaigns": "Kampanyalar",
-      "home_layout": "Anasayfa Düzeni"
+      "home_layout": "Anasayfa Düzeni",
+      "paytr_logs": "PayTR Kayıtları"
     },
     "stats": {
       "deliveredOrders": "Teslim Edilen Sipariş",

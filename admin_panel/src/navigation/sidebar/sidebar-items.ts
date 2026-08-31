@@ -176,11 +176,11 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
     key: 'system',
     items: [
       { key: 'site_settings', url: '/admin/site-settings', icon: Settings },
+      { key: 'payment_settings', url: '/admin/payment-settings', icon: CreditCard },
       { key: 'navigation', url: '/admin/navigation', icon: MenuIcon },
       { key: 'home_layout', url: '/admin/home-layout', icon: LayoutDashboard },
       { key: 'cache', url: '/admin/cache', icon: Trash2 },
       { key: 'wallet', url: '/admin/wallet', icon: Receipt },
-      { key: 'payment_settings', url: '/admin/payment-settings', icon: CreditCard },
       { key: 'mail', url: '/admin/mail', icon: Send },
       { key: 'storage', url: '/admin/storage', icon: HardDrive },
       { key: 'db', url: '/admin/db', icon: Database },
@@ -257,8 +257,8 @@ const HIDDEN_NAV_KEYS = new Set<AdminNavItemKey>([
   'db',
   'audit',
   'llm_prompts',
-  // Iyzipay ayarlari site-settings > API tab'inda; ayri sayfa gereksiz (kullanici talebi)
-  'payment_settings',
+  // NOT: 'payment_settings' bir zamanlar burada gizliydi (Iyzipay-only donemi, ayrı sayfa
+  // gereksiz sayilmisti). 2026-08-31'de PayTR magaza ayarlari ekrani oldu — gorunur olmali.
 ]);
 
 export function buildAdminSidebarItems(

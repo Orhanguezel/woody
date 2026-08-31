@@ -1619,6 +1619,7 @@
             "wallet": "Wallet",
             "gutschein": "Gift Cards",
             "payment_settings": "Payment Settings",
+            "paytr_logs": "PayTR Logs",
             "popups": "Popups",
             "navigation": "Menu & Footer"
         },
