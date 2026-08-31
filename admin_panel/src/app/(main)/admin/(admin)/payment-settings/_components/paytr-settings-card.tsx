@@ -101,6 +101,8 @@ export default function PaytrSettingsCard() {
   const [testMode, setTestMode] = React.useState(true);
 
   const applyResponse = React.useCallback((next: PaytrSettings) => {
+    // Gecerli yanit geldiyse onceki hata bandi kalkar (kaydetme sonrasi dahil).
+    setError('');
     setData(next);
     setMerchantId(next.merchantId || '');
     setEnabled(Boolean(next.enabled));
@@ -115,7 +117,14 @@ export default function PaytrSettingsCard() {
     try {
       applyResponse(await apiJson<PaytrSettings>('/admin/paytr/settings'));
     } catch {
-      setError('PayTR ayarları yüklenemedi.');
+      // Sayfa ilk boyanirken token henuz store'a yazilmamis olabiliyor (401).
+      // Tek sefer kisa gecikmeyle yeniden dene, sonra hata goster.
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 600));
+        applyResponse(await apiJson<PaytrSettings>('/admin/paytr/settings'));
+      } catch {
+        setError('PayTR ayarları yüklenemedi.');
+      }
     } finally {
       setLoading(false);
     }
