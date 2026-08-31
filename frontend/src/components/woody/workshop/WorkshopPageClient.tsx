@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { BookOpen, LibraryBig, Play, ShoppingBag, X } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
+import { tUi } from '@/i18n/staticUi';
 
 import type { WoodyCard, WoodyPageContent } from '../content-loader.server';
 import { LEVEL_MEDIA, LEVEL_UNDERLINE, type LevelMedia } from '../sets/level-media';
@@ -66,6 +67,8 @@ export default function WorkshopPageClient({
   const raw = (content.raw ?? {}) as { pageUi?: WorkshopPageUi; media?: WorkshopMedia };
   const pageUi = raw.pageUi ?? {};
   const media = raw.media ?? {};
+  const teacherSetLabel = pageUi.teacherSet?.trim() || tUi(locale, 'Teacher Set');
+  const studentSetLabel = pageUi.studentSet?.trim() || tUi(locale, 'Student Set');
 
   useEffect(() => {
     heroVideoRef.current?.play().catch(() => {});
@@ -247,7 +250,7 @@ export default function WorkshopPageClient({
                     onClick={() => setLevelVideoUrl(selectedLevel.teacher ?? null)}
                     className={`rounded-lg bg-white px-5 py-2.5 text-[14px] font-medium text-gray-900 transition hover:bg-gray-100 ${FOCUS_RING}`}
                   >
-                    {pageUi.teacherSet}
+                    {teacherSetLabel}
                   </button>
                 ) : null}
                 {selectedLevel.student ? (
@@ -256,7 +259,7 @@ export default function WorkshopPageClient({
                     onClick={() => setLevelVideoUrl(selectedLevel.student ?? null)}
                     className={`rounded-lg bg-white px-5 py-2.5 text-[14px] font-medium text-gray-900 transition hover:bg-gray-100 ${FOCUS_RING}`}
                   >
-                    {pageUi.studentSet}
+                    {studentSetLabel}
                   </button>
                 ) : null}
               </div>
