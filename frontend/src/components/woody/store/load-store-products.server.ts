@@ -124,6 +124,7 @@ function normalizeTaxonomyItem(row: unknown): StoreTaxonomyItem | null {
     code: String(item.code || '') || undefined,
     slug,
     name,
+    description: String(item.description || '').trim() || undefined,
     order: Number(item.order) || 0,
     rank: item.rank == null ? undefined : Number(item.rank) || 0,
   };

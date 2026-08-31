@@ -11,7 +11,7 @@ import { FOCUS_RING } from '@/lib/a11y';
 import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 import WoodyPageLogoHeader from '@/components/woody/WoodyPageLogoHeader';
 import QuoteRequestForm, { type QuoteFormCopy } from '@/components/woody/quote/QuoteRequestForm';
-import WaitlistSignupForm, { type WaitlistFormCopy } from '@/components/woody/waitlist/WaitlistSignupForm';
+import type { WaitlistFormCopy } from '@/components/woody/waitlist/WaitlistSignupForm';
 import type { StoreProductFilters, StoreTaxonomyItem, StoreUiCopy } from './types';
 
 export type StoreCatalogCategory = {
@@ -58,53 +58,30 @@ export type StoreCatalog = {
 
 const STORE_LOGO = '/assets/woody/woody-store-logo.png';
 
-const comingSoonImage =
-  '/media/woody/reference/ga68xbh7_Paragraf%20metniniz%20(4).png';
+// Musteri revizyonu (2026-08-31, PDF s.1): urunler her seri kendi basligi altinda
+// ayrilir. Sira DB'den gelir (categories.display_order) — dile bagli DEGIL, admin
+// panelden degistirilebilir. Mini School once, Ev & Ozel Ders sonra.
+
+// "En az 3 adet" notlari yalnizca Mini School bolumunun altinda cikar (PDF s.2).
+// DIKKAT: kategori slug'i DILE GORE degisir (tr atolye-serisi / en workshop-series /
+// de workshop-reihe). Yeni bir dile kategori cevirisi eklendiginde slug'i buraya da ekle.
+const MIN_ORDER_NOTE_SLUGS = new Set(['atolye-serisi', 'workshop-series', 'workshop-reihe']);
 
 function quoteText(message: string | undefined, product?: string) {
   const text = message || '';
   return text.replace(/\{\{product\}\}/g, product || '');
 }
 
-function filterHref(locale: string, filters: StoreProductFilters, patch: StoreProductFilters) {
-  const params = new URLSearchParams();
-  const next = { ...filters, ...patch };
-  if (next.category) params.set('category', next.category);
-  if (next.series) params.set('series', next.series);
-  if (next.level) params.set('level', next.level);
-  if (next.isFree !== undefined) params.set('isFree', next.isFree ? '1' : '0');
-  const query = params.toString();
-  return `/${locale}/store${query ? `?${query}` : ''}`;
-}
-
-const PILL_BASE =
-  'rounded-full px-4 py-2 text-[12px] font-black uppercase tracking-[0.04em] ring-1 transition';
-const PILL_ON = 'bg-[#f58220] text-white ring-[#f58220] shadow-[0_8px_22px_rgba(245,130,32,0.28)]';
-const PILL_OFF = 'bg-white text-[#5f6871] ring-[#eadfce] hover:ring-[#f58220] hover:text-[#d96f12]';
-
-// Bir urunun verilen filtre kombinasyonuyla eslesip eslesmedigi (AND semantigi)
+// Bir urunun verilen filtre kombinasyonuyla eslesip eslesmedigi (AND semantigi).
+// Filtre CUBUGU kaldirildi (PDF/WhatsApp: "ustteki yazilar cok kalabalik yapiyor")
+// ama /store?category=... gibi mevcut derin baglantilar calismaya devam etsin diye
+// filtreleme mantigi korunuyor.
 function matchesFilters(product: StoreCatalogProduct, f: StoreProductFilters): boolean {
   if (f.category && product.category !== f.category) return false;
   if (f.series && product.seriesSlug !== f.series) return false;
   if (f.level && product.levelSlug !== f.level) return false;
   if (f.isFree !== undefined && Boolean(product.isFree) !== f.isFree) return false;
   return true;
-}
-
-function FilterPill({
-  href,
-  active,
-  children,
-}: {
-  href: string;
-  active: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link href={href} className={`${PILL_BASE} ${active ? PILL_ON : PILL_OFF} ${FOCUS_RING}`}>
-      {children}
-    </Link>
-  );
 }
 
 export default function WoodyStoreShowcase({
@@ -118,75 +95,149 @@ export default function WoodyStoreShowcase({
 }) {
   // S4 (2026-08-30): "Urun Videosu" 9:16 modal durumu
   const [productVideo, setProductVideo] = useState<{ url: string; title: string } | null>(null);
+
+  const ui: StoreUiCopy = catalog.ui ?? {};
   const categories = catalog.categories ?? [];
   const products = catalog.products ?? [];
-  const series = catalog.series ?? [];
-  const levels = catalog.levels ?? [];
-
-  const ui = catalog.ui ?? {};
-  const quoteLabel = String(catalog.primaryCTA || '').trim();
-  const quoteCta = quoteLabel || ui.quoteCta || '';
+  const quoteCta = ui.quoteCta || '';
   const freeCta = ui.freeWatch || '';
 
-  const hasActiveFilter = Boolean(
-    filters.category || filters.series || filters.level || filters.isFree !== undefined,
-  );
-  const activeCategory = filters.category
-    ? categories.find((category) => category.id === filters.category)
-    : undefined;
-  const activeSeries = filters.series ? series.find((item) => item.slug === filters.series) : undefined;
-  const activeLevel = filters.level ? levels.find((item) => item.slug === filters.level) : undefined;
+  const visible = products.filter((product) => matchesFilters(product, filters));
 
-  // Aktif filtre adi (rozet) — kategori > seri > seviye > ucretsiz onceligiyle
-  const activeLabel =
-    activeCategory?.name ||
-    activeSeries?.name ||
-    activeLevel?.name ||
-    (filters.isFree ? ui.free : '') ||
-    '';
+  // Kategori bazli gruplama — DB sirasiyla (categories dizisi display_order'a gore
+  // gelir), bos grup uretmez. Taksonomide olmayan bir kategori varsa sona eklenir.
+  const orderedSlugs = categories.map((category) => category.id);
+  const productSlugs = Array.from(new Set(visible.map((product) => product.category).filter(Boolean)));
+  const groupSlugs = [
+    ...orderedSlugs.filter((slug) => productSlugs.includes(slug)),
+    ...productSlugs.filter((slug) => !orderedSlugs.includes(slug)),
+  ];
+  const groups = groupSlugs.map((slug) => ({
+    slug,
+    category: categories.find((item) => item.id === slug),
+    items: visible.filter((product) => product.category === slug),
+  }));
 
-  // Gosterilecek urunler — filtreleme bellekte (tum urun seti uzerinden)
-  const filtered = products.filter((product) => matchesFilters(product, filters));
+  const minOrderNotes = [ui.minOrderNote1, ui.minOrderNote2, ui.minOrderNote3].filter(Boolean);
 
-  // FACETING: yalnizca urunu olan kategoriler filtrede; bos olanlar "yakinda" bolumunde
-  const categoriesWithProducts = categories.filter((category) =>
-    products.some((product) => product.category === category.id),
-  );
-  const hasFreeProducts = products.some((product) => product.isFree);
+  function ProductCard({ product }: { product: StoreCatalogProduct }) {
+    const category = categories.find((item) => item.id === product.category);
+    const media = product.image ? (
+      <Image
+        src={product.image}
+        alt={product.alt || product.name}
+        fill
+        sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 260px"
+        className="object-contain transition duration-500 group-hover:scale-105"
+      />
+    ) : (
+      <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-center">
+        <GraduationCap className="h-9 w-9 text-[#f58220]" aria-hidden />
+        <span className="px-3 text-[11px] font-black uppercase tracking-[0.14em] text-[#b58a4f]">
+          {category?.name || ''}
+        </span>
+      </div>
+    );
+    const mediaCls =
+      'relative block aspect-[4/3] overflow-hidden bg-linear-to-br from-[#fff3e0] to-[#eef6f3] p-2 sm:p-3';
 
-  // Bir facet degeri, mevcut diger filtrelerle birlikte >=1 urun veriyorsa secilebilir.
-  // Secilebilir olmayan (ve aktif olmayan) secenekler hic gosterilmez — gri yigin yerine temiz liste.
-  const seriesEnabled = (slug: string) =>
-    products.some((product) => matchesFilters(product, { ...filters, series: slug }));
-  const levelEnabled = (slug: string) =>
-    products.some((product) => matchesFilters(product, { ...filters, level: slug }));
-  const freeEnabled = products.some((product) =>
-    matchesFilters(product, { ...filters, isFree: true }),
-  );
-  const visibleSeries = series.filter((item) => seriesEnabled(item.slug) || filters.series === item.slug);
-  const visibleLevels = levels.filter((item) => levelEnabled(item.slug) || filters.level === item.slug);
-  const showFree = Boolean(hasFreeProducts && ui.free && (freeEnabled || filters.isFree === true));
+    return (
+      <article
+        className="group flex min-h-full flex-col overflow-hidden rounded-lg bg-white shadow-[0_14px_42px_rgba(49,64,79,0.10)] ring-1 ring-[#eadfce] transition hover:-translate-y-1 hover:shadow-[0_20px_58px_rgba(49,64,79,0.15)]"
+        data-testid={`store-product-${product.id}`}
+      >
+        {product.slug ? (
+          <Link href={`/${locale}/store/${product.slug}`} className={mediaCls} aria-label={product.name}>
+            {media}
+          </Link>
+        ) : (
+          <div className={mediaCls}>{media}</div>
+        )}
 
-  // Bos kategoriler yalnizca filtresiz "tumu" gorunumunde gosterilir (yakinda + bekleme listesi)
-  const comingSoonCategories = !hasActiveFilter
-    ? categories.filter((category) => !products.some((product) => product.category === category.id))
-    : [];
+        <div className="flex flex-1 flex-col p-3 sm:p-5">
+          <h3 className="line-clamp-2 font-display text-[13px] font-black leading-tight text-[#24333f] sm:text-lg">
+            {product.slug ? (
+              <Link href={`/${locale}/store/${product.slug}`} className={`transition hover:text-[#d96f12] ${FOCUS_RING}`}>
+                {product.name}
+              </Link>
+            ) : (
+              product.name
+            )}
+          </h3>
+          {/* Aciklama dar mobil izgarada gizli — kartlar yan yana sigsin (PDF s.1) */}
+          {product.description ? (
+            <p className="mt-2 hidden line-clamp-2 text-sm leading-6 text-[#68727b] sm:block">
+              {product.description}
+            </p>
+          ) : null}
+
+          {product.levelName ? (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              <span className="rounded-full bg-[#eef6f3] px-2 py-0.5 text-[10px] font-bold text-[#0c8f74]">
+                {product.levelName}
+              </span>
+            </div>
+          ) : null}
+
+          {/* S3/S4 (2026-08-30): online urun = fiyat + Urun Videosu + Simdi Satin Al */}
+          {product.purchaseMode === 'online' && !product.isFree && product.price ? (
+            <div className="mt-auto pt-3 sm:pt-5">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="font-display text-[16px] font-black text-[#d96f12] sm:text-[22px]">
+                  {product.price}
+                </span>
+                {product.videoUrl ? (
+                  <button
+                    type="button"
+                    onClick={() => setProductVideo({ url: product.videoUrl!, title: product.name })}
+                    className={`hidden items-center gap-1.5 rounded-full border border-[#eadfce] bg-white px-3 py-2 text-[12px] font-black text-[#5f6871] transition hover:border-[#f58220] hover:text-[#d96f12] sm:inline-flex ${FOCUS_RING}`}
+                    data-testid={`store-video-btn-${product.id}`}
+                  >
+                    <Play className="h-3.5 w-3.5" fill="currentColor" aria-hidden />
+                    {ui.productVideo || ''}
+                  </button>
+                ) : null}
+              </div>
+              <Link
+                href={`/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`}
+                className={`mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-2 py-2 text-[11px] font-black text-white transition hover:bg-[#d96f12] sm:mt-3 sm:px-3 sm:py-2.5 sm:text-[13px] ${FOCUS_RING}`}
+                data-testid={`store-buy-btn-${product.id}`}
+              >
+                <ShoppingCart className="h-4 w-4" aria-hidden />
+                {ui.buyNow || ''}
+              </Link>
+            </div>
+          ) : (
+            <div className="mt-auto flex flex-wrap gap-2 pt-3 sm:pt-5">
+              {product.isFree && product.slug ? (
+                <Link
+                  href={`/${locale}/store/${product.slug}`}
+                  className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[12px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
+                >
+                  {freeCta}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                </Link>
+              ) : (
+                <WhatsAppLink
+                  phone={catalog.quoteWhatsApp}
+                  text={quoteText(catalog.quoteMessage, product.name)}
+                  className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[12px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
+                  data-testid={`store-quote-btn-${product.id}`}
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden />
+                  {quoteCta}
+                </WhatsAppLink>
+              )}
+            </div>
+          )}
+        </div>
+      </article>
+    );
+  }
 
   return (
     <main className="bg-white text-[#24333f]">
-      <WoodyPageLogoHeader
-        title="Woody Store"
-        locale={locale}
-        logoSrc={STORE_LOGO}
-        logoAlt="Woody Store"
-        badge={
-          activeLabel ? (
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#f58220]/12 px-4 py-2 text-sm font-black text-[#d96f12] ring-1 ring-[#f58220]/30">
-              {activeLabel}
-            </span>
-          ) : null
-        }
-      />
+      <WoodyPageLogoHeader title="Woody Store" locale={locale} logoSrc={STORE_LOGO} logoAlt="Woody Store" />
 
       {ui.heroSubtitle ? (
         <div className="mx-auto max-w-[820px] px-6 pt-4 text-center">
@@ -203,323 +254,65 @@ export default function WoodyStoreShowcase({
         </div>
       ) : null}
 
-      {/* Filtre cubugu — kategoriler (birincil) + seri/seviye/ucretsiz (ikincil).
-          S1 (2026-08-30): beyaz yumusak kart icinde — "kabalik durmasin" */}
-      <section className="container max-w-[1100px] pt-8">
-        <div className="rounded-2xl bg-white px-4 py-5 shadow-[0_10px_30px_rgba(49,64,79,0.06)] ring-1 ring-[#f2e9d8] md:px-6">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <FilterPill href={`/${locale}/store`} active={!hasActiveFilter}>
-            {ui.all || ''}
-          </FilterPill>
-          {categoriesWithProducts.map((category) => (
-            <FilterPill
-              key={category.id}
-              href={filterHref(locale, {}, { category: category.id })}
-              active={filters.category === category.id}
-            >
-              {category.name}
-            </FilterPill>
-          ))}
-        </div>
-
-        {visibleSeries.length || visibleLevels.length || showFree ? (
-          <div className="mt-3 flex flex-col flex-wrap items-center justify-center gap-3 border-t border-[#f0dcb6]/60 pt-4 sm:flex-row">
-            {visibleSeries.length ? (
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                <span className="text-[11px] font-black uppercase tracking-[0.12em] text-[#9a8a74]">
-                  {tUi(locale, 'Series')}
-                </span>
-                {visibleSeries.map((item) => (
-                  <FilterPill
-                    key={`series-${item.id}`}
-                    href={filterHref(locale, filters, { series: filters.series === item.slug ? undefined : item.slug })}
-                    active={filters.series === item.slug}
-                  >
-                    {item.name}
-                  </FilterPill>
-                ))}
-              </div>
-            ) : null}
-            {visibleLevels.length ? (
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                <span className="text-[11px] font-black uppercase tracking-[0.12em] text-[#9a8a74]">
-                  {tUi(locale, 'Level')}
-                </span>
-                {visibleLevels.map((item) => (
-                  <FilterPill
-                    key={`level-${item.id}`}
-                    href={filterHref(locale, filters, { level: filters.level === item.slug ? undefined : item.slug })}
-                    active={filters.level === item.slug}
-                  >
-                    {item.name}
-                  </FilterPill>
-                ))}
-              </div>
-            ) : null}
-            {showFree ? (
-              <FilterPill
-                href={filterHref(locale, filters, { isFree: filters.isFree ? undefined : true })}
-                active={filters.isFree === true}
-              >
-                {ui.free}
-              </FilterPill>
-            ) : null}
-          </div>
-        ) : null}
-
-        {/* Sonuç sayacı + filtreleri temizle */}
-        {filtered.length || hasActiveFilter ? (
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-[13px] font-bold text-[#68727b]">
-            <span>
-              {filtered.length} {tUi(locale, 'products')}
-            </span>
-            {hasActiveFilter ? (
-              <Link
-                href={`/${locale}/store`}
-                className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[#d96f12] underline-offset-2 transition hover:underline ${FOCUS_RING}`}
-              >
-                {tUi(locale, 'Clear filters')}
-              </Link>
-            ) : null}
-          </div>
-        ) : null}
-        </div>
-      </section>
-
-      {/* Aktif kategori baglami — not + seriye git linki */}
-      {activeCategory ? (
-        <section className="container max-w-[1100px] pt-10">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="font-display text-3xl font-black leading-tight text-[#24333f] md:text-4xl">
-                {activeCategory.name}
+      {/* Bolumler — her seri kendi basligi altinda (PDF s.1: "mini school ve ozel ders
+          ayirt edilmiyor, iki baslik halinde koyalim"). Filtre cubugu kaldirildi. */}
+      {groups.length ? (
+        groups.map((group) => (
+          <section key={group.slug} className="container max-w-[1100px] pt-8 lg:pt-10">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-display text-2xl font-black leading-tight text-[#24333f] md:text-3xl">
+                {group.category?.name || group.slug}
               </h2>
-              <div className="mt-3 h-[3px] w-24 rounded-full bg-[#f58220]" />
-              {activeCategory.id === 'okul-serisi' ? (
-                <div className="mt-4 space-y-1">
-                  {ui.classroomNote ? (
-                    <p className="text-sm font-semibold text-[#5f6871]">{ui.classroomNote}</p>
-                  ) : null}
-                  {ui.teacherSetNote ? (
-                    <p className="text-xs text-[#9a8a74]">{ui.teacherSetNote}</p>
-                  ) : null}
-                </div>
-              ) : activeCategory.description ? (
-                <p className="mt-4 max-w-2xl text-sm font-semibold text-[#5f6871]">{activeCategory.description}</p>
-              ) : null}
+              <span className="rounded-full bg-[#0c8f74]/10 px-3 py-1 text-[12px] font-black text-[#0c8f74]">
+                {group.items.length} {tUi(locale, 'products')}
+              </span>
             </div>
-            {activeCategory.route ? (
-              <Link
-                href={localizePath(locale as any, activeCategory.route)}
-                className={`inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[13px] font-black text-[#0c8f74] ring-1 ring-[#eadfce] transition hover:ring-[#0c8f74] ${FOCUS_RING}`}
-              >
-                {ui.goToSeries || ''}
-                <ChevronRight className="h-4 w-4" aria-hidden />
-              </Link>
+            <div className="mt-2 h-[3px] w-24 rounded-full bg-[#f58220]" />
+            {group.category?.description ? (
+              <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-[#5f6871]">
+                {group.category.description}
+              </p>
             ) : null}
-          </div>
-        </section>
-      ) : null}
 
-      {/* Urun listesi — tek birlesik izgara (filtreye gore).
-          S2/S7 (2026-08-30): 3'lu izgara — ev serisi tek sira, mini school ustte 3 ogretmen + altta 3 ogrenci */}
-      <section className="container max-w-[1100px] py-10 lg:py-12">
-        {filtered.length ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((product) => {
-              const category = categories.find((item) => item.id === product.category);
-              return (
-                <article
-                  key={product.id}
-                  className="group flex min-h-full flex-col overflow-hidden rounded-lg bg-white shadow-[0_14px_42px_rgba(49,64,79,0.10)] ring-1 ring-[#eadfce] transition hover:-translate-y-1 hover:shadow-[0_20px_58px_rgba(49,64,79,0.15)]"
-                  data-testid={`store-product-${product.id}`}
-                >
-                  {(() => {
-                    const media = product.image ? (
-                      <Image
-                        src={product.image}
-                        alt={product.alt || product.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1280px) 33vw, 260px"
-                        className="object-contain transition duration-500 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-center">
-                        <GraduationCap className="h-9 w-9 text-[#f58220]" aria-hidden />
-                        <span className="px-3 text-[11px] font-black uppercase tracking-[0.14em] text-[#b58a4f]">
-                          {category?.name || ''}
-                        </span>
-                      </div>
-                    );
-                    const cls = 'relative block aspect-[4/3] overflow-hidden bg-linear-to-br from-[#fff3e0] to-[#eef6f3] p-3';
-                    return product.slug ? (
-                      <Link href={`/${locale}/store/${product.slug}`} className={cls} aria-label={product.name}>
-                        {media}
-                      </Link>
-                    ) : (
-                      <div className={cls}>{media}</div>
-                    );
-                  })()}
-
-                  <div className="flex flex-1 flex-col p-5">
-                    <div className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-[0.14em]">
-                      {category ? <span className="text-[#f58220]">{category.name}</span> : null}
-                      {product.isFree ? (
-                        <span className="rounded-full bg-[#0c8f74]/10 px-2 py-0.5 text-[#0c8f74]">{ui.free || ''}</span>
-                      ) : null}
-                    </div>
-
-                    <h3 className="mt-3 line-clamp-2 font-display text-lg font-black leading-tight text-[#24333f]">
-                      {product.slug ? (
-                        <Link href={`/${locale}/store/${product.slug}`} className={`transition hover:text-[#d96f12] ${FOCUS_RING}`}>
-                          {product.name}
-                        </Link>
-                      ) : (
-                        product.name
-                      )}
-                    </h3>
-                    {product.description ? (
-                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#68727b]">{product.description}</p>
-                    ) : null}
-
-                    {product.seriesName || product.levelName ? (
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        {product.seriesName ? (
-                          <span className="rounded-full bg-[#fff3e0] px-2 py-1 text-[10px] font-bold text-[#9a6a1f]">
-                            {product.seriesName}
-                          </span>
-                        ) : null}
-                        {product.levelName ? (
-                          <span className="rounded-full bg-[#eef6f3] px-2 py-1 text-[10px] font-bold text-[#0c8f74]">
-                            {product.levelName}
-                          </span>
-                        ) : null}
-                      </div>
-                    ) : null}
-
-                    {/* S3/S4 (2026-08-30): online urun = fiyat + Urun Videosu + Simdi Satin Al */}
-                    {product.purchaseMode === 'online' && !product.isFree && product.price ? (
-                      <div className="mt-auto pt-5">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="font-display text-[22px] font-black text-[#d96f12]">{product.price}</span>
-                          {product.videoUrl ? (
-                            <button
-                              type="button"
-                              onClick={() => setProductVideo({ url: product.videoUrl!, title: product.name })}
-                              className={`inline-flex items-center gap-1.5 rounded-full border border-[#eadfce] bg-white px-3 py-2 text-[12px] font-black text-[#5f6871] transition hover:border-[#f58220] hover:text-[#d96f12] ${FOCUS_RING}`}
-                              data-testid={`store-video-btn-${product.id}`}
-                            >
-                              <Play className="h-3.5 w-3.5" fill="currentColor" aria-hidden />
-                              {ui.productVideo || ''}
-                            </button>
-                          ) : null}
-                        </div>
-                        <Link
-                          href={`/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`}
-                          className={`mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[13px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
-                          data-testid={`store-buy-btn-${product.id}`}
-                        >
-                          <ShoppingCart className="h-4 w-4" aria-hidden />
-                          {ui.buyNow || ''}
-                        </Link>
-                      </div>
-                    ) : (
-                    <div className="mt-auto flex flex-wrap gap-2 pt-5">
-                      {product.isFree && product.slug ? (
-                        <Link
-                          href={`/${locale}/store/${product.slug}`}
-                          className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[12px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
-                        >
-                          {freeCta}
-                          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-                        </Link>
-                      ) : (
-                        <WhatsAppLink
-                          phone={catalog.quoteWhatsApp}
-                          text={quoteText(catalog.quoteMessage, product.name)}
-                          className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-3 py-2.5 text-[12px] font-black text-white transition hover:bg-[#d96f12] ${FOCUS_RING}`}
-                          data-testid={`store-quote-btn-${product.id}`}
-                        >
-                          <MessageCircle className="h-4 w-4" aria-hidden />
-                          {quoteCta}
-                        </WhatsAppLink>
-                      )}
-                      {catalog.quoteForm?.linkLabel ? (
-                        <a
-                          href="#quote-form"
-                          className={`inline-flex items-center justify-center rounded-full border border-[#eadfce] px-3 py-2.5 text-[12px] font-black text-[#5f6871] transition hover:border-[#f58220] hover:text-[#d96f12] ${FOCUS_RING}`}
-                        >
-                          {catalog.quoteForm.linkLabel}
-                        </a>
-                      ) : null}
-                    </div>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        ) : (
-          // Filtre sonucu bos — yakinda + bekleme listesi
-          <div className="mx-auto flex max-w-[560px] flex-col items-center justify-center rounded-2xl bg-white px-6 py-10 text-center shadow-[0_14px_42px_rgba(49,64,79,0.08)] ring-1 ring-[#eadfce]">
-            <div className="relative mb-5 aspect-[500/281] w-full max-w-[420px] overflow-hidden rounded-xl">
-              <Image src={comingSoonImage} alt={ui.comingSoon || ''} fill sizes="420px" className="object-cover" />
+            {/* Mobilde de yan yana (PDF s.1: "mobilde alt alta duruyor, hepsi yan yana olursa iyi olur") */}
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-6">
+              {group.items.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
             </div>
-            <p className="font-display text-xl font-black text-[#24333f]">{ui.comingSoon || ''}</p>
-            <WaitlistSignupForm
-              copy={catalog.waitlistForm}
-              productKey={activeCategory?.id || 'store'}
-              locale={locale}
-            />
-          </div>
-        )}
 
-        {/* S9 (2026-08-30): mini school not seridi — "en az 3 adet" bilgileri aynen korunur */}
-        {filtered.some((product) => product.category === 'atolye-serisi') &&
-        (ui.minOrderNote1 || ui.minOrderNote2 || ui.minOrderNote3) ? (
-          <div className="mt-8 grid gap-4 rounded-2xl bg-white px-5 py-5 shadow-[0_10px_30px_rgba(49,64,79,0.06)] ring-1 ring-[#f2e9d8] md:grid-cols-3">
-            {[ui.minOrderNote1, ui.minOrderNote2, ui.minOrderNote3].filter(Boolean).map((note) => (
-              <div key={note} className="flex items-start gap-2.5">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#0c8f74]" aria-hidden />
-                <p className="text-[13px] font-semibold leading-6 text-[#5f6871]">{note}</p>
+            {/* "En az 3 adet" bilgileri Mini School bolumunun ALTINDA (PDF s.2) */}
+            {MIN_ORDER_NOTE_SLUGS.has(group.slug) && minOrderNotes.length ? (
+              <div className="mt-6 grid gap-4 rounded-2xl bg-white px-5 py-5 shadow-[0_10px_30px_rgba(49,64,79,0.06)] ring-1 ring-[#f2e9d8] md:grid-cols-3">
+                {minOrderNotes.map((note) => (
+                  <div key={note} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#0c8f74]" aria-hidden />
+                    <p className="text-[13px] font-semibold leading-6 text-[#5f6871]">{note}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        ) : null}
-      </section>
+            ) : null}
 
-      {/* Yakinda olan kategoriler (yalnizca filtresiz gorunumde) */}
-      {comingSoonCategories.length ? (
-        <section className="container max-w-[1100px] pb-14">
-          <div className="grid gap-6 md:grid-cols-2">
-            {comingSoonCategories.map((category) => (
-              <div
-                key={category.id}
-                className="flex flex-col items-center rounded-2xl bg-white px-6 py-8 text-center shadow-[0_14px_42px_rgba(49,64,79,0.08)] ring-1 ring-[#eadfce]"
-                data-testid={`store-category-${category.id}`}
-              >
-                <span className="text-xs font-black uppercase tracking-[0.18em] text-[#f58220]">
-                  {category.name}
-                </span>
-                <div className="relative my-4 aspect-[500/281] w-full max-w-[380px] overflow-hidden rounded-xl">
-                  <Image src={comingSoonImage} alt={ui.comingSoon || ''} fill sizes="380px" className="object-cover" />
-                </div>
-                <p className="font-display text-lg font-black text-[#24333f]">{ui.comingSoon || ''}</p>
-                <WaitlistSignupForm copy={catalog.waitlistForm} productKey={category.id} locale={locale} />
-                {category.route ? (
-                  <Link
-                    href={localizePath(locale as any, category.route)}
-                    className={`mt-4 inline-flex items-center gap-1.5 text-[13px] font-black text-[#0c8f74] transition hover:text-[#0a7a63] ${FOCUS_RING}`}
-                  >
-                    {ui.goToSeries || ''}
-                    <ChevronRight className="h-4 w-4" aria-hidden />
-                  </Link>
-                ) : null}
+            {group.category?.route ? (
+              <div className="mt-5">
+                <Link
+                  href={localizePath(locale as never, group.category.route)}
+                  className={`inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[13px] font-black text-[#0c8f74] ring-1 ring-[#eadfce] transition hover:ring-[#0c8f74] ${FOCUS_RING}`}
+                >
+                  {ui.goToSeries || ''}
+                  <ChevronRight className="h-4 w-4" aria-hidden />
+                </Link>
               </div>
-            ))}
-          </div>
+            ) : null}
+          </section>
+        ))
+      ) : (
+        <section className="container max-w-[1100px] py-14">
+          <p className="text-center font-display text-xl font-black text-[#24333f]">{ui.comingSoon || ''}</p>
         </section>
-      ) : null}
+      )}
+
+      <div className="pb-14" />
 
       <QuoteRequestForm copy={catalog.quoteForm} source="store" />
 

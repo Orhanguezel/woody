@@ -62,6 +62,8 @@ function catalogFromDb(taxonomy: StoreTaxonomy, products: StoreProduct[]): Pick<
     categories: visibleCategories.map((category) => ({
       id: category.slug,
       name: category.name,
+      // Bolum basligi altindaki aciklama satiri (DB category_i18n.description)
+      description: category.description,
       route:
         category.slug === 'okul-serisi'
           ? '/preschool'

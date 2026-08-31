@@ -20,7 +20,7 @@ export async function registerCatalogPublic(app: FastifyInstance) {
     const [categories, series, levels] = await Promise.all([
       pool.execute<RowDataPacket[]>(
         `
-          SELECT c.id, ci.slug, ci.name, c.display_order AS \`order\`
+          SELECT c.id, ci.slug, ci.name, ci.description, c.display_order AS \`order\`
             FROM categories c
             INNER JOIN category_i18n ci ON ci.category_id = c.id AND ci.locale = ?
            WHERE c.module_key = 'store'

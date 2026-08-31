@@ -25,9 +25,11 @@ export const WHY_WOODY_BG_IMAGES = [
 export const CERTIFICATE_IMAGES = [
   // NOT: cert-7 = British Side, cert-8 = (eski) Cambridge logosu — dosya adlari/etiketler onceden TERS idi.
   { alt: 'British Side', src: '/assets/woody/sections/cert-7.webp' },
-  // Cambridge marka politikasi geregi eski Cambridge logosu (cert-8) kaldirildi;
-  // resmi "We prepare for Cambridge English Qualifications" hazirlik-merkezi logosu kondu.
-  { alt: 'We prepare for Cambridge English Qualifications', src: '/assets/woody/sections/cert-cambridge-prepare.webp' },
+  // 2026-08-31 (musteri, PDF s.5): Cambridge, "We prepare for Cambridge English
+  // Qualifications" logosunu daha once e-posta ile onaylamasina ragmen karar
+  // degistirdi — logo yalnizca okullarin kullanimina acik. Marka izni olmadigi
+  // icin KALDIRILDI; yerine yeni logo konmadi. Geri eklemeden once Cambridge'den
+  // yazili izin gerekir.
   { alt: 'Woody Academy', src: '/assets/woody/sections/cert-9.webp' },
 ] as const;
 export const NEWS_IMAGES = [

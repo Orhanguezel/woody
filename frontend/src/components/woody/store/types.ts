@@ -41,6 +41,8 @@ export type StoreTaxonomyItem = {
   code?: string;
   slug: string;
   name: string;
+  /** category_i18n.description — magaza bolum basligi altindaki aciklama satiri. */
+  description?: string;
   order?: number;
   rank?: number;
 };
