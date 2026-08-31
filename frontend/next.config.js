@@ -37,10 +37,15 @@ const securityHeaders = [
       "font-src 'self' data: https:",
       "connect-src 'self' http: https: ws: wss:",
       "media-src 'self' blob: http: https:",
-      "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
+      // PayTR odeme iframe'i (paytr.com) + 3D Secure adiminda bankanin ACS sayfasi.
+      // 3D dogrulama, iframe'i bankanin kendi alan adina yonlendiriyor; Turkiye'deki
+      // tum banka ACS alan adlarini saymak mumkun degil, o yuzden https: da acik.
+      // frame-src'de PayTR yokken tarayici odeme ekranini engelliyordu:
+      // "This content is blocked. Contact the site owner to fix the issue." (2026-08-31)
+      "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.paytr.com https://*.paytr.com https:",
       "object-src 'none'",
       "base-uri 'self'",
-      "form-action 'self'",
+      "form-action 'self' https://www.paytr.com",
       "frame-ancestors 'self'",
       'upgrade-insecure-requests',
     ].join('; '),
