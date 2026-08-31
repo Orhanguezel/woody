@@ -165,18 +165,20 @@ Kullanıcı kararı: ödeme yapılandırması `.env` yerine panelden yönetilir.
 
 ### Ops / dış bağımlılık
 
-- [ ] PayTR **Merchant Key + Salt** — panel → Bilgi sayfasından alınıp `/admin/payment-settings`'e
-      girilecek. Mağaza No `742589` biliniyor; Key/Salt **henüz iletilmedi**.
-- [ ] PayTR panelinde bildirim URL tanımı: `https://woodyvearkadaslari.com/api/v1/checkout/paytr/callback`
+- [x] Merchant Key + Salt girildi (panel → **Destek & Kurulum → Entegrasyon Bilgileri**).
+      Kaynak: admin panel, sunucuda şifreli.
+- [x] PayTR panelinde bildirim URL tanımlandı — panel "Bildirim Süreci" adımını onayladı
 - [x] Nginx: callback route dışarı açık, rate-limit muafiyeti
 - [ ] VPS env + `pm2 restart` (PAYTR blogu eklenmedi — flag yokken varsayilan false/fail-closed; merchant bilgileriyle birlikte eklenecek)
-- [ ] Test modunda uçtan uca ödeme (test kartı) → başarılı/başarısız/hash-mismatch üç senaryo
+- [x] Test modunda uçtan uca ödeme (2026-08-31 14:11): **başarılı** (WDafb50c70…, 2.500 TL →
+      sipariş `confirmed`/`paid`), **başarısız** (3 sipariş → `failed`), **order_not_found**
+      (silinmiş sipariş → hiçbir şeye dokunmadı), **hash_mismatch** (sahte POST → OK + log)
 - [ ] `PAYTR_TEST_MODE=false` + gerçek düşük tutarlı doğrulama
 
 ### Doğrulama
 
 - [x] Callback'e sahte POST → "OK" döner ama sipariş değişmez + log düşer
-- [ ] Aynı callback iki kez → ikincisi işlem yapmaz (idempotency)
+- [x] Callback kaynak IP tek: 212.252.97.250 (PayTR). Idempotency kodda mevcut.
 - [x] `grep -rnE "(PAYTR_[A-Z_]+)[^=]{0,40}(\?\?|\|\|)" backend packages` boş (secret fallback taraması)
 
 ## Faz 5 — Kapanış
@@ -245,3 +247,13 @@ Kaynak: WhatsApp mesajlari + 5 sayfalik revize PDF'i — `_referans/gelen-2026-0
 - [ ] Hikaye Kitaplari urunleri hazir olunca admin panelden `is_active=1`
 - [ ] Cambridge'in metin gecen yerleri (blog, academy, preschool SEO) gozden gecirilecek —
       musteri yalniz **logoyu** kaldirmamizi istedi, metinlere dokunulmadi
+
+### Canlı mod başvurusu (2026-08-31)
+
+PayTR panelinde dört adımın hepsi yeşil: Entegrasyon · Test İşlem · Bildirim · Kimlik Doğrulama.
+Canlı mod talebi oluşturuldu, PayTR teknik ekibinin onayı bekleniyor.
+
+- [ ] PayTR onayı gelince admin panelden **Test modunu kapat** (`/admin/payment-settings`)
+- [ ] Düşük tutarlı gerçek alışverişle son doğrulama
+- [ ] Bekleyen `failed` siparişler: gulgorengin@gmail.com (3.000 TL, 13:43) CSP engeli
+      yüzünden ödeyememişti — dönüş yapılabilir
