@@ -1,19 +1,22 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+'use client';
 
-import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
-import LegalDraftPage from '@/components/woody/legal/LegalDraftPage';
+import React from 'react';
+import Banner from '@/layout/banner/Breadcrum';
+import CmsLegalPageContent from '@/components/containers/legal/CmsLegalPageContent';
+import { LayoutSeoBridge } from '@/seo';
 
-type Props = { params: Promise<{ locale: string }> };
-const PAGE_KEY = 'iade-cayma';
+const MODULE_KEY = 'refund';
+const FALLBACK_TITLE = 'İptal, İade ve Geri Ödeme Koşulları';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return { robots: { index: false, follow: false } };
-}
+export default function RefundPolicyPage() {
+  return (
+    <>
+      <LayoutSeoBridge title={FALLBACK_TITLE} noindex={false} />
+      <Banner title={FALLBACK_TITLE} />
 
-export default async function Page({ params }: Props) {
-  const { locale } = await params;
-  const content = await loadWoodyPageContent(PAGE_KEY, locale);
-  if (!content) notFound();
-  return <LegalDraftPage content={content} />;
+      <main className="bg-(--gm-bg) min-h-screen">
+        <CmsLegalPageContent moduleKey={MODULE_KEY} fallbackTitle={FALLBACK_TITLE} />
+      </main>
+    </>
+  );
 }

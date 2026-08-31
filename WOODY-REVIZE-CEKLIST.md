@@ -96,6 +96,44 @@ Kural: her fazın sonunda `bun run build` yeşil + ilgili doğrulama maddesi iş
 - [x] PayTR callback log ekranı (liste + outcome istatistikleri) — QE `paytr-logs` ekranının portu
 - [ ] Sipariş listesinde `payment_method=paytr` görünürlüğü
 
+## Faz 7 — PayTR canlı mod ön koşulları (2026-08-31)
+
+PayTR mağazası açıldı (Mağaza No **742589**, test modunda). PayTR'ın canlı mod öncesi
+istediği site kontrolleri ve karşılıkları:
+
+| PayTR'ın istediği | Durum |
+| --- | --- |
+| İletişim bilgileri | [x] `/tr/contact` — telefon, WhatsApp, e-posta yayında |
+| Firma ve adres bilgileri | [x] Satıcı kimliği 4 yasal sayfada; **açık adres detayı doğrulanmalı** |
+| Teslimat ve kargo koşulları | [x] `/tr/teslimat-ve-kargo` (yeni) |
+| Mesafeli satış sözleşmesi | [x] `/tr/mesafeli-satis` — taslak yerine tam metin |
+| Ön bilgilendirme formu | [x] `/tr/on-bilgilendirme` — taslak yerine tam metin |
+| İptal, iade ve geri ödeme | [x] `/tr/iade-cayma` — taslak yerine tam metin |
+| Test/demo içerik temizliği | [x] `/tr/store` 12 gerçek ürün, gerçek fiyat — demo içerik yok |
+
+### Yapılanlar
+
+- [x] `038_woody_legal_commerce_pages.sql` — 4 ticari yasal sayfa CMS `custom_pages`'e
+      (module_key: `preliminary_info`, `distance_sales`, `refund`, `shipping`), idempotent
+- [x] `LegalDraftPage` + 30 adet `YASAL TASLAK` config JSON kaldırıldı (10 dil × 3 sayfa)
+- [x] `CmsLegalPageContent` — ortak CMS gövdesi; çevirisi olmayan dilde bağlayıcı TR metne düşer
+- [x] 4 rota: `/mesafeli-satis`, `/on-bilgilendirme`, `/iade-cayma`, `/teslimat-ve-kargo`
+      (üçü `noindex` taslaktı → indexlenebilir)
+- [x] Footer yasal sütununa 4 link (10 dil etiketli) — sayfalar artık siteden erişilebilir
+- [x] Sitemap: 4 sayfa `trOnly` (içerik TR mevzuatına tabi, ince duplike üretmesin)
+- [x] Checkout'ta **Ön Bilgilendirme + Mesafeli Satış onay kutusu** (link'li, ayrı checkbox)
+      — önceden sadece KVKK metni vardı, sözleşme onayı hiç alınmıyordu; KVKK metnine de link
+
+### Bekleyen — kullanıcı aksiyonu
+
+- [ ] **PayTR mağaza kaydındaki site adresi Instagram profili görünüyor** → Mağaza Paneli'nden
+      `https://woodyvearkadaslari.com` olarak güncellenmeli/eklenmeli (iframe API alan adına bağlı)
+- [ ] Canlı DB'ye uygula: `mysql ... woody_db < /tmp/038_woody_legal.sql` (dosya VPS'e kopyalandı)
+- [ ] Frontend deploy (`./deploy/deploy.sh frontend`)
+- [ ] Satıcı kimliğinde **açık adres** (sokak/no) ve varsa vergi dairesi/no doğrulanmalı —
+      şu an "Yenişehir / MERSİN 33000". Admin panel → Özel Sayfalar'dan düzenlenir.
+- [ ] Kargo firması adı ve iade gönderim adresi netleşince metinlere yazılmalı
+
 ### Ops / dış bağımlılık
 
 - [ ] PayTR mağaza hesabı bilgileri (merchant_id/key/salt) — **müşteri/Orhan**

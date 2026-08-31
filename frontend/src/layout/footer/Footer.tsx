@@ -61,6 +61,23 @@ const LEGAL_LABELS: Record<string, { url: string; labels: Record<string, string>
     url: '/kullanim-sartlari',
     labels: { tr: 'Kullanım Koşulları', en: 'Terms of Use', de: 'Nutzungsbedingungen', ar: 'شروط الاستخدام', fr: 'Conditions d’utilisation', ru: 'Условия использования', es: 'Términos de uso', it: 'Termini di utilizzo', nl: 'Gebruiksvoorwaarden', 'pt-br': 'Termos de Uso' },
   },
+  // Ticari yasal metinler — mesafeli satista zorunlu, odeme saglayici denetiminde aranir.
+  preliminaryInfo: {
+    url: '/on-bilgilendirme',
+    labels: { tr: 'Ön Bilgilendirme Formu', en: 'Preliminary Information Form', de: 'Vorabinformationsformular', ar: 'نموذج المعلومات المسبقة', fr: 'Formulaire d’information préalable', ru: 'Форма предварительной информации', es: 'Formulario de información previa', it: 'Informativa precontrattuale', nl: 'Voorafgaand informatieformulier', 'pt-br': 'Formulário de Informações Prévias' },
+  },
+  distanceSales: {
+    url: '/mesafeli-satis',
+    labels: { tr: 'Mesafeli Satış Sözleşmesi', en: 'Distance Sales Agreement', de: 'Fernabsatzvertrag', ar: 'عقد البيع عن بُعد', fr: 'Contrat de vente à distance', ru: 'Договор дистанционной продажи', es: 'Contrato de venta a distancia', it: 'Contratto di vendita a distanza', nl: 'Overeenkomst op afstand', 'pt-br': 'Contrato de Venda à Distância' },
+  },
+  refund: {
+    url: '/iade-cayma',
+    labels: { tr: 'İptal, İade ve Geri Ödeme', en: 'Cancellation & Refunds', de: 'Widerruf & Rückerstattung', ar: 'الإلغاء والاسترجاع', fr: 'Annulation et remboursement', ru: 'Отмена и возврат', es: 'Cancelación y reembolso', it: 'Recesso e rimborsi', nl: 'Annulering & terugbetaling', 'pt-br': 'Cancelamento e Reembolso' },
+  },
+  shipping: {
+    url: '/teslimat-ve-kargo',
+    labels: { tr: 'Teslimat ve Kargo', en: 'Shipping & Delivery', de: 'Versand & Lieferung', ar: 'الشحن والتسليم', fr: 'Livraison et expédition', ru: 'Доставка и отправка', es: 'Envío y entrega', it: 'Spedizione e consegna', nl: 'Verzending & levering', 'pt-br': 'Entrega e Envio' },
+  },
 };
 
 function getLegalLinks(locale: string): FooterLink[] {

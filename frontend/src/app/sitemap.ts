@@ -24,6 +24,15 @@ const LEGACY_STATIC_PAGES = [
   '/kullanim-sartlari',
 ] as const;
 
+// Ticari yasal metinler — icerik yalniz TR'de (Turk mevzuatina tabi, TRY satis).
+// Diger dillerde sayfa erisilebilir ama sitemap'e girmez (ince/duplike icerik olmasin).
+const COMMERCE_LEGAL_PAGES = [
+  '/on-bilgilendirme',
+  '/mesafeli-satis',
+  '/iade-cayma',
+  '/teslimat-ve-kargo',
+] as const;
+
 const WOODY_BLOG_CATEGORIES = [
   'genel',
   'haber',
@@ -136,6 +145,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(await blogRoutes()),
     ...(await storeProductRoutes()),
     ...LEGACY_STATIC_PAGES.map((path) => ({ path, trOnly: false, priority: 0.55 })),
+    ...COMMERCE_LEGAL_PAGES.map((path) => ({ path, trOnly: true, priority: 0.5 })),
   ];
 
   return routes.flatMap((route) =>

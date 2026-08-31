@@ -5,10 +5,10 @@ import Banner from '@/layout/banner/Breadcrum';
 import CmsLegalPageContent from '@/components/containers/legal/CmsLegalPageContent';
 import { LayoutSeoBridge } from '@/seo';
 
-const MODULE_KEY = 'preliminary_info';
-const FALLBACK_TITLE = 'Ön Bilgilendirme Formu';
+const MODULE_KEY = 'shipping';
+const FALLBACK_TITLE = 'Teslimat ve Kargo Koşulları';
 
-export default function PreliminaryInfoPage() {
+export default function ShippingPolicyPage() {
   return (
     <>
       <LayoutSeoBridge title={FALLBACK_TITLE} noindex={false} />

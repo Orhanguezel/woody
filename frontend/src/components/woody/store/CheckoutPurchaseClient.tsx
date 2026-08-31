@@ -55,6 +55,7 @@ export default function CheckoutPurchaseClient({
     city: '',
     district: '',
     postalCode: '',
+    terms: false,
     kvkk: false,
   });
 
@@ -227,6 +228,39 @@ export default function CheckoutPurchaseClient({
                 </div>
               ) : null}
 
+              {ui.termsContract || ui.termsInfo ? (
+                <label className="mt-5 flex items-start gap-2.5 text-[13px] leading-6 text-[#5f6871]">
+                  <input
+                    required
+                    type="checkbox"
+                    checked={form.terms}
+                    onChange={(e) => set('terms')(e.target.checked)}
+                    className="mt-1 h-4 w-4 accent-[#f58220]"
+                  />
+                  <span>
+                    <Link
+                      href={`/${locale}/on-bilgilendirme`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`font-bold underline ${FOCUS_RING}`}
+                    >
+                      {ui.termsInfo || ''}
+                    </Link>
+                    {' '}
+                    <Link
+                      href={`/${locale}/mesafeli-satis`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`font-bold underline ${FOCUS_RING}`}
+                    >
+                      {ui.termsContract || ''}
+                    </Link>
+                    {' '}
+                    {ui.termsAccept || ''}
+                  </span>
+                </label>
+              ) : null}
+
               {ui.termsKvkkAccept ? (
                 <label className="mt-5 flex items-start gap-2.5 text-[13px] leading-6 text-[#5f6871]">
                   <input
@@ -236,7 +270,18 @@ export default function CheckoutPurchaseClient({
                     onChange={(e) => set('kvkk')(e.target.checked)}
                     className="mt-1 h-4 w-4 accent-[#f58220]"
                   />
-                  <span>{ui.termsKvkkAccept}</span>
+                  <span>
+                    <Link
+                      href={`/${locale}/kvkk`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`font-bold underline ${FOCUS_RING}`}
+                    >
+                      {ui.termsKvkk || ''}
+                    </Link>
+                    {' '}
+                    {ui.termsKvkkAccept}
+                  </span>
                 </label>
               ) : null}
 
