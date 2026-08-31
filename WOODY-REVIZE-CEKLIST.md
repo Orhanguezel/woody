@@ -122,14 +122,18 @@ istediği site kontrolleri ve karşılıkları:
 - [x] Footer yasal sütununa 4 link (10 dil etiketli) — sayfalar artık siteden erişilebilir
 - [x] Sitemap: 4 sayfa `trOnly` (içerik TR mevzuatına tabi, ince duplike üretmesin)
 - [x] Checkout'ta **Ön Bilgilendirme + Mesafeli Satış onay kutusu** (link'li, ayrı checkbox)
-      — önceden sadece KVKK metni vardı, sözleşme onayı hiç alınmıyordu; KVKK metnine de link
+      — önceden sadece KVKK metni vardı, sözleşme onayı hiç alınmıyordu
+- [x] TUZAK: onay kutusu ilk deploy'da render olmadı — `store-products.json` ui bloğunda
+      `termsContract`/`termsInfo` yoktu (yalnız `termsKvkkAccept`), DB `page_store.ui` de
+      tanımlamıyordu → koşul false. 10 dile eklendi (309801f)
 
 ### Bekleyen — kullanıcı aksiyonu
 
 - [ ] **PayTR mağaza kaydındaki site adresi Instagram profili görünüyor** → Mağaza Paneli'nden
       `https://woodyvearkadaslari.com` olarak güncellenmeli/eklenmeli (iframe API alan adına bağlı)
-- [ ] Canlı DB'ye uygula: `mysql ... woody_db < /tmp/038_woody_legal.sql` (dosya VPS'e kopyalandı)
-- [ ] Frontend deploy (`./deploy/deploy.sh frontend`)
+- [x] Canlı DB'ye uygulandı (yedek: `/root/yedek-custom-pages-20260831.sql`) + frontend deploy
+- [x] Canlı doğrulama: 4 sayfa 200 + `index, follow`, headless render'da tam metin geliyor,
+      footer'da 8 yasal link, sitemap'te 4 TR URL, checkout'ta 2 onay kutusu (linkli)
 - [ ] Satıcı kimliğinde **açık adres** (sokak/no) ve varsa vergi dairesi/no doğrulanmalı —
       şu an "Yenişehir / MERSİN 33000". Admin panel → Özel Sayfalar'dan düzenlenir.
 - [ ] Kargo firması adı ve iade gönderim adresi netleşince metinlere yazılmalı
