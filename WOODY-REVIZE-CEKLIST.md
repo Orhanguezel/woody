@@ -156,6 +156,12 @@ Kullanıcı kararı: ödeme yapılandırması `.env` yerine panelden yönetilir.
       PayTR paneline yapıştırılacak bildirim URL'si (kopyala düğmesi)
 - [x] Iyzipay kartına dürüstlük notu: o form yalnız site_settings'e yazıyor, backend hâlâ
       env okuyor (aktif sağlayıcı PayTR)
+- [x] TUZAK: sayfa vardı ama **sidebar'da görünmüyordu** — `payment_settings`,
+      `sidebar-items.ts` içindeki `HIDDEN_NAV_KEYS` setinde duruyordu (Iyzipay-only
+      döneminde "ayrı sayfa gereksiz" kararı). Setten çıkarıldı, Sistem grubunda
+      Site Ayarları'nın altına alındı. Etiket çözüm sırası:
+      `site_settings.ui_admin` → `locale/*.json` → `FALLBACK_TITLES` → key.
+      `paytr_logs` üç dilde de yoktu (EN/DE'de Türkçe fallback görünüyordu) — eklendi.
 
 ### Ops / dış bağımlılık
 
