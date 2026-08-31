@@ -201,3 +201,47 @@ Kullanıcı kararı: ödeme yapılandırması `.env` yerine panelden yönetilir.
 - [x] <html lang> refactor TAMAM (9943eda, canlı): route group çift root layout; lang params.locale'den, prerender'da tr/fr/ar/ru/en doğrulandı. Yan iş: `useClientSearchParams` hook'u (Suspense'siz SSR-güvenli) — 9 bileşen geçirildi, yeni bileşenlerde useSearchParams yerine BU kullanılmalı
 - [ ] Lighthouse derin işler: kullanılmayan JS, TTI 4.1s, kontrast/dokunma hedefleri (ayrı tur)
 - [ ] GEO: Wikipedia/Wikidata + sosyal profil tamamlama — ekosistem oturumu Orhan'a raporluyor
+
+## Faz 8 — Site admini revizyonu (2026-08-31)
+
+Kaynak: WhatsApp mesajlari + 5 sayfalik revize PDF'i — `_referans/gelen-2026-08-31/`.
+
+- [x] **Filtre cubugu kaldirildi** — kategori/seri/seviye/ucretsiz pill'leri + "12 urun"
+      sayaci ("bu ustteki yazilar cok kalabalik yapiyor"). `/store?category=...` derin
+      baglantilari calismaya devam ediyor, yalniz gorsel cubuk gitti.
+- [x] **Iki bolum basligi** — "Mini School Serisi (6 urun)" ve "Ev & Ozel Ders Serisi
+      (3 urun)" ("mini school ve ozel ders ayni gibi duruyor, ayirt edilmiyor").
+      Gruplama ve sira DB `categories.display_order`'dan — **dile bagli degil**
+      (slug tr `atolye-serisi` / en `mini-school-series` / de `workshop-reihe`).
+- [x] **Bolum aciklamalari** DB `category_i18n.description`'dan (admin panelden duzenlenir):
+      "Kurs, atolye ve kucuk grup egitimleri icin." / "Birebir ve 1-2 ogrencili dersler icin."
+- [x] **9 urun** — Hikaye Kitaplari 3 urunu `is_active=0` (SILINMEDI, "sonra koyacagiz";
+      admin panelden geri acilir). Mini School 6 + Ev & Ozel Ders 3.
+- [x] **Mini School ic sirasi** referanstaki gibi: ogrenci ustte, ogretmen altta.
+- [x] **"En az 3 adet" notlari** sayfa sonundan **Mini School bolumunun altina** tasindi.
+- [x] **Mobilde yan yana** — `grid-cols-2 sm:grid-cols-3` ("mobilde alt alta duruyor").
+      Not: referans 3'lu; 390px'te 3 sutun kart icerigini okunmaz yaptigi icin mobil 2,
+      sm ve uzeri 3 secildi. Dar izgarada urun aciklamasi gizli.
+- [x] **"Cok yakinda / Haberdar olun" kartlari kaldirildi** ("bu kisim iptal, kafa
+      karistirmasin") — bos kategori bekleme-listesi bolumu tamamen cikti.
+- [x] **Cambridge logosu kaldirildi** (referans + dosya): Cambridge daha once e-posta ile
+      onay vermesine ragmen karar degistirip logonun yalniz okullarca kullanilabilecegini
+      bildirdi. `cert-cambridge-prepare.webp` silindi, sunucuda 404.
+      **Yazili izin olmadan geri eklenmez.**
+
+### Yol boyunca cikan iki hata (duzeltildi)
+
+- [x] Gruplama, o dilde `category_i18n` cevirisi olmayan kategorinin urunlerini
+      **gizliyordu** (taxonomy INNER JOIN -> bos categorySlug). EN'de Mini School'un
+      6 urunu dustu. Kod: gruplanamayan urun icin bassiz yedek blok. Veri: eksik
+      `en` satiri eklendi.
+- [x] EN `category_i18n`'de kategori basina **cift satir** var (legacy `21111111-*` +
+      guncel `c0*` agaci) — urun sorgusunda cogaltmaya yol aciyor. Hikaye Kitaplari
+      pasife alininca TR'deki 15->9 cogaltmasi da kapandi; kalan cift kayit
+      **temizlenmedi**, ayri is.
+
+### Bekleyen
+
+- [ ] Hikaye Kitaplari urunleri hazir olunca admin panelden `is_active=1`
+- [ ] Cambridge'in metin gecen yerleri (blog, academy, preschool SEO) gozden gecirilecek —
+      musteri yalniz **logoyu** kaldirmamizi istedi, metinlere dokunulmadi
