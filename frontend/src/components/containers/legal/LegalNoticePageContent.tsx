@@ -25,15 +25,6 @@ const LegalNoticePageContent: React.FC = () => {
 
   const page = useMemo(() => pickFirstPublished((data as any)?.items), [data]);
 
-  const title = useMemo(() => {
-    const t = String((page as any)?.title ?? '').trim();
-    return (
-      t ||
-      String(ui('ui_legal_notice_fallback_title', 'Yasal Uyarı') || '').trim() ||
-      'Yasal Uyarı'
-    );
-  }, [page, ui]);
-
   const html = useMemo(() => {
     const raw = extractHtmlFromAny(page);
     const safe = raw ? downgradeH1ToH2(raw) : '';
@@ -74,16 +65,6 @@ const LegalNoticePageContent: React.FC = () => {
         {!!page && !isLoading && (
           <div className="max-w-4xl mx-auto">
             <style>{CMS_FALLBACK_CSS}</style>
-
-            <header className="mb-16 text-center">
-              <span className="font-display text-[10px] tracking-[0.4em] text-(--gm-gold-deep) uppercase mb-4 block">
-                {isTr ? 'YASAL BİLGİLENDİRME' : 'LEGAL INFORMATION'}
-              </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-light text-(--gm-text) mb-8 leading-tight">
-                {title}
-              </h1>
-              <div className="h-px w-24 bg-gradient-to-r from-transparent via-(--gm-gold) to-transparent mx-auto" />
-            </header>
 
             {html ? (
               <article

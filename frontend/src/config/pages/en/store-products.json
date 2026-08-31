@@ -179,6 +179,9 @@
     "checkoutFailureDescription": "The payment could not be completed. If your card was not charged, you can try again.",
     "checkoutReturnToStore": "Back to Store",
     "termsKvkkAccept": "I have read and accept the privacy (KVKK) notice.",
-    "ageCta": "Find the Right Set for Your Age"
+    "ageCta": "Find the Right Set for Your Age",
+    "termsAccept": "I have read and accept the texts.",
+    "termsContract": "Distance Sales Agreement",
+    "termsInfo": "Preliminary Information Form"
   }
 }

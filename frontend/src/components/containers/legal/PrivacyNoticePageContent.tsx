@@ -24,15 +24,6 @@ const PrivacyNoticePageContent: React.FC = () => {
 
   const page = useMemo(() => pickFirstPublished((data as any)?.items), [data]);
 
-  const title = useMemo(() => {
-    const t = String((page as any)?.title ?? '').trim();
-    return (
-      t ||
-      String(ui('ui_privacy_notice_fallback_title', 'Privacy Notice') || '').trim() ||
-      'Privacy Notice'
-    );
-  }, [page, ui]);
-
   const html = useMemo(() => {
     const raw = extractHtmlFromAny(page);
     const safe = raw ? downgradeH1ToH2(raw) : '';
@@ -70,13 +61,6 @@ const PrivacyNoticePageContent: React.FC = () => {
         {!!page && !isLoading && (
           <div className="max-w-4xl mx-auto">
             <style>{CMS_FALLBACK_CSS}</style>
-
-            <div className="mb-12 text-center">
-              <h1 className="text-4xl md:text-5xl font-serif font-light text-text-primary mb-4">
-                {title}
-              </h1>
-              <div className="h-1 w-24 bg-brand-primary mx-auto rounded-full" />
-            </div>
 
             {html ? (
               <article

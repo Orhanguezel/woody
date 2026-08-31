@@ -178,6 +178,9 @@
     "checkoutFailureTitle": "فشل الدفع",
     "checkoutFailureDescription": "تعذر إتمام الدفع. إذا لم يتم الخصم من بطاقتك، يمكنك المحاولة مرة أخرى.",
     "checkoutReturnToStore": "العودة إلى المتجر",
-    "termsKvkkAccept": "قرأت إشعار الخصوصية (KVKK) وأوافق عليه."
+    "termsKvkkAccept": "قرأت إشعار الخصوصية (KVKK) وأوافق عليه.",
+    "termsAccept": "لقد قرأت النصوص وأوافق عليها.",
+    "termsContract": "عقد البيع عن بُعد",
+    "termsInfo": "نموذج المعلومات المسبقة"
   }
 }

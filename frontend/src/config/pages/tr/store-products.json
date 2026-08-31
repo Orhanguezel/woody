@@ -179,6 +179,9 @@
     "checkoutFailureDescription": "Ödeme işlemi tamamlanamadı. Kartınızdan ücret çekilmediyse tekrar deneyebilirsiniz.",
     "checkoutReturnToStore": "Mağazaya Dön",
     "termsKvkkAccept": "KVKK aydınlatma metnini okudum, onaylıyorum.",
-    "ageCta": "Yaşa Uygun Seti Bul"
+    "ageCta": "Yaşa Uygun Seti Bul",
+    "termsAccept": "metinlerini okudum, kabul ediyorum.",
+    "termsContract": "Mesafeli Satış Sözleşmesi",
+    "termsInfo": "Ön Bilgilendirme Formu"
   }
 }

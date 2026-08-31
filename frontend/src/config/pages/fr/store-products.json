@@ -178,6 +178,9 @@
     "checkoutFailureTitle": "Échec du paiement",
     "checkoutFailureDescription": "Le paiement n'a pas pu être finalisé. Si votre carte n'a pas été débitée, vous pouvez réessayer.",
     "checkoutReturnToStore": "Retour à la boutique",
-    "termsKvkkAccept": "J'ai lu et j'accepte la notice de confidentialité (KVKK)."
+    "termsKvkkAccept": "J'ai lu et j'accepte la notice de confidentialité (KVKK).",
+    "termsAccept": "J’ai lu et j’accepte ces textes.",
+    "termsContract": "Contrat de vente à distance",
+    "termsInfo": "Formulaire d’information préalable"
   }
 }

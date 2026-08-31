@@ -178,6 +178,9 @@
     "checkoutFailureTitle": "Falha no pagamento",
     "checkoutFailureDescription": "O pagamento não pôde ser concluído. Se o cartão não foi cobrado, você pode tentar novamente.",
     "checkoutReturnToStore": "Voltar à loja",
-    "termsKvkkAccept": "Li e aceito o aviso de privacidade (KVKK)."
+    "termsKvkkAccept": "Li e aceito o aviso de privacidade (KVKK).",
+    "termsAccept": "Li e aceito os textos.",
+    "termsContract": "Contrato de Venda à Distância",
+    "termsInfo": "Formulário de Informações Prévias"
   }
 }

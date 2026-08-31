@@ -271,15 +271,19 @@ export default function CheckoutPurchaseClient({
                     className="mt-1 h-4 w-4 accent-[#f58220]"
                   />
                   <span>
-                    <Link
-                      href={`/${locale}/kvkk`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`font-bold underline ${FOCUS_RING}`}
-                    >
-                      {ui.termsKvkk || ''}
-                    </Link>
-                    {' '}
+                    {ui.termsKvkk ? (
+                      <>
+                        <Link
+                          href={`/${locale}/kvkk`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`font-bold underline ${FOCUS_RING}`}
+                        >
+                          {ui.termsKvkk}
+                        </Link>
+                        {' '}
+                      </>
+                    ) : null}
                     {ui.termsKvkkAccept}
                   </span>
                 </label>

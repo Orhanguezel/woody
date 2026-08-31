@@ -178,6 +178,9 @@
     "checkoutFailureTitle": "Pago fallido",
     "checkoutFailureDescription": "El pago no se pudo completar. Si no se realizó el cargo, puede intentarlo de nuevo.",
     "checkoutReturnToStore": "Volver a la tienda",
-    "termsKvkkAccept": "He leído y acepto el aviso de privacidad (KVKK)."
+    "termsKvkkAccept": "He leído y acepto el aviso de privacidad (KVKK).",
+    "termsAccept": "He leído y acepto los textos.",
+    "termsContract": "Contrato de venta a distancia",
+    "termsInfo": "Formulario de información previa"
   }
 }

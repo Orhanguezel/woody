@@ -15,7 +15,7 @@ export default function PreliminaryInfoPage() {
       <Banner title={FALLBACK_TITLE} />
 
       <main className="bg-(--gm-bg) min-h-screen">
-        <CmsLegalPageContent moduleKey={MODULE_KEY} fallbackTitle={FALLBACK_TITLE} />
+        <CmsLegalPageContent moduleKey={MODULE_KEY} />
       </main>
     </>
   );

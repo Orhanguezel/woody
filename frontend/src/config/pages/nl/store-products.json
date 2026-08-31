@@ -178,6 +178,9 @@
     "checkoutFailureTitle": "Betaling mislukt",
     "checkoutFailureDescription": "De betaling kon niet worden voltooid. Als uw kaart niet is belast, kunt u het opnieuw proberen.",
     "checkoutReturnToStore": "Terug naar de winkel",
-    "termsKvkkAccept": "Ik heb de privacyverklaring (KVKK) gelezen en accepteer deze."
+    "termsKvkkAccept": "Ik heb de privacyverklaring (KVKK) gelezen en accepteer deze.",
+    "termsAccept": "Ik heb de teksten gelezen en accepteer ze.",
+    "termsContract": "Overeenkomst op afstand",
+    "termsInfo": "Voorafgaand informatieformulier"
   }
 }

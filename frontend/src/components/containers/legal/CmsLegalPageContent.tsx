@@ -13,15 +13,13 @@ import { useLocaleShort } from '@/i18n';
 type Props = {
   /** custom_pages.module_key — icerik admin panelden bu anahtarla yonetilir. */
   moduleKey: string;
-  /** DB'de kayit yoksa gosterilecek notr baslik. */
-  fallbackTitle: string;
 };
 
 /**
  * Ticari yasal metinler (mesafeli satis, on bilgilendirme, iade, teslimat) icin
  * ortak CMS govdesi. Icerik kodda degil custom_pages tablosunda durur.
  */
-const CmsLegalPageContent: React.FC<Props> = ({ moduleKey, fallbackTitle }) => {
+const CmsLegalPageContent: React.FC<Props> = ({ moduleKey }) => {
   const locale = useLocaleShort();
   const isTr = locale === 'tr';
 
@@ -47,11 +45,6 @@ const CmsLegalPageContent: React.FC<Props> = ({ moduleKey, fallbackTitle }) => {
     () => localePage ?? pickFirstPublished((trData as any)?.items),
     [localePage, trData],
   );
-
-  const title = useMemo(() => {
-    const t = String((page as any)?.title ?? '').trim();
-    return t || fallbackTitle;
-  }, [page, fallbackTitle]);
 
   const html = useMemo(() => {
     const raw = extractHtmlFromAny(page);
@@ -91,16 +84,6 @@ const CmsLegalPageContent: React.FC<Props> = ({ moduleKey, fallbackTitle }) => {
         {!!page && !isLoading && !trLoading && (
           <div className="max-w-4xl mx-auto">
             <style>{CMS_FALLBACK_CSS}</style>
-
-            <header className="mb-16 text-center">
-              <span className="font-display text-[10px] tracking-[0.4em] text-(--gm-gold-deep) uppercase mb-4 block">
-                {isTr ? 'YASAL BİLGİLENDİRME' : 'LEGAL INFORMATION'}
-              </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-light text-(--gm-text) mb-8 leading-tight">
-                {title}
-              </h1>
-              <div className="h-px w-24 bg-gradient-to-r from-transparent via-(--gm-gold) to-transparent mx-auto" />
-            </header>
 
             {html ? (
               <article

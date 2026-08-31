@@ -178,6 +178,9 @@
     "checkoutFailureTitle": "Zahlung fehlgeschlagen",
     "checkoutFailureDescription": "Die Zahlung konnte nicht abgeschlossen werden. Wurde Ihre Karte nicht belastet, können Sie es erneut versuchen.",
     "checkoutReturnToStore": "Zurück zum Shop",
-    "termsKvkkAccept": "Ich habe die Datenschutzerklärung (KVKK) gelesen und akzeptiere sie."
+    "termsKvkkAccept": "Ich habe die Datenschutzerklärung (KVKK) gelesen und akzeptiere sie.",
+    "termsAccept": "Ich habe die Texte gelesen und akzeptiere sie.",
+    "termsContract": "Fernabsatzvertrag",
+    "termsInfo": "Vorabinformation"
   }
 }

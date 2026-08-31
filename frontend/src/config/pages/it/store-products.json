@@ -178,6 +178,9 @@
     "checkoutFailureTitle": "Pagamento non riuscito",
     "checkoutFailureDescription": "Il pagamento non è stato completato. Se la carta non è stata addebitata, puoi riprovare.",
     "checkoutReturnToStore": "Torna al negozio",
-    "termsKvkkAccept": "Ho letto e accetto l'informativa sulla privacy (KVKK)."
+    "termsKvkkAccept": "Ho letto e accetto l'informativa sulla privacy (KVKK).",
+    "termsAccept": "Ho letto e accetto i testi.",
+    "termsContract": "Contratto di vendita a distanza",
+    "termsInfo": "Informativa precontrattuale"
   }
 }
