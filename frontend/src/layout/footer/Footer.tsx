@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Mail, MessageCircle, Phone } from 'lucide-react';
 
 import SocialLinks from '@/components/common/public/SocialLinks';
+import PaymentTrustStrip from './PaymentTrustStrip';
 import { SiteLogo } from '@/layout/SiteLogo';
 import { useGetSiteSettingByKeyQuery, useListMenuItemsQuery } from '@/integrations/rtk/hooks';
 import { useLocaleShort, useUiSection } from '@/i18n';
@@ -281,6 +282,8 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             </Link>
           ))}
         </nav>
+
+        <PaymentTrustStrip locale={locale} />
 
         <div className="flex flex-col items-center justify-between gap-4 text-[12px] text-gray-200 md:flex-row">
           <p className="text-white/85">
