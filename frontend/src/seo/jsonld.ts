@@ -157,6 +157,8 @@ export function localBusiness(input: {
   id?: string;
   name: string;
   alternateName?: string;
+  /** Fatura ünvanı — marka adından farklı olabilir (mesafeli satış künyesi) */
+  legalName?: string;
   description: string;
   url: string;
   telephone?: string;
@@ -183,6 +185,7 @@ export function localBusiness(input: {
     ...(input.id ? { '@id': input.id } : {}),
     name: input.name,
     ...(input.alternateName ? { alternateName: input.alternateName } : {}),
+    ...(input.legalName ? { legalName: input.legalName } : {}),
     description: input.description,
     url: input.url,
     ...(input.telephone ? { telephone: input.telephone } : {}),

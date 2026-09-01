@@ -200,6 +200,10 @@ export type PublicContactInfo = {
   };
   businessHours?: string[];
   companyName?: string;
+  /** Fatura ünvanı — marka adından farklı olabilir */
+  legalName?: string;
+  /** Satıcı gerçek kişi/kurum adı (mesafeli satış künyesi) */
+  sellerName?: string;
   email?: string;
   phone?: string;
   phones?: string[];
@@ -224,6 +228,8 @@ export function getDefaultContactInfo(): PublicContactInfo {
     address,
     businessHours,
     companyName: String(contact.companyName || '').trim() || getPublicAppName(),
+    legalName: String(contact.legalName || '').trim(),
+    sellerName: String(contact.sellerName || '').trim(),
     email: String(contact.email || '').trim(),
     phone: String(contact.phone || phones[0] || '').trim(),
     phones,

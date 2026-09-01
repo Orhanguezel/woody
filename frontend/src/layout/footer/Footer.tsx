@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import { tUi } from '@/i18n/staticUi';
 
 import Link from 'next/link';
-import { Mail, MessageCircle, Phone } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 
 import SocialLinks from '@/components/common/public/SocialLinks';
 import PaymentTrustStrip from './PaymentTrustStrip';
@@ -13,7 +13,8 @@ import { useGetSiteSettingByKeyQuery, useListMenuItemsQuery } from '@/integratio
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath, type PublicMenuItemDto } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
-import { getCopyrightHolder, getDefaultSocialUrls } from '@/lib/site-config';
+import { formatAddressLine, mergeContactDetails } from '@/lib/contact-details';
+import { getCopyrightHolder, getDefaultContactInfo, getDefaultSocialUrls } from '@/lib/site-config';
 
 type FooterLink = {
   id: string;
@@ -145,18 +146,27 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
     String(developer.label || '').trim() ||
     String(developer.full_name || '').trim();
 
-  const contact = (contactInfoSetting?.value ?? {}) as Record<string, unknown>;
-  const phones = Array.isArray(contact.phones)
-    ? contact.phones.map((item) => String(item).trim()).filter(Boolean)
-    : [];
-  const phone = String(contact.phone || phones[0] || '').trim();
-  const secondPhone = String(phones[1] || contact.whatsapp || '').trim();
-  const whatsapp = String(contact.whatsappNumber || contact.whatsapp || secondPhone || phone).trim();
-  const email = String(contact.email || '').trim();
-  const whatsappHref = whatsapp
-    ? `https://wa.me/${normalizeWhatsApp(whatsapp)}`
-    : 'https://wa.me/905331570373';
+  // Künye iki katmanlı: DB `contact_info` + site-defaults yedeği (aynı normalizasyon
+  // iletişim sayfasında da kullanılıyor, iki taraf ayrışmasın).
+  const contactDetails = useMemo(
+    () => mergeContactDetails(contactInfoSetting?.value ?? null, getDefaultContactInfo()),
+    [contactInfoSetting?.value],
+  );
+  const phone = contactDetails.phone;
+  const secondPhone = contactDetails.phones[1] || '';
+  const whatsapp = contactDetails.whatsapp;
+  const email = contactDetails.email;
+  const whatsappHref = whatsapp ? `https://wa.me/${normalizeWhatsApp(whatsapp)}` : '';
+  const countryLabel =
+    contactDetails.address.addressCountry === 'TR'
+      ? tUi(locale, 'Turkey')
+      : contactDetails.address.addressCountry || '';
+  const addressLine = formatAddressLine(contactDetails.address, countryLabel);
+  const companyLine = [contactDetails.legalName, contactDetails.companyName]
+    .filter(Boolean)
+    .join(' / ');
   const homeHref = localizePath(locale, '/');
+  const contactHref = localizePath(locale, '/contact');
 
   return (
     <footer className="bg-gray-900 py-16 text-white lg:py-20">
@@ -181,6 +191,27 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                 tUi(locale, 'A play-based and structured preschool English learning model.'),
               )}
             </p>
+
+            {/* Açık adres — mesafeli satışta ve ödeme sağlayıcı denetiminde her sayfada aranır */}
+            {addressLine ? (
+              <div className="mt-6 flex max-w-[340px] gap-3 text-[14px] leading-relaxed text-gray-400">
+                <MapPin className="mt-0.5 size-[18px] shrink-0" aria-hidden />
+                <address className="not-italic">
+                  {companyLine ? (
+                    <span className="block font-medium text-white/90">{companyLine}</span>
+                  ) : null}
+                  <span className="block">{addressLine}</span>
+                </address>
+              </div>
+            ) : null}
+
+            <Link
+              href={contactHref}
+              className={`mt-5 inline-flex items-center gap-2 rounded-md text-[14px] font-medium text-white transition-colors hover:text-brand-primary ${FOCUS_RING}`}
+            >
+              <span>{tUi(locale, 'Contact Us')}</span>
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
           </div>
 
           <div>
@@ -230,6 +261,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                   </a>
                 </li>
               ) : null}
+              {whatsappHref ? (
               <li className="flex gap-3">
                 <MessageCircle className="mt-0.5 size-[18px] shrink-0" aria-hidden />
                 <a
@@ -242,6 +274,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                   {tUi(locale, 'Contact us on WhatsApp')}
                 </a>
               </li>
+              ) : null}
               {email ? (
                 <li className="flex gap-3">
                   <Mail className="mt-0.5 size-[18px] shrink-0" aria-hidden />
@@ -254,6 +287,15 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
                   </a>
                 </li>
               ) : null}
+              <li className="flex gap-3">
+                <MapPin className="mt-0.5 size-[18px] shrink-0" aria-hidden />
+                <Link
+                  href={contactHref}
+                  className={`rounded-md hover:text-white ${FOCUS_RING}`}
+                >
+                  {tUi(locale, 'Official Contact Information')}
+                </Link>
+              </li>
             </ul>
 
             <h4 className="mb-4 mt-8 text-[16px] font-semibold tracking-wide text-white">
@@ -263,9 +305,15 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
           </div>
         </div>
 
+        {whatsappHref ? (
         <div className="mb-8 mt-6">
           <a
-            href="https://wa.me/905331570373?text=Merhaba%2C%20Woody%20Academy%20%C3%B6%C4%9Fretmen%20ba%C5%9Fvurusu%20yapmak%20istiyorum."
+            href={`${whatsappHref}?text=${encodeURIComponent(
+              ui(
+                'ui_footer_academy_wa_text',
+                tUi(locale, 'Hello, I would like to apply as a Woody Academy teacher.'),
+              ),
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
             className={`group mx-auto block max-w-[600px] rounded-lg bg-white/5 p-4 text-center no-underline transition-all duration-300 hover:bg-white/10 ${FOCUS_RING}`}
@@ -280,6 +328,7 @@ const Footer: React.FC<{ locale?: string }> = ({ locale: localeProp }) => {
             </p>
           </a>
         </div>
+        ) : null}
 
         <nav
           aria-label={tUi(locale, 'Legal')}

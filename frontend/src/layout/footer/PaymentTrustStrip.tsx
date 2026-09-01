@@ -6,7 +6,7 @@ import { Lock } from 'lucide-react';
 
 import { tUi } from '@/i18n/staticUi';
 import { useUiSection } from '@/i18n';
-import { safeStr } from '@/integrations/shared';
+import { isValidUiText, safeStr } from '@/integrations/shared';
 
 /**
  * Footer odeme guven seridi — "guvenli kredi karti odemesi" + saglayici logosu.
@@ -22,36 +22,35 @@ import { safeStr } from '@/integrations/shared';
 export default function PaymentTrustStrip({ locale }: { locale: string }) {
   const { ui } = useUiSection('ui_footer', locale);
 
-  const secureText = useMemo(
-    () =>
-      safeStr(ui('ui_footer_payment_secure', '')).trim() ||
-      tUi(locale, '256-bit SSL ile güvenli ödeme'),
-    [ui, locale],
+  // TUZAK: ui(key, '') eksik anahtarda ANAHTARIN KENDISINI dondurur. Suzgec olmadan
+  // footer'da "ui_footer_payment_cards" gibi ham anahtarlar yaziyordu (canlida gorulen hata).
+  const read = React.useCallback(
+    (key: string) => {
+      const value = safeStr(ui(key, '')).trim();
+      return isValidUiText(value, key) ? value : '';
+    },
+    [ui],
   );
 
-  const providerLabel = useMemo(
-    () => safeStr(ui('ui_footer_payment_provider_label', '')).trim(),
-    [ui],
+  const secureText = useMemo(
+    () => read('ui_footer_payment_secure') || tUi(locale, '256-bit SSL ile güvenli ödeme'),
+    [read, locale],
   );
-  const providerName = useMemo(
-    () => safeStr(ui('ui_footer_payment_provider_name', '')).trim(),
-    [ui],
-  );
-  const providerLogo = useMemo(
-    () => safeStr(ui('ui_footer_payment_provider_logo', '')).trim(),
-    [ui],
-  );
+
+  const providerLabel = useMemo(() => read('ui_footer_payment_provider_label'), [read]);
+  const providerName = useMemo(() => read('ui_footer_payment_provider_name'), [read]);
+  const providerLogo = useMemo(() => read('ui_footer_payment_provider_logo'), [read]);
 
   // "Visa, Mastercard, Troy" gibi virgullu liste — bos ise kart rozeti cikmaz.
   const cards = useMemo(() => {
-    const raw = safeStr(ui('ui_footer_payment_cards', '')).trim();
+    const raw = read('ui_footer_payment_cards');
     return raw
       ? raw
           .split(',')
           .map((item) => item.trim())
           .filter(Boolean)
       : [];
-  }, [ui]);
+  }, [read]);
 
   const hasProvider = Boolean(providerName || providerLogo);
 

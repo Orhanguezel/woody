@@ -10,7 +10,12 @@ import Banner from '@/layout/banner/Breadcrum';
 import { getPublicAppName, titleWithAppName } from '@/lib/site-config';
 import { LayoutSeoBridge } from '@/seo';
 
-export default function ContactRouteClient() {
+/**
+ * `children`: sunucuda render edilen resmî künye kartı. Banner'dan SONRA basılır —
+ * header `fixed` olduğu için sayfanın ilk bölümü daima `data-header-overlay`
+ * taşıyan banner olmalı.
+ */
+export default function ContactRouteClient({ children }: { children?: React.ReactNode }) {
   const locale = useLocaleShort();
   const { ui } = useUiSection('ui_contact', locale as any);
 
@@ -50,6 +55,7 @@ export default function ContactRouteClient() {
     <>
       <LayoutSeoBridge title={seoTitle} description={seoDescription} noindex={false} />
       <Banner title={bannerTitle} />
+      {children}
       <ContactPage />
     </>
   );
