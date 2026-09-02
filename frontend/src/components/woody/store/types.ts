@@ -20,6 +20,8 @@ export type StoreProduct = {
   accessDurationDays?: number | null;
   hasPhysical?: boolean;
   stock_quantity?: number;
+  /** products.min_quantity — 1'den buyukse o adedin altinda siparis verilemez */
+  minQuantity?: number;
   product_code?: string;
   meta_title?: string;
   meta_description?: string;
@@ -118,6 +120,8 @@ export type StoreUiCopy = Partial<Record<
   | 'productVideo'
   | 'buyNow'
   | 'quantity'
+  | 'minQuantityBadge'
+  | 'minQuantityError'
   | 'minOrderNote1'
   | 'minOrderNote2'
   | 'minOrderNote3'

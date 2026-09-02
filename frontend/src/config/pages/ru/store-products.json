@@ -41,7 +41,7 @@
       "category": "atolye-serisi",
       "name": "Senior Öğretmen Seti",
       "description": "İleri seviye öğretmen seti",
-      "price": "3.750 TL",
+      "price": "4.650 TL",
       "image": "/media/woody/revize-2026-08/mini-school-ogretmen-senior.webp",
       "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
       "purchaseMode": "online"
@@ -101,7 +101,7 @@
       "category": "ev-ozel-ders-serisi",
       "name": "Senior Level Set Öğrenci Seti",
       "description": "İleri seviye özel ders öğrenci seti.",
-      "price": "4.250 TL",
+      "price": "4.750 TL",
       "image": "/media/woody/revize-2026-08/ev-senior.webp",
       "videoUrl": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
       "purchaseMode": "online"
@@ -160,6 +160,8 @@
     "buyNow": "Купить сейчас",
     "quantity": "Количество",
     "payWithPaytr": "Оплатить картой",
+    "minQuantityBadge": "Мин. {{count}} шт.",
+    "minQuantityError": "Этот товар можно заказать от {{count}} шт.",
     "minOrderNote1": "Наборы ученика продаются от 3 штук.",
     "minOrderNote2": "Одного набора учителя достаточно для одной группы учеников.",
     "minOrderNote3": "Поэтому достаточно купить столько наборов ученика, сколько у вас учеников.",

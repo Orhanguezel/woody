@@ -44,7 +44,7 @@
       "category": "atolye-serisi",
       "name": "Senior Teacher Set",
       "description": "Advanced level teacher set",
-      "price": "3.750 TL",
+      "price": "4.650 TL",
       "image": "/media/woody/revize-2026-08/mini-school-ogretmen-senior.webp",
       "videoUrl": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
       "purchaseMode": "online"
@@ -104,7 +104,7 @@
       "category": "ev-ozel-ders-serisi",
       "name": "Senior Level Student Set",
       "description": "Advanced level home tutoring student set.",
-      "price": "4.250 TL",
+      "price": "4.750 TL",
       "image": "/media/woody/revize-2026-08/ev-senior.webp",
       "videoUrl": "/media/woody/revize-2026-08/home-tutor-senior.mp4",
       "purchaseMode": "online"
@@ -160,6 +160,8 @@
     "buyNow": "Buy Now",
     "quantity": "Quantity",
     "payWithPaytr": "Pay by Card",
+    "minQuantityBadge": "Min. {{count}} pcs",
+    "minQuantityError": "This product can be ordered in quantities of at least {{count}}.",
     "minOrderNote1": "Student sets can be purchased in quantities of at least 3.",
     "minOrderNote2": "One teacher set is enough for one group of students.",
     "minOrderNote3": "Therefore it is enough to buy only as many student sets as you have students.",

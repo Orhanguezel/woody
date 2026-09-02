@@ -25,6 +25,9 @@ CREATE TABLE IF NOT EXISTS `products` (
   `order_num` INT NOT NULL DEFAULT 0,
   `product_code` VARCHAR(64) DEFAULT NULL,
   `stock_quantity` INT NOT NULL DEFAULT 0,
+  -- Minimum siparis adedi: 1 = serbest. Mini School ogrenci setleri gibi
+  -- "en az N adet" kurali olan urunlerde N yazilir; kural KODDA DEGIL burada.
+  `min_quantity` INT NOT NULL DEFAULT 1,
   `rating` DECIMAL(3,2) NOT NULL DEFAULT 5.00,
   `review_count` INT NOT NULL DEFAULT 0,
   `botanical_name` VARCHAR(255) DEFAULT NULL,

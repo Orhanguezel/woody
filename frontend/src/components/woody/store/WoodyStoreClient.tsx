@@ -64,18 +64,22 @@ export default function WoodyStoreClient({
             : line,
         );
       }
-      return [...current, { product, quantity: 1 }];
+      // Minimum siparis adedi urun verisinden (products.min_quantity)
+      return [...current, { product, quantity: Math.max(1, Number(product.minQuantity) || 1) }];
     });
   }
 
   function change(productId: string, delta: number) {
     setCart((current) =>
       current
-        .map((line) =>
-          line.product.id === productId
-            ? { ...line, quantity: Math.max(0, Math.min(99, line.quantity + delta)) }
-            : line,
-        )
+        .map((line) => {
+          if (line.product.id !== productId) return line;
+          const min = Math.max(1, Number(line.product.minQuantity) || 1);
+          const next = line.quantity + delta;
+          // Minimumun altina inilirse satir sepetten cikar (0'a duser) — arada
+          // gecersiz bir adet birakma.
+          return { ...line, quantity: next < min ? 0 : Math.min(99, next) };
+        })
         .filter((line) => line.quantity > 0),
     );
   }

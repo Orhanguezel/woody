@@ -39,6 +39,8 @@ export type StoreCatalogProduct = {
   purchaseMode?: 'online' | 'quote';
   isFree?: boolean;
   hasPhysical?: boolean;
+  /** products.min_quantity — 1'den buyukse kartta "en az N adet" rozeti cikar */
+  minQuantity?: number;
 };
 
 export type StoreCatalog = {
@@ -66,6 +68,13 @@ const STORE_LOGO = '/assets/woody/woody-store-logo.png';
 // DIKKAT: kategori slug'i DILE GORE degisir (tr atolye-serisi / en workshop-series /
 // de workshop-reihe). Yeni bir dile kategori cevirisi eklendiginde slug'i buraya da ekle.
 const MIN_ORDER_NOTE_SLUGS = new Set(['atolye-serisi', 'workshop-series', 'workshop-reihe']);
+
+/** "En az {{count}} adet" gibi sablonlari doldurur; sablon yoksa rozet cikmaz. */
+function minQuantityLabel(template: string | undefined, count: number) {
+  const raw = (template || '').trim();
+  if (!raw || count <= 1) return '';
+  return raw.replace(/\{\{count\}\}/g, String(count));
+}
 
 function quoteText(message: string | undefined, product?: string) {
   const text = message || '';
@@ -127,6 +136,7 @@ export default function WoodyStoreShowcase({
 
   function ProductCard({ product }: { product: StoreCatalogProduct }) {
     const category = categories.find((item) => item.id === product.category);
+    const minQtyBadge = minQuantityLabel(ui.minQuantityBadge, Number(product.minQuantity) || 1);
     const media = product.image ? (
       <Image
         src={product.image}
@@ -176,11 +186,19 @@ export default function WoodyStoreShowcase({
             </p>
           ) : null}
 
-          {product.levelName ? (
+          {product.levelName || minQtyBadge ? (
             <div className="mt-2 flex flex-wrap gap-1.5">
-              <span className="rounded-full bg-[#eef6f3] px-2 py-0.5 text-[10px] font-bold text-[#0c8f74]">
-                {product.levelName}
-              </span>
+              {product.levelName ? (
+                <span className="rounded-full bg-[#eef6f3] px-2 py-0.5 text-[10px] font-bold text-[#0c8f74]">
+                  {product.levelName}
+                </span>
+              ) : null}
+              {/* Minimum siparis adedi urun verisinden (products.min_quantity) */}
+              {minQtyBadge ? (
+                <span className="rounded-full bg-[#fff1e2] px-2 py-0.5 text-[10px] font-bold text-[#d96f12]">
+                  {minQtyBadge}
+                </span>
+              ) : null}
             </div>
           ) : null}
 

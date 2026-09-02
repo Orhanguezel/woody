@@ -46,7 +46,10 @@ export default function CheckoutPurchaseClient({
   const [error, setError] = useState('');
   const [paymentUnavailable, setPaymentUnavailable] = useState(false);
   const [iframeUrl, setIframeUrl] = useState('');
-  const [quantity, setQuantity] = useState(1);
+  // Minimum siparis adedi urun verisinden gelir (products.min_quantity) — kodda
+  // kategori/seri adina gore kural YOK. Sunucu da ayni degeri dogrular.
+  const minQuantity = Math.max(1, Number(product.minQuantity) || 1);
+  const [quantity, setQuantity] = useState(minQuantity);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -71,10 +74,11 @@ export default function CheckoutPurchaseClient({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // Mini school ogrenci setleri: "en az 3 adet" bilgilendirmesi (S9)
+  // "En az N adet" bilgilendirmesi: urunun min_quantity degeri 1'den buyukse.
   const minOrderHint =
-    product.categorySlug === 'atolye-serisi' && product.seriesSlug === 'ogrenci'
-      ? ui.minOrderNote1
+    minQuantity > 1
+      ? (ui.minQuantityError || '').replace(/\{\{count\}\}/g, String(minQuantity)) ||
+        ui.minOrderNote1
       : undefined;
 
   const set = (key: keyof typeof form) => (value: string | boolean) =>
@@ -84,6 +88,11 @@ export default function CheckoutPurchaseClient({
     event.preventDefault();
     if (busy) return;
     setError('');
+    if (quantity < minQuantity) {
+      setQuantity(minQuantity);
+      setError(minOrderHint || '');
+      return;
+    }
     setBusy(true);
     try {
       const orderRes = await fetch('/api/v1/checkout/orders', {
@@ -195,10 +204,12 @@ export default function CheckoutPurchaseClient({
                   <span className="mb-1.5 block text-[12px] font-black uppercase tracking-[0.08em] text-[#9a8a74]">{ui.quantity}</span>
                   <input
                     type="number"
-                    min={1}
+                    min={minQuantity}
                     max={99}
                     value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, Math.min(99, Number(e.target.value) || 1)))}
+                    onChange={(e) =>
+                      setQuantity(Math.max(minQuantity, Math.min(99, Number(e.target.value) || minQuantity)))
+                    }
                     className={INPUT_CLS}
                   />
                 </label>

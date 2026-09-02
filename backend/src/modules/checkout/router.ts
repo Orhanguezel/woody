@@ -48,6 +48,7 @@ type CheckoutBody = {
 type ProductRow = RowDataPacket & {
   id: string;
   price: string;
+  min_quantity: number | null;
   title: string;
   category_name: string | null;
   purchase_mode: 'online' | 'quote';
@@ -199,7 +200,7 @@ async function getProducts(items: CheckoutItem[], locale: string) {
   const placeholders = ids.map(() => '?').join(', ');
   const [rows] = await pool.execute<ProductRow[]>(
     `
-        SELECT p.id, p.price, pi.title, ci.name AS category_name
+        SELECT p.id, p.price, p.min_quantity, pi.title, ci.name AS category_name
              , p.purchase_mode, p.access_duration_days,
                EXISTS(
                  SELECT 1 FROM product_contents pc
@@ -252,6 +253,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const [rows] = await pool.execute(
       `
         SELECT p.id, p.price, p.image_url AS imageUrl, p.video_url AS videoUrl, p.stock_quantity AS stockQuantity,
+               p.min_quantity AS minQuantity,
                p.product_code AS productCode, p.purchase_mode AS purchaseMode,
                p.is_free AS isFree, p.access_duration_days AS accessDurationDays,
                EXISTS(
@@ -287,6 +289,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const [rows] = await pool.execute<RowDataPacket[]>(
       `
         SELECT p.id, p.price, p.image_url AS imageUrl, p.video_url AS videoUrl, p.stock_quantity AS stockQuantity,
+               p.min_quantity AS minQuantity,
                p.product_code AS productCode, p.purchase_mode AS purchaseMode,
                p.is_free AS isFree, p.access_duration_days AS accessDurationDays,
                EXISTS(
@@ -351,7 +354,11 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       const product = products.get(productId);
       if (!product) return badRequest(reply, 'product_not_found');
       if (product.purchase_mode !== 'online') return badRequest(reply, 'product_not_available_online');
-      const quantity = Math.max(1, Math.min(99, Number(item.quantity) || 1));
+      // Minimum siparis adedi urunun kendi verisinde (products.min_quantity).
+      // Sunucu tarafinda da dogrulanir: istemci alanini asamaz.
+      const minQuantity = Math.max(1, Number(product.min_quantity) || 1);
+      const quantity = Math.max(1, Math.min(99, Number(item.quantity) || minQuantity));
+      if (quantity < minQuantity) return badRequest(reply, 'min_quantity_not_met');
       const unitPrice = Number(product.price);
       const lineTotal = unitPrice * quantity;
       total += lineTotal;

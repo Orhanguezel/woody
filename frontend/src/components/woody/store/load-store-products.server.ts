@@ -33,6 +33,8 @@ type ApiProduct = {
   hasPhysical?: boolean | number;
   stock_quantity?: number;
   stockQuantity?: number;
+  min_quantity?: number;
+  minQuantity?: number;
   product_code?: string | null;
   productCode?: string | null;
   meta_title?: string | null;
@@ -104,6 +106,7 @@ function normalizeProduct(row: unknown): StoreProduct | null {
     accessDurationDays: toNullableNum(product.accessDurationDays),
     hasPhysical: toBool(product.hasPhysical),
     stock_quantity: product.stockQuantity ?? product.stock_quantity,
+    minQuantity: Math.max(1, Number(product.minQuantity ?? product.min_quantity) || 1),
     product_code: product.productCode || product.product_code || undefined,
     meta_title: product.metaTitle || product.meta_title || undefined,
     meta_description: product.metaDescription || product.meta_description || undefined,

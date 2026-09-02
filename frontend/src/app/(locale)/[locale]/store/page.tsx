@@ -92,6 +92,7 @@ function catalogFromDb(taxonomy: StoreTaxonomy, products: StoreProduct[]): Pick<
       purchaseMode: product.purchaseMode,
       isFree: product.isFree,
       hasPhysical: product.hasPhysical,
+      minQuantity: product.minQuantity,
     })),
   };
 }
