@@ -150,7 +150,7 @@ export default function AdminOrdersClient() {
               </SelectTrigger>
               <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
                 <SelectItem value="all">{t('filters.all')}</SelectItem>
-                {ORDER_STATUSES.map(s => <SelectItem key={s} value={s}>{s.toUpperCase()}</SelectItem>)}
+                {ORDER_STATUSES.map(s => <SelectItem key={s} value={s}>{t(`statuses.${s}`, null, s)}</SelectItem>)}
               </SelectContent>
             </Select>
           </div>
@@ -165,7 +165,7 @@ export default function AdminOrdersClient() {
               </SelectTrigger>
               <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
                 <SelectItem value="all">{t('filters.all')}</SelectItem>
-                {PAYMENT_STATUSES.map(s => <SelectItem key={s} value={s}>{s.toUpperCase()}</SelectItem>)}
+                {PAYMENT_STATUSES.map(s => <SelectItem key={s} value={s}>{t(`paymentStatuses.${s}`, null, s)}</SelectItem>)}
               </SelectContent>
             </Select>
           </div>
@@ -252,7 +252,7 @@ export default function AdminOrdersClient() {
                     </TableCell>
                     <TableCell className="py-6 text-center">
                       <div className={cn(
-                        "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] transition-all",
+                        "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wide transition-all",
                         order.status === 'completed' ? 'bg-gm-success/10 text-gm-success border border-gm-success/20' :
                         order.status === 'cancelled' ? 'bg-gm-error/10 text-gm-error border border-gm-error/20' :
                         'bg-gm-warning/10 text-gm-warning border border-gm-warning/20'
@@ -263,18 +263,18 @@ export default function AdminOrdersClient() {
                           order.status === 'cancelled' ? 'bg-gm-error' :
                           'bg-gm-warning'
                         )} />
-                        {order.status.toUpperCase()}
+                        {t(`statuses.${order.status}`, null, order.status)}
                       </div>
                     </TableCell>
                     <TableCell className="py-6 text-center">
                       <div className={cn(
-                        "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border transition-all",
+                        "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wide border transition-all",
                         order.payment_status === 'paid' ? 'bg-gm-success/5 border-gm-success/20 text-gm-success' :
                         order.payment_status === 'failed' ? 'bg-gm-error/5 border-gm-error/20 text-gm-error' :
                         'bg-gm-surface/40 border-gm-border-soft text-gm-muted'
                       )}>
                         <CreditCard size={10} className="opacity-60" />
-                        {order.payment_status.toUpperCase()}
+                        {t(`paymentStatuses.${order.payment_status}`, null, order.payment_status)}
                       </div>
                     </TableCell>
                     <TableCell className="py-6 text-center">
@@ -282,13 +282,13 @@ export default function AdminOrdersClient() {
                         <Badge
                           variant="outline"
                           className={cn(
-                            'rounded-full text-[9px] font-bold uppercase tracking-[0.15em] border',
+                            'rounded-full text-[10px] font-bold tracking-wide border',
                             order.shipped_at
                               ? 'bg-gm-success/5 border-gm-success/20 text-gm-success'
                               : 'bg-gm-warning/10 border-gm-warning/20 text-gm-warning',
                           )}
                         >
-                          {order.shipped_at ? 'Gönderildi' : 'Bekliyor'}
+                          {order.shipped_at ? t('shipping.sent', null, 'Gönderildi') : t('shipping.waiting', null, 'Bekliyor')}
                         </Badge>
                       ) : (
                         <span className="text-[10px] text-gm-muted">-</span>

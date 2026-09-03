@@ -33,17 +33,17 @@ export default function QuoteRequestDetailClient({ id }: { id: string }) {
   const query = useGetQuoteRequestAdminQuery({ id });
   const [update, updateState] = useUpdateQuoteRequestAdminMutation();
   const [status, setStatus] = React.useState<QuoteRequestStatus>('new');
-  const [message, setMessage] = React.useState('');
+  const [adminNote, setAdminNote] = React.useState('');
 
   React.useEffect(() => {
     if (!query.data) return;
     setStatus(query.data.status);
-    setMessage(query.data.message ?? '');
+    setAdminNote(query.data.admin_note ?? '');
   }, [query.data]);
 
   async function save() {
     try {
-      await update({ id, body: { status, message } }).unwrap();
+      await update({ id, body: { status, admin_note: adminNote } }).unwrap();
       toast.success('Teklif talebi güncellendi');
     } catch (error) {
       toast.error(apiErrorMessage(error));
@@ -76,6 +76,7 @@ export default function QuoteRequestDetailClient({ id }: { id: string }) {
                 ['Yetkili', item.contact_name],
                 ['E-posta', item.email],
                 ['Telefon', item.phone || '-'],
+                ['Ürün', item.productTitle || '-'],
                 ['Öğrenci sayısı', String(item.student_count)],
                 ['Seviye', item.level],
                 ['İl / İlçe', [item.city, item.district].filter(Boolean).join(' / ') || '-'],
@@ -88,6 +89,10 @@ export default function QuoteRequestDetailClient({ id }: { id: string }) {
                   <div className="mt-1 text-sm font-medium text-gm-text">{value}</div>
                 </div>
               ))}
+              <div className="rounded-lg border border-gm-border-soft bg-gm-background/60 p-3 sm:col-span-2">
+                <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-gm-muted">Müşteri mesajı</div>
+                <div className="mt-2 whitespace-pre-wrap text-sm text-gm-text">{item.message || '-'}</div>
+              </div>
             </CardContent>
           </Card>
 
@@ -104,8 +109,8 @@ export default function QuoteRequestDetailClient({ id }: { id: string }) {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Mesaj / Admin Notu</Label>
-                <Textarea className="min-h-40" value={message} onChange={(event) => setMessage(event.target.value)} />
+                <Label>Admin Notu</Label>
+                <Textarea className="min-h-40" value={adminNote} onChange={(event) => setAdminNote(event.target.value)} />
               </div>
               <Button onClick={save} disabled={updateState.isLoading} className="w-full">
                 <Save className="mr-2 h-4 w-4" />

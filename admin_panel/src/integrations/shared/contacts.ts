@@ -88,6 +88,25 @@ export interface ContactListQueryParams {
   order?: 'asc' | 'desc';
 }
 
+export interface ContactListResponse {
+  data: Contact[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+export function normalizeContactList(value: unknown): ContactListResponse {
+  const row = value && typeof value === 'object' ? value as Record<string, unknown> : {};
+  const rawData = Array.isArray(row.data) ? row.data : [];
+  const data = rawData.map((item) => normalizeContact(item as ContactDto));
+  return {
+    data,
+    total: Number(row.total) || data.length,
+    limit: Number(row.limit) || data.length,
+    offset: Number(row.offset) || 0,
+  };
+}
+
 /**
  * PUBLIC create payload – ContactCreateSchema ile uyumlu
  */

@@ -1,5 +1,5 @@
 export type QuoteRequestStatus = 'new' | 'contacted' | 'quoted' | 'won' | 'lost';
-export type QuoteRequestLevel = 'basic' | 'junior' | 'senior' | 'mixed';
+export type QuoteRequestLevel = 'basic' | 'junior' | 'senior' | 'pro' | 'mixed';
 
 export type QuoteRequestView = {
   id: string;
@@ -7,11 +7,14 @@ export type QuoteRequestView = {
   contact_name: string;
   email: string;
   phone: string | null;
+  productId: string | null;
+  productTitle: string | null;
   student_count: number;
   level: QuoteRequestLevel;
   city: string | null;
   district: string | null;
   message: string | null;
+  admin_note: string | null;
   status: QuoteRequestStatus;
   source: string;
   created_at: string | null;
@@ -34,7 +37,7 @@ export type QuoteRequestsListQuery = {
 
 export type QuoteRequestPatchBody = {
   status?: QuoteRequestStatus;
-  message?: string | null;
+  admin_note?: string | null;
 };
 
 function str(value: unknown) {
@@ -54,11 +57,14 @@ export function normalizeQuoteRequest(value: unknown): QuoteRequestView {
     contact_name: str(row.contact_name),
     email: str(row.email),
     phone: nullableStr(row.phone),
+    productId: nullableStr(row.productId),
+    productTitle: nullableStr(row.productTitle),
     student_count: Number(row.student_count) || 0,
-    level: (['basic', 'junior', 'senior', 'mixed'].includes(str(row.level)) ? str(row.level) : 'mixed') as QuoteRequestLevel,
+    level: (['basic', 'junior', 'senior', 'pro', 'mixed'].includes(str(row.level)) ? str(row.level) : 'mixed') as QuoteRequestLevel,
     city: nullableStr(row.city),
     district: nullableStr(row.district),
     message: nullableStr(row.message),
+    admin_note: nullableStr(row.admin_note),
     status: (['new', 'contacted', 'quoted', 'won', 'lost'].includes(str(row.status)) ? str(row.status) : 'new') as QuoteRequestStatus,
     source: str(row.source) || 'website',
     created_at: nullableStr(row.created_at),

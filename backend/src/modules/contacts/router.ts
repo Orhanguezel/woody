@@ -216,4 +216,12 @@ export async function registerContactsAdmin(app: FastifyInstance) {
     if (!row) return reply.code(404).send({ error: { message: 'not_found' } });
     return row;
   });
+
+  app.delete('/contacts/:id', async (req, reply) => {
+    const { id } = req.params as { id: string };
+    const [result] = await pool.execute('DELETE FROM contact_messages WHERE id = ?', [id]);
+    const affectedRows = Number((result as { affectedRows?: number }).affectedRows || 0);
+    if (!affectedRows) return reply.code(404).send({ error: { message: 'not_found' } });
+    return { ok: true };
+  });
 }

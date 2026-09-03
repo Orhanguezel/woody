@@ -3350,6 +3350,31 @@
             "updateFailed": "Update failed",
             "refunded": "Order refunded",
             "refundFailed": "Refund failed"
+        },
+        "statuses": {
+            "pending": "Pending",
+            "confirmed": "Confirmed",
+            "shipped": "Shipped",
+            "completed": "Completed",
+            "cancelled": "Cancelled"
+        },
+        "paymentStatuses": {
+            "unpaid": "Unpaid",
+            "pending": "Payment pending",
+            "paid": "Paid",
+            "failed": "Failed",
+            "refunded": "Refunded"
+        },
+        "shipping": {
+            "sent": "Shipped",
+            "waiting": "Pending"
+        },
+        "paymentRecordStatuses": {
+            "success": "Success",
+            "failed": "Failed",
+            "pending": "Pending",
+            "refunded": "Refunded",
+            "canceled": "Canceled"
         }
     },
     "emailTemplates": {

@@ -77,6 +77,7 @@ export type AdminNavItemKey =
   | 'orders'
   | 'paytr_logs'
   | 'quote_requests'
+  | 'contacts'
   | 'products'
   | 'series'
   | 'levels'
@@ -132,6 +133,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
     id: 2,
     key: 'communication',
     items: [
+      { key: 'contacts', url: '/admin/contacts', icon: Mail },
       { key: 'reviews', url: '/admin/reviews', icon: MessageSquare },
       { key: 'support', url: '/admin/support', icon: MessageCircle },
       { key: 'announcements', url: '/admin/announcements', icon: Megaphone },
@@ -182,6 +184,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   orders: 'Siparişler',
   paytr_logs: 'PayTR Kayıtları',
   quote_requests: 'Teklif Talepleri',
+  contacts: 'İletişim Mesajları',
   products: 'Ürünler',
   series: 'Seriler',
   levels: 'Seviyeler',

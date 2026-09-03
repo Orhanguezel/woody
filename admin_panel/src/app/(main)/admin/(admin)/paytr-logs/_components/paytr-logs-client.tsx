@@ -55,6 +55,45 @@ const OUTCOME_TONE: Record<string, string> = {
   received: 'bg-sky-500/15 text-sky-500',
 };
 
+// Ham PayTR sonuc kodlari yerine ne oldugunu anlatan Turkce karsiliklar.
+const OUTCOME_LABEL: Record<string, string> = {
+  processed: 'İşlendi',
+  duplicate: 'Tekrar bildirim',
+  hash_mismatch: 'İmza doğrulanamadı',
+  order_not_found: 'Sipariş bulunamadı',
+  feature_disabled: 'PayTR kapalıydı',
+  received: 'Alındı, işlenmedi',
+};
+
+const OUTCOME_HELP: Record<string, string> = {
+  processed: 'Bildirim doğrulandı ve siparişin ödeme durumu güncellendi. Normal akış.',
+  duplicate: 'Aynı bildirim daha önce işlenmişti; tekrar geldiği için yok sayıldı. Zararsız.',
+  hash_mismatch: 'GÜVENLİK: Bildirimin imzası tutmadı. Sahte veya bozuk istek — siparişe hiçbir şey yazılmadı.',
+  order_not_found: 'Bildirimdeki sipariş referansı veritabanında yok. Silinmiş ya da hiç oluşmamış sipariş.',
+  feature_disabled: 'PayTR entegrasyonu kapalıyken bildirim geldi; işlenmedi.',
+  received: 'Bildirim alındı ama işlenmedi.',
+};
+
+// PayTR'nin kendi durum alani (success/failed).
+const PAYTR_STATUS_LABEL: Record<string, string> = {
+  success: 'Başarılı',
+  failed: 'Başarısız',
+};
+
+// "order: <uuid> -> failed" seklindeki ham detayi okunur hale getirir.
+function humanDetail(detail: string | null): string {
+  if (!detail) return '—';
+  const m = detail.match(/^order:\s*([0-9a-f-]+)\s*->\s*(\w+)$/i);
+  if (!m) return detail;
+  const short = m[1].replace(/-/g, '').slice(0, 8).toUpperCase();
+  const outcomes: Record<string, string> = {
+    paid: 'ödendi olarak işaretlendi',
+    failed: 'başarısız olarak işaretlendi',
+    refunded: 'iade edildi olarak işaretlendi',
+  };
+  return `WD${short}… siparişi ${outcomes[m[2].toLowerCase()] ?? m[2]}`;
+}
+
 async function apiGet<T>(path: string): Promise<T> {
   const token = tokenStore.get() ||
     (typeof window !== 'undefined' ? window.localStorage.getItem('mh_access_token') : null);
@@ -137,6 +176,20 @@ export default function PaytrLogsClient() {
         </div>
       </div>
 
+      {/* Sayfa ne anlatiyor — kisa aciklama */}
+      <div className="rounded-[24px] border border-gm-border-soft bg-gm-surface/20 px-6 py-5 text-sm leading-relaxed text-gm-muted">
+        <p>
+          Bir müşteri ödeme yaptığında PayTR bize arka plandan bir <strong className="text-gm-text">bildirim</strong> gönderir;
+          siparişin “ödendi” olmasını bu bildirim sağlar. Aşağıda bu bildirimlerin tamamı var —
+          başarılı olanlar da, doğrulanamayanlar da.
+        </p>
+        <p className="mt-2">
+          <strong className="text-gm-text">PayTR Sonucu</strong> ödemenin bankada başarılı olup olmadığını,{' '}
+          <strong className="text-gm-text">Bizdeki Sonuç</strong> ise bizim o bildirimle ne yaptığımızı gösterir.
+          Rozetlerin üzerine gelince ne anlama geldikleri yazar.
+        </p>
+      </div>
+
       {/* Outcome istatistikleri */}
       {stats?.outcomes.length ? (
         <div className="flex flex-wrap gap-3">
@@ -144,18 +197,19 @@ export default function PaytrLogsClient() {
             <button
               key={item.outcome}
               type="button"
+              title={OUTCOME_HELP[item.outcome] ?? item.outcome}
               onClick={() => {
                 setOutcome((prev) => (prev === item.outcome ? 'all' : item.outcome));
                 setPage(1);
               }}
               className={cn(
-                'rounded-full px-4 py-2 text-[11px] font-bold tracking-wide uppercase border transition',
+                'rounded-full px-4 py-2 text-[11px] font-bold tracking-wide border transition',
                 outcome === item.outcome
                   ? 'border-gm-gold text-gm-gold'
                   : 'border-gm-border-soft text-gm-muted hover:border-gm-gold/50',
               )}
             >
-              {item.outcome} · {item.count}
+              {OUTCOME_LABEL[item.outcome] ?? item.outcome} · {item.count}
             </button>
           ))}
         </div>
@@ -172,13 +226,13 @@ export default function PaytrLogsClient() {
               }}
             >
               <SelectTrigger className="w-[220px]">
-                <SelectValue placeholder="Sonuç" />
+                <SelectValue placeholder="Tüm sonuçlar" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Tüm sonuçlar</SelectItem>
                 {OUTCOMES.map((value) => (
                   <SelectItem key={value} value={value}>
-                    {value}
+                    {OUTCOME_LABEL[value] ?? value}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -209,11 +263,11 @@ export default function PaytrLogsClient() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Tarih</TableHead>
-                  <TableHead>merchant_oid</TableHead>
-                  <TableHead>PayTR durumu</TableHead>
+                  <TableHead>Sipariş Referansı</TableHead>
+                  <TableHead>PayTR Sonucu</TableHead>
                   <TableHead>Tutar</TableHead>
-                  <TableHead>Sonuç</TableHead>
-                  <TableHead>Detay</TableHead>
+                  <TableHead>Bizdeki Sonuç</TableHead>
+                  <TableHead>Açıklama</TableHead>
                   <TableHead>IP</TableHead>
                 </TableRow>
               </TableHeader>
@@ -225,15 +279,20 @@ export default function PaytrLogsClient() {
                         {row.received_at ? format(new Date(row.received_at), 'dd.MM.yyyy HH:mm:ss') : '—'}
                       </TableCell>
                       <TableCell className="font-mono text-xs">{row.merchant_oid || '—'}</TableCell>
-                      <TableCell className="text-xs">{row.status || '—'}</TableCell>
+                      <TableCell className="text-xs">
+                        {row.status ? (PAYTR_STATUS_LABEL[row.status] ?? row.status) : '—'}
+                      </TableCell>
                       <TableCell className="text-xs">{row.total_amount != null ? `${row.total_amount} TL` : '—'}</TableCell>
                       <TableCell>
-                        <Badge className={cn('font-mono text-[10px]', OUTCOME_TONE[row.outcome] || 'bg-slate-500/15 text-slate-500')}>
-                          {row.outcome}
+                        <Badge
+                          title={OUTCOME_HELP[row.outcome] ?? row.outcome}
+                          className={cn('text-[10px] font-semibold', OUTCOME_TONE[row.outcome] || 'bg-slate-500/15 text-slate-500')}
+                        >
+                          {OUTCOME_LABEL[row.outcome] ?? row.outcome}
                         </Badge>
                       </TableCell>
-                      <TableCell className="max-w-[280px] truncate text-xs" title={row.detail || ''}>
-                        {row.detail || '—'}
+                      <TableCell className="max-w-[320px] truncate text-xs" title={row.detail || ''}>
+                        {humanDetail(row.detail)}
                       </TableCell>
                       <TableCell className="font-mono text-xs">{row.source_ip || '—'}</TableCell>
                     </TableRow>

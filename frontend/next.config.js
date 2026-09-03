@@ -203,6 +203,9 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // GSC kanibalizasyonu: eski Cambridge fallback slug'i tek guncel makaleye gider.
+      { source: '/blog/cambridge-hazirlik-anaokulu-nedir', destination: '/tr/blog/cambridge-egitim-sistemi-nedir', permanent: true },
+      { source: '/tr/blog/cambridge-hazirlik-anaokulu-nedir', destination: '/tr/blog/cambridge-egitim-sistemi-nedir', permanent: true },
       { source: '/:locale/store/1', destination: '/:locale/store/basic-level-set-ogrenci-seti-0001', permanent: true },
       { source: '/:locale/store/2', destination: '/:locale/store/junior-level-set-ogrenci-seti-0002', permanent: true },
       { source: '/:locale/store/3', destination: '/:locale/store/senior-level-set-ogrenci-seti-0003', permanent: true },

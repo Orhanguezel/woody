@@ -3706,5 +3706,32 @@
         "title": "Seite nicht gefunden.",
         "description": "Die von Ihnen gesuchte Seite konnte nicht gefunden werden oder wurde verschoben.",
         "goBack": "Zur Startseite"
+    },
+    "orders": {
+        "statuses": {
+            "pending": "Ausstehend",
+            "confirmed": "Bestätigt",
+            "shipped": "Versandt",
+            "completed": "Abgeschlossen",
+            "cancelled": "Storniert"
+        },
+        "paymentStatuses": {
+            "unpaid": "Unbezahlt",
+            "pending": "Zahlung ausstehend",
+            "paid": "Bezahlt",
+            "failed": "Fehlgeschlagen",
+            "refunded": "Erstattet"
+        },
+        "shipping": {
+            "sent": "Versandt",
+            "waiting": "Ausstehend"
+        },
+        "paymentRecordStatuses": {
+            "success": "Erfolgreich",
+            "failed": "Fehlgeschlagen",
+            "pending": "Ausstehend",
+            "refunded": "Erstattet",
+            "canceled": "Storniert"
+        }
     }
 }

@@ -5,8 +5,11 @@
 import { baseApi } from '@/integrations/baseApi';
 import type {
   ContactDto,
+  ContactListResponse,
   ContactListQueryParams,
   ContactUpdatePayload,
+  normalizeContact,
+  normalizeContactList,
 } from '@/integrations/shared';
 
 const BASE = '/admin/contacts';
@@ -16,16 +19,17 @@ export const contactsAdminApi = baseApi.injectEndpoints({
     /**
      * LIST (admin) – GET /contacts
      */
-    listContactsAdmin: build.query<ContactDto[], ContactListQueryParams | void>({
+    listContactsAdmin: build.query<ContactListResponse, ContactListQueryParams | void>({
       query: (params?: ContactListQueryParams) => ({
         url: `${BASE}`,
         method: 'GET',
         params,
       }),
+      transformResponse: normalizeContactList,
       providesTags: (result) =>
         result
           ? [
-              ...result.map((c) => ({
+              ...result.data.map((c) => ({
                 type: 'Contacts' as const,
                 id: c.id,
               })),
@@ -42,6 +46,7 @@ export const contactsAdminApi = baseApi.injectEndpoints({
         url: `${BASE}/${id}`,
         method: 'GET',
       }),
+      transformResponse: normalizeContact,
       providesTags: (result) =>
         result
           ? [{ type: 'Contacts' as const, id: result.id }]
@@ -58,6 +63,7 @@ export const contactsAdminApi = baseApi.injectEndpoints({
         method: 'PATCH',
         body: patch,
       }),
+      transformResponse: normalizeContact,
       invalidatesTags: (result, error, arg) => [
         { type: 'Contacts' as const, id: arg.id },
         { type: 'Contacts' as const, id: 'LIST' },

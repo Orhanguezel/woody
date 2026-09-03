@@ -150,7 +150,8 @@ export async function commerceSummary(req: FastifyRequest, reply: FastifyReply) 
         ELSE 0 END), 0) AS items_sold,
         MAX(CASE WHEN payment_status = 'paid' THEN updated_at END) AS data_freshness
       FROM orders
-      WHERE updated_at >= ? AND updated_at < DATE_ADD(?, INTERVAL 1 DAY)
+      WHERE CONVERT_TZ(updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
+        AND CONVERT_TZ(updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
     `,
     args,
   );
@@ -159,7 +160,8 @@ export async function commerceSummary(req: FastifyRequest, reply: FastifyReply) 
       SELECT COUNT(*) AS payment_attempts,
              SUM(pa.status IN ('failed','cancelled') OR (pa.status = 'pending' AND pa.created_at < DATE_SUB(NOW(), INTERVAL 30 MINUTE))) AS abandoned_payments
         FROM payment_attempts pa
-       WHERE pa.created_at >= ? AND pa.created_at < DATE_ADD(?, INTERVAL 1 DAY)
+       WHERE CONVERT_TZ(pa.created_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
+         AND CONVERT_TZ(pa.created_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
          AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload, '$.testMode')), 'false') <> 'true'
     `,
     args,
@@ -187,14 +189,15 @@ export async function commerceDaily(req: FastifyRequest, reply: FastifyReply) {
   if (!range) return;
   const [rows] = await pool.execute<RowDataPacket[]>(
     `
-      SELECT DATE(updated_at) AS metric_date,
+      SELECT DATE(CONVERT_TZ(updated_at, '+00:00', '+03:00')) AS metric_date,
              SUM(payment_status = 'paid') AS paid_orders,
              COALESCE(SUM(CASE WHEN payment_status = 'paid' THEN total ELSE 0 END), 0) AS gross_revenue,
              SUM(payment_status = 'refunded') AS refund_count,
              COALESCE(SUM(CASE WHEN payment_status = 'refunded' THEN total ELSE 0 END), 0) AS refund_amount
         FROM orders
-       WHERE updated_at >= ? AND updated_at < DATE_ADD(?, INTERVAL 1 DAY)
-       GROUP BY DATE(updated_at)
+       WHERE CONVERT_TZ(updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
+         AND CONVERT_TZ(updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
+       GROUP BY DATE(CONVERT_TZ(updated_at, '+00:00', '+03:00'))
        ORDER BY metric_date ASC
     `,
     [range.from, range.to],
@@ -224,7 +227,8 @@ export async function commerceProducts(req: FastifyRequest, reply: FastifyReply)
         INNER JOIN order_items oi ON oi.order_id = o.id
         LEFT JOIN product_i18n pi ON pi.product_id = oi.product_id AND pi.locale = 'tr'
        WHERE o.payment_status = 'paid'
-         AND o.updated_at >= ? AND o.updated_at < DATE_ADD(?, INTERVAL 1 DAY)
+         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
+         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
        GROUP BY oi.product_id, pi.title
        ORDER BY gross_revenue DESC
        LIMIT 100
@@ -255,7 +259,8 @@ export async function commerceAttribution(req: FastifyRequest, reply: FastifyRep
         FROM orders o
         LEFT JOIN order_attribution a ON a.order_id = o.id
        WHERE o.payment_status = 'paid'
-         AND o.updated_at >= ? AND o.updated_at < DATE_ADD(?, INTERVAL 1 DAY)
+         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
+         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
        GROUP BY source, medium, campaign
        ORDER BY gross_revenue DESC
        LIMIT 100

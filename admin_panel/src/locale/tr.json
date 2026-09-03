@@ -1926,6 +1926,31 @@
       "updateFailed": "Güncelleme başarısız",
       "refunded": "Sipariş iade edildi",
       "refundFailed": "İade başarısız"
+    },
+    "statuses": {
+      "pending": "Bekliyor",
+      "confirmed": "Onaylandı",
+      "shipped": "Kargoda",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal edildi"
+    },
+    "paymentStatuses": {
+      "unpaid": "Ödenmedi",
+      "pending": "Ödeme bekliyor",
+      "paid": "Ödendi",
+      "failed": "Başarısız",
+      "refunded": "İade edildi"
+    },
+    "shipping": {
+      "sent": "Gönderildi",
+      "waiting": "Bekliyor"
+    },
+    "paymentRecordStatuses": {
+      "success": "Başarılı",
+      "failed": "Başarısız",
+      "pending": "Bekliyor",
+      "refunded": "İade edildi",
+      "canceled": "İptal edildi"
     }
   },
   "emailTemplates": {

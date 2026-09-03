@@ -25,7 +25,7 @@ const quoteRequestSchema = z.object({
 
 const quotePatchSchema = z.object({
   status: z.enum(STATUSES).optional(),
-  message: z.string().trim().max(3000).optional().nullable(),
+  admin_note: z.string().trim().max(5000).optional().nullable(),
 });
 
 type QuoteRequestInput = z.infer<typeof quoteRequestSchema>;
@@ -156,7 +156,7 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
       `
         SELECT qr.id, qr.org_name, qr.contact_name, qr.email, qr.phone, qr.product_id AS productId,
                pi.title AS productTitle, qr.student_count, qr.level, qr.city, qr.district,
-               qr.message, qr.status, qr.source, qr.created_at, qr.updated_at
+               qr.message, qr.admin_note, qr.status, qr.source, qr.created_at, qr.updated_at
           FROM quote_requests qr
           LEFT JOIN product_i18n pi ON pi.product_id = qr.product_id AND pi.locale = 'tr'
           ${whereSql}
@@ -179,7 +179,7 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
       `
         SELECT qr.id, qr.org_name, qr.contact_name, qr.email, qr.phone, qr.product_id AS productId,
                pi.title AS productTitle, qr.student_count, qr.level, qr.city, qr.district,
-               qr.message, qr.status, qr.source, qr.created_at, qr.updated_at
+               qr.message, qr.admin_note, qr.status, qr.source, qr.created_at, qr.updated_at
           FROM quote_requests qr
           LEFT JOIN product_i18n pi ON pi.product_id = qr.product_id AND pi.locale = 'tr'
          WHERE qr.id = ?
@@ -203,9 +203,9 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
       patches.push('status = ?');
       values.push(parsed.data.status);
     }
-    if (parsed.data.message !== undefined) {
-      patches.push('message = ?');
-      values.push(nullable(parsed.data.message));
+    if (parsed.data.admin_note !== undefined) {
+      patches.push('admin_note = ?');
+      values.push(nullable(parsed.data.admin_note));
     }
     if (!patches.length) return badRequest(reply, 'empty_update');
 
@@ -218,7 +218,7 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
       `
         SELECT qr.id, qr.org_name, qr.contact_name, qr.email, qr.phone, qr.product_id AS productId,
                pi.title AS productTitle, qr.student_count, qr.level, qr.city, qr.district,
-               qr.message, qr.status, qr.source, qr.created_at, qr.updated_at
+               qr.message, qr.admin_note, qr.status, qr.source, qr.created_at, qr.updated_at
           FROM quote_requests qr
           LEFT JOIN product_i18n pi ON pi.product_id = qr.product_id AND pi.locale = 'tr'
          WHERE qr.id = ?

@@ -206,10 +206,10 @@ export default function AdminOrderDetailClient() {
               {order.order_number}
             </h1>
             <Badge className={cn(
-              "rounded-full px-4 py-1 text-[10px] font-bold tracking-widest uppercase border",
+              "rounded-full px-4 py-1 text-[11px] font-bold tracking-wide border",
               order.status === 'completed' ? "bg-gm-success/10 text-gm-success border-gm-success/20" : "bg-gm-warning/10 text-gm-warning border-gm-warning/20"
             )}>
-              {order.status.toUpperCase()}
+              {t(`statuses.${order.status}`, null, order.status)}
             </Badge>
           </div>
           <p className="text-gm-muted text-sm font-serif italic opacity-70">
@@ -310,7 +310,7 @@ export default function AdminOrderDetailClient() {
                   </SelectTrigger>
                   <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
                     {ORDER_STATUSES.map((s) => (
-                      <SelectItem key={s} value={s}>{s.toUpperCase()}</SelectItem>
+                      <SelectItem key={s} value={s}>{t(`statuses.${s}`, null, s)}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -327,7 +327,7 @@ export default function AdminOrderDetailClient() {
                   </SelectTrigger>
                   <SelectContent className="bg-gm-bg-deep border-gm-border-soft rounded-2xl">
                     {PAYMENT_STATUSES.map((s) => (
-                      <SelectItem key={s} value={s}>{s.toUpperCase()}</SelectItem>
+                      <SelectItem key={s} value={s}>{t(`paymentStatuses.${s}`, null, s)}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -354,7 +354,7 @@ export default function AdminOrderDetailClient() {
             <Truck className="h-5 w-5 text-gm-gold" /> Kargo
             {order.has_physical ? (
               <Badge variant="outline" className="ml-2 rounded-full border-gm-border-soft text-gm-muted">
-                {order.shipped_at ? 'Gönderildi' : 'Bekliyor'}
+                {order.shipped_at ? t('shipping.sent', null, 'Gönderildi') : t('shipping.waiting', null, 'Bekliyor')}
               </Badge>
             ) : null}
           </CardTitle>
@@ -490,10 +490,10 @@ export default function AdminOrderDetailClient() {
                     <TableCell className="py-6 px-8 font-serif text-lg text-gm-text font-bold">{fmtMoney(pay.amount, pay.currency)}</TableCell>
                     <TableCell className="py-6">
                       <Badge className={cn(
-                        "rounded-full text-[9px] font-bold tracking-widest uppercase border",
+                        "rounded-full text-[10px] font-bold tracking-wide border",
                         pay.status === 'success' ? "bg-gm-success/10 text-gm-success border-gm-success/20" : "bg-gm-error/10 text-gm-error border-gm-error/20"
                       )}>
-                        {pay.status.toUpperCase()}
+                        {t(`paymentRecordStatuses.${pay.status}`, null, pay.status)}
                       </Badge>
                     </TableCell>
                     <TableCell className="py-6 font-mono text-xs text-gm-muted/60">{pay.transaction_id || '-'}</TableCell>

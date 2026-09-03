@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `quote_requests` (
   `city` VARCHAR(120) DEFAULT NULL,
   `district` VARCHAR(120) DEFAULT NULL,
   `message` TEXT DEFAULT NULL,
+  `admin_note` TEXT DEFAULT NULL,
   `status` ENUM('new','contacted','quoted','won','lost') NOT NULL DEFAULT 'new',
   `source` VARCHAR(32) NOT NULL DEFAULT 'website',
   `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
