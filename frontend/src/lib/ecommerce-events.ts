@@ -37,6 +37,10 @@ export function reportViewItem(payload: EcommercePayload): void {
   sendEvent('view_item', payload);
 }
 
+export function reportAddToCart(payload: EcommercePayload): void {
+  sendEvent('add_to_cart', payload);
+}
+
 /** PayTR iframe acildiginda — odeme bilgisi adimina gecis. */
 export function reportAddPaymentInfo(payload: EcommercePayload & { payment_type?: string }): void {
   sendEvent('add_payment_info', { payment_type: 'paytr', ...payload });

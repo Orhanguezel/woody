@@ -1,0 +1,1 @@
+export { registerUserActivityAdmin } from './router';

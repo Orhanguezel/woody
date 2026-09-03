@@ -25,6 +25,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { UserActivityPanel } from './UserActivityPanel';
 import { Skeleton } from '@/components/ui/skeleton';
 
 import type { UserRoleName, AdminUserView } from '@/integrations/shared';
@@ -411,6 +412,9 @@ export default function UserDetailClient({ id }: { id: string }) {
           </Card>
         </div>
       </div>
+
+      {/* Ne yapti / nerede gezdi */}
+      <UserActivityPanel userId={u.id} />
     </div>
   );
 }

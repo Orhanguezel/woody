@@ -12,6 +12,8 @@ import { registerSubscriptionsAdmin, registerSubscriptionsPublic } from '@/modul
 import { registerWaitlistPublic } from '@/modules/waitlist';
 import { registerContentSourcePublic } from '@/modules/contentSource';
 import { registerDashboardAdmin } from '@/modules/dashboard';
+import { registerUserActivityAdmin } from '@/modules/userActivity';
+import { registerSearchConsoleAdmin } from '@/modules/searchConsole';
 
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerHomeLayoutPublic(api);
@@ -38,6 +40,10 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerAdminPanelCommerceStubs(adminApi);
   // Dashboard ozeti — gercek woody verisi (eskiden stub'di, sifir donuyordu)
   await registerDashboardAdmin(adminApi);
+  // Kullanici aktivitesi — ne yapti, nerede gezdi (audit_request_logs)
+  await registerUserActivityAdmin(adminApi);
+  // Blog ve urun admin ekranlarindaki Google indeks durumu.
+  await registerSearchConsoleAdmin(adminApi);
   await registerSchoolsAdmin(adminApi);
   await registerOrdersProjectAdmin(adminApi);
   await registerCheckoutAdmin(adminApi);

@@ -8,6 +8,7 @@ import { ArrowRight, CheckCircle2, ChevronRight, GraduationCap, MessageCircle, P
 import { localizePath } from '@/integrations/shared';
 import { tUi } from '@/i18n/staticUi';
 import { FOCUS_RING } from '@/lib/a11y';
+import { reportAddToCart } from '@/lib/ecommerce-events';
 import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 import WoodyPageLogoHeader from '@/components/woody/WoodyPageLogoHeader';
 import QuoteRequestForm, { type QuoteFormCopy } from '@/components/woody/quote/QuoteRequestForm';
@@ -79,6 +80,13 @@ function minQuantityLabel(template: string | undefined, count: number) {
 function quoteText(message: string | undefined, product?: string) {
   const text = message || '';
   return text.replace(/\{\{product\}\}/g, product || '');
+}
+
+function numericPrice(value: string | undefined): number {
+  if (!value) return 0;
+  const normalized = value.replace(/[^\d.,]/g, '').replace(/\./g, '').replace(',', '.');
+  const amount = Number(normalized);
+  return Number.isFinite(amount) ? amount : 0;
 }
 
 // Bir urunun verilen filtre kombinasyonuyla eslesip eslesmedigi (AND semantigi).
@@ -223,6 +231,20 @@ export default function WoodyStoreShowcase({
               </div>
               <Link
                 href={`/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`}
+                onClick={() => {
+                  const quantity = Math.max(1, Number(product.minQuantity) || 1);
+                  const unitPrice = numericPrice(product.price);
+                  reportAddToCart({
+                    currency: 'TRY',
+                    value: unitPrice * quantity,
+                    items: [{
+                      item_id: String(product.id),
+                      item_name: product.name,
+                      price: unitPrice,
+                      quantity,
+                    }],
+                  });
+                }}
                 className={`mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-2 py-2 text-[11px] font-black text-white transition hover:bg-[#d96f12] sm:mt-3 sm:px-3 sm:py-2.5 sm:text-[13px] ${FOCUS_RING}`}
                 data-testid={`store-buy-btn-${product.id}`}
               >

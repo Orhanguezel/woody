@@ -75,6 +75,7 @@ export * from '@/integrations/endpoints/admin/blog_admin.endpoints';
 export * from '@/integrations/endpoints/admin/subscriptions_admin.endpoints';
 export * from '@/integrations/endpoints/admin/schools_admin.endpoints';
 export * from '@/integrations/endpoints/admin/quote_requests_admin.endpoints';
+export * from '@/integrations/endpoints/admin/search-console-admin-endpoints';
 
 // Support
 export * from '@/integrations/endpoints/admin/support_admin.endpoints';
@@ -84,3 +85,5 @@ export * from '@/integrations/endpoints/admin/announcements_admin.endpoints';
 
 export * from '@/integrations/endpoints/admin/consultant_applications_admin.endpoints';
 
+// Kullanici aktivitesi (ne yapti / nerede gezdi)
+export * from '@/integrations/endpoints/admin/user-activity-admin.endpoints';

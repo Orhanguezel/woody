@@ -130,13 +130,23 @@ async function redirectNumericStoreSlug(slug: string, locale: string) {
 }
 
 export async function generateStaticParams() {
-  const dbProducts = await loadDbStoreProducts('tr');
-  const products = dbProducts.length ? dbProducts : await loadWoodyProducts('store-products', 'tr');
-  return WOODY_LOCALES.flatMap((locale) =>
-    products
-      .filter((product) => product.slug)
-      .map((product) => ({ locale, slug: product.slug as string })),
+  // DB urunlerini yalniz cevirisinin gercekten bulundugu locale icin prerender et.
+  // Turkce urun listesini tum dillere carpmak soft-duplicate/noindex/404 sayfalari
+  // uretiyor ve sitemap ile uygulama rotasini birbirinden kopariyordu.
+  const perLocale = await Promise.all(
+    WOODY_LOCALES.map(async (locale) => {
+      const dbProducts = await loadDbStoreProducts(locale);
+      const products = dbProducts.length
+        ? dbProducts
+        : locale === 'tr'
+          ? await loadWoodyProducts('store-products', locale)
+          : [];
+      return products
+        .filter((product) => product.slug)
+        .map((product) => ({ locale, slug: product.slug as string }));
+    }),
   );
+  return perLocale.flat();
 }
 
 export async function generateMetadata({ params }: Props) {

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle2, CreditCard, Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
 import { FOCUS_RING } from '@/lib/a11y';
+import { reportAddToCart } from '@/lib/ecommerce-events';
 
 import type { StoreProduct, StoreUiCopy } from './types';
 
@@ -55,6 +56,22 @@ export default function WoodyStoreClient({
 
   function add(product: StoreProduct) {
     setMessage('');
+    const existing = cart.find((line) => line.product.id === product.id);
+    const addedQuantity = existing
+      ? existing.quantity < 99 ? 1 : 0
+      : Math.max(1, Number(product.minQuantity) || 1);
+    if (addedQuantity > 0) {
+      reportAddToCart({
+        currency: product.currency || 'TRY',
+        value: product.price * addedQuantity,
+        items: [{
+          item_id: String(product.id),
+          item_name: product.title,
+          price: product.price,
+          quantity: addedQuantity,
+        }],
+      });
+    }
     setCart((current) => {
       const existing = current.find((line) => line.product.id === product.id);
       if (existing) {

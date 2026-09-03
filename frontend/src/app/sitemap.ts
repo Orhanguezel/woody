@@ -122,16 +122,31 @@ async function blogRoutes(): Promise<SitemapRoute[]> {
 }
 
 async function storeProductRoutes(): Promise<SitemapRoute[]> {
-  // Gercek DB urunleri (gercek slug) — store sayfasiyla ayni kaynak. Onceden config'ten
-  // okunuyordu; config'te slug yok -> normalizeCard slug=id yapip /store/2 gibi REDIRECT
-  // eden numerik URL'ler sitemap'e giriyordu (GSC "Yonlendirmeli sayfa"). Duzeltildi.
-  const products = await loadDbStoreProducts(WOODY_DEFAULT_LOCALE);
-  return products
-    .filter((product) => product.slug && !/^\d+$/.test(String(product.slug)))
-    .map((product) => ({
-      path: `/store/${product.slug}`,
-      priority: 0.72,
-    }));
+  // Her urun yalniz gercek product_i18n kaydi bulunan locale'lerde sitemap'e girer.
+  // Turkce slug'i tum dillere carpmak, cevirisi olmayan urunlerde noindex/404 URL'ler
+  // uretiyordu (GSC 2026-09-04: 19 noindex + 3 404).
+  const productsByLocale = await Promise.all(
+    WOODY_LOCALES.map(async (locale) => ({ locale, products: await loadDbStoreProducts(locale) })),
+  );
+  const byId = new Map<string, SitemapRoute>();
+
+  for (const { locale, products } of productsByLocale) {
+    for (const product of products) {
+      if (!product.id || !product.slug || /^\d+$/.test(String(product.slug))) continue;
+      const existing = byId.get(product.id) ?? {
+        path: `/store/${product.slug}`,
+        priority: 0.72,
+        pathByLocale: {},
+        locales: [] as WoodyLocale[],
+      };
+      existing.pathByLocale = { ...(existing.pathByLocale ?? {}), [locale]: `/store/${product.slug}` };
+      existing.locales = [...((existing.locales as WoodyLocale[]) ?? []), locale];
+      if (locale === WOODY_DEFAULT_LOCALE) existing.path = `/store/${product.slug}`;
+      byId.set(product.id, existing);
+    }
+  }
+
+  return Array.from(byId.values());
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
