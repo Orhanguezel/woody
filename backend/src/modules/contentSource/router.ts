@@ -20,6 +20,13 @@ import type { RowDataPacket } from 'mysql2';
 
 import { env } from '@/core/env';
 import { pool } from '@/db/client';
+import {
+  commerceAttribution,
+  commerceDaily,
+  commerceHealth,
+  commerceProducts,
+  commerceSummary,
+} from './commerce';
 
 /** Sitenin kanonik kökü — apex. www.woodyvearkadaslari.com apex'e 301 döner ve
  *  kontrat yönlendirmeli host'u yasaklar; bu yüzden FRONTEND_URL'i olduğu gibi
@@ -243,6 +250,29 @@ export async function registerContentSourcePublic(app: FastifyInstance) {
     async (scope) => {
       scope.get('/articles', { config: { public: true } }, listArticles);
       scope.get('/products', { config: { public: true } }, listProducts);
+      scope.get('/contract', { config: { public: true } }, async (req, reply) => {
+        if (!guardApiKey(req, reply)) return;
+        return {
+          id: 'woody-tanitio-web-connection@1.1',
+          schemaVersion: '1.0',
+          tenantKey: 'woody',
+          content: { articles: true, products: true },
+          commerce: {
+            enabled: Boolean((process.env.TANITIO_COMMERCE_API_KEY || '').trim()),
+            auth: 'hmac-sha256',
+            keyId: 'woody',
+            maxRangeDays: 90,
+            pii: false,
+            endpoints: ['health', 'summary', 'daily', 'products', 'attribution'],
+          },
+        };
+      });
+      const commerceConfig = { config: { public: true, rateLimit: { max: 60, timeWindow: '1 minute' } } };
+      scope.get('/commerce/health', commerceConfig, commerceHealth);
+      scope.get('/commerce/summary', commerceConfig, commerceSummary);
+      scope.get('/commerce/daily', commerceConfig, commerceDaily);
+      scope.get('/commerce/products', commerceConfig, commerceProducts);
+      scope.get('/commerce/attribution', commerceConfig, commerceAttribution);
     },
     { prefix: '/content-source' },
   );

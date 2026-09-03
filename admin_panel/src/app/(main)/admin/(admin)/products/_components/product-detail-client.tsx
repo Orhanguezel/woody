@@ -55,7 +55,6 @@ import {
   useUpdateProductAdminMutation,
 } from '@/integrations/hooks';
 import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
-import { IndexStatusPanel } from '@/app/(main)/admin/_components/common/IndexStatusPanel';
 import { scoreProductSeoQuality } from '@/integrations/shared/product-seo-quality';
 import ProductSeoQualityPanel from './product-seo-quality-panel';
 
@@ -876,8 +875,6 @@ export default function ProductDetailClient({ id }: { id: string }) {
             </Card>
 
             <ProductSeoQualityPanel score={seoQuality} />
-
-            <IndexStatusPanel type="product" locale={locale} slug={form.slug} disabled={isNew} />
           </div>
             </div>
           </TabsContent>

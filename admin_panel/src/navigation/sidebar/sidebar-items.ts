@@ -9,7 +9,6 @@ import {
   Bell,
   Bot,
   BookOpenText,
-  Image as ImageIcon,
   Tag,
   CreditCard,
   Database,
@@ -30,12 +29,6 @@ import {
   Trash2,
   Users,
   Menu as MenuIcon,
-  Twitter,
-  BarChart3,
-  Search,
-  Activity,
-  Facebook,
-  Link2,
   type LucideIcon,
 } from 'lucide-react';
 import type { TranslateFn } from '@/i18n';
@@ -96,20 +89,11 @@ export type AdminNavItemKey =
   | 'subscription_plans'
   | 'cache'
   | 'llm_prompts'
-  | 'banners'
-  | 'campaigns'
-  | 'twitter'
-  | 'google_ads'
-  | 'search_console'
-  | 'ga4'
-  | 'gtm'
-  | 'meta'
-  | 'google_connect'
   | 'navigation'
   | 'home_layout'
   | 'docs';
 
-export type AdminNavGroupKey = 'general' | 'content' | 'marketing' | 'communication' | 'system';
+export type AdminNavGroupKey = 'general' | 'content' | 'communication' | 'system';
 
 export type AdminNavConfigItem = {
   key: AdminNavItemKey;
@@ -154,21 +138,6 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'notifications', url: '/admin/notifications', icon: Bell, badgeKey: 'notifications_unread' },
       { key: 'email_templates', url: '/admin/email-templates', icon: Mail },
       { key: 'chat', url: '/admin/chat', icon: Bot },
-    ],
-  },
-  {
-    id: 3,
-    key: 'marketing',
-    items: [
-      { key: 'banners', url: '/admin/banners', icon: ImageIcon },
-      { key: 'campaigns', url: '/admin/campaigns', icon: Tag },
-      { key: 'twitter', url: '/admin/twitter', icon: Twitter },
-      { key: 'google_ads', url: '/admin/google-ads', icon: BarChart3 },
-      { key: 'search_console', url: '/admin/search-console', icon: Search },
-      { key: 'ga4', url: '/admin/ga4', icon: Activity },
-      { key: 'gtm', url: '/admin/gtm', icon: Tag },
-      { key: 'meta', url: '/admin/meta', icon: Facebook },
-      { key: 'google_connect', url: '/admin/google-connect', icon: Link2 },
     ],
   },
   {
@@ -226,15 +195,6 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   subscription_plans: 'Abonelik Planları',
   cache: 'Cache Yönetimi',
   llm_prompts: 'AI Promptları',
-  banners: 'Banner Yönetimi',
-  campaigns: 'Kampanyalar',
-  twitter: 'Twitter / X',
-  google_ads: 'Google Ads',
-  search_console: 'Search Console',
-  ga4: 'Google Analytics 4',
-  gtm: 'Tag Manager',
-  meta: 'Meta',
-  google_connect: 'Google Bağlantısı',
   navigation: 'Menü & Footer',
   home_layout: 'Anasayfa Düzeni',
   docs: 'Dokümantasyon',
@@ -250,8 +210,6 @@ const HIDDEN_NAV_KEYS = new Set<AdminNavItemKey>([
   'announcements',
   'email_templates',
   'chat',
-  'banners',
-  'campaigns',
   'wallet',
   'mail',
   'db',

@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import type { RowDataPacket } from 'mysql2/promise';
+import type { ResultSetHeader } from 'mysql2/promise';
 import {
   createCheckoutForm,
   retrieveCheckoutForm,
@@ -18,6 +19,7 @@ import {
   loadPaytrConfig,
   savePaytrSettings,
 } from './paytrConfig';
+import { loadPurchaseMeasurement } from './commerceMeasurement';
 
 type CheckoutItem = {
   product_id?: string;
@@ -43,6 +45,21 @@ type CheckoutBody = {
   };
   items?: CheckoutItem[];
   notes?: string;
+  attribution?: {
+    source?: string;
+    medium?: string;
+    campaign?: string;
+    content?: string;
+    term?: string;
+    gclid?: string;
+    gbraid?: string;
+    wbraid?: string;
+    landingUrl?: string;
+    referrer?: string;
+    gaClientId?: string;
+    gaSessionId?: string;
+    consentState?: 'granted' | 'denied' | 'unknown';
+  };
 };
 
 type ProductRow = RowDataPacket & {
@@ -73,6 +90,95 @@ function badRequest(reply: FastifyReply, message: string) {
 
 function clean(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
+}
+
+function limited(value: unknown, max: number): string | null {
+  const normalized = clean(value);
+  return normalized ? normalized.slice(0, max) : null;
+}
+
+function consentState(value: unknown): 'granted' | 'denied' | 'unknown' {
+  return value === 'granted' || value === 'denied' ? value : 'unknown';
+}
+
+async function persistOrderAttribution(req: FastifyRequest, orderId: string, input: CheckoutBody['attribution']) {
+  const consent = consentState(input?.consentState);
+  try {
+    await pool.execute(
+      `
+        INSERT INTO order_attribution (
+          order_id, utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+          gclid, gbraid, wbraid, landing_url, referrer, ga_client_id, ga_session_id, consent_state
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE order_id = VALUES(order_id)
+      `,
+      [
+        orderId,
+        consent === 'granted' ? limited(input?.source, 100) : null,
+        consent === 'granted' ? limited(input?.medium, 100) : null,
+        consent === 'granted' ? limited(input?.campaign, 160) : null,
+        consent === 'granted' ? limited(input?.content, 160) : null,
+        consent === 'granted' ? limited(input?.term, 160) : null,
+        consent === 'granted' ? limited(input?.gclid, 255) : null,
+        consent === 'granted' ? limited(input?.gbraid, 255) : null,
+        consent === 'granted' ? limited(input?.wbraid, 255) : null,
+        consent === 'granted' ? limited(input?.landingUrl, 500) : null,
+        consent === 'granted' ? limited(input?.referrer, 500) : null,
+        consent === 'granted' ? limited(input?.gaClientId, 80) : null,
+        consent === 'granted' ? limited(input?.gaSessionId, 80) : null,
+        consent,
+      ],
+    );
+  } catch (error) {
+    // Attribution hicbir zaman siparis olusturmayi engellemez.
+    req.log.warn({ err: error, orderId }, 'order attribution could not be persisted');
+  }
+}
+
+async function markPaymentResult(
+  orderId: string,
+  paymentRef: string,
+  paid: boolean,
+  callbackPayload: unknown,
+): Promise<boolean> {
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction();
+    const [result] = await connection.execute<ResultSetHeader>(
+      `
+        UPDATE orders
+           SET payment_status = ?, status = ?, updated_at = CURRENT_TIMESTAMP(3)
+         WHERE id = ? AND payment_status <> 'paid'
+      `,
+      [paid ? 'paid' : 'failed', paid ? 'confirmed' : 'pending', orderId],
+    );
+    const newlyPaid = paid && result.affectedRows === 1;
+    await connection.execute(
+      `
+        UPDATE payment_attempts
+           SET status = ?, callback_payload = ?, updated_at = CURRENT_TIMESTAMP(3)
+         WHERE payment_ref = ?
+      `,
+      [paid ? 'succeeded' : 'failed', JSON.stringify(callbackPayload), paymentRef],
+    );
+    if (newlyPaid) {
+      await connection.execute(
+        `
+          INSERT IGNORE INTO commerce_measurement_outbox
+            (id, order_id, destination, event_name, status, next_attempt_at)
+          VALUES (?, ?, 'ga4', 'purchase', 'pending', CURRENT_TIMESTAMP(3))
+        `,
+        [randomUUID(), orderId],
+      );
+    }
+    await connection.commit();
+    return newlyPaid;
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
 }
 
 function checkoutUrl(status: string, orderId?: string, locale = 'tr') {
@@ -419,7 +525,24 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       );
     }
 
+    await persistOrderAttribution(req, orderId, body.attribution);
+
     return reply.code(201).send({ id: orderId, total: total.toFixed(2), payment_status: 'unpaid' });
+  });
+
+  // Basari sayfasinin yalniz gercek paid sipariste purchase gonderebilmesi icin
+  // PII icermeyen, server-dogrulanmis olcum payload'i.
+  app.get('/checkout/orders/:id/measurement', async (req, reply) => {
+    const { id } = req.params as { id: string };
+    if (!/^[0-9a-f-]{36}$/i.test(id)) return badRequest(reply, 'invalid_order_id');
+    const purchase = await loadPurchaseMeasurement(id);
+    if (!purchase) return reply.code(202).send({ ready: false });
+    const { client_id: _clientId, ...browserPayload } = purchase;
+    return {
+      ready: true,
+      delivery: env.GA4_API_SECRET ? 'server' : 'browser',
+      purchase: browserPayload,
+    };
   });
 
   app.post('/checkout/orders/:id/iyzipay/initiate', async (req: FastifyRequest, reply) => {
@@ -583,25 +706,10 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       detail.paymentStatus === 'SUCCESS' &&
       (detail.fraudStatus ?? 0) === 1;
 
-    await pool.execute(
-      `
-        UPDATE orders
-           SET payment_status = ?, status = ?, updated_at = CURRENT_TIMESTAMP(3)
-         WHERE id = ?
-      `,
-      [paid ? 'paid' : 'failed', paid ? 'confirmed' : 'pending', order.id],
-    );
-    if (paid) {
+    const newlyPaid = await markPaymentResult(order.id, conversationId, paid, detail);
+    if (newlyPaid) {
       await grantOrderEntitlements(order.id, order.dealer_id);
     }
-    await pool.execute(
-      `
-        UPDATE payment_attempts
-           SET status = ?, callback_payload = ?, updated_at = CURRENT_TIMESTAMP(3)
-         WHERE payment_ref = ?
-      `,
-      [paid ? 'succeeded' : 'failed', JSON.stringify(detail), conversationId],
-    );
 
     return reply.redirect(checkoutUrl(paid ? 'success' : 'fail', order.id));
   });
@@ -674,7 +782,13 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
         ON DUPLICATE KEY UPDATE
           status = 'pending', updated_at = CURRENT_TIMESTAMP(3)
       `,
-      [randomUUID(), id, merchantOid, Number(order.total).toFixed(2), JSON.stringify({ source: 'public_checkout', locale })],
+      [
+        randomUUID(),
+        id,
+        merchantOid,
+        Number(order.total).toFixed(2),
+        JSON.stringify({ source: 'public_checkout', locale, testMode: paytr.testMode }),
+      ],
     );
 
     try {
@@ -762,25 +876,15 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     }
 
     const paid = verification.status === 'success';
-    await pool.execute(
-      `
-        UPDATE orders
-           SET payment_status = ?, status = ?, updated_at = CURRENT_TIMESTAMP(3)
-         WHERE id = ?
-      `,
-      [paid ? 'paid' : 'failed', paid ? 'confirmed' : 'pending', order.id],
+    const newlyPaid = await markPaymentResult(
+      order.id,
+      verification.merchantOid,
+      paid,
+      payload,
     );
-    if (paid) {
+    if (newlyPaid) {
       await grantOrderEntitlements(order.id, order.dealer_id);
     }
-    await pool.execute(
-      `
-        UPDATE payment_attempts
-           SET status = ?, callback_payload = ?, updated_at = CURRENT_TIMESTAMP(3)
-         WHERE payment_ref = ?
-      `,
-      [paid ? 'succeeded' : 'failed', JSON.stringify(payload), verification.merchantOid],
-    );
     await logPaytrCallback({ ...base, outcome: 'processed', detail: `order: ${order.id} -> ${paid ? 'paid' : 'failed'}` });
 
     return reply.type('text/plain').send('OK');

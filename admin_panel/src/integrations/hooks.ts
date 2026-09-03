@@ -82,18 +82,5 @@ export * from '@/integrations/endpoints/admin/support_admin.endpoints';
 // Announcements
 export * from '@/integrations/endpoints/admin/announcements_admin.endpoints';
 
-// Banners
-export * from '@/integrations/endpoints/admin/banners_admin.endpoints';
-
-// Campaigns
-export * from '@/integrations/endpoints/admin/campaigns_admin.endpoints';
 export * from '@/integrations/endpoints/admin/consultant_applications_admin.endpoints';
 
-// Marketing / Social integrations
-export * from '@/integrations/endpoints/admin/twitter-admin-endpoints';
-export * from '@/integrations/endpoints/admin/google-ads-admin-endpoints';
-export * from '@/integrations/endpoints/admin/search-console-admin-endpoints';
-export * from '@/integrations/endpoints/admin/gtm-admin-endpoints';
-export * from '@/integrations/endpoints/admin/meta-admin-endpoints';
-export * from '@/integrations/endpoints/admin/google-connect-admin-endpoints';
-export * from '@/integrations/endpoints/admin/ga4-admin-endpoints';

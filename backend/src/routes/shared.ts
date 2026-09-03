@@ -16,14 +16,6 @@ import { registerProductsAdmin } from '@shared/shared-backend/modules/products/a
 import { registerMail } from '@shared/shared-backend/modules/mail-api';
 import { registerCustomPages, registerCustomPagesAdmin } from '@shared/shared-backend/modules/customPages';
 import { registerFooterSectionsPublic, registerPopupsPublicStub } from '@/modules/footerStub';
-// Sosyal medya & pazarlama entegrasyonları (yalnızca admin)
-import { registerTwitterAdmin } from '@shared/shared-backend/modules/twitter';
-import { registerGoogleAdsAdmin } from '@shared/shared-backend/modules/googleAds';
-import { registerSearchConsoleAdmin } from '@shared/shared-backend/modules/searchConsole';
-import { registerGa4Admin } from '@shared/shared-backend/modules/ga4';
-import { registerGtmAdmin } from '@shared/shared-backend/modules/gtm';
-import { registerGoogleConnectAdmin } from '@shared/shared-backend/modules/googleConnect';
-import { registerMetaAdmin } from '@shared/shared-backend/modules/meta';
 
 export async function registerSharedPublic(api: FastifyInstance) {
   await registerAuth(api);
@@ -59,12 +51,4 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
   await registerBlogAdmin(adminApi);
   // CMS custom pages (yasal metinler + kurumsal sayfalar) — admin CRUD
   await registerCustomPagesAdmin(adminApi);
-  // Sosyal medya & pazarlama entegrasyonları
-  await registerTwitterAdmin(adminApi);
-  await registerGoogleAdsAdmin(adminApi);
-  await registerSearchConsoleAdmin(adminApi);
-  await registerGa4Admin(adminApi);
-  await registerGtmAdmin(adminApi);
-  await registerGoogleConnectAdmin(adminApi);
-  await registerMetaAdmin(adminApi);
 }

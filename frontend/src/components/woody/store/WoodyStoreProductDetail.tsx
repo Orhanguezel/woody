@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { LockKeyhole, PlayCircle, Truck } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
+import { reportViewItem } from '@/lib/ecommerce-events';
 import type { StoreProduct, StoreUiCopy } from './types';
 
 type LibraryItem = {
@@ -33,6 +34,19 @@ export default function WoodyStoreProductDetail({
   const [libraryItem, setLibraryItem] = React.useState<LibraryItem | null>(null);
   const [message, setMessage] = React.useState('');
   const [busy, setBusy] = React.useState(false);
+
+  React.useEffect(() => {
+    reportViewItem({
+      currency: 'TRY',
+      value: Number(product.price) || 0,
+      items: [{
+        item_id: String(product.id),
+        item_name: product.title,
+        price: Number(product.price) || undefined,
+        quantity: 1,
+      }],
+    });
+  }, [product.id, product.price, product.title]);
 
   React.useEffect(() => {
     let cancelled = false;

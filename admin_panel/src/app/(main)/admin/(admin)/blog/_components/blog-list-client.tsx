@@ -30,10 +30,8 @@ import type { BlogSeoQualityScore } from '@/integrations/shared';
 import {
   useDeleteBlogPostAdminMutation,
   useListBlogPostsAdminQuery,
-  useGscEntityIndexQuery,
 } from '@/integrations/hooks';
 import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
-import { IndexBadge } from '@/app/(main)/admin/_components/common/IndexBadge';
 
 const INPUT_CLS =
   'bg-gm-surface/40 border-gm-border-soft rounded-2xl h-12 focus:ring-gm-gold/50 text-sm';
@@ -106,10 +104,8 @@ export default function BlogListClient() {
 
   const { codes: LOCALES } = useContentLocales();
   const postsQ = useListBlogPostsAdminQuery({ locale });
-  const indexQ = useGscEntityIndexQuery({ type: 'blog', locale });
   const [deletePost, deleteState] = useDeleteBlogPostAdminMutation();
 
-  const indexItems = indexQ.data?.items ?? {};
   const posts = postsQ.data ?? [];
   const filteredPosts = React.useMemo(() => {
     const q = search.toLocaleLowerCase('tr-TR');
@@ -224,9 +220,6 @@ export default function BlogListClient() {
                 <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   SEO
                 </TableHead>
-                <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
-                  İndeks
-                </TableHead>
                 <TableHead className="py-6 text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   Yayın
                 </TableHead>
@@ -314,9 +307,6 @@ export default function BlogListClient() {
                     </TableCell>
                     <TableCell className="py-6 text-center">
                       <QualityBadge q={post.seo_quality} />
-                    </TableCell>
-                    <TableCell className="py-6 text-center">
-                      <IndexBadge item={indexItems[post.slug]} />
                     </TableCell>
                     <TableCell className="py-6 text-sm text-gm-muted font-mono">
                       {formatDate(post.published_at, locale)}

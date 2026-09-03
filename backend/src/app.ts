@@ -17,6 +17,7 @@ import { requestLoggerPlugin } from '@shared/shared-backend/modules/audit/reques
 import { getStorageSettings } from '@shared/shared-backend/modules/siteSettings';
 import { registerAllRoutes } from './routes';
 import { parseCorsOrigins, pickUploadsRoot, pickUploadsPrefix } from './app.helpers';
+import { startCommerceMeasurementWorker } from '@/modules/checkout/commerceMeasurement';
 
 export async function createApp() {
   const { default: buildFastify } =
@@ -30,7 +31,10 @@ export async function createApp() {
     origin: parseCorsOrigins(env.CORS_ORIGIN),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Prefer', 'Accept', 'Accept-Language', 'x-skip-auth', 'Range'],
+    allowedHeaders: [
+      'Content-Type', 'Authorization', 'Prefer', 'Accept', 'Accept-Language', 'x-skip-auth', 'Range',
+      'X-Api-Key', 'X-Tanitio-Key-Id', 'X-Tanitio-Timestamp', 'X-Tanitio-Nonce', 'X-Tanitio-Signature',
+    ],
     exposedHeaders: ['x-total-count', 'content-range', 'range'],
   });
 
@@ -80,6 +84,7 @@ export async function createApp() {
 
   await app.register(requestLoggerPlugin);
   await registerAllRoutes(app);
+  startCommerceMeasurementWorker(app);
   registerErrorHandlers(app);
 
   return app;

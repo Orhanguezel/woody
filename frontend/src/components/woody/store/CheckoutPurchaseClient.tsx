@@ -11,6 +11,7 @@ import {
   reportBeginCheckout,
   storePendingOrder,
 } from '@/lib/ecommerce-events';
+import { captureCommerceAttribution } from '@/lib/commerce-attribution';
 
 import type { StoreProduct, StoreUiCopy } from './types';
 
@@ -69,8 +70,13 @@ export default function CheckoutPurchaseClient({
   useEffect(() => {
     reportBeginCheckout({
       currency: 'TRY',
-      value: product.price,
-      items: [{ item_id: String(product.id), item_name: product.title, price: product.price, quantity: 1 }],
+      value: product.price * minQuantity,
+      items: [{
+        item_id: String(product.id),
+        item_name: product.title,
+        price: product.price,
+        quantity: minQuantity,
+      }],
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -118,6 +124,7 @@ export default function CheckoutPurchaseClient({
                 country: 'TR',
               }
             : undefined,
+          attribution: captureCommerceAttribution(),
         }),
       });
       if (!orderRes.ok) throw new Error('order_failed');

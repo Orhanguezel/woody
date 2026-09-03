@@ -43,10 +43,8 @@ import {
   useListProductCategoriesAdminQuery,
   useListProductsAdminQuery,
   useListSeriesAdminQuery,
-  useGscEntityIndexQuery,
 } from '@/integrations/hooks';
 import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
-import { IndexBadge } from '@/app/(main)/admin/_components/common/IndexBadge';
 
 // Ürünler için hafif on-page SEO tamlık sinyali (blog'daki quality gauge'in ürün karşılığı).
 function productSeoSignal(p: {
@@ -131,8 +129,6 @@ export default function ProductsListClient() {
     order: 'asc',
   });
   const { codes: LOCALES } = useContentLocales();
-  const indexQ = useGscEntityIndexQuery({ type: 'product', locale });
-  const indexItems = indexQ.data?.items ?? {};
   const [deleteProduct, deleteState] = useDeleteProductAdminMutation();
 
   const products = productsQ.data ?? [];
@@ -339,9 +335,6 @@ export default function ProductsListClient() {
                 <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   SEO
                 </TableHead>
-                <TableHead className="py-6 text-center text-[10px] font-bold uppercase tracking-widest text-gm-muted">
-                  İndeks
-                </TableHead>
                 <TableHead className="py-6 px-8 text-right text-[10px] font-bold uppercase tracking-widest text-gm-muted">
                   İşlem
                 </TableHead>
@@ -473,9 +466,6 @@ export default function ProductsListClient() {
                           </span>
                         );
                       })()}
-                    </TableCell>
-                    <TableCell className="py-6 text-center">
-                      <IndexBadge item={indexItems[product.slug]} />
                     </TableCell>
                     <TableCell className="py-6 px-8 text-right">
                       <div className="flex justify-end gap-1 opacity-30 group-hover:opacity-100 transition-all">

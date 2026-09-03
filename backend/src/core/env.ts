@@ -75,6 +75,11 @@ export const env = {
   PAYTR_MERCHANT_SALT: process.env.PAYTR_MERCHANT_SALT || '',
   PAYTR_TEST_MODE: parseEnvBool(process.env.PAYTR_TEST_MODE, true),
 
+  // GA4 Measurement Protocol. API secret yoksa server delivery kapali kalir;
+  // checkout sonucu yine server-verified browser event'i kullanir.
+  GA4_MEASUREMENT_ID: process.env.GA4_MEASUREMENT_ID || 'G-0D7LYLF51K',
+  GA4_API_SECRET: process.env.GA4_API_SECRET || '',
+
   STORAGE_DRIVER: (process.env.STORAGE_DRIVER || 'local').toLowerCase() as 'local' | 'cloudinary',
   LOCAL_STORAGE_ROOT: process.env.LOCAL_STORAGE_ROOT || '',
   LOCAL_STORAGE_BASE_URL: process.env.LOCAL_STORAGE_BASE_URL || '/uploads',

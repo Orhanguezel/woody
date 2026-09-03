@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   ArrowLeft,
   BookOpenText,
@@ -44,7 +44,6 @@ import {
 import { scoreBlogSeoQuality } from '@/integrations/shared/blog-seo-quality';
 import BlogContentEditor from './blog-content-editor';
 import BlogQualityPanel from './blog-quality-panel';
-import { IndexStatusPanel } from '@/app/(main)/admin/_components/common/IndexStatusPanel';
 import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -115,6 +114,15 @@ function apiErrorMessage(error: unknown) {
   return data?.error?.message || data?.message || 'İşlem tamamlanamadı';
 }
 
+async function revalidatePublicBlog() {
+  const response = await fetch('/admin/api/revalidate-proxy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ all: true }),
+  });
+  if (!response.ok) throw new Error('public_revalidation_failed');
+}
+
 function slugify(value: string) {
   return value
     .toLocaleLowerCase('tr-TR')
@@ -158,6 +166,7 @@ function postToForm(post: BlogPostAdminView): BlogForm {
 
 export default function BlogDetailClient({ id }: { id: string }) {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const isNew = id === 'new';
   const initialLocale = toFullLocale(searchParams.get('locale') || 'tr');
@@ -201,7 +210,10 @@ export default function BlogDetailClient({ id }: { id: string }) {
   const hydratedKey = React.useRef('');
   React.useEffect(() => {
     if (isNew) return;
-    const data = postQ.data;
+    // `data` arg değişirken önceki locale sonucunu tutabilir. Yalnızca mevcut
+    // sorgu argümanına ait yanıtı hydrate et; aksi halde eski içerik yeni dil
+    // için hydrate edilmiş sayılıp gerçek yanıt geldiğinde atlanır.
+    const data = postQ.currentData;
     if (!data) return;
     const key = `${data.id}:${locale}`;
     if (hydratedKey.current === key) return;
@@ -214,7 +226,7 @@ export default function BlogDetailClient({ id }: { id: string }) {
         scroll: false,
       });
     }
-  }, [isNew, id, locale, postQ.data, router]);
+  }, [isNew, id, locale, postQ.currentData, router]);
 
   React.useEffect(() => {
     if (!isNew) return;
@@ -223,6 +235,14 @@ export default function BlogDetailClient({ id }: { id: string }) {
 
   function updateForm<K extends keyof BlogForm>(key: K, value: BlogForm[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function changeLocale(nextLocale: string) {
+    const next = toFullLocale(nextLocale);
+    if (!next || next === locale) return;
+    hydratedKey.current = '';
+    setLocale(next);
+    router.replace(`${pathname}?locale=${encodeURIComponent(next)}`, { scroll: false });
   }
 
   function buildBody(): BlogPostUpsertBody | null {
@@ -266,6 +286,11 @@ export default function BlogDetailClient({ id }: { id: string }) {
         await updatePost({ id: postId ?? id, body }).unwrap();
         toast.success('Blog yazısı güncellendi');
       }
+      try {
+        await revalidatePublicBlog();
+      } catch {
+        toast.warning('Yazı kaydedildi ancak public site önbelleği yenilenemedi');
+      }
     } catch (error) {
       toast.error(apiErrorMessage(error));
     }
@@ -296,7 +321,7 @@ export default function BlogDetailClient({ id }: { id: string }) {
     );
   }
 
-  const loading = !isNew && postQ.isLoading;
+  const loading = !isNew && postQ.isFetching;
   const published = form.status === 'published' && form.is_active;
 
   return (
@@ -349,7 +374,7 @@ export default function BlogDetailClient({ id }: { id: string }) {
           >
             Dil
           </Badge>
-          <Select value={locale} onValueChange={setLocale}>
+          <Select value={locale} onValueChange={changeLocale}>
             <SelectTrigger className="rounded-full border-gm-border-soft bg-gm-surface/20 h-11 w-28 text-[10px] font-bold tracking-widest uppercase">
               <SelectValue />
             </SelectTrigger>
@@ -600,8 +625,6 @@ export default function BlogDetailClient({ id }: { id: string }) {
             </Card>
 
             <BlogQualityPanel score={quality} />
-
-            <IndexStatusPanel type="blog" locale={locale} slug={form.slug} disabled={isNew} />
           </div>
         </div>
       )}
