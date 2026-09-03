@@ -11,6 +11,7 @@ import { registerContactsAdmin, registerContactsPublic } from '@/modules/contact
 import { registerSubscriptionsAdmin, registerSubscriptionsPublic } from '@/modules/subscriptions';
 import { registerWaitlistPublic } from '@/modules/waitlist';
 import { registerContentSourcePublic } from '@/modules/contentSource';
+import { registerDashboardAdmin } from '@/modules/dashboard';
 
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerHomeLayoutPublic(api);
@@ -35,6 +36,8 @@ export async function registerProjectPublic(api: FastifyInstance) {
 export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerHomeSectionsAdmin(adminApi);
   await registerAdminPanelCommerceStubs(adminApi);
+  // Dashboard ozeti — gercek woody verisi (eskiden stub'di, sifir donuyordu)
+  await registerDashboardAdmin(adminApi);
   await registerSchoolsAdmin(adminApi);
   await registerOrdersProjectAdmin(adminApi);
   await registerCheckoutAdmin(adminApi);

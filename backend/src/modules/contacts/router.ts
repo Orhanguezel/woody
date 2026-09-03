@@ -167,7 +167,7 @@ export async function registerContactsAdmin(app: FastifyInstance) {
     }
 
     const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
-    const [rows] = await pool.execute(
+    const [rows] = await pool.query(
       `SELECT ${SELECT_COLS} FROM contact_messages ${whereSql} ORDER BY ${orderBy} ${order} LIMIT ? OFFSET ?`,
       [...params, limit, offset],
     );

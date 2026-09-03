@@ -152,7 +152,7 @@ export async function registerQuoteRequestsAdmin(app: FastifyInstance) {
     }
 
     const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
-    const [rows] = await pool.execute(
+    const [rows] = await pool.query(
       `
         SELECT qr.id, qr.org_name, qr.contact_name, qr.email, qr.phone, qr.product_id AS productId,
                pi.title AS productTitle, qr.student_count, qr.level, qr.city, qr.district,

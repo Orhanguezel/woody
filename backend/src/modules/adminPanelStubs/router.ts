@@ -5,74 +5,6 @@ function asStr(v: unknown): string {
   return String(v ?? '').trim();
 }
 
-const ZERO_TOTALS = {
-  bookings_total: 0,
-  bookings_new: 0,
-  bookings_confirmed: 0,
-  bookings_completed: 0,
-  bookings_cancelled: 0,
-  bookings_other: 0,
-  revenue_total: 0,
-  slots_total: 0,
-  slots_reserved: 0,
-  resources_total: 0,
-  services_total: 0,
-  faqs_total: 0,
-  email_templates_total: 0,
-  site_settings_total: 0,
-  custom_pages_total: 0,
-  menu_items_total: 0,
-  slider_total: 0,
-  footer_sections_total: 0,
-  reviews_total: 0,
-  users_total: 0,
-  storage_assets_total: 0,
-  db_snapshots_total: 0,
-  audit_logs_total: 0,
-  availability_total: 0,
-  notifications_total: 0,
-  contact_messages_unread: 0,
-  contact_messages_total: 0,
-  consultants_active: 0,
-  today_bookings: 0,
-  support_tickets_total: 0,
-  announcements_total: 0,
-};
-
-function parseRange(q: Record<string, unknown>): '7d' | '30d' | '90d' {
-  const r = String(q.range ?? '30d');
-  if (r === '7d' || r === '90d') return r;
-  return '30d';
-}
-
-function rangeDays(key: '7d' | '30d' | '90d'): number {
-  if (key === '7d') return 7;
-  if (key === '90d') return 90;
-  return 30;
-}
-
-function dashboardAnalyticsStub(req: FastifyRequest, reply: FastifyReply) {
-  const q = (req.query ?? {}) as Record<string, unknown>;
-  const range = parseRange(q);
-  const days = rangeDays(range);
-  const to = new Date();
-  const from = new Date(to);
-  from.setUTCDate(from.getUTCDate() - days);
-  const fromYmd = from.toISOString().slice(0, 10);
-  const toYmdExclusive = to.toISOString().slice(0, 10);
-  return reply.send({
-    range,
-    fromYmd,
-    toYmdExclusive,
-    meta: { bucket: 'day' },
-    totals: ZERO_TOTALS,
-    resources: [],
-    services: [],
-    trend: [],
-    revenueTrend: [],
-  });
-}
-
 function ordersListStub(req: FastifyRequest, reply: FastifyReply) {
   const q = (req.query ?? {}) as Record<string, string>;
   const page = Math.max(1, Number(q.page) || 1);
@@ -183,7 +115,6 @@ function stubTicket(id: string, patch?: Record<string, unknown>) {
 }
 
 export async function registerAdminPanelCommerceStubs(adminApi: FastifyInstance) {
-  adminApi.get('/dashboard/analytics', dashboardAnalyticsStub);
 
   // NOT: /orders* gercek `orders` modulune tasindi (Faz 2B) — stub kaldirildi
   // (FST_ERR_DUPLICATED_ROUTE'u onlemek icin). ordersListStub/orderDetailStub artik kullanilmiyor.

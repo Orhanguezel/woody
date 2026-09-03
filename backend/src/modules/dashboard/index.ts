@@ -1,0 +1,1 @@
+export { registerDashboardAdmin } from './router';
