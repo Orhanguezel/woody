@@ -1,4 +1,4 @@
-import { createHmac, timingSafeEqual } from 'crypto';
+import { createHash, createHmac, timingSafeEqual } from 'crypto';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import type { RowDataPacket } from 'mysql2/promise';
 
@@ -9,8 +9,14 @@ const MAX_RANGE_DAYS = 90;
 const ALLOWED_CLOCK_SKEW_SECONDS = 300;
 const seenNonces = new Map<string, number>();
 
-function commerceSecret(): string {
+function currentCommerceSecret(): string {
   return (process.env.TANITIO_COMMERCE_API_KEY || '').trim();
+}
+
+function commerceSecretForKeyId(keyId: string): string {
+  if (keyId === 'woody') return currentCommerceSecret();
+  if (keyId === 'woody-prev') return (process.env.TANITIO_COMMERCE_API_KEY_PREVIOUS || '').trim();
+  return '';
 }
 
 function header(req: FastifyRequest, name: string): string {
@@ -32,8 +38,7 @@ function pruneNonces(nowSeconds: number) {
 }
 
 export function verifyCommerceRequest(req: FastifyRequest, reply: FastifyReply): boolean {
-  const secret = commerceSecret();
-  if (!secret) {
+  if (!currentCommerceSecret()) {
     reply.code(503).send({ error: { code: 'COMMERCE_SOURCE_DISABLED' } });
     return false;
   }
@@ -43,12 +48,13 @@ export function verifyCommerceRequest(req: FastifyRequest, reply: FastifyReply):
   }
 
   const keyId = header(req, 'x-tanitio-key-id');
+  const secret = commerceSecretForKeyId(keyId);
   const timestamp = header(req, 'x-tanitio-timestamp');
   const nonce = header(req, 'x-tanitio-nonce');
   const signature = header(req, 'x-tanitio-signature');
   const nowSeconds = Math.floor(Date.now() / 1000);
   const requestSeconds = Number(timestamp);
-  if (keyId !== 'woody' || !Number.isInteger(requestSeconds) || Math.abs(nowSeconds - requestSeconds) > ALLOWED_CLOCK_SKEW_SECONDS) {
+  if (!secret || !Number.isInteger(requestSeconds) || Math.abs(nowSeconds - requestSeconds) > ALLOWED_CLOCK_SKEW_SECONDS) {
     reply.code(401).send({ error: { code: 'UNAUTHORIZED' } });
     return false;
   }
@@ -76,13 +82,17 @@ type DateRange = { from: string; to: string; timezone: 'Europe/Istanbul' };
 
 function isoDate(value: unknown): string | null {
   const text = typeof value === 'string' ? value.trim() : '';
-  return /^\d{4}-\d{2}-\d{2}$/.test(text) && !Number.isNaN(new Date(`${text}T00:00:00Z`).getTime())
-    ? text
-    : null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return null;
+  const parsed = new Date(`${text}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === text ? text : null;
 }
 
 function parseRange(req: FastifyRequest, reply: FastifyReply): DateRange | null {
   const query = (req.query || {}) as Record<string, unknown>;
+  if (Object.keys(query).some((key) => !['from', 'to', 'timezone'].includes(key))) {
+    reply.code(422).send({ error: { code: 'INVALID_RANGE' } });
+    return null;
+  }
   const today = new Date();
   const defaultTo = today.toISOString().slice(0, 10);
   const defaultFrom = new Date(today.getTime() - 29 * 86_400_000).toISOString().slice(0, 10);
@@ -119,18 +129,28 @@ function envelope(range: DateRange, data: Record<string, unknown>) {
   };
 }
 
+function cacheable(reply: FastifyReply, request: FastifyRequest, payload: Record<string, unknown>) {
+  const stablePayload = { ...payload, generatedAt: undefined };
+  const etag = `"${createHash('sha256').update(JSON.stringify(stablePayload)).digest('base64url')}"`;
+  reply.header('ETag', etag);
+  reply.header('Cache-Control', 'private, max-age=60, must-revalidate');
+  const ifNoneMatch = header(request, 'if-none-match').replace(/^W\//, '');
+  if (ifNoneMatch === etag) return reply.code(304).send();
+  return reply.send(payload);
+}
+
 export async function commerceHealth(req: FastifyRequest, reply: FastifyReply) {
   if (!verifyCommerceRequest(req, reply)) return;
   const [rows] = await pool.execute<RowDataPacket[]>(
     `SELECT MAX(updated_at) AS last_paid_at FROM orders WHERE payment_status = 'paid'`,
   );
-  return {
+  return cacheable(reply, req, {
     schemaVersion: '1.0',
     tenantKey: 'woody',
     status: 'ok',
     generatedAt: new Date().toISOString(),
     lastPaidAt: rows[0]?.last_paid_at || null,
-  };
+  });
 }
 
 export async function commerceSummary(req: FastifyRequest, reply: FastifyReply) {
@@ -169,7 +189,7 @@ export async function commerceSummary(req: FastifyRequest, reply: FastifyReply) 
   const paidOrders = Number(sales[0]?.paid_orders || 0);
   const grossRevenueMinor = minor(sales[0]?.gross_revenue);
   const refundAmountMinor = minor(sales[0]?.refund_amount);
-  return envelope(range, {
+  return cacheable(reply, req, envelope(range, {
     paidOrders,
     grossRevenueMinor,
     refundCount: Number(sales[0]?.refund_count || 0),
@@ -180,7 +200,7 @@ export async function commerceSummary(req: FastifyRequest, reply: FastifyReply) 
     itemsSold: Number(sales[0]?.items_sold || 0),
     averageOrderValueMinor: paidOrders ? Math.round(grossRevenueMinor / paidOrders) : 0,
     dataFreshness: sales[0]?.data_freshness || null,
-  });
+  }));
 }
 
 export async function commerceDaily(req: FastifyRequest, reply: FastifyReply) {
@@ -193,7 +213,8 @@ export async function commerceDaily(req: FastifyRequest, reply: FastifyReply) {
              SUM(payment_status = 'paid') AS paid_orders,
              COALESCE(SUM(CASE WHEN payment_status = 'paid' THEN total ELSE 0 END), 0) AS gross_revenue,
              SUM(payment_status = 'refunded') AS refund_count,
-             COALESCE(SUM(CASE WHEN payment_status = 'refunded' THEN total ELSE 0 END), 0) AS refund_amount
+             COALESCE(SUM(CASE WHEN payment_status = 'refunded' THEN total ELSE 0 END), 0) AS refund_amount,
+             MAX(CASE WHEN payment_status IN ('paid', 'refunded') THEN updated_at END) AS data_freshness
         FROM orders
        WHERE CONVERT_TZ(updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
          AND CONVERT_TZ(updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
@@ -202,7 +223,7 @@ export async function commerceDaily(req: FastifyRequest, reply: FastifyReply) {
     `,
     [range.from, range.to],
   );
-  return envelope(range, {
+  return cacheable(reply, req, envelope(range, {
     items: rows.map((row) => ({
       date: String(row.metric_date),
       paidOrders: Number(row.paid_orders || 0),
@@ -210,8 +231,9 @@ export async function commerceDaily(req: FastifyRequest, reply: FastifyReply) {
       refundCount: Number(row.refund_count || 0),
       refundAmountMinor: minor(row.refund_amount),
       netRevenueMinor: minor(row.gross_revenue) - minor(row.refund_amount),
+      dataFreshness: row.data_freshness || null,
     })),
-  });
+  }));
 }
 
 export async function commerceProducts(req: FastifyRequest, reply: FastifyReply) {
@@ -235,7 +257,7 @@ export async function commerceProducts(req: FastifyRequest, reply: FastifyReply)
     `,
     [range.from, range.to],
   );
-  return envelope(range, {
+  return cacheable(reply, req, envelope(range, {
     items: rows.map((row) => ({
       productId: String(row.product_id),
       title: String(row.title),
@@ -243,7 +265,7 @@ export async function commerceProducts(req: FastifyRequest, reply: FastifyReply)
       quantity: Number(row.quantity || 0),
       grossRevenueMinor: minor(row.gross_revenue),
     })),
-  });
+  }));
 }
 
 export async function commerceAttribution(req: FastifyRequest, reply: FastifyReply) {
@@ -278,7 +300,7 @@ export async function commerceAttribution(req: FastifyRequest, reply: FastifyRep
       gross_revenue: hidden.reduce((sum, row) => sum + Number(row.gross_revenue || 0), 0),
     } as RowDataPacket);
   }
-  return envelope(range, {
+  return cacheable(reply, req, envelope(range, {
     suppressionThreshold: 3,
     items: visible.map((row) => ({
       source: String(row.source),
@@ -287,5 +309,5 @@ export async function commerceAttribution(req: FastifyRequest, reply: FastifyRep
       paidOrders: Number(row.paid_orders || 0),
       grossRevenueMinor: minor(row.gross_revenue),
     })),
-  });
+  }));
 }

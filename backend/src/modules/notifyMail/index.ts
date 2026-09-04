@@ -128,20 +128,41 @@ export async function notifyAdmins(args: {
   replyTo?: string | null;
   log?: { warn: (o: unknown, m: string) => void };
 }): Promise<void> {
+  const warn = (o: unknown, m: string) => {
+    if (args.log) args.log.warn(o, m);
+    // Logger verilmese bile SESSIZ kalma: bu hata bir kez sessizce yutuldugu
+    // icin bildirimlerin hic gitmedigi saatlerce fark edilmedi.
+    else console.warn(m, o);
+  };
+
+  let to: string[] = [];
   try {
     if (!(await isEnabled(args.kind))) return;
-
-    const to = await resolveNotifyRecipients();
-    if (!to.length) return;
-
-    await sendMailRaw({
-      to: to.join(', '),
-      subject: args.subject,
-      html: args.html,
-      text: args.text,
-      ...(args.replyTo ? { replyTo: args.replyTo } : {}),
-    } as Parameters<typeof sendMailRaw>[0]);
+    to = await resolveNotifyRecipients();
+    if (!to.length) {
+      warn({ kind: args.kind }, 'admin_notification_no_recipient');
+      return;
+    }
   } catch (err) {
-    args.log?.warn({ err, kind: args.kind }, 'admin_notification_failed');
+    warn({ err, kind: args.kind }, 'admin_notification_setup_failed');
+    return;
+  }
+
+  // ONEMLI: sendMailRaw `to` alanini TEK e-posta olarak dogrular
+  // (z.string().email()). Virgullu liste gonderilirse zod firlatir ve
+  // hicbir alici mail almaz. Bu yuzden alici basina AYRI gonderim yapilir;
+  // boylece bir adresteki hata digerlerini de engellemez.
+  for (const address of to) {
+    try {
+      await sendMailRaw({
+        to: address,
+        subject: args.subject,
+        html: args.html,
+        text: args.text,
+        ...(args.replyTo ? { replyTo: args.replyTo } : {}),
+      });
+    } catch (err) {
+      warn({ err, kind: args.kind, to: address }, 'admin_notification_failed');
+    }
   }
 }

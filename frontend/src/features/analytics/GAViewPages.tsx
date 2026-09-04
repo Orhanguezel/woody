@@ -17,6 +17,8 @@ declare global {
     gtag?: (...args: any[]) => void;
     fbq?: (...args: any[]) => void;
     __analyticsConsentGranted?: boolean;
+    __analyticsDestinationReady?: boolean;
+    __pendingAnalyticsEvents?: Array<[string, Record<string, unknown>]>;
   }
 }
 
@@ -48,6 +50,73 @@ export default function GAViewPages() {
 
   const lastAbsUrlRef = useRef<string>('');
   const firstRunRef = useRef<boolean>(true);
+
+  // Ana içerikteki iç link/CTA katkısını internal UTM eklemeden ölç.
+  // link_id hedefi, content_group ise tıklamanın çıktığı sayfa kümesini taşır.
+  useEffect(() => {
+    const onContentClick = (event: MouseEvent) => {
+      const target = event.target as Element | null;
+      const anchor = target?.closest?.('main a[href]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const url = new URL(anchor.href, window.location.href);
+      if (url.origin !== window.location.origin || !url.pathname) return;
+      const currentPath = window.location.pathname;
+      const contentGroup = currentPath.includes('/blog/')
+        ? 'blog'
+        : currentPath.includes('/preschool')
+          ? 'preschool'
+          : currentPath.includes('/store')
+            ? 'store'
+            : 'site';
+      const payload = {
+        link_id: anchor.dataset.analyticsLinkId || `${contentGroup}:${url.pathname}`,
+        content_group: contentGroup,
+        link_url: url.pathname,
+        link_text: (
+          anchor.getAttribute('aria-label')
+          || anchor.getAttribute('title')
+          || anchor.querySelector('h1,h2,h3,h4,h5,h6')?.textContent
+          || anchor.textContent
+          || ''
+        ).trim().replace(/\s+/g, ' ').slice(0, 120),
+      };
+      if (typeof window.gtag === 'function' && window.__analyticsDestinationReady) {
+        const canDelayNavigation = event.button === 0
+          && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
+          && (!anchor.target || anchor.target === '_self');
+        if (!canDelayNavigation) {
+          window.gtag('event', 'cta_click', { ...payload, transport_type: 'beacon' });
+          return;
+        }
+        event.preventDefault();
+        let navigated = false;
+        const navigate = () => {
+          if (navigated) return;
+          navigated = true;
+          window.location.assign(anchor.href);
+        };
+        window.gtag('event', 'cta_click', {
+          ...payload,
+          transport_type: 'beacon',
+        });
+        // Birden fazla destination (GA4 + Ads) varken ilk callback diger hedef
+        // gonderilmeden donebilir. Kisa sabit pencere tum beacon'lara firsat verir.
+        window.setTimeout(navigate, 400);
+      } else {
+        // Link hemen navigate ederse memory queue yeni document'ta kaybolur. Ayni-origin
+        // CTA'yi sessionStorage ile sonraki sayfaya tasiyip config sonrasinda tek kez flush et.
+        try {
+          const key = 'woody_pending_analytics_events';
+          const stored = JSON.parse(window.sessionStorage.getItem(key) || '[]');
+          const pending = Array.isArray(stored) ? stored.slice(-19) : [];
+          pending.push(['cta_click', payload]);
+          window.sessionStorage.setItem(key, JSON.stringify(pending));
+        } catch {}
+      }
+    };
+    document.addEventListener('click', onContentClick, { capture: true });
+    return () => document.removeEventListener('click', onContentClick, { capture: true });
+  }, []);
 
   useEffect(() => {
     if (!hasAnyAnalytics) return;

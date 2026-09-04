@@ -23,6 +23,7 @@ type PreschoolPageUi = {
   digitalCta?: string;
   quoteMessageTemplate?: string;
   proMessage?: string;
+  faqTitle?: string;
 };
 
 const HERO_VIDEO =
@@ -291,6 +292,26 @@ export default function PreschoolPageClient({
       </section>
 
       <QuoteRequestForm copy={quoteForm} source="preschool" />
+
+      {content.faq?.length ? (
+        <section className="bg-gray-50 py-16 md:py-20" aria-labelledby="preschool-faq-title">
+          <div className="mx-auto max-w-[900px] px-6 md:px-12">
+            <h2 id="preschool-faq-title" className="text-center text-[28px] font-semibold text-gray-900 md:text-[36px]">
+              {pageUi.faqTitle || 'Frequently Asked Questions'}
+            </h2>
+            <div className="mt-10 space-y-4">
+              {content.faq.map((item) => (
+                <details key={item.question} className="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                  <summary className={`cursor-pointer list-none pr-8 text-[17px] font-semibold text-gray-900 ${FOCUS_RING}`}>
+                    {item.question}
+                  </summary>
+                  <p className="mt-3 text-[15px] leading-7 text-gray-600">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="bg-white py-20 md:py-24">
         <div className="mx-auto max-w-[1100px] px-6 md:px-12">

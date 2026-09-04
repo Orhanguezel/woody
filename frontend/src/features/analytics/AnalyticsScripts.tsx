@@ -10,6 +10,7 @@
 
 import Script from 'next/script';
 import { useEffect, useMemo } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useAnalyticsSettings } from './useAnalyticsSettings';
 import { getAnalyticsConsentEventName, getDefaultGoogleAdsConversionId } from '@/lib/site-config';
 
@@ -20,9 +21,11 @@ declare global {
 
     __setAnalyticsConsent?: (c: { analytics_storage: 'granted' | 'denied' } | boolean) => void;
     __analyticsConsentGranted?: boolean;
+    __analyticsDestinationReady?: boolean;
 
     // consent init gelmeden önce banner tetiklerse kuyruk
     __pendingAnalyticsConsent?: Array<{ analytics_storage: 'granted' | 'denied' } | boolean>;
+    __pendingAnalyticsEvents?: Array<[string, Record<string, unknown>]>;
   }
 }
 
@@ -46,6 +49,8 @@ function isValidFbPixelId(v: unknown) {
 }
 
 export default function AnalyticsScripts() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { gtmId, ga4Id, facebookPixelId, isLoading } = useAnalyticsSettings();
   const isProd = isProdEnv();
 
@@ -59,6 +64,10 @@ export default function AnalyticsScripts() {
     () => /^AW-\d+$/.test(adsConversionId) && !hasGtm && hasGa,
     [adsConversionId, hasGtm, hasGa],
   );
+  // PayTR'den Woody sonuc ekranina tam sayfa donuste yeni referral oturumu acilmasin.
+  // Yalniz gercek odeme sonuc URL'lerinde gecerli; normal referrer attribution korunur.
+  const ignorePaymentReturnReferrer = pathname.endsWith('/store/checkout')
+    && (searchParams.get('payment') === 'success' || searchParams.get('payment') === 'failed');
 
   // GTM noscript (Document kullanılmıyorsa pratik)
   useEffect(() => {
@@ -147,6 +156,7 @@ export default function AnalyticsScripts() {
             }
             window.__pendingAnalyticsConsent = [];
           } catch (e) {}
+
         `}
       </Script>
 
@@ -164,6 +174,20 @@ export default function AnalyticsScripts() {
               j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
               f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${String(gtmId)}');
+
+            window.__analyticsDestinationReady = true;
+
+            // gtm.start kuyruga girdikten sonra erken e-ticaret olaylarini ekle.
+            try {
+              var eq = window.__pendingAnalyticsEvents || [];
+              try {
+                var durable = JSON.parse(window.sessionStorage.getItem('woody_pending_analytics_events') || '[]');
+                if (Array.isArray(durable)) eq = eq.concat(durable);
+                window.sessionStorage.removeItem('woody_pending_analytics_events');
+              } catch (storageError) {}
+              for (var j=0; j<eq.length; j++) window.gtag('event', eq[j][0], eq[j][1]);
+              window.__pendingAnalyticsEvents = [];
+            } catch (e) {}
           `}
         </Script>
       ) : (
@@ -191,9 +215,24 @@ export default function AnalyticsScripts() {
                   // SPA route değişimleri GAViewPages ile gönderilir (ilk yüklemeyi atlar).
                   window.gtag('config', '${String(ga4Id)}', {
                     anonymize_ip: true,
-                    send_page_view: true
+                    send_page_view: true,
+                    ignore_referrer: ${ignorePaymentReturnReferrer ? 'true' : 'false'}
                   });
                   ${hasAds ? `window.gtag('config', '${adsConversionId}');` : ''}
+                  window.__analyticsDestinationReady = true;
+
+                  // Destination config hazir olduktan sonra ilk render'da
+                  // bekletilen view_item vb. olaylari gonder.
+                  try {
+                    var eq = window.__pendingAnalyticsEvents || [];
+                    try {
+                      var durable = JSON.parse(window.sessionStorage.getItem('woody_pending_analytics_events') || '[]');
+                      if (Array.isArray(durable)) eq = eq.concat(durable);
+                      window.sessionStorage.removeItem('woody_pending_analytics_events');
+                    } catch (storageError) {}
+                    for (var j=0; j<eq.length; j++) window.gtag('event', eq[j][0], eq[j][1]);
+                    window.__pendingAnalyticsEvents = [];
+                  } catch (e) {}
                 `}
               </Script>
             </>

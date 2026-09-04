@@ -206,6 +206,11 @@ const nextConfig = {
       // GSC kanibalizasyonu: eski Cambridge fallback slug'i tek guncel makaleye gider.
       { source: '/blog/cambridge-hazirlik-anaokulu-nedir', destination: '/tr/blog/cambridge-egitim-sistemi-nedir', permanent: true },
       { source: '/tr/blog/cambridge-hazirlik-anaokulu-nedir', destination: '/tr/blog/cambridge-egitim-sistemi-nedir', permanent: true },
+      // GSC'de gosterim alan eski "nasil ogretilir" varyantlarini tek kanonikte birlestir.
+      { source: '/tr/blog/anaokulu-ingilizce-nasil-ogretilir', destination: '/tr/blog/anaokulunda-ingilizce-nasil-ogretilir', permanent: true },
+      { source: '/en/blog/anaokulu-ingilizce-nasil-ogretilir', destination: '/tr/blog/anaokulunda-ingilizce-nasil-ogretilir', permanent: true },
+      { source: '/woodymagaza/blog/anaokulunda-ingilizce-nasil-ogretilir', destination: '/tr/blog/anaokulunda-ingilizce-nasil-ogretilir', permanent: true },
+      { source: '/anaokulu-ingilizce-egitimi-kapsamli-rehber', destination: '/tr/preschool', permanent: true },
       { source: '/:locale/store/1', destination: '/:locale/store/basic-level-set-ogrenci-seti-0001', permanent: true },
       { source: '/:locale/store/2', destination: '/:locale/store/junior-level-set-ogrenci-seti-0002', permanent: true },
       { source: '/:locale/store/3', destination: '/:locale/store/senior-level-set-ogrenci-seti-0003', permanent: true },

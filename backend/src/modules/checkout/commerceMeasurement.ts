@@ -18,16 +18,19 @@ export type PurchaseMeasurement = {
   client_id: string;
 };
 
-export async function loadPurchaseMeasurement(orderId: string): Promise<PurchaseMeasurement | null> {
+export async function loadCommerceMeasurement(
+  orderId: string,
+  eventName: 'purchase' | 'refund' = 'purchase',
+): Promise<PurchaseMeasurement | null> {
   const [orders] = await pool.execute<RowDataPacket[]>(
     `
       SELECT o.id, o.total, a.ga_client_id
         FROM orders o
         LEFT JOIN order_attribution a ON a.order_id = o.id
-       WHERE o.id = ? AND o.payment_status = 'paid'
+       WHERE o.id = ? AND o.payment_status = ?
        LIMIT 1
     `,
-    [orderId],
+    [orderId, eventName === 'refund' ? 'refunded' : 'paid'],
   );
   const order = orders[0];
   if (!order) return null;
@@ -64,7 +67,7 @@ async function processOutbox(app: FastifyInstance) {
   if (!env.GA4_API_SECRET || !env.GA4_MEASUREMENT_ID) return;
   const [rows] = await pool.execute<RowDataPacket[]>(
     `
-      SELECT id, order_id, attempt_count
+      SELECT id, order_id, event_name, attempt_count
         FROM commerce_measurement_outbox
        WHERE destination = 'ga4'
          AND status IN ('pending','failed')
@@ -82,8 +85,9 @@ async function processOutbox(app: FastifyInstance) {
     if (claim.affectedRows !== 1) continue;
 
     try {
-      const purchase = await loadPurchaseMeasurement(String(row.order_id));
-      if (!purchase) throw new Error('paid_order_not_found');
+      const eventName = row.event_name === 'refund' ? 'refund' : 'purchase';
+      const purchase = await loadCommerceMeasurement(String(row.order_id), eventName);
+      if (!purchase) throw new Error(eventName === 'refund' ? 'refunded_order_not_found' : 'paid_order_not_found');
       const endpoint = new URL('https://www.google-analytics.com/mp/collect');
       endpoint.searchParams.set('measurement_id', env.GA4_MEASUREMENT_ID);
       endpoint.searchParams.set('api_secret', env.GA4_API_SECRET);
@@ -93,7 +97,7 @@ async function processOutbox(app: FastifyInstance) {
         body: JSON.stringify({
           client_id: purchase.client_id,
           events: [{
-            name: 'purchase',
+            name: eventName,
             params: {
               transaction_id: purchase.transaction_id,
               currency: purchase.currency,

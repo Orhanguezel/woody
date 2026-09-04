@@ -14,13 +14,14 @@ import { env } from '@/core/env';
 import { maskSecret } from '@/core/secretBox';
 import { pool } from '@/db/client';
 import { notifyAdmins, rowsToHtml } from '@/modules/notifyMail';
+import { createNotification } from '@/modules/notifications';
 import {
   invalidatePaytrConfigCache,
   isPaytrUsable,
   loadPaytrConfig,
   savePaytrSettings,
 } from './paytrConfig';
-import { loadPurchaseMeasurement } from './commerceMeasurement';
+import { loadCommerceMeasurement } from './commerceMeasurement';
 
 type CheckoutItem = {
   product_id?: string;
@@ -139,7 +140,7 @@ async function persistOrderAttribution(req: FastifyRequest, orderId: string, inp
 /** Siparis bildirimlerinin ortak govdesi — musteri + tutar + kalemler. */
 async function orderNotifyBody(orderId: string) {
   const [rows] = await pool.execute<RowDataPacket[]>(
-    `SELECT o.id, o.total, o.status, o.payment_status, o.created_at,
+    `SELECT o.id, o.total, o.status, o.payment_status, o.created_at, o.dealer_id,
             o.shipping_name, o.shipping_phone, o.shipping_city,
             u.full_name, u.email
        FROM orders o LEFT JOIN users u ON u.id = o.dealer_id
@@ -162,6 +163,7 @@ async function orderNotifyBody(orderId: string) {
 
   return {
     orderNumber: `WD${String(o.id).replace(/-/g, '')}`,
+    customerId: o.dealer_id ? String(o.dealer_id) : null,
     customerName: String(o.full_name ?? o.shipping_name ?? '-'),
     customerEmail: o.email ? String(o.email) : null,
     rows: [
@@ -182,6 +184,19 @@ async function orderNotifyBody(orderId: string) {
 async function notifyOrderPaymentResult(orderId: string, paid: boolean, log?: FastifyInstance['log']) {
   const b = await orderNotifyBody(orderId);
   if (!b) return;
+
+  // Musterinin kendi bildirim kutusu (site: /me/notifications)
+  if (b.customerId) {
+    await createNotification({
+      userId: b.customerId,
+      type: 'payment',
+      title: paid ? 'Ödemeniz alındı' : 'Ödeme tamamlanamadı',
+      message: paid
+        ? `${b.orderNumber} numaralı siparişinizin ödemesi başarıyla alındı. Toplam: ${b.total}.`
+        : `${b.orderNumber} numaralı siparişinizin ödemesi tamamlanamadı. Kartınızdan tahsilat yapılmadı; dilediğiniz zaman yeniden deneyebilirsiniz.`,
+    });
+  }
+
   const title = paid ? 'Odeme basarili — yeni satis' : 'Odeme basarisiz';
   await notifyAdmins({
     kind: 'order',
@@ -590,6 +605,14 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     void (async () => {
       const b = await orderNotifyBody(orderId);
       if (!b) return;
+      if (b.customerId) {
+        await createNotification({
+          userId: b.customerId,
+          type: 'order',
+          title: 'Siparişiniz oluşturuldu',
+          message: `${b.orderNumber} numaralı siparişiniz alındı. Toplam: ${b.total}. Ödeme tamamlandığında bilgilendirileceksiniz.`,
+        });
+      }
       await notifyAdmins({
         kind: 'order',
         subject: `Yeni siparis olusturuldu — ${b.total} (${b.customerName})`,
@@ -608,7 +631,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
   app.get('/checkout/orders/:id/measurement', async (req, reply) => {
     const { id } = req.params as { id: string };
     if (!/^[0-9a-f-]{36}$/i.test(id)) return badRequest(reply, 'invalid_order_id');
-    const purchase = await loadPurchaseMeasurement(id);
+    const purchase = await loadCommerceMeasurement(id);
     if (!purchase) return reply.code(202).send({ ready: false });
     const { client_id: _clientId, ...browserPayload } = purchase;
     return {

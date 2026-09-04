@@ -21,7 +21,7 @@
 //   Yanit: { status: 'success' | 'error', err_no?, err_msg? }
 // =============================================================
 
-import { createHmac } from 'crypto';
+import { createHmac, randomUUID } from 'crypto';
 
 import type { RowDataPacket } from 'mysql2/promise';
 
@@ -136,26 +136,39 @@ export async function refundPaytrOrder(params: {
   // yalnizca not dusulur (siparis hala kismen odenmis sayilir).
   const full = requested >= total - 0.001;
 
-  if (full) {
-    await pool.execute(
-      `UPDATE orders
-          SET payment_status = 'refunded', status = 'cancelled',
-              updated_at = CURRENT_TIMESTAMP(3)
-        WHERE id = ?`,
-      [params.orderId],
-    );
-    // Iade edilen siparisin dijital erisim haklari geri alinir.
-    await pool.execute(`DELETE FROM user_entitlements WHERE order_id = ?`, [params.orderId]).catch(() => {});
-  }
-
-  await pool
-    .execute(
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction();
+    if (full) {
+      await connection.execute(
+        `UPDATE orders
+            SET payment_status = 'refunded', status = 'cancelled',
+                updated_at = CURRENT_TIMESTAMP(3)
+          WHERE id = ? AND payment_status = 'paid'`,
+        [params.orderId],
+      );
+      // Iade edilen siparisin dijital erisim haklari geri alinir.
+      await connection.execute(`DELETE FROM user_entitlements WHERE order_id = ?`, [params.orderId]);
+      await connection.execute(
+        `INSERT IGNORE INTO commerce_measurement_outbox
+          (id, order_id, destination, event_name, status, next_attempt_at)
+         VALUES (?, ?, 'ga4', 'refund', 'pending', CURRENT_TIMESTAMP(3))`,
+        [randomUUID(), params.orderId],
+      );
+    }
+    await connection.execute(
       `UPDATE payment_attempts
           SET status = ?, updated_at = CURRENT_TIMESTAMP(3)
         WHERE payment_ref = ?`,
       [full ? 'refunded' : 'partially_refunded', merchantOid],
-    )
-    .catch(() => {});
+    );
+    await connection.commit();
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
 
   return { refunded: requested, full };
 }

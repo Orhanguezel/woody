@@ -68,10 +68,12 @@ export default function ClientLayout({
           kalir ki page'lerin notFound()/redirect() status kodlari calissin. */}
       <Suspense fallback={null}>
         <RouteEffects />
+        {/* Internal CTA capture hemen mount olur; analytics destination gec acilsa bile
+            event sessionStorage ile sonraki route'a tasinir. */}
+        <GAViewPages />
         {analyticsReady ? (
           <>
             <AnalyticsScripts />
-            <GAViewPages />
             <AdsConversionClicks />
           </>
         ) : null}

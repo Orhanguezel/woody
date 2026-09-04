@@ -17,6 +17,9 @@ import {
 } from '@/integrations/rtk/hooks';
 import { toast } from 'sonner';
 import { useSubscriptionAccess } from '@/hooks/useSubscriptionAccess';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useGetUnreadNotificationsCountQuery } from '@/integrations/rtk/hooks';
 
 const cinzel = Cinzel({ subsets: ['latin'] });
 
@@ -24,6 +27,10 @@ export default function SettingsPage() {
   const { data: profile } = useGetMyProfileQuery();
   const [upsertProfile] = useUpsertMyProfileMutation();
   const subscription = useSubscriptionAccess('library');
+  const params = useParams();
+  const locale = String((params as Record<string, unknown>)?.locale ?? 'tr');
+  const { data: unread } = useGetUnreadNotificationsCountQuery();
+  const unreadCount = Number(unread?.count ?? 0);
 
   const [formData, setFormData] = useState({
     full_name: '',
@@ -92,6 +99,23 @@ export default function SettingsPage() {
               <Bell className="w-6 h-6" />
               <h2 className={`${cinzel.className} text-xl tracking-wider`}>Bildirimler</h2>
             </div>
+
+            <Link
+              href={`/${locale}/me/notifications`}
+              className="flex items-center justify-between gap-4 rounded-2xl border border-border/20 bg-surface-high/30 px-6 py-4 transition-colors hover:border-brand-gold/40"
+            >
+              <div className="space-y-1">
+                <div className="font-bold text-foreground">Bildirimlerim</div>
+                <div className="text-sm text-muted-foreground">
+                  Sipariş ve ödeme bildirimlerinizi görüntüleyin.
+                </div>
+              </div>
+              {unreadCount > 0 ? (
+                <span className="shrink-0 rounded-full bg-brand-gold px-3 py-1 text-xs font-bold text-black">
+                  {unreadCount}
+                </span>
+              ) : null}
+            </Link>
 
             <div className="space-y-6">
                {[

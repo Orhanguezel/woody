@@ -55,8 +55,9 @@ function escapeHtml(value: unknown) {
     .replaceAll("'", '&#39;');
 }
 
-async function sendAdminNotification(data: ContactCreateInput) {
+async function sendAdminNotification(data: ContactCreateInput, log?: FastifyInstance['log']) {
   await notifyAdmins({
+    log,
     kind: 'contact',
     subject: `Yeni iletişim mesajı - ${data.name}`,
     replyTo: data.email,
@@ -127,7 +128,7 @@ export async function registerContactsPublic(app: FastifyInstance) {
       ],
     );
 
-    sendAdminNotification(data).catch((err) => {
+    sendAdminNotification(data, req.log).catch((err) => {
       req.log.error({ err }, 'contact_admin_mail_failed');
     });
 

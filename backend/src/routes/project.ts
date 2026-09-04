@@ -13,6 +13,7 @@ import { registerWaitlistPublic } from '@/modules/waitlist';
 import { registerContentSourcePublic } from '@/modules/contentSource';
 import { registerDashboardAdmin } from '@/modules/dashboard';
 import { registerUserActivityAdmin } from '@/modules/userActivity';
+import { registerNotificationsPublic, registerNotificationsAdmin } from '@/modules/notifications';
 import { setGatewayRefundHandler, OrderRefundError } from '@shared/shared-backend/modules/orders/refund.service';
 import { refundPaytrOrder, PaytrRefundError } from '@/modules/checkout/paytrRefund';
 import { registerSearchConsoleAdmin } from '@/modules/searchConsole';
@@ -30,11 +31,9 @@ export async function registerProjectPublic(api: FastifyInstance) {
   // Tanitio icerik kaynagi kontrati v1.3 — GET /content-source/articles + /products
   await registerContentSourcePublic(api);
 
-  // Notifications: backend'de gercek modul yok; admin paneli sidebar'i
-  // /notifications/unread-count'u 60sn'de bir polling yapip 404 + retry dongusu uretiyordu.
-  // Zararsiz read-stub'lar (count:0 / bos liste) — admin+user tek yol (/api/v1/notifications).
-  api.get('/notifications/unread-count', async (_req, reply) => reply.send({ count: 0 }));
-  api.get('/notifications', async (_req, reply) => reply.send([]));
+  // Bildirimler — gercek modul (eskiden bos stub'di, notifications tablosu
+  // vardi ama hic kullanilmiyordu). Oturum yoksa bos liste/0 doner.
+  await registerNotificationsPublic(api);
 }
 
 // Paylasilan /orders/:id/refund ucu yalnizca bayi cari hesabini biliyordu;
@@ -63,6 +62,7 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerDashboardAdmin(adminApi);
   // Kullanici aktivitesi — ne yapti, nerede gezdi (audit_request_logs)
   await registerUserActivityAdmin(adminApi);
+  await registerNotificationsAdmin(adminApi);
   // Blog ve urun admin ekranlarindaki Google indeks durumu.
   await registerSearchConsoleAdmin(adminApi);
   await registerSchoolsAdmin(adminApi);

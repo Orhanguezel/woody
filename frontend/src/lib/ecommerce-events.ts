@@ -18,10 +18,24 @@ type EcommercePayload = {
   items: EcommerceItem[];
 };
 
+declare global {
+  interface Window {
+    __pendingAnalyticsEvents?: Array<[string, Record<string, unknown>]>;
+  }
+}
+
 function sendEvent(name: string, payload: Record<string, unknown>): void {
   if (typeof window === 'undefined') return;
   const gtag = window.gtag;
-  if (typeof gtag !== 'function') return;
+  // Analitik bileşeni performans için gecikmeli yükleniyor. Özellikle ürün
+  // detayındaki view_item ilk render'da gtag'den önce çalışabilir. Olayı
+  // kaybetmek yerine beklet; AnalyticsScripts önce consent default/update
+  // komutlarını kurduktan sonra bu kuyruğu boşaltır.
+  if (typeof gtag !== 'function') {
+    window.__pendingAnalyticsEvents = window.__pendingAnalyticsEvents || [];
+    window.__pendingAnalyticsEvents.push([name, payload]);
+    return;
+  }
   try {
     gtag('event', name, payload);
   } catch {

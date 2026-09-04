@@ -26,6 +26,31 @@ type IndexRow = RowDataPacket & {
   checked_at: string | null;
 };
 
+let schemaReady: Promise<void> | null = null;
+
+function ensureGscSchema(): Promise<void> {
+  if (!schemaReady) {
+    schemaReady = pool
+      .execute(
+        `CREATE TABLE IF NOT EXISTS gsc_url_index (
+          url VARCHAR(512) NOT NULL,
+          verdict VARCHAR(64) DEFAULT NULL,
+          coverage_state VARCHAR(255) DEFAULT NULL,
+          last_crawl DATETIME(3) DEFAULT NULL,
+          checked_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+          PRIMARY KEY (url),
+          KEY gsc_url_index_checked_idx (checked_at)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+      )
+      .then(() => undefined)
+      .catch((error) => {
+        schemaReady = null;
+        throw error;
+      });
+  }
+  return schemaReady;
+}
+
 const OAUTH_KEYS = [
   'google_ads_client_id',
   'google_ads_client_secret',
@@ -177,6 +202,7 @@ async function entityContext(type: GscEntityType, locale: string) {
 }
 
 export async function listGscEntityIndex(type: GscEntityType, locale: string) {
+  await ensureGscSchema();
   const context = await entityContext(type, locale);
   const [rows] = await pool.query<IndexRow[]>(
     'SELECT url, verdict, coverage_state, last_crawl, checked_at FROM gsc_url_index',
@@ -206,6 +232,7 @@ function toMysqlDateTime(value: string | null | undefined): string | null {
 }
 
 export async function inspectGscEntity(type: GscEntityType, locale: string, slug: string) {
+  await ensureGscSchema();
   const context = await entityContext(type, locale);
   const url = context.urls.get(slug);
   if (!url) throw new Error('entity_not_found');

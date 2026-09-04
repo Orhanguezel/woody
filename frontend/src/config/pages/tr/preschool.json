@@ -97,6 +97,24 @@
       "senior": "Senior"
     }
   },
+  "faq": [
+    {
+      "question": "Anaokulu İngilizce programı hangi yaşlar için uygundur?",
+      "answer": "Woody Okul Serisi 3-6 yaş döneminde Basic, Junior, Senior ve PRO düzeyleriyle kademeli ilerler. Başlangıç düzeyi yaş kadar çocuğun mevcut İngilizce deneyimine göre de belirlenir."
+    },
+    {
+      "question": "Program yalnızca öğrenci kitabından mı oluşur?",
+      "answer": "Hayır. Öğrenci ve öğretmen materyalleri; haftalık plan, oyun, kart, hikâye, şarkı ve kontrollü dijital tekrarlarla aynı kazanım etrafında birlikte kullanılır."
+    },
+    {
+      "question": "Bir ders kaç dakika sürmelidir?",
+      "answer": "Süre yaşa ve sınıfın dikkat ritmine göre değişir. 3-4 yaşta kısa hareketli bloklar, 5-6 yaşta soru-cevap, hikâye ve pekiştirme içeren daha uzun ama bölümlü akışlar önerilir."
+    },
+    {
+      "question": "Okulumuz için doğru Woody seviyesini nasıl seçeriz?",
+      "answer": "Level Finder ile ilk öneriyi alabilir; öğrenci sayısı, yaş dağılımı ve mevcut program bilgilerini teklif formunda paylaşarak kurumunuza uygun seviye ve materyal planını netleştirebilirsiniz."
+    }
+  ],
   "pageUi": {
     "teacherSet": "Öğretmen Seti",
     "studentSet": "Öğrenci Seti",
@@ -109,6 +127,7 @@
     "digitalDescription": "Movieland, Storyland ve Musicland ile öğrenme süreci video, hikaye ve müzikle zenginleşir.",
     "digitalCta": "Dijital dünyaya gitmek için tıklayın",
     "quoteMessageTemplate": "Merhaba, {{level}} hakkında fiyat teklifi almak istiyorum.",
-    "proMessage": "PRO seviyesi için Woody Academy'de eğitim verilir."
+    "proMessage": "PRO seviyesi için Woody Academy'de eğitim verilir.",
+    "faqTitle": "Anaokulu İngilizce Programı Hakkında Sık Sorulan Sorular"
   }
 }

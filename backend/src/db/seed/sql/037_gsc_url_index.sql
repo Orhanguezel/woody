@@ -1,4 +1,7 @@
--- Search Console URL indeksleme durumu onbellegi.
+-- 037_gsc_url_index.sql
+-- Search Console URL indeksleme durumu onbellegi. Admin panel "index/refresh"
+-- GSC urlInspection sonuclarini burada saklar. shared-backend/searchConsole/indexing.service
+-- raw SQL ile kullanir (Drizzle semasi yok). Tablo yoksa POST index/refresh 500 (ER_NO_SUCH_TABLE).
 
 CREATE TABLE IF NOT EXISTS `gsc_url_index` (
   `url` VARCHAR(512) NOT NULL,

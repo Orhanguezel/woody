@@ -68,8 +68,9 @@ function quoteHtml(data: QuoteRequestInput) {
   `;
 }
 
-async function sendAdminNotification(data: QuoteRequestInput) {
+async function sendAdminNotification(data: QuoteRequestInput, log?: FastifyInstance['log']) {
   await notifyAdmins({
+    log,
     kind: 'quote',
     subject: `Yeni teklif talebi - ${data.org_name}`,
     html: quoteHtml(data),
@@ -124,7 +125,7 @@ export async function registerQuoteRequestsPublic(app: FastifyInstance) {
       ],
     );
 
-    sendAdminNotification(data).catch((err) => {
+    sendAdminNotification(data, req.log).catch((err) => {
       req.log.error({ err }, 'quote_request_admin_mail_failed');
     });
 
