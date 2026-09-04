@@ -42,7 +42,19 @@ type LogRow = {
 };
 
 type LogsResponse = { items: LogRow[]; total: number; page: number; limit: number };
-type StatsResponse = { outcomes: Array<{ outcome: string; count: number }> };
+type StatsResponse = {
+  outcomes: Array<{ outcome: string; count: number }>;
+  commerce: {
+    realSuccessCount: number;
+    realFailedCount: number;
+    realRevenue: number;
+    testSuccessCount: number;
+    testFailedCount: number;
+    observedSuccessRate: number | null;
+    definition: 'latest_processed_callback_per_order';
+  };
+  generatedAt: string;
+};
 
 const OUTCOMES = ['processed', 'duplicate', 'hash_mismatch', 'order_not_found', 'feature_disabled', 'received'] as const;
 
@@ -189,6 +201,30 @@ export default function PaytrLogsClient() {
           Rozetlerin üzerine gelince ne anlama geldikleri yazar.
         </p>
       </div>
+
+      {stats?.commerce ? (
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          {[
+            ['Gerçek Başarılı', stats.commerce.realSuccessCount.toLocaleString('tr-TR')],
+            ['Gerçek Başarısız', stats.commerce.realFailedCount.toLocaleString('tr-TR')],
+            ['Gerçek Ciro', `${stats.commerce.realRevenue.toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL`],
+            ['Başarı Oranı', stats.commerce.observedSuccessRate == null ? '—' : `%${stats.commerce.observedSuccessRate.toLocaleString('tr-TR')}`],
+            ['Test Sonuçları', `${stats.commerce.testSuccessCount} başarılı · ${stats.commerce.testFailedCount} başarısız`],
+          ].map(([label, value]) => (
+            <Card key={label} className="border-gm-border-soft bg-gm-surface/20">
+              <CardContent className="px-5 py-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-gm-muted">{label}</p>
+                <p className="mt-2 font-serif text-2xl text-gm-text">{value}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : null}
+
+      <p className="text-xs leading-relaxed text-gm-muted">
+        Ticari özet, her siparişin en son doğrulanmış PayTR sonucunu kullanır ve test işlemlerini gerçek satıştan ayırır.
+        Başarısız ödeme tek başına iletişim izni değildir; yeniden pazarlama yalnız açık izin kaydı bulunan müşteriler için yapılabilir.
+      </p>
 
       {/* Outcome istatistikleri */}
       {stats?.outcomes.length ? (

@@ -3,6 +3,7 @@ import 'server-only';
 import { getServerApiBase } from '@/i18n/apiBase.server';
 import { DEFAULT_TOKENS } from './defaults';
 import type { DesignTokens } from './types';
+import { cachedFetch } from '@/lib/server-cache';
 
 function isDesignTokens(value: unknown): value is DesignTokens {
   if (!value || typeof value !== 'object') return false;
@@ -23,6 +24,8 @@ function mergeTokens(value: DesignTokens): DesignTokens {
 }
 
 export async function fetchDesignTokens(): Promise<DesignTokens> {
+  // Surec ici TTL cache — force-dynamic sayfalarda Next fetch cache'i calismaz.
+  return cachedFetch('tokens:design_tokens', 30, async () => {
   try {
     const API_BASE = getServerApiBase();
     if (!API_BASE) return DEFAULT_TOKENS;
@@ -42,9 +45,11 @@ export async function fetchDesignTokens(): Promise<DesignTokens> {
   } catch {
     return DEFAULT_TOKENS;
   }
+  });
 }
 
 export async function fetchCustomCss(): Promise<string> {
+  return cachedFetch('tokens:custom_css', 30, async () => {
   try {
     const API_BASE = getServerApiBase();
     if (!API_BASE) return '';
@@ -60,4 +65,5 @@ export async function fetchCustomCss(): Promise<string> {
   } catch {
     return '';
   }
+  });
 }

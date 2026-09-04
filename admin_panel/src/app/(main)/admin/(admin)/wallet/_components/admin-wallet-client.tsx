@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+import { apiErrorMessage } from '@/lib/api-error';
 import { useAdminT } from '@/app/(main)/admin/_components/common/useAdminT';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -78,8 +79,7 @@ function fmtDate(v: string | null | undefined) {
 }
 
 function errMsg(err: unknown, fallback: string) {
-  const e = err as any;
-  return e?.data?.error || e?.data?.message || e?.error || e?.message || fallback;
+  return apiErrorMessage(err, fallback);
 }
 
 function statusTone(status: WalletPaymentStatus | string) {

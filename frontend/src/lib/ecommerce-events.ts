@@ -37,8 +37,10 @@ export function reportViewItem(payload: EcommercePayload): void {
   sendEvent('view_item', payload);
 }
 
-export function reportAddToCart(payload: EcommercePayload): void {
-  sendEvent('add_to_cart', payload);
+export function reportAddToCart(payload: EcommercePayload, eventCallback?: () => void): void {
+  sendEvent('add_to_cart', eventCallback
+    ? { ...payload, event_callback: eventCallback, event_timeout: 800 }
+    : payload);
 }
 
 /** PayTR iframe acildiginda — odeme bilgisi adimina gecis. */

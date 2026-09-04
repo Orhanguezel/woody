@@ -28,6 +28,8 @@ import { getAdminAppName, getAdminBrandSubtitle } from '@/lib/admin-brand';
 
 type Role = 'admin' | string;
 
+const PUBLIC_FAVICON_FALLBACK = '/uploads/brand/favicon.svg';
+
 type SidebarMe = {
   id: string;
   name: string;
@@ -56,6 +58,7 @@ export function AppSidebar({
   const { copy } = useAdminUiCopy();
   const t = useAdminT();
   const { pageMeta, branding } = useAdminSettings();
+  const faviconUrl = branding.favicon_url || branding.favicon_32 || branding.logo_url;
 
   const { data: statusData } = useStatusQuery();
   const { data: profileData } = useGetMyProfileQuery();
@@ -103,25 +106,38 @@ export function AppSidebar({
           prefetch={false}
           href="/admin/dashboard"
           className={cn(
-            "flex items-center gap-4 px-7 py-8 border-b border-sidebar-border/70 hover:bg-brand-gold-soft transition-all duration-200 group",
-            "group-data-[state=collapsed]:px-0 group-data-[state=collapsed]:justify-center group-data-[state=collapsed]:py-6 group-data-[state=collapsed]:gap-0"
+            "group flex min-h-32 flex-col items-center justify-center gap-3 border-sidebar-border/70 border-b px-5 py-5 text-center transition-all duration-200 hover:bg-brand-gold-soft",
+            "group-data-[state=collapsed]:min-h-0 group-data-[state=collapsed]:gap-0 group-data-[state=collapsed]:px-0 group-data-[state=collapsed]:py-5"
           )}
         >
           <div className={cn(
-            "flex aspect-square size-10 shrink-0 items-center justify-center rounded-2xl text-brand-ink transition-all duration-200 group-data-[state=collapsed]:size-8 group-data-[state=collapsed]:rounded-xl",
+            "flex h-12 w-40 shrink-0 items-center justify-center text-brand-ink transition-all duration-200 group-data-[state=collapsed]:size-8 group-data-[state=collapsed]:rounded-xl",
             branding.logo_url ? "bg-transparent" : "bg-brand-gold shadow-[0_8px_24px_-8px_rgba(22,163,74,0.35)] ring-1 ring-brand-gold/30"
           )}>
             {branding.logo_url ? (
-              <img
-                src={branding.logo_url}
-                alt={branding.app_name}
-                className="size-full object-contain transition-all duration-200 group-data-[state=collapsed]:p-0.5"
-              />
+              <>
+                <img
+                  src={branding.logo_url}
+                  alt={branding.app_name}
+                  className="size-full object-contain transition-all duration-200 group-data-[state=collapsed]:hidden"
+                />
+                <img
+                  src={faviconUrl}
+                  alt=""
+                  aria-hidden="true"
+                  className="hidden size-full object-contain group-data-[state=collapsed]:block"
+                  onError={(event) => {
+                    if (!event.currentTarget.src.endsWith(PUBLIC_FAVICON_FALLBACK)) {
+                      event.currentTarget.src = PUBLIC_FAVICON_FALLBACK;
+                    }
+                  }}
+                />
+              </>
             ) : (
               <Sparkles className="size-5 transition-all duration-200 group-data-[state=collapsed]:size-4" />
             )}
           </div>
-          <div className="flex flex-col gap-0.5 leading-none transition-all duration-200 group-data-[state=collapsed]:opacity-0 group-data-[state=collapsed]:w-0 group-data-[state=collapsed]:overflow-hidden group-data-[state=collapsed]:hidden">
+          <div className="flex flex-col items-center gap-1 leading-none transition-all duration-200 group-data-[state=collapsed]:hidden group-data-[state=collapsed]:w-0 group-data-[state=collapsed]:overflow-hidden group-data-[state=collapsed]:opacity-0">
             <span className="font-serif font-bold text-xl tracking-tight text-sidebar-foreground whitespace-nowrap">
               {(copy.app_name || '').trim() || branding.app_name || getAdminAppName()}
             </span>

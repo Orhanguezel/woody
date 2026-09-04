@@ -34,6 +34,11 @@ const API_KEYS = [
   "gtm_container_id",
   "ga4_measurement_id",
   "cookie_consent",
+  // Yonetici bildirim e-postalari (siparis / teklif / iletisim)
+  "notify_emails",
+  "notify_on_order",
+  "notify_on_quote",
+  "notify_on_contact",
   "firebase_project_id",
   "firebase_client_email",
   "firebase_private_key",
@@ -51,6 +56,10 @@ const EMPTY_FORM: ApiForm = {
   gtm_container_id: "",
   ga4_measurement_id: "",
   cookie_consent: "",
+  notify_emails: "",
+  notify_on_order: "",
+  notify_on_quote: "",
+  notify_on_contact: "",
   firebase_project_id: "",
   firebase_client_email: "",
   firebase_private_key: "",
@@ -256,6 +265,76 @@ export const ApiSettingsTab: React.FC<ApiSettingsTabProps> = ({ locale }) => {
                 className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm font-mono text-gm-text transition-all"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Bildirim E-postalari */}
+        <div className="space-y-6">
+          <div className="border-b border-gm-border-soft pb-3 space-y-1">
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-gm-gold flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-gm-gold/50" />
+              Bildirim E-postaları
+            </h3>
+            <p className="text-[10px] font-serif italic text-gm-muted ml-4 opacity-80">
+              Yeni sipariş, teklif talebi ve iletişim mesajı geldiğinde haber verilecek adresler.
+              Birden fazla adresi virgülle ayırın. Boş bırakılırsa sunucudaki ADMIN_EMAIL kullanılır.
+            </p>
+          </div>
+          <div className="grid gap-6">
+            <div className="space-y-2">
+              <Label
+                htmlFor="notify_emails"
+                className="text-[10px] font-bold text-gm-muted tracking-[0.15em] uppercase ml-1 block"
+              >
+                Alıcı adresler
+              </Label>
+              <Input
+                id="notify_emails"
+                value={form.notify_emails}
+                onChange={(e) => handleChange("notify_emails", e.target.value)}
+                placeholder="ornek@firma.com, ikinci@firma.com"
+                disabled={busy}
+                className="h-12 bg-gm-bg-deep border-gm-border-soft rounded-2xl focus:ring-gm-gold/50 focus:border-gm-gold/50 text-sm font-mono text-gm-text transition-all"
+              />
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {([
+                ["notify_on_order", "Sipariş bildirimi"],
+                ["notify_on_quote", "Teklif talebi bildirimi"],
+                ["notify_on_contact", "İletişim mesajı bildirimi"],
+              ] as const).map(([key, label]) => {
+                // Ayar bos ise varsayilan ACIK — backend de boyle davranir.
+                const on = !["false", "0", "off", "hayir"].includes(
+                  String(form[key] ?? "").trim().toLowerCase(),
+                );
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    disabled={busy}
+                    onClick={() => handleChange(key, on ? "false" : "true")}
+                    className={`flex items-center justify-between gap-3 rounded-2xl border px-5 py-4 text-left transition-all ${
+                      on
+                        ? "border-gm-success/30 bg-gm-success/[0.06]"
+                        : "border-gm-border-soft bg-gm-surface/30"
+                    }`}
+                  >
+                    <span className="text-[11px] font-bold text-gm-text">{label}</span>
+                    <span
+                      className={`shrink-0 rounded-full px-3 py-1 text-[9px] font-bold uppercase tracking-widest ${
+                        on ? "bg-gm-success/15 text-gm-success" : "bg-gm-surface/60 text-gm-muted"
+                      }`}
+                    >
+                      {on ? "Açık" : "Kapalı"}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-[10px] font-serif italic text-gm-muted ml-1 opacity-70">
+              Gönderen adres <code className="text-[9px] not-italic bg-gm-bg-deep px-1.5 py-0.5 rounded border border-gm-border-soft">noreply@woodyvearkadaslari.com</code>{" "}
+              olarak kalır — DKIM imzası bu alan adına ait, değiştirilirse e-postalar spam'e düşer.
+            </p>
           </div>
         </div>
 

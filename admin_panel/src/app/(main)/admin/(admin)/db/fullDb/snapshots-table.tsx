@@ -18,6 +18,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useDeleteDbSnapshotMutation, useRestoreDbSnapshotMutation } from "@/integrations/hooks";
 import type { DbSnapshot } from "@/integrations/shared";
 import { cn } from "@/lib/utils";
+import { apiErrorMessage } from '@/lib/api-error';
 
 /* ---------------- Types ---------------- */
 
@@ -87,7 +88,7 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
       }
       refetch();
     } catch (err: any) {
-      toast.error(err?.data?.error || err?.message || t("restoreFailed"));
+      toast.error(apiErrorMessage(err, t("restoreFailed")));
     }
   };
 
@@ -104,7 +105,7 @@ export const SnapshotsTable: React.FC<SnapshotsTableProps> = ({ items, loading, 
       }
       refetch();
     } catch (err: any) {
-      toast.error(err?.data?.error || err?.message || t("deleteError"));
+      toast.error(apiErrorMessage(err, t("deleteError")));
     }
   };
 

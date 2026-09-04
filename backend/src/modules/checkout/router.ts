@@ -13,6 +13,7 @@ import {
 import { env } from '@/core/env';
 import { maskSecret } from '@/core/secretBox';
 import { pool } from '@/db/client';
+import { notifyAdmins, rowsToHtml } from '@/modules/notifyMail';
 import {
   invalidatePaytrConfigCache,
   isPaytrUsable,
@@ -135,6 +136,63 @@ async function persistOrderAttribution(req: FastifyRequest, orderId: string, inp
   }
 }
 
+/** Siparis bildirimlerinin ortak govdesi — musteri + tutar + kalemler. */
+async function orderNotifyBody(orderId: string) {
+  const [rows] = await pool.execute<RowDataPacket[]>(
+    `SELECT o.id, o.total, o.status, o.payment_status, o.created_at,
+            o.shipping_name, o.shipping_phone, o.shipping_city,
+            u.full_name, u.email
+       FROM orders o LEFT JOIN users u ON u.id = o.dealer_id
+      WHERE o.id = ? LIMIT 1`,
+    [orderId],
+  );
+  const o = rows[0];
+  if (!o) return null;
+
+  const [items] = await pool.execute<RowDataPacket[]>(
+    `SELECT COALESCE(pi.title, oi.product_id) AS title, oi.quantity, oi.total_price
+       FROM order_items oi
+       LEFT JOIN product_i18n pi ON pi.product_id = oi.product_id AND pi.locale = 'tr'
+      WHERE oi.order_id = ?`,
+    [orderId],
+  );
+
+  const money = (v: unknown) => `${Number(v || 0).toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL`;
+  const itemLines = items.map((i) => `${String(i.title)} x${Number(i.quantity)} — ${money(i.total_price)}`);
+
+  return {
+    orderNumber: `WD${String(o.id).replace(/-/g, '')}`,
+    customerName: String(o.full_name ?? o.shipping_name ?? '-'),
+    customerEmail: o.email ? String(o.email) : null,
+    rows: [
+      ['Siparis No', `WD${String(o.id).replace(/-/g, '')}`],
+      ['Musteri', String(o.full_name ?? o.shipping_name ?? '-')],
+      ['E-posta', String(o.email ?? '-')],
+      ['Telefon', String(o.shipping_phone ?? '-')],
+      ['Sehir', String(o.shipping_city ?? '-')],
+      ['Tutar', money(o.total)],
+      ['Urunler', itemLines.join(' | ') || '-'],
+    ] as Array<[string, unknown]>,
+    itemLines,
+    total: money(o.total),
+  };
+}
+
+/** Odeme sonucunu yoneticilere bildirir (basarili/basarisiz). */
+async function notifyOrderPaymentResult(orderId: string, paid: boolean, log?: FastifyInstance['log']) {
+  const b = await orderNotifyBody(orderId);
+  if (!b) return;
+  const title = paid ? 'Odeme basarili — yeni satis' : 'Odeme basarisiz';
+  await notifyAdmins({
+    kind: 'order',
+    subject: `${paid ? '\u2705' : '\u26a0\ufe0f'} ${title} — ${b.total} (${b.customerName})`,
+    replyTo: b.customerEmail,
+    html: rowsToHtml(title, b.rows),
+    text: [title, ...b.rows.map(([k, v]) => `${k}: ${String(v)}`)].join('\n'),
+    log,
+  });
+}
+
 async function markPaymentResult(
   orderId: string,
   paymentRef: string,
@@ -181,10 +239,11 @@ async function markPaymentResult(
   }
 }
 
-function checkoutUrl(status: string, orderId?: string, locale = 'tr') {
+function checkoutUrl(status: string, orderId?: string, locale = 'tr', productSlug?: string) {
   const base = env.FRONTEND_URL.replace(/\/$/, '');
   const params = new URLSearchParams({ payment: status });
   if (orderId) params.set('order', orderId);
+  if (productSlug) params.set('product', productSlug);
   return `${base}/${locale}/store/checkout?${params.toString()}`;
 }
 
@@ -527,6 +586,20 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
 
     await persistOrderAttribution(req, orderId, body.attribution);
 
+    // Yeni siparis bildirimi — odeme henuz yapilmadi, sadece sepet olustu.
+    void (async () => {
+      const b = await orderNotifyBody(orderId);
+      if (!b) return;
+      await notifyAdmins({
+        kind: 'order',
+        subject: `Yeni siparis olusturuldu — ${b.total} (${b.customerName})`,
+        replyTo: b.customerEmail,
+        html: rowsToHtml('Yeni siparis olusturuldu (odeme bekleniyor)', b.rows),
+        text: ['Yeni siparis olusturuldu (odeme bekleniyor)', ...b.rows.map(([k, v]) => `${k}: ${String(v)}`)].join('\n'),
+        log: app.log,
+      });
+    })();
+
     return reply.code(201).send({ id: orderId, total: total.toFixed(2), payment_status: 'unpaid' });
   });
 
@@ -710,6 +783,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     if (newlyPaid) {
       await grantOrderEntitlements(order.id, order.dealer_id);
     }
+    await notifyOrderPaymentResult(order.id, paid, app.log);
 
     return reply.redirect(checkoutUrl(paid ? 'success' : 'fail', order.id));
   });
@@ -750,7 +824,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
 
     const [itemRows] = await pool.execute<RowDataPacket[]>(
       `
-        SELECT oi.quantity, oi.unit_price, pi.title
+        SELECT oi.quantity, oi.unit_price, pi.title, pi.slug
           FROM order_items oi
           LEFT JOIN product_i18n pi ON pi.product_id = oi.product_id AND pi.locale = ?
          WHERE oi.order_id = ?
@@ -766,6 +840,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     );
 
     const merchantOid = paytrMerchantOid(id);
+    const retryProductSlug = String(itemRows[0]?.slug || '');
     await pool.execute(
       `
         UPDATE orders
@@ -807,7 +882,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
           userBasket: basket,
           currency: toPaytrCurrency('TRY'),
           okUrl: checkoutUrl('success', id, locale),
-          failUrl: checkoutUrl('failed', id, locale),
+          failUrl: checkoutUrl('failed', id, locale, retryProductSlug),
           userName: String(order.shipping_name || order.customer_name || ''),
           userAddress: [order.shipping_address, order.shipping_city].filter(Boolean).join(', '),
           userPhone: String(order.shipping_phone || ''),
@@ -886,6 +961,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       await grantOrderEntitlements(order.id, order.dealer_id);
     }
     await logPaytrCallback({ ...base, outcome: 'processed', detail: `order: ${order.id} -> ${paid ? 'paid' : 'failed'}` });
+    await notifyOrderPaymentResult(order.id, paid, app.log);
 
     return reply.type('text/plain').send('OK');
   });
@@ -934,7 +1010,64 @@ export async function registerCheckoutAdmin(app: FastifyInstance) {
          ORDER BY count DESC
       `,
     );
-    return { outcomes: rows };
+    // Ticari ozet yalniz dogrulanip islenen callback'leri sayar. Ayni siparise
+    // birden fazla callback geldiyse en son islenen sonuc esas alinir; boylece
+    // tekrar bildirimler veya basarisiz denemeden sonra gelen basari cift sayilmaz.
+    const [commerceRows] = await pool.execute<RowDataPacket[]>(
+      `
+        SELECT
+          SUM(latest.status = 'success' AND latest.is_test = 0) AS real_success_count,
+          SUM(latest.status = 'failed' AND latest.is_test = 0) AS real_failed_count,
+          COALESCE(SUM(CASE
+            WHEN latest.status = 'success' AND latest.is_test = 0 THEN latest.total_amount
+            ELSE 0
+          END), 0) AS real_revenue,
+          SUM(latest.status = 'success' AND latest.is_test = 1) AS test_success_count,
+          SUM(latest.status = 'failed' AND latest.is_test = 1) AS test_failed_count
+        FROM (
+          SELECT
+            l.merchant_oid,
+            l.status,
+            l.total_amount,
+            CASE
+              WHEN LOWER(COALESCE(JSON_UNQUOTE(JSON_EXTRACT(l.payload, '$.test_mode')), '0'))
+                   IN ('1', 'true') THEN 1
+              ELSE 0
+            END AS is_test
+          FROM paytr_callback_logs l
+          WHERE l.outcome = 'processed'
+            AND l.merchant_oid IS NOT NULL
+            AND NOT EXISTS (
+              SELECT 1
+              FROM paytr_callback_logs newer
+              WHERE newer.outcome = 'processed'
+                AND newer.merchant_oid = l.merchant_oid
+                AND (
+                  newer.received_at > l.received_at
+                  OR (newer.received_at = l.received_at AND newer.id > l.id)
+                )
+            )
+        ) latest
+      `,
+    );
+    const commerce = commerceRows[0] || {};
+    const realSuccessCount = Number(commerce.real_success_count || 0);
+    const realFailedCount = Number(commerce.real_failed_count || 0);
+    const realAttempts = realSuccessCount + realFailedCount;
+
+    return {
+      outcomes: rows,
+      commerce: {
+        realSuccessCount,
+        realFailedCount,
+        realRevenue: Number(commerce.real_revenue || 0),
+        testSuccessCount: Number(commerce.test_success_count || 0),
+        testFailedCount: Number(commerce.test_failed_count || 0),
+        observedSuccessRate: realAttempts ? Number(((realSuccessCount / realAttempts) * 100).toFixed(1)) : null,
+        definition: 'latest_processed_callback_per_order',
+      },
+      generatedAt: new Date().toISOString(),
+    };
   });
 
   // ---------- PayTR magaza ayarlari (admin panel) ----------

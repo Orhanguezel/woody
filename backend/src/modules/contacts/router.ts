@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { sendMailRaw } from '@shared/shared-backend/modules/mail-api';
+import { notifyAdmins, rowsToHtml, escapeHtml as esc } from '@/modules/notifyMail';
 import { z } from 'zod';
 
 import { pool } from '@/db/client';
@@ -56,24 +56,20 @@ function escapeHtml(value: unknown) {
 }
 
 async function sendAdminNotification(data: ContactCreateInput) {
-  const to = (process.env.CONTACT_ADMIN_EMAIL || process.env.ADMIN_EMAIL || '').trim();
-  if (!to) return;
-  const rows = [
-    ['Ad Soyad', data.name],
-    ['E-posta', data.email],
-    ['Telefon', data.phone || '-'],
-    ['Konu', data.subject || '-'],
-  ];
-  await sendMailRaw({
-    to,
+  await notifyAdmins({
+    kind: 'contact',
     subject: `Yeni iletişim mesajı - ${data.name}`,
-    html: `
-      <h2>Yeni iletişim formu mesajı</h2>
-      <table cellpadding="6" cellspacing="0" border="0">
-        ${rows.map(([k, v]) => `<tr><td><strong>${escapeHtml(k)}</strong></td><td>${escapeHtml(v)}</td></tr>`).join('')}
-      </table>
-      <p><strong>Mesaj:</strong><br>${escapeHtml(data.message)}</p>
-    `,
+    replyTo: data.email,
+    html: rowsToHtml(
+      'Yeni iletişim formu mesajı',
+      [
+        ['Ad Soyad', data.name],
+        ['E-posta', data.email],
+        ['Telefon', data.phone || '-'],
+        ['Konu', data.subject || '-'],
+      ],
+      `<p style="font-family:system-ui,sans-serif"><strong>Mesaj:</strong><br>${esc(data.message)}</p>`,
+    ),
     text: [
       'Yeni iletişim formu mesajı',
       `Ad Soyad: ${data.name}`,

@@ -22,6 +22,7 @@ import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/useAdminT';
 import { cn } from '@/lib/utils';
+import { apiErrorMessage } from '@/lib/api-error';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -67,8 +68,7 @@ function fmtDate(v: string | null | undefined) {
 }
 
 function errMsg(err: unknown, fallback: string) {
-  const e = err as any;
-  return e?.data?.error || e?.data?.message || e?.error || e?.message || fallback;
+  return apiErrorMessage(err, fallback);
 }
 
 const ORDER_STATUSES: OrderStatus[] = ['pending', 'confirmed', 'shipped', 'completed', 'cancelled'];

@@ -16,6 +16,7 @@ import {
 } from '@/integrations/shared';
 
 import { getServerApiBase } from './apiBase.server';
+import { cachedFetch } from '@/lib/server-cache';
 
 const API = getServerApiBase();
 
@@ -37,19 +38,25 @@ export type SiteSettingRow = {
 async function fetchJson<T>(path: string, opts?: { revalidate?: number }): Promise<T | null> {
   if (!API) return null;
 
-  try {
-    const base = API.replace(/\/+$/, '');
-    const url = `${base}${path.startsWith('/') ? path : `/${path}`}`;
+  const ttl = opts?.revalidate ?? 600;
 
-    const res = await fetch(url, {
-      next: { revalidate: opts?.revalidate ?? 600 },
-    });
+  // force-dynamic sayfalarda Next'in fetch cache'i devre disi kalir; surec ici
+  // TTL cache olmadan ayni ayar her render'da yeniden sorgulanir (bkz. server-cache.ts).
+  return cachedFetch<T | null>(`i18n:${path}`, ttl, async () => {
+    try {
+      const base = API.replace(/\/+$/, '');
+      const url = `${base}${path.startsWith('/') ? path : `/${path}`}`;
 
-    if (!res.ok) return null;
-    return (await res.json()) as T;
-  } catch {
-    return null;
-  }
+      const res = await fetch(url, {
+        next: { revalidate: ttl },
+      });
+
+      if (!res.ok) return null;
+      return (await res.json()) as T;
+    } catch {
+      return null;
+    }
+  });
 }
 
 function computeActiveLocales(meta: AppLocaleMeta[] | null | undefined): string[] {

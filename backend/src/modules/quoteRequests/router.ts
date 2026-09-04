@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import type { FastifyInstance, FastifyReply } from 'fastify';
-import { sendMailRaw } from '@shared/shared-backend/modules/mail-api';
+import { notifyAdmins } from '@/modules/notifyMail';
 import { z } from 'zod';
 
 import { pool } from '@/db/client';
@@ -69,12 +69,11 @@ function quoteHtml(data: QuoteRequestInput) {
 }
 
 async function sendAdminNotification(data: QuoteRequestInput) {
-  const to = (process.env.QUOTE_REQUEST_ADMIN_EMAIL || process.env.ADMIN_EMAIL || '').trim();
-  if (!to) return;
-  await sendMailRaw({
-    to,
+  await notifyAdmins({
+    kind: 'quote',
     subject: `Yeni teklif talebi - ${data.org_name}`,
     html: quoteHtml(data),
+    replyTo: data.email,
     text: [
       'Yeni fiyat teklifi talebi',
       `Kurum: ${data.org_name}`,

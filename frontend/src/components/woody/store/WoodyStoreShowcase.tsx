@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, CheckCircle2, ChevronRight, GraduationCap, MessageCircle, Play, ShoppingCart, X } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
@@ -110,6 +111,7 @@ export default function WoodyStoreShowcase({
   locale: string;
   filters?: StoreProductFilters;
 }) {
+  const router = useRouter();
   // S4 (2026-08-30): "Urun Videosu" 9:16 modal durumu
   const [productVideo, setProductVideo] = useState<{ url: string; title: string } | null>(null);
 
@@ -231,9 +233,18 @@ export default function WoodyStoreShowcase({
               </div>
               <Link
                 href={`/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`}
-                onClick={() => {
+                onClick={(event) => {
                   const quantity = Math.max(1, Number(product.minQuantity) || 1);
                   const unitPrice = numericPrice(product.price);
+                  const checkoutUrl = `/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`;
+                  const modifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+                  let navigated = false;
+                  const navigate = () => {
+                    if (navigated) return;
+                    navigated = true;
+                    router.push(checkoutUrl);
+                  };
+                  if (!modifiedClick) event.preventDefault();
                   reportAddToCart({
                     currency: 'TRY',
                     value: unitPrice * quantity,
@@ -243,7 +254,8 @@ export default function WoodyStoreShowcase({
                       price: unitPrice,
                       quantity,
                     }],
-                  });
+                  }, modifiedClick ? undefined : navigate);
+                  if (!modifiedClick) window.setTimeout(navigate, 800);
                 }}
                 className={`mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-2 py-2 text-[11px] font-black text-white transition hover:bg-[#d96f12] sm:mt-3 sm:px-3 sm:py-2.5 sm:text-[13px] ${FOCUS_RING}`}
                 data-testid={`store-buy-btn-${product.id}`}

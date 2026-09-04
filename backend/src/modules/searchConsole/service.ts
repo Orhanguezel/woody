@@ -153,8 +153,7 @@ async function entitySlugs(type: GscEntityType, locale: string): Promise<string[
     const [rows] = await pool.query<SlugRow[]>(
       `SELECT DISTINCT bi.slug
          FROM blog_posts_i18n bi
-         JOIN blog_posts b ON b.id = bi.blog_post_id
-        WHERE bi.locale = ? AND bi.slug <> '' AND b.is_active = 1 AND b.status = 'published'`,
+        WHERE bi.locale = ? AND bi.slug <> ''`,
       [locale],
     );
     return rows.map((row) => row.slug);
@@ -163,8 +162,7 @@ async function entitySlugs(type: GscEntityType, locale: string): Promise<string[
   const [rows] = await pool.query<SlugRow[]>(
     `SELECT DISTINCT pi.slug
        FROM product_i18n pi
-       JOIN products p ON p.id = pi.product_id
-      WHERE pi.locale = ? AND pi.slug <> '' AND p.is_active = 1`,
+      WHERE pi.locale = ? AND pi.slug <> ''`,
     [locale],
   );
   return rows.map((row) => row.slug);

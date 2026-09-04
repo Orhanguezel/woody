@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Loader2, ShieldCheck, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, Loader2, RotateCcw, ShieldCheck, ShoppingCart, Truck } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
 import {
@@ -28,6 +28,19 @@ function money(value: number) {
 
 const INPUT_CLS =
   'w-full rounded-lg border border-[#eadfce] bg-white px-3.5 py-2.5 text-[14px] text-[#24333f] outline-none transition focus:border-[#f58220] focus:ring-2 focus:ring-[#f58220]/20';
+
+const CHECKOUT_ASSURANCE: Record<string, { shipping: string; returns: string; payment: string }> = {
+  tr: { shipping: 'Teslimat ve kargo bilgileri', returns: 'İptal, iade ve geri ödeme', payment: 'PayTR ile güvenli kart ödemesi' },
+  en: { shipping: 'Delivery and shipping information', returns: 'Cancellation, returns and refunds', payment: 'Secure card payment with PayTR' },
+  de: { shipping: 'Liefer- und Versandinformationen', returns: 'Widerruf, Rückgabe und Erstattung', payment: 'Sichere Kartenzahlung mit PayTR' },
+  ar: { shipping: 'معلومات الشحن والتسليم', returns: 'الإلغاء والإرجاع واسترداد الأموال', payment: 'دفع آمن بالبطاقة عبر PayTR' },
+  fr: { shipping: 'Informations de livraison et d’expédition', returns: 'Annulation, retours et remboursements', payment: 'Paiement sécurisé par carte avec PayTR' },
+  ru: { shipping: 'Информация о доставке', returns: 'Отмена, возврат и возмещение', payment: 'Безопасная оплата картой через PayTR' },
+  es: { shipping: 'Información de entrega y envío', returns: 'Cancelaciones, devoluciones y reembolsos', payment: 'Pago seguro con tarjeta mediante PayTR' },
+  it: { shipping: 'Informazioni su consegna e spedizione', returns: 'Annullamenti, resi e rimborsi', payment: 'Pagamento sicuro con carta tramite PayTR' },
+  nl: { shipping: 'Informatie over levering en verzending', returns: 'Annulering, retouren en terugbetaling', payment: 'Veilige kaartbetaling via PayTR' },
+  'pt-br': { shipping: 'Informações de entrega e envio', returns: 'Cancelamentos, devoluções e reembolsos', payment: 'Pagamento seguro com cartão via PayTR' },
+};
 
 export default function CheckoutPurchaseClient({
   product,
@@ -65,6 +78,7 @@ export default function CheckoutPurchaseClient({
 
   const total = useMemo(() => product.price * quantity, [product.price, quantity]);
   const needsShipping = Boolean(product.hasPhysical);
+  const assurance = CHECKOUT_ASSURANCE[locale.toLowerCase()] || CHECKOUT_ASSURANCE.en;
 
   // GA4: satin alma akisina giris (sayfa basina bir kez)
   useEffect(() => {
@@ -326,6 +340,31 @@ export default function CheckoutPurchaseClient({
                   </a>
                 </div>
               ) : null}
+
+              <div className="mt-6 grid gap-2 rounded-xl bg-[#fff9ee] p-4 text-[12px] font-semibold text-[#5f6871] ring-1 ring-[#f0dcb6]/70">
+                <Link
+                  href={`/${locale}/teslimat-ve-kargo`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 transition hover:text-[#d96f12] ${FOCUS_RING}`}
+                >
+                  <Truck className="h-4 w-4 shrink-0 text-[#0c8f74]" aria-hidden />
+                  {assurance.shipping}
+                </Link>
+                <Link
+                  href={`/${locale}/iade-cayma`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 transition hover:text-[#d96f12] ${FOCUS_RING}`}
+                >
+                  <RotateCcw className="h-4 w-4 shrink-0 text-[#0c8f74]" aria-hidden />
+                  {assurance.returns}
+                </Link>
+                <span className="inline-flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-[#0c8f74]" aria-hidden />
+                  {assurance.payment} · 256-bit SSL
+                </span>
+              </div>
 
               <button
                 type="submit"

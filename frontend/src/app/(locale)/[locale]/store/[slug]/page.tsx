@@ -200,7 +200,7 @@ export default async function StoreProductPage({ params }: Props) {
       <JsonLd id="woody-store-product" data={woodyProductGraph({ locale, pathname, item })} />
       {dbItem ? (
         <>
-          <WoodyStoreProductDetail product={{ ...dbItem, price: undefined as any }} locale={locale} ui={ui} />
+          <WoodyStoreProductDetail product={dbItem} locale={locale} ui={ui} />
           <ProductSeoSummary product={dbItem} locale={locale} />
         </>
       ) : null}

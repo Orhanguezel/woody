@@ -77,12 +77,22 @@ export default async function StoreCheckoutPage({ params, searchParams }: Props)
               {order}
             </p>
           ) : null}
-          <Link
-            href={`/${locale}/store`}
-            className="mt-8 inline-flex min-h-11 items-center rounded-md bg-[var(--gm-primary)] px-5 py-3 font-semibold text-[var(--gm-surface)]"
-          >
-            {ui.checkoutReturnToStore}
-          </Link>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {!success && productSlug ? (
+              <Link
+                href={`/${locale}/store/checkout?product=${encodeURIComponent(productSlug)}`}
+                className="inline-flex min-h-11 items-center rounded-md bg-[var(--gm-primary)] px-5 py-3 font-semibold text-[var(--gm-surface)]"
+              >
+                {ui.buyNow}
+              </Link>
+            ) : null}
+            <Link
+              href={`/${locale}/store`}
+              className={`${!success && productSlug ? 'border border-[var(--gm-border)]' : 'bg-[var(--gm-primary)] text-[var(--gm-surface)]'} inline-flex min-h-11 items-center rounded-md px-5 py-3 font-semibold`}
+            >
+              {ui.checkoutReturnToStore}
+            </Link>
+          </div>
         </div>
       </div>
     </main>

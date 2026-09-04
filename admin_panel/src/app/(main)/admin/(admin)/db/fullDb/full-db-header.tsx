@@ -22,6 +22,7 @@ import {
 } from "@/integrations/hooks";
 
 import { buildDownloadName, triggerDownload } from "../shared/download";
+import { apiErrorMessage } from '@/lib/api-error';
 
 export type FullDbHeaderProps = {
   onChanged?: () => void; // ✅ optional
@@ -53,7 +54,7 @@ export const FullDbHeader: React.FC<FullDbHeaderProps> = ({ onChanged }) => {
       // ✅ call only if provided
       onChanged?.();
     } catch (err: any) {
-      toast.error(err?.data?.error || err?.message || t("snapshotError"));
+      toast.error(apiErrorMessage(err, t("snapshotError")));
     }
   };
 
@@ -64,7 +65,7 @@ export const FullDbHeader: React.FC<FullDbHeaderProps> = ({ onChanged }) => {
       toast.success(t("exportSuccess"));
       onChanged?.();
     } catch (err: any) {
-      toast.error(err?.data?.error || err?.message || t("exportError"));
+      toast.error(apiErrorMessage(err, t("exportError")));
     }
   };
 

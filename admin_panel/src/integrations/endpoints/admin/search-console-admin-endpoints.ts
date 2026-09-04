@@ -1,14 +1,14 @@
-import type { FetchArgs } from '@reduxjs/toolkit/query';
+import type { FetchArgs } from "@reduxjs/toolkit/query";
 
-import { baseApi } from '@/integrations/baseApi';
+import { baseApi } from "@/integrations/baseApi";
 import type {
   GscEntityIndexArgs,
   GscEntityIndexResp,
   GscEntityInspectArgs,
   GscIndexItem,
   GscStatusResp,
-} from '@/integrations/shared';
-import { SEARCH_CONSOLE_ADMIN_BASE } from '@/integrations/shared';
+} from "@/integrations/shared";
+import { SEARCH_CONSOLE_ADMIN_BASE } from "@/integrations/shared";
 
 export const searchConsoleAdminApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -20,22 +20,18 @@ export const searchConsoleAdminApi = baseApi.injectEndpoints({
         url: `${SEARCH_CONSOLE_ADMIN_BASE}/entity-index`,
         params,
       }),
-      providesTags: ['Settings'],
+      providesTags: ["Settings"],
     }),
     gscEntityInspect: build.mutation<GscIndexItem, GscEntityInspectArgs>({
       query: (body): FetchArgs => ({
         url: `${SEARCH_CONSOLE_ADMIN_BASE}/entity-inspect`,
-        method: 'POST',
+        method: "POST",
         body,
       }),
-      invalidatesTags: ['Settings'],
+      invalidatesTags: ["Settings"],
     }),
   }),
   overrideExisting: true,
 });
 
-export const {
-  useGscStatusQuery,
-  useGscEntityIndexQuery,
-  useGscEntityInspectMutation,
-} = searchConsoleAdminApi;
+export const { useGscStatusQuery, useGscEntityIndexQuery, useGscEntityInspectMutation } = searchConsoleAdminApi;

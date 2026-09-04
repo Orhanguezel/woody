@@ -44,6 +44,7 @@ import {
 import { scoreBlogSeoQuality } from '@/integrations/shared/blog-seo-quality';
 import BlogContentEditor from './blog-content-editor';
 import BlogQualityPanel from './blog-quality-panel';
+import { IndexStatusPanel } from '@/app/(main)/admin/_components/common/IndexStatusPanel';
 import { useContentLocales } from '@/app/(main)/admin/_components/common/useContentLocales';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -625,6 +626,8 @@ export default function BlogDetailClient({ id }: { id: string }) {
             </Card>
 
             <BlogQualityPanel score={quality} />
+
+            <IndexStatusPanel type="blog" locale={locale} slug={form.slug} disabled={isNew} />
           </div>
         </div>
       )}

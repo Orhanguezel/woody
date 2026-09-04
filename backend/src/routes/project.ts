@@ -13,6 +13,8 @@ import { registerWaitlistPublic } from '@/modules/waitlist';
 import { registerContentSourcePublic } from '@/modules/contentSource';
 import { registerDashboardAdmin } from '@/modules/dashboard';
 import { registerUserActivityAdmin } from '@/modules/userActivity';
+import { setGatewayRefundHandler, OrderRefundError } from '@shared/shared-backend/modules/orders/refund.service';
+import { refundPaytrOrder, PaytrRefundError } from '@/modules/checkout/paytrRefund';
 import { registerSearchConsoleAdmin } from '@/modules/searchConsole';
 
 export async function registerProjectPublic(api: FastifyInstance) {
@@ -34,6 +36,25 @@ export async function registerProjectPublic(api: FastifyInstance) {
   api.get('/notifications/unread-count', async (_req, reply) => reply.send({ count: 0 }));
   api.get('/notifications', async (_req, reply) => reply.send([]));
 }
+
+// Paylasilan /orders/:id/refund ucu yalnizca bayi cari hesabini biliyordu;
+// woody siparisleri PayTR oldugu icin her iade 400 donuyordu. Gecidi burada
+// enjekte ediyoruz — paylasilan modul saglayici detayini bilmeye devam etmez.
+setGatewayRefundHandler(async ({ orderId, paymentMethod, reason }) => {
+  if (paymentMethod !== 'paytr') {
+    throw new OrderRefundError('refund_not_supported_for_payment_method');
+  }
+  try {
+    await refundPaytrOrder({ orderId, reason });
+  } catch (err) {
+    // Denetleyici yalnizca OrderRefundError'i 400 + kod olarak dondurur;
+    // aksi halde panel anlamsiz bir 500 gorur.
+    if (err instanceof PaytrRefundError) {
+      throw new OrderRefundError(err.detail ? `${err.code}: ${err.detail}` : err.code);
+    }
+    throw err;
+  }
+});
 
 export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerHomeSectionsAdmin(adminApi);
