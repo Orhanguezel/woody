@@ -87,3 +87,4 @@ export * from '@/integrations/endpoints/admin/consultant_applications_admin.endp
 
 // Kullanici aktivitesi (ne yapti / nerede gezdi)
 export * from '@/integrations/endpoints/admin/user-activity-admin.endpoints';
+export * from './endpoints/admin/lead_followups_admin.endpoints';

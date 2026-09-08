@@ -1,5 +1,6 @@
 "use client";
 
+import { LeadFollowupCard } from '@/components/leads/LeadFollowupCard';
 import * as React from "react";
 
 import Link from "next/link";
@@ -210,6 +211,7 @@ export default function AdminContactDetailClient({ id }: { id: string }) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      {item ? <LeadFollowupCard key={id} kind="contact" id={id} /> : null}
     </div>
   );
 }

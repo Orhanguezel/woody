@@ -51,10 +51,12 @@ function initialForm() {
 
 export default function QuoteRequestForm({ copy, source }: Props) {
   const submitting = useRef(false);
+  const requestId = useRef<string | null>(null);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   function setField(name: keyof ReturnType<typeof initialForm>, value: string | boolean) {
+    requestId.current = null;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
@@ -64,11 +66,13 @@ export default function QuoteRequestForm({ copy, source }: Props) {
     submitting.current = true;
     setStatus('loading');
     try {
+      requestId.current ||= crypto.randomUUID();
       const res = await fetch('/api/v1/quote-requests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...form,
+          request_id: requestId.current,
           student_count: Number(form.student_count),
           source,
         }),
@@ -77,6 +81,7 @@ export default function QuoteRequestForm({ copy, source }: Props) {
       const result = await res.json() as { id?: string; success?: boolean };
       if (!result.success || !result.id) throw new Error('quote_request_unverified');
       reportAdsConversion('form', undefined, { lead_id: result.id, form_type: 'quote', source });
+      requestId.current = null;
       setForm(initialForm());
       setStatus('success');
     } catch {

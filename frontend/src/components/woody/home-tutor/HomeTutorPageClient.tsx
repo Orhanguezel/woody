@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BookOpen, LibraryBig, Play, ShoppingBag, Target, X } from 'lucide-react';
@@ -25,6 +25,7 @@ type HomeTutorPageUi = {
 
 type HomeTutorMedia = {
   heroVideo?: string;
+  heroPoster?: string;
   contentVideos?: Array<{ level?: string; src?: string; poster?: string }>;
 };
 
@@ -43,6 +44,16 @@ function localizedHref(locale: string, href?: string) {
   return href.startsWith('/') ? `/${locale}${href}` : `/${locale}/${href}`;
 }
 
+function ContentVideoPreview({src, poster, label}: {src: string; poster?: string; label: string}) {
+  const [playing, setPlaying] = useState(false);
+  return playing ? <video src={src} controls autoPlay playsInline className="size-full object-cover" /> : (
+    <button type="button" onClick={() => setPlaying(true)} aria-label={label} className={`relative size-full ${FOCUS_RING}`}>
+      {poster ? <Image src={poster} alt="" fill sizes="(max-width: 640px) 90vw, 380px" className="object-cover" /> : null}
+      <span className="absolute inset-0 flex items-center justify-center bg-black/20"><Play className="size-14 rounded-full bg-black/60 p-3 text-white" aria-hidden /></span>
+    </button>
+  );
+}
+
 export default function HomeTutorPageClient({
   content,
   locale,
@@ -52,7 +63,6 @@ export default function HomeTutorPageClient({
   locale: string;
   products?: StoreProduct[];
 }) {
-  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [showVideo, setShowVideo] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState<LevelMedia | null>(null);
   const [levelVideoUrl, setLevelVideoUrl] = useState<string | null>(null);
@@ -62,11 +72,8 @@ export default function HomeTutorPageClient({
   const pageUi = raw.pageUi ?? {};
   const media = raw.media ?? {};
 
-  useEffect(() => {
-    heroVideoRef.current?.play().catch(() => {});
-  }, []);
-
   const heroVideo = media.heroVideo || FALLBACK_HERO_VIDEO;
+  const heroPoster = media.heroPoster || (heroVideo === FALLBACK_HERO_VIDEO ? "/assets/woody/home-tutor-hero-poster.webp" : undefined);
   const captionByLevel: Record<string, string | undefined> = {
     basic: pageUi.videoCaptionBasic,
     junior: pageUi.videoCaptionJunior,
@@ -82,9 +89,7 @@ export default function HomeTutorPageClient({
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <section className="relative mt-[72px] h-[50vh] min-h-[400px] overflow-hidden">
-        <video ref={heroVideoRef} muted playsInline loop autoPlay className="absolute inset-0 size-full object-cover">
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        {heroPoster ? <Image src={heroPoster} alt="" fill priority sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-slate-900" /> }
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
           <h1 className="font-display text-[54px] font-black uppercase leading-none tracking-[0.1em] text-white drop-shadow-2xl md:text-[84px] lg:text-[112px]">
@@ -94,7 +99,7 @@ export default function HomeTutorPageClient({
             type="button"
             onClick={() => setShowVideo(true)}
             className={`mt-6 flex size-[70px] items-center justify-center rounded-full border-2 border-white/70 bg-transparent transition hover:scale-110 hover:border-white ${FOCUS_RING}`}
-            aria-label={pageUi.playHero}
+            aria-label={pageUi.playHero || "Tanıtım videosunu oynat"}
           >
             <Play className="ml-1 size-7 text-white" fill="currentColor" aria-hidden />
           </button>
@@ -126,14 +131,7 @@ export default function HomeTutorPageClient({
                 <div key={video.src} className="mx-auto w-full max-w-[380px]">
                   <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-2xl">
                     {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                    <video
-                      src={video.src}
-                      poster={video.poster}
-                      controls
-                      preload="none"
-                      playsInline
-                      className="size-full object-cover"
-                    />
+                    <ContentVideoPreview src={video.src!} poster={video.poster} label={captionByLevel[video.level ?? ''] || pageUi.videoWatch || 'Videoyu izle'} />
                   </div>
                   {captionByLevel[video.level ?? ''] ? (
                     <p className="mt-4 text-center text-[16px] font-bold tracking-wide text-gray-800 md:text-[18px]">

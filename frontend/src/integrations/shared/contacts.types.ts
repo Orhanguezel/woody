@@ -96,6 +96,7 @@ export interface ContactListQueryParams {
  * PUBLIC create payload – ContactCreateSchema ile uyumlu
  */
 export interface ContactCreatePayload {
+  request_id?: string;
   name: string;
   email: string;
   phone: string;

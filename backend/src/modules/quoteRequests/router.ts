@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { insertLeadOnce } from '@/modules/leads/insertOnce';
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import { notifyAdmins } from '@/modules/notifyMail';
 import { z } from 'zod';
@@ -9,6 +9,7 @@ const LEVELS = ['basic', 'junior', 'senior', 'pro', 'mixed'] as const;
 const STATUSES = ['new', 'contacted', 'quoted', 'won', 'lost'] as const;
 
 const quoteRequestSchema = z.object({
+  request_id: z.string().uuid().optional(),
   org_name: z.string().trim().min(2).max(180),
   contact_name: z.string().trim().min(2).max(180),
   email: z.string().trim().email().max(255),
@@ -101,29 +102,10 @@ export async function registerQuoteRequestsPublic(app: FastifyInstance) {
     const parsed = quoteRequestSchema.safeParse(req.body || {});
     if (!parsed.success) return badRequest(reply, 'invalid_quote_request', parsed.error.flatten());
     const data = parsed.data;
-    const id = randomUUID();
-
-    await pool.execute(
-      `
-        INSERT INTO quote_requests
-          (id, org_name, contact_name, email, phone, product_id, student_count, level, city, district, message, source)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `,
-      [
-        id,
-        data.org_name,
-        data.contact_name,
-        data.email.toLowerCase(),
-        nullable(data.phone),
-        nullable(data.productId),
-        data.student_count,
-        data.level,
-        nullable(data.city),
-        nullable(data.district),
-        nullable(data.message),
-        data.source || 'website',
-      ],
-    );
+    const {id,duplicate} = await insertLeadOnce('quote_requests',data.request_id,
+      ['org_name','contact_name','email','phone','product_id','student_count','level','city','district','message','source'],
+      [data.org_name,data.contact_name,data.email.toLowerCase(),nullable(data.phone),nullable(data.productId),data.student_count,data.level,nullable(data.city),nullable(data.district),nullable(data.message),data.source || 'website']);
+    if (duplicate) return reply.code(200).send({id,success:true,duplicate:true});
 
     sendAdminNotification(data, req.log).catch((err) => {
       req.log.error({ err }, 'quote_request_admin_mail_failed');

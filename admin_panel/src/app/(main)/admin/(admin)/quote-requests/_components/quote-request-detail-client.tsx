@@ -1,5 +1,6 @@
 'use client';
 
+import { LeadFollowupCard } from '@/components/leads/LeadFollowupCard';
 import * as React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Save } from 'lucide-react';
@@ -122,6 +123,7 @@ export default function QuoteRequestDetailClient({ id }: { id: string }) {
       ) : (
         <Card><CardContent className="py-12 text-center text-gm-muted">Kayıt bulunamadı</CardContent></Card>
       )}
+      {item ? <LeadFollowupCard key={id} kind="quote" id={id} /> : null}
     </div>
   );
 }

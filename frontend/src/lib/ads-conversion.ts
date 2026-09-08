@@ -56,6 +56,14 @@ function reportGa4Lead(kind: GoogleAdsConversionKind, details: Record<string, st
 export function reportAdsConversion(kind: GoogleAdsConversionKind, url?: string, details: Record<string, string> = {}): void {
   if (typeof window === 'undefined') return;
 
+  if (kind === 'form' && details.lead_id) {
+    try {
+      const key = `woody:lead-reported:${details.lead_id}`;
+      if (sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, '1');
+    } catch { /* Storage restrictions must not break form completion. */ }
+  }
+
   // GA4 lead olayi Ads etiketinden BAGIMSIZ atilir: etiket/ID eksik olsa bile
   // GA4 raporlarinda lead gorunur.
   reportGa4Lead(kind, details);
@@ -66,7 +74,7 @@ export function reportAdsConversion(kind: GoogleAdsConversionKind, url?: string,
 
   if (typeof gtag !== 'function' && conversionId && label) {
     window.__pendingAnalyticsEvents = window.__pendingAnalyticsEvents || [];
-    window.__pendingAnalyticsEvents.push(['conversion', { send_to: `${conversionId}/${label}` }]);
+    window.__pendingAnalyticsEvents.push(['conversion', { send_to: `${conversionId}/${label}`, ...(details.lead_id ? {transaction_id: details.lead_id} : {}) }]);
   }
   if (typeof gtag !== 'function' || !conversionId || !label) {
     // Etiket/ID yoksa veya gtag yüklenmediyse: navigasyonu engelleme.
@@ -84,6 +92,7 @@ export function reportAdsConversion(kind: GoogleAdsConversionKind, url?: string,
   try {
     gtag('event', 'conversion', {
       send_to: `${conversionId}/${label}`,
+      ...(details.lead_id ? {transaction_id: details.lead_id} : {}),
       ...(url ? { event_callback: go } : {}),
     });
   } catch {

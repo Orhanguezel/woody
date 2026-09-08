@@ -1,3 +1,5 @@
+> **Devam paketi:** [Kalan uygulama ve kararlar](WOODY-KALAN-UYGULAMA-2026-09-08.md). Form tekrar koruması, admin satış takibi, video kapak/yükleme ve Seviye Bulucu metadata düzeltmeleri uygulandı; bu satır tek başına yayın kanıtı değildir. İşletme girdileri, GA4 beyanı/anahtarı, gerçek ödeme testi ve reklam apply kararı açık kalır. Woody sosyal/Meta yayın işleri doğrulanmış tenant kapsamı dışında.
+
 # Woody — Satış büyümesi uygulama checklist’i
 
 > **Son kontrol ve yayın — 8 Eylül 2026:** Ödeme/iade defteri, sabit browser/server teslim seçimi, kaynak atfı ve level finder satış bağlantıları yayımlandı. 18 hedefli test ve yalnız geçici MySQL tablolarıyla 7 kabul senaryosu geçti. Frontend build: `cWJuJg5vHAHIQr7Nra4RJ`. İç CTA'nın 400 ms beklemesi ve tam sayfa yenilemesi kaldırıldı; canlıda SPA geçişi ve kaynak atfı doğrulandı. Ayrıntılar: [son kontrol raporu](WOODY-SON-KONTROL-VE-YAYIN-2026-09-08.md).
@@ -14,7 +16,7 @@
 
 **Canlı kabul:** mobil `/tr/home-tutor` HTTP 200; Basic `home-basic-000d`, Junior `home-junior-000e`, Senior `home-senior-000f` ödeme bağlantıları; JavaScript hatası ve yatay taşma yok. Üç Woody PM2 servisi online. Tanitio’da 11 izlenen rakibin 11’inde rapor doğrulandı; hatalı hafıza kaydı silinmeden pasifleştirildi. Ayrıntılı Tanitio yayın kaydı kardeş deponun kökündeki `WOODY-UYGULAMA-VE-YAYIN-2026-09-08.md` dosyasındadır.
 
-**Açık kritik konu:** yayından sonraki read-only kontrolde `GA4_API_SECRET` hâlâ yapılandırılmamıştı. PayTR aktif ve test modu kapalı. Eski siparişlerde attribution yok; 4 Eylül tarihli bir refund outbox kaydı bekliyor. Bu eski olay bugünün satışı/iadesi olarak yeniden gönderilmez. Kısmi iade tutarı, Measurement Protocol bağlantısı ve izinli yeni ödeme için tek olay kabulü henüz tamamlanmadı. Ticari hedef, reklam tavanı ve gerçek test ödeme tutarı ayrıca somutlaştırılmalı.
+**Açık kritik konu:** yayından sonraki read-only kontrolde `GA4_API_SECRET` hâlâ yapılandırılmamıştı. PayTR aktif ve test modu kapalı. Eski siparişlerde attribution yok; 4 Eylül tarihli bir refund outbox kaydı bekliyor. Bu eski olay bugünün satışı/iadesi olarak yeniden gönderilmez. Kısmi iade tutarı düzeltildi; Measurement Protocol bağlantısı ve izinli yeni ödeme için gerçek uçtan uca kabul hâlâ açık. Ticari hedef, reklam tavanı ve gerçek test ödeme tutarı ayrıca somutlaştırılmalı.
 
 Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazmamak için yerel belge güncellemesi olarak bırakıldı.
 
@@ -61,10 +63,10 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [x] Güncel canlı `GA4_MEASUREMENT_ID`, Measurement Protocol erişimi ve PayTR enabled/testMode durumu yalnız varlık/boolean olarak kontrol edilsin; değerler log/rapora yazılmasın.
 - [x] `commerce_measurement_outbox` pending/failed/sent sayıları, hata nedenleri ve worker çalışması okunsun; neden kanıtlanmadan yeni boru hattı kurulmasın.
 - [ ] Başarılı ödeme, callback, order_attribution, outbox ve GA4 olayının kimlik/durum eşlemesi yapılsın. Gerçek ödeme ile test/veri taşıma kayıtları ayırılsın.
-- [ ] Browser/server teslim sahibi tek olsun; aynı sipariş iki yoldan sayılmasın. Callback tekrarında idempotency korunsun.
-- [ ] Kısmi iade `order.total` yerine gerçekten iade edilen tutarla ölçülsün. Mevcut `loadCommerceMeasurement` refund yolunun tam/parsiyel durum ve tutar davranışı incelensin.
-- [ ] Analytics/ad consent ve izinle toplanan client/session ID taşıma mantığı denetlensin. Hash/sunucu ID’si kullanmak tek başına izin yerine geçmez.
-- [ ] Test siparişleri finans entegrasyonu ve analitikten tutarlı ayrıştırılsın. Eski ölçülemeyen ödeme bugünün satışı diye tekrar gönderilmesin; tarih/teslim sınırına uygun mutabakat notu tutulsun.
+- [x] Browser/server teslim sahibi tek olsun; aynı sipariş iki yoldan sayılmasın. Callback tekrarında idempotency korunsun.
+- [x] Kısmi iade `order.total` yerine gerçekten iade edilen tutarla ölçülsün. Mevcut `loadCommerceMeasurement` refund yolunun tam/parsiyel durum ve tutar davranışı incelensin.
+- [x] Analytics/ad consent ve izinle toplanan client/session ID taşıma mantığı denetlensin. Hash/sunucu ID’si kullanmak tek başına izin yerine geçmez.
+- [x] Test siparişleri finans entegrasyonu ve analitikten tutarlı ayrıştırılsın. Eski ölçülemeyen ödeme bugünün satışı diye tekrar gönderilmesin; tarih/teslim sınırına uygun mutabakat notu tutulsun.
 
 **Kabul:** Kontrollü testte başarılı ödeme tek purchase; yenilenen dönüş sayfası/tekrar callback ilave purchase üretmez. Başarısız/iptal/test ödeme gerçek satışa karışmaz. Kısmi iade kendi tutarıyla tek refund. Doğrulanmış günlük ödeme toplamı finans kaynağıyla eşleşir; izin nedeniyle raporlanmayan olay ayrı sınıflanır. Finans kaynağı GA4’e bağımlı olmaz.
 
@@ -79,9 +81,9 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [ ] Sayfa açıldıktan sonraki ilk 1–3 saniyede CTA/route geçişi senaryosu test edilsin; olay doğru sayfa/kaynakla tam bir kez teslim edilsin.
 - [ ] İlk sayfa ile SPA geçişinde çift page_view olmadığını kanıtlayan ağ kaydı alınsın.
 - [x] **Consent Mode v2 modellemesi açıldı (8 Eylül, Tanitio oturumu).** `gtag('set','ads_data_redaction',true)` ve `gtag('set','url_passthrough',true)` eklendi (`AnalyticsScripts.tsx`). Rıza varsayılanı `analytics=false, marketing=false` **DEĞİŞTİRİLMEDİ** — KVKK açısından doğru. Eksik olan bu iki ayardı: onlar olmadan reddeden ziyaretçi tamamen kayboluyor, Google dönüşüm modellemesi yapamıyordu. `url_passthrough` çerez yazılamadığında gclid/wbraid'i adres satırından taşır — aşağıdaki UTM/GCLID maddesinin izin uyumlu ayağı budur.
-- [ ] UTM/GCLID/GBRAID/WBRAID uygun parametreleri izin ve veri politikasıyla uyumlu olarak yönlendirme/checkout boyunca korunsun; kişisel bilgi event parametresi yapılmasın.
+- [x] UTM/GCLID/GBRAID/WBRAID uygun parametreleri izin ve veri politikasıyla uyumlu olarak yönlendirme/checkout boyunca korunsun; kişisel bilgi event parametresi yapılmasın.
 - [ ] PayTR dönüşünde referral atfı test edilsin; GA4 istenmeyen referral ayarı gerekiyorsa change-set hazırlansın.
-- [ ] Test tarayıcısının tüm GA4/Ads toplama domainleri engellensin veya test mülkü kullanılsın; gerçek müşteri verisiyle QA ayrıştırılsın.
+- [x] Test tarayıcısının tüm GA4/Ads toplama domainleri engellensin veya test mülkü kullanılsın; gerçek müşteri verisiyle QA ayrıştırılsın.
 
 **Kabul:** Reddetme ve kabul senaryoları ayrı kanıtlanır; izin tercihleri korunur. Uzun bekleme gerektirmeyen doğru tek olay teslimi; kontrolsüz GTM+gtag ikilemesi yok. 621 Ads tıklaması/41 GA4 CPC oturumu farkının nedenleri aynı tarihli örneklemle raporlanır; birebir eşitlik zorunlu kabul ölçütü yapılmaz.
 
@@ -106,8 +108,8 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [ ] Woody lead+ecommerce hedefleri ayrı gösterilsin; “dönüşüm” etiketi hangi olayı anlattığını açıklasın.
 - [ ] Kullanıcı tarih filtresi GA4/Commerce kapsamlarına doğru taşınsın veya sabit dönem görünürce ayrı belirtirsin.
 - [ ] Commerce cache doldurma/güncellik/hata durumu canlı oturumda doğrulansın; hata “0 satış” olarak gösterilmesin.
-- [ ] Net tahsilat, Ads dönüşüm değeri ve kâr ayrı; `adSpend:0` ile hesaplanan değer kâr diye sunulmasın.
-- [ ] Ödeme/iade/GA4 farkı için kaynak ve kapsam açıklaması gösterilsin.
+- [x] Net tahsilat, Ads dönüşüm değeri ve kâr ayrı; `adSpend:0` ile hesaplanan değer kâr diye sunulmasın.
+- [x] Ödeme/iade/GA4 farkı için kaynak ve kapsam açıklaması gösterilsin.
 
 **Kabul:** 8 Eylül baseline’ı aynı tarihlerde yeniden okunduğunda 3.000 ödeme/1.500 iade görünür; GA4 sıfır sonucu finans kaydını gizlemez. GSC gecikmesi ayrı. Başka tenant’a veri sızmaz. Canlıdan okunan kaynak güncelliği görünür.
 
@@ -116,7 +118,7 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [x] Rapordaki sorunlu fact ID’leri öneri motorundan geçici çıkarılsın; silmeden audit izi korunsun.
 - [ ] Her sayısal kayıt sourceRunId, mutlak dönem, örneklem, hesap formülü ve metric türü taşısın.
 - [ ] CPC=cost/clicks; CTR=clicks/impressions; ROAS yalnız gelir tanımı uygunsa. Dönem oranlarının basit ortalaması kullanılmasın.
-- [ ] Inference güven skoru ile istatistiksel kanıt ayrışsın; birkaç olayla yaş/saat/şehir otomatik karar üretilmesin.
+- [x] Inference güven skoru ile istatistiksel kanıt ayrışsın; birkaç olayla yaş/saat/şehir otomatik karar üretilmesin.
 - [ ] Çelişki ve eski dönem denetimi; düzeltilen kayda superseded bağlantısı.
 
 **Kabul:** Sorunlu örnek 128,65/11 hesabını 9,63 olarak kaydedemez; 9 günlük kanıt 30 günlük diye sunulamaz; WhatsApp değeri satış getirisi diye öneriye girmez. 30 hafıza kaydı topluca silinmez.
@@ -128,9 +130,9 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 **Dosyalar:** `frontend/src/components/woody/home-tutor/HomeTutorPageClient.tsx`, `frontend/src/components/woody/store/WoodyStoreClient.tsx`, `WoodyStoreShowcase.tsx`, `WoodyStoreProductDetail.tsx`, `CheckoutPurchaseClient.tsx`, `frontend/src/components/woody/level-finder/LevelFinderClient.tsx`.
 
 - [x] Basic/Junior/Senior CTA’sı mevcut aktif ürün ID’sini korusun; yalnız sabit mağaza URL’si kullanılmasın.
-- [ ] Level finder sonucundan doğru kullanım tipi/seviyeye geçiş; satışı olmayan seviyede açıklayıcı alternatif.
+- [x] Level finder sonucundan doğru kullanım tipi/seviyeye geçiş; satışı olmayan seviyede açıklayıcı alternatif.
 - [ ] PRO için işletme kararı kaydedilsin; gerçek ürünü olmayan “Satın Al” düğmesi uygun bilgi/teklif adımına dönsün.
-- [ ] Ürün bulunamadı/pasif/stoksuz durumda yanlış ürün veya boş checkout açılmasın.
+- [x] Ürün bulunamadı/pasif/stoksuz durumda yanlış ürün veya boş checkout açılmasın.
 
 **Kabul:** Masaüstü ve 390 px’de 3 aktif ev seviyesi doğru ürün/fiyatla açılır; geri dönüş seçimi kaybetmez; URL değiştirerek yanlış fiyat uygulanamaz; mevcut API fiyat otoritesi korunur.
 
@@ -139,7 +141,7 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [ ] Güncel katalog snapshot’ı alınsın; Senior fiyat farkı işletmeye doğrulatılsın. Seed/rapor fiyatı otomatik canlı fiyat yapmasın.
 - [ ] Her set için kutu içeriği, hedef kullanım, seviye, dijital erişim süresi, uygulayıcı ve destek kapsamı gerçek katalogdan açıklansın.
 - [ ] Mini School için 3 × 2.500 = 7.500 TL başlangıç tutarı ve öğretmen setinin dahil/değil durumu görünür olsun.
-- [ ] Öğrenci minimum3 kuralı arayüz ve backend’de test edilsin; 1/2 adet isteği reddedilsin; öğretmen ve ev setleri yanlışlıkla min3 olmasın.
+- [x] Öğrenci minimum3 kuralı arayüz ve backend’de test edilsin; 1/2 adet isteği reddedilsin; öğretmen ve ev setleri yanlışlıkla min3 olmasın.
 - [ ] Teslimat/kargo/aktivasyon bilgisi ürün kararına yakın; olmayan ücretsiz kargo veya destek vaadi yok.
 - [ ] Video posterleri doğru içerikten; görsel kontrol ve HTTP 200/MIME doğrulaması. Tüm reklam/Reel kapakları ilgili nihai videoya ait olsun.
 
@@ -147,7 +149,7 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 
 ### W06 — İki hedef kitle için açılış ve mobil kolaylık
 
-- [ ] Mevcut home-tutor/preschool sayfalarına hedefe uygun ana CTA; ikinci paralel site kurulmasın.
+- [x] Mevcut home-tutor/preschool sayfalarına hedefe uygun ana CTA; ikinci paralel site kurulmasın.
 - [ ] Ebeveyn trafiği Ev ürünlerine odaklı giriş alsın; genel mağaza sırası değiştirilmeden ankraj/odak kullanılabilsin.
 - [ ] Kurum akışında 30+ öğrenci modeli; daha küçük grup için Mini School alternatifi.
 - [ ] İlk görünümde kısa ürün vaadi ve gerçek demo; uzun açıklamalar erişilebilir aç/kapa ile sadeleşsin.
@@ -175,7 +177,7 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [ ] Ders planı yazısına mevcut içeriğe uygun örnek plan/demo CTA’sı.
 - [ ] 4–5–6 yaş yazısına level finder/ev seti CTA’sı.
 - [ ] Set seçimi yazısına gerçek içerik/kullanım/fiyat karşılaştırması; kurum ve ev yolları ayrı.
-- [ ] Başlık/meta, canonical/hreflang/sitemap ve ilk 5 URL’nin güncel indeks kontrolü; eski hata sayılarını yeniden kullanma.
+- [x] Başlık/meta, canonical/hreflang/sitemap ve ilk 5 URL’nin güncel indeks kontrolü; eski hata sayılarını yeniden kullanma.
 - [ ] Ürün schema fiyat/stok/URL ile sayfa tutarlı; sahte review yok.
 - [ ] Mobil Lighthouse/CWV başlangıcı yeniden ölçülsün; eski 4,1 saniyeyi güncel sonuç sayma. Medya yüklemesi, JS ve tıklama hedeflerini gerçek bulguya göre düzelt.
 

@@ -1,3 +1,4 @@
+import { registerLeadFollowupsAdmin } from '@/modules/leadFollowups/router';
 import type { FastifyInstance } from 'fastify';
 import { registerHomeLayoutPublic, registerHomeSectionsAdmin } from '@/modules/homeSections';
 import { registerAdminPanelCommerceStubs } from '@/modules/adminPanelStubs/router';
@@ -71,6 +72,7 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   await registerCatalogAdmin(adminApi);
   await registerEntitlementsAdmin(adminApi);
   await registerQuoteRequestsAdmin(adminApi);
+  await registerLeadFollowupsAdmin(adminApi);
   await registerContactsAdmin(adminApi);
   await registerSubscriptionsAdmin(adminApi);
 }

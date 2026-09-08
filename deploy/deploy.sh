@@ -138,6 +138,7 @@ cd "$DEPLOY_PATH/backend"
 rm -rf dist .tsbuildinfo
 $BUN_BIN run build
 $BUN_BIN scripts/apply-commerce-refund-ledger.ts
+$BUN_BIN scripts/apply-lead-followups.ts
 BASH
   ok "Backend build tamam"
 

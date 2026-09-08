@@ -1,5 +1,6 @@
 'use client';
 
+import { LeadFollowupSummary } from '@/components/leads/LeadFollowupSummary';
 import * as React from 'react';
 import Link from 'next/link';
 import {
@@ -113,6 +114,8 @@ export default function QuoteRequestsListClient() {
         <StatCard label="İşlem Bekleyen" value={pipelineCount} icon={Clock3} accent="warning" />
         <StatCard label="Kazanılan" value={wonCount} icon={Trophy} accent="success" />
       </div>
+
+      <LeadFollowupSummary />
 
       <Card className="overflow-hidden rounded-[32px] border-gm-border-soft bg-gm-surface/20 shadow-xl backdrop-blur-sm">
         <div className="flex flex-col gap-4 border-b border-gm-border-soft bg-gm-surface/20 px-6 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-8">

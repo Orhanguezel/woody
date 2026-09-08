@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { insertLeadOnce } from '@/modules/leads/insertOnce';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { notifyAdmins, rowsToHtml, escapeHtml as esc } from '@/modules/notifyMail';
 import { z } from 'zod';
@@ -15,6 +15,7 @@ const SELECT_COLS = `
 `;
 
 const contactCreateSchema = z.object({
+  request_id: z.string().uuid().optional(),
   name: z.string().trim().min(2).max(180),
   email: z.string().trim().email().max(255),
   phone: z.string().trim().min(3).max(64),
@@ -105,28 +106,13 @@ export async function registerContactsPublic(app: FastifyInstance) {
 
     // Honeypot dolu → bot. Sessizce başarı dön, kayıt oluşturma.
     if (data.website && data.website.trim()) {
-      return reply.code(201).send({ id: randomUUID(), success: true });
+      return reply.code(201).send({ id: null, success: true });
     }
 
-    const id = randomUUID();
-    await pool.execute(
-      `
-        INSERT INTO contact_messages
-          (id, name, email, phone, subject, message, ip, user_agent, website)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `,
-      [
-        id,
-        data.name,
-        data.email.toLowerCase(),
-        nullable(data.phone),
-        nullable(data.subject),
-        data.message,
-        clientIp(req),
-        (req.headers['user-agent'] as string | undefined)?.slice(0, 512) || null,
-        null,
-      ],
-    );
+    const {id,duplicate} = await insertLeadOnce('contact_messages',data.request_id,
+      ['name','email','phone','subject','message','ip','user_agent','website'],
+      [data.name,data.email.toLowerCase(),nullable(data.phone),nullable(data.subject),data.message,clientIp(req),(req.headers['user-agent'] as string | undefined)?.slice(0,512)||null,null]);
+    if (duplicate) return reply.code(200).send({id,success:true,duplicate:true});
 
     sendAdminNotification(data, req.log).catch((err) => {
       req.log.error({ err }, 'contact_admin_mail_failed');

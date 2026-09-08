@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useId, useMemo, useState } from 'react';
+import { useCallback, useId, useMemo, useState, useRef } from 'react';
 import { toast } from 'sonner';
 
 import { useCreateContactPublicMutation } from '@/integrations/rtk/hooks';
@@ -66,6 +66,9 @@ export default function ContactForm({ locale, t }: Props) {
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const submitting = useRef(false);
+  const requestId = useRef<string | null>(null);
+  const requestSignature = useRef('');
   const [topic, setTopic] = useState<TopicKey>('appointment');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
@@ -117,6 +120,7 @@ export default function ContactForm({ locale, t }: Props) {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting.current) return;
     setTouched({ firstName: true, phone: true, email: true, message: true, agree: true });
 
     if (
@@ -129,7 +133,12 @@ export default function ContactForm({ locale, t }: Props) {
       return;
     }
 
+    submitting.current = true;
+    const signature = JSON.stringify([fullName,email,phone,computedSubject,message]);
+    if (signature !== requestSignature.current) {requestId.current = null; requestSignature.current = signature;}
+    requestId.current ||= crypto.randomUUID();
     const payload: ContactCreatePayload = {
+      request_id: requestId.current,
       name: fullName,
       email: safeStr(email),
       phone: safeStr(phone),
@@ -139,9 +148,10 @@ export default function ContactForm({ locale, t }: Props) {
     };
 
     try {
-      await createContact(payload).unwrap();
-      // Google Ads lead dönüşümü (birincil): iletişim formu gönderildi.
-      reportAdsConversion('form');
+      const result = await createContact(payload).unwrap();
+      if (!result.id) throw new Error('contact_unverified');
+      reportAdsConversion('form', undefined, {lead_id: result.id, form_type: 'contact', source: 'website'});
+      requestId.current = null;
       toast.success(t.success || 'Sent');
       setFirstName('');
       setLastName('');
@@ -155,7 +165,7 @@ export default function ContactForm({ locale, t }: Props) {
     } catch (err) {
       console.error('createContact error', err);
       toast.error(t.errorGeneric || 'Failed');
-    }
+    } finally { submitting.current = false; }
   };
 
   const inputCls = (field?: 'firstName' | 'phone' | 'email' | 'message') =>
