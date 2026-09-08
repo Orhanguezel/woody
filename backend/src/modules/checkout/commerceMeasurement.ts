@@ -21,6 +21,7 @@ export type PurchaseMeasurement = {
 export async function loadCommerceMeasurement(
   orderId: string,
   eventName: 'purchase' | 'refund' = 'purchase',
+  refundId?: string,
 ): Promise<PurchaseMeasurement | null> {
   const [orders] = await pool.execute<RowDataPacket[]>(
     `
@@ -28,17 +29,27 @@ export async function loadCommerceMeasurement(
         FROM orders o
         JOIN order_attribution a ON a.order_id = o.id
         JOIN payment_attempts pa ON pa.payment_ref = o.payment_ref
-       WHERE o.id = ? AND o.payment_status = ?
+       WHERE o.id = ? AND o.payment_status IN ('paid','refunded')
          AND a.consent_state = 'granted' AND a.ga_client_id IS NOT NULL
          AND a.ga_client_id <> ''
          AND pa.status IN ('succeeded','refunded','partially_refunded')
          AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload, '$.testMode')), 'false') NOT IN ('true','1')
        LIMIT 1
     `,
-    [orderId, eventName === 'refund' ? 'refunded' : 'paid'],
+    [orderId],
   );
   const order = orders[0];
   if (!order) return null;
+  let value = Number(order.total);
+  if (eventName === 'refund') {
+    if (!refundId) return null;
+    const [refunds] = await pool.execute<RowDataPacket[]>(
+      `SELECT amount FROM commerce_refunds WHERE id=? AND order_id=? AND status='succeeded'`, [refundId, orderId],
+    );
+    if (!refunds[0]) return null;
+    value = Number(refunds[0].amount);
+  }
+  if (!Number.isFinite(value) || value <= 0) return null;
 
   const [items] = await pool.execute<RowDataPacket[]>(
     `
@@ -54,10 +65,10 @@ export async function loadCommerceMeasurement(
   return {
     transaction_id: String(order.id),
     currency: 'TRY',
-    value: Number(order.total),
+    value,
     client_id: String(order.ga_client_id),
     session_id: order.ga_session_id ? String(order.ga_session_id) : undefined,
-    items: items.map((item) => ({
+    items: eventName === 'refund' ? [] : items.map((item) => ({
       item_id: String(item.product_id),
       item_name: String(item.title),
       price: Number(item.unit_price),
@@ -68,6 +79,8 @@ export async function loadCommerceMeasurement(
 
 export async function processCommerceMeasurementOutbox(app: FastifyInstance) {
   if (!env.GA4_API_SECRET || !env.GA4_MEASUREMENT_ID) return;
+  await pool.execute(`UPDATE commerce_measurement_outbox SET status='failed',attempt_count=10,last_error='measurement_event_expired' WHERE destination='ga4' AND status IN ('pending','failed') AND attempt_count<10 AND created_at < DATE_SUB(CURRENT_TIMESTAMP(3), INTERVAL 72 HOUR)`);
+  await pool.execute(`UPDATE commerce_measurement_outbox SET status='failed',attempt_count=10,last_error='measurement_delivery_uncertain' WHERE destination='ga4' AND status='processing' AND updated_at < DATE_SUB(CURRENT_TIMESTAMP(3), INTERVAL 5 MINUTE)`);
   const [rows] = await pool.execute<RowDataPacket[]>(
     `
       SELECT id, order_id, event_name, attempt_count, created_at
@@ -90,8 +103,9 @@ export async function processCommerceMeasurementOutbox(app: FastifyInstance) {
     if (claim.affectedRows !== 1) continue;
 
     try {
-      const eventName = row.event_name === 'refund' ? 'refund' : 'purchase';
-      const purchase = await loadCommerceMeasurement(String(row.order_id), eventName);
+      const eventName = String(row.event_name).startsWith('refund') ? 'refund' : 'purchase';
+      const refundId = String(row.event_name).startsWith('refund:') ? String(row.event_name).slice(7) : undefined;
+      const purchase = await loadCommerceMeasurement(String(row.order_id), eventName, refundId);
       if (!purchase) {
         await pool.execute(`UPDATE commerce_measurement_outbox SET status='failed', attempt_count=10, last_error='measurement_ineligible_consent_payment_or_test' WHERE id=?`, [row.id]);
         continue;
@@ -105,6 +119,7 @@ export async function processCommerceMeasurementOutbox(app: FastifyInstance) {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           client_id: purchase.client_id,
+          consent: { ad_user_data: 'DENIED', ad_personalization: 'DENIED' },
           timestamp_micros: new Date(row.created_at).getTime() * 1000,
           events: [{
             name: eventName,
@@ -112,9 +127,9 @@ export async function processCommerceMeasurementOutbox(app: FastifyInstance) {
               transaction_id: purchase.transaction_id,
               currency: purchase.currency,
               value: purchase.value,
-              items: purchase.items,
+              ...(purchase.items.length ? { items: purchase.items } : {}),
               engagement_time_msec: 1,
-              ...(purchase.session_id ? { session_id: purchase.session_id } : {}),
+              ...(/^\d+$/.test(purchase.session_id || '') ? { session_id: Number(purchase.session_id) } : {}),
             },
           }],
         }),

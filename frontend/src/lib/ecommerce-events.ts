@@ -77,7 +77,7 @@ export function storePendingOrder(orderId: string, payload: EcommercePayload): v
 }
 
 /** Basari sayfasinda cagrilir; siparis basina tek purchase olayi gonderir. */
-export function reportPurchaseOnce(orderId: string, verified?: EcommercePayload): void {
+export function reportPurchaseOnce(orderId: string, verified?: EcommercePayload, delivery: 'browser' | 'server' = 'browser'): void {
   if (typeof window === 'undefined' || !orderId) return;
   try {
     if (window.sessionStorage.getItem(PURCHASE_SENT_KEY(orderId))) return;
@@ -93,7 +93,7 @@ export function reportPurchaseOnce(orderId: string, verified?: EcommercePayload)
   } catch {
     // bozuk kayit — transaction_id yeterli
   }
-  sendEvent('purchase', { transaction_id: orderId, ...payload });
+  if (delivery === 'browser') sendEvent('purchase', { transaction_id: orderId, ...payload });
 
   // GA4'e ek olarak Google Ads'e de bildir. GA4 olayi tek basina Ads'te
   // donusum SAYILMAZ (ayrica ice aktarim gerekir); dogrudan etiket hem daha

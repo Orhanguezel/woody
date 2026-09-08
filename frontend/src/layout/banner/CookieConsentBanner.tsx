@@ -95,6 +95,7 @@ function persistConsent(keys: { cookieKey: string; lsKey: string }, consent: Con
     localStorage.setItem(keys.lsKey, raw);
   } catch {}
   setCookie(keys.cookieKey, raw, COOKIE_DAYS);
+  window.dispatchEvent(new Event('woody:consent-changed'));
 }
 
 function loadConsent(keys: { cookieKey: string; lsKey: string }): ConsentState | null {

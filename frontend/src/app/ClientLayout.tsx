@@ -1,5 +1,6 @@
 'use client';
 
+import { captureCommerceAttribution } from '@/lib/commerce-attribution';
 import React, { Fragment, Suspense, useMemo, useEffect, useState } from 'react';
 import { tUi } from '@/i18n/staticUi';
 
@@ -35,7 +36,18 @@ export default function ClientLayout({
   
   // Start after hydration. A fixed five-second delay loses short visits and
   // early lead clicks; consent defaults remain owned by AnalyticsScripts.
-  useEffect(() => { setAnalyticsReady(true); }, []);
+  useEffect(() => {
+    setAnalyticsReady(true);
+    captureCommerceAttribution();
+    // Consent may arrive after hydration; capture before the visitor leaves the landing page.
+    const capture = () => { captureCommerceAttribution(); };
+    document.addEventListener('click', capture, true);
+    window.addEventListener('woody:consent-changed', capture);
+    return () => {
+      document.removeEventListener('click', capture, true);
+      window.removeEventListener('woody:consent-changed', capture);
+    };
+  }, []);
 
   // Sync <html lang="..."> with current locale
   useEffect(() => {

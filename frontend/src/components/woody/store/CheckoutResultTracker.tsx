@@ -18,8 +18,8 @@ export default function CheckoutResultTracker({ orderId }: { orderId: string }) 
               delivery?: 'server' | 'browser';
               purchase?: { currency: string; value?: number; items: Array<{ item_id: string; item_name: string; price?: number; quantity?: number }> };
             };
-            if (data.ready && data.delivery === 'browser' && data.purchase) {
-              reportPurchaseOnce(orderId, data.purchase);
+            if (data.ready && data.purchase) {
+              reportPurchaseOnce(orderId, data.purchase, data.delivery === 'server' ? 'server' : 'browser');
               return;
             }
             if (data.ready) return;

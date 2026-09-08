@@ -183,3 +183,6 @@ project.portfolio.private.json
 /website/
 /mini school.mp4/
 /ev serisi tanıtım video/
+
+# Local browser audit artifacts
+.playwright-cli/

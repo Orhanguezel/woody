@@ -3,6 +3,7 @@ const queries: Array<{sql:string,args?:unknown[]}> = [];
 let orderRows: any[] = [], outboxRows: any[] = [], claimable = true;
 mock.module('@/db/client', () => ({ pool: { execute: async (sql: string,args?:unknown[]) => {
   queries.push({sql,args});
+  if(sql.includes('FROM commerce_refunds')) return [[{amount:500}]];
   if(sql.includes('FROM orders o')) return [orderRows];
   if(sql.includes('FROM commerce_measurement_outbox')) return [outboxRows];
   if(sql.includes("SET status = 'processing'")) return [{affectedRows:claimable?1:0}];
@@ -19,3 +20,5 @@ test('ineligible payment never reaches Google and becomes reviewable',async()=>{
 test('a competing worker that loses the claim never sends the event',async()=>{payment();claimable=false;let calls=0;globalThis.fetch=(async()=>{calls++;return new Response('',{status:200})}) as any;await processCommerceMeasurementOutbox(app);expect(calls).toBe(0);});
 test('delivery uses original event time and updates sent only after successful response',async()=>{payment();let payload:any;globalThis.fetch=(async(_url:any,init:any)=>{payload=JSON.parse(init.body);return new Response('',{status:200})}) as any;await processCommerceMeasurementOutbox(app);expect(payload.timestamp_micros).toBe(new Date('2026-09-08T10:00:00Z').getTime()*1000);expect(payload.events[0].params.transaction_id).toBe('order');expect(queries.some(q=>q.sql.includes("SET status = 'sent'"))).toBe(true);});
 test('network failure schedules retry without exposing request URL secrets',async()=>{payment();globalThis.fetch=(async()=>{throw new Error('https://example.com?api_secret=test-secret')}) as any;await processCommerceMeasurementOutbox(app);expect(queries.some(q=>q.sql.includes("SET status = 'sent'"))).toBe(false);expect(queries.some(q=>q.sql.includes("SET status = 'failed'"))).toBe(true);expect(JSON.stringify(queries)).not.toContain('test-secret');});
+
+test('partial refund sends its own amount without inventing item allocation',async()=>{payment();expect(await loadCommerceMeasurement('order','refund','refund-id')).toMatchObject({value:500,items:[]});expect(await loadCommerceMeasurement('order','refund')).toBeNull();});

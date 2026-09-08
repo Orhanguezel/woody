@@ -1,3 +1,4 @@
+import { loadDbStoreProducts } from '@/components/woody/store/load-store-products.server';
 import type { Metadata } from 'next';
 
 import LevelFinderClient from '@/components/woody/level-finder/LevelFinderClient';
@@ -18,6 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function LevelFinderPage() {
-  return <LevelFinderClient />;
+export default async function LevelFinderPage({params}: Props) {
+  const {locale} = await params;
+  const products = await loadDbStoreProducts(locale);
+  return <LevelFinderClient locale={locale} products={products} />;
 }

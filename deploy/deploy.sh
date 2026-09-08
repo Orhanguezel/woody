@@ -69,6 +69,8 @@ rsync -avz --delete \
   --exclude='/packages' \
   --exclude='/docs' \
   --exclude='.next/' \
+  --exclude='.next.previous/' \
+  --exclude='.build-*/' \
   --exclude='dist/' \
   --exclude='.env' \
   --exclude='.env.local' \
@@ -135,6 +137,7 @@ set -euo pipefail
 cd "$DEPLOY_PATH/backend"
 rm -rf dist .tsbuildinfo
 $BUN_BIN run build
+$BUN_BIN scripts/apply-commerce-refund-ledger.ts
 BASH
   ok "Backend build tamam"
 
@@ -166,9 +169,7 @@ if has admin; then
   say "Admin panel build"
   remote_sh <<BASH
 set -euo pipefail
-cd "$DEPLOY_PATH/admin_panel"
-rm -rf .next
-NODE_ENV=production $BUN_BIN run build
+bash "$DEPLOY_PATH/deploy/build-next.sh" "$DEPLOY_PATH" admin_panel "${SLUG}-admin" "$BUN_BIN"
 BASH
   ok "Admin build tamam"
   say "PM2 (re)start — admin"
@@ -181,9 +182,7 @@ if has frontend; then
   say "Frontend build"
   remote_sh <<BASH
 set -euo pipefail
-cd "$DEPLOY_PATH/frontend"
-rm -rf .next
-NODE_ENV=production $BUN_BIN run build
+bash "$DEPLOY_PATH/deploy/build-next.sh" "$DEPLOY_PATH" frontend "${SLUG}-frontend" "$BUN_BIN"
 BASH
   ok "Frontend build tamam"
   say "PM2 (re)start — frontend"

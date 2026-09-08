@@ -3,8 +3,8 @@
 Bu klasor sablonun **deploy iskeletidir**. Slug ve portlar `proje.json`'dan, VPS sirlari
 `.secrets/credentials.env`'den okunur — hicbir proje adi hard-code edilmez.
 
-> **Durum:** Woody icin VPS/domain henuz hazir degil. Araclar hazirda bekliyor;
-> sunucu netlesince `.secrets/credentials.env` doldurulup `deploy.sh` calistirilir.
+> **Durum (8 Eylül 2026):** Woody production ortamı `woody` SSH takma adı altında
+> `/var/www/woody` dizinindedir. Public site: https://woodyvearkadaslari.com.
 
 ## Dosyalar
 
@@ -50,5 +50,7 @@ sed -e 's/__DOMAIN_FRONTEND__/.../; s/__BACKEND_PORT__/8101/; ...' \
 ## Notlar
 
 - **.env dosyalari rsync edilmez.** Production secret'lari VPS'te yasar (sync drift olmaz).
-- DB sema degisikligi: kok `CLAUDE.md` kurali — `ALTER` yok; seed SQL guncellenir + `--fresh-seed`.
+- Canlıda genel/fresh seed çalıştırmayın. Backend deploy yalnız idempotent refund ledger CREATE TABLE scriptini çalıştırır; mevcut sipariş ve içerikleri değiştirmez.
+- Next.js ayrı geçici klasörde derlenir. Aktif build derleme boyunca korunur; aktivasyonda önceki build `.next.previous` altında kalır. Derleme hatası çalışan siteyi durdurmaz.
+- `packages/` ayrı depodur ve rsync kapsamı dışındadır; ortak paket değişiklikleri ayrıca doğrulanır.
 - PM2 boot persist: VPS'te bir kere `pm2 startup` + `pm2 save`.

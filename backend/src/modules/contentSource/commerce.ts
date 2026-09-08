@@ -139,6 +139,24 @@ function cacheable(reply: FastifyReply, request: FastifyRequest, payload: Record
   return reply.send(payload);
 }
 
+// Financial dates are immutable event dates, not later order edits. Legacy full
+// refunds without a payment event retain their existing refund-only evidence.
+export const commerceLedgerSql = `
+ SELECT o.id AS order_id, 'purchase' AS kind, o.total AS amount,
+        COALESCE((SELECT MIN(x.created_at) FROM commerce_measurement_outbox x WHERE x.order_id=o.id AND x.event_name='purchase'),o.updated_at) AS occurred_at
+ FROM orders o
+ WHERE (o.payment_status='paid' OR (o.payment_status='refunded' AND EXISTS(SELECT 1 FROM commerce_measurement_outbox x WHERE x.order_id=o.id AND x.event_name='purchase')))
+ AND EXISTS(SELECT 1 FROM payment_attempts pa WHERE pa.payment_ref=o.payment_ref AND pa.status IN ('succeeded','partially_refunded','refunded') AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload,'$.testMode')),'false') NOT IN ('true','1'))
+ UNION ALL
+ SELECT r.order_id,'refund',r.amount,r.completed_at FROM commerce_refunds r JOIN orders o ON o.id=r.order_id
+ WHERE r.status='succeeded'
+ AND EXISTS(SELECT 1 FROM payment_attempts pa WHERE pa.payment_ref=o.payment_ref AND pa.status IN ('partially_refunded','refunded') AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload,'$.testMode')),'false') NOT IN ('true','1'))
+ UNION ALL
+ SELECT o.id,'refund',o.total,o.updated_at FROM orders o WHERE o.payment_status='refunded'
+ AND NOT EXISTS(SELECT 1 FROM commerce_refunds r WHERE r.order_id=o.id AND r.status='succeeded')
+ AND EXISTS(SELECT 1 FROM payment_attempts pa WHERE pa.payment_ref=o.payment_ref AND pa.status='refunded' AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload,'$.testMode')),'false') NOT IN ('true','1'))
+`;
+
 export async function commerceHealth(req: FastifyRequest, reply: FastifyReply) {
   if (!verifyCommerceRequest(req, reply)) return;
   const [rows] = await pool.execute<RowDataPacket[]>(
@@ -160,18 +178,15 @@ export async function commerceSummary(req: FastifyRequest, reply: FastifyReply) 
   const args = [range.from, range.to];
   const [sales] = await pool.execute<RowDataPacket[]>(
     `
-      SELECT
-        SUM(payment_status = 'paid') AS paid_orders,
-        COALESCE(SUM(CASE WHEN payment_status = 'paid' THEN total ELSE 0 END), 0) AS gross_revenue,
-        SUM(payment_status = 'refunded') AS refund_count,
-        COALESCE(SUM(CASE WHEN payment_status = 'refunded' THEN total ELSE 0 END), 0) AS refund_amount,
-        COALESCE(SUM(CASE WHEN payment_status = 'paid' THEN
-          (SELECT COALESCE(SUM(oi.quantity), 0) FROM order_items oi WHERE oi.order_id = orders.id)
-        ELSE 0 END), 0) AS items_sold,
-        MAX(CASE WHEN payment_status = 'paid' THEN updated_at END) AS data_freshness
-      FROM orders
-      WHERE CONVERT_TZ(updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
-        AND CONVERT_TZ(updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
+      SELECT SUM(kind='purchase') AS paid_orders,
+        COALESCE(SUM(CASE WHEN kind='purchase' THEN amount ELSE 0 END),0) AS gross_revenue,
+        SUM(kind='refund') AS refund_count,
+        COALESCE(SUM(CASE WHEN kind='refund' THEN amount ELSE 0 END),0) AS refund_amount,
+        COALESCE(SUM(CASE WHEN kind='purchase' THEN (SELECT SUM(oi.quantity) FROM order_items oi WHERE oi.order_id=e.order_id) ELSE 0 END),0) AS items_sold,
+        MAX(occurred_at) AS data_freshness
+      FROM (${commerceLedgerSql}) e
+      WHERE CONVERT_TZ(occurred_at,'+00:00','+03:00') >= CONCAT(?, ' 00:00:00')
+        AND CONVERT_TZ(occurred_at,'+00:00','+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
     `,
     args,
   );
@@ -182,7 +197,7 @@ export async function commerceSummary(req: FastifyRequest, reply: FastifyReply) 
         FROM payment_attempts pa
        WHERE CONVERT_TZ(pa.created_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
          AND CONVERT_TZ(pa.created_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
-         AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload, '$.testMode')), 'false') <> 'true'
+         AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload, '$.testMode')), 'false') NOT IN ('true','1')
     `,
     args,
   );
@@ -209,16 +224,16 @@ export async function commerceDaily(req: FastifyRequest, reply: FastifyReply) {
   if (!range) return;
   const [rows] = await pool.execute<RowDataPacket[]>(
     `
-      SELECT DATE(CONVERT_TZ(updated_at, '+00:00', '+03:00')) AS metric_date,
-             SUM(payment_status = 'paid') AS paid_orders,
-             COALESCE(SUM(CASE WHEN payment_status = 'paid' THEN total ELSE 0 END), 0) AS gross_revenue,
-             SUM(payment_status = 'refunded') AS refund_count,
-             COALESCE(SUM(CASE WHEN payment_status = 'refunded' THEN total ELSE 0 END), 0) AS refund_amount,
-             MAX(CASE WHEN payment_status IN ('paid', 'refunded') THEN updated_at END) AS data_freshness
-        FROM orders
-       WHERE CONVERT_TZ(updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
-         AND CONVERT_TZ(updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
-       GROUP BY DATE(CONVERT_TZ(updated_at, '+00:00', '+03:00'))
+      SELECT DATE(CONVERT_TZ(occurred_at,'+00:00','+03:00')) AS metric_date,
+             SUM(kind='purchase') AS paid_orders,
+             COALESCE(SUM(CASE WHEN kind='purchase' THEN amount ELSE 0 END),0) AS gross_revenue,
+             SUM(kind='refund') AS refund_count,
+             COALESCE(SUM(CASE WHEN kind='refund' THEN amount ELSE 0 END),0) AS refund_amount,
+             MAX(occurred_at) AS data_freshness
+        FROM (${commerceLedgerSql}) e
+       WHERE CONVERT_TZ(occurred_at,'+00:00','+03:00') >= CONCAT(?, ' 00:00:00')
+         AND CONVERT_TZ(occurred_at,'+00:00','+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
+       GROUP BY DATE(CONVERT_TZ(occurred_at,'+00:00','+03:00'))
        ORDER BY metric_date ASC
     `,
     [range.from, range.to],
@@ -243,14 +258,14 @@ export async function commerceProducts(req: FastifyRequest, reply: FastifyReply)
   const [rows] = await pool.execute<RowDataPacket[]>(
     `
       SELECT oi.product_id, COALESCE(pi.title, oi.product_id) AS title,
-             COUNT(DISTINCT o.id) AS paid_orders, SUM(oi.quantity) AS quantity,
+             COUNT(DISTINCT e.order_id) AS paid_orders, SUM(oi.quantity) AS quantity,
              SUM(oi.total_price) AS gross_revenue
-        FROM orders o
-        INNER JOIN order_items oi ON oi.order_id = o.id
+        FROM (${commerceLedgerSql}) e
+        INNER JOIN order_items oi ON oi.order_id = e.order_id
         LEFT JOIN product_i18n pi ON pi.product_id = oi.product_id AND pi.locale = 'tr'
-       WHERE o.payment_status = 'paid'
-         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
-         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
+       WHERE e.kind = 'purchase'
+         AND CONVERT_TZ(e.occurred_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
+         AND CONVERT_TZ(e.occurred_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
        GROUP BY oi.product_id, pi.title
        ORDER BY gross_revenue DESC
        LIMIT 100
@@ -274,15 +289,15 @@ export async function commerceAttribution(req: FastifyRequest, reply: FastifyRep
   if (!range) return;
   const [rows] = await pool.execute<RowDataPacket[]>(
     `
-      SELECT COALESCE(NULLIF(a.utm_source, ''), 'direct') AS source,
+      SELECT CASE WHEN a.order_id IS NULL OR a.consent_state <> 'granted' THEN 'unknown' ELSE COALESCE(NULLIF(a.utm_source, ''), 'direct') END AS source,
              COALESCE(NULLIF(a.utm_medium, ''), '(none)') AS medium,
              COALESCE(NULLIF(a.utm_campaign, ''), '(not set)') AS campaign,
-             COUNT(*) AS paid_orders, SUM(o.total) AS gross_revenue
-        FROM orders o
-        LEFT JOIN order_attribution a ON a.order_id = o.id
-       WHERE o.payment_status = 'paid'
-         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
-         AND CONVERT_TZ(o.updated_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
+             COUNT(*) AS paid_orders, SUM(e.amount) AS gross_revenue
+        FROM (${commerceLedgerSql}) e
+        LEFT JOIN order_attribution a ON a.order_id = e.order_id
+       WHERE e.kind = 'purchase'
+         AND CONVERT_TZ(e.occurred_at, '+00:00', '+03:00') >= CONCAT(?, ' 00:00:00')
+         AND CONVERT_TZ(e.occurred_at, '+00:00', '+03:00') < DATE_ADD(CONCAT(?, ' 00:00:00'), INTERVAL 1 DAY)
        GROUP BY source, medium, campaign
        ORDER BY gross_revenue DESC
        LIMIT 100

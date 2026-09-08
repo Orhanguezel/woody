@@ -1,5 +1,11 @@
 # Woody — Satış büyümesi uygulama checklist’i
 
+> **Son kontrol ve yayın — 8 Eylül 2026:** Ödeme/iade defteri, sabit browser/server teslim seçimi, kaynak atfı ve level finder satış bağlantıları yayımlandı. 18 hedefli test ve yalnız geçici MySQL tablolarıyla 7 kabul senaryosu geçti. Frontend build: `cWJuJg5vHAHIQr7Nra4RJ`. İç CTA'nın 400 ms beklemesi ve tam sayfa yenilemesi kaldırıldı; canlıda SPA geçişi ve kaynak atfı doğrulandı. Ayrıntılar: [son kontrol raporu](WOODY-SON-KONTROL-VE-YAYIN-2026-09-08.md).
+>
+> **GA4 engeli somutlaştırıldı:** Mevcut Measurement Protocol secret sayısı 0. Oluşturma isteği Google tarafından `FAILED_PRECONDITION` ile reddedildi: mülk sahibinin User Data Collection Acknowledgement beyanı eksik. Bu beyan verilmedi; doğrulanmış browser purchase yolu korunuyor. Sunucu refund teslimi bu nedenle henüz aktif değil. Gerçek para testi ve kimlik rotasyonu açık kalır.
+>
+> Aşağıdaki ilk paket notları tarihsel kayıttır; güncel yayın bilgisi yukarıdaki rapordadır. Tüm büyüme planı tamamlandı sayılmaz.
+
 **Dayanak:** [8 Eylül ayrıntılı rapor](WOODY-SATIS-BUYUME-ANALIZ-RAPORU-2026-09-08.md)
 
 **Durum (8 Eylül uygulama güncellemesi):** İlk düzeltme paketi uygulandı. Kullanıcı commit ve deploy izni verdi. Woody paketi eşzamanlı Woody oturumu tarafından `0acaf2e` commit’iyle yayımlandı; canlı frontend build’i `7gf8P0hLaQzNqMAwsG3YJ`. Aşağıdaki açık kutular tamamlandı sayılmaz. Reklam bütçesi/kampanyası ve gerçek ödeme testi yapılmadı.

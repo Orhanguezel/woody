@@ -22,6 +22,8 @@ import {
   savePaytrSettings,
 } from './paytrConfig';
 import { loadCommerceMeasurement } from './commerceMeasurement';
+import { markPaymentResult } from './paymentResult';
+import { checkoutQuantity } from './quantity';
 
 type CheckoutItem = {
   product_id?: string;
@@ -68,6 +70,7 @@ type ProductRow = RowDataPacket & {
   id: string;
   price: string;
   min_quantity: number | null;
+  stock_quantity: number | null;
   title: string;
   category_name: string | null;
   purchase_mode: 'online' | 'quote';
@@ -208,51 +211,6 @@ async function notifyOrderPaymentResult(orderId: string, paid: boolean, log?: Fa
   });
 }
 
-async function markPaymentResult(
-  orderId: string,
-  paymentRef: string,
-  paid: boolean,
-  callbackPayload: unknown,
-): Promise<boolean> {
-  const connection = await pool.getConnection();
-  try {
-    await connection.beginTransaction();
-    const [result] = await connection.execute<ResultSetHeader>(
-      `
-        UPDATE orders
-           SET payment_status = ?, status = ?, updated_at = CURRENT_TIMESTAMP(3)
-         WHERE id = ? AND payment_status <> 'paid'
-      `,
-      [paid ? 'paid' : 'failed', paid ? 'confirmed' : 'pending', orderId],
-    );
-    const newlyPaid = paid && result.affectedRows === 1;
-    await connection.execute(
-      `
-        UPDATE payment_attempts
-           SET status = ?, callback_payload = ?, updated_at = CURRENT_TIMESTAMP(3)
-         WHERE payment_ref = ?
-      `,
-      [paid ? 'succeeded' : 'failed', JSON.stringify(callbackPayload), paymentRef],
-    );
-    if (newlyPaid) {
-      await connection.execute(
-        `
-          INSERT IGNORE INTO commerce_measurement_outbox
-            (id, order_id, destination, event_name, status, next_attempt_at)
-          VALUES (?, ?, 'ga4', 'purchase', 'pending', CURRENT_TIMESTAMP(3))
-        `,
-        [randomUUID(), orderId],
-      );
-    }
-    await connection.commit();
-    return newlyPaid;
-  } catch (error) {
-    await connection.rollback();
-    throw error;
-  } finally {
-    connection.release();
-  }
-}
 
 function checkoutUrl(status: string, orderId?: string, locale = 'tr', productSlug?: string) {
   const base = env.FRONTEND_URL.replace(/\/$/, '');
@@ -380,7 +338,7 @@ async function getProducts(items: CheckoutItem[], locale: string) {
   const placeholders = ids.map(() => '?').join(', ');
   const [rows] = await pool.execute<ProductRow[]>(
     `
-        SELECT p.id, p.price, p.min_quantity, pi.title, ci.name AS category_name
+        SELECT p.id, p.price, p.min_quantity, p.stock_quantity, pi.title, ci.name AS category_name
              , p.purchase_mode, p.access_duration_days,
                EXISTS(
                  SELECT 1 FROM product_contents pc
@@ -516,31 +474,28 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const items = Array.isArray(body.items) ? body.items : [];
     if (!items.length) return badRequest(reply, 'items_required');
 
-    let customerId: string;
-    try {
-      customerId = await ensureCustomer(body.customer);
-    } catch {
-      return badRequest(reply, 'customer_email_required');
-    }
-
     const locale = clean((req.headers['x-locale'] as string | undefined) || 'tr').slice(0, 8) || 'tr';
     const products = await getProducts(items, locale);
     const orderId = randomUUID();
     let total = 0;
     const orderItems: Array<[string, string, string, number, string, string]> = [];
 
+    const seenProducts = new Set<string>();
     for (const item of items) {
       const productId = clean(item.product_id);
+      if (seenProducts.has(productId)) return badRequest(reply, 'duplicate_product');
+      seenProducts.add(productId);
       const product = products.get(productId);
       if (!product) return badRequest(reply, 'product_not_found');
       if (product.purchase_mode !== 'online') return badRequest(reply, 'product_not_available_online');
       // Minimum siparis adedi urunun kendi verisinde (products.min_quantity).
       // Sunucu tarafinda da dogrulanir: istemci alanini asamaz.
-      const minQuantity = Math.max(1, Number(product.min_quantity) || 1);
-      const quantity = Math.max(1, Math.min(99, Number(item.quantity) || minQuantity));
-      if (quantity < minQuantity) return badRequest(reply, 'min_quantity_not_met');
+      let quantity: number;
+      try { quantity = checkoutQuantity(item.quantity, product.min_quantity, product.stock_quantity); }
+      catch (error) { return badRequest(reply, error instanceof Error ? error.message : 'invalid_quantity'); }
       const unitPrice = Number(product.price);
-      const lineTotal = unitPrice * quantity;
+      if (!Number.isFinite(unitPrice) || unitPrice <= 0) return badRequest(reply, 'invalid_product_price');
+      const lineTotal = Math.round(unitPrice * 100) * quantity / 100;
       total += lineTotal;
       orderItems.push([
         randomUUID(),
@@ -563,6 +518,13 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const shippingCountry = clean(shipping.country) || 'TR';
     if (hasPhysical && (!shippingName || !shippingPhone || !shippingAddress || !shippingCity)) {
       return badRequest(reply, 'shipping_address_required');
+    }
+
+    let customerId: string;
+    try {
+      customerId = await ensureCustomer(body.customer);
+    } catch {
+      return badRequest(reply, 'customer_email_required');
     }
 
     await pool.execute(
@@ -633,10 +595,14 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     if (!/^[0-9a-f-]{36}$/i.test(id)) return badRequest(reply, 'invalid_order_id');
     const purchase = await loadCommerceMeasurement(id);
     if (!purchase) return reply.code(202).send({ ready: false });
-    const { client_id: _clientId, ...browserPayload } = purchase;
+    const [deliveries] = await pool.execute<RowDataPacket[]>(
+      `SELECT destination FROM commerce_measurement_outbox WHERE order_id=? AND event_name='purchase' ORDER BY created_at LIMIT 1`, [id],
+    );
+    if (!deliveries[0]) return reply.code(202).send({ ready: false });
+    const { client_id: _clientId, session_id: _sessionId, ...browserPayload } = purchase;
     return {
       ready: true,
-      delivery: env.GA4_API_SECRET && env.GA4_MEASUREMENT_ID ? 'server' : 'browser',
+      delivery: deliveries[0].destination === 'ga4' ? 'server' : 'browser',
       purchase: browserPayload,
     };
   });
@@ -664,7 +630,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const order = orderRows[0];
     if (!order) return reply.code(404).send({ error: { message: 'not_found' } });
     if (order.status === 'cancelled') return badRequest(reply, 'order_cancelled');
-    if (order.payment_status === 'paid') return badRequest(reply, 'already_paid');
+    if (['paid','refunded'].includes(order.payment_status)) return badRequest(reply, 'order_payment_closed');
 
     const [itemRows] = await pool.execute<RowDataPacket[]>(
       `
@@ -840,7 +806,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     );
     const order = rows[0];
     if (!order) return reply.code(404).send({ error: { message: 'order_not_found' } });
-    if (order.payment_status === 'paid') return badRequest(reply, 'already_paid');
+    if (['paid','refunded'].includes(order.payment_status)) return badRequest(reply, 'order_payment_closed');
 
     const totalKurus = Math.round(Number(order.total) * 100);
     if (!Number.isFinite(totalKurus) || totalKurus <= 0) return badRequest(reply, 'invalid_total');
@@ -967,7 +933,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       await logPaytrCallback({ ...base, outcome: 'order_not_found' });
       return reply.type('text/plain').send('OK');
     }
-    if (order.payment_status === 'paid') {
+    if (['paid','refunded'].includes(order.payment_status)) {
       // Idempotent: ayni bildirim ikinci kez islenmez
       await logPaytrCallback({ ...base, outcome: 'duplicate', detail: `order: ${order.id}` });
       return reply.type('text/plain').send('OK');
@@ -992,6 +958,12 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
 
 // Admin: PayTR callback loglari (SSH'siz izleme) — QE paytr-logs ekraninin API'si
 export async function registerCheckoutAdmin(app: FastifyInstance) {
+  app.get('/paytr/refund-operations', async () => {
+    const [items] = await pool.execute<RowDataPacket[]>(
+      `SELECT id,order_id,amount,status,created_at,completed_at FROM commerce_refunds ORDER BY created_at DESC LIMIT 100`,
+    );
+    return {items};
+  });
   app.get('/paytr/refund-logs', async (req) => {
     const q = (req.query || {}) as { page?: string; limit?: string };
     const page = Math.max(1, Number(q.page) || 1);
@@ -999,7 +971,7 @@ export async function registerCheckoutAdmin(app: FastifyInstance) {
     const offset = (page - 1) * limit;
     const [rows] = await pool.execute<RowDataPacket[]>(
       `SELECT pa.id, pa.order_id, pa.payment_ref AS merchant_oid,
-              pa.status, pa.amount, pa.updated_at,
+              pa.status, COALESCE((SELECT SUM(r.amount) FROM commerce_refunds r WHERE r.order_id=pa.order_id AND r.status='succeeded'), CASE WHEN pa.status='refunded' THEN pa.amount ELSE NULL END) AS amount, pa.updated_at,
               u.full_name AS customer_name, u.email AS customer_email
          FROM payment_attempts pa
          JOIN orders o ON o.id = pa.order_id
@@ -1062,7 +1034,7 @@ export async function registerCheckoutAdmin(app: FastifyInstance) {
       ),
       pool.execute<RowDataPacket[]>(
         `SELECT COUNT(*) AS refund_count,
-                COALESCE(SUM(amount), 0) AS refund_amount
+                COALESCE(SUM(COALESCE((SELECT SUM(r.amount) FROM commerce_refunds r WHERE r.order_id=payment_attempts.order_id AND r.status='succeeded'),CASE WHEN status='refunded' THEN amount ELSE 0 END)),0) AS refund_amount
            FROM payment_attempts
           WHERE provider = 'paytr'
             AND status IN ('refunded', 'partially_refunded')`,

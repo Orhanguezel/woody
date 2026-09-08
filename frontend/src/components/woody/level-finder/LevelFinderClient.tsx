@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import type { StoreProduct } from '../store/types';
 import { CheckCircle2, ChevronLeft, ChevronRight, Circle, ShoppingCart } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
@@ -68,7 +70,7 @@ function nextResult(block: BlockKey, yesCount: number): LevelKey | null {
   return 'senior';
 }
 
-export default function LevelFinderClient() {
+export default function LevelFinderClient({ locale = 'tr', products = [] }: { locale?: string; products?: StoreProduct[] }) {
   const [answers, setAnswers] = useState<Record<number, boolean>>({});
   const [currentBlock, setCurrentBlock] = useState<BlockKey>('A');
   const [result, setResult] = useState<LevelKey | null>(null);
@@ -101,6 +103,7 @@ export default function LevelFinderClient() {
 
   if (result) {
     const item = levelResults[result];
+    const product = products.find(p => p.product_code === `WOODY-HOME-${result.toUpperCase()}` && p.purchaseMode === 'online' && (p.stock_quantity == null || p.stock_quantity > 0));
     const message = `Merhaba, Woody Level Finder testini tamamladım ve ${item.name} önerildi. Ürün hakkında bilgi almak istiyorum.`;
     return (
       <main className="min-h-screen bg-white text-gray-900">
@@ -124,13 +127,19 @@ export default function LevelFinderClient() {
                     <ShoppingCart className="size-6 text-yellow-600" aria-hidden />
                     Online Satış
                   </h2>
-                  <p className="mb-4 text-[14px] text-gray-600">Bu seti hemen online olarak sipariş edebilirsiniz!</p>
+                  <p className="mb-4 text-[14px] text-gray-600">Önerilen seviyeyi ev ve özel ders için inceleyebilir veya kurumunuz için teklif isteyebilirsiniz.</p>
+                  <div className="mb-4 flex flex-wrap justify-center gap-3 md:justify-start">
+                    <Link className={`rounded-xl bg-blue-700 px-5 py-3 font-semibold text-white ${FOCUS_RING}`} href={product ? `/${locale}/store/checkout?product=${encodeURIComponent(product.slug)}` : `/${locale}/home-tutor#home-levels`}>
+                      {product ? 'Ev setini satın al' : 'Ev setleri hakkında bilgi al'}
+                    </Link>
+                    <Link className={`rounded-xl border border-blue-700 px-5 py-3 font-semibold text-blue-800 ${FOCUS_RING}`} href={`/${locale}/preschool#quote-form`}>Kurum için teklif al</Link>
+                  </div>
                   <WhatsAppLink
                     phone="905331570373"
                     text={message}
                     className={`inline-flex items-center gap-3 rounded-xl bg-green-500 px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-green-600 ${FOCUS_RING}`}
                   >
-                    WhatsApp ile Sipariş Ver
+                    WhatsApp ile bilgi al
                   </WhatsAppLink>
                 </div>
                 <button

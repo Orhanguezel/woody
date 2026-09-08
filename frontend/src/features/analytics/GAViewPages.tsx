@@ -72,6 +72,7 @@ export default function GAViewPages() {
         link_id: anchor.dataset.analyticsLinkId || `${contentGroup}:${url.pathname}`,
         content_group: contentGroup,
         link_url: url.pathname,
+        page_location: window.location.origin + currentPath,
         link_text: (
           anchor.getAttribute('aria-label')
           || anchor.getAttribute('title')
@@ -81,27 +82,8 @@ export default function GAViewPages() {
         ).trim().replace(/\s+/g, ' ').slice(0, 120),
       };
       if (typeof window.gtag === 'function' && window.__analyticsDestinationReady) {
-        const canDelayNavigation = event.button === 0
-          && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey
-          && (!anchor.target || anchor.target === '_self');
-        if (!canDelayNavigation) {
-          window.gtag('event', 'cta_click', { ...payload, transport_type: 'beacon' });
-          return;
-        }
-        event.preventDefault();
-        let navigated = false;
-        const navigate = () => {
-          if (navigated) return;
-          navigated = true;
-          window.location.assign(anchor.href);
-        };
-        window.gtag('event', 'cta_click', {
-          ...payload,
-          transport_type: 'beacon',
-        });
-        // Birden fazla destination (GA4 + Ads) varken ilk callback diger hedef
-        // gonderilmeden donebilir. Kisa sabit pencere tum beacon'lara firsat verir.
-        window.setTimeout(navigate, 400);
+        // Beacon delivery must not add a delay or replace Next.js navigation.
+        window.gtag('event', 'cta_click', { ...payload, transport_type: 'beacon' });
       } else {
         // Link hemen navigate ederse memory queue yeni document'ta kaybolur. Ayni-origin
         // CTA'yi sessionStorage ile sonraki sayfaya tasiyip config sonrasinda tek kez flush et.
