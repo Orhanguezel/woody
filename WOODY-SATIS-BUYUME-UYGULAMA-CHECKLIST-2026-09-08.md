@@ -119,7 +119,7 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [ ] Her sayısal kayıt sourceRunId, mutlak dönem, örneklem, hesap formülü ve metric türü taşısın.
 - [ ] CPC=cost/clicks; CTR=clicks/impressions; ROAS yalnız gelir tanımı uygunsa. Dönem oranlarının basit ortalaması kullanılmasın.
 - [x] Inference güven skoru ile istatistiksel kanıt ayrışsın; birkaç olayla yaş/saat/şehir otomatik karar üretilmesin.
-- [ ] Çelişki ve eski dönem denetimi; düzeltilen kayda superseded bağlantısı.
+- [x] Bilinen çelişkili/eski dönem kaydı denetlendi; düzeltilen kayda supersedes/supersededBy bağlantısı, atomik düzeltme ve arşiv kaydı koruması canlı. Genel anlamsal çelişki tespiti LLM kanıtı sayılmaz; otomatik sayısal çıkarımlar inceleme dışında karar girdisi olmaz.
 
 **Kabul:** Sorunlu örnek 128,65/11 hesabını 9,63 olarak kaydedemez; 9 günlük kanıt 30 günlük diye sunulamaz; WhatsApp değeri satış getirisi diye öneriye girmez. 30 hafıza kaydı topluca silinmez.
 
@@ -179,7 +179,7 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 - [ ] Set seçimi yazısına gerçek içerik/kullanım/fiyat karşılaştırması; kurum ve ev yolları ayrı.
 - [x] Başlık/meta, canonical/hreflang/sitemap ve ilk 5 URL’nin güncel indeks kontrolü; eski hata sayılarını yeniden kullanma.
 - [ ] Ürün schema fiyat/stok/URL ile sayfa tutarlı; sahte review yok.
-- [ ] Mobil Lighthouse/CWV başlangıcı yeniden ölçülsün; eski 4,1 saniyeyi güncel sonuç sayma. Medya yüklemesi, JS ve tıklama hedeflerini gerçek bulguya göre düzelt.
+- [x] Mobil Lighthouse yeniden ölçüldü: aynı koşullarda LCP 11,0→4,1 sn, performans 40→62; kapaksız 132 MB başlangıç videosu kaldırıldı, doğru kapak + tıklayınca oynatma canlı. JS/TBT hâlâ yüksek; saha CWV hedefi karşılandı iddiası yok.
 
 **Kabul:** Ticari CTA’lar doğru yola gider ve izinli ölçülür. Eski SEO düzeltmeleri/çeviri URL’leri bozulmaz. Site performansı önce/sonra aynı koşullarda kaydedilir; yalnız puan yükseltmek için analitik 5 saniye geciktirilmez.
 
