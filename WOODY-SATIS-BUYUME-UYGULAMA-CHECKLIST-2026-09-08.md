@@ -2,7 +2,15 @@
 
 **Dayanak:** [8 Eylül ayrıntılı rapor](WOODY-SATIS-BUYUME-ANALIZ-RAPORU-2026-09-08.md)
 
-**Durum:** Audit tamamlandı; aşağıdaki geliştirmeler henüz uygulanmadı. Bu dosya Woody oturumunun kök görev belgesidir. Tanitio ve reklam işleri ayrı sahiplerle gösterilmiştir; burada yazılması otomatik yayın/deploy/reklam değişikliği onayı değildir.
+**Durum (8 Eylül uygulama güncellemesi):** İlk düzeltme paketi uygulandı. Kullanıcı commit ve deploy izni verdi. Woody paketi eşzamanlı Woody oturumu tarafından `0acaf2e` commit’iyle yayımlandı; canlı frontend build’i `7gf8P0hLaQzNqMAwsG3YJ`. Aşağıdaki açık kutular tamamlandı sayılmaz. Reklam bütçesi/kampanyası ve gerçek ödeme testi yapılmadı.
+
+**Tamamlanan ilk paket:** erken analytics başlangıcı; teklif formunda sunucu kabulünden sonra tek lead olayı ve gönderim kilidi; üç ev seviyesi için doğru checkout bağlantısı, PRO bilgi alternatifi; minimum sipariş toplamı; ev/okul ilk CTA hedefleri; üç blogda ilgili satış adımı. Ölçüm kuyruğuna izin/client ID, doğrulanmış ödeme durumu, test ayrımı, 72 saat sınırı ve güvenli yeniden deneme kontrolleri eklendi. Beş kuyruk testi geçti; gerçek ödeme uçtan uca testi henüz yapılmadı.
+
+**Canlı kabul:** mobil `/tr/home-tutor` HTTP 200; Basic `home-basic-000d`, Junior `home-junior-000e`, Senior `home-senior-000f` ödeme bağlantıları; JavaScript hatası ve yatay taşma yok. Üç Woody PM2 servisi online. Tanitio’da 11 izlenen rakibin 11’inde rapor doğrulandı; hatalı hafıza kaydı silinmeden pasifleştirildi. Ayrıntılı Tanitio yayın kaydı kardeş deponun kökündeki `WOODY-UYGULAMA-VE-YAYIN-2026-09-08.md` dosyasındadır.
+
+**Açık kritik konu:** yayından sonraki read-only kontrolde `GA4_API_SECRET` hâlâ yapılandırılmamıştı. PayTR aktif ve test modu kapalı. Eski siparişlerde attribution yok; 4 Eylül tarihli bir refund outbox kaydı bekliyor. Bu eski olay bugünün satışı/iadesi olarak yeniden gönderilmez. Kısmi iade tutarı, Measurement Protocol bağlantısı ve izinli yeni ödeme için tek olay kabulü henüz tamamlanmadı. Ticari hedef, reklam tavanı ve gerçek test ödeme tutarı ayrıca somutlaştırılmalı.
+
+Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazmamak için yerel belge güncellemesi olarak bırakıldı.
 
 ## Başlangıç ve korunacak kararlar
 
@@ -10,13 +18,24 @@
 - [x] Finans kaynağı imzalı Commerce API’sinden doğrulandı; sır ve müşteri kişisel bilgisi rapora alınmadı.
 - [x] Kamuya açık site masaüstü/mobil ve iki gerçek checkout adresinde incelendi.
 - [x] Audit ve checklist Woody repo köküne yazıldı.
-- [ ] **S0 — Uygulama başlangıcı:** Güncel `git status` ve kullanıcı değişiklikleri kaydedilsin; mevcut dosyalara eşzamanlı çalışan iş var mı kontrol edilsin. Bu rapordaki eski snapshot canlı karar öncesi yenilensin.
-- [ ] **S1 — Ortam:** Woody güncel production host/PM2 cwd/build kimliği doğrulansın. Eski deploy notundaki SSH bu audit’te doğrulanamadı. Tanitio hostuyla Woody hostu karıştırılmasın.
+- [x] **S0 — Uygulama başlangıcı:** Güncel `git status` ve kullanıcı değişiklikleri kaydedilsin; mevcut dosyalara eşzamanlı çalışan iş var mı kontrol edilsin. Bu rapordaki eski snapshot canlı karar öncesi yenilensin.
+- [x] **S1 — Ortam:** Woody güncel production host/PM2 cwd/build kimliği doğrulansın. Uygulamada `woody` SSH takma adı ve `/var/www/woody` doğrulandı. Tanitio hostuyla Woody hostu karıştırılmasın.
 - [ ] **S2 — İş hedefi:** İlk testin ana hedefi kurum anlaşması veya ev seti satışı olarak işletmeyle seçilsin; demo kapasitesi ve reklam tavanı yazılsın.
 
 **Değişmeyecekler:** Mağazanın onaylı Mini School / Ev sırası, mobil iki sütun ve sade filtre yaklaşımı korunur; hedefe odaklı giriş eklenebilir. Mini School öğrenci minimum 3 kuralı kaldırılmaz. Okul serisinin teklif modeli ve 30 öğrenci açıklığı korunur. Cambridge logosu geri eklenmez. Storybook/pasif ürünler topluca açılmaz. Güncel canlı Senior fiyatları eski seed’e göre geri alınmaz. Full/nodrop seed, canlı blog içeriklerini ezebileceği için kullanılmaz. Mevcut ödeme/erişim/tenant izolasyonu korunur.
 
 ## P0 — Ölçüm ve finans güvenilirliği
+
+### G01 — GÜVENLİK: sızan Google Ads kimlikleri (8 Eylül — açık borç)
+
+Ölçüm incelemesi sırasında bulundu: **kimlik doğrulaması olmayan** `GET /api/v1/site_settings` ucu tüm ayarları döndürüyordu ve içinde `google_ads_client_id`, `google_ads_client_secret`, `google_ads_refresh_token` vardı. Bu üçü birlikte **reklam hesabına tam erişim** demektir (para harcama, kampanya değiştirme, veri dışarı çıkarma). `GET /site_settings/:key` ile tek tek de okunabiliyordu.
+
+- [x] Sızıntı kapatıldı ve canlıya alındı. `packages/shared-backend/modules/siteSettings/publicSafety.ts` — fail-closed süzgeç; sır taşıyan anahtar listeden elenir, tekil uçta **404** döner (varlığı bile bildirilmez). `design_tokens` adında "token" geçtiği için açık istisna listesinde (kör desen siteyi bozardı). 6 test.
+- [x] Canlı doğrulandı: ayar sayısı 65 → 61; iki kimlik doğrudan sorulunca `not_found`; `design_tokens` yerinde; site 200.
+- [x] Düzeltme **ortak pakete** yazıldı: `shared-ecosystem-packages` deposu, dal `guvenlik/site-settings-sir-sizintisi`. Kardeş Ensotek siteleri test edildi, onlarda sızıntı yok.
+- [ ] **KİMLİKLERİ ROTATE ET (acil, sahibinde).** Kod sızıntıyı durdurur, geçmişi geri almaz — açıkta kalmış kimlik **ele geçmiş sayılmalıdır**. Ne kadar süredir açık olduğu bilinmiyor.
+- [ ] Rotasyon sonrası **Tanitio'daki `tenant_settings` kayıtları da güncellenmeli** (`google/oauth_client_id`, `oauth_client_secret`, `oauth_refresh_token`, `google_ads/developer_token`). Yapılmazsa woody'nin Ads ve GA4 veri akışı **durur** — panel "bağlı" görünürken veri gelmez.
+- [ ] Reklam hesabında yetkisiz değişiklik (kampanya, bütçe, dönüşüm) olup olmadığı gözden geçirilsin.
 
 ### W01 — Gerçek ödeme → purchase / iade → refund (Woody)
 
@@ -33,8 +52,8 @@
 
 **İş adımları:**
 
-- [ ] Güncel canlı `GA4_MEASUREMENT_ID`, Measurement Protocol erişimi ve PayTR enabled/testMode durumu yalnız varlık/boolean olarak kontrol edilsin; değerler log/rapora yazılmasın.
-- [ ] `commerce_measurement_outbox` pending/failed/sent sayıları, hata nedenleri ve worker çalışması okunsun; neden kanıtlanmadan yeni boru hattı kurulmasın.
+- [x] Güncel canlı `GA4_MEASUREMENT_ID`, Measurement Protocol erişimi ve PayTR enabled/testMode durumu yalnız varlık/boolean olarak kontrol edilsin; değerler log/rapora yazılmasın.
+- [x] `commerce_measurement_outbox` pending/failed/sent sayıları, hata nedenleri ve worker çalışması okunsun; neden kanıtlanmadan yeni boru hattı kurulmasın.
 - [ ] Başarılı ödeme, callback, order_attribution, outbox ve GA4 olayının kimlik/durum eşlemesi yapılsın. Gerçek ödeme ile test/veri taşıma kayıtları ayırılsın.
 - [ ] Browser/server teslim sahibi tek olsun; aynı sipariş iki yoldan sayılmasın. Callback tekrarında idempotency korunsun.
 - [ ] Kısmi iade `order.total` yerine gerçekten iade edilen tutarla ölçülsün. Mevcut `loadCommerceMeasurement` refund yolunun tam/parsiyel durum ve tutar davranışı incelensin.
@@ -50,9 +69,10 @@
 **Dosyalar:** `frontend/src/app/ClientLayout.tsx`, `frontend/src/features/analytics/AnalyticsScripts.tsx`, `GAViewPages.tsx`, `useAnalyticsSettings.ts`, `AdsConversionClicks.tsx`, `frontend/src/lib/ads-conversion.ts`.
 
 - [ ] Canlı doğrudan gtag seçimi ve yerel GTM öncelik kuralı birlikte kaydedilsin. Tek sahip seçimi açık ayar olsun; boş GTM yanlışlıkla etkinleştirilmesin.
-- [ ] 5 saniye + idle başlangıcının ölçüm kaybı riski azaltılsın; performansı bozmayacak erken consent kurulumu ve güvenilir olay kuyruğu kullanılsın.
+- [x] 5 saniye + idle başlangıcının ölçüm kaybı riski azaltılsın; performansı bozmayacak erken consent kurulumu ve güvenilir olay kuyruğu kullanılsın.
 - [ ] Sayfa açıldıktan sonraki ilk 1–3 saniyede CTA/route geçişi senaryosu test edilsin; olay doğru sayfa/kaynakla tam bir kez teslim edilsin.
 - [ ] İlk sayfa ile SPA geçişinde çift page_view olmadığını kanıtlayan ağ kaydı alınsın.
+- [x] **Consent Mode v2 modellemesi açıldı (8 Eylül, Tanitio oturumu).** `gtag('set','ads_data_redaction',true)` ve `gtag('set','url_passthrough',true)` eklendi (`AnalyticsScripts.tsx`). Rıza varsayılanı `analytics=false, marketing=false` **DEĞİŞTİRİLMEDİ** — KVKK açısından doğru. Eksik olan bu iki ayardı: onlar olmadan reddeden ziyaretçi tamamen kayboluyor, Google dönüşüm modellemesi yapamıyordu. `url_passthrough` çerez yazılamadığında gclid/wbraid'i adres satırından taşır — aşağıdaki UTM/GCLID maddesinin izin uyumlu ayağı budur.
 - [ ] UTM/GCLID/GBRAID/WBRAID uygun parametreleri izin ve veri politikasıyla uyumlu olarak yönlendirme/checkout boyunca korunsun; kişisel bilgi event parametresi yapılmasın.
 - [ ] PayTR dönüşünde referral atfı test edilsin; GA4 istenmeyen referral ayarı gerekiyorsa change-set hazırlansın.
 - [ ] Test tarayıcısının tüm GA4/Ads toplama domainleri engellensin veya test mülkü kullanılsın; gerçek müşteri verisiyle QA ayrıştırılsın.
@@ -87,7 +107,7 @@
 
 ### T02 — AI hafıza kalite kapısı (Tanitio)
 
-- [ ] Rapordaki sorunlu fact ID’leri öneri motorundan geçici çıkarılsın; silmeden audit izi korunsun.
+- [x] Rapordaki sorunlu fact ID’leri öneri motorundan geçici çıkarılsın; silmeden audit izi korunsun.
 - [ ] Her sayısal kayıt sourceRunId, mutlak dönem, örneklem, hesap formülü ve metric türü taşısın.
 - [ ] CPC=cost/clicks; CTR=clicks/impressions; ROAS yalnız gelir tanımı uygunsa. Dönem oranlarının basit ortalaması kullanılmasın.
 - [ ] Inference güven skoru ile istatistiksel kanıt ayrışsın; birkaç olayla yaş/saat/şehir otomatik karar üretilmesin.
@@ -101,7 +121,7 @@
 
 **Dosyalar:** `frontend/src/components/woody/home-tutor/HomeTutorPageClient.tsx`, `frontend/src/components/woody/store/WoodyStoreClient.tsx`, `WoodyStoreShowcase.tsx`, `WoodyStoreProductDetail.tsx`, `CheckoutPurchaseClient.tsx`, `frontend/src/components/woody/level-finder/LevelFinderClient.tsx`.
 
-- [ ] Basic/Junior/Senior CTA’sı mevcut aktif ürün ID’sini korusun; yalnız sabit mağaza URL’si kullanılmasın.
+- [x] Basic/Junior/Senior CTA’sı mevcut aktif ürün ID’sini korusun; yalnız sabit mağaza URL’si kullanılmasın.
 - [ ] Level finder sonucundan doğru kullanım tipi/seviyeye geçiş; satışı olmayan seviyede açıklayıcı alternatif.
 - [ ] PRO için işletme kararı kaydedilsin; gerçek ürünü olmayan “Satın Al” düğmesi uygun bilgi/teklif adımına dönsün.
 - [ ] Ürün bulunamadı/pasif/stoksuz durumda yanlış ürün veya boş checkout açılmasın.
@@ -159,8 +179,10 @@
 
 - [ ] Canlı conversion action + account/campaign/custom goal snapshot’ı al; geri dönüş planı hazırla.
 - [ ] WhatsApp/telefon tıklamaları ile gerçek form/qualified lead/satışı ayır.
-- [ ] W01/W03 kanıtından sonra uygun purchase/lead hedefini test et; hidden purchase nedenini incele.
-- [ ] Primary/secondary geçişini kampanya hedefiyle birlikte validate et; geçerli dönüşüm hedefini boş bırakma.
+- [x] **Hidden purchase nedeni bulundu ve çözüldü (8 Eylül, Tanitio oturumu).** Hesapta `Woody Landing Page (web) purchase` (tür `GOOGLE_ANALYTICS_4_PURCHASE`, kategori PURCHASE) **zaten vardı** ama `status=HIDDEN`, `primaryForGoal=false`, `includeInConversionsMetric=false` idi. Ads'in 30 günde 4.521 TL harcayıp sıfır dönüşüm raporlamasının sebebi buydu. `status=ENABLED` + `primaryForGoal=true` yapıldı; hesaptan geri okunarak doğrulandı (artık 4 etkin dönüşüm: 3 lead + 1 purchase).
+  **Yeni dönüşüm eylemi OLUŞTURULMADI** — GA4 içe aktarımı dururken ikinci bir site-etiketi dönüşümü aynı satışı iki kez sayardı. Aynı sebeple `site-defaults.json > analytics.googleAdsConversionLabels.purchase` bilerek BOŞ bırakıldı; koddaki `reportAdsPurchase()` hazır ama uykuda.
+- [x] **Primary/secondary geçişi validate edildi.** Sıra korundu: read-only snapshot → `validateOnly:true` (temiz geçti) → kullanıcı onayı → apply. Uygulama yanıtı ve sonrasındaki durum sorgusu kayıt altında.
+  ⚠️ **Geriye dönük doldurma YOK:** geçmiş 30 günün sıfırı olduğu gibi kalır; sayım bu tarihten sonraki satışlarda başlar.
 - [ ] Mevcut Tanitio change-set: draft → validateOnly → somut kullanıcı onayı → apply. Yeni kampanya PAUSED. Silme gerekiyorsa ayrı çift onay.
 
 **Kabul:** “23 satış” veya “4.400 TL ciro” şeklinde eski lead hesabı gösterilmez. Gerçek sipariş değeri ve transaction ID doğru; tekrar import çift değer üretmez.
@@ -223,6 +245,11 @@ Her faz sonunda aşağıdaki satır doldurulur; yapılmadan kutu işaretlenmez:
 | P1 | — | — | — | — | Başlamadı |
 | P2 | — | — | — | — | Başlamadı |
 | P3 | — | — | — | — | Başlamadı |
+
+**Deploy tuzakları (8 Eylül'de yaşandı, tekrarlamasın):**
+
+1. `deploy/deploy.sh` frontend adımı `rm -rf .next` yapıyor; **çalışan Next sunucusu** aynı anda `.next/cache`'e yazdığı için `rm` "Directory not empty" veriyor ve **build tümden atlanıyor**. Üstelik çıktı bir boruya (`| tail`) bağlanırsa kabuk **`exit 0`** gösterir — deploy başarılı sanılır ama frontend eski build'de kalır, `.next` de yarı silinmiş olur. Doğru sıra: `pm2 stop woody-frontend` → `rm -rf .next` → build → `pm2 start`. Deploy çıktısını boruya bağlamayın, çıkış kodunu maskeler.
+2. `packages/` hem `.gitignore`'da hem `deploy.sh`'ın rsync **exclude** listesinde. Yani paylaşılan paketteki (`shared-backend`) bir değişiklik **deploy.sh ile canlıya GİTMEZ**; VPS'e elle kopyalanıp backend yeniden derlenmelidir. Kaynağı ayrı depo: `Orhanguezel/shared-ecosystem-packages`.
 
 Kod uygulamasında ilgili workspace’in mevcut typecheck/build ve hedefli checkout/measurement testleri çalıştırılır. Yazılı kabul senaryoları test verisiyle doğrulanır; finans/izin/idempotency gibi kritik davranışlar gerçek test ister. Belgeler için uygulama testi çalıştırılmış gibi rapor verilmez. Deploy ancak kullanıcı talimatı ve somut doğrulanmış kapsamla; tüm kirli çalışma ağacı topluca gönderilmez.
 
