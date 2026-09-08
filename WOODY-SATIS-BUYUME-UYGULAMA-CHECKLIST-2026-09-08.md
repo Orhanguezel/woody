@@ -1,3 +1,5 @@
+> **GA4 anahtarı tamamlandı — 8 Eylül:** Google’daki `tanitio` anahtarı doğru Woody akışında doğrulandı, production ayarına aktarıldı ve backend yeniden başlatıldı. Purchase/refund doğrulama ucu hatasız; eski olay yeniden gönderilmedi. Gerçek yeni ödeme/GA4 rapor kabulü ayrı açık kalır. [Kontrol raporu](WOODY-GA4-ANAHTAR-DOGRULAMA-2026-09-08.md). Aşağıdaki anahtar eksikliği notları önceki durumun tarihsel kaydıdır.
+
 > **Devam paketi:** [Kalan uygulama ve kararlar](WOODY-KALAN-UYGULAMA-2026-09-08.md). Form tekrar koruması, admin satış takibi, video kapak/yükleme ve Seviye Bulucu metadata düzeltmeleri uygulandı; canlı yayın kanıtları bağlı raporun Yayın sonucu bölümündedir. İşletme girdileri, GA4 beyanı/anahtarı, gerçek ödeme testi ve reklam apply kararı açık kalır. Woody sosyal/Meta yayın işleri doğrulanmış tenant kapsamı dışında.
 
 # Woody — Satış büyümesi uygulama checklist’i
