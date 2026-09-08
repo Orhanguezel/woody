@@ -46,3 +46,16 @@ Katkı = net tahsilat − ürün maliyeti − kargo − komisyon − değişken 
 ## Offline conversion sözleşmesi — henüz etkin değil
 
 Kayıt kimliği quote/contact UUID'dir. Nitelikli/kazanıldı aşaması yalnız admin kararıdır; ödeme kimliğiyle mutabakat yapılmadıkça purchase sayılmaz. Gelecekte Google aktarımı için ayrı onaylı change-set, conversion action, gerçek olay zamanı, izin kanıtı ve izinle elde edilmiş tıklama kimliği gerekir. E-posta/telefon GA4 event parametresine yazılmaz. Kariyer/öğretmen başvuruları purpose=career ile satış raporundan ayrılır. İlk turda Google'a otomatik offline olay gönderilmez.
+
+## Yayın sonucu
+
+Uygulama commit'i `ba7331c`, ana çalışma dalına fast-forward ile alındı ve canlıya yayımlandı. Frontend build `DZfj5kN2PsjfxzQe_e7SH`; admin build `L0MxTXBPs4xcp4XneCoqo`. Üç PM2 servisi online. Yedekler `/var/www/woody-releases/checklist-20260908/backup/` altında; mevcut finans kayıtları ve ortak paketler değiştirilmedi.
+
+- Canlı teklif formu sentetik istek karşılamasıyla hata → yeniden deneme → çift tıklama testini geçti: aynı request_id, bir generate_lead, gerçek başvuru/bildirim yok.
+- Canlı admin asset'leri `/admin-assets` altında HTTP 200. İlk derlemede eksik prefix fark edilince admin önceki çalışan build'e döndürüldü; doğru prefix ile yeniden derlenip kontrol edildi. Sentetik API ile takip kaydetme, listede tek özet ve varsayılan kapalı detay testi geçti; JS hatası yok.
+- Sunucuda 12 MySQL kabul kontrolü yalnız TEMPORARY tablolarla yeniden geçti. Oturumsuz admin takip ucu 401.
+- Hero kapak HTTP 200 ve image/webp. Seviye Bulucu başlığı tek marka ve 11 hreflang içeriyor.
+- Aynı canlı URL ve aynı mobil Lighthouse ayarları: performans 40 → 62, LCP 11,0 → 4,1 sn, TBT 1.280 → 1.170 ms, CLS 0 → 0,005; SEO 100. Bunlar tek laboratuvar örnekleridir, saha CWV sonucu değildir. LCP/TBT hedefi henüz karşılanmadı; kalan maliyet JS çalışması ve görüntü yüklemesindedir.
+- Tanitio devam build'i `ncLm8APrYPfQ4hGqNFG7W`; health/db OK. GA4-hata, finans HTTP-hata ve HTTP 200 içinde sync-hata senaryoları canlı arayüzde geçti.
+
+Gerçek yeni ödeme/iade ve GA4 sunucu teslimi, GA4 mülk sahibi beyanı/secret, kimlik rotasyonu, reklam apply onayı ve işletme maliyet/SLA/ürün teyitleri açık. Sayısal AI taslakları karar girdisinden korunuyor; tam insan inceleme/superseded iş akışı bu pakette tamamlandı sayılmaz.

@@ -1,4 +1,4 @@
-> **Devam paketi:** [Kalan uygulama ve kararlar](WOODY-KALAN-UYGULAMA-2026-09-08.md). Form tekrar koruması, admin satış takibi, video kapak/yükleme ve Seviye Bulucu metadata düzeltmeleri uygulandı; bu satır tek başına yayın kanıtı değildir. İşletme girdileri, GA4 beyanı/anahtarı, gerçek ödeme testi ve reklam apply kararı açık kalır. Woody sosyal/Meta yayın işleri doğrulanmış tenant kapsamı dışında.
+> **Devam paketi:** [Kalan uygulama ve kararlar](WOODY-KALAN-UYGULAMA-2026-09-08.md). Form tekrar koruması, admin satış takibi, video kapak/yükleme ve Seviye Bulucu metadata düzeltmeleri uygulandı; canlı yayın kanıtları bağlı raporun Yayın sonucu bölümündedir. İşletme girdileri, GA4 beyanı/anahtarı, gerçek ödeme testi ve reklam apply kararı açık kalır. Woody sosyal/Meta yayın işleri doğrulanmış tenant kapsamı dışında.
 
 # Woody — Satış büyümesi uygulama checklist’i
 
@@ -76,10 +76,10 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 
 **Dosyalar:** `frontend/src/app/ClientLayout.tsx`, `frontend/src/features/analytics/AnalyticsScripts.tsx`, `GAViewPages.tsx`, `useAnalyticsSettings.ts`, `AdsConversionClicks.tsx`, `frontend/src/lib/ads-conversion.ts`.
 
-- [ ] Canlı doğrudan gtag seçimi ve yerel GTM öncelik kuralı birlikte kaydedilsin. Tek sahip seçimi açık ayar olsun; boş GTM yanlışlıkla etkinleştirilmesin.
+- [x] Canlı doğrudan gtag seçimi ve yerel GTM öncelik kuralı birlikte kaydedilsin. Tek sahip seçimi açık ayar olsun; boş GTM yanlışlıkla etkinleştirilmesin.
 - [x] 5 saniye + idle başlangıcının ölçüm kaybı riski azaltılsın; performansı bozmayacak erken consent kurulumu ve güvenilir olay kuyruğu kullanılsın.
-- [ ] Sayfa açıldıktan sonraki ilk 1–3 saniyede CTA/route geçişi senaryosu test edilsin; olay doğru sayfa/kaynakla tam bir kez teslim edilsin.
-- [ ] İlk sayfa ile SPA geçişinde çift page_view olmadığını kanıtlayan ağ kaydı alınsın.
+- [x] Sayfa açıldıktan sonraki ilk 1–3 saniyede CTA/route geçişi senaryosu test edilsin; olay doğru sayfa/kaynakla tam bir kez teslim edilsin.
+- [x] İlk sayfa ile SPA geçişinde çift page_view olmadığını kanıtlayan ağ kaydı alınsın.
 - [x] **Consent Mode v2 modellemesi açıldı (8 Eylül, Tanitio oturumu).** `gtag('set','ads_data_redaction',true)` ve `gtag('set','url_passthrough',true)` eklendi (`AnalyticsScripts.tsx`). Rıza varsayılanı `analytics=false, marketing=false` **DEĞİŞTİRİLMEDİ** — KVKK açısından doğru. Eksik olan bu iki ayardı: onlar olmadan reddeden ziyaretçi tamamen kayboluyor, Google dönüşüm modellemesi yapamıyordu. `url_passthrough` çerez yazılamadığında gclid/wbraid'i adres satırından taşır — aşağıdaki UTM/GCLID maddesinin izin uyumlu ayağı budur.
 - [x] UTM/GCLID/GBRAID/WBRAID uygun parametreleri izin ve veri politikasıyla uyumlu olarak yönlendirme/checkout boyunca korunsun; kişisel bilgi event parametresi yapılmasın.
 - [ ] PayTR dönüşünde referral atfı test edilsin; GA4 istenmeyen referral ayarı gerekiyorsa change-set hazırlansın.
@@ -92,10 +92,10 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 **Dosyalar:** `frontend/src/components/woody/quote/QuoteRequestForm.tsx`, `frontend/src/lib/ads-conversion.ts`; mevcut contact formu ve quote/contact backend uçları uygulama başında bulunacak.
 
 - [ ] Teklif formu, iletişim formu, WhatsApp ve telefon olay sözleşmesi çıkarılsın; `quote_form_submit`/`generate_lead` farkı giderilsin.
-- [ ] Yalnız sunucunun kabul ettiği form için `generate_lead`/uygun dönüşüm; hata/çift tıklama/sayfa yenilemede tekrar yok.
+- [x] Yalnız sunucunun kabul ettiği form için `generate_lead`/uygun dönüşüm; hata/çift tıklama/sayfa yenilemede tekrar yok.
 - [ ] `lead_id`, kaynak, kullanım tipi ve form tipi operasyon kaydına eklensin; e-posta/telefon GA4’e gönderilmesin.
 - [ ] Kariyer/öğretmen başvurusu satış lead’inden ayrı sınıflansın.
-- [ ] WhatsApp tıklaması görüşme başladı veya qualified lead olarak işaretlenmesin.
+- [x] WhatsApp tıklaması görüşme başladı veya qualified lead olarak işaretlenmesin.
 
 **Kabul:** 1 başarılı başvuru = 1 kayıt/1 uygun olay; başarısız başvuru = 0 lead olayı; kopya gönderim kontrolü; gerçek müşteri kaydıyla karışmayan test kaydı.
 
@@ -105,9 +105,9 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 
 **Dosyalar:** `dashboard/src/app/analytics/page.tsx`, `backend/src/modules/ecommerce/woody.ts`, `backend/src/modules/ecommerce/service.ts`; GA4 sayfası/API profil tanımı.
 
-- [ ] Woody lead+ecommerce hedefleri ayrı gösterilsin; “dönüşüm” etiketi hangi olayı anlattığını açıklasın.
-- [ ] Kullanıcı tarih filtresi GA4/Commerce kapsamlarına doğru taşınsın veya sabit dönem görünürce ayrı belirtirsin.
-- [ ] Commerce cache doldurma/güncellik/hata durumu canlı oturumda doğrulansın; hata “0 satış” olarak gösterilmesin.
+- [x] Woody lead+ecommerce hedefleri ayrı gösterilsin; “dönüşüm” etiketi hangi olayı anlattığını açıklasın.
+- [x] Kullanıcı tarih filtresi GA4/Commerce kapsamlarına doğru taşınsın veya sabit dönem görünürce ayrı belirtirsin.
+- [x] Commerce cache doldurma/güncellik/hata durumu canlı oturumda doğrulansın; hata “0 satış” olarak gösterilmesin.
 - [x] Net tahsilat, Ads dönüşüm değeri ve kâr ayrı; `adSpend:0` ile hesaplanan değer kâr diye sunulmasın.
 - [x] Ödeme/iade/GA4 farkı için kaynak ve kapsam açıklaması gösterilsin.
 
@@ -162,10 +162,10 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 
 **Mevcut alanlar:** `admin_panel/.../contacts`, `quote-requests`, `orders`; backend karşılıkları. Mevcut eşzamanlı admin çalışmasıyla çakışma kontrolü şart.
 
-- [ ] Yeni/ulaşıldı/nitelikli/demo/teklif/kazanıldı/kaybedildi aşamaları mevcut yapılara uygulanabilir mi incelensin.
-- [ ] Kaynak, sorumlu, sonraki işlem tarihi, ürün/kullanım biçimi, kayıp nedeni; basit rapor.
+- [x] Yeni/ulaşıldı/nitelikli/demo/teklif/kazanıldı/kaybedildi aşamaları mevcut yapılara uygulanabilir mi incelensin.
+- [x] Kaynak, sorumlu, sonraki işlem tarihi, ürün/kullanım biçimi, kayıp nedeni; basit rapor.
 - [ ] Kurum ve ev talebi ayrımı; mesai/yanıt SLA’sı işletmeyle belirlenip ölçülsün.
-- [ ] Reklamdan gelen lead’in nitelikli/kazanıldı durumu için izinli offline conversion sözleşmesi hazırlansın; ilk turda otomatik gönderim açılmasın.
+- [x] Reklamdan gelen lead’in nitelikli/kazanıldı durumu için izinli offline conversion sözleşmesi hazırlansın; ilk turda otomatik gönderim açılmasın.
 - [ ] Ödeme sonrası dijital erişim/kargo/ilk kullanım bilgisi var olan akışta doğrulansın.
 
 **Kabul:** Bir örnek test lead’inin kaynaktan son duruma izi görülebilir. Tenant/müşteri yetkileri korunur. Takip görevi oluşması otomatik mesaj göndermez. Offline satışlar ödeme kaynağına çift yazılmaz.
@@ -197,16 +197,18 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 
 ### A02 — Arama niyeti ve ilk deney
 
-- [ ] En yüksek maliyetli 40 terim ötesinde kapsama göre tüm görünür terimleri incele; harcama kapsama oranını yaz.
-- [ ] 2. sınıf/Wordwall/genel ücretsiz oyun niyetlerini tek tek negatif aday listesine al; “oyun” genel negatif olmasın.
+- [x] En yüksek maliyetli 40 terim ötesinde kapsama göre tüm görünür terimleri incele; harcama kapsama oranını yaz.
+- [x] 2. sınıf/Wordwall/genel ücretsiz oyun niyetlerini tek tek negatif aday listesine al; “oyun” genel negatif olmasın.
 - [ ] İlk ticari hipotez seçilsin: kurum seti veya ev seti. Düşük bütçeyi gereksiz kampanyalara parçalama.
-- [ ] Reklam/landing/aktif fiyat eşlemesini hazırla; metinler gerçek vaat içersin.
+- [x] Reklam/landing/aktif fiyat eşlemesini hazırla; metinler gerçek vaat içersin.
 - [ ] Bütçe tavanı ve değerlendirme aralığı onaylansın; mevcut 150 TL/gün referansı otomatik bütçe artışı değildir.
 - [ ] CPC kontrollü geçici trafik deneyi gerekiyorsa nedeni ve sonlandırma koşulu yazılsın; tCPA/tROAS uydurulmasın.
 
 **Kabul:** Aynı kapanmış dönemde ticari niyetli tıklama, başarılı/nitelikli lead, kazanılan satış ve gider raporlanır. Sırf “bütçe kısıtlı” diye artış yok. Yaş/saat dışlaması küçük örneklemli hafızadan otomatik üretilmez.
 
-### T03 — Sosyal bağlantı, seçilmiş taslaklar (Tanitio + işletme)
+### T03 — Sosyal bağlantı, seçilmiş taslaklar (kapsam dışı)
+
+8 Eylül canlı tenant scope: social=[] ve ads.meta=false. Aşağıdaki maddeler yapılmamış yayın işi değildir; işletme kapsamı yeniden açmadıkça uygulanmaz.
 
 - [ ] Facebook/Instagram/YouTube gerçek hesap sahipliği ve OAuth bağlantısı doğrulansın; pasif yer tutucu doğrudan açılmasın.
 - [ ] Meta reklam hesabı erişimi ayrı doğrulansın; bağlantı eksikliği sıfır performans diye gösterilmesin.
@@ -218,20 +220,20 @@ Bu durum güncellemesi, diğer oturumun yayımladığı commit’i yeniden yazma
 
 ### T04 — Rakip kartı / rapor kapsamı (Tanitio)
 
-- [ ] 7 yeni izlenen rakip için mevcut snapshot varsa onu kullanarak eksik raporları hazırla; gereksiz yeniden tarama yapma.
-- [ ] 4 mevcut raporun kaynak tarihini göster; AI metnini yeni crawl sanma.
+- [x] 7 yeni izlenen rakip için mevcut snapshot varsa onu kullanarak eksik raporları hazırla; gereksiz yeniden tarama yapma.
+- [x] 4 mevcut raporun kaynak tarihini göster; AI metnini yeni crawl sanma.
 - [ ] Doğrudan set rakibi / alternatif kurs / içerik kaynağı / sosyal kanal sınıfları.
 - [ ] Türkiye ticari sorgularını yabancı dil ve genel bilgi sorgularından ayır.
-- [ ] Yandex/Brave konumu Google pozisyonu diye yazılmasın; GSC gösterimleri rakibe mal edilmesin.
-- [ ] Firma kartı cache önizlemesi, alım tarihi ve açık yenileme; açılış başına tekrar site isteği yok.
+- [x] Yandex/Brave konumu Google pozisyonu diye yazılmasın; GSC gösterimleri rakibe mal edilmesin.
+- [x] Firma kartı cache önizlemesi, alım tarihi ve açık yenileme; açılış başına tekrar site isteği yok.
 
 **Kabul:** Önizleme tekrar açıldığında rakibe yeni istek atılmaz; eski snapshot tarihi görünür. Woody GA4/finans/tenant tabloları rakip içerikle kirlenmez. Rapor eksikse açık eksik durumu gösterilir.
 
 ### T05 — Strateji güncellemesi (Tanitio)
 
-- [ ] Lead+ecommerce iki yol, öncelikli test ve gerçek ürün grupları strateji taslağına işlenir.
+- [x] Lead+ecommerce iki yol, öncelikli test ve gerçek ürün grupları strateji taslağına işlenir.
 - [ ] Cambridge ve ürün sonuç iddiaları kanıt/kapsamla güncellenir.
-- [ ] İçerik hedefi erişim değil ilgili ürün ziyareti/nitelikli lead; sosyal ve reklam kaynakları ayrılır.
+- [x] İçerik hedefi erişim değil ilgili ürün ziyareti/nitelikli lead; sosyal ve reklam kaynakları ayrılır.
 - [ ] İşletme onayından sonra strateji yeni revizyon olarak kaydedilir; önceki revizyon korunur.
 
 ## P3 — Büyütme kapısı ve raporlama
@@ -249,10 +251,10 @@ Her faz sonunda aşağıdaki satır doldurulur; yapılmadan kutu işaretlenmez:
 | Faz | Değişen dosya/ayar | Test ve kanıt | Canlı build/kaynak tarihi | Geri dönüş | Durum |
 |---|---|---|---|---|---|
 | Audit | Rapor + checklist + kanıt dosyaları | API/SQL/toplu veriler ve tarayıcı kontrolü | 8 Eylül 2026 | Uygulama değişikliği yok | Tamam |
-| P0 | — | — | — | — | Başlamadı |
-| P1 | — | — | — | — | Başlamadı |
-| P2 | — | — | — | — | Başlamadı |
-| P3 | — | — | — | — | Başlamadı |
+| P0 | Ödeme/iade defteri, form tekrar koruması, Tanitio finans/hafıza | MySQL kabul + canlı sentetik form/finans testi | 8 Eylül; devam raporundaki buildler | Release yedekleri | Kod yayında; GA4/gerçek ödeme/rotasyon açık |
+| P1 | Seviye/ürün bağlantıları, minimum adet, admin satış takibi | Mobil CTA + 12 lead/takip kabul kontrolü | Frontend DZfj5kN2PsjfxzQe_e7SH; admin L0MxTXBPs4xcp4XneCoqo | checklist-20260908/backup | Yayında; ürün/maliyet/SLA teyidi açık |
+| P2 | Video kapak, metadata, rakip raporları, reklam taslağı | GSC 5/5 indeks; Lighthouse 40→62; negatif validateOnly | 8 Eylül | Önceki build; Ads apply yapılmadı | Kısmi; hız hedefi ve ticari onay açık |
+| P3 | Strateji rev2 taslağı, CAC ve offline dönüşüm sözleşmesi | Belge kontrolü; sonuç ölçümü yapılmadı | 8 Eylül | Aktif strateji korunur | İşletme girdisi ve gözlem dönemi bekliyor |
 
 **Deploy tuzakları (8 Eylül'de yaşandı, tekrarlamasın):**
 
