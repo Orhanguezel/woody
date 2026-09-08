@@ -8,6 +8,7 @@
 
 'use client';
 
+import BlogSalesNextStep from '@/components/woody/BlogSalesNextStep';
 import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,6 +27,7 @@ import { safeStr,toCdnSrc, stripPresentationAttrs, extractImgSrcListFromHtml} fr
 import { useLocaleShort, useUiSection } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
+import { wrapRichContentTables } from '@/lib/rich-content';
 
 // Lightbox
 import ImageLightboxModal, {
@@ -237,7 +239,10 @@ export default function BlogDetails() {
     return '';
   }, [post]);
 
-  const contentHtml = useMemo(() => stripPresentationAttrs(rawHtml), [rawHtml]);
+  const contentHtml = useMemo(
+    () => wrapRichContentTables(stripPresentationAttrs(rawHtml)),
+    [rawHtml],
+  );
 
   // Gallery
   const galleryImages = useMemo(() => buildGalleryImages(post, title), [post, title]);
@@ -467,7 +472,7 @@ export default function BlogDetails() {
 
               {/* Content */}
               <div className="bg-bg-secondary p-8 md:p-10 shadow-soft border border-border-light">
-                <div className="prose prose-lg prose-invert max-w-none prose-headings:font-display prose-headings:font-light prose-headings:text-text-primary prose-a:text-brand-primary prose-p:text-text-secondary prose-p:font-light prose-p:text-base prose-p:leading-[1.8] prose-li:text-text-secondary prose-li:font-light prose-li:text-base prose-li:leading-[1.8] prose-ul:mb-6 prose-ol:mb-6 prose-p:mb-6 prose-strong:text-text-primary prose-em:text-brand-primary/80">
+                <div className="blog-rich-content prose prose-lg prose-invert max-w-none prose-headings:font-display prose-headings:font-light prose-headings:text-text-primary prose-a:text-brand-primary prose-p:text-text-secondary prose-p:font-light prose-p:text-base prose-p:leading-[1.8] prose-li:text-text-secondary prose-li:font-light prose-li:text-base prose-li:leading-[1.8] prose-ul:mb-6 prose-ol:mb-6 prose-p:mb-6 prose-strong:text-text-primary prose-em:text-brand-primary/80">
                   {contentHtml ? (
                     <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
                   ) : (
@@ -475,6 +480,8 @@ export default function BlogDetails() {
                   )}
                 </div>
               </div>
+
+              <BlogSalesNextStep slug={slug} locale={locale} />
 
               {/* Comments */}
               <div id="comments" className="mt-12">

@@ -1,10 +1,12 @@
+import BlogSalesNextStep from './BlogSalesNextStep';
 import Image from 'next/image';
-import { tUi } from '@/i18n/staticUi';
+import { tCategory, tUi } from '@/i18n/staticUi';
 
 import Link from 'next/link';
 
 import { FOCUS_RING } from '@/lib/a11y';
 import { localizePath } from '@/integrations/shared';
+import { wrapRichContentTables } from '@/lib/rich-content';
 import type { WoodyFallbackBlogPost } from './blog-loader.server';
 
 export default function WoodyBlogFallbackDetail({
@@ -24,30 +26,37 @@ export default function WoodyBlogFallbackDetail({
 
   return (
     <main className="bg-[var(--gm-bg)] text-[var(--gm-text)]">
-      <section className="border-b border-[var(--gm-border-soft)] bg-[linear-gradient(180deg,var(--gm-bg)_0%,var(--gm-surface)_100%)] py-16 lg:py-24">
-        <div className="container max-w-4xl">
-          <Link
-            href={localizePath(locale, '/blog')}
-            className={`rounded-sm text-sm font-semibold uppercase tracking-[0.16em] text-[var(--gm-gold-deep)] ${FOCUS_RING}`}
-          >
-            {tUi(locale, 'Back to blog')}
-          </Link>
-          {post.category ? (
-            <p className="mt-8 text-xs font-bold uppercase tracking-[0.24em] text-[var(--gm-primary)]">
-              {post.category}
-            </p>
-          ) : null}
-          <h1 className="mt-4 text-balance font-display text-[clamp(2.25rem,6vw,4.5rem)] font-extrabold leading-[1]">
+      <header className="border-b border-[var(--gm-border-soft)] bg-[linear-gradient(180deg,var(--gm-bg)_0%,var(--gm-surface)_100%)]">
+        <div className="mx-auto max-w-4xl px-5 pb-10 pt-28 md:px-6 md:pb-12 md:pt-28">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+            <Link
+              href={localizePath(locale, '/blog')}
+              className={`rounded-sm text-[var(--gm-gold-deep)] transition-colors hover:text-[var(--gm-primary)] ${FOCUS_RING}`}
+            >
+              {locale === 'tr' ? 'Blog' : tUi(locale, 'Back to blog')}
+            </Link>
+            {post.category ? (
+              <>
+                <span aria-hidden="true" className="text-[var(--gm-muted)]">/</span>
+                <span className="text-[var(--gm-text-dim)]">{tCategory(locale, post.category)}</span>
+              </>
+            ) : null}
+          </nav>
+          <h1 className="mt-5 max-w-3xl text-balance font-display text-[clamp(2.25rem,6vw,3.75rem)] font-extrabold leading-[1.08] tracking-[-0.02em]">
             {post.title}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--gm-text-dim)]">{post.summary}</p>
-          {date ? <p className="mt-5 text-sm text-[var(--gm-muted)]">{date}</p> : null}
+          {post.summary ? (
+            <p className="mt-5 max-w-3xl text-base leading-7 text-[var(--gm-text-dim)] md:text-lg md:leading-8">
+              {post.summary}
+            </p>
+          ) : null}
+          {date ? <p className="mt-4 text-sm font-medium text-[var(--gm-muted)]">{date}</p> : null}
         </div>
-      </section>
+      </header>
 
-      <section className="container max-w-4xl py-12 lg:py-16">
+      <section className="mx-auto max-w-4xl px-5 py-8 md:px-6 md:py-10">
         {post.featured_image ? (
-          <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] shadow-[var(--gm-shadow-card)]">
+          <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] shadow-[var(--gm-shadow-card)] md:mb-10">
             <Image
               src={post.featured_image}
               alt={post.featured_image_alt || post.title}
@@ -59,16 +68,17 @@ export default function WoodyBlogFallbackDetail({
           </div>
         ) : null}
 
-        <article className="rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-6 leading-8 text-[var(--gm-text-dim)] shadow-[var(--gm-shadow-soft)] md:p-8">
+        <article className="mx-auto max-w-3xl rounded-xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] px-5 py-7 text-[var(--gm-text-dim)] shadow-[var(--gm-shadow-soft)] md:px-9 md:py-9">
           {post.content_html ? (
             <div
-              className="prose max-w-none font-sans prose-headings:font-display prose-headings:text-[var(--gm-text)] prose-p:font-sans prose-p:text-[var(--gm-text-dim)] prose-li:font-sans prose-strong:font-sans"
-              dangerouslySetInnerHTML={{ __html: post.content_html }}
+              className="blog-rich-content prose max-w-none font-sans prose-headings:font-display prose-headings:text-[var(--gm-text)] prose-p:font-sans prose-p:text-[var(--gm-text-dim)] prose-li:font-sans prose-strong:font-sans"
+              dangerouslySetInnerHTML={{ __html: wrapRichContentTables(post.content_html) }}
             />
           ) : (
             <p>{post.summary}</p>
           )}
         </article>
+        <BlogSalesNextStep slug={post.slug} locale={locale} />
       </section>
     </main>
   );

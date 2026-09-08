@@ -54,6 +54,7 @@ export async function registerDashboardAdmin(adminApi: FastifyInstance) {
     // Tum sorgular birbirinden bagimsiz — paralel calistir.
     const [
       orderAgg,
+      refundAgg,
       quoteAgg,
       messageAgg,
       stock,
@@ -73,6 +74,16 @@ export async function registerDashboardAdmin(adminApi: FastifyInstance) {
            COALESCE(SUM(CASE WHEN payment_status = 'paid' THEN total END), 0)   AS revenue_paid
          FROM orders
          WHERE created_at >= ?`,
+        [fromYmd],
+      ),
+
+      // --- Tam iadeler (iade tarihi aralik icinde) ---
+      one<RowDataPacket>(
+        `SELECT
+           COUNT(*)                                                           AS orders_refunded,
+           COALESCE(SUM(total), 0)                                            AS refund_amount
+         FROM orders
+         WHERE payment_status = 'refunded' AND updated_at >= ?`,
         [fromYmd],
       ),
 
@@ -178,6 +189,8 @@ export async function registerDashboardAdmin(adminApi: FastifyInstance) {
         orders_paid: num(orderAgg?.orders_paid),
         orders_pending: num(orderAgg?.orders_pending),
         orders_failed: num(orderAgg?.orders_failed),
+        orders_refunded: num(refundAgg?.orders_refunded),
+        refund_amount: num(refundAgg?.refund_amount),
         quotes_total: num(quoteAgg?.quotes_total),
         quotes_new: num(quoteAgg?.quotes_new),
         quotes_won: num(quoteAgg?.quotes_won),

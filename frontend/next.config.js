@@ -135,6 +135,11 @@ const nextConfig = {
         : [];
     return [
       ...devApiV1,
+      // Next'in bulunamayan metadata route'u HTML fallback dondurmesin.
+      // Tek marka faviconu backend uploads uzerinden tum PWA ikon yollarina sunulur.
+      { source: '/favicon.ico', destination: `${backendUrl}/uploads/brand/favicon.svg` },
+      { source: '/favicon.svg', destination: `${backendUrl}/uploads/brand/favicon.svg` },
+      { source: '/favicon/:path*', destination: `${backendUrl}/uploads/brand/favicon.svg` },
       { source: '/:locale/hakkimizda', destination: '/:locale/about' },
       { source: '/:locale/how-it-works', destination: '/:locale?section=hybrid_model' },
       { source: '/:locale/nasil-calisir', destination: '/:locale?section=hybrid_model' },

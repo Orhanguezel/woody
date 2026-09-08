@@ -97,7 +97,7 @@ const NavItemExpanded = ({
               isActive={isActive(item.url)}
               tooltip={item.title}
             >
-              <Link prefetch={false} href={item.url} target={item.newTab ? '_blank' : undefined}>
+              <Link href={item.url} target={item.newTab ? '_blank' : undefined}>
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
                 {item.comingSoon && <IsComingSoon text={comingSoonText} />}
@@ -118,7 +118,6 @@ const NavItemExpanded = ({
                     asChild
                   >
                     <Link
-                      prefetch={false}
                       href={subItem.url}
                       target={subItem.newTab ? '_blank' : undefined}
                     >
@@ -171,7 +170,6 @@ const NavItemCollapsed = ({
                 isActive={isActive(subItem.url)}
               >
                 <Link
-                  prefetch={false}
                   href={subItem.url}
                   target={subItem.newTab ? '_blank' : undefined}
                 >
@@ -253,7 +251,6 @@ export function NavMain({ items, showQuickCreate = false }: NavMainProps) {
                           isActive={isItemActive(item.url)}
                         >
                           <Link
-                            prefetch={false}
                             href={item.url}
                             target={item.newTab ? '_blank' : undefined}
                           >

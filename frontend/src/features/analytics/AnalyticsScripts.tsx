@@ -120,6 +120,19 @@ export default function AnalyticsScripts() {
             wait_for_update: 500
           });
 
+          // Consent Mode v2 — REDDEDEN ziyaretciyi de olcebilmek icin iki ayar.
+          // Bunlar olmadan onay vermeyen kullanici tamamen kayboluyor; Google
+          // Ads donusum MODELLEMESI yapamiyor ve kampanya kor kaliyor.
+          //   ads_data_redaction: izin yokken reklam kimlikleri cerezsiz ve
+          //     anonim gonderilir — gizlilik BOZULMAZ, sinyal korunur.
+          //   url_passthrough: cerez yazilamadiginda gclid/wbraid adres
+          //     satirindan tasinir, boylece tiklama-donusum baglantisi kopmaz.
+          // (2026-09-08: woody hesabinda 30 gunde 4.521 TL harcamaya karsilik
+          //  0 donusum gorunuyordu; varsayilan 'denied' + bu ikisinin eksikligi
+          //  en olasi sebepti.)
+          window.gtag('set', 'ads_data_redaction', true);
+          window.gtag('set', 'url_passthrough', true);
+
           window.__analyticsConsentGranted = false;
 
           // External setter for cookie banner

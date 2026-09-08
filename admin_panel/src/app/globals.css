@@ -14,6 +14,12 @@
 @import "../styles/presets/woody-nese.css";
 @import "../styles/presets/woody-akademi.css";
 
+/* Route degisiminde sayfa koklerini yeniden fade/slide ederek paneli
+   kapanip aciliyormus gibi gosteren ortak giris animasyonunu bastir. */
+.admin-route-content > .animate-in {
+  animation: none !important;
+}
+
 /* Brand colors */
 :root {
   /* Logo Primary Colors */

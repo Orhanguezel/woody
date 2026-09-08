@@ -1,4 +1,3 @@
-import { createHash } from 'crypto';
 import type { FastifyInstance } from 'fastify';
 import type { RowDataPacket } from 'mysql2/promise';
 
@@ -16,6 +15,7 @@ export type PurchaseMeasurement = {
     quantity: number;
   }>;
   client_id: string;
+  session_id?: string;
 };
 
 export async function loadCommerceMeasurement(
@@ -24,10 +24,15 @@ export async function loadCommerceMeasurement(
 ): Promise<PurchaseMeasurement | null> {
   const [orders] = await pool.execute<RowDataPacket[]>(
     `
-      SELECT o.id, o.total, a.ga_client_id
+      SELECT o.id, o.total, a.ga_client_id, a.ga_session_id
         FROM orders o
-        LEFT JOIN order_attribution a ON a.order_id = o.id
+        JOIN order_attribution a ON a.order_id = o.id
+        JOIN payment_attempts pa ON pa.payment_ref = o.payment_ref
        WHERE o.id = ? AND o.payment_status = ?
+         AND a.consent_state = 'granted' AND a.ga_client_id IS NOT NULL
+         AND a.ga_client_id <> ''
+         AND pa.status IN ('succeeded','refunded','partially_refunded')
+         AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload, '$.testMode')), 'false') NOT IN ('true','1')
        LIMIT 1
     `,
     [orderId, eventName === 'refund' ? 'refunded' : 'paid'],
@@ -46,14 +51,12 @@ export async function loadCommerceMeasurement(
     [orderId],
   );
 
-  // Measurement Protocol client_id zorunludur. Consent ile yakalanmis GA id yoksa
-  // PII icermeyen, siparise deterministik bir server id kullanilir.
-  const fallbackId = createHash('sha256').update(orderId).digest('hex').slice(0, 24);
   return {
     transaction_id: String(order.id),
     currency: 'TRY',
     value: Number(order.total),
-    client_id: String(order.ga_client_id || `server.${fallbackId}`),
+    client_id: String(order.ga_client_id),
+    session_id: order.ga_session_id ? String(order.ga_session_id) : undefined,
     items: items.map((item) => ({
       item_id: String(item.product_id),
       item_name: String(item.title),
@@ -63,14 +66,16 @@ export async function loadCommerceMeasurement(
   };
 }
 
-async function processOutbox(app: FastifyInstance) {
+export async function processCommerceMeasurementOutbox(app: FastifyInstance) {
   if (!env.GA4_API_SECRET || !env.GA4_MEASUREMENT_ID) return;
   const [rows] = await pool.execute<RowDataPacket[]>(
     `
-      SELECT id, order_id, event_name, attempt_count
+      SELECT id, order_id, event_name, attempt_count, created_at
         FROM commerce_measurement_outbox
        WHERE destination = 'ga4'
          AND status IN ('pending','failed')
+         AND attempt_count < 10
+         AND created_at >= DATE_SUB(CURRENT_TIMESTAMP(3), INTERVAL 72 HOUR)
          AND next_attempt_at <= CURRENT_TIMESTAMP(3)
        ORDER BY created_at ASC
        LIMIT 10
@@ -87,15 +92,20 @@ async function processOutbox(app: FastifyInstance) {
     try {
       const eventName = row.event_name === 'refund' ? 'refund' : 'purchase';
       const purchase = await loadCommerceMeasurement(String(row.order_id), eventName);
-      if (!purchase) throw new Error(eventName === 'refund' ? 'refunded_order_not_found' : 'paid_order_not_found');
+      if (!purchase) {
+        await pool.execute(`UPDATE commerce_measurement_outbox SET status='failed', attempt_count=10, last_error='measurement_ineligible_consent_payment_or_test' WHERE id=?`, [row.id]);
+        continue;
+      }
       const endpoint = new URL('https://www.google-analytics.com/mp/collect');
       endpoint.searchParams.set('measurement_id', env.GA4_MEASUREMENT_ID);
       endpoint.searchParams.set('api_secret', env.GA4_API_SECRET);
       const response = await fetch(endpoint, {
         method: 'POST',
+        signal: AbortSignal.timeout(15_000),
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           client_id: purchase.client_id,
+          timestamp_micros: new Date(row.created_at).getTime() * 1000,
           events: [{
             name: eventName,
             params: {
@@ -104,6 +114,7 @@ async function processOutbox(app: FastifyInstance) {
               value: purchase.value,
               items: purchase.items,
               engagement_time_msec: 1,
+              ...(purchase.session_id ? { session_id: purchase.session_id } : {}),
             },
           }],
         }),
@@ -128,9 +139,9 @@ async function processOutbox(app: FastifyInstance) {
              SET status = 'failed', attempt_count = ?, next_attempt_at = ?, last_error = ?
            WHERE id = ?
         `,
-        [attempts, nextAttempt, String((error as Error).message || 'ga4_delivery_failed').slice(0, 500), row.id],
+        [attempts, nextAttempt, 'ga4_delivery_failed', row.id],
       );
-      app.log.warn({ err: error, orderId: row.order_id }, 'GA4 commerce outbox delivery failed');
+      app.log.warn({ orderId: row.order_id }, 'GA4 commerce outbox delivery failed');
     }
   }
 }
@@ -145,7 +156,9 @@ export function startCommerceMeasurementWorker(app: FastifyInstance) {
     if (running) return;
     running = true;
     try {
-      await processOutbox(app);
+      await processCommerceMeasurementOutbox(app);
+    } catch {
+      app.log.warn('GA4 commerce outbox unavailable');
     } finally {
       running = false;
     }

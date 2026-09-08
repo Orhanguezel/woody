@@ -103,7 +103,6 @@ export function AppSidebar({
     <Sidebar {...props} variant={variant} collapsible={collapsible} className="bg-sidebar border-r border-sidebar-border">
       <SidebarHeader className="p-0 overflow-hidden">
         <Link
-          prefetch={false}
           href="/admin/dashboard"
           className={cn(
             "group flex min-h-32 flex-col items-center justify-center gap-3 border-sidebar-border/70 border-b px-5 py-5 text-center transition-all duration-200 hover:bg-brand-gold-soft",

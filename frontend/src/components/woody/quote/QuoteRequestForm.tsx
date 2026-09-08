@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 
 import { FOCUS_RING } from '@/lib/a11y';
 import { reportAdsConversion } from '@/lib/ads-conversion';
@@ -50,6 +50,7 @@ function initialForm() {
 }
 
 export default function QuoteRequestForm({ copy, source }: Props) {
+  const submitting = useRef(false);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -59,6 +60,8 @@ export default function QuoteRequestForm({ copy, source }: Props) {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     setStatus('loading');
     try {
       const res = await fetch('/api/v1/quote-requests', {
@@ -71,17 +74,15 @@ export default function QuoteRequestForm({ copy, source }: Props) {
         }),
       });
       if (!res.ok) throw new Error('quote_request_failed');
-      window.gtag?.('event', 'quote_form_submit', {
-        source,
-        student_count: Number(form.student_count),
-        level: form.level,
-      });
-      // Google Ads lead donusumu (form etiketi)
-      reportAdsConversion('form');
+      const result = await res.json() as { id?: string; success?: boolean };
+      if (!result.success || !result.id) throw new Error('quote_request_unverified');
+      reportAdsConversion('form', undefined, { lead_id: result.id, form_type: 'quote', source });
       setForm(initialForm());
       setStatus('success');
     } catch {
       setStatus('error');
+    } finally {
+      submitting.current = false;
     }
   }
 

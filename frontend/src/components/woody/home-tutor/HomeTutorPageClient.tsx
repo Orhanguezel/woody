@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BookOpen, LibraryBig, Play, ShoppingBag, Target, X } from 'lucide-react';
 
+import type { StoreProduct } from '../store/types';
 import { FOCUS_RING } from '@/lib/a11y';
 
 import type { WoodyCard, WoodyPageContent } from '../content-loader.server';
@@ -45,9 +46,11 @@ function localizedHref(locale: string, href?: string) {
 export default function HomeTutorPageClient({
   content,
   locale,
+  products = [],
 }: {
   content: WoodyPageContent;
   locale: string;
+  products?: StoreProduct[];
 }) {
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [showVideo, setShowVideo] = useState(false);
@@ -73,6 +76,7 @@ export default function HomeTutorPageClient({
   const levels = (levelsSection?.items ?? []).map((copy, index) => ({
     copy,
     media: LEVEL_MEDIA[index],
+    product: products.find((product) => product.product_code === `WOODY-HOME-${["BASIC", "JUNIOR", "SENIOR", "PRO"][index]}` && product.purchaseMode === "online" && (product.stock_quantity == null || product.stock_quantity > 0)),
   }));
 
   return (
@@ -97,6 +101,7 @@ export default function HomeTutorPageClient({
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/90 drop-shadow-lg md:text-lg">
             {content.hero?.description || content.description}
           </p>
+          {locale === 'tr' ? <Link href="#home-levels" className={`mt-4 rounded-lg bg-orange-600 px-5 py-3 text-sm font-bold text-white ${FOCUS_RING}`}>Ev setlerini seçin</Link> : null}
         </div>
         <div className="absolute inset-x-0 bottom-0">
           <svg viewBox="0 0 1440 120" className="block h-16 w-full text-white md:h-24" preserveAspectRatio="none" aria-hidden>
@@ -142,13 +147,13 @@ export default function HomeTutorPageClient({
         </section>
       ) : null}
 
-      <section className="bg-white py-16 md:py-20">
+      <section id="home-levels" className="scroll-mt-24 bg-white py-16 md:py-20">
         <div className="mx-auto max-w-[1200px] px-6 md:px-12">
           <h2 className="mb-12 text-center text-[28px] font-light tracking-wide text-gray-900 md:text-[36px]">
             {levelsSection?.title}
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
-            {levels.map(({ copy, media: levelMedia }, index) => (
+            {levels.map(({ copy, media: levelMedia, product }, index) => (
               <article key={copy.title} className="group">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition duration-500 group-hover:scale-[1.03] group-hover:shadow-2xl">
                   {levelMedia ? (
@@ -177,11 +182,11 @@ export default function HomeTutorPageClient({
                   <p className="mb-3 mt-1 text-[13px] text-gray-500">{copy.description}</p>
                   {pageUi.buyCta ? (
                     <Link
-                      href={localizedHref(locale, '/store')}
+                      href={product ? `/${locale}/store/checkout?product=${encodeURIComponent(product.slug || product.id)}` : localizedHref(locale, '/contact')}
                       className={`inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-orange-600 md:text-[14px] ${FOCUS_RING}`}
                     >
                       <ShoppingBag className="size-4" aria-hidden />
-                      {pageUi.buyCta}
+                      {product ? pageUi.buyCta : (locale === 'tr' ? 'Bilgi alın' : 'Contact us')}
                     </Link>
                   ) : null}
                 </div>

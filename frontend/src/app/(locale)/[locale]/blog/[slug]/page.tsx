@@ -4,13 +4,11 @@ import { tUi } from '@/i18n/staticUi';
 
 import type { Metadata } from 'next';
 import BlogDetails from '@/components/containers/blog/BlogDetails';
-import Banner from '@/layout/banner/Breadcrum';
 import { safeStr, titleFromSlug, excerpt } from '@/integrations/shared';
 import { normPath, absUrlJoin } from '@/integrations/shared';
 import { buildPageMetadata, fetchCustomPagePublicBySlug } from '@/seo/server';
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld';
-import FaqAccordion from '@/components/common/FaqAccordion';
 import { getEditorialTeamName, getPublicAppName, getPublicSiteOrigin, getSiteAuthor } from '@/lib/site-config';
 import { findFallbackBlogPost, loadFallbackBlogPosts } from '@/components/woody/blog-loader.server';
 import { loadDbBlogPost, loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
@@ -232,7 +230,6 @@ export default async function BlogDetailsPage({ params }: PageProps) {
           faqSchema(faqItems),
         ])}
       />
-      {page || !fallbackPost ? <Banner title={title} /> : null}
       {dbPost ? (
         <WoodyBlogFallbackDetail post={dbPost} locale={locale} />
       ) : page ? (
@@ -242,9 +239,8 @@ export default async function BlogDetailsPage({ params }: PageProps) {
       ) : (
         <BlogDetails />
       )}
-      <FaqAccordion items={faqItems} title={tUi(locale, 'Questions About This Article')} />
-      <section className="container mx-auto px-4 pb-16">
-        <div className="rounded-2xl border border-[var(--gm-border-soft)] bg-[var(--gm-surface)]/55 p-6">
+      <section className="mx-auto max-w-3xl px-5 pb-14 pt-6 md:px-6 md:pb-16 md:pt-8">
+        <div className="border-t border-[var(--gm-border-soft)] pt-7">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-(--gm-gold)">
             {locale === 'tr' ? 'Yazar' : 'Author'}
           </p>
@@ -254,7 +250,7 @@ export default async function BlogDetailsPage({ params }: PageProps) {
           {isSiteAuthor && siteAuthor.jobTitle ? (
             <p className="mt-1 text-sm font-medium text-(--gm-gold)">{siteAuthor.jobTitle}</p>
           ) : null}
-          <p className="mt-3 text-[var(--gm-text-dim)]">
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--gm-text-dim)] md:text-base">
             {isSiteAuthor && siteAuthor.bio
               ? siteAuthor.bio
               : locale === 'tr'

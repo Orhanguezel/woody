@@ -86,7 +86,7 @@ export default async function Layout({ children }: Readonly<{ children: ReactNod
 
             <div className="flex flex-1 flex-col overflow-hidden">
               <div className="flex-1 min-w-0 overflow-auto p-6 md:p-10 lg:p-12">
-                <div className="mx-auto max-w-screen-2xl">
+                <div className="admin-route-content mx-auto max-w-screen-2xl">
                   {children}
                 </div>
               </div>

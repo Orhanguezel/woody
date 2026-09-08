@@ -231,6 +231,11 @@ export default function WoodyStoreShowcase({
                   </button>
                 ) : null}
               </div>
+              {locale === 'tr' && Number(product.minQuantity) > 1 && product.price ? (
+                <p className="mt-2 text-xs font-semibold text-[#5f6871]">
+                  {product.minQuantity} adet toplam: {new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(numericPrice(product.price) * Number(product.minQuantity))}
+                </p>
+              ) : null}
               <Link
                 href={`/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`}
                 onClick={(event) => {
@@ -315,7 +320,7 @@ export default function WoodyStoreShowcase({
           ayirt edilmiyor, iki baslik halinde koyalim"). Filtre cubugu kaldirildi. */}
       {groups.length ? (
         groups.map((group) => (
-          <section key={group.slug} className="container max-w-[1100px] pt-8 lg:pt-10">
+          <section id={`store-series-${group.slug}`} key={group.slug} className="scroll-mt-24 container max-w-[1100px] pt-8 lg:pt-10">
             <div className="flex flex-wrap items-center gap-3">
               <h2 className="font-display text-2xl font-black leading-tight text-[#24333f] md:text-3xl">
                 {group.category?.name || group.slug}

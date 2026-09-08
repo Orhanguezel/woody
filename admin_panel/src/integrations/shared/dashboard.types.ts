@@ -17,6 +17,8 @@ export type DashboardTotals = {
   orders_paid: number;
   orders_pending: number;
   orders_failed: number;
+  orders_refunded: number;
+  refund_amount: number;
   quotes_total: number;
   quotes_new: number;
   quotes_won: number;
@@ -120,6 +122,8 @@ const EMPTY_TOTALS: DashboardTotals = {
   orders_paid: 0,
   orders_pending: 0,
   orders_failed: 0,
+  orders_refunded: 0,
+  refund_amount: 0,
   quotes_total: 0,
   quotes_new: 0,
   quotes_won: 0,

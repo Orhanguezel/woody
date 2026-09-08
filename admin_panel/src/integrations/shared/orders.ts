@@ -70,6 +70,16 @@ export type OrdersListResp = {
   total: number;
 };
 
+export type OrderSummary = {
+  orders_total: number;
+  orders_paid: number;
+  orders_refunded: number;
+  orders_pending: number;
+  orders_failed: number;
+  paid_amount: number;
+  refund_amount: number;
+};
+
 export type OrdersListQuery = {
   page?: number;
   limit?: number;

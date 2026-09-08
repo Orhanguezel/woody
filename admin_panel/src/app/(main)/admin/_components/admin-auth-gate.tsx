@@ -21,7 +21,7 @@ export default function AdminAuthGate({ children }: { children: React.ReactNode 
   const q = useStatusQuery();
 
   React.useEffect(() => {
-    if (q.isFetching) return;
+    if (q.isLoading) return;
     if (q.isUninitialized) return;
 
     const data = q.data as AuthStatusResponse | undefined;
@@ -30,10 +30,10 @@ export default function AdminAuthGate({ children }: { children: React.ReactNode 
     if (!me || me.isAdmin !== true) {
       router.replace('/auth/login');
     }
-  }, [q.isFetching, q.isUninitialized, q.data, router]);
+  }, [q.isLoading, q.isUninitialized, q.data, router]);
 
   // Loading state (blank or skeleton)
-  if (q.isFetching || q.isUninitialized) {
+  if ((q.isLoading && !q.data) || q.isUninitialized) {
     return null; // istersen burada spinner/skeleton bas
   }
 

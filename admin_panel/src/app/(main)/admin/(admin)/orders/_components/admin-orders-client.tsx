@@ -12,7 +12,12 @@ import {
   ChevronLeft,
   ChevronRight,
   CreditCard,
-  AlertCircle
+  AlertCircle,
+  CheckCircle2,
+  Clock3,
+  RotateCcw,
+  XCircle,
+  ListFilter,
 } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -41,7 +46,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 
 import type { OrderStatus, PaymentStatus } from '@/integrations/shared';
-import { useListOrdersAdminQuery } from '@/integrations/hooks';
+import { useGetOrdersSummaryAdminQuery, useListOrdersAdminQuery } from '@/integrations/hooks';
 
 function fmtMoney(v: string | number, currency: string) {
   const n = Number(v);
@@ -56,13 +61,59 @@ function fmtMoney(v: string | number, currency: string) {
 const ORDER_STATUSES: OrderStatus[] = ['pending', 'confirmed', 'shipped', 'completed', 'cancelled'];
 const PAYMENT_STATUSES: PaymentStatus[] = ['unpaid', 'pending', 'paid', 'failed', 'refunded'];
 
-export default function AdminOrdersClient() {
+function shortOrderNo(value: string) {
+  return value.length > 18 ? `${value.slice(0, 14)}…` : value;
+}
+
+function SummaryFilter({
+  label,
+  value,
+  hint,
+  icon: Icon,
+  active,
+  onClick,
+}: {
+  label: string;
+  value: number;
+  hint: string;
+  icon: React.ElementType;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        'flex min-h-28 items-center gap-4 rounded-3xl border px-5 py-4 text-left transition-colors',
+        active
+          ? 'border-gm-gold bg-gm-gold/10 shadow-lg shadow-gm-gold/10'
+          : 'border-gm-border-soft bg-gm-surface/20 hover:border-gm-gold/40 hover:bg-gm-surface/40',
+      )}
+    >
+      <span className={cn('flex size-11 shrink-0 items-center justify-center rounded-2xl', active ? 'bg-gm-gold text-gm-bg' : 'bg-gm-surface text-gm-muted')}>
+        <Icon className="size-5" />
+      </span>
+      <span className="min-w-0">
+        <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-gm-muted">{label}</span>
+        <span className="mt-1 block font-serif text-2xl text-gm-text">{value.toLocaleString('tr-TR')}</span>
+        <span className="block truncate text-[11px] text-gm-muted">{hint}</span>
+      </span>
+    </button>
+  );
+}
+
+export default function AdminOrdersClient({
+  initialPaymentStatus = 'all',
+}: {
+  initialPaymentStatus?: PaymentStatus | 'all';
+}) {
   const t = useAdminT('admin.orders');
 
   const [page, setPage] = React.useState(1);
   const [limit] = React.useState(20);
   const [status, setStatus] = React.useState<OrderStatus | 'all'>('all');
-  const [paymentStatus, setPaymentStatus] = React.useState<PaymentStatus | 'all'>('all');
+  const [paymentStatus, setPaymentStatus] = React.useState<PaymentStatus | 'all'>(initialPaymentStatus);
   const [shippingPending, setShippingPending] = React.useState('all');
   const [searchInput, setSearchInput] = React.useState('');
   const [search, setSearch] = React.useState('');
@@ -75,6 +126,7 @@ export default function AdminOrdersClient() {
     shipping_pending: shippingPending === 'pending' ? true : undefined,
     q: search || undefined,
   });
+  const summaryQ = useGetOrdersSummaryAdminQuery();
 
   const orders = q.data?.data ?? [];
   const total = q.data?.total ?? 0;
@@ -119,6 +171,56 @@ export default function AdminOrdersClient() {
             {t('admin.common.refresh', null, 'Yenile')}
           </Button>
         </div>
+      </div>
+
+      {/* Siparis ve tahsilat ozetleri ayni zamanda hizli filtre olarak calisir. */}
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {summaryQ.isLoading ? (
+          Array.from({ length: 5 }).map((_, index) => <Skeleton key={index} className="h-28 rounded-3xl" />)
+        ) : (
+          <>
+            <SummaryFilter
+              label="Tüm siparişler"
+              value={summaryQ.data?.orders_total ?? 0}
+              hint="Bütün ödeme durumları"
+              icon={ListFilter}
+              active={paymentStatus === 'all'}
+              onClick={() => { setPaymentStatus('all'); setPage(1); }}
+            />
+            <SummaryFilter
+              label="Ödenen"
+              value={summaryQ.data?.orders_paid ?? 0}
+              hint={fmtMoney(summaryQ.data?.paid_amount ?? 0, 'TRY')}
+              icon={CheckCircle2}
+              active={paymentStatus === 'paid'}
+              onClick={() => { setPaymentStatus('paid'); setPage(1); }}
+            />
+            <SummaryFilter
+              label="İade edilen"
+              value={summaryQ.data?.orders_refunded ?? 0}
+              hint={fmtMoney(summaryQ.data?.refund_amount ?? 0, 'TRY')}
+              icon={RotateCcw}
+              active={paymentStatus === 'refunded'}
+              onClick={() => { setPaymentStatus('refunded'); setPage(1); }}
+            />
+            <SummaryFilter
+              label="Ödeme bekleyen"
+              value={summaryQ.data?.orders_pending ?? 0}
+              hint="Aksiyon gerektirebilir"
+              icon={Clock3}
+              active={paymentStatus === 'pending'}
+              onClick={() => { setPaymentStatus('pending'); setPage(1); }}
+            />
+            <SummaryFilter
+              label="Başarısız"
+              value={summaryQ.data?.orders_failed ?? 0}
+              hint="Tamamlanmayan ödemeler"
+              icon={XCircle}
+              active={paymentStatus === 'failed'}
+              onClick={() => { setPaymentStatus('failed'); setPage(1); }}
+            />
+          </>
+        )}
       </div>
 
       {/* Filters Card */}
@@ -189,7 +291,7 @@ export default function AdminOrdersClient() {
 
       {/* Table Card */}
       <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
-        <CardContent className="p-0">
+        <CardContent className="overflow-x-auto p-0">
           <Table>
             <TableHeader className="bg-gm-surface/40">
               <TableRow className="border-gm-border-soft hover:bg-transparent">
@@ -227,13 +329,23 @@ export default function AdminOrdersClient() {
                 </TableRow>
               ) : (
                 orders.map((order) => (
-                  <TableRow key={order.id} className="border-gm-border-soft hover:bg-gm-primary/[0.03] transition-colors group">
+                  <TableRow
+                    key={order.id}
+                    className={cn(
+                      'border-gm-border-soft transition-colors group',
+                      order.payment_status === 'refunded'
+                        ? 'bg-gm-error/[0.035] hover:bg-gm-error/[0.07]'
+                        : 'hover:bg-gm-primary/[0.03]',
+                    )}
+                  >
                     <TableCell className="py-6 px-8">
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-gm-gold/10 flex items-center justify-center text-gm-gold shadow-inner border border-gm-gold/20">
                           <Receipt size={16} />
                         </div>
-                        <span className="font-mono text-[11px] font-bold tracking-widest text-gm-gold opacity-80">{order.order_number}</span>
+                        <span className="font-mono text-[11px] font-bold tracking-wide text-gm-gold" title={order.order_number}>
+                          {shortOrderNo(order.order_number)}
+                        </span>
                       </div>
                     </TableCell>
                     <TableCell className="py-6">
@@ -270,6 +382,7 @@ export default function AdminOrdersClient() {
                       <div className={cn(
                         "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wide border transition-all",
                         order.payment_status === 'paid' ? 'bg-gm-success/5 border-gm-success/20 text-gm-success' :
+                        order.payment_status === 'refunded' ? 'bg-gm-error/10 border-gm-error/25 text-gm-error' :
                         order.payment_status === 'failed' ? 'bg-gm-error/5 border-gm-error/20 text-gm-error' :
                         'bg-gm-surface/40 border-gm-border-soft text-gm-muted'
                       )}>

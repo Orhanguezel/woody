@@ -10,7 +10,8 @@
     "db:seed:nodrop": "bun src/db/seed/index.ts --no-drop",
     "seo:sync-pages": "bun src/scripts/syncWoodySeoPages.ts",
     "seo:sync-og-assets": "bun src/scripts/syncWoodyOgAssets.ts",
-    "seo:backfill-templates": "bun src/scripts/backfillWoodySeoTemplates.ts"
+    "seo:backfill-templates": "bun src/scripts/backfillWoodySeoTemplates.ts",
+    "content:fix-tr-chars": "bun src/scripts/fixTurkishBlogCharacters.ts"
   },
   "dependencies": {
     "@fastify/cookie": "^11",

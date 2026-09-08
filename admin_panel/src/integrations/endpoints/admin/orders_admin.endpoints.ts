@@ -12,6 +12,7 @@ import type {
   PaymentGatewayView,
   PaymentGatewayCreateBody,
   PaymentGatewayUpdateBody,
+  OrderSummary,
 } from '@/integrations/shared';
 import {
   normalizeOrdersListResp,
@@ -41,6 +42,27 @@ export const ordersAdminApi = baseApi.injectEndpoints({
           : [{ type: 'Orders' as const, id: 'LIST' }],
     }),
 
+    getOrdersSummaryAdmin: b.query<OrderSummary, void>({
+      query: () => ({ url: `${BASE}/summary`, method: 'GET' }),
+      transformResponse: (res: unknown) => {
+        const row = (res ?? {}) as Record<string, unknown>;
+        const number = (key: keyof OrderSummary) => {
+          const value = Number(row[key]);
+          return Number.isFinite(value) ? value : 0;
+        };
+        return {
+          orders_total: number('orders_total'),
+          orders_paid: number('orders_paid'),
+          orders_refunded: number('orders_refunded'),
+          orders_pending: number('orders_pending'),
+          orders_failed: number('orders_failed'),
+          paid_amount: number('paid_amount'),
+          refund_amount: number('refund_amount'),
+        };
+      },
+      providesTags: [{ type: 'Orders' as const, id: 'SUMMARY' }],
+    }),
+
     getOrderAdmin: b.query<OrderAdminDetailView, { id: string }>({
       query: ({ id }) => ({ url: `${BASE}/${encodeURIComponent(id)}`, method: 'GET' }),
       transformResponse: (res: unknown) => normalizeOrderAdminDetail(res),
@@ -57,6 +79,7 @@ export const ordersAdminApi = baseApi.injectEndpoints({
       invalidatesTags: (_r, _e, arg) => [
         { type: 'Order' as const, id: arg.id },
         { type: 'Orders' as const, id: 'LIST' },
+        { type: 'Orders' as const, id: 'SUMMARY' },
       ],
     }),
 
@@ -69,6 +92,7 @@ export const ordersAdminApi = baseApi.injectEndpoints({
       invalidatesTags: (_r, _e, arg) => [
         { type: 'Order' as const, id: arg.id },
         { type: 'Orders' as const, id: 'LIST' },
+        { type: 'Orders' as const, id: 'SUMMARY' },
       ],
     }),
 
@@ -104,6 +128,7 @@ export const ordersAdminApi = baseApi.injectEndpoints({
 
 export const {
   useListOrdersAdminQuery,
+  useGetOrdersSummaryAdminQuery,
   useGetOrderAdminQuery,
   useUpdateOrderAdminMutation,
   useRefundOrderAdminMutation,

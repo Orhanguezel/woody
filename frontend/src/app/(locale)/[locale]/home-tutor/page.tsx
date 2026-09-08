@@ -1,3 +1,4 @@
+import { loadDbStoreProducts } from '@/components/woody/store/load-store-products.server';
 import JsonLd from '@/seo/JsonLd';
 import WoodyFallback from '@/components/woody/WoodyFallback';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
@@ -17,12 +18,12 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function HomeTutorPage({ params }: Props) {
   const { locale } = await params;
-  const content = await loadWoodyPageContent(PAGE_KEY, locale);
+  const [content, products] = await Promise.all([loadWoodyPageContent(PAGE_KEY, locale), loadDbStoreProducts(locale)]);
   if (!content) return <WoodyFallback pageKey={PAGE_KEY} />;
   return (
     <>
       <JsonLd id="woody-home-tutor" data={woodyPageGraph({ locale, pathname: PATHNAME, content })} />
-      <HomeTutorPageClient content={content} locale={locale} />
+      <HomeTutorPageClient content={content} locale={locale} products={products.filter((product) => product.product_code?.startsWith('WOODY-HOME-'))} />
     </>
   );
 }

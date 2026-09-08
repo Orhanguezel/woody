@@ -5,6 +5,8 @@
 // purchase olayi sessionStorage ile siparis basina TEK KEZ atilir (yenilemede tekrarlamaz).
 // =============================================================
 
+import { reportAdsPurchase } from './ads-conversion';
+
 export type EcommerceItem = {
   item_id: string;
   item_name: string;
@@ -92,6 +94,15 @@ export function reportPurchaseOnce(orderId: string, verified?: EcommercePayload)
     // bozuk kayit — transaction_id yeterli
   }
   sendEvent('purchase', { transaction_id: orderId, ...payload });
+
+  // GA4'e ek olarak Google Ads'e de bildir. GA4 olayi tek basina Ads'te
+  // donusum SAYILMAZ (ayrica ice aktarim gerekir); dogrudan etiket hem daha
+  // hizli hem daha guvenilir. Etiket bos oldugu surece bu cagri no-op'tur.
+  reportAdsPurchase({
+    orderId,
+    value: typeof payload.value === 'number' ? payload.value : undefined,
+    currency: typeof payload.currency === 'string' ? payload.currency : 'TRY',
+  });
   try {
     window.sessionStorage.setItem(PURCHASE_SENT_KEY(orderId), '1');
     window.sessionStorage.removeItem(PENDING_ORDER_KEY(orderId));

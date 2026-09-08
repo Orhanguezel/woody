@@ -28,6 +28,7 @@ import {
   Mail,
   Inbox,
   AlertCircle,
+  RotateCcw,
 } from 'lucide-react';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
@@ -291,9 +292,9 @@ export default function AdminDashboardClient() {
       ) : null}
 
       {/* KPI kartlari */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
         {loading ? (
-          Array.from({ length: 4 }).map((_, i) => (
+          Array.from({ length: 5 }).map((_, i) => (
             <Skeleton key={i} className="h-44 rounded-[32px] bg-gm-surface/20" />
           ))
         ) : (
@@ -317,6 +318,14 @@ export default function AdminDashboardClient() {
               icon={ShoppingCart}
               color="var(--gm-primary)"
               href="/admin/orders"
+            />
+            <KpiCard
+              label="İadeler"
+              value={formatMoney(totals?.refund_amount ?? 0)}
+              hint={`${totals?.orders_refunded ?? 0} tam iade`}
+              icon={RotateCcw}
+              color="var(--gm-error)"
+              href="/admin/orders?payment_status=refunded"
             />
             <KpiCard
               label="Teklif Talebi"

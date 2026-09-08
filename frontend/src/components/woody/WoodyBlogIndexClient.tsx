@@ -37,7 +37,7 @@ const fallbackFaq: WoodyBlogFaqItem[] = [
     problem:
       'Okul öncesinde ezber odaklı dersler çocukların dikkatini hızlıca düşürür ve öğrenmeyi kalıcı hale getirmekte zorlanır.',
     solution:
-      'Hikaye, şarkı, hareket ve tekrar içeren etkinlikler dilin doğal biçimde kullanılmasını sağlar.',
+      'Hikâye, şarkı, hareket ve tekrar içeren etkinlikler dilin doğal biçimde kullanılmasını sağlar.',
   },
 ];
 

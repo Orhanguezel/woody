@@ -30,6 +30,30 @@ function nullable(value: unknown) {
 }
 
 export async function registerOrdersProjectAdmin(app: FastifyInstance) {
+  app.get('/orders/summary', async () => {
+    const [rows] = await pool.execute(
+      `SELECT
+         COUNT(*) AS orders_total,
+         SUM(payment_status = 'paid') AS orders_paid,
+         SUM(payment_status = 'refunded') AS orders_refunded,
+         SUM(payment_status IN ('unpaid', 'pending')) AS orders_pending,
+         SUM(payment_status = 'failed') AS orders_failed,
+         COALESCE(SUM(CASE WHEN payment_status = 'paid' THEN total ELSE 0 END), 0) AS paid_amount,
+         COALESCE(SUM(CASE WHEN payment_status = 'refunded' THEN total ELSE 0 END), 0) AS refund_amount
+       FROM orders`,
+    );
+    const [row] = rows as Array<Record<string, unknown>>;
+    return {
+      orders_total: Number(row?.orders_total || 0),
+      orders_paid: Number(row?.orders_paid || 0),
+      orders_refunded: Number(row?.orders_refunded || 0),
+      orders_pending: Number(row?.orders_pending || 0),
+      orders_failed: Number(row?.orders_failed || 0),
+      paid_amount: Number(row?.paid_amount || 0),
+      refund_amount: Number(row?.refund_amount || 0),
+    };
+  });
+
   app.patch('/orders/:id', async (req, reply) => {
     const { id } = req.params as { id: string };
     const body = (req.body || {}) as OrderUpdateBody;

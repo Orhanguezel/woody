@@ -154,6 +154,7 @@ export default function PreschoolPageClient({
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/90 drop-shadow-lg md:text-lg">
             {content.hero?.description || content.description}
           </p>
+          {locale === 'tr' ? <Link href="#quote-form" className={`mt-4 rounded-lg bg-orange-600 px-5 py-3 text-sm font-bold text-white ${FOCUS_RING}`}>Kurumunuz için teklif alın</Link> : null}
         </div>
         <div className="absolute inset-x-0 bottom-0">
           <svg viewBox="0 0 1440 120" className="block h-16 w-full text-white md:h-24" preserveAspectRatio="none" aria-hidden>

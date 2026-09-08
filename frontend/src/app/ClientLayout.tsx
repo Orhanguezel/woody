@@ -33,26 +33,9 @@ export default function ClientLayout({
   const brand = useMemo(() => ({ name: getPublicAppName() }), []);
   const [analyticsReady, setAnalyticsReady] = useState(false);
   
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    let idleId: number | undefined;
-    const startAnalytics = () => setAnalyticsReady(true);
-
-    timeoutId = setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(startAnalytics, { timeout: 2500 });
-      } else {
-        startAnalytics();
-      }
-    }, 5000);
-
-    return () => {
-      clearTimeout(timeoutId);
-      if (idleId && 'cancelIdleCallback' in window) {
-        window.cancelIdleCallback(idleId);
-      }
-    };
-  }, []);
+  // Start after hydration. A fixed five-second delay loses short visits and
+  // early lead clicks; consent defaults remain owned by AnalyticsScripts.
+  useEffect(() => { setAnalyticsReady(true); }, []);
 
   // Sync <html lang="..."> with current locale
   useEffect(() => {

@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `payment_attempts` (
   `order_id` CHAR(36) NOT NULL,
   `payment_ref` CHAR(36) NOT NULL,
   `provider` VARCHAR(32) NOT NULL,
-  `status` ENUM('pending','succeeded','failed','cancelled') NOT NULL DEFAULT 'pending',
+  `status` ENUM('pending','succeeded','failed','cancelled','refunded','partially_refunded') NOT NULL DEFAULT 'pending',
   `amount` DECIMAL(12,2) NOT NULL,
   `request_payload` JSON DEFAULT NULL,
   `response_payload` JSON DEFAULT NULL,

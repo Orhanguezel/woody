@@ -274,7 +274,13 @@ export function getDefaultGoogleAdsConversionId(): string {
   return String(analytics.googleAdsConversionId || '').trim();
 }
 
-export type GoogleAdsConversionKind = 'form' | 'whatsapp' | 'phone';
+/**
+ * 'purchase' 2026-09-08'de eklendi: site lead-gen olarak kurulmustu ama artik
+ * gercek e-ticaret satisi var (odenmis siparisler commerce tablosunda). Satin
+ * alma Google Ads'e HIC bildirilmiyordu, dolayisiyla kampanya kendi getirdigi
+ * satisi goremiyor ve sonuca gore teklif veremiyordu.
+ */
+export type GoogleAdsConversionKind = 'form' | 'whatsapp' | 'phone' | 'purchase';
 
 export function getDefaultGoogleAdsConversionLabels(): Record<GoogleAdsConversionKind, string> {
   const analytics = getSiteDefaultsRecord<Record<string, unknown>>('analytics');
@@ -283,6 +289,7 @@ export function getDefaultGoogleAdsConversionLabels(): Record<GoogleAdsConversio
     form: String(labels.form || '').trim(),
     whatsapp: String(labels.whatsapp || '').trim(),
     phone: String(labels.phone || '').trim(),
+    purchase: String(labels.purchase || '').trim(),
   };
 }
 

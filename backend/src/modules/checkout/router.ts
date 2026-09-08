@@ -636,7 +636,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     const { client_id: _clientId, ...browserPayload } = purchase;
     return {
       ready: true,
-      delivery: env.GA4_API_SECRET ? 'server' : 'browser',
+      delivery: env.GA4_API_SECRET && env.GA4_MEASUREMENT_ID ? 'server' : 'browser',
       purchase: browserPayload,
     };
   });
@@ -992,6 +992,32 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
 
 // Admin: PayTR callback loglari (SSH'siz izleme) — QE paytr-logs ekraninin API'si
 export async function registerCheckoutAdmin(app: FastifyInstance) {
+  app.get('/paytr/refund-logs', async (req) => {
+    const q = (req.query || {}) as { page?: string; limit?: string };
+    const page = Math.max(1, Number(q.page) || 1);
+    const limit = Math.min(100, Math.max(1, Number(q.limit) || 10));
+    const offset = (page - 1) * limit;
+    const [rows] = await pool.execute<RowDataPacket[]>(
+      `SELECT pa.id, pa.order_id, pa.payment_ref AS merchant_oid,
+              pa.status, pa.amount, pa.updated_at,
+              u.full_name AS customer_name, u.email AS customer_email
+         FROM payment_attempts pa
+         JOIN orders o ON o.id = pa.order_id
+         LEFT JOIN users u ON u.id = o.dealer_id
+        WHERE pa.provider = 'paytr'
+          AND pa.status IN ('refunded', 'partially_refunded')
+        ORDER BY pa.updated_at DESC
+        LIMIT ${limit} OFFSET ${offset}`,
+    );
+    const [countRows] = await pool.execute<RowDataPacket[]>(
+      `SELECT COUNT(*) AS total
+         FROM payment_attempts
+        WHERE provider = 'paytr'
+          AND status IN ('refunded', 'partially_refunded')`,
+    );
+    return { items: rows, total: Number(countRows[0]?.total || 0), page, limit };
+  });
+
   app.get('/paytr/callback-logs', async (req) => {
     const q = (req.query || {}) as { page?: string; limit?: string; outcome?: string; merchant_oid?: string };
     const page = Math.max(1, Number(q.page) || 1);
@@ -1025,14 +1051,23 @@ export async function registerCheckoutAdmin(app: FastifyInstance) {
   });
 
   app.get('/paytr/callback-logs/stats', async () => {
-    const [rows] = await pool.execute<RowDataPacket[]>(
+    const [[rows], [refundRows]] = await Promise.all([
+      pool.execute<RowDataPacket[]>(
       `
         SELECT outcome, COUNT(*) AS count
           FROM paytr_callback_logs
          GROUP BY outcome
          ORDER BY count DESC
       `,
-    );
+      ),
+      pool.execute<RowDataPacket[]>(
+        `SELECT COUNT(*) AS refund_count,
+                COALESCE(SUM(amount), 0) AS refund_amount
+           FROM payment_attempts
+          WHERE provider = 'paytr'
+            AND status IN ('refunded', 'partially_refunded')`,
+      ),
+    ]);
     // Ticari ozet yalniz dogrulanip islenen callback'leri sayar. Ayni siparise
     // birden fazla callback geldiyse en son islenen sonuc esas alinir; boylece
     // tekrar bildirimler veya basarisiz denemeden sonra gelen basari cift sayilmaz.
@@ -1077,6 +1112,8 @@ export async function registerCheckoutAdmin(app: FastifyInstance) {
     const realSuccessCount = Number(commerce.real_success_count || 0);
     const realFailedCount = Number(commerce.real_failed_count || 0);
     const realAttempts = realSuccessCount + realFailedCount;
+    const refundCount = Number(refundRows[0]?.refund_count || 0);
+    const refundAmount = Number(refundRows[0]?.refund_amount || 0);
 
     return {
       outcomes: rows,
@@ -1084,6 +1121,9 @@ export async function registerCheckoutAdmin(app: FastifyInstance) {
         realSuccessCount,
         realFailedCount,
         realRevenue: Number(commerce.real_revenue || 0),
+        refundCount,
+        refundAmount,
+        netRevenue: Number(commerce.real_revenue || 0) - refundAmount,
         testSuccessCount: Number(commerce.test_success_count || 0),
         testFailedCount: Number(commerce.test_failed_count || 0),
         observedSuccessRate: realAttempts ? Number(((realSuccessCount / realAttempts) * 100).toFixed(1)) : null,
