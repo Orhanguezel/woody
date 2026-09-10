@@ -1,6 +1,7 @@
 // =============================================================
 // FILE: src/seo/alternates.ts
 // =============================================================
+import { isUnsafePublicOrigin, getPublicSiteOrigin } from '@/lib/site-config';
 import 'server-only';
 
 import { headers } from 'next/headers';
@@ -21,7 +22,10 @@ const firstHeader = (v: unknown): string => String(v || '').split(',')[0].trim()
 async function getRuntimeBaseUrl(): Promise<string> {
   // 1) env (prod deterministik)
   const env = stripTrailingSlash(process.env.NEXT_PUBLIC_SITE_URL || '');
-  if (env) return normalizeLocalhostOrigin(env);
+  if (env && !isUnsafePublicOrigin(env)) return normalizeLocalhostOrigin(env);
+  // Production'da localhost env'i yok sayilir; site-defaults originFallback sabit kaynaktir.
+  const fromDefaults = stripTrailingSlash(getPublicSiteOrigin());
+  if (fromDefaults && !isUnsafePublicOrigin(fromDefaults)) return fromDefaults;
 
   // 2) SSR headers (proxy-safe)
   const h = await headers();

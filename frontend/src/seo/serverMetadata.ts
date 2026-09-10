@@ -32,7 +32,7 @@ import {
   stripTrailingSlash,
   uniq,
 } from '@/integrations/shared';
-import { getLocaleDescriptionFallback, getPublicAppName } from '@/lib/site-config';
+import { getLocaleDescriptionFallback, getPublicAppName, isUnsafePublicOrigin, getPublicSiteOrigin } from '@/lib/site-config';
 
 const WOODY_CANONICAL_LOCALES = ['tr', 'en', 'de', 'ar', 'fr', 'ru', 'es', 'it', 'nl', 'pt-br'] as const;
 
@@ -46,12 +46,16 @@ const WOODY_CANONICAL_LOCALES = ['tr', 'en', 'de', 'ar', 'fr', 'ru', 'es', 'it',
 async function getRuntimeBaseUrl(): Promise<string> {
   // 1) env (deterministic)
   const env = stripTrailingSlash(String(process.env.NEXT_PUBLIC_SITE_URL || '').trim());
-  if (env) return normalizeLocalhostOrigin(env);
+  if (env && !isUnsafePublicOrigin(env)) return normalizeLocalhostOrigin(env);
 
   // 2) DB (site_settings.public_base_url, locale='*')
   const publicBase = await fetchSetting('public_base_url', '*', { revalidate: 600 });
   const fromDb = stripTrailingSlash(String(publicBase?.value || '').trim());
-  if (fromDb && /^https?:\/\//i.test(fromDb)) return normalizeLocalhostOrigin(fromDb);
+  if (fromDb && /^https?:\/\//i.test(fromDb) && !isUnsafePublicOrigin(fromDb)) return normalizeLocalhostOrigin(fromDb);
+
+  // 3) site-defaults.json originFallback — production'da localhost'a dusmeden once sabit kaynak
+  const fromDefaults = stripTrailingSlash(getPublicSiteOrigin());
+  if (fromDefaults && !isUnsafePublicOrigin(fromDefaults)) return fromDefaults;
 
   const h = await headers();
 

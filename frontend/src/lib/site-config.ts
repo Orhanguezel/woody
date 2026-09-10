@@ -44,10 +44,26 @@ export function getCopyrightHolder(): string {
   return raw ? resolveBrandTemplate(raw) : getPublicAppName();
 }
 
+/**
+ * Production build'inde env yanlislikla localhost/127.0.0.1 tasirsa (8 Eylul 2026'da
+ * canli build NEXT_PUBLIC_SITE_URL=http://localhost:3101 ile derlendi; tum canonical,
+ * hreflang, og:url ve sitemap iki gun localhost gosterdi) bu deger YOK sayilir ve
+ * site-defaults.json originFallback kullanilir. Gelistirmede localhost serbesttir.
+ */
+export function isUnsafePublicOrigin(value: string): boolean {
+  if (process.env.NODE_ENV !== 'production') return false;
+  return /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?\/?$/i.test(value.trim());
+}
+
+function safeEnvOrigin(value: string | undefined): string {
+  const v = String(value || '').trim();
+  return !v || isUnsafePublicOrigin(v) ? '' : v;
+}
+
 export function getPublicSiteOrigin(): string {
   const raw =
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    process.env.NEXT_PUBLIC_APP_URL?.trim() ||
+    safeEnvOrigin(process.env.NEXT_PUBLIC_SITE_URL) ||
+    safeEnvOrigin(process.env.NEXT_PUBLIC_APP_URL) ||
     String(siteDefaults.site.originFallback || '').trim();
   return raw.replace(/\/+$/, '') || 'http://localhost:3077';
 }
