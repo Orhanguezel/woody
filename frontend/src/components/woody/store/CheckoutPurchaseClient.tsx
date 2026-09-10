@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowLeft, Loader2, RotateCcw, ShieldCheck, ShoppingCart, Truck } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
+import { storeAssurance } from './assurance';
 import {
   reportAddPaymentInfo,
   reportBeginCheckout,
@@ -29,18 +30,6 @@ function money(value: number) {
 const INPUT_CLS =
   'w-full rounded-lg border border-[#eadfce] bg-white px-3.5 py-2.5 text-[14px] text-[#24333f] outline-none transition focus:border-[#f58220] focus:ring-2 focus:ring-[#f58220]/20';
 
-const CHECKOUT_ASSURANCE: Record<string, { shipping: string; returns: string; payment: string }> = {
-  tr: { shipping: 'Teslimat ve kargo bilgileri', returns: 'İptal, iade ve geri ödeme', payment: 'PayTR ile güvenli kart ödemesi' },
-  en: { shipping: 'Delivery and shipping information', returns: 'Cancellation, returns and refunds', payment: 'Secure card payment with PayTR' },
-  de: { shipping: 'Liefer- und Versandinformationen', returns: 'Widerruf, Rückgabe und Erstattung', payment: 'Sichere Kartenzahlung mit PayTR' },
-  ar: { shipping: 'معلومات الشحن والتسليم', returns: 'الإلغاء والإرجاع واسترداد الأموال', payment: 'دفع آمن بالبطاقة عبر PayTR' },
-  fr: { shipping: 'Informations de livraison et d’expédition', returns: 'Annulation, retours et remboursements', payment: 'Paiement sécurisé par carte avec PayTR' },
-  ru: { shipping: 'Информация о доставке', returns: 'Отмена, возврат и возмещение', payment: 'Безопасная оплата картой через PayTR' },
-  es: { shipping: 'Información de entrega y envío', returns: 'Cancelaciones, devoluciones y reembolsos', payment: 'Pago seguro con tarjeta mediante PayTR' },
-  it: { shipping: 'Informazioni su consegna e spedizione', returns: 'Annullamenti, resi e rimborsi', payment: 'Pagamento sicuro con carta tramite PayTR' },
-  nl: { shipping: 'Informatie over levering en verzending', returns: 'Annulering, retouren en terugbetaling', payment: 'Veilige kaartbetaling via PayTR' },
-  'pt-br': { shipping: 'Informações de entrega e envio', returns: 'Cancelamentos, devoluções e reembolsos', payment: 'Pagamento seguro com cartão via PayTR' },
-};
 
 export default function CheckoutPurchaseClient({
   product,
@@ -78,7 +67,7 @@ export default function CheckoutPurchaseClient({
 
   const total = useMemo(() => product.price * quantity, [product.price, quantity]);
   const needsShipping = Boolean(product.hasPhysical);
-  const assurance = CHECKOUT_ASSURANCE[locale.toLowerCase()] || CHECKOUT_ASSURANCE.en;
+  const assurance = storeAssurance(locale);
 
   // GA4: satin alma akisina giris (sayfa basina bir kez)
   useEffect(() => {

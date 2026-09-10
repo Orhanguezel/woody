@@ -4,12 +4,13 @@ import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LockKeyhole, PlayCircle, ShoppingCart, Truck } from 'lucide-react';
+import { LockKeyhole, PlayCircle, RotateCcw, ShieldCheck, ShoppingCart, Truck } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
 import { reportAddToCart, reportViewItem } from '@/lib/ecommerce-events';
 import { tokenStore } from '@/integrations/rtk/token';
 import type { StoreProduct, StoreUiCopy } from './types';
+import { assuranceHrefs, storeAssurance } from './assurance';
 
 type LibraryItem = {
   productId?: string;
@@ -224,6 +225,25 @@ export default function WoodyStoreProductDetail({
               <Truck className="size-4" aria-hidden />
               {ui.physicalShippingNote || ''}
             </p>
+          ) : null}
+          {product.purchaseMode === 'online' && unitPrice > 0 && !product.isFree ? (
+            // Teslimat / iade / odeme guvencesi urun kararina yakin; hedefler CMS yasal sayfalari.
+            <div className="mt-4 grid gap-1.5 text-[13px] font-semibold text-gray-600" data-testid="store-assurance">
+              {product.hasPhysical ? (
+                <Link href={assuranceHrefs(locale).shipping} className={`inline-flex items-center gap-2 hover:text-orange-700 ${FOCUS_RING}`}>
+                  <Truck className="size-4 shrink-0 text-emerald-700" aria-hidden />
+                  {storeAssurance(locale).shipping}
+                </Link>
+              ) : null}
+              <Link href={assuranceHrefs(locale).returns} className={`inline-flex items-center gap-2 hover:text-orange-700 ${FOCUS_RING}`}>
+                <RotateCcw className="size-4 shrink-0 text-emerald-700" aria-hidden />
+                {storeAssurance(locale).returns}
+              </Link>
+              <span className="inline-flex items-center gap-2">
+                <ShieldCheck className="size-4 shrink-0 text-emerald-700" aria-hidden />
+                {storeAssurance(locale).payment}
+              </span>
+            </div>
           ) : null}
           {libraryItem ? (
             <p className="mt-4 text-sm font-semibold text-green-700">{remainingText(libraryItem, ui)}</p>

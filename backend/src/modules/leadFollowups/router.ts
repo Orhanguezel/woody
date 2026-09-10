@@ -5,10 +5,12 @@ const sources = { quote: 'quote_requests', contact: 'contact_messages' } as cons
 const empty = {stage:'new',responsible:'',purpose:'unknown',next_action_at:null,loss_reason:'',note:'',version:0};
 export async function registerLeadFollowupsAdmin(app: FastifyInstance, db = pool) {
   app.get('/lead-followups', async () => {
-    const visible = `FROM lead_followups f WHERE (f.record_kind='quote' AND EXISTS(SELECT 1 FROM quote_requests q WHERE q.id=f.record_id)) OR (f.record_kind='contact' AND EXISTS(SELECT 1 FROM contact_messages c WHERE c.id=f.record_id))`;
+    const visible = `FROM lead_followups f WHERE ((f.record_kind='quote' AND EXISTS(SELECT 1 FROM quote_requests q WHERE q.id=f.record_id)) OR (f.record_kind='contact' AND EXISTS(SELECT 1 FROM contact_messages c WHERE c.id=f.record_id)))`;
     const [counts] = await db.query(`SELECT stage, COUNT(*) AS count ${visible} GROUP BY stage`);
+    // Kurum / ev / kariyer ayrimi: yalniz acik (won/lost disi) takiplerde sayilir.
+    const [purposes] = await db.query(`SELECT purpose, COUNT(*) AS count ${visible} AND f.stage NOT IN ('won','lost') GROUP BY purpose`);
     const [rows] = await db.query(`SELECT f.*, DATE_FORMAT(f.next_action_at, '%Y-%m-%dT%H:%i:%s.000Z') AS next_action_at ${visible} ORDER BY (f.next_action_at IS NULL), f.next_action_at ASC LIMIT 100`);
-    return {items:rows,counts,scope:'Yalnız satış takibi açılmış kayıtlar; tüm başvurular değildir'};
+    return {items:rows,counts,purposes,scope:'Yalnız satış takibi açılmış kayıtlar; tüm başvurular değildir'};
   });
   app.get('/lead-followups/:kind/:id', async (req, reply) => {
     const {kind,id} = req.params as {kind:string;id:string};
