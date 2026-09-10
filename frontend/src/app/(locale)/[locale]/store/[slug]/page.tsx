@@ -15,18 +15,20 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export const dynamic = 'force-dynamic';
 
+// Eski numarali magaza adresleri (/tr/store/18 gibi). Hedefler 2026-08 revize katalogunun
+// AKTIF slug'lari olmali; olmus slug'a yonlendirme 404 zinciri yaratir (10 Eylul'de 1/2/3/10/16
+// oluydu, /tr/store/18 ise 60 gosterim/konum 1,4 ile 404 donuyordu). Haritada olmayan veya
+// katalog disinda kalan numaralar magaza koku'ne 301 gider; numarali adres asla 404 vermez.
 const legacyStoreSlugRedirects: Record<string, string> = {
-  '1': 'basic-level-set-ogrenci-seti-0001',
-  '2': 'junior-level-set-ogrenci-seti-0002',
-  '3': 'senior-level-set-ogrenci-seti-0003',
+  '1': 'home-basic-000d',
+  '2': 'home-junior-000e',
+  '3': 'home-senior-000f',
   '7': 'atolye-basic-0007',
   '8': 'atolye-junior-0008',
   '9': 'atolye-senior-0009',
-  '10': 'atolye-pro-000a',
   '13': 'home-basic-000d',
   '14': 'home-junior-000e',
   '15': 'home-senior-000f',
-  '16': 'home-pro-0010',
 };
 
 function ProductSeoSummary({ product, locale }: { product: StoreProduct; locale: string }) {
@@ -123,10 +125,13 @@ async function redirectNumericStoreSlug(slug: string, locale: string) {
   const legacyTarget = legacyStoreSlugRedirects[slug];
   if (legacyTarget) permanentRedirect(`/${locale}/store/${legacyTarget}`);
   const index = Number(slug) - 1;
-  if (!Number.isInteger(index) || index < 0) return;
-  const products = await loadDbStoreProducts(locale);
-  const target = products[index];
-  if (target?.slug) permanentRedirect(`/${locale}/store/${target.slug}`);
+  if (Number.isInteger(index) && index >= 0) {
+    const products = await loadDbStoreProducts(locale);
+    const target = products[index];
+    if (target?.slug) permanentRedirect(`/${locale}/store/${target.slug}`);
+  }
+  // Katalogda karsiligi kalmamis numara: 404 yerine magaza koku.
+  permanentRedirect(`/${locale}/store`);
 }
 
 export async function generateStaticParams() {
