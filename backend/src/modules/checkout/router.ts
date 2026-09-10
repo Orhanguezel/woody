@@ -183,10 +183,24 @@ async function orderNotifyBody(orderId: string) {
   };
 }
 
-/** Odeme sonucunu yoneticilere bildirir (basarili/basarisiz). */
-async function notifyOrderPaymentResult(orderId: string, paid: boolean, log?: FastifyInstance['log']) {
+/** PayTR failed_reason_code 6 = musteri kart girmeden sayfadan ayrildi (zaman asimi); teknik ariza degil. */
+const PAYTR_ABANDON_REASON_CODE = '6';
+
+type PaymentFailureReason = { code?: string; message?: string };
+
+/** Odeme sonucunu yoneticilere bildirir (basarili/basarisiz). Basarisizlikta saglayicinin neden mesaji e-postaya eklenir. */
+async function notifyOrderPaymentResult(
+  orderId: string,
+  paid: boolean,
+  log?: FastifyInstance['log'],
+  reason?: PaymentFailureReason,
+) {
   const b = await orderNotifyBody(orderId);
   if (!b) return;
+
+  const reasonCode = String(reason?.code ?? '').trim();
+  const reasonMessage = String(reason?.message ?? '').trim();
+  const abandoned = !paid && reasonCode === PAYTR_ABANDON_REASON_CODE;
 
   // Musterinin kendi bildirim kutusu (site: /me/notifications)
   if (b.customerId) {
@@ -200,13 +214,32 @@ async function notifyOrderPaymentResult(orderId: string, paid: boolean, log?: Fa
     });
   }
 
-  const title = paid ? 'Odeme basarili — yeni satis' : 'Odeme basarisiz';
+  const title = paid
+    ? 'Odeme basarili — yeni satis'
+    : abandoned
+      ? 'Odeme yarim kaldi — musteri odeme sayfasindan ayrildi'
+      : 'Odeme basarisiz';
+  const rows: Array<[string, unknown]> = [...b.rows];
+  if (!paid) {
+    rows.push([
+      'Neden',
+      reasonMessage
+        ? `${reasonMessage}${reasonCode ? ` (kod ${reasonCode})` : ''}`
+        : 'Saglayici neden bildirmedi',
+    ]);
+    rows.push([
+      'Not',
+      abandoned
+        ? 'Kart girilmedi, tahsilat denenmedi. Teknik bir sorun degildir; musteri isterse tekrar deneyebilir.'
+        : 'Kart denemesinin ayrintisi PayTR Magaza Paneli > Islemler ekranindadir.',
+    ]);
+  }
   await notifyAdmins({
     kind: 'order',
-    subject: `${paid ? '\u2705' : '\u26a0\ufe0f'} ${title} — ${b.total} (${b.customerName})`,
+    subject: `${paid ? '\u2705' : abandoned ? '\u23f8\ufe0f' : '\u26a0\ufe0f'} ${title} — ${b.total} (${b.customerName})`,
     replyTo: b.customerEmail,
-    html: rowsToHtml(title, b.rows),
-    text: [title, ...b.rows.map(([k, v]) => `${k}: ${String(v)}`)].join('\n'),
+    html: rowsToHtml(title, rows),
+    text: [title, ...rows.map(([k, v]) => `${k}: ${String(v)}`)].join('\n'),
     log,
   });
 }
@@ -950,7 +983,10 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       await grantOrderEntitlements(order.id, order.dealer_id);
     }
     await logPaytrCallback({ ...base, outcome: 'processed', detail: `order: ${order.id} -> ${paid ? 'paid' : 'failed'}` });
-    await notifyOrderPaymentResult(order.id, paid, app.log);
+    await notifyOrderPaymentResult(order.id, paid, app.log, {
+      code: payload.failed_reason_code,
+      message: payload.failed_reason_msg,
+    });
 
     return reply.type('text/plain').send('OK');
   });

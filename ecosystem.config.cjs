@@ -25,7 +25,9 @@ const common = {
   instances: 1,
   watch: false,
   autorestart: true,
-  max_memory_restart: '450M',
+  // Next 16 + Bun tabani ~400 MB; 450M sinirinda frontend her 2-3 saatte yeniden basliyordu
+  // (her seferinde birkac saniye 502). Sunucu 8 GB — sinir gercek sizinti icin emniyet kemeri.
+  max_memory_restart: '700M',
   min_uptime: '30s',
   max_restarts: 10,
   restart_delay: 5000,
@@ -35,8 +37,9 @@ const common = {
   time: true,
 };
 
-const nextApp = (suffix, dir, port) => ({
+const nextApp = (suffix, dir, port, overrides = {}) => ({
   ...common,
+  ...overrides,
   name: `${slug}-${suffix}`,
   cwd: path.join(__dirname, dir),
   interpreter: BUN,
@@ -68,6 +71,6 @@ module.exports = {
       error_file: path.join(logDir, `${slug}-backend.err.log`),
     },
     nextApp('admin', 'admin_panel', ADMIN_PORT),
-    nextApp('frontend', 'frontend', FRONTEND_PORT),
+    nextApp('frontend', 'frontend', FRONTEND_PORT, { max_memory_restart: '1G' }),
   ],
 };
