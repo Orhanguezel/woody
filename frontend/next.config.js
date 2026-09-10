@@ -216,17 +216,18 @@ const nextConfig = {
       { source: '/en/blog/anaokulu-ingilizce-nasil-ogretilir', destination: '/tr/blog/anaokulunda-ingilizce-nasil-ogretilir', permanent: true },
       { source: '/woodymagaza/blog/anaokulunda-ingilizce-nasil-ogretilir', destination: '/tr/blog/anaokulunda-ingilizce-nasil-ogretilir', permanent: true },
       { source: '/anaokulu-ingilizce-egitimi-kapsamli-rehber', destination: '/tr/preschool', permanent: true },
-      { source: '/:locale/store/1', destination: '/:locale/store/basic-level-set-ogrenci-seti-0001', permanent: true },
-      { source: '/:locale/store/2', destination: '/:locale/store/junior-level-set-ogrenci-seti-0002', permanent: true },
-      { source: '/:locale/store/3', destination: '/:locale/store/senior-level-set-ogrenci-seti-0003', permanent: true },
+      // Eski numarali magaza adresleri: hedefler 2026-08 revize katalogunun AKTIF slug'lari (10 Eylul: 1/2/3/10/16 olu slug'a gidiyordu).
+      { source: '/:locale/store/1', destination: '/:locale/store/home-basic-000d', permanent: true },
+      { source: '/:locale/store/2', destination: '/:locale/store/home-junior-000e', permanent: true },
+      { source: '/:locale/store/3', destination: '/:locale/store/home-senior-000f', permanent: true },
       { source: '/:locale/store/7', destination: '/:locale/store/atolye-basic-0007', permanent: true },
       { source: '/:locale/store/8', destination: '/:locale/store/atolye-junior-0008', permanent: true },
       { source: '/:locale/store/9', destination: '/:locale/store/atolye-senior-0009', permanent: true },
-      { source: '/:locale/store/10', destination: '/:locale/store/atolye-pro-000a', permanent: true },
+      { source: '/:locale/store/10', destination: '/:locale/store', permanent: true }, // PRO satista degil
       { source: '/:locale/store/13', destination: '/:locale/store/home-basic-000d', permanent: true },
       { source: '/:locale/store/14', destination: '/:locale/store/home-junior-000e', permanent: true },
       { source: '/:locale/store/15', destination: '/:locale/store/home-senior-000f', permanent: true },
-      { source: '/:locale/store/16', destination: '/:locale/store/home-pro-0010', permanent: true },
+      { source: '/:locale/store/16', destination: '/:locale/store', permanent: true }, // PRO satista degil
       { source: '/:locale/gutschein', destination: '/:locale', permanent: true },
       { source: '/:locale/services', destination: '/:locale/consultants', permanent: true },
       { source: '/:locale/appointment', destination: '/:locale/consultants', permanent: true },
