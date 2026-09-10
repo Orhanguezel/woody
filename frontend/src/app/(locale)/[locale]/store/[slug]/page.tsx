@@ -197,7 +197,27 @@ export default async function StoreProductPage({ params }: Props) {
   const showCart = Boolean(raw.showCart);
   return (
     <>
-      <JsonLd id="woody-store-product" data={woodyProductGraph({ locale, pathname, item })} />
+      <JsonLd
+        id="woody-store-product"
+        data={woodyProductGraph({
+          locale,
+          pathname,
+          item,
+          product: dbItem
+            ? {
+                title: dbItem.title,
+                description: dbItem.meta_description || dbItem.description,
+                image: dbItem.image,
+                price: dbItem.price,
+                currency: dbItem.currency,
+                productCode: dbItem.product_code,
+                id: dbItem.id,
+                purchaseMode: dbItem.purchaseMode,
+                stockQuantity: dbItem.stock_quantity,
+              }
+            : null,
+        })}
+      />
       {dbItem ? (
         <>
           <WoodyStoreProductDetail product={dbItem} locale={locale} ui={ui} />

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { buildPageMetadata } from '@/seo/serverMetadata';
-import { breadcrumbSchema, faqSchema, graph, localBusiness } from '@/seo/jsonld';
+import { breadcrumbSchema, faqSchema, graph, localBusiness, product } from '@/seo/jsonld';
 import { getDefaultContactInfo, getPublicAppName, getPublicSiteOrigin } from '@/lib/site-config';
 
 import type { WoodyCard, WoodyPageContent } from './content-loader.server';
@@ -148,23 +148,71 @@ export function woodyPageGraph(args: {
   return graph(nodes);
 }
 
+/** Satilan urun (DB katalogu) icin Product node'una gereken alanlar. */
+export type WoodyProductSchemaInput = {
+  title: string;
+  description?: string;
+  image?: string;
+  price: number;
+  currency?: string;
+  productCode?: string;
+  id?: string;
+  purchaseMode?: 'online' | 'quote';
+  stockQuantity?: number;
+};
+
+function absoluteUrl(siteUrl: string, value?: string): string | undefined {
+  const v = String(value || '').trim();
+  if (!v) return undefined;
+  if (/^https?:\/\//i.test(v)) return v;
+  return `${siteUrl}${v.startsWith('/') ? '' : '/'}${v}`;
+}
+
+function plainText(value?: string, max = 500): string | undefined {
+  const t = String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  return t ? t.slice(0, max) : undefined;
+}
+
 export function woodyProductGraph(args: {
   locale: string;
   pathname: string;
   item: WoodyCard;
+  /** DB'den gelen, fiyati ve online satisi olan urun; yoksa yalniz BreadcrumbList basilir. */
+  product?: WoodyProductSchemaInput | null;
 }) {
   const siteUrl = getPublicSiteOrigin();
   const app = getPublicAppName();
   const pageUrl = `${siteUrl}/${args.locale}${args.pathname}`;
 
-  // Teklif-bazli magaza: urunlerde fiyat/gecerli yorum yok -> Product rich snippet
-  // icin gereken offers/review/aggregateRating uretilemez. Gecersiz Product node
-  // basmak yerine (GSC "Product snippets" hatasi) yalniz BreadcrumbList birakilir.
+  const crumbs = breadcrumbSchema([
+    { name: app, item: `${siteUrl}/${args.locale}` },
+    { name: args.item.title, item: pageUrl },
+  ]);
+
+  // Product node yalniz gercek fiyatli, online satilan urunde basilir. Teklif-bazli
+  // veya fiyatsiz kayitta gecersiz Product (GSC "Product snippets" hatasi) uretilmez.
+  // Yorum/puan verisi yok -> review/aggregateRating BILEREK eklenmez (sahte rozet yasak).
+  const p = args.product;
+  const price = Number(p?.price);
+  const sellable = Boolean(p) && Number.isFinite(price) && price > 0 && (p?.purchaseMode ?? 'online') === 'online';
+  if (!sellable || !p) return graph([crumbs]);
+
+  const outOfStock = typeof p.stockQuantity === 'number' && p.stockQuantity <= 0;
   return graph([
-    breadcrumbSchema([
-      { name: app, item: `${siteUrl}/${args.locale}` },
-      { name: args.item.title, item: pageUrl },
-    ]),
+    product({
+      name: p.title,
+      description: plainText(p.description),
+      image: absoluteUrl(siteUrl, p.image),
+      sku: p.productCode || p.id,
+      brand: app,
+      offers: {
+        price,
+        priceCurrency: (p.currency || 'TRY').toUpperCase(),
+        availability: outOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+        url: pageUrl,
+      },
+    }),
+    crumbs,
   ]);
 }
 
