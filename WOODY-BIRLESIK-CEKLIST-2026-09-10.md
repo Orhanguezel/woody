@@ -10,11 +10,13 @@ Bu belge, 8 Eylül belgelerindeki tüm açık maddeleri tek listede toplar; her 
 |---|---|---|---|
 | 1 | **Canonical/hreflang/sitemap localhost regresyonu düzeltildi.** 8 Eylül 15:02 UTC build'i (`DZfj5kN2…`) `NEXT_PUBLIC_SITE_URL`/`APP_URL` değerlerini `http://localhost:3101` gömmüştü; iki gün tüm sayfalar canonical, hreflang, og:url ve sitemap'te localhost gösterdi. | Canlı: `/tr`, `/tr/home-tutor`, ürün, blog, `/en/store`, `/de` canonical `https://woodyvearkadaslari.com/...`; sitemap 511 URL, 0 localhost; build `6wPF4Jsp…`, derlenmiş çıktıda 0 `localhost:3101` | `81c897b` — production'da localhost origin yok sayılır (site-config, serverMetadata, alternates) + `deploy/build-next.sh` kapısı: localhost gömülü build aktive edilmez |
 | 2 | Blog "Anaokulu İngilizce eğitim seti nasıl seçilir" yazısındaki üç ölü ürün bağlantısı (`*-level-set-ogrenci-seti-0001/2/3`, 404) aktif ev setlerine (`home-basic-000d/junior-000e/senior-000f`) çevrildi. Başlıklar birebir aynı ürünler. | Canlı sayfa yalnız aktif slug'lara bağlanıyor; DB'de eski slug 0 | Canlı DB `blog_posts_i18n` (yedek `/root/yedek-blog-links-20260910.sql`) |
-| 3 | Satılan ürünlerde **Product JSON-LD** (name, description, image, sku, brand, offers: fiyat/TRY/stok/url). Yorum/puan bilerek yok. | İkinci frontend deploy'u ile yayında — doğrulama aşağıda "Yayın sonucu" | `d237441` |
+| 3 | Satılan ürünlerde **Product JSON-LD** (name, description, image, sku, brand, offers: fiyat/TRY/stok/url). Yorum/puan bilerek yok. | Canlı doğrulandı: `home-senior-000f` Product/Offer 4750 TRY InStock, mutlak URL; IndexNow 511 URL kabul | `d237441` |
 | 4 | Admin "Ödeme başarısız" e-postasına PayTR neden mesajı/kodu; kod 6 (müşteri ödeme sayfasından ayrıldı) ayrı başlık ⏸️ + "teknik sorun değil" notu | Backend canlı; ilk gerçek başarısız callback'te uçtan uca görülecek | `ce7e74f` |
 | 5 | PM2: frontend `max_memory_restart` 450M→1G (ortak 700M). 450M sınırı Next 16 tabanının (~400 MB) altındaydı; frontend her 2-3 saatte yeniden başlayıp birkaç saniye 502 üretiyordu. Sızıntı değil (2,5 saatte 404→412 MB). | Frontend yeni sınırla online; nginx "connection refused" tekrarı beklenmiyor | `ce7e74f` |
 | 6 | `pm2-logrotate` (100M, 14 gün, gzip, günlük). 3,1 GB backend logu küçültüldü; son 300 MB `woody-backend.out.log.prev.gz` | Disk %20→%17 | VPS |
 | 7 | 10 Eylül 07:27 "ödeme hatası" incelemesi: sistem hatası yok; Google Ads ziyaretçisi uydurma form verisiyle PayTR ekranını yarım bıraktı (kod 6). 9 Eylül 19:58 gerçek müşteri 4.750 TL canlı modda başarıyla ödedi. | `paytr_callback_logs`, nginx, PM2 log zaman çizgisi | Hafıza `woody-paytr-log-analizi` |
+
+| 8 | W03 olay sözleşmesi, W05 ürün detayı güvence satırı, W07 kurum/ev dağılımı | Deploy 3 (backend+admin+frontend) — kanıt aşağıda ilgili maddede | `9e88b52` |
 
 ## 1. P0 — Ölçüm, finans, güvenlik
 
@@ -39,11 +41,11 @@ Bu belge, 8 Eylül belgelerindeki tüm açık maddeleri tek listede toplar; her 
 ### W03 Lead ölçümü — **sahip: Claude**
 - [x] Sunucu kabulünden sonra tek `generate_lead`, request_id ile tekrar koruması, lead ID olayda, e-posta/telefon yok (8 Eylül).
 - [x] Kariyer/öğretmen başvurusu `purpose=career` ile satış lead'inden ayrı (8 Eylül).
-- [ ] Olay sözleşmesi belgesi: teklif formu, iletişim formu, WhatsApp tıklaması, telefon tıklaması — hangi olay adı, hangi Ads dönüşümü, hangisi "lead" sayılır. Kod var, belge yok. Bir sonraki turda `docs/woody-olay-sozlesmesi.md` olarak yazılacak.
+- [x] Olay sözleşmesi belgesi yazıldı: [WOODY-OLAY-SOZLESMESI-2026-09-10.md](WOODY-OLAY-SOZLESMESI-2026-09-10.md) — form/WhatsApp/telefon/CTA/e-ticaret olayları, ne zaman atılır, lead sayılır mı, raporda nasıl okunur (`9e88b52`).
 
 ### W07 Admin lead/satış takibi — **sahip: Claude (kod) + işletme (SLA)**
 - [x] `lead_followups` aşama/sorumlu/sonraki işlem/kayıp nedeni; admin ekranı; 12 kabul kontrolü (8 Eylül).
-- [ ] Kurum ve ev talebi ayrımı raporda (kullanım tipi alanı var; listede filtre/özet eksik).
+- [x] Açık takiplerde kullanım amacı dağılımı (Kurum / Ev / Kariyer / Diğer / Belirsiz) admin özetinde (`9e88b52`; 8/8 kabul senaryosu geçti).
 - [ ] Yanıt SLA'sı ve demo kapasitesi — **işletme girdisi**; girilmeden hedef uydurulmaz.
 - [ ] Ödeme sonrası dijital erişim + kargo + ilk kullanım bilgisi tek ekranda — `orders` kargo alanları var, müşteri tarafında "siparişim" görünümü doğrulanmalı.
 
@@ -62,13 +64,13 @@ Bu belge, 8 Eylül belgelerindeki tüm açık maddeleri tek listede toplar; her 
 - [x] Min 3 kuralı arayüz + backend (8 Eylül).
 - [x] Ürün sayfası Product schema fiyat/stok/URL ile tutarlı (10 Eylül, `d237441`).
 - [ ] Her set için kutu içeriği / uygulayıcı / dijital erişim süresi / destek kapsamı — **işletme metni** gerekli; `product_contents` tablosu hazır, admin panelden girilir.
-- [ ] Teslimat/kargo/aktivasyon bilgisi ürün kartına yakın (şu an yalnız footer'da "Teslimat ve Kargo"). Claude: ürün detayına mevcut CMS sayfasına bağlanan kısa satır ekleyecek (10 dil `ui` anahtarı).
+- [x] Ürün detayında satın al düğmesinin altında teslimat (fiziksel ürünse) / iade / PayTR güvence satırı; checkout ile ortak 10 dilli metin, CMS yasal sayfalarına bağlı (`9e88b52`).
 - [ ] Senior fiyat farkı (4.650/4.750 TL) ticari teyit — **işletme**.
 - [ ] Video kapakları: hero düzeltildi (8 Eylül); reklam/Reel kapakları içerik seçildiğinde.
 
 ### W06 İki hedef kitle, mobil — **Claude + işletme**
 - [x] home-tutor/preschool hedef CTA'ları (8 Eylül).
-- [ ] Ebeveyn trafiği için Ev bölümüne ankraj (`/tr/home-tutor#home-levels` reklam hedefi hazır; mağazada ankraj yok).
+- [x] Ankrajlar mevcut ve canlı: `/tr/home-tutor#home-levels` (üç ev seti checkout'u) ve mağazada `/tr/store#store-series-ev-ozel-ders-serisi` (EN: `#store-series-home-private-lesson-series`). Reklam/sosyal hedefi olarak bunlar kullanılır; mağaza sırası değişmedi.
 - [ ] Kurum akışında 30+ öğrenci koşulu ve Mini School alternatifi metni preschool sayfasında **görünmüyor** (10 Eylül kontrol) — işletme metni onaylayınca eklenecek.
 - [ ] **Cambridge iddiaları:** ana sayfada "Öğrenciler 160'tan fazla ülkede geçerli Cambridge English sertifikası alır" ve "Cambridge Sertifika Sistemine Geçiş" cümleleri duruyor. Belge/kapsam olmadan kesin dil riskli. **İşletme**: British Side anlaşması ve sertifika koşulunu yazsın; Claude metni "sertifika sınavına hazırlık, sınav ayrı ücret/koşul" biçimine getirsin. Logo zaten yok.
 - [ ] Mobil sipariş formu klavye erişimi gözden geçirme (Codex UI doğrulama).
@@ -96,7 +98,7 @@ Bu belge, 8 Eylül belgelerindeki tüm açık maddeleri tek listede toplar; her 
 
 ## 5. Sahibe göre özet
 
-**Claude (sonraki tur):** olay sözleşmesi belgesi (W03); ürün detayında teslimat/iade satırı (W05); kurum/ev filtre özeti (W07); mağaza Ev ankrajı (W06).
+**Claude:** W03/W05/W06-ankraj/W07 10 Eylül'de kapatıldı. Kalan Claude işleri işletme girdisine bağlı (metinler, onaysız dönüşüm kararı).
 
 **İşletme (Yalçın / Ayşe):** Google kimlik rotasyonu (G01, acil); GA4 unwanted referral `paytr.com`; GSC sitemap yeniden gönder; onaysız dönüşüm kararı (W01); PRO/Senior fiyat/kutu içeriği/Cambridge kapsamı/30+ metni (W04–W06); Ads deney yolu + negatif paket + bütçe onayı (A01–A02); maliyet girdileri (P3).
 
