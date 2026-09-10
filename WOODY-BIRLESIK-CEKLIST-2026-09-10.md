@@ -18,6 +18,9 @@ Bu belge, 8 Eylül belgelerindeki tüm açık maddeleri tek listede toplar; her 
 
 | 8 | W03 olay sözleşmesi, W05 ürün detayı güvence satırı, W07 kurum/ev dağılımı | Deploy 3 (backend+admin+frontend) — kanıt aşağıda ilgili maddede | `9e88b52` |
 
+| 9 | Eski numaralı mağaza adresleri (`/tr/store/18` 60 gösterim/konum 1,4 → 404; 1/2/3/10/16 → ölü slug) düzeltildi: aktif slug'lara veya mağaza köküne 308 | Canlı: 18/10/16/99 → `/tr/store`, 1/2/3 → ev setleri (200) | `15d7b01`, `0a8f693` |
+| 10 | Rakip sorgu boşluk analizi ([rapor](WOODY-RAKIP-SORGU-BOSLUK-ANALIZI-2026-09-10.md)) ve **12 blog taslağı** DB'ye `status=draft` olarak girildi; yayınlanmadı, herkese açık API 18 yazı göstermeye devam ediyor. Arşiv: `content-drafts/2026-09-10-blog/` | Canlı DB: 12 draft / 18 published; taslak URL'leri 404 | `24b2929`, `12aad64` |
+
 ## 1. P0 — Ölçüm, finans, güvenlik
 
 ### G01 Sızan Google Ads kimlikleri — **sahip: hesap sahibi (Yalçın / minayayinevi)**
