@@ -27,6 +27,7 @@ import {
   commerceProducts,
   commerceSummary,
 } from './commerce';
+import { createEditorialArticle, listEditorialArticles, updateEditorialArticle } from './editorial';
 
 /** Sitenin kanonik kökü — apex. www.woodyvearkadaslari.com apex'e 301 döner ve
  *  kontrat yönlendirmeli host'u yasaklar; bu yüzden FRONTEND_URL'i olduğu gibi
@@ -111,6 +112,7 @@ async function listArticles(req: FastifyRequest, reply: FastifyReply) {
     "b.status = 'published'",
     'b.is_active = 1',
     'b.published_at IS NOT NULL',
+    'b.published_at <= CURRENT_TIMESTAMP(3)',
     'i.locale = ?',
     "i.slug <> ''",
   ];
@@ -249,10 +251,14 @@ export async function registerContentSourcePublic(app: FastifyInstance) {
   await app.register(
     async (scope) => {
       const contract = () => ({
-        id: 'woody-tanitio-web-connection@1.3',
+        id: 'woody-tanitio-web-connection@1.4',
         schemaVersion: '1.0',
         tenantKey: 'woody',
         content: { articles: true, products: true },
+        editorial: {
+          enabled: Boolean((process.env.TANITIO_COMMERCE_API_KEY || '').trim()),
+          auth: 'hmac-sha256', keyId: 'woody', drafts: true, schedule: true, publish: true,
+        },
         commerce: {
           enabled: Boolean((process.env.TANITIO_COMMERCE_API_KEY || '').trim()),
           auth: 'hmac-sha256',
@@ -273,6 +279,10 @@ export async function registerContentSourcePublic(app: FastifyInstance) {
       scope.get('/articles', { config: { public: true } }, listArticles);
       scope.get('/products', { config: { public: true } }, listProducts);
       scope.get('/contract', { config: { public: true } }, sendContract);
+      const editorialConfig = { config: { public: true, rateLimit: { max: 30, timeWindow: '1 minute' } } };
+      scope.get('/editorial/articles', editorialConfig, listEditorialArticles);
+      scope.post('/editorial/articles', editorialConfig, createEditorialArticle);
+      scope.put('/editorial/articles/:id', editorialConfig, updateEditorialArticle);
       const commerceConfig = { config: { public: true, rateLimit: { max: 60, timeWindow: '1 minute' } } };
       scope.get('/commerce/health', commerceConfig, commerceHealth);
       scope.get('/commerce/summary', commerceConfig, commerceSummary);

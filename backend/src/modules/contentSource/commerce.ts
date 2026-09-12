@@ -68,7 +68,8 @@ export function verifyCommerceRequest(req: FastifyRequest, reply: FastifyReply):
     return false;
   }
 
-  const canonical = `${req.method.toUpperCase()}\n${req.raw.url || req.url}\n${timestamp}\n${nonce}`;
+  const contentHash = header(req, 'x-tanitio-content-sha256');
+  const canonical = `${req.method.toUpperCase()}\n${req.raw.url || req.url}\n${timestamp}\n${nonce}${contentHash ? `\n${contentHash}` : ''}`;
   const expected = createHmac('sha256', secret).update(canonical).digest('hex');
   if (!safeEqualHex(expected, signature)) {
     reply.code(401).send({ error: { code: 'UNAUTHORIZED' } });

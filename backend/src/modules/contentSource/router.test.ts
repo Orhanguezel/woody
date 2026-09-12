@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 describe('Woody Tanitio content contract', () => {
-  test('base URL and /contract expose the same authenticated v1.3 contract', async () => {
+  test('base URL and /contract expose the same authenticated v1.4 contract', async () => {
     process.env.CONTENT_SOURCE_API_KEY = 'content-test-key';
     process.env.TANITIO_COMMERCE_API_KEY = 'commerce-test-key';
     const app = Fastify();
@@ -24,11 +24,12 @@ describe('Woody Tanitio content contract', () => {
       const response = await app.inject({ method: 'GET', url, headers: { 'x-api-key': 'content-test-key' } });
       expect(response.statusCode).toBe(200);
       expect(response.json()).toMatchObject({
-        id: 'woody-tanitio-web-connection@1.3',
+        id: 'woody-tanitio-web-connection@1.4',
         schemaVersion: '1.0',
         tenantKey: 'woody',
         content: { articles: true, products: true },
         commerce: { enabled: true, auth: 'hmac-sha256', keyId: 'woody', pii: false },
+        editorial: { enabled: true, auth: 'hmac-sha256', drafts: true, schedule: true, publish: true },
       });
     }
     await app.close();

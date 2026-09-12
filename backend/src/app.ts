@@ -34,6 +34,7 @@ export async function createApp() {
     allowedHeaders: [
       'Content-Type', 'Authorization', 'Prefer', 'Accept', 'Accept-Language', 'x-skip-auth', 'Range',
       'X-Api-Key', 'X-Tanitio-Key-Id', 'X-Tanitio-Timestamp', 'X-Tanitio-Nonce', 'X-Tanitio-Signature',
+      'X-Tanitio-Content-Sha256',
     ],
     exposedHeaders: ['x-total-count', 'content-range', 'range'],
   });
