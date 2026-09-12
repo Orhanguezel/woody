@@ -248,25 +248,31 @@ async function listProducts(req: FastifyRequest, reply: FastifyReply) {
 export async function registerContentSourcePublic(app: FastifyInstance) {
   await app.register(
     async (scope) => {
+      const contract = () => ({
+        id: 'woody-tanitio-web-connection@1.3',
+        schemaVersion: '1.0',
+        tenantKey: 'woody',
+        content: { articles: true, products: true },
+        commerce: {
+          enabled: Boolean((process.env.TANITIO_COMMERCE_API_KEY || '').trim()),
+          auth: 'hmac-sha256',
+          keyId: 'woody',
+          maxRangeDays: 90,
+          pii: false,
+          endpoints: ['health', 'summary', 'daily', 'products', 'attribution'],
+        },
+      });
+      const sendContract = async (req: FastifyRequest, reply: FastifyReply) => {
+        if (!guardApiKey(req, reply)) return;
+        return contract();
+      };
+
+      // Base URL de sözleşme keşif ucudur. Böylece entegrasyon ekranındaki
+      // doğrudan bağlantı testi 404 yerine gerçek, sürümlü kontratı doğrular.
+      scope.get('', { config: { public: true } }, sendContract);
       scope.get('/articles', { config: { public: true } }, listArticles);
       scope.get('/products', { config: { public: true } }, listProducts);
-      scope.get('/contract', { config: { public: true } }, async (req, reply) => {
-        if (!guardApiKey(req, reply)) return;
-        return {
-          id: 'woody-tanitio-web-connection@1.1',
-          schemaVersion: '1.0',
-          tenantKey: 'woody',
-          content: { articles: true, products: true },
-          commerce: {
-            enabled: Boolean((process.env.TANITIO_COMMERCE_API_KEY || '').trim()),
-            auth: 'hmac-sha256',
-            keyId: 'woody',
-            maxRangeDays: 90,
-            pii: false,
-            endpoints: ['health', 'summary', 'daily', 'products', 'attribution'],
-          },
-        };
-      });
+      scope.get('/contract', { config: { public: true } }, sendContract);
       const commerceConfig = { config: { public: true, rateLimit: { max: 60, timeWindow: '1 minute' } } };
       scope.get('/commerce/health', commerceConfig, commerceHealth);
       scope.get('/commerce/summary', commerceConfig, commerceSummary);
