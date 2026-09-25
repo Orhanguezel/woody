@@ -21,14 +21,15 @@ Her madde canlı site, canlı API veya kodla yeniden doğrulandı. `[x]` = yapı
 
 ## B. Woody sitesi — uygulanan düzeltmeler
 
-- [ ] B1. İki yazıdaki (`6-yas-ingilizce-egitimi`, `cambridge-egitim-sistemi-nedir`) `Yalçın Karakuş` yazar kaydı → `Ayşe Polat Karakuş`. **Betik hazır, canlı DB'ye uygulanmadı** (bkz. "Canlıya alma"). Repoda bu isim yok.
+- [x] B1. İki yazıdaki (`6-yas-ingilizce-egitimi`, `cambridge-egitim-sistemi-nedir`) `Yalçın Karakuş` yazar kaydı → `Ayşe Polat Karakuş`. Canlı DB'ye uygulandı (2026-09-25 22:45). Repoda bu isim yok.
 - [x] B2. Article JSON-LD `author` → `@id: /{locale}/about#author` ve aynı URL. Görünür byline bu profile bağlantı veriyor.
 - [x] B3. Organization şemasına `founder` → aynı Person `@id`.
 - [x] B4. Byline'da görünür yayın ve güncelleme tarihi. `dateModified` gerçek `updated_at`'ten gelir.
 - [x] B5. About sayfası: jenerik `authorBio` kurucu biyografisini eziyordu, kaldırıldı. Kurucu/Mina Yayınevi ilişkisi görünür. Seri/kullanıcı/yaş tablosu ve editoryal politika bölümü eklendi. Editoryal politika metni başka projeden kalma sağlık dili içeriyordu ("bağımlılık", "uzman görüşmesi"); Woody'ye göre yeniden yazıldı.
 - [x] B6. `llms.txt`: rehberler bölümü DB'den (öncelikli 6 rehber + diğerleri, tek cümle kapsam), yazar profili, seri/yaş ayrımı, son güncelleme tarihi, insan okunur sayfa etiketleri. Slogan-cevaplı SSS yerine soruyu cevaplayan SSS.
-- [ ] B7. Altı öncelikli rehber: H1 altında 40–80 kelimelik doğrudan cevap, eksik karar tabloları (müfredat, 6 yaş), resmî/birincil kaynak + sınır bölümü. Canlı içerik kopyası üzerinde doğrulandı: 6/6 yazı 100/ready (konular ve 5 yaş önce 87/fail idi, kelime kapısını geçemiyordu). Betik: `backend/src/scripts/applyWoodyGeoCitability.ts`. **Canlı DB'ye uygulanmadı.**
+- [x] B7. Altı öncelikli rehber: H1 altında 40–80 kelimelik doğrudan cevap, eksik karar tabloları (müfredat, 6 yaş), resmî/birincil kaynak + sınır bölümü. Canlı içerik kopyası üzerinde doğrulandı: 6/6 yazı 100/ready (konular ve 5 yaş önce 87/fail idi, kelime kapısını geçemiyordu). Betik: `backend/src/scripts/applyWoodyGeoCitability.ts`. Canlı DB'ye uygulandı; ikinci koşu 0 değişiklik (idempotent).
 - [x] B8. Lead ölçümü: `generate_lead` / `whatsapp_click` / `phone_click` olaylarına `landing_page`, `referrer_host`, `ai_source` parametreleri eklendi. AI asistan yönlendiricisi sınıflandırması (ChatGPT, Gemini, Perplexity, Claude, Copilot…). Böylece AI referral → açılış sayfası → CTA → lead zinciri GA4'te izlenebilir.
+- [x] B11. Public blog detay API'si `updated_at` döndürmüyordu → `dateModified` hep yayın tarihiydi. `packages/shared-backend/modules/blog/repository.ts` artık `GREATEST(blog_posts.updated_at, blog_posts_i18n.updated_at)` döndürüyor (VPS'e elle senkronlandı; `packages` ayrı/gitignored kopya).
 - [x] B10. `faq.json` yazım hatası ("ilerlemememesidir") düzeltildi.
 - [ ] B9. GA4'te `landing_page`, `referrer_host`, `ai_source` için olay kapsamlı özel boyut tanımı ve `generate_lead` / `whatsapp_click` / `phone_click` anahtar etkinlik durumunun doğrulanması. GA4 Admin erişimi gerekir; yapılmadı.
 
@@ -61,6 +62,8 @@ Commit'ler: `cd3be1b` (örnekleme + ekran), `48a0e62` (yerel SERP gözlemi). Bac
 - [ ] E3. GA4: AI oturumu, açılış sayfası, CTA ve lead mutlak sayılarla 28 günlük iki ardışık dönemde (26 Eylül–23 Ekim, 24 Ekim–20 Kasım) karşılaştırılır. Yüzde değişim tek başına başarı sayılmaz.
 
 ## Canlıya alma (sırayla)
+
+Durum (2026-09-25 23:00): 1 ve 2 YAPILDI ve canlıda doğrulandı (yazar @id, founder, FAQPage görünür SSS'den, kaynak bölümü, canonical doğru, llms.txt yeni bölümler, dateModified 25 Eylül). Tanitio main'e birleşti ve push edildi (`0777d03`), fakat sunucu deploy'u (4) izin katmanında engellendi → elle: `ssh vps-vistainsaat 'cd /var/www/ekosistem-sosyal-medya && bash scripts/deploy.sh all'`. 3 ve 5 açık.
 
 1. Woody DB (VPS, `/var/www/woody/backend`): önce `bun src/scripts/applyWoodyGeoCitability.ts` (dry-run; 1 yazar satırı + 6 PLAN satırı beklenir), sonra `--apply`. Tekrar çalıştırmak güvenli (idempotent).
 2. Woody frontend deploy (`./deploy/deploy.sh frontend`). Sonra doğrula: `curl -s https://woodyvearkadaslari.com/llms.txt | grep "Oncelikli rehberler"`, `/tr/about#author` ve bir blog yazısında `"@id":".../tr/about#author"`. Canonical'ın localhost olmadığını da kontrol et.
