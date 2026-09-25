@@ -1,41 +1,44 @@
 {
-  "title": "Redaktionelle Politik und Methodik",
-  "description": "Wie {{appName}} Inhalte aufbereitet, KI-gestütztes Schreiben nutzt und Qualitätsstandards anwendet.",
-  "back": "Zurück zu „Info“.",
-  "authorRoleTitle": "Redaktioneller Qualitätsprozess",
+  "title": "Redaktionelle Richtlinien",
+  "description": "Wer die {{appName}}-Ratgeber erstellt, auf welche Quellen sie sich stützen und wie sie aktuell gehalten werden.",
+  "back": "Zurück zu Über uns",
+  "authorRoleTitle": "Redaktionelle Verantwortung",
   "authorExpertiseLabels": [
-    "Redaktionelle Rezension",
-    "Lerndesign",
-    "Barrierefreie Sprache"
+    "Englisch im Vorschulalter",
+    "Unterrichtspraxis",
+    "Altersgerechte Inhalte"
   ],
-  "credentialsNote": "Inhaltsqualität und Aktualisierungspraktiken",
+  "credentialsNote": "Grundsätze zu Quellen, Aktualisierung und Korrektur",
   "sections": [
     {
-      "title": "Inhaltliche Grundsätze",
+      "title": "Verantwortung",
       "paragraphs": [
-        "Der Inhalt von {{appName}} hilft Benutzern, sich auf fundierte Entscheidungen und Expertengespräche vorzubereiten, und ersetzt nicht die professionelle Beratung in regulierten Bereichen.",
-        "Wir legen Wert auf klare Sprache, einen nicht aufdringlichen Ton und praktische Einsicht. Wir lehnen Abhängigkeitssprache und absolute Vorhersagen ab."
+        "Die {{appName}}-Ratgeber werden im Namen des Verlags der Marke veröffentlicht; die redaktionelle Verantwortung liegt bei der Gründungsperson, deren Profil auf dieser Seite steht. Der Autorenname unter jedem Artikel verweist auf dieses Profil."
       ]
     },
     {
-      "title": "Transparenz zum KI-gestützten Entwurf",
+      "title": "Quellen und Methode",
       "paragraphs": [
-        "Einige pädagogische Entwürfe verwenden möglicherweise LLMs, um Themen zu strukturieren und die Lesbarkeit zu verbessern.",
-        "Entwürfe werden vor der Veröffentlichung auf Richtigkeit, Kontext, Zugänglichkeit und ethische Grenzen überprüft."
+        "Empfehlungen zu Alter, Dauer und Themen beruhen auf der Praxis im Vorschulunterricht, den {{appName}}-Lehrerplänen und offiziellen Rahmenwerken wie dem Vorschulprogramm des türkischen Bildungsministeriums und dem Gemeinsamen Europäischen Referenzrahmen für Sprachen.",
+        "Ein Link auf eine Quelle bedeutet nicht, dass diese Institution den {{appName}}-Ansatz unterstützt."
       ]
     },
     {
-      "title": "Lernmethodik",
+      "title": "KI-Unterstützung",
       "paragraphs": [
-        "Die Module folgen einer lernerzentrierten Struktur; Quellen werden durch Feedback gepflegt und verbessert.",
-        "Personalisierte Vorschläge folgen transparenten Regeln, die auf die Plattformrichtlinien abgestimmt sind."
+        "Bei manchen Entwürfen können KI-Werkzeuge für Gliederung, sprachliche Vereinfachung und Übersetzung eingesetzt werden. Vor der Veröffentlichung prüft eine menschliche Redaktion jeden Text auf Richtigkeit, Altersangemessenheit und Umsetzbarkeit im Unterricht."
       ]
     },
     {
-      "title": "Überprüfungsprozess",
+      "title": "Aktualisierung und Korrektur",
       "paragraphs": [
-        "Der Inhalt wird vor der Veröffentlichung redaktionell geprüft. Beim benutzerorientierten Kopieren stehen Konsistenz, Genauigkeit und Vertrauen im Vordergrund.",
-        "Bei den Plattforminhalten handelt es sich um allgemeine Informationen; Konsultieren Sie in persönlichen Situationen einen entsprechenden Fachmann."
+        "Artikel werden aktualisiert, wenn sich der Inhalt wesentlich ändert; das Aktualisierungsdatum steht unter dem Artikel. Fehler können Sie über die Kanäle auf der Kontaktseite melden; bestätigte Korrekturen werden eingearbeitet."
+      ]
+    },
+    {
+      "title": "Grenzen",
+      "paragraphs": [
+        "Die Ratgeber dienen der allgemeinen Information. Empfehlungen wie Stundenlänge oder Wortschatzumfang hängen vom Niveau der Gruppe, ihrer Größe und der Entwicklung des Kindes ab. Nicht gemessene Lernergebnisse oder Erfolgsquoten werden nicht angegeben."
       ]
     }
   ]

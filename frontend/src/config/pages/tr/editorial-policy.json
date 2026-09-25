@@ -1,41 +1,44 @@
 {
-  "title": "Editoryal Politika ve Metodoloji",
-  "description": "{{appName}} içeriklerinin nasıl hazırlandığını, yapay zekâ destekli taslağın nasıl kullanıldığını ve kalite ilkelerimizi açıklar.",
+  "title": "Editoryal politika",
+  "description": "{{appName}} rehberlerinin kim tarafından, hangi kaynaklarla ve nasıl güncellenerek hazırlandığı.",
   "back": "Hakkımızda sayfasına dön",
-  "authorRoleTitle": "Editoryal ve kalite süreci",
+  "authorRoleTitle": "Editoryal sorumluluk",
   "authorExpertiseLabels": [
-    "Editoryal gözden geçirme",
-    "Öğrenme tasarımı",
-    "Erişilebilir dil"
+    "Okul öncesi İngilizce",
+    "Sınıf uygulaması",
+    "Yaşa uygun içerik"
   ],
-  "credentialsNote": "İçerik kalitesi ve güncelleme süreçleri",
+  "credentialsNote": "Kaynak, güncelleme ve düzeltme ilkeleri",
   "sections": [
     {
-      "title": "İçerik ilkemiz",
+      "title": "Sorumluluk",
       "paragraphs": [
-        "{{appName}} içerikleri kullanıcıya kesin hüküm vermek için değil; daha bilinçli seçim yapmasına ve uzman görüşmesine daha hazırlıklı gelmesine yardımcı olmak için hazırlanır.",
-        "Her içerikte sade dil, korku üretmeyen anlatım ve uygulanabilir bilgi önceliklidir. Bağımlılık yaratan, kesin felaket ya da mucize vadeden ifadeleri editoryal olarak uygun bulmayız."
+        "{{appName}} rehberleri, markanın yayıncısı adına bu sayfada tanıtılan kurucunun editoryal sorumluluğunda yayımlanır. Her yazının altındaki yazar adı bu profile bağlanır."
       ]
     },
     {
-      "title": "Yapay zekâ destekli taslağın şeffaflığı",
+      "title": "Kaynaklar ve yöntem",
       "paragraphs": [
-        "Bazı genel bilgilendirme içeriklerinde LLM destekli taslaklama kullanılabilir. Amaç otorite taklidi yapmak değil; başlıkları düzenlemek, metni daha okunabilir kılmak ve çok dilli yayını hızlandırmaktır.",
-        "Taslaklar {{appName}} editoryal sürecinden geçer: doğruluk, bağlam, erişilebilir dil ve etik sınırlar kontrol edilir."
+        "Yaş, süre ve konu önerileri; okul öncesi sınıf uygulaması, {{appName}} öğretmen planları ve resmî çerçeveler (Millî Eğitim Bakanlığı okul öncesi eğitim programı, Avrupa Dilleri Ortak Çerçevesi gibi) dikkate alınarak hazırlanır.",
+        "Bir kaynağa bağlantı vermek, o kurumun {{appName}} yaklaşımını onayladığı anlamına gelmez."
       ]
     },
     {
-      "title": "Öğrenme ve içerik metodolojisi",
+      "title": "Yapay zekâ desteği",
       "paragraphs": [
-        "Modüller ve konu akışları öğrenme bilimi ilkeleriyle uyumlu olacak şekilde yapılandırılır; kaynaklar güncellenir ve kullanıcı geri bildirimiyle iyileştirilir.",
-        "Kişiselleştirilmiş öneriler, kullanıcı tercihleri ve platform politikalarına göre şeffaf kurallarla sunulur."
+        "Bazı taslaklarda başlık düzeni, dil sadeleştirme ve çeviri için yapay zekâ araçları kullanılabilir. Yayından önce her metin insan editör tarafından doğruluk, yaşa uygunluk ve sınıfta uygulanabilirlik açısından kontrol edilir."
       ]
     },
     {
-      "title": "Kim gözden geçirir?",
+      "title": "Güncelleme ve düzeltme",
       "paragraphs": [
-        "İçerikler yayın öncesi editoryal kontrolden geçer. Kullanıcıya temas eden metinlerde tutarlılık, doğruluk ve güvenli dil önceliklidir.",
-        "Platform içerikleri genel bilgilendirme niteliğindedir; kişisel durumlar için ilgili uzmana başvurulmalıdır."
+        "Yazılar anlamlı bir içerik değişikliği olduğunda güncellenir; güncelleme tarihi yazının altında gösterilir. Hata bildirmek için iletişim sayfasındaki kanalları kullanabilirsiniz; doğrulanan düzeltmeler yazıya işlenir."
+      ]
+    },
+    {
+      "title": "Sınırlar",
+      "paragraphs": [
+        "Rehberler genel bilgilendirme amaçlıdır. Süre ve kelime sayısı gibi öneriler sınıfın düzeyine, grup büyüklüğüne ve çocuğun gelişimine göre değişebilir. Ölçülmemiş öğrenme sonucu veya başarı oranı yazılmaz."
       ]
     }
   ]

@@ -32,5 +32,45 @@
       "body": "Kitap, şarkı, video ve okul hesabı akışları öğrenmeyi sınıf dışına taşır."
     }
   ],
-  "authorBio": "{{appName}} içerikleri çocuklara güvenli, neşeli ve uygulanabilir bir İngilizce deneyimi sunmak için hazırlanır."
+  "authorBio": "{{appName}} içerikleri çocuklara güvenli, neşeli ve uygulanabilir bir İngilizce deneyimi sunmak için hazırlanır.",
+  "productFamiliesTitle": "Seriler ve kimin için olduğu",
+  "productFamiliesColumns": [
+    "Seri",
+    "Kimin için",
+    "Nasıl edinilir"
+  ],
+  "productFamilies": [
+    {
+      "name": "Okul (Preschool) serisi",
+      "audience": "Anaokulları ve okul öncesi kurumlar; 3-6 yaş grupları",
+      "access": "Kuruma özel teklif",
+      "href": "/preschool"
+    },
+    {
+      "name": "Mini School (Workshop) serisi",
+      "audience": "Atölye ve kurs merkezleri",
+      "access": "{{appName}} mağazasından online",
+      "href": "/workshop"
+    },
+    {
+      "name": "Ev & Özel Ders (Home Tutor) serisi",
+      "audience": "Veliler ve özel ders veren öğretmenler",
+      "access": "{{appName}} mağazasından online",
+      "href": "/home-tutor"
+    },
+    {
+      "name": "Woody Academy",
+      "audience": "Seti kullanan öğretmenler ve kurumlar",
+      "access": "Eğitmen ve kurum desteği",
+      "href": "/woody-academy"
+    },
+    {
+      "name": "Dijital içerik",
+      "audience": "Sınıf ve ev tekrarı",
+      "access": "Hikâye, şarkı ve video kütüphanesi",
+      "href": "/digital-content"
+    }
+  ],
+  "authorLabel": "Kurucu ve yazar",
+  "expertiseLabel": "Çalışma alanları"
 }

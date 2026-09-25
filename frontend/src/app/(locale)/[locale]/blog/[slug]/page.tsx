@@ -1,6 +1,5 @@
 import React from 'react';
 import { notFound, permanentRedirect } from 'next/navigation';
-import { tUi } from '@/i18n/staticUi';
 
 import type { Metadata } from 'next';
 import BlogDetails from '@/components/containers/blog/BlogDetails';
@@ -9,6 +8,7 @@ import { normPath, absUrlJoin } from '@/integrations/shared';
 import { buildPageMetadata, fetchCustomPagePublicBySlug } from '@/seo/server';
 import JsonLd from '@/seo/JsonLd';
 import { articleSchema, breadcrumbSchema, faqSchema, graph } from '@/seo/jsonld';
+import { extractVisibleFaq } from '@/lib/blog-faq';
 import { getEditorialTeamName, getPublicAppName, getPublicSiteOrigin, getSiteAuthor } from '@/lib/site-config';
 import { findFallbackBlogPost, loadFallbackBlogPosts } from '@/components/woody/blog-loader.server';
 import { loadDbBlogPost, loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
@@ -176,8 +176,12 @@ export default async function BlogDetailsPage({ params }: PageProps) {
     /edit(o|ö)r|editorial|ekib|ekip|team|takım/i.test(_pa);
   const isSiteAuthor = isGenericEditorial;
   const displayAuthorName = isSiteAuthor ? siteAuthor.name : postAuthorName;
+  // Profil = /about#author (ayrı yazar sayfası yok); byline, Article.author ve
+  // Organization.founder aynı @id'yi taşır.
+  const authorProfileId = `${aboutUrl}#author`;
   const articleAuthor = isSiteAuthor
     ? {
+        id: authorProfileId,
         name: siteAuthor.name,
         url: aboutUrl,
         jobTitle: siteAuthor.jobTitle,
@@ -191,19 +195,23 @@ export default async function BlogDetailsPage({ params }: PageProps) {
     safeStr(page?.featured_image) ||
     safeStr(fallbackPost?.featured_image) ||
     (Array.isArray(page?.images) ? safeStr(page.images[0]) : '');
-  const faqItems = [
-    {
-      question: tUi(locale, 'How is this content prepared?'),
-      answer:
-        locale === 'tr'
-          ? `${app} blog içerikleri editoryal kontrol ve konu araştırması ilkeleriyle hazırlanır.`
-          : `${app} blog content is prepared with editorial review and topic research.`,
-    },
-    {
-      question: tUi(locale, 'Does this article replace professional advice?'),
-      answer: tUi(locale, 'No. Blog articles provide general information; for personal situations consult a relevant professional.'),
-    },
-  ];
+  // Yalnız yazının görünür SSS bölümü işaretlenir; bölüm yoksa FAQPage basılmaz.
+  const faqItems = extractVisibleFaq(
+    safeStr(dbPost?.content_html) || safeStr(page?.content_html) || safeStr(page?.content),
+  );
+  const datePublished =
+    dbPost?.created_at || page?.created_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z';
+  const dateModified =
+    dbPost?.updated_at || page?.updated_at || fallbackPost?.updated_at || datePublished;
+  const formatDate = (value: string) => {
+    const d = new Date(value);
+    return Number.isNaN(d.getTime())
+      ? ''
+      : d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
+  };
+  const publishedLabel = formatDate(datePublished);
+  const modifiedLabel =
+    dateModified.slice(0, 10) !== datePublished.slice(0, 10) ? formatDate(dateModified) : '';
 
   return (
     <>
@@ -219,15 +227,15 @@ export default async function BlogDetailsPage({ params }: PageProps) {
             headline: title,
             description,
             image: image ? absUrlJoin(siteUrl, image) : undefined,
-            datePublished: dbPost?.created_at || page?.created_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
-            dateModified: dbPost?.updated_at || dbPost?.created_at || page?.updated_at || page?.created_at || fallbackPost?.updated_at || fallbackPost?.created_at || '2026-04-30T00:00:00.000Z',
+            datePublished,
+            dateModified,
             author: articleAuthor,
             publisherId: `${siteUrl}/#org`,
             url: pageUrl,
             speakableSelectors: ['h1'],
             inLanguage: locale,
           }),
-          faqSchema(faqItems),
+          ...(faqItems.length ? [faqSchema(faqItems)] : []),
         ])}
       />
       {dbPost ? (
@@ -245,7 +253,13 @@ export default async function BlogDetailsPage({ params }: PageProps) {
             {locale === 'tr' ? 'Yazar' : 'Author'}
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-[var(--gm-text)]">
-            {displayAuthorName}
+            {isSiteAuthor ? (
+              <a href={`/${locale}/about#author`} rel="author" className="hover:underline">
+                {displayAuthorName}
+              </a>
+            ) : (
+              displayAuthorName
+            )}
           </h2>
           {isSiteAuthor && siteAuthor.jobTitle ? (
             <p className="mt-1 text-sm font-medium text-(--gm-gold)">{siteAuthor.jobTitle}</p>
@@ -257,6 +271,25 @@ export default async function BlogDetailsPage({ params }: PageProps) {
                 ? `${app} editörleri içerikleri sade, sorumlu ve uygulanabilir bir dille hazırlar.`
                 : `${app} editors prepare content in clear, responsible, and practical language.`}
           </p>
+          {publishedLabel ? (
+            <p className="mt-3 text-sm text-[var(--gm-text-dim)]">
+              <time dateTime={datePublished}>
+                {locale === 'tr' ? 'Yayın' : 'Published'}: {publishedLabel}
+              </time>
+              {modifiedLabel ? (
+                <>
+                  {' · '}
+                  <time dateTime={dateModified}>
+                    {locale === 'tr' ? 'Güncelleme' : 'Updated'}: {modifiedLabel}
+                  </time>
+                </>
+              ) : null}
+              {' · '}
+              <a href={`/${locale}/about#editorial-policy`} className="underline">
+                {locale === 'tr' ? 'Editoryal politika' : 'Editorial policy'}
+              </a>
+            </p>
+          ) : null}
         </div>
       </section>
     </>

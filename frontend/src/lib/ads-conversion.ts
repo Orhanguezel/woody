@@ -11,6 +11,7 @@ import {
   getDefaultGoogleAdsConversionLabels,
   type GoogleAdsConversionKind,
 } from './site-config';
+import { readLeadAttribution } from './lead-attribution';
 
 export type { GoogleAdsConversionKind };
 
@@ -30,18 +31,17 @@ const GA4_EVENT: Record<GoogleAdsConversionKind, string> = {
 };
 
 function reportGa4Lead(kind: GoogleAdsConversionKind, details: Record<string, string> = {}): void {
+  // landing_page / referrer_host / ai_source: AI kaynaklı oturumun lead'e
+  // dönüşüp dönüşmediği bu olaydan okunur (analitik izni yoksa boş).
+  const params = { page_path: window.location.pathname, lead_channel: kind, ...readLeadAttribution(), ...details };
   const gtag = window.gtag;
   if (typeof gtag !== 'function') {
     window.__pendingAnalyticsEvents = window.__pendingAnalyticsEvents || [];
-    window.__pendingAnalyticsEvents.push([GA4_EVENT[kind], { page_path: window.location.pathname, lead_channel: kind, ...details }]);
+    window.__pendingAnalyticsEvents.push([GA4_EVENT[kind], params]);
     return;
   }
   try {
-    gtag('event', GA4_EVENT[kind], {
-      page_path: window.location.pathname,
-      lead_channel: kind,
-      ...details,
-    });
+    gtag('event', GA4_EVENT[kind], params);
   } catch {
     // Analytics opsiyonel — dönüşüm/navigasyon akışını asla bozmaz.
   }

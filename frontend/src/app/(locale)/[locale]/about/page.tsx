@@ -5,6 +5,7 @@ import { breadcrumbSchema, graph, profilePerson } from '@/seo/jsonld';
 import { buildPageMetadata } from '@/seo/serverMetadata';
 import { loadPageContent } from '@/config/pages/loader';
 import { getPublicAppName, getPublicSiteOrigin, getSiteAuthor } from '@/lib/site-config';
+import { getEditorialPolicyCopy } from '@/lib/page-copy';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -20,6 +21,13 @@ type AboutCopy = {
   experienceParagraphs?: string[];
   differentiatorsTitle?: string;
   differentiators?: Array<{ title: string; body: string }>;
+  /** Seri → kimin için → nasıl edinilir tablosu (varlık merkezi). */
+  productFamiliesTitle?: string;
+  productFamiliesColumns?: [string, string, string];
+  productFamilies?: Array<{ name: string; audience: string; access: string; href?: string }>;
+  authorLabel?: string;
+  expertiseLabel?: string;
+  /** Yalnız kurucu biyografisi yoksa gösterilen yedek metin. */
   authorBio?: string;
 };
 
@@ -48,6 +56,7 @@ export default async function AboutPage({ params }: Props) {
   const siteUrl = getPublicSiteOrigin();
   const pageUrl = `${siteUrl}/${locale}/about`;
   const author = getSiteAuthor(locale);
+  const editorial = await getEditorialPolicyCopy(locale, app);
 
   if (!content) return null;
 
@@ -74,6 +83,7 @@ export default async function AboutPage({ params }: Props) {
             url: pageUrl,
             isPartOf: { '@id': `${siteUrl}/#website` },
             about: { '@id': `${siteUrl}/#org` },
+            publishingPrinciples: `${pageUrl}#editorial-policy`,
             mainEntity: { '@id': `${pageUrl}#author` },
             inLanguage: locale,
           },
@@ -144,16 +154,88 @@ export default async function AboutPage({ params }: Props) {
             </section>
           ) : null}
 
-          <section className="mt-12 border border-[#eadfce] bg-white p-6 md:p-8">
+          {content.productFamilies?.length ? (
+            <section className="mt-12 border border-[#eadfce] bg-white p-6 md:p-8">
+              {content.productFamiliesTitle ? (
+                <h2 className="font-serif text-2xl font-semibold text-[#24333f]">
+                  {content.productFamiliesTitle}
+                </h2>
+              ) : null}
+              <div className="mt-4 overflow-x-auto">
+                <table className="w-full min-w-[520px] text-left text-sm leading-6 text-[#5f6871]">
+                  {content.productFamiliesColumns ? (
+                    <thead>
+                      <tr className="border-b border-[#eadfce] text-[#24333f]">
+                        {content.productFamiliesColumns.map((column) => (
+                          <th key={column} scope="col" className="py-2 pr-4 font-bold">
+                            {column}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                  ) : null}
+                  <tbody>
+                    {content.productFamilies.map((row) => (
+                      <tr key={row.name} className="border-b border-[#f3ebdd] align-top">
+                        <th scope="row" className="py-3 pr-4 font-semibold text-[#24333f]">
+                          {row.href ? (
+                            <a href={`/${locale}${row.href}`} className="underline decoration-[#f58220]/40 hover:decoration-[#f58220]">
+                              {row.name}
+                            </a>
+                          ) : (
+                            row.name
+                          )}
+                        </th>
+                        <td className="py-3 pr-4">{row.audience}</td>
+                        <td className="py-3">{row.access}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          ) : null}
+
+          <section id="author" className="mt-12 scroll-mt-32 border border-[#eadfce] bg-white p-6 md:p-8">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#f58220]">
-              {locale === 'tr' ? 'Yazar' : 'Author'}
+              {content.authorLabel || (locale === 'tr' ? 'Kurucu ve yazar' : 'Founder and author')}
             </p>
             <h2 className="mt-2 font-serif text-2xl font-semibold">{author.name}</h2>
             {author.jobTitle ? (
               <p className="mt-1 text-sm font-semibold text-[#f58220]">{author.jobTitle}</p>
             ) : null}
-            <p className="mt-4 text-base leading-8 text-[#5f6871]">{content.authorBio || author.bio}</p>
+            {/* Kurucu biyografisi önceliklidir; jenerik marka cümlesi yalnız yedektir. */}
+            <p className="mt-4 text-base leading-8 text-[#5f6871]">{author.bio || content.authorBio}</p>
+            {locale === 'tr' && author.knowsAbout.length ? (
+              <p className="mt-4 text-sm leading-7 text-[#5f6871]">
+                <span className="font-semibold text-[#24333f]">
+                  {content.expertiseLabel || (locale === 'tr' ? 'Çalışma alanları' : 'Areas of work')}:
+                </span>{' '}
+                {author.knowsAbout.join(' · ')}
+              </p>
+            ) : null}
           </section>
+
+          {editorial.sections.length ? (
+            <section id="editorial-policy" className="mt-12 scroll-mt-32 border border-[#eadfce] bg-white p-6 md:p-8">
+              <h2 className="font-serif text-2xl font-semibold text-[#24333f]">{editorial.title}</h2>
+              {editorial.description ? (
+                <p className="mt-2 text-base leading-8 text-[#5f6871]">{editorial.description}</p>
+              ) : null}
+              <div className="mt-6 space-y-6">
+                {editorial.sections.map((section) => (
+                  <div key={section.title}>
+                    <h3 className="text-lg font-bold text-[#24333f]">{section.title}</h3>
+                    <div className="mt-2 space-y-3 text-base leading-8 text-[#5f6871]">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
         </section>
       </main>
     </>

@@ -1,41 +1,44 @@
 {
-  "title": "Redactioneel beleid en methodologie",
-  "description": "Hoe {{appName}} inhoud voorbereidt, AI-ondersteund opstellen gebruikt en kwaliteitsnormen toepast.",
-  "back": "Terug naar Over",
-  "authorRoleTitle": "Redactioneel kwaliteitsproces",
+  "title": "Redactioneel beleid",
+  "description": "Wie de {{appName}}-gidsen maakt, op welke bronnen ze steunen en hoe ze actueel blijven.",
+  "back": "Terug naar Over ons",
+  "authorRoleTitle": "Redactionele verantwoordelijkheid",
   "authorExpertiseLabels": [
-    "Redactionele recensie",
-    "Ontwerp leren",
-    "Toegankelijke taal"
+    "Engels voor kleuters",
+    "Praktijk in de klas",
+    "Leeftijdsgeschikte inhoud"
   ],
-  "credentialsNote": "Inhoudskwaliteit en updatepraktijken",
+  "credentialsNote": "Principes voor bronnen, updates en correcties",
   "sections": [
     {
-      "title": "Inhoudelijke principes",
+      "title": "Verantwoordelijkheid",
       "paragraphs": [
-        "De inhoud van {{appName}} helpt gebruikers zich voor te bereiden op weloverwogen keuzes en gesprekken met deskundigen, en vervangt niet professioneel advies in gereguleerde domeinen.",
-        "Wij geven prioriteit aan duidelijke taal, een niet-dwingende toon en praktisch inzicht. Wij verwerpen afhankelijkheidstaal en absolute voorspellingen."
+        "De {{appName}}-gidsen worden namens de uitgever van het merk gepubliceerd onder redactionele verantwoordelijkheid van de oprichter die op deze pagina wordt voorgesteld. De auteursnaam onder elk artikel verwijst naar dit profiel."
       ]
     },
     {
-      "title": "Transparantie over AI-ondersteund opstellen",
+      "title": "Bronnen en methode",
       "paragraphs": [
-        "Sommige educatieve concepten kunnen LLM's gebruiken om onderwerpen te structureren en de leesbaarheid te verbeteren.",
-        "Concepten worden vóór publicatie beoordeeld op nauwkeurigheid, context, toegankelijkheid en ethische grenzen."
+        "Aanbevelingen over leeftijd, duur en thema's zijn gebaseerd op de praktijk in kleuterklassen, de {{appName}}-lesplannen en officiële kaders zoals het kleuteronderwijsprogramma van het Turkse ministerie van Onderwijs en het Gemeenschappelijk Europees Referentiekader voor talen.",
+        "Een link naar een bron betekent niet dat die instelling de {{appName}}-aanpak onderschrijft."
       ]
     },
     {
-      "title": "Leermethodologie",
+      "title": "AI-ondersteuning",
       "paragraphs": [
-        "Modules volgen een leerlinggerichte structuur; bronnen worden onderhouden en verbeterd met feedback.",
-        "Gepersonaliseerde suggesties volgen transparante regels die zijn afgestemd op het platformbeleid."
+        "Bij sommige concepten kunnen AI-hulpmiddelen worden gebruikt voor structuur, taalvereenvoudiging en vertaling. Vóór publicatie controleert een menselijke redacteur elke tekst op juistheid, leeftijdsgeschiktheid en uitvoerbaarheid in de klas."
       ]
     },
     {
-      "title": "Beoordelingsproces",
+      "title": "Updates en correcties",
       "paragraphs": [
-        "De inhoud wordt redactioneel beoordeeld voordat deze wordt vrijgegeven. Bij gebruikersgerichte kopieën wordt prioriteit gegeven aan consistentie, nauwkeurigheid en vertrouwen.",
-        "Platforminhoud is algemene informatie; raadpleeg een relevante professional voor persoonlijke situaties."
+        "Artikelen worden bijgewerkt wanneer de inhoud wezenlijk verandert; de datum van bijwerking staat onder het artikel. Fouten kunt u melden via de kanalen op de contactpagina; bevestigde correcties worden verwerkt."
+      ]
+    },
+    {
+      "title": "Grenzen",
+      "paragraphs": [
+        "De gidsen zijn bedoeld als algemene informatie. Aanbevelingen zoals lesduur of woordenschatomvang hangen af van het niveau, de groepsgrootte en de ontwikkeling van het kind. Niet-gemeten leerresultaten of succespercentages worden niet vermeld."
       ]
     }
   ]

@@ -45,6 +45,7 @@ export function org(input: {
     contactType: string;
     availableLanguage?: string[];
   }>;
+  founder?: { id?: string; name: string; url?: string };
 }): Thing {
   return {
     '@type': ['Organization', 'ProfessionalService'],
@@ -74,6 +75,16 @@ export function org(input: {
             '@type': 'Country',
             name,
           })),
+        }
+      : {}),
+    ...(input.founder?.name
+      ? {
+          founder: {
+            '@type': 'Person',
+            ...(input.founder.id ? { '@id': input.founder.id } : {}),
+            name: input.founder.name,
+            ...(input.founder.url ? { url: input.founder.url } : {}),
+          },
         }
       : {}),
   };
@@ -419,7 +430,7 @@ export function articleEnhanced(input: {
   image?: string | string[];
   datePublished: string; // ISO
   dateModified?: string; // ISO
-  author?: { name: string; url?: string; jobTitle?: string; sameAs?: string[]; image?: string };
+  author?: { id?: string; name: string; url?: string; jobTitle?: string; sameAs?: string[]; image?: string };
   publisherId?: string; // organization @id
   url?: string;
   speakableSelectors?: string[]; // CSS selectors — örn ["h1","[data-speakable]"]
@@ -440,6 +451,9 @@ export function articleEnhanced(input: {
   if (input.author) {
     (node as any).author = {
       '@type': input.author.name.toLowerCase().includes('editorial team') ? 'Organization' : 'Person',
+      // Yazar profil düğümü (/about#author) ile aynı @id: byline, Article ve
+      // Organization.founder tek kişiye bağlanır.
+      ...(input.author.id ? { '@id': input.author.id } : {}),
       name: input.author.name,
       ...(input.author.url ? { url: input.author.url } : {}),
       ...(input.author.jobTitle ? { jobTitle: input.author.jobTitle } : {}),

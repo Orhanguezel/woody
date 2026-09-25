@@ -32,5 +32,45 @@
       "body": "Books, songs, videos, and school account flows carry learning beyond the classroom."
     }
   ],
-  "authorBio": "{{appName}} content is prepared to give children a safe, cheerful, and practical English experience."
+  "authorBio": "{{appName}} content is prepared to give children a safe, cheerful, and practical English experience.",
+  "productFamiliesTitle": "Series and who they are for",
+  "productFamiliesColumns": [
+    "Series",
+    "Who it is for",
+    "How to get it"
+  ],
+  "productFamilies": [
+    {
+      "name": "School (Preschool) series",
+      "audience": "Kindergartens and preschool institutions; ages 3-6",
+      "access": "Quote for institutions",
+      "href": "/preschool"
+    },
+    {
+      "name": "Mini School (Workshop) series",
+      "audience": "Workshops and course centres",
+      "access": "Online at the {{appName}} store",
+      "href": "/workshop"
+    },
+    {
+      "name": "Home & Private Tutoring (Home Tutor) series",
+      "audience": "Parents and private tutors",
+      "access": "Online at the {{appName}} store",
+      "href": "/home-tutor"
+    },
+    {
+      "name": "Woody Academy",
+      "audience": "Teachers and institutions using the set",
+      "access": "Trainer and institution support",
+      "href": "/woody-academy"
+    },
+    {
+      "name": "Digital content",
+      "audience": "Review in class and at home",
+      "access": "Story, song and video library",
+      "href": "/digital-content"
+    }
+  ],
+  "authorLabel": "Founder and author",
+  "expertiseLabel": "Areas of work"
 }

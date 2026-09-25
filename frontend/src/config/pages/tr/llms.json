@@ -1,0 +1,56 @@
+{
+  "pageLabels": {
+    "home": "Ana sayfa — markanın okul öncesi İngilizce modeline genel bakış",
+    "preschool": "Okul serisi — anaokulları için öğretmen seti, öğrenci seti ve dijital içerik (kurum teklifi)",
+    "workshop": "Mini School serisi — atölye ve kurs merkezleri için setler",
+    "home-tutor": "Ev ve özel ders serisi — veliler ve özel ders öğretmenleri için",
+    "woody-academy": "Woody Academy — seti kullanan öğretmen ve kurumlara eğitmen desteği",
+    "level-finder": "Seviye bulucu — çocuğa uygun seviyeyi seçme aracı",
+    "library": "Kütüphane — hikâye, şarkı ve video içerikleri",
+    "store": "Mağaza — online satılan setler",
+    "digital-content": "Dijital içerik — okul hesabı ve dijital tekrar alanları",
+    "blog": "Blog — öğretmen, kurum ve veli rehberleri",
+    "about": "Hakkımızda — kurucu, yöntem, seriler ve editoryal politika",
+    "contact": "İletişim — telefon, WhatsApp, e-posta ve açık adres",
+    "faqs": "Sıkça sorulan sorular",
+    "local-istanbul": "İstanbul anaokulları için İngilizce eğitimi",
+    "local-ankara": "Ankara anaokulları için İngilizce eğitimi",
+    "local-izmir": "İzmir anaokulları için İngilizce eğitimi",
+    "local-bursa": "Bursa anaokulları için İngilizce eğitimi"
+  },
+  "priorityGuides": [
+    {
+      "slug": "anaokulu-ingilizce-konulari",
+      "scope": "3, 4, 5 ve 6 yaş için anaokulu İngilizce konu listesi ve yaşa göre konu derinliği."
+    },
+    {
+      "slug": "anaokulu-ingilizce-mufredati-nasil-hazirlanir",
+      "scope": "Yıllık anaokulu İngilizce müfredatı: tema, kazanım, materyal ve ölçme planı."
+    },
+    {
+      "slug": "anaokulu-ingilizce-ders-plani-nasil-hazirlanir",
+      "scope": "Günlük, haftalık ve yıllık ders planı ayrımı; 25 dakikalık örnek ders akışı."
+    },
+    {
+      "slug": "5-yas-ingilizce-ders-programi",
+      "scope": "5 yaş için haftalık İngilizce ders programı, ders süresi ve ilerleme gözlemi."
+    },
+    {
+      "slug": "6-yas-ingilizce-egitimi",
+      "scope": "6 yaş İngilizce eğitimi: konular, yöntemler ve ilkokula geçiş sınırı."
+    },
+    {
+      "slug": "anaokulu-ingilizce-egitim-seti-nasil-secilir",
+      "scope": "Anaokulu İngilizce eğitim seti seçim ölçütleri: yaş, içerik, öğretmen desteği, dijital içerik."
+    },
+    {
+      "slug": "4-5-6-yas-ingilizce-egitimi",
+      "scope": "4, 5 ve 6 yaş karşılaştırma sayfası; ayrıntı için yaşa özel rehberlere yönlendirir."
+    },
+    {
+      "slug": "3-6-yas-ingilizce-egitimi-nasil-olmali",
+      "scope": "3 yaş ve okul öncesine hazır oluş; ilk İngilizce deneyimi nasıl kurulur."
+    }
+  ],
+  "seriesAges": "Okul serisi 3-6 yaş anaokulu gruplari icindir ve kurum teklifiyle alinir; Mini School ve Ev/Ozel Ders setleri magazada online satilir. Seviyeler Basic, Junior ve Senior olarak ilerler."
+}

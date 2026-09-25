@@ -14,7 +14,8 @@ export type CommerceAttribution = {
   consentState: 'granted' | 'denied' | 'unknown';
 };
 
-const STORAGE_KEY = 'woody_commerce_attribution_v1';
+export const COMMERCE_ATTRIBUTION_STORAGE_KEY = 'woody_commerce_attribution_v1';
+const STORAGE_KEY = COMMERCE_ATTRIBUTION_STORAGE_KEY;
 
 function analyticsConsent(): CommerceAttribution['consentState'] {
   if (typeof window === 'undefined') return 'unknown';

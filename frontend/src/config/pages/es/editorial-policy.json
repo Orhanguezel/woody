@@ -1,41 +1,44 @@
 {
-  "title": "Política editorial y metodología",
-  "description": "Cómo {{appName}} prepara contenido, utiliza redacción asistida por IA y aplica estándares de calidad.",
-  "back": "Volver a Acerca de",
-  "authorRoleTitle": "Proceso de calidad editorial",
+  "title": "Política editorial",
+  "description": "Quién prepara las guías de {{appName}}, en qué fuentes se basan y cómo se mantienen actualizadas.",
+  "back": "Volver a Sobre nosotros",
+  "authorRoleTitle": "Responsabilidad editorial",
   "authorExpertiseLabels": [
-    "Revisión editorial",
-    "Diseño de aprendizaje",
-    "Idioma accesible"
+    "Inglés en preescolar",
+    "Práctica en el aula",
+    "Contenido adecuado a la edad"
   ],
-  "credentialsNote": "Calidad del contenido y prácticas de actualización.",
+  "credentialsNote": "Principios de fuentes, actualización y corrección",
   "sections": [
     {
-      "title": "Principios de contenido",
+      "title": "Responsabilidad",
       "paragraphs": [
-        "El contenido de {{appName}} ayuda a los usuarios a prepararse para decisiones informadas y conversaciones con expertos, no para reemplazar el asesoramiento profesional en dominios regulados.",
-        "Priorizamos el lenguaje sencillo, el tono no coercitivo y la visión práctica. Rechazamos el lenguaje de dependencia y las predicciones absolutas."
+        "Las guías de {{appName}} se publican en nombre de la editorial de la marca bajo la responsabilidad editorial de la persona fundadora presentada en esta página. El nombre de autoría bajo cada artículo enlaza a este perfil."
       ]
     },
     {
-      "title": "Transparencia en la redacción asistida por IA",
+      "title": "Fuentes y método",
       "paragraphs": [
-        "Algunos borradores educativos pueden utilizar LLM para estructurar temas y mejorar la legibilidad.",
-        "Los borradores se revisan para determinar su precisión, contexto, accesibilidad y límites éticos antes de publicarlos."
+        "Las recomendaciones de edad, duración y temas se basan en la práctica en aulas de preescolar, los planes docentes de {{appName}} y marcos oficiales como el programa preescolar del Ministerio de Educación Nacional de Turquía y el Marco Común Europeo de Referencia para las Lenguas.",
+        "Enlazar una fuente no significa que esa institución respalde el enfoque de {{appName}}."
       ]
     },
     {
-      "title": "Metodología de aprendizaje",
+      "title": "Apoyo de IA",
       "paragraphs": [
-        "Los módulos siguen una estructura centrada en el alumno; Las fuentes se mantienen y mejoran con retroalimentación.",
-        "Las sugerencias personalizadas siguen reglas transparentes alineadas con la política de la plataforma."
+        "En algunos borradores pueden usarse herramientas de IA para la estructura, la simplificación del lenguaje y la traducción. Antes de publicar, un editor humano revisa cada texto en cuanto a exactitud, adecuación a la edad y viabilidad en el aula."
       ]
     },
     {
-      "title": "Proceso de revisión",
+      "title": "Actualizaciones y correcciones",
       "paragraphs": [
-        "El contenido se revisa editorialmente antes de su lanzamiento. La copia de cara al usuario prioriza la coherencia, la precisión y la confianza.",
-        "El contenido de la plataforma es información general; Consulte a un profesional relevante para situaciones personales."
+        "Los artículos se actualizan cuando el contenido cambia de forma significativa y la fecha de actualización aparece bajo el artículo. Puede comunicar errores a través de los canales de la página de contacto; las correcciones verificadas se incorporan."
+      ]
+    },
+    {
+      "title": "Límites",
+      "paragraphs": [
+        "Las guías son de carácter informativo general. Recomendaciones como la duración de la clase o la cantidad de vocabulario varían según el nivel, el tamaño del grupo y el desarrollo de cada niño. No se publican resultados de aprendizaje ni tasas de éxito no medidos."
       ]
     }
   ]

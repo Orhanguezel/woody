@@ -7,16 +7,35 @@ import {
   getDefaultSocialUrls,
   getPublicAppName,
   getPublicSiteOrigin,
+  getSiteAuthor,
 } from '@/lib/site-config';
 import { WOODY_LOCALES, WOODY_PAGE_ROUTES, localizedWoodyPath } from '@/components/woody/routes';
+import { loadDbBlogPosts } from '@/components/woody/blog-db-loader.server';
 
 type FaqContent = {
-  items?: Array<{ answer?: string; question?: string; solution?: string }>;
+  items?: Array<{ answer?: string; problem?: string; question?: string; solution?: string }>;
 };
+
+type LlmsContent = {
+  pageLabels?: Record<string, string>;
+  priorityGuides?: Array<{ slug: string; scope: string }>;
+  seriesAges?: string;
+};
+
+function isoDay(value: string | Date | null | undefined): string {
+  if (!value) return '';
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? '' : d.toISOString().slice(0, 10);
+}
 
 type StoreProductsContent = {
   products?: Array<{ description?: string; name?: string; slug?: string; title?: string }>;
 };
+
+function excerptOf(value: string, max = 180) {
+  const text = stripHtml(value).replace(/\s+/g, ' ').trim();
+  return text.length > max ? `${text.slice(0, max - 1).trimEnd()}…` : text;
+}
 
 function line(value: string) {
   return value.trim();
@@ -32,15 +51,45 @@ export async function buildLlmsText({ full }: { full: boolean }) {
   const origin = getPublicSiteOrigin();
   const contact = getDefaultContactInfo();
   const socials = getDefaultSocialUrls();
-  const [faq, storeProducts] = await Promise.all([
+  const author = getSiteAuthor('tr');
+  const aboutUrl = `${origin}${localizedWoodyPath('tr', '/about')}`;
+  const [faq, storeProducts, llms, posts] = await Promise.all([
     loadPageContent<FaqContent>('faq', 'tr'),
     loadPageContent<StoreProductsContent>('store-products', 'tr'),
+    loadPageContent<LlmsContent>('llms', 'tr'),
+    loadDbBlogPosts('tr', undefined, 50),
   ]);
+
+  // Rehberler DB'den gelir: önce sorgu sahipliği verilen öncelikli rehberler
+  // (kapsam cümlesiyle), sonra diğer yayınlanmış yazılar (özetiyle).
+  // Yayında olmayan öncelikli slug listelenmez.
+  const bySlug = new Map(posts.map((post) => [String(post.slug || ''), post]));
+  const priority = (llms?.priorityGuides ?? [])
+    .map((guide) => ({ guide, post: bySlug.get(guide.slug) }))
+    .filter((entry) => entry.post);
+  const prioritySlugs = new Set(priority.map((entry) => entry.guide.slug));
+  const guideLine = (slug: string, title: string, scope: string) =>
+    `- [${stripHtml(title)}](${origin}${localizedWoodyPath('tr', `/blog/${slug}`)})${scope ? `: ${stripHtml(scope)}` : ''}`;
+  const priorityGuideLines = priority.map(({ guide, post }) => guideLine(guide.slug, String(post?.title || ''), guide.scope));
+  const otherGuideLines = posts
+    .filter((post) => post.slug && !prioritySlugs.has(String(post.slug)))
+    .slice(0, full ? 50 : 12)
+    .map((post) => guideLine(String(post.slug), String(post.title || ''), excerptOf(String(post.summary || ''))));
+  const lastUpdated = posts
+    .map((post) => isoDay(post.updated_at || post.published_at || post.created_at))
+    .filter(Boolean)
+    .sort()
+    .pop();
 
   const faqItems = (faq?.items ?? [])
     .map((item) => ({
       question: stripHtml(String(item.question || '')),
-      answer: stripHtml(String(item.answer || item.solution || '')),
+      // Önce soruyu doğrudan cevaplayan `problem`, sonra yaklaşım. Yalnız
+      // marka cümlesi soru-cevap değildir.
+      answer: [item.problem, item.answer || item.solution]
+        .map((part) => stripHtml(String(part || '')))
+        .filter(Boolean)
+        .join(' '),
     }))
     .filter((item) => item.question && item.answer)
     .slice(0, full ? 25 : 8);
@@ -55,7 +104,8 @@ export async function buildLlmsText({ full }: { full: boolean }) {
     .slice(0, full ? 24 : 8);
 
   const keyPages = WOODY_PAGE_ROUTES.map((route) => ({
-    label: route.key,
+    key: route.key,
+    label: llms?.pageLabels?.[route.key] || route.key,
     path: route.path,
   }));
 
@@ -65,8 +115,20 @@ export async function buildLlmsText({ full }: { full: boolean }) {
     `${app} okul oncesi Ingilizce, hikaye temelli egitim setleri, Mini School (atolye) programlari, ev ve ozel ders cozumleri, Woody Academy ve dijital icerik alanlari sunan cocuk odakli egitim markasidir.`,
     '',
     '## Site yapisi',
-    ...keyPages.map((page) => `- ${page.label}: ${origin}${localizedWoodyPath('tr', page.path)}`),
+    ...keyPages.map((page) => `- [${page.label}](${origin}${localizedWoodyPath('tr', page.path)})`),
     '',
+    ...(priorityGuideLines.length
+      ? ['## Oncelikli rehberler', ...priorityGuideLines, '']
+      : []),
+    ...(otherGuideLines.length ? ['## Diger rehberler', ...otherGuideLines, ''] : []),
+    ...(author.name
+      ? [
+          '## Yazar ve editoryal sorumluluk',
+          `- ${author.name}${author.jobTitle ? ` — ${author.jobTitle}` : ''}: ${aboutUrl}#author`,
+          `- Editoryal politika (kaynak, yapay zeka destegi, guncelleme ve duzeltme): ${aboutUrl}#editorial-policy`,
+          '',
+        ]
+      : []),
     '## Diller',
     `Aktif URL dilleri: ${WOODY_LOCALES.join(', ')}. Varsayilan dil tr'dir. Locale'siz URL'ler 308 ile Turkce canonical URL'lere yonlenir.`,
     '',
@@ -79,6 +141,7 @@ export async function buildLlmsText({ full }: { full: boolean }) {
     '- Ev ve ozel ders modeli',
     '- Woody Academy egitmen ve kurum destek alani',
     '- Dijital icerik, hikaye, video, muzik ve kutuphane alanlari',
+    ...(llms?.seriesAges ? [llms.seriesAges] : []),
     ...products.map((product) =>
       `- ${product.name}${product.slug ? `: ${origin}${localizedWoodyPath('tr', `/store/${product.slug}`)}` : ''}${product.description ? ` — ${product.description}` : ''}`,
     ),
@@ -103,6 +166,8 @@ export async function buildLlmsText({ full }: { full: boolean }) {
       ? `- Adres: ${[contact.address.streetAddress, contact.address.addressLocality, contact.address.addressRegion, contact.address.addressCountry].filter(Boolean).join(', ')}`
       : '',
     ...Object.entries(socials).map(([key, value]) => `- ${key}: ${value}`),
+    '',
+    lastUpdated ? `Son icerik guncellemesi: ${lastUpdated}` : '',
   ]
     .map((part) => (typeof part === 'string' ? line(part) : ''))
     .filter((part, index, arr) => part || arr[index - 1])

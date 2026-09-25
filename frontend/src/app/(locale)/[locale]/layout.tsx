@@ -25,6 +25,7 @@ import {
   getPublicAppName,
   getPublicLogoUrl,
   getPublicSiteOrigin,
+  getSiteAuthor,
 } from '@/lib/site-config';
 import { WOODY_LOCALES } from '@/components/woody/routes';
 
@@ -106,6 +107,8 @@ export default async function LocaleRootLayout({
   // SSR fetch: header menu items — hidrasyon mismatch'i önlemek için server'da çekilir
   const initialMenuItems = await fetchHeaderMenuItems(locale);
   const contact = getDefaultContactInfo();
+  const founder = getSiteAuthor(locale);
+  const aboutUrl = `${SITE_URL}/${locale}/about`;
 
   const jsonLdData = graph([
     org({
@@ -126,6 +129,8 @@ export default async function LocaleRootLayout({
         },
       ],
       areaServed: 'TR',
+      // Kurucu = blog yazarı profil düğümü (/about#author); ayrı profil URL'si açılmaz.
+      ...(founder.name ? { founder: { id: `${aboutUrl}#author`, name: founder.name, url: aboutUrl } } : {}),
     }),
     website({
       id: `${SITE_URL}/#website`,

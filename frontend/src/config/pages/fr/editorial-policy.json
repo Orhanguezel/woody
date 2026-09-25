@@ -1,41 +1,44 @@
 {
-  "title": "Politique éditoriale et méthodologie",
-  "description": "Comment {{appName}} prépare le contenu, utilise la rédaction assistée par l'IA et applique les normes de qualité.",
+  "title": "Politique éditoriale",
+  "description": "Qui rédige les guides {{appName}}, sur quelles sources ils s'appuient et comment ils sont mis à jour.",
   "back": "Retour à À propos",
-  "authorRoleTitle": "Processus de qualité éditoriale",
+  "authorRoleTitle": "Responsabilité éditoriale",
   "authorExpertiseLabels": [
-    "Revue éditoriale",
-    "Conception de l'apprentissage",
-    "Langue accessible"
+    "Anglais en maternelle",
+    "Pratique en classe",
+    "Contenu adapté à l'âge"
   ],
-  "credentialsNote": "Qualité du contenu et pratiques de mise à jour",
+  "credentialsNote": "Principes de sources, de mise à jour et de correction",
   "sections": [
     {
-      "title": "Principes de contenu",
+      "title": "Responsabilité",
       "paragraphs": [
-        "Le contenu de {{appName}} aide les utilisateurs à se préparer à des choix éclairés et à des conversations d'experts, et ne remplace pas les conseils professionnels dans les domaines réglementés.",
-        "Nous accordons la priorité à un langage simple, à un ton non coercitif et à une vision pratique. Nous rejetons le langage de la dépendance et les prédictions absolues."
+        "Les guides {{appName}} sont publiés au nom de l'éditeur de la marque, sous la responsabilité éditoriale de la personne fondatrice présentée sur cette page. Le nom d'auteur sous chaque article renvoie à ce profil."
       ]
     },
     {
-      "title": "Transparence sur la rédaction assistée par IA",
+      "title": "Sources et méthode",
       "paragraphs": [
-        "Certaines versions pédagogiques peuvent utiliser des LLM pour structurer les sujets et améliorer la lisibilité.",
-        "Les brouillons sont examinés pour en vérifier l’exactitude, le contexte, l’accessibilité et les limites éthiques avant leur publication."
+        "Les recommandations d'âge, de durée et de thèmes s'appuient sur la pratique en classe maternelle, les plans enseignants {{appName}} et des cadres officiels comme le programme préscolaire du ministère turc de l'Éducation nationale et le Cadre européen commun de référence pour les langues.",
+        "Un lien vers une source ne signifie pas que cette institution approuve l'approche {{appName}}."
       ]
     },
     {
-      "title": "Méthodologie d'apprentissage",
+      "title": "Assistance par IA",
       "paragraphs": [
-        "Les modules suivent une structure centrée sur l'apprenant ; les sources sont maintenues et améliorées grâce aux commentaires.",
-        "Les suggestions personnalisées suivent des règles transparentes alignées sur la politique de la plateforme."
+        "Certains brouillons peuvent utiliser des outils d'IA pour la structure, la simplification et la traduction. Avant publication, chaque texte est vérifié par un éditeur humain pour son exactitude, son adéquation à l'âge et sa faisabilité en classe."
       ]
     },
     {
-      "title": "Processus de révision",
+      "title": "Mises à jour et corrections",
       "paragraphs": [
-        "Le contenu est révisé éditorialement avant sa publication. La copie destinée à l'utilisateur donne la priorité à la cohérence, à l'exactitude et à la confiance.",
-        "Le contenu de la plateforme est une information générale ; consulter un professionnel compétent pour des situations personnelles."
+        "Les articles sont mis à jour lorsque le contenu change de manière significative ; la date de mise à jour figure sous l'article. Vous pouvez signaler une erreur via les canaux de la page contact ; les corrections vérifiées sont intégrées."
+      ]
+    },
+    {
+      "title": "Limites",
+      "paragraphs": [
+        "Les guides ont une visée d'information générale. Les recommandations comme la durée d'une séance ou le nombre de mots varient selon le niveau, la taille du groupe et le développement de l'enfant. Aucun résultat d'apprentissage ou taux de réussite non mesuré n'est avancé."
       ]
     }
   ]

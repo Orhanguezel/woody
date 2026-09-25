@@ -1,41 +1,44 @@
 {
-  "title": "Editorial policy and methodology",
-  "description": "How {{appName}} prepares content, uses AI-assisted drafting, and applies quality standards.",
+  "title": "Editorial policy",
+  "description": "Who prepares {{appName}} guides, which sources they rely on and how they are kept up to date.",
   "back": "Back to About",
-  "authorRoleTitle": "Editorial quality process",
+  "authorRoleTitle": "Editorial responsibility",
   "authorExpertiseLabels": [
-    "Editorial review",
-    "Learning design",
-    "Accessible language"
+    "Preschool English",
+    "Classroom practice",
+    "Age-appropriate content"
   ],
-  "credentialsNote": "Content quality and update practices",
+  "credentialsNote": "Source, update and correction principles",
   "sections": [
     {
-      "title": "Content principles",
+      "title": "Responsibility",
       "paragraphs": [
-        "{{appName}} content helps users prepare for informed choices and expert conversations, not to replace professional advice in regulated domains.",
-        "We prioritise plain language, non-coercive tone and practical insight. We reject dependency language and absolute predictions."
+        "{{appName}} guides are published on behalf of the brand's publisher under the editorial responsibility of the founder introduced on this page. The author name under each article links to this profile."
       ]
     },
     {
-      "title": "Transparency on AI-assisted drafting",
+      "title": "Sources and method",
       "paragraphs": [
-        "Some educational drafts may use LLMs to structure topics and improve readability.",
-        "Drafts are reviewed for accuracy, context, accessibility and ethical boundaries before publishing."
+        "Age, duration and topic recommendations are based on preschool classroom practice, {{appName}} teacher plans and official frameworks such as the Turkish Ministry of National Education preschool programme and the Common European Framework of Reference for Languages.",
+        "Linking to a source does not mean that institution endorses the {{appName}} approach."
       ]
     },
     {
-      "title": "Learning methodology",
+      "title": "AI assistance",
       "paragraphs": [
-        "Modules follow learner-centred structure; sources are maintained and improved with feedback.",
-        "Personalised suggestions follow transparent rules aligned with platform policy."
+        "Some drafts may use AI tools for structure, plain-language editing and translation. Before publication every text is checked by a human editor for accuracy, age-appropriateness and classroom feasibility."
       ]
     },
     {
-      "title": "Review process",
+      "title": "Updates and corrections",
       "paragraphs": [
-        "Content is editorially reviewed before release. User-facing copy prioritises consistency, accuracy and trust.",
-        "Platform content is general information; consult a relevant professional for personal situations."
+        "Articles are updated when the content changes meaningfully, and the update date is shown under the article. You can report errors through the channels on the contact page; verified corrections are applied to the article."
+      ]
+    },
+    {
+      "title": "Limits",
+      "paragraphs": [
+        "Guides are for general information. Recommendations such as lesson length or vocabulary size vary with class level, group size and each child's development. Unmeasured learning outcomes or success rates are never stated."
       ]
     }
   ]
