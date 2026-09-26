@@ -258,6 +258,8 @@
     "manageAddresses": "Adreslerimi yönet",
     "edit": "Düzenle",
     "locationUnavailable": "Konumunuz şu an alınamadı. Adresi arama kutusundan bulabilir veya haritada iğneyi taşıyabilirsiniz.",
-    "locating": "Konum alınıyor…"
+    "locating": "Konum alınıyor…",
+    "continueToCheckout": "Satın almaya devam et",
+    "checkoutStepsLabel": "Ödeme adımları"
   }
 }

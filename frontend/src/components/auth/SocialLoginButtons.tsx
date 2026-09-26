@@ -10,6 +10,7 @@ import { useSocialLoginMutation } from '@/integrations/rtk/public/auth.endpoints
 import { tokenStore } from '@/integrations/rtk/token';
 import { normalizeError } from '@/integrations/shared';
 import { useLocaleShort } from '@/i18n';
+import { tUi } from '@/i18n/staticUi';
 import { localizePath } from '@/integrations/shared';
 import { FOCUS_RING } from '@/lib/a11y';
 
@@ -236,10 +237,10 @@ function WithGoogle({ nextHref, layout, className }: Props) {
         if (typeof window !== 'undefined' && (resp as any).user) {
           window.localStorage.setItem('user', JSON.stringify((resp as any).user));
         }
-        toast.success('Giriş başarılı');
+        toast.success(tUi(locale, 'Login successful'));
         router.push(nextHref || localizePath(locale, '/profile'));
       } catch (err) {
-        toast.error(normalizeError(err).message || 'Sosyal giriş başarısız.');
+        toast.error(normalizeError(err).message || tUi(locale, 'Social login failed.'));
       }
     },
     [socialLogin, router, nextHref, locale],
@@ -327,10 +328,10 @@ function FacebookOnly({ nextHref, layout, className }: Props) {
         if (typeof window !== 'undefined' && (resp as any).user) {
           window.localStorage.setItem('user', JSON.stringify((resp as any).user));
         }
-        toast.success('Giriş başarılı');
+        toast.success(tUi(locale, 'Login successful'));
         router.push(nextHref || localizePath(locale, '/profile'));
       } catch (err) {
-        toast.error(normalizeError(err).message || 'Sosyal giriş başarısız.');
+        toast.error(normalizeError(err).message || tUi(locale, 'Social login failed.'));
       }
     },
     [socialLogin, router, nextHref, locale],

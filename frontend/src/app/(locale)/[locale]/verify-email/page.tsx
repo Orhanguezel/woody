@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useClientSearchParams } from '@/lib/useClientSearchParams';
 import { tUi } from '@/i18n/staticUi';
+import { loadPageContent } from '@/config/pages/loader';
 
 import Link from 'next/link';
 import {
@@ -11,12 +12,6 @@ import {
 } from '@/integrations/rtk/hooks';
 import { useLocaleShort } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
-
-const CONTINUE_TO_CHECKOUT: Record<string, string> = {
-  tr: 'Satın almaya devam et', en: 'Continue to checkout', de: 'Weiter zur Kasse', fr: 'Continuer vers le paiement',
-  es: 'Continuar con la compra', it: 'Continua con l’acquisto', nl: 'Verder naar afrekenen',
-  'pt-br': 'Continuar para o pagamento', ru: 'Перейти к оформлению', ar: 'متابعة الشراء',
-};
 
 export default function VerifyEmailPage() {
   const searchParams = useClientSearchParams();
@@ -28,7 +23,18 @@ export default function VerifyEmailPage() {
   const nextHref = next.startsWith('/') ? next : localizePath(locale, '/profile');
   // Sepetten gelen yeni üye: buton profile değil ödemeye döndüğünü söylesin.
   const toCheckout = /\/store\/checkout(\?|$)/.test(nextHref);
-  const checkoutLabel = CONTINUE_TO_CHECKOUT[locale] || CONTINUE_TO_CHECKOUT.en;
+  // Etiket mağaza dil dosyasından (store-products ui.continueToCheckout).
+  const [checkoutLabel, setCheckoutLabel] = useState('');
+  useEffect(() => {
+    if (!toCheckout) return;
+    let alive = true;
+    void loadPageContent<{ ui?: { continueToCheckout?: string } }>('store-products', locale).then((copy) => {
+      if (alive) setCheckoutLabel(copy?.ui?.continueToCheckout || '');
+    });
+    return () => {
+      alive = false;
+    };
+  }, [locale, toCheckout]);
 
   const [confirm, { isLoading }] = useConfirmEmailVerificationMutation();
   const [sendVerification, sendState] = useSendEmailVerificationMutation();

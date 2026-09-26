@@ -133,7 +133,7 @@ export default function CartPageClient({
   ) : null;
 
   return (
-    <main className="min-h-screen bg-[#fff9ee] pb-28 pt-28 text-[#24333f] lg:pb-16 lg:pt-32">
+    <div className="min-h-screen bg-[#fff9ee] pb-28 pt-28 text-[#24333f] lg:pb-16 lg:pt-32">
       <div className="container max-w-[1120px]">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Link
@@ -143,7 +143,7 @@ export default function CartPageClient({
             <ArrowLeft className="h-4 w-4" aria-hidden />
             {ui.continueShopping || ui.checkoutReturnToStore || ''}
           </Link>
-          <CheckoutSteps labels={stepLabels(ui)} current={0} />
+          <CheckoutSteps labels={stepLabels(ui)} current={0} ariaLabel={ui.checkoutStepsLabel} />
         </div>
 
         <div className="mt-6 flex flex-wrap items-end justify-between gap-3">
@@ -301,6 +301,6 @@ export default function CartPageClient({
           </>
         )}
       </div>
-    </main>
+    </div>
   );
 }

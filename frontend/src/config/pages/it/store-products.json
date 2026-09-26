@@ -257,6 +257,9 @@
     "manageAddresses": "Gestisci i miei indirizzi",
     "edit": "Modifica",
     "locationUnavailable": "Non è stato possibile rilevare la posizione. Cerca l’indirizzo o sposta il segnaposto sulla mappa.",
-    "locating": "Rilevamento posizione…"
+    "locating": "Rilevamento posizione…",
+    "continueToCheckout": "Continua con l’acquisto",
+    "checkoutStepsLabel": "Passaggi di acquisto",
+    "ageCta": "Trova il set adatto all’età"
   }
 }

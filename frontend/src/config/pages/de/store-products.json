@@ -257,6 +257,9 @@
     "manageAddresses": "Meine Adressen verwalten",
     "edit": "Bearbeiten",
     "locationUnavailable": "Ihr Standort konnte gerade nicht ermittelt werden. Suchen Sie die Adresse oder verschieben Sie die Nadel auf der Karte.",
-    "locating": "Standort wird ermittelt…"
+    "locating": "Standort wird ermittelt…",
+    "continueToCheckout": "Weiter zur Kasse",
+    "checkoutStepsLabel": "Bestellschritte",
+    "ageCta": "Altersgerechtes Set finden"
   }
 }

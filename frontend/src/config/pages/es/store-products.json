@@ -257,6 +257,9 @@
     "manageAddresses": "Gestionar mis direcciones",
     "edit": "Editar",
     "locationUnavailable": "No se pudo obtener tu ubicación ahora. Busca la dirección o mueve el pin en el mapa.",
-    "locating": "Obteniendo ubicación…"
+    "locating": "Obteniendo ubicación…",
+    "continueToCheckout": "Continuar con la compra",
+    "checkoutStepsLabel": "Pasos de compra",
+    "ageCta": "Encontrar el set según la edad"
   }
 }

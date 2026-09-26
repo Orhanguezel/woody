@@ -29,6 +29,7 @@ import {
 } from '@/lib/site-config';
 import { WOODY_LOCALES } from '@/components/woody/routes';
 import FloatingCartButton from '@/features/cart/FloatingCartButton';
+import { loadPageContent } from '@/config/pages/loader';
 
 const API_BASE = getPublicApiBaseUrl().replace(/\/+$/, '');
 
@@ -107,6 +108,7 @@ export default async function LocaleRootLayout({
   const locale = (WOODY_LOCALES as readonly string[]).includes(rawLocale) ? rawLocale : 'tr';
   // SSR fetch: header menu items — hidrasyon mismatch'i önlemek için server'da çekilir
   const initialMenuItems = await fetchHeaderMenuItems(locale);
+  const storeCopy = await loadPageContent<{ ui?: { cartTitle?: string } }>('store-products', locale);
   const contact = getDefaultContactInfo();
   const founder = getSiteAuthor(locale);
   const aboutUrl = `${SITE_URL}/${locale}/about`;
@@ -154,7 +156,7 @@ export default async function LocaleRootLayout({
                 useSearchParams ihtiyaci ClientLayout icindeki kucuk Suspense adasinda. */}
             <ClientLayout locale={locale} initialMenuItems={initialMenuItems}>
               {children}
-              <FloatingCartButton locale={locale} />
+              <FloatingCartButton locale={locale} label={storeCopy?.ui?.cartTitle} />
             </ClientLayout>
           </Providers>
         </div>

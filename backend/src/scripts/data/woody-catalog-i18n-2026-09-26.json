@@ -1,0 +1,1397 @@
+{
+  "productSuffixes": {
+    "000001": {
+      "en": {
+        "title": "Basic Level Student Set",
+        "description": "Beginner level",
+        "alt": "Basic Level Student Set",
+        "meta_title": "Basic Level Student Set",
+        "meta_description": "Beginner level"
+      },
+      "de": {
+        "title": "Basic Level Schülerset",
+        "description": "Einstiegsniveau",
+        "alt": "Basic Level Schülerset",
+        "meta_title": "Basic Level Schülerset",
+        "meta_description": "Einstiegsniveau"
+      },
+      "fr": {
+        "title": "Kit élève Basic Level",
+        "description": "Niveau débutant",
+        "alt": "Kit élève Basic Level",
+        "meta_title": "Kit élève Basic Level",
+        "meta_description": "Niveau débutant"
+      },
+      "es": {
+        "title": "Set del alumno Basic Level",
+        "description": "Nivel inicial",
+        "alt": "Set del alumno Basic Level",
+        "meta_title": "Set del alumno Basic Level",
+        "meta_description": "Nivel inicial"
+      },
+      "it": {
+        "title": "Set studente Basic Level",
+        "description": "Livello base",
+        "alt": "Set studente Basic Level",
+        "meta_title": "Set studente Basic Level",
+        "meta_description": "Livello base"
+      },
+      "nl": {
+        "title": "Basic Level Leerlingset",
+        "description": "Beginnersniveau",
+        "alt": "Basic Level Leerlingset",
+        "meta_title": "Basic Level Leerlingset",
+        "meta_description": "Beginnersniveau"
+      },
+      "pt-br": {
+        "title": "Kit do aluno Basic Level",
+        "description": "Nível inicial",
+        "alt": "Kit do aluno Basic Level",
+        "meta_title": "Kit do aluno Basic Level",
+        "meta_description": "Nível inicial"
+      },
+      "ru": {
+        "title": "Набор ученика Basic Level",
+        "description": "Начальный уровень",
+        "alt": "Набор ученика Basic Level",
+        "meta_title": "Набор ученика Basic Level",
+        "meta_description": "Начальный уровень"
+      },
+      "ar": {
+        "title": "مجموعة الطالب Basic Level",
+        "description": "المستوى المبتدئ",
+        "alt": "مجموعة الطالب Basic Level",
+        "meta_title": "مجموعة الطالب Basic Level",
+        "meta_description": "المستوى المبتدئ"
+      }
+    },
+    "000002": {
+      "en": {
+        "title": "Junior Level Student Set",
+        "description": "Development level",
+        "alt": "Junior Level Student Set",
+        "meta_title": "Junior Level Student Set",
+        "meta_description": "Development level"
+      },
+      "de": {
+        "title": "Junior Level Schülerset",
+        "description": "Aufbauniveau",
+        "alt": "Junior Level Schülerset",
+        "meta_title": "Junior Level Schülerset",
+        "meta_description": "Aufbauniveau"
+      },
+      "fr": {
+        "title": "Kit élève Junior Level",
+        "description": "Niveau intermédiaire",
+        "alt": "Kit élève Junior Level",
+        "meta_title": "Kit élève Junior Level",
+        "meta_description": "Niveau intermédiaire"
+      },
+      "es": {
+        "title": "Set del alumno Junior Level",
+        "description": "Nivel de desarrollo",
+        "alt": "Set del alumno Junior Level",
+        "meta_title": "Set del alumno Junior Level",
+        "meta_description": "Nivel de desarrollo"
+      },
+      "it": {
+        "title": "Set studente Junior Level",
+        "description": "Livello di sviluppo",
+        "alt": "Set studente Junior Level",
+        "meta_title": "Set studente Junior Level",
+        "meta_description": "Livello di sviluppo"
+      },
+      "nl": {
+        "title": "Junior Level Leerlingset",
+        "description": "Ontwikkelingsniveau",
+        "alt": "Junior Level Leerlingset",
+        "meta_title": "Junior Level Leerlingset",
+        "meta_description": "Ontwikkelingsniveau"
+      },
+      "pt-br": {
+        "title": "Kit do aluno Junior Level",
+        "description": "Nível de desenvolvimento",
+        "alt": "Kit do aluno Junior Level",
+        "meta_title": "Kit do aluno Junior Level",
+        "meta_description": "Nível de desenvolvimento"
+      },
+      "ru": {
+        "title": "Набор ученика Junior Level",
+        "description": "Развивающий уровень",
+        "alt": "Набор ученика Junior Level",
+        "meta_title": "Набор ученика Junior Level",
+        "meta_description": "Развивающий уровень"
+      },
+      "ar": {
+        "title": "مجموعة الطالب Junior Level",
+        "description": "مستوى التطوير",
+        "alt": "مجموعة الطالب Junior Level",
+        "meta_title": "مجموعة الطالب Junior Level",
+        "meta_description": "مستوى التطوير"
+      }
+    },
+    "000003": {
+      "en": {
+        "title": "Senior Level Student Set",
+        "description": "Advanced level",
+        "alt": "Senior Level Student Set",
+        "meta_title": "Senior Level Student Set",
+        "meta_description": "Advanced level"
+      },
+      "de": {
+        "title": "Senior Level Schülerset",
+        "description": "Fortgeschrittenes Niveau",
+        "alt": "Senior Level Schülerset",
+        "meta_title": "Senior Level Schülerset",
+        "meta_description": "Fortgeschrittenes Niveau"
+      },
+      "fr": {
+        "title": "Kit élève Senior Level",
+        "description": "Niveau avancé",
+        "alt": "Kit élève Senior Level",
+        "meta_title": "Kit élève Senior Level",
+        "meta_description": "Niveau avancé"
+      },
+      "es": {
+        "title": "Set del alumno Senior Level",
+        "description": "Nivel avanzado",
+        "alt": "Set del alumno Senior Level",
+        "meta_title": "Set del alumno Senior Level",
+        "meta_description": "Nivel avanzado"
+      },
+      "it": {
+        "title": "Set studente Senior Level",
+        "description": "Livello avanzato",
+        "alt": "Set studente Senior Level",
+        "meta_title": "Set studente Senior Level",
+        "meta_description": "Livello avanzato"
+      },
+      "nl": {
+        "title": "Senior Level Leerlingset",
+        "description": "Gevorderd niveau",
+        "alt": "Senior Level Leerlingset",
+        "meta_title": "Senior Level Leerlingset",
+        "meta_description": "Gevorderd niveau"
+      },
+      "pt-br": {
+        "title": "Kit do aluno Senior Level",
+        "description": "Nível avançado",
+        "alt": "Kit do aluno Senior Level",
+        "meta_title": "Kit do aluno Senior Level",
+        "meta_description": "Nível avançado"
+      },
+      "ru": {
+        "title": "Набор ученика Senior Level",
+        "description": "Продвинутый уровень",
+        "alt": "Набор ученика Senior Level",
+        "meta_title": "Набор ученика Senior Level",
+        "meta_description": "Продвинутый уровень"
+      },
+      "ar": {
+        "title": "مجموعة الطالب Senior Level",
+        "description": "المستوى المتقدم",
+        "alt": "مجموعة الطالب Senior Level",
+        "meta_title": "مجموعة الطالب Senior Level",
+        "meta_description": "المستوى المتقدم"
+      }
+    },
+    "000007": {
+      "en": {
+        "title": "Basic Teacher Set",
+        "description": "Beginner level teacher set",
+        "alt": "Basic Teacher Set",
+        "meta_title": "Basic Teacher Set",
+        "meta_description": "Beginner level teacher set"
+      },
+      "de": {
+        "title": "Basic Lehrerset",
+        "description": "Einstiegsniveau – Lehrerset",
+        "alt": "Basic Lehrerset",
+        "meta_title": "Basic Lehrerset",
+        "meta_description": "Einstiegsniveau – Lehrerset"
+      },
+      "fr": {
+        "title": "Kit enseignant Basic",
+        "description": "Niveau débutant – kit enseignant",
+        "alt": "Kit enseignant Basic",
+        "meta_title": "Kit enseignant Basic",
+        "meta_description": "Niveau débutant – kit enseignant"
+      },
+      "es": {
+        "title": "Set del docente Basic",
+        "description": "Nivel inicial – set del docente",
+        "alt": "Set del docente Basic",
+        "meta_title": "Set del docente Basic",
+        "meta_description": "Nivel inicial – set del docente"
+      },
+      "it": {
+        "title": "Set insegnante Basic",
+        "description": "Livello base – set insegnante",
+        "alt": "Set insegnante Basic",
+        "meta_title": "Set insegnante Basic",
+        "meta_description": "Livello base – set insegnante"
+      },
+      "nl": {
+        "title": "Basic Leerkrachtset",
+        "description": "Beginnersniveau – leerkrachtset",
+        "alt": "Basic Leerkrachtset",
+        "meta_title": "Basic Leerkrachtset",
+        "meta_description": "Beginnersniveau – leerkrachtset"
+      },
+      "pt-br": {
+        "title": "Kit do professor Basic",
+        "description": "Nível inicial – kit do professor",
+        "alt": "Kit do professor Basic",
+        "meta_title": "Kit do professor Basic",
+        "meta_description": "Nível inicial – kit do professor"
+      },
+      "ru": {
+        "title": "Набор педагога Basic",
+        "description": "Начальный уровень — набор педагога",
+        "alt": "Набор педагога Basic",
+        "meta_title": "Набор педагога Basic",
+        "meta_description": "Начальный уровень — набор педагога"
+      },
+      "ar": {
+        "title": "مجموعة المعلم Basic",
+        "description": "المستوى المبتدئ – مجموعة المعلم",
+        "alt": "مجموعة المعلم Basic",
+        "meta_title": "مجموعة المعلم Basic",
+        "meta_description": "المستوى المبتدئ – مجموعة المعلم"
+      }
+    },
+    "000008": {
+      "en": {
+        "title": "Junior Teacher Set",
+        "description": "Development level teacher set",
+        "alt": "Junior Teacher Set",
+        "meta_title": "Junior Teacher Set",
+        "meta_description": "Development level teacher set"
+      },
+      "de": {
+        "title": "Junior Lehrerset",
+        "description": "Aufbauniveau – Lehrerset",
+        "alt": "Junior Lehrerset",
+        "meta_title": "Junior Lehrerset",
+        "meta_description": "Aufbauniveau – Lehrerset"
+      },
+      "fr": {
+        "title": "Kit enseignant Junior",
+        "description": "Niveau intermédiaire – kit enseignant",
+        "alt": "Kit enseignant Junior",
+        "meta_title": "Kit enseignant Junior",
+        "meta_description": "Niveau intermédiaire – kit enseignant"
+      },
+      "es": {
+        "title": "Set del docente Junior",
+        "description": "Nivel de desarrollo – set del docente",
+        "alt": "Set del docente Junior",
+        "meta_title": "Set del docente Junior",
+        "meta_description": "Nivel de desarrollo – set del docente"
+      },
+      "it": {
+        "title": "Set insegnante Junior",
+        "description": "Livello di sviluppo – set insegnante",
+        "alt": "Set insegnante Junior",
+        "meta_title": "Set insegnante Junior",
+        "meta_description": "Livello di sviluppo – set insegnante"
+      },
+      "nl": {
+        "title": "Junior Leerkrachtset",
+        "description": "Ontwikkelingsniveau – leerkrachtset",
+        "alt": "Junior Leerkrachtset",
+        "meta_title": "Junior Leerkrachtset",
+        "meta_description": "Ontwikkelingsniveau – leerkrachtset"
+      },
+      "pt-br": {
+        "title": "Kit do professor Junior",
+        "description": "Nível de desenvolvimento – kit do professor",
+        "alt": "Kit do professor Junior",
+        "meta_title": "Kit do professor Junior",
+        "meta_description": "Nível de desenvolvimento – kit do professor"
+      },
+      "ru": {
+        "title": "Набор педагога Junior",
+        "description": "Развивающий уровень — набор педагога",
+        "alt": "Набор педагога Junior",
+        "meta_title": "Набор педагога Junior",
+        "meta_description": "Развивающий уровень — набор педагога"
+      },
+      "ar": {
+        "title": "مجموعة المعلم Junior",
+        "description": "مستوى التطوير – مجموعة المعلم",
+        "alt": "مجموعة المعلم Junior",
+        "meta_title": "مجموعة المعلم Junior",
+        "meta_description": "مستوى التطوير – مجموعة المعلم"
+      }
+    },
+    "000009": {
+      "en": {
+        "title": "Senior Teacher Set",
+        "description": "Advanced level teacher set",
+        "alt": "Senior Teacher Set",
+        "meta_title": "Senior Teacher Set",
+        "meta_description": "Advanced level teacher set"
+      },
+      "de": {
+        "title": "Senior Lehrerset",
+        "description": "Fortgeschrittenes Niveau – Lehrerset",
+        "alt": "Senior Lehrerset",
+        "meta_title": "Senior Lehrerset",
+        "meta_description": "Fortgeschrittenes Niveau – Lehrerset"
+      },
+      "fr": {
+        "title": "Kit enseignant Senior",
+        "description": "Niveau avancé – kit enseignant",
+        "alt": "Kit enseignant Senior",
+        "meta_title": "Kit enseignant Senior",
+        "meta_description": "Niveau avancé – kit enseignant"
+      },
+      "es": {
+        "title": "Set del docente Senior",
+        "description": "Nivel avanzado – set del docente",
+        "alt": "Set del docente Senior",
+        "meta_title": "Set del docente Senior",
+        "meta_description": "Nivel avanzado – set del docente"
+      },
+      "it": {
+        "title": "Set insegnante Senior",
+        "description": "Livello avanzato – set insegnante",
+        "alt": "Set insegnante Senior",
+        "meta_title": "Set insegnante Senior",
+        "meta_description": "Livello avanzato – set insegnante"
+      },
+      "nl": {
+        "title": "Senior Leerkrachtset",
+        "description": "Gevorderd niveau – leerkrachtset",
+        "alt": "Senior Leerkrachtset",
+        "meta_title": "Senior Leerkrachtset",
+        "meta_description": "Gevorderd niveau – leerkrachtset"
+      },
+      "pt-br": {
+        "title": "Kit do professor Senior",
+        "description": "Nível avançado – kit do professor",
+        "alt": "Kit do professor Senior",
+        "meta_title": "Kit do professor Senior",
+        "meta_description": "Nível avançado – kit do professor"
+      },
+      "ru": {
+        "title": "Набор педагога Senior",
+        "description": "Продвинутый уровень — набор педагога",
+        "alt": "Набор педагога Senior",
+        "meta_title": "Набор педагога Senior",
+        "meta_description": "Продвинутый уровень — набор педагога"
+      },
+      "ar": {
+        "title": "مجموعة المعلم Senior",
+        "description": "المستوى المتقدم – مجموعة المعلم",
+        "alt": "مجموعة المعلم Senior",
+        "meta_title": "مجموعة المعلم Senior",
+        "meta_description": "المستوى المتقدم – مجموعة المعلم"
+      }
+    },
+    "00000d": {
+      "en": {
+        "title": "Basic Level Student Set",
+        "description": "Beginner level home tutoring student set.",
+        "alt": "Basic Level Student Set",
+        "meta_title": "Basic Level Student Set",
+        "meta_description": "Beginner level home tutoring student set."
+      },
+      "de": {
+        "title": "Basic Level Schülerset",
+        "description": "Einstiegsniveau – Schülerset für Zuhause und Nachhilfe.",
+        "alt": "Basic Level Schülerset",
+        "meta_title": "Basic Level Schülerset",
+        "meta_description": "Einstiegsniveau – Schülerset für Zuhause und Nachhilfe."
+      },
+      "fr": {
+        "title": "Kit élève Basic Level",
+        "description": "Niveau débutant – kit élève pour cours à domicile.",
+        "alt": "Kit élève Basic Level",
+        "meta_title": "Kit élève Basic Level",
+        "meta_description": "Niveau débutant – kit élève pour cours à domicile."
+      },
+      "es": {
+        "title": "Set del alumno Basic Level",
+        "description": "Nivel inicial – set del alumno para clases particulares.",
+        "alt": "Set del alumno Basic Level",
+        "meta_title": "Set del alumno Basic Level",
+        "meta_description": "Nivel inicial – set del alumno para clases particulares."
+      },
+      "it": {
+        "title": "Set studente Basic Level",
+        "description": "Livello base – set studente per lezioni private.",
+        "alt": "Set studente Basic Level",
+        "meta_title": "Set studente Basic Level",
+        "meta_description": "Livello base – set studente per lezioni private."
+      },
+      "nl": {
+        "title": "Basic Level Leerlingset",
+        "description": "Beginnersniveau – leerlingset voor thuis en bijles.",
+        "alt": "Basic Level Leerlingset",
+        "meta_title": "Basic Level Leerlingset",
+        "meta_description": "Beginnersniveau – leerlingset voor thuis en bijles."
+      },
+      "pt-br": {
+        "title": "Kit do aluno Basic Level",
+        "description": "Nível inicial – kit do aluno para aulas particulares.",
+        "alt": "Kit do aluno Basic Level",
+        "meta_title": "Kit do aluno Basic Level",
+        "meta_description": "Nível inicial – kit do aluno para aulas particulares."
+      },
+      "ru": {
+        "title": "Набор ученика Basic Level",
+        "description": "Начальный уровень — набор ученика для домашних занятий.",
+        "alt": "Набор ученика Basic Level",
+        "meta_title": "Набор ученика Basic Level",
+        "meta_description": "Начальный уровень — набор ученика для домашних занятий."
+      },
+      "ar": {
+        "title": "مجموعة الطالب Basic Level",
+        "description": "المستوى المبتدئ – مجموعة الطالب للدروس الخاصة.",
+        "alt": "مجموعة الطالب Basic Level",
+        "meta_title": "مجموعة الطالب Basic Level",
+        "meta_description": "المستوى المبتدئ – مجموعة الطالب للدروس الخاصة."
+      }
+    },
+    "00000e": {
+      "en": {
+        "title": "Junior Level Student Set",
+        "description": "Development level home tutoring student set.",
+        "alt": "Junior Level Student Set",
+        "meta_title": "Junior Level Student Set",
+        "meta_description": "Development level home tutoring student set."
+      },
+      "de": {
+        "title": "Junior Level Schülerset",
+        "description": "Aufbauniveau – Schülerset für Zuhause und Nachhilfe.",
+        "alt": "Junior Level Schülerset",
+        "meta_title": "Junior Level Schülerset",
+        "meta_description": "Aufbauniveau – Schülerset für Zuhause und Nachhilfe."
+      },
+      "fr": {
+        "title": "Kit élève Junior Level",
+        "description": "Niveau intermédiaire – kit élève pour cours à domicile.",
+        "alt": "Kit élève Junior Level",
+        "meta_title": "Kit élève Junior Level",
+        "meta_description": "Niveau intermédiaire – kit élève pour cours à domicile."
+      },
+      "es": {
+        "title": "Set del alumno Junior Level",
+        "description": "Nivel de desarrollo – set del alumno para clases particulares.",
+        "alt": "Set del alumno Junior Level",
+        "meta_title": "Set del alumno Junior Level",
+        "meta_description": "Nivel de desarrollo – set del alumno para clases particulares."
+      },
+      "it": {
+        "title": "Set studente Junior Level",
+        "description": "Livello di sviluppo – set studente per lezioni private.",
+        "alt": "Set studente Junior Level",
+        "meta_title": "Set studente Junior Level",
+        "meta_description": "Livello di sviluppo – set studente per lezioni private."
+      },
+      "nl": {
+        "title": "Junior Level Leerlingset",
+        "description": "Ontwikkelingsniveau – leerlingset voor thuis en bijles.",
+        "alt": "Junior Level Leerlingset",
+        "meta_title": "Junior Level Leerlingset",
+        "meta_description": "Ontwikkelingsniveau – leerlingset voor thuis en bijles."
+      },
+      "pt-br": {
+        "title": "Kit do aluno Junior Level",
+        "description": "Nível de desenvolvimento – kit do aluno para aulas particulares.",
+        "alt": "Kit do aluno Junior Level",
+        "meta_title": "Kit do aluno Junior Level",
+        "meta_description": "Nível de desenvolvimento – kit do aluno para aulas particulares."
+      },
+      "ru": {
+        "title": "Набор ученика Junior Level",
+        "description": "Развивающий уровень — набор ученика для домашних занятий.",
+        "alt": "Набор ученика Junior Level",
+        "meta_title": "Набор ученика Junior Level",
+        "meta_description": "Развивающий уровень — набор ученика для домашних занятий."
+      },
+      "ar": {
+        "title": "مجموعة الطالب Junior Level",
+        "description": "مستوى التطوير – مجموعة الطالب للدروس الخاصة.",
+        "alt": "مجموعة الطالب Junior Level",
+        "meta_title": "مجموعة الطالب Junior Level",
+        "meta_description": "مستوى التطوير – مجموعة الطالب للدروس الخاصة."
+      }
+    },
+    "00000f": {
+      "en": {
+        "title": "Senior Level Student Set",
+        "description": "Advanced level home tutoring student set.",
+        "alt": "Senior Level Student Set",
+        "meta_title": "Senior Level Student Set",
+        "meta_description": "Advanced level home tutoring student set."
+      },
+      "de": {
+        "title": "Senior Level Schülerset",
+        "description": "Fortgeschrittenes Niveau – Schülerset für Zuhause und Nachhilfe.",
+        "alt": "Senior Level Schülerset",
+        "meta_title": "Senior Level Schülerset",
+        "meta_description": "Fortgeschrittenes Niveau – Schülerset für Zuhause und Nachhilfe."
+      },
+      "fr": {
+        "title": "Kit élève Senior Level",
+        "description": "Niveau avancé – kit élève pour cours à domicile.",
+        "alt": "Kit élève Senior Level",
+        "meta_title": "Kit élève Senior Level",
+        "meta_description": "Niveau avancé – kit élève pour cours à domicile."
+      },
+      "es": {
+        "title": "Set del alumno Senior Level",
+        "description": "Nivel avanzado – set del alumno para clases particulares.",
+        "alt": "Set del alumno Senior Level",
+        "meta_title": "Set del alumno Senior Level",
+        "meta_description": "Nivel avanzado – set del alumno para clases particulares."
+      },
+      "it": {
+        "title": "Set studente Senior Level",
+        "description": "Livello avanzato – set studente per lezioni private.",
+        "alt": "Set studente Senior Level",
+        "meta_title": "Set studente Senior Level",
+        "meta_description": "Livello avanzato – set studente per lezioni private."
+      },
+      "nl": {
+        "title": "Senior Level Leerlingset",
+        "description": "Gevorderd niveau – leerlingset voor thuis en bijles.",
+        "alt": "Senior Level Leerlingset",
+        "meta_title": "Senior Level Leerlingset",
+        "meta_description": "Gevorderd niveau – leerlingset voor thuis en bijles."
+      },
+      "pt-br": {
+        "title": "Kit do aluno Senior Level",
+        "description": "Nível avançado – kit do aluno para aulas particulares.",
+        "alt": "Kit do aluno Senior Level",
+        "meta_title": "Kit do aluno Senior Level",
+        "meta_description": "Nível avançado – kit do aluno para aulas particulares."
+      },
+      "ru": {
+        "title": "Набор ученика Senior Level",
+        "description": "Продвинутый уровень — набор ученика для домашних занятий.",
+        "alt": "Набор ученика Senior Level",
+        "meta_title": "Набор ученика Senior Level",
+        "meta_description": "Продвинутый уровень — набор ученика для домашних занятий."
+      },
+      "ar": {
+        "title": "مجموعة الطالب Senior Level",
+        "description": "المستوى المتقدم – مجموعة الطالب للدروس الخاصة.",
+        "alt": "مجموعة الطالب Senior Level",
+        "meta_title": "مجموعة الطالب Senior Level",
+        "meta_description": "المستوى المتقدم – مجموعة الطالب للدروس الخاصة."
+      }
+    },
+    "000013": {
+      "en": {
+        "title": "Basic Student Set",
+        "description": "Beginner level student set",
+        "alt": "Basic Student Set",
+        "meta_title": "Basic Student Set",
+        "meta_description": "Beginner level student set"
+      },
+      "de": {
+        "title": "Basic Schülerset",
+        "description": "Einstiegsniveau – Schülerset",
+        "alt": "Basic Schülerset",
+        "meta_title": "Basic Schülerset",
+        "meta_description": "Einstiegsniveau – Schülerset"
+      },
+      "fr": {
+        "title": "Kit élève Basic",
+        "description": "Niveau débutant – kit élève",
+        "alt": "Kit élève Basic",
+        "meta_title": "Kit élève Basic",
+        "meta_description": "Niveau débutant – kit élève"
+      },
+      "es": {
+        "title": "Set del alumno Basic",
+        "description": "Nivel inicial – set del alumno",
+        "alt": "Set del alumno Basic",
+        "meta_title": "Set del alumno Basic",
+        "meta_description": "Nivel inicial – set del alumno"
+      },
+      "it": {
+        "title": "Set studente Basic",
+        "description": "Livello base – set studente",
+        "alt": "Set studente Basic",
+        "meta_title": "Set studente Basic",
+        "meta_description": "Livello base – set studente"
+      },
+      "nl": {
+        "title": "Basic Leerlingset",
+        "description": "Beginnersniveau – leerlingset",
+        "alt": "Basic Leerlingset",
+        "meta_title": "Basic Leerlingset",
+        "meta_description": "Beginnersniveau – leerlingset"
+      },
+      "pt-br": {
+        "title": "Kit do aluno Basic",
+        "description": "Nível inicial – kit do aluno",
+        "alt": "Kit do aluno Basic",
+        "meta_title": "Kit do aluno Basic",
+        "meta_description": "Nível inicial – kit do aluno"
+      },
+      "ru": {
+        "title": "Набор ученика Basic",
+        "description": "Начальный уровень — набор ученика",
+        "alt": "Набор ученика Basic",
+        "meta_title": "Набор ученика Basic",
+        "meta_description": "Начальный уровень — набор ученика"
+      },
+      "ar": {
+        "title": "مجموعة الطالب Basic",
+        "description": "المستوى المبتدئ – مجموعة الطالب",
+        "alt": "مجموعة الطالب Basic",
+        "meta_title": "مجموعة الطالب Basic",
+        "meta_description": "المستوى المبتدئ – مجموعة الطالب"
+      }
+    },
+    "000014": {
+      "en": {
+        "title": "Junior Student Set",
+        "description": "Development level student set",
+        "alt": "Junior Student Set",
+        "meta_title": "Junior Student Set",
+        "meta_description": "Development level student set"
+      },
+      "de": {
+        "title": "Junior Schülerset",
+        "description": "Aufbauniveau – Schülerset",
+        "alt": "Junior Schülerset",
+        "meta_title": "Junior Schülerset",
+        "meta_description": "Aufbauniveau – Schülerset"
+      },
+      "fr": {
+        "title": "Kit élève Junior",
+        "description": "Niveau intermédiaire – kit élève",
+        "alt": "Kit élève Junior",
+        "meta_title": "Kit élève Junior",
+        "meta_description": "Niveau intermédiaire – kit élève"
+      },
+      "es": {
+        "title": "Set del alumno Junior",
+        "description": "Nivel de desarrollo – set del alumno",
+        "alt": "Set del alumno Junior",
+        "meta_title": "Set del alumno Junior",
+        "meta_description": "Nivel de desarrollo – set del alumno"
+      },
+      "it": {
+        "title": "Set studente Junior",
+        "description": "Livello di sviluppo – set studente",
+        "alt": "Set studente Junior",
+        "meta_title": "Set studente Junior",
+        "meta_description": "Livello di sviluppo – set studente"
+      },
+      "nl": {
+        "title": "Junior Leerlingset",
+        "description": "Ontwikkelingsniveau – leerlingset",
+        "alt": "Junior Leerlingset",
+        "meta_title": "Junior Leerlingset",
+        "meta_description": "Ontwikkelingsniveau – leerlingset"
+      },
+      "pt-br": {
+        "title": "Kit do aluno Junior",
+        "description": "Nível de desenvolvimento – kit do aluno",
+        "alt": "Kit do aluno Junior",
+        "meta_title": "Kit do aluno Junior",
+        "meta_description": "Nível de desenvolvimento – kit do aluno"
+      },
+      "ru": {
+        "title": "Набор ученика Junior",
+        "description": "Развивающий уровень — набор ученика",
+        "alt": "Набор ученика Junior",
+        "meta_title": "Набор ученика Junior",
+        "meta_description": "Развивающий уровень — набор ученика"
+      },
+      "ar": {
+        "title": "مجموعة الطالب Junior",
+        "description": "مستوى التطوير – مجموعة الطالب",
+        "alt": "مجموعة الطالب Junior",
+        "meta_title": "مجموعة الطالب Junior",
+        "meta_description": "مستوى التطوير – مجموعة الطالب"
+      }
+    },
+    "000015": {
+      "en": {
+        "title": "Senior Student Set",
+        "description": "Advanced level student set",
+        "alt": "Senior Student Set",
+        "meta_title": "Senior Student Set",
+        "meta_description": "Advanced level student set"
+      },
+      "de": {
+        "title": "Senior Schülerset",
+        "description": "Fortgeschrittenes Niveau – Schülerset",
+        "alt": "Senior Schülerset",
+        "meta_title": "Senior Schülerset",
+        "meta_description": "Fortgeschrittenes Niveau – Schülerset"
+      },
+      "fr": {
+        "title": "Kit élève Senior",
+        "description": "Niveau avancé – kit élève",
+        "alt": "Kit élève Senior",
+        "meta_title": "Kit élève Senior",
+        "meta_description": "Niveau avancé – kit élève"
+      },
+      "es": {
+        "title": "Set del alumno Senior",
+        "description": "Nivel avanzado – set del alumno",
+        "alt": "Set del alumno Senior",
+        "meta_title": "Set del alumno Senior",
+        "meta_description": "Nivel avanzado – set del alumno"
+      },
+      "it": {
+        "title": "Set studente Senior",
+        "description": "Livello avanzato – set studente",
+        "alt": "Set studente Senior",
+        "meta_title": "Set studente Senior",
+        "meta_description": "Livello avanzato – set studente"
+      },
+      "nl": {
+        "title": "Senior Leerlingset",
+        "description": "Gevorderd niveau – leerlingset",
+        "alt": "Senior Leerlingset",
+        "meta_title": "Senior Leerlingset",
+        "meta_description": "Gevorderd niveau – leerlingset"
+      },
+      "pt-br": {
+        "title": "Kit do aluno Senior",
+        "description": "Nível avançado – kit do aluno",
+        "alt": "Kit do aluno Senior",
+        "meta_title": "Kit do aluno Senior",
+        "meta_description": "Nível avançado – kit do aluno"
+      },
+      "ru": {
+        "title": "Набор ученика Senior",
+        "description": "Продвинутый уровень — набор ученика",
+        "alt": "Набор ученика Senior",
+        "meta_title": "Набор ученика Senior",
+        "meta_description": "Продвинутый уровень — набор ученика"
+      },
+      "ar": {
+        "title": "مجموعة الطالب Senior",
+        "description": "المستوى المتقدم – مجموعة الطالب",
+        "alt": "مجموعة الطالب Senior",
+        "meta_title": "مجموعة الطالب Senior",
+        "meta_description": "المستوى المتقدم – مجموعة الطالب"
+      }
+    },
+    "00000a": {
+      "en": {
+        "title": "Workshop PRO",
+        "description": "Professional",
+        "alt": "Workshop PRO",
+        "meta_title": "Workshop PRO",
+        "meta_description": "Professional"
+      },
+      "de": {
+        "title": "Workshop PRO",
+        "description": "Professionell",
+        "alt": "Workshop PRO",
+        "meta_title": "Workshop PRO",
+        "meta_description": "Professionell"
+      },
+      "fr": {
+        "title": "Atelier PRO",
+        "description": "Professionnel",
+        "alt": "Atelier PRO",
+        "meta_title": "Atelier PRO",
+        "meta_description": "Professionnel"
+      },
+      "es": {
+        "title": "Taller PRO",
+        "description": "Profesional",
+        "alt": "Taller PRO",
+        "meta_title": "Taller PRO",
+        "meta_description": "Profesional"
+      },
+      "it": {
+        "title": "Laboratorio PRO",
+        "description": "Professionale",
+        "alt": "Laboratorio PRO",
+        "meta_title": "Laboratorio PRO",
+        "meta_description": "Professionale"
+      },
+      "nl": {
+        "title": "Workshop PRO",
+        "description": "Professioneel",
+        "alt": "Workshop PRO",
+        "meta_title": "Workshop PRO",
+        "meta_description": "Professioneel"
+      },
+      "pt-br": {
+        "title": "Oficina PRO",
+        "description": "Profissional",
+        "alt": "Oficina PRO",
+        "meta_title": "Oficina PRO",
+        "meta_description": "Profissional"
+      },
+      "ru": {
+        "title": "Мастерская PRO",
+        "description": "Профессиональный уровень",
+        "alt": "Мастерская PRO",
+        "meta_title": "Мастерская PRO",
+        "meta_description": "Профессиональный уровень"
+      },
+      "ar": {
+        "title": "ورشة PRO",
+        "description": "احترافي",
+        "alt": "ورشة PRO",
+        "meta_title": "ورشة PRO",
+        "meta_description": "احترافي"
+      }
+    },
+    "00000b": {
+      "en": {
+        "title": "Workshop Full Set",
+        "description": "All in one",
+        "alt": "Workshop Full Set",
+        "meta_title": "Workshop Full Set",
+        "meta_description": "All in one"
+      },
+      "de": {
+        "title": "Workshop-Komplettset",
+        "description": "Alles in einem",
+        "alt": "Workshop-Komplettset",
+        "meta_title": "Workshop-Komplettset",
+        "meta_description": "Alles in einem"
+      },
+      "fr": {
+        "title": "Atelier – kit complet",
+        "description": "Tout-en-un",
+        "alt": "Atelier – kit complet",
+        "meta_title": "Atelier – kit complet",
+        "meta_description": "Tout-en-un"
+      },
+      "es": {
+        "title": "Taller – set completo",
+        "description": "Todo en uno",
+        "alt": "Taller – set completo",
+        "meta_title": "Taller – set completo",
+        "meta_description": "Todo en uno"
+      },
+      "it": {
+        "title": "Laboratorio – set completo",
+        "description": "Tutto in uno",
+        "alt": "Laboratorio – set completo",
+        "meta_title": "Laboratorio – set completo",
+        "meta_description": "Tutto in uno"
+      },
+      "nl": {
+        "title": "Workshop – complete set",
+        "description": "Alles-in-één",
+        "alt": "Workshop – complete set",
+        "meta_title": "Workshop – complete set",
+        "meta_description": "Alles-in-één"
+      },
+      "pt-br": {
+        "title": "Oficina – kit completo",
+        "description": "Tudo em um",
+        "alt": "Oficina – kit completo",
+        "meta_title": "Oficina – kit completo",
+        "meta_description": "Tudo em um"
+      },
+      "ru": {
+        "title": "Мастерская — полный набор",
+        "description": "Всё в одном",
+        "alt": "Мастерская — полный набор",
+        "meta_title": "Мастерская — полный набор",
+        "meta_description": "Всё в одном"
+      },
+      "ar": {
+        "title": "ورشة – المجموعة الكاملة",
+        "description": "الكل في واحد",
+        "alt": "ورشة – المجموعة الكاملة",
+        "meta_title": "ورشة – المجموعة الكاملة",
+        "meta_description": "الكل في واحد"
+      }
+    },
+    "00000c": {
+      "en": {
+        "title": "Digital Material",
+        "description": "Online access",
+        "alt": "Digital Material",
+        "meta_title": "Digital Material",
+        "meta_description": "Online access"
+      },
+      "de": {
+        "title": "Digitales Material",
+        "description": "Online-Zugang",
+        "alt": "Digitales Material",
+        "meta_title": "Digitales Material",
+        "meta_description": "Online-Zugang"
+      },
+      "fr": {
+        "title": "Matériel numérique",
+        "description": "Accès en ligne",
+        "alt": "Matériel numérique",
+        "meta_title": "Matériel numérique",
+        "meta_description": "Accès en ligne"
+      },
+      "es": {
+        "title": "Material digital",
+        "description": "Acceso en línea",
+        "alt": "Material digital",
+        "meta_title": "Material digital",
+        "meta_description": "Acceso en línea"
+      },
+      "it": {
+        "title": "Materiale digitale",
+        "description": "Accesso online",
+        "alt": "Materiale digitale",
+        "meta_title": "Materiale digitale",
+        "meta_description": "Accesso online"
+      },
+      "nl": {
+        "title": "Digitaal materiaal",
+        "description": "Online toegang",
+        "alt": "Digitaal materiaal",
+        "meta_title": "Digitaal materiaal",
+        "meta_description": "Online toegang"
+      },
+      "pt-br": {
+        "title": "Material digital",
+        "description": "Acesso online",
+        "alt": "Material digital",
+        "meta_title": "Material digital",
+        "meta_description": "Acesso online"
+      },
+      "ru": {
+        "title": "Цифровые материалы",
+        "description": "Онлайн-доступ",
+        "alt": "Цифровые материалы",
+        "meta_title": "Цифровые материалы",
+        "meta_description": "Онлайн-доступ"
+      },
+      "ar": {
+        "title": "مواد رقمية",
+        "description": "وصول عبر الإنترنت",
+        "alt": "مواد رقمية",
+        "meta_title": "مواد رقمية",
+        "meta_description": "وصول عبر الإنترنت"
+      }
+    },
+    "000010": {
+      "en": {
+        "title": "Home PRO",
+        "description": "Individual professional",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Individual professional"
+      },
+      "de": {
+        "title": "Home PRO",
+        "description": "Individuell, professionell",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Individuell, professionell"
+      },
+      "fr": {
+        "title": "Home PRO",
+        "description": "Individuel, professionnel",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Individuel, professionnel"
+      },
+      "es": {
+        "title": "Home PRO",
+        "description": "Individual, profesional",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Individual, profesional"
+      },
+      "it": {
+        "title": "Home PRO",
+        "description": "Individuale, professionale",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Individuale, professionale"
+      },
+      "nl": {
+        "title": "Home PRO",
+        "description": "Individueel, professioneel",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Individueel, professioneel"
+      },
+      "pt-br": {
+        "title": "Home PRO",
+        "description": "Individual, profissional",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Individual, profissional"
+      },
+      "ru": {
+        "title": "Home PRO",
+        "description": "Индивидуальный, профессиональный",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "Индивидуальный, профессиональный"
+      },
+      "ar": {
+        "title": "Home PRO",
+        "description": "فردي احترافي",
+        "alt": "Home PRO",
+        "meta_title": "Home PRO",
+        "meta_description": "فردي احترافي"
+      }
+    },
+    "000011": {
+      "en": {
+        "title": "Private Lesson Package",
+        "description": "4 levels, discounted",
+        "alt": "Private Lesson Package",
+        "meta_title": "Private Lesson Package",
+        "meta_description": "4 levels, discounted"
+      },
+      "de": {
+        "title": "Nachhilfepaket",
+        "description": "4 Stufen, rabattiert",
+        "alt": "Nachhilfepaket",
+        "meta_title": "Nachhilfepaket",
+        "meta_description": "4 Stufen, rabattiert"
+      },
+      "fr": {
+        "title": "Pack cours particuliers",
+        "description": "4 niveaux, prix réduit",
+        "alt": "Pack cours particuliers",
+        "meta_title": "Pack cours particuliers",
+        "meta_description": "4 niveaux, prix réduit"
+      },
+      "es": {
+        "title": "Paquete de clases particulares",
+        "description": "4 niveles, con descuento",
+        "alt": "Paquete de clases particulares",
+        "meta_title": "Paquete de clases particulares",
+        "meta_description": "4 niveles, con descuento"
+      },
+      "it": {
+        "title": "Pacchetto lezioni private",
+        "description": "4 livelli, scontato",
+        "alt": "Pacchetto lezioni private",
+        "meta_title": "Pacchetto lezioni private",
+        "meta_description": "4 livelli, scontato"
+      },
+      "nl": {
+        "title": "Bijlespakket",
+        "description": "4 niveaus, met korting",
+        "alt": "Bijlespakket",
+        "meta_title": "Bijlespakket",
+        "meta_description": "4 niveaus, met korting"
+      },
+      "pt-br": {
+        "title": "Pacote de aulas particulares",
+        "description": "4 níveis, com desconto",
+        "alt": "Pacote de aulas particulares",
+        "meta_title": "Pacote de aulas particulares",
+        "meta_description": "4 níveis, com desconto"
+      },
+      "ru": {
+        "title": "Пакет частных уроков",
+        "description": "4 уровня со скидкой",
+        "alt": "Пакет частных уроков",
+        "meta_title": "Пакет частных уроков",
+        "meta_description": "4 уровня со скидкой"
+      },
+      "ar": {
+        "title": "باقة الدروس الخاصة",
+        "description": "4 مستويات بسعر مخفض",
+        "alt": "باقة الدروس الخاصة",
+        "meta_title": "باقة الدروس الخاصة",
+        "meta_description": "4 مستويات بسعر مخفض"
+      }
+    },
+    "000012": {
+      "en": {
+        "title": "Online Library",
+        "description": "Digital access",
+        "alt": "Online Library",
+        "meta_title": "Online Library",
+        "meta_description": "Digital access"
+      },
+      "de": {
+        "title": "Online-Bibliothek",
+        "description": "Digitaler Zugang",
+        "alt": "Online-Bibliothek",
+        "meta_title": "Online-Bibliothek",
+        "meta_description": "Digitaler Zugang"
+      },
+      "fr": {
+        "title": "Bibliothèque en ligne",
+        "description": "Accès numérique",
+        "alt": "Bibliothèque en ligne",
+        "meta_title": "Bibliothèque en ligne",
+        "meta_description": "Accès numérique"
+      },
+      "es": {
+        "title": "Biblioteca en línea",
+        "description": "Acceso digital",
+        "alt": "Biblioteca en línea",
+        "meta_title": "Biblioteca en línea",
+        "meta_description": "Acceso digital"
+      },
+      "it": {
+        "title": "Biblioteca online",
+        "description": "Accesso digitale",
+        "alt": "Biblioteca online",
+        "meta_title": "Biblioteca online",
+        "meta_description": "Accesso digitale"
+      },
+      "nl": {
+        "title": "Online bibliotheek",
+        "description": "Digitale toegang",
+        "alt": "Online bibliotheek",
+        "meta_title": "Online bibliotheek",
+        "meta_description": "Digitale toegang"
+      },
+      "pt-br": {
+        "title": "Biblioteca online",
+        "description": "Acesso digital",
+        "alt": "Biblioteca online",
+        "meta_title": "Biblioteca online",
+        "meta_description": "Acesso digital"
+      },
+      "ru": {
+        "title": "Онлайн-библиотека",
+        "description": "Цифровой доступ",
+        "alt": "Онлайн-библиотека",
+        "meta_title": "Онлайн-библиотека",
+        "meta_description": "Цифровой доступ"
+      },
+      "ar": {
+        "title": "المكتبة الإلكترونية",
+        "description": "وصول رقمي",
+        "alt": "المكتبة الإلكترونية",
+        "meta_title": "المكتبة الإلكترونية",
+        "meta_description": "وصول رقمي"
+      }
+    }
+  },
+  "categories": {
+    "c0000000000000000001": {
+      "name": {
+        "en": "School Series",
+        "de": "Vorschulreihe",
+        "fr": "Série École",
+        "es": "Serie Escuela",
+        "it": "Serie Scuola",
+        "nl": "Schoolserie",
+        "pt-br": "Série Escola",
+        "ru": "Школьная серия",
+        "ar": "سلسلة المدرسة"
+      },
+      "description": {
+        "en": "Woody student sets for preschool institutions.",
+        "de": "Woody-Schülersets für Vorschuleinrichtungen.",
+        "fr": "Kits élèves Woody pour les établissements préscolaires.",
+        "es": "Sets del alumno Woody para centros de educación infantil.",
+        "it": "Set studente Woody per le scuole dell’infanzia.",
+        "nl": "Woody-leerlingsets voor kleuterscholen.",
+        "pt-br": "Kits do aluno Woody para instituições de educação infantil.",
+        "ru": "Наборы ученика Woody для дошкольных учреждений.",
+        "ar": "مجموعات الطالب من Woody لمؤسسات ما قبل المدرسة."
+      },
+      "alt": {
+        "en": "School Series",
+        "de": "Vorschulreihe",
+        "fr": "Série École",
+        "es": "Serie Escuela",
+        "it": "Serie Scuola",
+        "nl": "Schoolserie",
+        "pt-br": "Série Escola",
+        "ru": "Школьная серия",
+        "ar": "سلسلة المدرسة"
+      },
+      "meta_title": {
+        "en": "School Series",
+        "de": "Vorschulreihe",
+        "fr": "Série École",
+        "es": "Serie Escuela",
+        "it": "Serie Scuola",
+        "nl": "Schoolserie",
+        "pt-br": "Série Escola",
+        "ru": "Школьная серия",
+        "ar": "سلسلة المدرسة"
+      },
+      "meta_description": {
+        "en": "Woody student sets for preschool institutions.",
+        "de": "Woody-Schülersets für Vorschuleinrichtungen.",
+        "fr": "Kits élèves Woody pour les établissements préscolaires.",
+        "es": "Sets del alumno Woody para centros de educación infantil.",
+        "it": "Set studente Woody per le scuole dell’infanzia.",
+        "nl": "Woody-leerlingsets voor kleuterscholen.",
+        "pt-br": "Kits do aluno Woody para instituições de educação infantil.",
+        "ru": "Наборы ученика Woody для дошкольных учреждений.",
+        "ar": "مجموعات الطالب من Woody لمؤسسات ما قبل المدرسة."
+      }
+    },
+    "c0000000000000000002": {
+      "name": {
+        "en": "Mini School Series",
+        "de": "Workshop-Reihe",
+        "fr": "Série Mini School",
+        "es": "Serie Mini School",
+        "it": "Serie Mini School",
+        "nl": "Mini School-serie",
+        "pt-br": "Série Mini School",
+        "ru": "Серия Mini School",
+        "ar": "سلسلة Mini School"
+      },
+      "description": {
+        "en": "For courses, workshops and small group lessons.",
+        "de": "Für Kurse, Workshops und Kleingruppen.",
+        "fr": "Pour les cours, ateliers et petits groupes.",
+        "es": "Para cursos, talleres y grupos reducidos.",
+        "it": "Per corsi, laboratori e piccoli gruppi.",
+        "nl": "Voor cursussen, workshops en kleine groepen.",
+        "pt-br": "Para cursos, oficinas e pequenos grupos.",
+        "ru": "Для курсов, мастерских и занятий в малых группах.",
+        "ar": "للدورات والورش ومجموعات التعلم الصغيرة."
+      },
+      "alt": {
+        "en": "Mini School Series",
+        "de": "Workshop-Reihe",
+        "fr": "Série Mini School",
+        "es": "Serie Mini School",
+        "it": "Serie Mini School",
+        "nl": "Mini School-serie",
+        "pt-br": "Série Mini School",
+        "ru": "Серия Mini School",
+        "ar": "سلسلة Mini School"
+      },
+      "meta_title": {
+        "en": "Mini School Series",
+        "de": "Workshop-Reihe",
+        "fr": "Série Mini School",
+        "es": "Serie Mini School",
+        "it": "Serie Mini School",
+        "nl": "Mini School-serie",
+        "pt-br": "Série Mini School",
+        "ru": "Серия Mini School",
+        "ar": "سلسلة Mini School"
+      },
+      "meta_description": {
+        "en": "For courses, workshops and small group lessons.",
+        "de": "Für Kurse, Workshops und Kleingruppen.",
+        "fr": "Pour les cours, ateliers et petits groupes.",
+        "es": "Para cursos, talleres y grupos reducidos.",
+        "it": "Per corsi, laboratori e piccoli gruppi.",
+        "nl": "Voor cursussen, workshops en kleine groepen.",
+        "pt-br": "Para cursos, oficinas e pequenos grupos.",
+        "ru": "Для курсов, мастерских и занятий в малых группах.",
+        "ar": "للدورات والورش ومجموعات التعلم الصغيرة."
+      }
+    },
+    "c0000000000000000003": {
+      "name": {
+        "en": "Home-Private Lesson Series",
+        "de": "Privatunterrichtsreihe",
+        "fr": "Série Maison & cours particuliers",
+        "es": "Serie Casa y clases particulares",
+        "it": "Serie Casa e lezioni private",
+        "nl": "Serie Thuis & bijles",
+        "pt-br": "Série Casa e aulas particulares",
+        "ru": "Серия «Дом и частные уроки»",
+        "ar": "سلسلة المنزل والدروس الخاصة"
+      },
+      "description": {
+        "en": "For one-to-one lessons and groups of 1–2 students.",
+        "de": "Für Einzelunterricht und Gruppen mit 1–2 Schülern.",
+        "fr": "Pour les cours individuels et les groupes de 1 à 2 élèves.",
+        "es": "Para clases individuales y grupos de 1–2 alumnos.",
+        "it": "Per lezioni individuali e gruppi di 1–2 studenti.",
+        "nl": "Voor één-op-éénlessen en groepjes van 1–2 leerlingen.",
+        "pt-br": "Para aulas individuais e grupos de 1–2 alunos.",
+        "ru": "Для индивидуальных занятий и групп из 1–2 учеников.",
+        "ar": "للدروس الفردية ومجموعات من طالب أو طالبين."
+      },
+      "alt": {
+        "en": "Home-Private Lesson Series",
+        "de": "Privatunterrichtsreihe",
+        "fr": "Série Maison & cours particuliers",
+        "es": "Serie Casa y clases particulares",
+        "it": "Serie Casa e lezioni private",
+        "nl": "Serie Thuis & bijles",
+        "pt-br": "Série Casa e aulas particulares",
+        "ru": "Серия «Дом и частные уроки»",
+        "ar": "سلسلة المنزل والدروس الخاصة"
+      },
+      "meta_title": {
+        "en": "Home-Private Lesson Series",
+        "de": "Privatunterrichtsreihe",
+        "fr": "Série Maison & cours particuliers",
+        "es": "Serie Casa y clases particulares",
+        "it": "Serie Casa e lezioni private",
+        "nl": "Serie Thuis & bijles",
+        "pt-br": "Série Casa e aulas particulares",
+        "ru": "Серия «Дом и частные уроки»",
+        "ar": "سلسلة المنزل والدروس الخاصة"
+      },
+      "meta_description": {
+        "en": "For one-to-one lessons and groups of 1–2 students.",
+        "de": "Für Einzelunterricht und Gruppen mit 1–2 Schülern.",
+        "fr": "Pour les cours individuels et les groupes de 1 à 2 élèves.",
+        "es": "Para clases individuales y grupos de 1–2 alumnos.",
+        "it": "Per lezioni individuali e gruppi di 1–2 studenti.",
+        "nl": "Voor één-op-éénlessen en groepjes van 1–2 leerlingen.",
+        "pt-br": "Para aulas individuais e grupos de 1–2 alunos.",
+        "ru": "Для индивидуальных занятий и групп из 1–2 учеников.",
+        "ar": "للدروس الفردية ومجموعات من طالب أو طالبين."
+      }
+    }
+  },
+  "series": {
+    "a0000000000000000001": {
+      "name": {
+        "en": "Student",
+        "de": "Schüler",
+        "fr": "Élève",
+        "es": "Alumno",
+        "it": "Studente",
+        "nl": "Leerling",
+        "pt-br": "Aluno",
+        "ru": "Ученик",
+        "ar": "الطالب"
+      },
+      "description": {
+        "en": "Sets for student use.",
+        "de": "Sets für Schülerinnen und Schüler.",
+        "fr": "Kits à l’usage des élèves.",
+        "es": "Sets para uso del alumno.",
+        "it": "Set per l’uso degli studenti.",
+        "nl": "Sets voor leerlingen.",
+        "pt-br": "Kits para uso do aluno.",
+        "ru": "Наборы для учеников.",
+        "ar": "مجموعات لاستخدام الطلاب."
+      }
+    },
+    "a0000000000000000002": {
+      "name": {
+        "en": "Teacher",
+        "de": "Lehrer",
+        "fr": "Enseignant",
+        "es": "Docente",
+        "it": "Insegnante",
+        "nl": "Leerkracht",
+        "pt-br": "Professor",
+        "ru": "Педагог",
+        "ar": "المعلم"
+      },
+      "description": {
+        "en": "Sets for teachers, workshops, and private lessons.",
+        "de": "Sets für Lehrkräfte, Workshops und Nachhilfe.",
+        "fr": "Kits pour enseignants, ateliers et cours particuliers.",
+        "es": "Sets para docentes, talleres y clases particulares.",
+        "it": "Set per insegnanti, laboratori e lezioni private.",
+        "nl": "Sets voor leerkrachten, workshops en bijles.",
+        "pt-br": "Kits para professores, oficinas e aulas particulares.",
+        "ru": "Наборы для педагогов, мастерских и частных уроков.",
+        "ar": "مجموعات للمعلمين والورش والدروس الخاصة."
+      }
+    }
+  }
+}

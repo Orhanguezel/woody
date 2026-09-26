@@ -257,6 +257,9 @@
     "manageAddresses": "Gerenciar meus endereços",
     "edit": "Editar",
     "locationUnavailable": "Não foi possível obter sua localização agora. Busque o endereço ou mova o pino no mapa.",
-    "locating": "Obtendo localização…"
+    "locating": "Obtendo localização…",
+    "continueToCheckout": "Continuar para o pagamento",
+    "checkoutStepsLabel": "Etapas da compra",
+    "ageCta": "Encontrar o kit certo para a idade"
   }
 }

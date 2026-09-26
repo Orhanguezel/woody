@@ -1,10 +1,10 @@
 import { Check } from 'lucide-react';
 
 /** Sepet → Üyelik → Adres & fatura → Ödeme adım göstergesi. */
-export default function CheckoutSteps({ labels, current }: { labels: Array<string | undefined>; current: number }) {
+export default function CheckoutSteps({ labels, current, ariaLabel }: { labels: Array<string | undefined>; current: number; ariaLabel?: string }) {
   const steps = labels.filter(Boolean) as string[];
   return (
-    <ol className="flex items-center gap-2 overflow-x-auto pb-1 text-[12px] font-black sm:gap-3 sm:text-[13px]" aria-label="checkout">
+    <ol className="flex items-center gap-2 overflow-x-auto pb-1 text-[12px] font-black sm:gap-3 sm:text-[13px]" aria-label={ariaLabel}>
       {steps.map((label, index) => {
         const done = index < current;
         const active = index === current;

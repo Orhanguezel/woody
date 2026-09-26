@@ -61,15 +61,10 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 ('ss-woody-home-banner-de', 'home_banner', 'de', '{"items":["Passende Sets für jedes Alter"]}')
 ON DUPLICATE KEY UPDATE `value` = VALUES(`value`);
 
--- Store UI metinleri: aktif tüm dillerde page_store kaydı ve ui objesi garanti edilir.
-INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`)
-SELECT CONCAT('ss-woody-page-store-', locales.locale), 'page_store', locales.locale, tr.value
-FROM (
-  SELECT 'ar' AS locale UNION ALL SELECT 'fr' UNION ALL SELECT 'ru' UNION ALL
-  SELECT 'es' UNION ALL SELECT 'it' UNION ALL SELECT 'nl' UNION ALL SELECT 'pt-br'
-) AS locales
-JOIN `site_settings` tr ON tr.`key` = 'page_store' AND tr.`locale` = 'tr'
-ON DUPLICATE KEY UPDATE `value` = VALUES(`value`);
+-- Store UI metinleri (2026-09-26): Türkçe page_store kaydı diğer dillere KOPYALANMAZ.
+-- Kopya satır DB'de o dile ait sayıldığı için çevrili config/pages/<dil>/store-products.json
+-- metinlerini Türkçe ile eziyordu (ar/fr/ru/es/it/nl/pt-br sepet ve checkout Türkçe görünüyordu).
+-- Bu dillerde metin config'ten gelir; admin bir dil için kayıt açarsa o dilde yazar.
 
 UPDATE `site_settings`
 SET `value` = JSON_SET(
@@ -88,7 +83,7 @@ SET `value` = JSON_SET(
   END
 )
 WHERE `key` = 'page_store'
-  AND `locale` IN ('tr','en','de','ar','fr','ru','es','it','nl','pt-br');
+  AND `locale` IN ('tr','en','de');
 
 
 INSERT INTO `menu_items` (`id`, `parent_id`, `type`, `location`, `order_num`, `is_active`) VALUES

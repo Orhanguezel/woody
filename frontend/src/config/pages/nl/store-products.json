@@ -257,6 +257,9 @@
     "manageAddresses": "Mijn adressen beheren",
     "edit": "Bewerken",
     "locationUnavailable": "Je locatie kon nu niet worden bepaald. Zoek het adres of verplaats de pin op de kaart.",
-    "locating": "Locatie ophalen…"
+    "locating": "Locatie ophalen…",
+    "continueToCheckout": "Verder naar afrekenen",
+    "checkoutStepsLabel": "Afrekenstappen",
+    "ageCta": "Vind de juiste set per leeftijd"
   }
 }

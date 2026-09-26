@@ -251,14 +251,14 @@ export default function CheckoutCartClient({
 
   if (!isReady || !isAuthenticated || legacyProductSlug) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#fff9ee] pt-28">
+      <div className="flex min-h-screen items-center justify-center bg-[#fff9ee] pt-28">
         <Loader2 className="h-8 w-8 animate-spin text-[#f58220]" aria-label={ui.loading || ''} />
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#fff9ee] pb-16 pt-28 text-[#24333f] lg:pt-32">
+    <div className="min-h-screen bg-[#fff9ee] pb-16 pt-28 text-[#24333f] lg:pt-32">
       <div className="container max-w-[1120px]">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Link
@@ -268,7 +268,7 @@ export default function CheckoutCartClient({
             <ArrowLeft className="h-4 w-4" aria-hidden />
             {ui.cartTitle || ui.back || ''}
           </Link>
-          <CheckoutSteps labels={stepLabels(ui)} current={step === 'iframe' ? 3 : 2} />
+          <CheckoutSteps labels={stepLabels(ui)} current={step === 'iframe' ? 3 : 2} ariaLabel={ui.checkoutStepsLabel} />
         </div>
 
         {lines.length === 0 ? (
@@ -428,6 +428,6 @@ export default function CheckoutCartClient({
           </form>
         )}
       </div>
-    </main>
+    </div>
   );
 }

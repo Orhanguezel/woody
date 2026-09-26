@@ -36,7 +36,7 @@ export default function AccountAddressesClient({ locale, ui }: { locale: string;
   }, [isAuthenticated]);
 
   return (
-    <main className="min-h-screen bg-[#fff9ee] pb-16 pt-28 text-[#24333f] lg:pt-32">
+    <div className="min-h-screen bg-[#fff9ee] pb-16 pt-28 text-[#24333f] lg:pt-32">
       <div className="container max-w-[880px]">
         <Link href={`/${locale}/me`} className={`inline-flex items-center gap-1.5 text-[13px] font-black text-[#d96f12] hover:text-[#b85c0e] ${FOCUS_RING}`}>
           <ArrowLeft className="h-4 w-4" aria-hidden />
@@ -51,6 +51,6 @@ export default function AccountAddressesClient({ locale, ui }: { locale: string;
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

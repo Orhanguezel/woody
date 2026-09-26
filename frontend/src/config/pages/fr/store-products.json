@@ -257,6 +257,9 @@
     "manageAddresses": "Gérer mes adresses",
     "edit": "Modifier",
     "locationUnavailable": "Votre position n’a pas pu être déterminée. Recherchez l’adresse ou déplacez l’épingle sur la carte.",
-    "locating": "Localisation en cours…"
+    "locating": "Localisation en cours…",
+    "continueToCheckout": "Continuer vers le paiement",
+    "checkoutStepsLabel": "Étapes de commande",
+    "ageCta": "Trouver le kit adapté à l’âge"
   }
 }

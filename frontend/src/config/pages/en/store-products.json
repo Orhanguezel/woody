@@ -258,6 +258,8 @@
     "manageAddresses": "Manage my addresses",
     "edit": "Edit",
     "locationUnavailable": "Your location could not be determined right now. Search for the address or move the pin on the map.",
-    "locating": "Getting location…"
+    "locating": "Getting location…",
+    "continueToCheckout": "Continue to checkout",
+    "checkoutStepsLabel": "Checkout steps"
   }
 }
