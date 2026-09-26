@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CheckCircle2, XCircle } from 'lucide-react';
 
@@ -7,6 +8,9 @@ import ClearCartOnSuccess from '@/components/woody/store/ClearCartOnSuccess';
 import { loadCheckoutCopy, loadPurchasableProducts } from '@/components/woody/store/checkout-copy.server';
 
 export const dynamic = 'force-dynamic';
+
+// Kişiye özel ödeme adımı: dizine eklenmez.
+export const metadata: Metadata = { robots: { index: false, follow: false } };
 
 type Props = {
   params: Promise<{ locale: string }>;

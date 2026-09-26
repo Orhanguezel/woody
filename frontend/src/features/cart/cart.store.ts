@@ -119,7 +119,15 @@ export const cartActions = {
     const next = items.map((line) => {
       const fresh = catalog[line.productId];
       if (!fresh) return line;
-      const merged = { ...line, ...fresh, quantity: clampQuantity(line.quantity, fresh.minQuantity) };
+      const merged: CartItem = {
+        ...line,
+        slug: fresh.slug,
+        title: fresh.title,
+        image: fresh.image,
+        unitPrice: fresh.unitPrice,
+        minQuantity: fresh.minQuantity,
+        quantity: clampQuantity(line.quantity, fresh.minQuantity),
+      };
       if (JSON.stringify(merged) !== JSON.stringify(line)) changed = true;
       return merged;
     });
