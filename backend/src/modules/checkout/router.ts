@@ -24,6 +24,15 @@ import {
 import { loadCommerceMeasurement } from './commerceMeasurement';
 import { markPaymentResult } from './paymentResult';
 import { checkoutQuantity } from './quantity';
+import { requireAuth, type JwtUser } from '@shared/shared-backend/middleware/auth';
+import {
+  AddressError,
+  normalizeAddress,
+  normalizeBilling,
+  type BillingInput,
+  type NormalizedAddress,
+  type NormalizedBilling,
+} from './addresses';
 
 type CheckoutItem = {
   product_id?: string;
@@ -47,6 +56,10 @@ type CheckoutBody = {
     postalCode?: string;
     country?: string;
   };
+  /** Fatura bilgisi (bireysel/kurumsal). sameAsShipping ile teslimat adresi kullanılır. */
+  billing?: BillingInput;
+  /** Varsayılan true: teslimat ve fatura adresi üyenin kayıtlı adresi olarak saklanır. */
+  saveAddresses?: boolean;
   items?: CheckoutItem[];
   notes?: string;
   attribution?: {
@@ -161,6 +174,21 @@ async function orderNotifyBody(orderId: string) {
     [orderId],
   );
 
+  const [billingRows] = await pool.execute<RowDataPacket[]>(
+    `SELECT invoice_type, full_name, company_name, tax_office, tax_number, identity_number, address, district, city
+       FROM order_addresses WHERE order_id = ? AND type = 'billing' LIMIT 1`,
+    [orderId],
+  );
+  const bill = billingRows[0];
+  const billingLine = bill
+    ? [
+        bill.invoice_type === 'corporate'
+          ? `Kurumsal: ${String(bill.company_name ?? '')} — VD ${String(bill.tax_office ?? '')} / VKN ${String(bill.tax_number ?? '')}`
+          : `Bireysel: ${String(bill.full_name ?? '')}${bill.identity_number ? ` — TCKN ${String(bill.identity_number)}` : ''}`,
+        [bill.address, bill.district, bill.city].filter(Boolean).join(', '),
+      ].join(' · ')
+    : '-';
+
   const money = (v: unknown) => `${Number(v || 0).toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL`;
   const itemLines = items.map((i) => `${String(i.title)} x${Number(i.quantity)} — ${money(i.total_price)}`);
 
@@ -175,6 +203,7 @@ async function orderNotifyBody(orderId: string) {
       ['E-posta', String(o.email ?? '-')],
       ['Telefon', String(o.shipping_phone ?? '-')],
       ['Sehir', String(o.shipping_city ?? '-')],
+      ['Fatura', billingLine],
       ['Tutar', money(o.total)],
       ['Urunler', itemLines.join(' | ') || '-'],
     ] as Array<[string, unknown]>,
@@ -333,35 +362,85 @@ async function logPaytrCallback(entry: {
   }
 }
 
-async function ensureCustomer(customer: CheckoutBody['customer']) {
-  const email = clean(customer?.email).toLowerCase();
-  if (!email || !email.includes('@')) throw new Error('customer_email_required');
+type AddressRow = RowDataPacket & Record<string, unknown>;
 
-  const [existing] = await pool.execute<RowDataPacket[]>(
-    'SELECT id FROM users WHERE email = ? LIMIT 1',
-    [email],
-  );
-  if (existing[0]?.id) return String(existing[0].id);
+function addressDto(row: AddressRow | undefined) {
+  if (!row) return null;
+  return {
+    invoiceType: row.invoice_type ? String(row.invoice_type) : null,
+    name: String(row.full_name ?? ''),
+    companyName: String(row.company_name ?? ''),
+    taxOffice: String(row.tax_office ?? ''),
+    taxNumber: String(row.tax_number ?? ''),
+    identityNumber: String(row.identity_number ?? ''),
+    phone: String(row.phone ?? ''),
+    address: String(row.address ?? ''),
+    city: String(row.city ?? ''),
+    district: String(row.district ?? ''),
+    postalCode: String(row.postal_code ?? ''),
+    country: String(row.country ?? 'TR'),
+  };
+}
 
-  const id = randomUUID();
-  const fullName = clean(customer?.name) || email;
-  const phone = clean(customer?.phone) || null;
-  await pool.execute(
-    `
-      INSERT INTO users (id, email, password_hash, full_name, phone, is_active, email_verified)
-      VALUES (?, ?, ?, ?, ?, 1, 0)
-    `,
-    [id, email, `checkout:${randomUUID()}`, fullName, phone],
+function addressValues(address: NormalizedAddress | NormalizedBilling) {
+  const billing = 'invoiceType' in address ? address : null;
+  return [
+    billing?.invoiceType ?? null,
+    address.fullName || null,
+    billing?.companyName || null,
+    billing?.taxOffice || null,
+    billing?.taxNumber || null,
+    billing?.identityNumber || null,
+    address.phone || null,
+    address.address || null,
+    address.district || null,
+    address.city || null,
+    address.postalCode || null,
+    address.country || 'TR',
+  ];
+}
+
+async function saveOrderAddresses(
+  orderId: string,
+  userId: string,
+  email: string,
+  shipping: NormalizedAddress | null,
+  billing: NormalizedBilling,
+  remember: boolean,
+) {
+  const entries: Array<['shipping' | 'billing', NormalizedAddress | NormalizedBilling]> = [
+    ...(shipping ? [['shipping', shipping] as ['shipping', NormalizedAddress]] : []),
+    ['billing', billing],
+  ];
+  for (const [type, address] of entries) {
+    await pool.execute(
+      `INSERT INTO order_addresses (id, order_id, type, invoice_type, full_name, company_name, tax_office,
+         tax_number, identity_number, phone, address, district, city, postal_code, country, email)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [randomUUID(), orderId, type, ...addressValues(address), email || null],
+    );
+    if (!remember) continue;
+    await pool.execute(
+      `INSERT INTO user_addresses (id, user_id, type, invoice_type, full_name, company_name, tax_office,
+         tax_number, identity_number, phone, address, district, city, postal_code, country)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       ON DUPLICATE KEY UPDATE invoice_type=VALUES(invoice_type), full_name=VALUES(full_name),
+         company_name=VALUES(company_name), tax_office=VALUES(tax_office), tax_number=VALUES(tax_number),
+         identity_number=VALUES(identity_number), phone=VALUES(phone), address=VALUES(address),
+         district=VALUES(district), city=VALUES(city), postal_code=VALUES(postal_code), country=VALUES(country)`,
+      [randomUUID(), userId, type, ...addressValues(address)],
+    );
+  }
+}
+
+async function checkoutAccount(req: FastifyRequest) {
+  const userId = String((req as unknown as { user?: JwtUser }).user?.sub || '');
+  if (!userId) return null;
+  const [rows] = await pool.execute<RowDataPacket[]>(
+    'SELECT id, email, full_name, phone FROM users WHERE id = ? AND is_active = 1 LIMIT 1',
+    [userId],
   );
-  await pool.execute(
-    'INSERT IGNORE INTO user_roles (id, user_id, role) VALUES (?, ?, ?)',
-    [randomUUID(), id, 'customer'],
-  );
-  await pool.execute(
-    'INSERT IGNORE INTO profiles (id, full_name, phone, city, address_line1) VALUES (?, ?, ?, ?, ?)',
-    [id, fullName, phone, clean(customer?.city) || null, clean(customer?.address) || null],
-  );
-  return id;
+  return rows[0] ?? null;
 }
 
 async function getProducts(items: CheckoutItem[], locale: string) {
@@ -502,7 +581,29 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     return { ...product, contents };
   });
 
-  app.post('/checkout/orders', async (req, reply) => {
+  // Kayıtlı teslimat/fatura adresi + hesap bilgisi (checkout formunu doldurmak için).
+  app.get('/checkout/addresses', { preHandler: [requireAuth] }, async (req, reply) => {
+    const account = await checkoutAccount(req);
+    if (!account) return reply.code(401).send({ error: { message: 'login_required' } });
+    const [rows] = await pool.execute<AddressRow[]>(
+      'SELECT * FROM user_addresses WHERE user_id = ?',
+      [String(account.id)],
+    );
+    return {
+      account: {
+        email: String(account.email ?? ''),
+        name: String(account.full_name ?? ''),
+        phone: String(account.phone ?? ''),
+      },
+      shipping: addressDto(rows.find((row) => row.type === 'shipping')),
+      billing: addressDto(rows.find((row) => row.type === 'billing')),
+    };
+  });
+
+  // Satın alma yalnız üyelere açık (2026-09-26): sipariş token'daki kullanıcıya bağlanır.
+  // Eskiden e-postaya göre hesap bulunuyor/oluşturuluyordu; başkasının e-postasını yazan
+  // kişi o hesaba sipariş (ve ödeme sonrası içerik hakkı) bağlayabiliyordu.
+  app.post('/checkout/orders', { preHandler: [requireAuth] }, async (req, reply) => {
     const body = (req.body || {}) as CheckoutBody;
     const items = Array.isArray(body.items) ? body.items : [];
     if (!items.length) return badRequest(reply, 'items_required');
@@ -541,24 +642,30 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     }
 
     const hasPhysical = [...products.values()].some((product) => Number(product.has_physical) === 1);
-    const shipping = body.shipping || {};
-    const shippingName = clean(shipping.name) || clean(body.customer?.name);
-    const shippingPhone = clean(shipping.phone) || clean(body.customer?.phone);
-    const shippingAddress = clean(shipping.address) || clean(body.customer?.address);
-    const shippingCity = clean(shipping.city) || clean(body.customer?.city);
-    const shippingDistrict = clean(shipping.district);
-    const shippingPostalCode = clean(shipping.postalCode);
-    const shippingCountry = clean(shipping.country) || 'TR';
-    if (hasPhysical && (!shippingName || !shippingPhone || !shippingAddress || !shippingCity)) {
-      return badRequest(reply, 'shipping_address_required');
-    }
+    const account = await checkoutAccount(req);
+    if (!account) return reply.code(401).send({ error: { message: 'login_required' } });
+    const customerId = String(account.id);
+    const customerEmail = String(account.email ?? '');
 
-    let customerId: string;
+    let shippingAddress: NormalizedAddress | null;
+    let billingAddress: NormalizedBilling;
     try {
-      customerId = await ensureCustomer(body.customer);
-    } catch {
-      return badRequest(reply, 'customer_email_required');
+      const shippingInput = body.shipping
+        ? { ...body.shipping, name: body.shipping.name || account.full_name, phone: body.shipping.phone || account.phone }
+        : undefined;
+      shippingAddress = normalizeAddress(shippingInput, hasPhysical);
+      billingAddress = normalizeBilling(body.billing, shippingAddress);
+    } catch (error) {
+      if (error instanceof AddressError) return badRequest(reply, error.message);
+      throw error;
     }
+    const shippingName = shippingAddress?.fullName || billingAddress.fullName || String(account.full_name ?? '');
+    const shippingPhone = shippingAddress?.phone || billingAddress.phone || String(account.phone ?? '');
+    const shippingStreet = shippingAddress?.address || '';
+    const shippingCity = shippingAddress?.city || '';
+    const shippingDistrict = shippingAddress?.district || '';
+    const shippingPostalCode = shippingAddress?.postalCode || '';
+    const shippingCountry = shippingAddress?.country || 'TR';
 
     await pool.execute(
       `
@@ -576,7 +683,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
         clean(body.notes) || null,
         shippingName || null,
         shippingPhone || null,
-        shippingAddress || null,
+        shippingStreet || null,
         shippingCity || null,
         shippingDistrict || null,
         shippingPostalCode || null,
@@ -593,6 +700,8 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
         row,
       );
     }
+
+    await saveOrderAddresses(orderId, customerId, customerEmail, shippingAddress, billingAddress, body.saveAddresses !== false);
 
     await persistOrderAttribution(req, orderId, body.attribution);
 

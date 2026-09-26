@@ -3,11 +3,11 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { LockKeyhole, PlayCircle, RotateCcw, ShieldCheck, ShoppingCart, Truck } from 'lucide-react';
+import { LockKeyhole, PlayCircle, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
 
 import { FOCUS_RING } from '@/lib/a11y';
-import { reportAddToCart, reportViewItem } from '@/lib/ecommerce-events';
+import { reportViewItem } from '@/lib/ecommerce-events';
+import AddToCartButton from './AddToCartButton';
 import { tokenStore } from '@/integrations/rtk/token';
 import type { StoreProduct, StoreUiCopy } from './types';
 import { assuranceHrefs, storeAssurance } from './assurance';
@@ -34,7 +34,6 @@ export default function WoodyStoreProductDetail({
   locale: string;
   ui?: StoreUiCopy;
 }) {
-  const router = useRouter();
   const [libraryItem, setLibraryItem] = React.useState<LibraryItem | null>(null);
   const [message, setMessage] = React.useState('');
   const [busy, setBusy] = React.useState(false);
@@ -88,7 +87,6 @@ export default function WoodyStoreProductDetail({
   const hasAccess = Boolean(libraryItem);
   const quantity = Math.max(1, Number(product.minQuantity) || 1);
   const unitPrice = Number(product.price) || 0;
-  const checkoutUrl = `/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`;
   const formattedPrice = unitPrice > 0
     ? new Intl.NumberFormat(locale, {
         style: 'currency',
@@ -99,28 +97,6 @@ export default function WoodyStoreProductDetail({
   const minQuantityText = quantity > 1
     ? (ui.minQuantityBadge || '').replace(/\{\{count\}\}/g, String(quantity))
     : '';
-
-  function trackAndOpenCheckout(event: React.MouseEvent<HTMLAnchorElement>) {
-    const modifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
-    let navigated = false;
-    const navigate = () => {
-      if (navigated) return;
-      navigated = true;
-      router.push(checkoutUrl);
-    };
-    if (!modifiedClick) event.preventDefault();
-    reportAddToCart({
-      currency: product.currency || 'TRY',
-      value: unitPrice * quantity,
-      items: [{
-        item_id: String(product.id),
-        item_name: product.title,
-        price: unitPrice,
-        quantity,
-      }],
-    }, modifiedClick ? undefined : navigate);
-    if (!modifiedClick) window.setTimeout(navigate, 800);
-  }
 
   async function addFreeToLibrary() {
     setMessage('');
@@ -202,14 +178,37 @@ export default function WoodyStoreProductDetail({
                 {busy ? (ui.freeAdding || '') : (ui.freeWatch || '')}
               </button>
             ) : product.purchaseMode === 'online' && unitPrice > 0 ? (
-              <Link
-                href={checkoutUrl}
-                onClick={trackAndOpenCheckout}
-                className={`inline-flex min-h-12 items-center gap-2 rounded-md bg-brand-primary px-5 py-3 font-bold text-white ${FOCUS_RING}`}
-              >
-                <ShoppingCart className="size-4" aria-hidden />
-                {ui.buyNow || ''}
-              </Link>
+              <div className="flex flex-wrap gap-2">
+                <AddToCartButton
+                  item={{
+                    productId: String(product.id),
+                    slug: String(product.slug || product.id),
+                    title: product.title,
+                    image: product.image,
+                    unitPrice,
+                    minQuantity: quantity,
+                  }}
+                  locale={locale}
+                  label={ui.addToCart || ''}
+                  addedLabel={ui.cartAdded}
+                  viewCartLabel={ui.viewCart}
+                  className="inline-flex min-h-12 items-center gap-2 rounded-md bg-brand-primary px-5 py-3 font-bold text-white"
+                />
+                <AddToCartButton
+                  item={{
+                    productId: String(product.id),
+                    slug: String(product.slug || product.id),
+                    title: product.title,
+                    image: product.image,
+                    unitPrice,
+                    minQuantity: quantity,
+                  }}
+                  locale={locale}
+                  label={ui.buyNow || ''}
+                  goToCart
+                  className="inline-flex min-h-12 items-center gap-2 rounded-md border border-brand-primary bg-white px-5 py-3 font-bold text-brand-primary"
+                />
+              </div>
             ) : (
               <Link
                 href={`/${locale}/store#quote-form`}

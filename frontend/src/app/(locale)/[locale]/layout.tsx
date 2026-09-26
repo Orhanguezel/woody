@@ -28,6 +28,7 @@ import {
   getSiteAuthor,
 } from '@/lib/site-config';
 import { WOODY_LOCALES } from '@/components/woody/routes';
+import FloatingCartButton from '@/features/cart/FloatingCartButton';
 
 const API_BASE = getPublicApiBaseUrl().replace(/\/+$/, '');
 
@@ -153,6 +154,7 @@ export default async function LocaleRootLayout({
                 useSearchParams ihtiyaci ClientLayout icindeki kucuk Suspense adasinda. */}
             <ClientLayout locale={locale} initialMenuItems={initialMenuItems}>
               {children}
+              <FloatingCartButton locale={locale} />
             </ClientLayout>
           </Providers>
         </div>

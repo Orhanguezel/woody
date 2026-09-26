@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { CheckCircle2, XCircle } from 'lucide-react';
 
-import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
-import { loadDbStoreProduct } from '@/components/woody/store/load-store-products.server';
-import CheckoutPurchaseClient from '@/components/woody/store/CheckoutPurchaseClient';
+import CheckoutCartClient from '@/components/woody/store/CheckoutCartClient';
 import CheckoutResultTracker from '@/components/woody/store/CheckoutResultTracker';
-import type { StoreUiCopy } from '@/components/woody/store/types';
-import { loadPageContent } from '@/config/pages/loader';
+import ClearCartOnSuccess from '@/components/woody/store/ClearCartOnSuccess';
+import { loadCheckoutCopy, loadPurchasableProducts } from '@/components/woody/store/checkout-copy.server';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,48 +13,30 @@ type Props = {
   searchParams: Promise<{ payment?: string; order?: string; product?: string }>;
 };
 
-type CheckoutCopy = { ui: StoreUiCopy; quoteWhatsApp?: string; quoteMessage?: string };
-
-async function loadUi(locale: string): Promise<CheckoutCopy> {
-  const [content, storeProducts] = await Promise.all([
-    loadWoodyPageContent('store', locale),
-    loadPageContent<{ ui?: StoreUiCopy; quoteWhatsApp?: string; quoteMessage?: string }>('store-products', locale),
-  ]);
-  const raw = (content?.raw ?? {}) as Record<string, unknown>;
-  const dbUi = raw.ui && typeof raw.ui === 'object' && !Array.isArray(raw.ui) ? (raw.ui as StoreUiCopy) : {};
-  // config store-products.json ui taban; DB page_store.ui ustune biner
-  return {
-    ui: { ...(storeProducts?.ui ?? {}), ...dbUi },
-    quoteWhatsApp: (raw.quoteWhatsApp as string) || storeProducts?.quoteWhatsApp,
-    quoteMessage: (raw.quoteMessage as string) || storeProducts?.quoteMessage,
-  };
-}
-
 export default async function StoreCheckoutPage({ params, searchParams }: Props) {
   const { locale } = await params;
   const { payment, order, product: productSlug } = await searchParams;
-  const { ui, quoteWhatsApp, quoteMessage } = await loadUi(locale);
+  const { ui, quoteWhatsApp } = await loadCheckoutCopy(locale);
 
-  // Satin alma akisi: /store/checkout?product=<slug> (REVIZE 2026-08-30, PayTR)
-  if (productSlug && !payment) {
-    const product = await loadDbStoreProduct(productSlug, locale);
-    if (product && product.purchaseMode === 'online' && !product.isFree) {
-      return (
-        <CheckoutPurchaseClient
-          product={product}
-          locale={locale}
-          ui={ui}
-          quoteWhatsApp={quoteWhatsApp}
-          quoteMessage={quoteMessage}
-        />
-      );
-    }
+  // Satın alma sepetten yürür (2026-09-26); ?product=<slug> eski bağlantılar ürünü sepete ekler.
+  if (!payment) {
+    const catalog = await loadPurchasableProducts(locale);
+    return (
+      <CheckoutCartClient
+        locale={locale}
+        ui={ui}
+        catalog={catalog}
+        legacyProductSlug={productSlug}
+        quoteWhatsApp={quoteWhatsApp}
+      />
+    );
   }
 
   const success = payment === 'success';
   return (
     <main className="bg-[var(--gm-bg)] py-20 text-[var(--gm-text)]">
       {success && order ? <CheckoutResultTracker orderId={order} /> : null}
+      {success ? <ClearCartOnSuccess /> : null}
       <div className="container max-w-2xl">
         <div className="rounded-lg border border-[var(--gm-border-soft)] bg-[var(--gm-surface)] p-8 shadow-[var(--gm-shadow-card)]">
           <div className="flex items-center gap-3">
@@ -78,9 +58,9 @@ export default async function StoreCheckoutPage({ params, searchParams }: Props)
             </p>
           ) : null}
           <div className="mt-8 flex flex-wrap gap-3">
-            {!success && productSlug ? (
+            {!success ? (
               <Link
-                href={`/${locale}/store/checkout?product=${encodeURIComponent(productSlug)}`}
+                href={`/${locale}/cart`}
                 className="inline-flex min-h-11 items-center rounded-md bg-[var(--gm-primary)] px-5 py-3 font-semibold text-[var(--gm-surface)]"
               >
                 {ui.buyNow}
@@ -88,7 +68,7 @@ export default async function StoreCheckoutPage({ params, searchParams }: Props)
             ) : null}
             <Link
               href={`/${locale}/store`}
-              className={`${!success && productSlug ? 'border border-[var(--gm-border)]' : 'bg-[var(--gm-primary)] text-[var(--gm-surface)]'} inline-flex min-h-11 items-center rounded-md px-5 py-3 font-semibold`}
+              className={`${!success ? 'border border-[var(--gm-border)]' : 'bg-[var(--gm-primary)] text-[var(--gm-surface)]'} inline-flex min-h-11 items-center rounded-md px-5 py-3 font-semibold`}
             >
               {ui.checkoutReturnToStore}
             </Link>

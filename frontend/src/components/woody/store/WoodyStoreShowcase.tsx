@@ -3,19 +3,18 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { ArrowRight, CheckCircle2, ChevronRight, GraduationCap, MessageCircle, Play, ShoppingCart, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, GraduationCap, MessageCircle, Play, X } from 'lucide-react';
 
 import { localizePath } from '@/integrations/shared';
 import { tUi } from '@/i18n/staticUi';
 import { FOCUS_RING } from '@/lib/a11y';
-import { reportAddToCart } from '@/lib/ecommerce-events';
 import { WhatsAppLink } from '@/components/common/WhatsAppLink';
 import WoodyPageLogoHeader from '@/components/woody/WoodyPageLogoHeader';
 import QuoteRequestForm, { type QuoteFormCopy } from '@/components/woody/quote/QuoteRequestForm';
 import type { WaitlistFormCopy } from '@/components/woody/waitlist/WaitlistSignupForm';
 import type { StoreProductFilters, StoreTaxonomyItem, StoreUiCopy } from './types';
 import AnswerIntro from '@/components/woody/AnswerIntro';
+import AddToCartButton from './AddToCartButton';
 
 export type StoreCatalogCategory = {
   id: string;
@@ -112,7 +111,6 @@ export default function WoodyStoreShowcase({
   locale: string;
   filters?: StoreProductFilters;
 }) {
-  const router = useRouter();
   // S4 (2026-08-30): "Urun Videosu" 9:16 modal durumu
   const [productVideo, setProductVideo] = useState<{ url: string; title: string } | null>(null);
 
@@ -237,38 +235,38 @@ export default function WoodyStoreShowcase({
                   {product.minQuantity} adet toplam: {new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(numericPrice(product.price) * Number(product.minQuantity))}
                 </p>
               ) : null}
-              <Link
-                href={`/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`}
-                onClick={(event) => {
-                  const quantity = Math.max(1, Number(product.minQuantity) || 1);
-                  const unitPrice = numericPrice(product.price);
-                  const checkoutUrl = `/${locale}/store/checkout?product=${encodeURIComponent(String(product.slug || product.id))}`;
-                  const modifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
-                  let navigated = false;
-                  const navigate = () => {
-                    if (navigated) return;
-                    navigated = true;
-                    router.push(checkoutUrl);
-                  };
-                  if (!modifiedClick) event.preventDefault();
-                  reportAddToCart({
-                    currency: 'TRY',
-                    value: unitPrice * quantity,
-                    items: [{
-                      item_id: String(product.id),
-                      item_name: product.name,
-                      price: unitPrice,
-                      quantity,
-                    }],
-                  }, modifiedClick ? undefined : navigate);
-                  if (!modifiedClick) window.setTimeout(navigate, 800);
-                }}
-                className={`mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-2 py-2 text-[11px] font-black text-white transition hover:bg-[#d96f12] sm:mt-3 sm:px-3 sm:py-2.5 sm:text-[13px] ${FOCUS_RING}`}
-                data-testid={`store-buy-btn-${product.id}`}
-              >
-                <ShoppingCart className="h-4 w-4" aria-hidden />
-                {ui.buyNow || ''}
-              </Link>
+              {/* 2026-09-26: satın alma sepetten başlar; üyelik kontrolü checkout'ta. */}
+              {(() => {
+                const cartItem = {
+                  productId: String(product.id),
+                  slug: String(product.slug || product.id),
+                  title: product.name,
+                  image: product.image,
+                  unitPrice: numericPrice(product.price),
+                  minQuantity: Math.max(1, Number(product.minQuantity) || 1),
+                };
+                return (
+                  <div className="mt-2 grid gap-1.5 sm:mt-3">
+                    <AddToCartButton
+                      item={cartItem}
+                      locale={locale}
+                      label={ui.addToCart || ''}
+                      addedLabel={ui.cartAdded}
+                      viewCartLabel={ui.viewCart}
+                      className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#f58220] px-2 py-2 text-[11px] font-black text-white transition hover:bg-[#d96f12] sm:px-3 sm:py-2.5 sm:text-[13px]"
+                      testId={`store-cart-btn-${product.id}`}
+                    />
+                    <AddToCartButton
+                      item={cartItem}
+                      locale={locale}
+                      label={ui.buyNow || ''}
+                      goToCart
+                      className="inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-[#f58220] bg-white px-2 py-2 text-[11px] font-black text-[#d96f12] transition hover:bg-[#fff3e6] sm:px-3 sm:py-2 sm:text-[13px]"
+                      testId={`store-buy-btn-${product.id}`}
+                    />
+                  </div>
+                );
+              })()}
             </div>
           ) : (
             <div className="mt-auto flex flex-wrap gap-2 pt-3 sm:pt-5">
