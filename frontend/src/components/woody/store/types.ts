@@ -64,6 +64,8 @@ export type StoreProductFilters = {
 
 export type StoreUiCopy = Partial<Record<
   | 'addToCart'
+  | 'locationUnavailable'
+  | 'locating'
   | 'itemsCount'
   | 'clearCart'
   | 'youMayAlsoLike'

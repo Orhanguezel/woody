@@ -242,7 +242,7 @@
     "searchNoResults": "Nenhum resultado. Você pode digitar o endereço abaixo.",
     "geoUnavailable": "A busca de endereço está indisponível; digite o endereço.",
     "useMyLocation": "Usar minha localização",
-    "locationDenied": "Permissão de localização negada.",
+    "locationDenied": "O acesso à localização está desativado. Permita-o para este site pelo cadeado na barra de endereço (no celular: Ajustes > Privacidade > Serviços de Localização) ou busque seu endereço.",
     "mapHint": "Arraste ou toque no mapa para posicionar o pino; os campos são atualizados.",
     "addressLine": "Endereço (bairro, rua, número do prédio e apartamento)",
     "defaultShipping": "Entrega padrão",
@@ -255,6 +255,8 @@
     "errorAddressName": "O nome completo é obrigatório.",
     "errorAddressLimit": "Você pode salvar até 20 endereços.",
     "manageAddresses": "Gerenciar meus endereços",
-    "edit": "Editar"
+    "edit": "Editar",
+    "locationUnavailable": "Não foi possível obter sua localização agora. Busque o endereço ou mova o pino no mapa.",
+    "locating": "Obtendo localização…"
   }
 }

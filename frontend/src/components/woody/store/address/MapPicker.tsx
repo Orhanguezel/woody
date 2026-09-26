@@ -39,15 +39,18 @@ type Props = {
   hint?: string;
   locateLabel?: string;
   locationDeniedLabel?: string;
+  locationUnavailableLabel?: string;
+  locatingLabel?: string;
 };
 
-export default function MapPicker({ latitude, longitude, onChange, hint, locateLabel, locationDeniedLabel }: Props) {
+export default function MapPicker({ latitude, longitude, onChange, hint, locateLabel, locationDeniedLabel, locationUnavailableLabel, locatingLabel }: Props) {
   const hasPoint = latitude !== null && longitude !== null;
   const [zoom, setZoom] = useState(hasPoint ? 17 : 5);
   const [center, setCenter] = useState(hasPoint ? { lat: latitude!, lon: longitude! } : TURKEY);
   const [width, setWidth] = useState(640);
   const [drag, setDrag] = useState<{ x: number; y: number; dx: number; dy: number } | null>(null);
   const [locError, setLocError] = useState('');
+  const [locating, setLocating] = useState(false);
   const box = useRef<HTMLDivElement>(null);
   const height = 240;
 
@@ -98,17 +101,29 @@ export default function MapPicker({ latitude, longitude, onChange, hint, locateL
 
   function locate() {
     setLocError('');
-    if (!navigator.geolocation) {
-      setLocError(locationDeniedLabel || '');
+    // Konum yalnız güvenli bağlamda (https) ve kullanıcı dokunuşuyla istenir; mobil tarayıcılar dahil.
+    if (!('geolocation' in navigator) || !window.isSecureContext) {
+      setLocError(locationUnavailableLabel || locationDeniedLabel || '');
       return;
     }
+    setLocating(true);
+    const done = (pos: GeolocationPosition) => {
+      setLocating(false);
+      setZoom(17);
+      commit({ lat: Math.round(pos.coords.latitude * 1e7) / 1e7, lon: Math.round(pos.coords.longitude * 1e7) / 1e7 });
+    };
+    const fail = (err: GeolocationPositionError) => {
+      setLocating(false);
+      setLocError(err.code === err.PERMISSION_DENIED ? locationDeniedLabel || '' : locationUnavailableLabel || locationDeniedLabel || '');
+    };
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setZoom(17);
-        commit({ lat: Math.round(pos.coords.latitude * 1e7) / 1e7, lon: Math.round(pos.coords.longitude * 1e7) / 1e7 });
+      done,
+      (err) => {
+        // Kapalı alanda GPS zaman aşımına uğrayabilir: ağ tabanlı (düşük hassasiyet) konumla tekrar dene.
+        if (err.code === err.PERMISSION_DENIED) return fail(err);
+        navigator.geolocation.getCurrentPosition(done, fail, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
       },
-      () => setLocError(locationDeniedLabel || ''),
-      { enableHighAccuracy: true, timeout: 10000 },
+      { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 },
     );
   }
 
@@ -161,8 +176,8 @@ export default function MapPicker({ latitude, longitude, onChange, hint, locateL
           onClick={locate}
           className={`absolute bottom-2 left-2 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12px] font-black text-[#24333f] shadow ring-1 ring-black/10 hover:bg-[#fff3e6] ${FOCUS_RING}`}
         >
-          <LocateFixed className="h-4 w-4 text-[#f58220]" aria-hidden />
-          {locateLabel}
+          <LocateFixed className={`h-4 w-4 text-[#f58220] ${locating ? 'animate-pulse' : ''}`} aria-hidden />
+          {locating ? locatingLabel || locateLabel : locateLabel}
         </button>
         <span className="pointer-events-none absolute bottom-1 right-2 rounded bg-white/80 px-1 text-[10px] text-[#5f6871]">© OpenStreetMap</span>
       </div>

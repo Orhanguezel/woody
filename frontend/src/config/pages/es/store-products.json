@@ -242,7 +242,7 @@
     "searchNoResults": "Sin resultados. Puedes escribir la dirección abajo.",
     "geoUnavailable": "La búsqueda no está disponible ahora; escribe la dirección.",
     "useMyLocation": "Usar mi ubicación",
-    "locationDenied": "Se denegó el permiso de ubicación.",
+    "locationDenied": "El acceso a la ubicación está desactivado. Permítelo para este sitio desde el candado de la barra de direcciones (en el móvil: Ajustes > Privacidad > Localización) o busca tu dirección.",
     "mapHint": "Arrastra o toca el mapa para situar el pin; los campos se actualizan.",
     "addressLine": "Dirección (barrio, calle, número de edificio y piso)",
     "defaultShipping": "Envío predeterminado",
@@ -255,6 +255,8 @@
     "errorAddressName": "El nombre completo es obligatorio.",
     "errorAddressLimit": "Puedes guardar hasta 20 direcciones.",
     "manageAddresses": "Gestionar mis direcciones",
-    "edit": "Editar"
+    "edit": "Editar",
+    "locationUnavailable": "No se pudo obtener tu ubicación ahora. Busca la dirección o mueve el pin en el mapa.",
+    "locating": "Obteniendo ubicación…"
   }
 }

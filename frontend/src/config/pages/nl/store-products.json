@@ -242,7 +242,7 @@
     "searchNoResults": "Geen resultaten. Je kunt het adres hieronder invullen.",
     "geoUnavailable": "Adres zoeken is nu niet beschikbaar; vul het adres in.",
     "useMyLocation": "Mijn locatie gebruiken",
-    "locationDenied": "Locatietoestemming geweigerd.",
+    "locationDenied": "Locatietoegang staat uit. Sta locatie toe voor deze site via het slotje in de adresbalk (op de telefoon: Instellingen > Privacy > Locatievoorzieningen) of zoek je adres.",
     "mapHint": "Sleep of tik op de kaart om de pin te plaatsen; de adresvelden worden bijgewerkt.",
     "addressLine": "Adres (wijk, straat, huis- en appartementnummer)",
     "defaultShipping": "Standaard bezorgadres",
@@ -255,6 +255,8 @@
     "errorAddressName": "Volledige naam is verplicht.",
     "errorAddressLimit": "Je kunt maximaal 20 adressen opslaan.",
     "manageAddresses": "Mijn adressen beheren",
-    "edit": "Bewerken"
+    "edit": "Bewerken",
+    "locationUnavailable": "Je locatie kon nu niet worden bepaald. Zoek het adres of verplaats de pin op de kaart.",
+    "locating": "Locatie ophalen…"
   }
 }

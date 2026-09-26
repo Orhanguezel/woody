@@ -243,7 +243,7 @@
     "searchNoResults": "No results. You can type the address below.",
     "geoUnavailable": "Address search is unavailable right now; you can type the address.",
     "useMyLocation": "Use my location",
-    "locationDenied": "Location permission was denied.",
+    "locationDenied": "Location access is off. Allow location for this site from the lock icon in the address bar (on phones: Settings > Privacy > Location Services), or search for your address.",
     "mapHint": "Drag or tap the map to place the pin exactly; the address fields update.",
     "addressLine": "Address (neighbourhood, street, building and flat no.)",
     "defaultShipping": "Default shipping",
@@ -256,6 +256,8 @@
     "errorAddressName": "Full name is required.",
     "errorAddressLimit": "You can save up to 20 addresses.",
     "manageAddresses": "Manage my addresses",
-    "edit": "Edit"
+    "edit": "Edit",
+    "locationUnavailable": "Your location could not be determined right now. Search for the address or move the pin on the map.",
+    "locating": "Getting location…"
   }
 }

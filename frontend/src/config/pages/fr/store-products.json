@@ -242,7 +242,7 @@
     "searchNoResults": "Aucun résultat. Vous pouvez saisir l’adresse ci-dessous.",
     "geoUnavailable": "La recherche d’adresse est indisponible ; saisissez l’adresse.",
     "useMyLocation": "Utiliser ma position",
-    "locationDenied": "L’accès à la position a été refusé.",
+    "locationDenied": "L’accès à la position est désactivé. Autorisez-le pour ce site via l’icône de cadenas de la barre d’adresse (sur mobile : Réglages > Confidentialité > Service de localisation) ou recherchez votre adresse.",
     "mapHint": "Faites glisser ou touchez la carte pour placer l’épingle ; les champs se mettent à jour.",
     "addressLine": "Adresse (quartier, rue, numéro de bâtiment et d’appartement)",
     "defaultShipping": "Livraison par défaut",
@@ -255,6 +255,8 @@
     "errorAddressName": "Le nom complet est obligatoire.",
     "errorAddressLimit": "Vous pouvez enregistrer jusqu’à 20 adresses.",
     "manageAddresses": "Gérer mes adresses",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "locationUnavailable": "Votre position n’a pas pu être déterminée. Recherchez l’adresse ou déplacez l’épingle sur la carte.",
+    "locating": "Localisation en cours…"
   }
 }

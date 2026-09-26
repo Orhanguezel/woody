@@ -56,7 +56,9 @@ const securityHeaders = [
   },
   {
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), payment=(self), fullscreen=(self)',
+    // geolocation=(self): adres formundaki "Konumumu kullan" için (2026-09-26). () iken
+    // tarayıcı izin sormadan reddediyordu; üçüncü taraf iframe'ler yine isteyemez.
+    value: 'camera=(), microphone=(), geolocation=(self), payment=(self), fullscreen=(self)',
   },
   {
     key: 'X-Content-Type-Options',

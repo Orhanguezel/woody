@@ -242,7 +242,7 @@
     "searchNoResults": "Keine Ergebnisse. Sie können die Adresse unten eingeben.",
     "geoUnavailable": "Die Adresssuche ist gerade nicht verfügbar; bitte Adresse eingeben.",
     "useMyLocation": "Meinen Standort verwenden",
-    "locationDenied": "Standortfreigabe wurde verweigert.",
+    "locationDenied": "Standortzugriff ist deaktiviert. Erlauben Sie den Standort für diese Website über das Schloss-Symbol in der Adressleiste (am Handy: Einstellungen > Datenschutz > Ortungsdienste) oder suchen Sie die Adresse.",
     "mapHint": "Karte ziehen oder antippen, um die Nadel genau zu setzen; die Adressfelder werden aktualisiert.",
     "addressLine": "Adresse (Viertel, Straße, Haus- und Wohnungsnr.)",
     "defaultShipping": "Standard-Lieferadresse",
@@ -255,6 +255,8 @@
     "errorAddressName": "Vollständiger Name ist erforderlich.",
     "errorAddressLimit": "Sie können bis zu 20 Adressen speichern.",
     "manageAddresses": "Meine Adressen verwalten",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "locationUnavailable": "Ihr Standort konnte gerade nicht ermittelt werden. Suchen Sie die Adresse oder verschieben Sie die Nadel auf der Karte.",
+    "locating": "Standort wird ermittelt…"
   }
 }

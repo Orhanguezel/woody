@@ -243,7 +243,7 @@
     "searchNoResults": "Sonuç bulunamadı. Adresi aşağıya elle yazabilirsiniz.",
     "geoUnavailable": "Adres araması şu an yapılamıyor; adresi elle yazabilirsiniz.",
     "useMyLocation": "Konumumu kullan",
-    "locationDenied": "Konum izni verilmedi.",
+    "locationDenied": "Konum izni kapalı. Tarayıcının adres çubuğundaki kilit simgesinden (telefonda Ayarlar > Gizlilik > Konum Servisleri) bu site için konuma izin verin ya da adresi arayarak seçin.",
     "mapHint": "Haritayı sürükleyerek veya tıklayarak iğneyi tam konuma getirin; adres alanları güncellenir.",
     "addressLine": "Adres (mahalle, cadde, sokak, bina ve daire no)",
     "defaultShipping": "Varsayılan teslimat",
@@ -256,6 +256,8 @@
     "errorAddressName": "Ad soyad zorunludur.",
     "errorAddressLimit": "En fazla 20 adres kaydedebilirsiniz.",
     "manageAddresses": "Adreslerimi yönet",
-    "edit": "Düzenle"
+    "edit": "Düzenle",
+    "locationUnavailable": "Konumunuz şu an alınamadı. Adresi arama kutusundan bulabilir veya haritada iğneyi taşıyabilirsiniz.",
+    "locating": "Konum alınıyor…"
   }
 }

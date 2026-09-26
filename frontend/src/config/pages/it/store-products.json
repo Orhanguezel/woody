@@ -242,7 +242,7 @@
     "searchNoResults": "Nessun risultato. Puoi scrivere l’indirizzo qui sotto.",
     "geoUnavailable": "La ricerca indirizzi non è disponibile; scrivi l’indirizzo.",
     "useMyLocation": "Usa la mia posizione",
-    "locationDenied": "Permesso di posizione negato.",
+    "locationDenied": "L’accesso alla posizione è disattivato. Consentilo per questo sito dal lucchetto nella barra degli indirizzi (sul telefono: Impostazioni > Privacy > Localizzazione) oppure cerca l’indirizzo.",
     "mapHint": "Trascina o tocca la mappa per posizionare il segnaposto; i campi si aggiornano.",
     "addressLine": "Indirizzo (quartiere, via, numero civico e interno)",
     "defaultShipping": "Spedizione predefinita",
@@ -255,6 +255,8 @@
     "errorAddressName": "Il nome completo è obbligatorio.",
     "errorAddressLimit": "Puoi salvare fino a 20 indirizzi.",
     "manageAddresses": "Gestisci i miei indirizzi",
-    "edit": "Modifica"
+    "edit": "Modifica",
+    "locationUnavailable": "Non è stato possibile rilevare la posizione. Cerca l’indirizzo o sposta il segnaposto sulla mappa.",
+    "locating": "Rilevamento posizione…"
   }
 }

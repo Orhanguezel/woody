@@ -172,6 +172,8 @@ export default function AddressForm({ ui, initial, addressId, showInvoice = true
           hint={ui.mapHint}
           locateLabel={ui.useMyLocation}
           locationDeniedLabel={ui.locationDenied}
+          locationUnavailableLabel={ui.locationUnavailable}
+          locatingLabel={ui.locating}
         />
       </div>
 
