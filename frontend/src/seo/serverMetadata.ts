@@ -182,8 +182,15 @@ export async function fetchSeoPageObject(
     activeLocales,
   });
 
+  // Yalnız istenen dile ait satır kullanılır. Backend başka dile düşerse (eskiden
+  // pt-br → tr) veya dil satırı yoksa {} döner; buildPageMetadata o zaman sayfanın
+  // kendi dilindeki içerik yedeğini kullanır. Türkçe meta başka dilde basılmaz.
+  const wanted = String(locale || '').trim().toLowerCase();
   for (const l of tryLocales) {
+    if (String(l).trim().toLowerCase() !== wanted) continue;
     const row = await fetchSetting('seo_pages', l, { revalidate: 600 });
+    const rowLocale = String((row as { locale?: unknown } | null)?.locale ?? '').trim().toLowerCase();
+    if (rowLocale && rowLocale !== wanted) continue;
     const pages = asObj(row?.value);
     const page = asObj(pages?.[key]);
     if (page) return page;

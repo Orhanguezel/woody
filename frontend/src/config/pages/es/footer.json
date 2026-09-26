@@ -1,5 +1,5 @@
 {
-  "brand": "{{appName}} y sus Amigos",
+  "brand": "{{appName}}",
   "description": "Un modelo de aprendizaje basado en el juego y sistemático para la educación de inglés en preescolar.",
   "columns": {
     "corporate": {
@@ -7,7 +7,7 @@
       "links": [
         {
           "label": "Precios y paquetes",
-          "href": "/fiyat"
+          "href": "/store"
         },
         {
           "label": "Solicitud de demostración gratuita",
@@ -38,5 +38,5 @@
     "label": "Empleos en {{appName}} Academy",
     "cta": "Solicitud de docente"
   },
-  "copyright": "© 2026 {{appName}} y sus Amigos. Todos los derechos reservados."
+  "copyright": "© 2026 {{appName}}. Todos los derechos reservados."
 }

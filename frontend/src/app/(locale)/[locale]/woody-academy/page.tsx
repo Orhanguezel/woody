@@ -3,8 +3,7 @@ import WoodyFallback from '@/components/woody/WoodyFallback';
 import WoodyAcademyPageClient from '@/components/woody/academy/WoodyAcademyPageClient';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
-import { injectAppName } from '@/lib/page-copy';
-import { getPublicAppName } from '@/lib/site-config';
+import { answerIntroFromContent } from '@/components/woody/answer-intro.server';
 
 const PAGE_KEY = 'woody-academy';
 const PATHNAME = '/woody-academy';
@@ -21,17 +20,7 @@ export default async function WoodyAcademyPage({ params }: Props) {
   const { locale } = await params;
   const content = await loadWoodyPageContent(PAGE_KEY, locale);
   if (!content) return <WoodyFallback pageKey={PAGE_KEY} />;
-  const raw = (content.raw ?? {}) as Record<string, unknown>;
-  const introText = injectAppName(String(raw.answerIntro ?? ''), getPublicAppName()).trim();
-  const answerIntro = introText
-    ? {
-        text: introText,
-        links: (Array.isArray(raw.answerIntroLinks) ? raw.answerIntroLinks : [])
-          .map((link) => link as { href?: unknown; label?: unknown })
-          .filter((link) => typeof link.href === 'string' && typeof link.label === 'string')
-          .map((link) => ({ href: `/${locale}${String(link.href)}`, label: String(link.label) })),
-      }
-    : null;
+  const answerIntro = answerIntroFromContent(content, locale);
   return (
     <>
       <JsonLd id="woody-academy" data={woodyPageGraph({ locale, pathname: PATHNAME, content, schemaType: 'EducationalOrganization' })} />

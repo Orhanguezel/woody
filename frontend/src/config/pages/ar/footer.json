@@ -1,11 +1,11 @@
 {
-  "brand": "{{appName}} وأصدقاؤه",
+  "brand": "{{appName}}",
   "description": "نموذج تعليمي قائم على اللعب ومنهجي لتعليم اللغة الإنجليزية في مرحلة ما قبل المدرسة.",
   "columns": {
     "corporate": {
       "title": "الشركة",
       "links": [
-        { "label": "الأسعار والباقات", "href": "/fiyat" },
+        { "label": "الأسعار والباقات", "href": "/store" },
         { "label": "طلب عرض توضيحي مجاني", "href": "/contact" },
         { "label": "الأسئلة الشائعة", "href": "/sss" },
         { "label": "دليل اللغة الإنجليزية لمرحلة ما قبل المدرسة", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },
@@ -23,5 +23,5 @@
     "label": "وظائف أكاديمية {{appName}}",
     "cta": "تقديم طلب للمعلمين"
   },
-  "copyright": "© 2026 {{appName}} وأصدقاؤه. جميع الحقوق محفوظة."
+  "copyright": "© 2026 {{appName}}. جميع الحقوق محفوظة."
 }

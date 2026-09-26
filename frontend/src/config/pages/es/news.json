@@ -6,14 +6,14 @@
       "id": 1,
       "order": 1,
       "title": "Acuerdo firmado en toda Alemania",
-      "description": "Se ha firmado con Don Bosco Medien, una red de distribución y comercialización de libros, un acuerdo que cubre los derechos de uso y venta de todo el contenido perteneciente a {{appName}} y sus Amigos en toda Alemania.",
+      "description": "Se ha firmado con Don Bosco Medien, una red de distribución y comercialización de libros, un acuerdo que cubre los derechos de uso y venta de todo el contenido perteneciente a {{appName}} en toda Alemania.",
       "image": "/media/woody/reference/q3w780z7_1.png"
     },
     {
       "id": 2,
       "order": 2,
       "title": "Acuerdo firmado en toda Rusia",
-      "description": "Se ha firmado con Prosveshcheniye Publishers un acuerdo que cubre los derechos de uso y venta de todo el contenido perteneciente a {{appName}} y sus Amigos en toda Rusia.",
+      "description": "Se ha firmado con Prosveshcheniye Publishers un acuerdo que cubre los derechos de uso y venta de todo el contenido perteneciente a {{appName}} en toda Rusia.",
       "image": "/media/woody/reference/796xqghe_2.png"
     },
     {

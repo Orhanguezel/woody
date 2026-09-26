@@ -1,5 +1,5 @@
 {
-  "brand": "{{appName}} en Vrienden",
+  "brand": "{{appName}}",
   "description": "Een op spel gebaseerd en systematisch leermodel voor Engels onderwijs op de kleuterschool.",
   "columns": {
     "corporate": {
@@ -7,7 +7,7 @@
       "links": [
         {
           "label": "Prijzen & Pakketten",
-          "href": "/fiyat"
+          "href": "/store"
         },
         {
           "label": "Gratis demo aanvragen",
@@ -38,5 +38,5 @@
     "label": "{{appName}} Academy Carrières",
     "cta": "Sollicitatie als leerkracht"
   },
-  "copyright": "© 2026 {{appName}} en Vrienden. Alle rechten voorbehouden."
+  "copyright": "© 2026 {{appName}}. Alle rechten voorbehouden."
 }

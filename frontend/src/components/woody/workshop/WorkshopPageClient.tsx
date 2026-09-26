@@ -10,6 +10,7 @@ import { tUi } from '@/i18n/staticUi';
 
 import type { WoodyCard, WoodyPageContent } from '../content-loader.server';
 import { LEVEL_MEDIA, LEVEL_UNDERLINE, type LevelMedia } from '../sets/level-media';
+import AnswerIntro from '@/components/woody/AnswerIntro';
 
 type WorkshopPageUi = {
   teacherSet?: string;
@@ -54,9 +55,12 @@ function setIntro(description?: string) {
 export default function WorkshopPageClient({
   content,
   locale,
+  answerIntro,
 }: {
   content: WoodyPageContent;
   locale: string;
+  /** Doğrudan cevap girişi; sunucuda {{appName}} çözülmüş halde gelir. */
+  answerIntro?: { text: string; links: Array<{ href: string; label: string }> } | null;
 }) {
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [showVideo, setShowVideo] = useState(false);
@@ -119,6 +123,7 @@ export default function WorkshopPageClient({
           </h2>
         </div>
       </section>
+      <AnswerIntro text={answerIntro?.text} links={answerIntro?.links} className="mx-auto max-w-[900px] px-6 pt-8 text-center" />
 
       <section className="bg-white py-6">
         <div className="mx-auto max-w-[1000px] px-6 text-center">

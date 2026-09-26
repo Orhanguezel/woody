@@ -5,7 +5,7 @@
     "corporate": {
       "title": "Corporate",
       "links": [
-        { "label": "Pricing & Packages", "href": "/fiyat" },
+        { "label": "Pricing & Packages", "href": "/store" },
         { "label": "Free Demo Request", "href": "/contact" },
         { "label": "Frequently Asked Questions", "href": "/sss" },
         { "label": "Preschool English Guide", "href": "/anaokulu-ingilizce-egitimi-kapsamli-rehber" },

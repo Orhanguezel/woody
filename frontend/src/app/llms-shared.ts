@@ -112,7 +112,8 @@ export async function buildLlmsText({ full }: { full: boolean }) {
   return [
     `# ${app}`,
     '',
-    `${app} okul oncesi Ingilizce, hikaye temelli egitim setleri, Mini School (atolye) programlari, ev ve ozel ders cozumleri, Woody Academy ve dijital icerik alanlari sunan cocuk odakli egitim markasidir.`,
+    // llms.txt standardı: H1'in hemen altında blockquote özet.
+    `> ${app} okul oncesi Ingilizce, hikaye temelli egitim setleri, Mini School (atolye) programlari, ev ve ozel ders cozumleri, Woody Academy ve dijital icerik alanlari sunan cocuk odakli egitim markasidir.`,
     '',
     '## Site yapisi',
     ...keyPages.map((page) => `- [${page.label}](${origin}${localizedWoodyPath('tr', page.path)})`),

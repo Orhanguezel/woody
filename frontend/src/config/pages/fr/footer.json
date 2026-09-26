@@ -1,5 +1,5 @@
 {
-  "brand": "{{appName}} et ses Amis",
+  "brand": "{{appName}}",
   "description": "Un modèle d'apprentissage basé sur le jeu et systématique pour l'enseignement de l'anglais au préscolaire.",
   "columns": {
     "corporate": {
@@ -7,7 +7,7 @@
       "links": [
         {
           "label": "Tarifs et forfaits",
-          "href": "/fiyat"
+          "href": "/store"
         },
         {
           "label": "Demande de démo gratuite",
@@ -38,5 +38,5 @@
     "label": "Carrières {{appName}} Academy",
     "cta": "Candidature enseignant"
   },
-  "copyright": "© 2026 {{appName}} et ses Amis. Tous droits réservés."
+  "copyright": "© 2026 {{appName}}. Tous droits réservés."
 }

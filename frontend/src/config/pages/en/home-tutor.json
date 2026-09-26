@@ -95,5 +95,16 @@
         "poster": "/media/woody/revize-2026-08/home-tutor-senior-poster.jpg"
       }
     ]
-  }
+  },
+  "answerIntro": "What is the Home & Private Tutoring series? A preschool English series designed for individual use by one or two children, at home with a parent or with a private tutor. Its content and games are adapted to one-to-one learning, and it progresses through Basic, Junior, Senior and PRO levels. Choose the right level with the level finder and order the sets online.",
+  "answerIntroLinks": [
+    {
+      "href": "/level-finder",
+      "label": "Level finder"
+    },
+    {
+      "href": "/store",
+      "label": "Store"
+    }
+  ]
 }

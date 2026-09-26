@@ -1,5 +1,5 @@
 {
-  "brand": "{{appName}} e Amigos",
+  "brand": "{{appName}}",
   "description": "Um modelo de aprendizagem baseado em brincadeiras e sistemático para o ensino de inglês na pré-escola.",
   "columns": {
     "corporate": {
@@ -7,7 +7,7 @@
       "links": [
         {
           "label": "Preços e pacotes",
-          "href": "/fiyat"
+          "href": "/store"
         },
         {
           "label": "Solicitação de demonstração gratuita",
@@ -38,5 +38,5 @@
     "label": "Carreiras na {{appName}} Academy",
     "cta": "Candidatura de professor"
   },
-  "copyright": "© 2026 {{appName}} e Amigos. Todos os direitos reservados."
+  "copyright": "© 2026 {{appName}}. Todos os direitos reservados."
 }

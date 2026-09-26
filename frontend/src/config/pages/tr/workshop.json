@@ -9,7 +9,7 @@
     "primaryCTA": "Demo Talep Et",
     "primaryHref": "/contact",
     "secondaryCTA": "Fiyatları İncele",
-    "secondaryHref": "/fiyat"
+    "secondaryHref": "/store"
   },
   "sections": [
     {
@@ -73,5 +73,16 @@
   "media": {
     "contentVideo": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
     "contentVideoPoster": "/media/woody/revize-2026-08/mini-school-tanitim-poster.jpg"
-  }
+  },
+  "answerIntro": "Mini School serisi nedir? Atölye ve kurs merkezleri için hazırlanmış, öğretmen seti ve öğrenci seti olmak üzere iki ayrı setten oluşan okul öncesi İngilizce serisidir. Basic, Junior, Senior ve PRO olmak üzere dört seviyede ilerler; her seviyede kitap, oyun ve video anlatımları aynı kazanıma bağlanır. Setler {{appName}} mağazasından online sipariş edilebilir.",
+  "answerIntroLinks": [
+    {
+      "href": "/store",
+      "label": "Mağaza"
+    },
+    {
+      "href": "/level-finder",
+      "label": "Seviye bulucu"
+    }
+  ]
 }

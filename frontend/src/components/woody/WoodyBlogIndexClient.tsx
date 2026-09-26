@@ -120,6 +120,7 @@ export default function WoodyBlogIndexClient({
               <Image
                 src="/assets/woody/blog/blog-guide.svg"
                 alt=""
+                aria-hidden
                 fill
                 sizes="(max-width: 768px) 100vw, 520px"
                 className="object-cover"

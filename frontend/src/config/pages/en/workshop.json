@@ -9,7 +9,7 @@
     "primaryCTA": "Request a Demo",
     "primaryHref": "/contact",
     "secondaryCTA": "View Pricing",
-    "secondaryHref": "/fiyat"
+    "secondaryHref": "/store"
   },
   "sections": [
     {
@@ -73,5 +73,16 @@
   "media": {
     "contentVideo": "/media/woody/revize-2026-08/mini-school-tanitim.mp4",
     "contentVideoPoster": "/media/woody/revize-2026-08/mini-school-tanitim-poster.jpg"
-  }
+  },
+  "answerIntro": "What is the Mini School series? A preschool English series for workshops and course centres made of two separate sets: a teacher set and a student set. It progresses through four levels, Basic, Junior, Senior and PRO, and at each level books, games and video explanations serve the same learning goal. Sets can be ordered online from the {{appName}} store.",
+  "answerIntroLinks": [
+    {
+      "href": "/store",
+      "label": "Store"
+    },
+    {
+      "href": "/level-finder",
+      "label": "Level finder"
+    }
+  ]
 }

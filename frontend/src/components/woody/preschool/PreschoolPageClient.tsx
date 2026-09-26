@@ -219,7 +219,7 @@ export default function PreschoolPageClient({
       <section className="bg-white py-16 md:py-20">
         <Link href={`/${locale}/digital-content`} className={`group block w-full no-underline ${FOCUS_RING}`}>
           <div className="relative h-[400px] w-full overflow-hidden md:h-[500px] lg:h-[600px]">
-            <Image src={DIGITAL_BANNER_IMAGE} alt="" fill sizes="100vw" className="object-cover" />
+            <Image src={DIGITAL_BANNER_IMAGE} alt="" aria-hidden fill sizes="100vw" className="object-cover" />
             <div className="absolute left-8 top-8 max-w-[380px] md:left-12 md:top-12 md:max-w-[420px] lg:left-16 lg:top-16">
               <div className="rounded-xl bg-white/90 px-6 py-5 backdrop-blur-sm md:px-7 md:py-6">
                 <h2 className="text-[22px] font-semibold leading-tight text-gray-900 md:text-[28px]">

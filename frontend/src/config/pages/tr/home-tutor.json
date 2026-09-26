@@ -95,5 +95,16 @@
         "poster": "/media/woody/revize-2026-08/home-tutor-senior-poster.jpg"
       }
     ]
-  }
+  },
+  "answerIntro": "Ev & Özel Ders serisi nedir? Evde veli desteğiyle ya da özel ders öğretmeniyle 1–2 kişilik bireysel kullanım için tasarlanmış okul öncesi İngilizce serisidir. İçerik ve oyunlar birebir öğrenmeye uyarlanmıştır; seri Basic, Junior, Senior ve PRO seviyelerinde ilerler. Çocuğa uygun seviyeyi seviye bulucuyla seçip setleri online sipariş edebilirsiniz.",
+  "answerIntroLinks": [
+    {
+      "href": "/level-finder",
+      "label": "Seviye bulucu"
+    },
+    {
+      "href": "/store",
+      "label": "Mağaza"
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "brand": "{{appName}} e Amici",
+  "brand": "{{appName}}",
   "description": "Un modello di apprendimento sistematico e basato sul gioco per l'educazione inglese in età prescolare.",
   "columns": {
     "corporate": {
@@ -7,7 +7,7 @@
       "links": [
         {
           "label": "Prezzi e pacchetti",
-          "href": "/fiyat"
+          "href": "/store"
         },
         {
           "label": "Richiesta demo gratuita",
@@ -38,5 +38,5 @@
     "label": "Carriere {{appName}} Academy",
     "cta": "Candidatura insegnanti"
   },
-  "copyright": "© 2026 {{appName}} e Amici. Tutti i diritti riservati."
+  "copyright": "© 2026 {{appName}}. Tutti i diritti riservati."
 }

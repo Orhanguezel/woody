@@ -1,0 +1,718 @@
+{
+  "tr": {
+    "home": [
+      "Woody and Friends | Okul Öncesi İngilizce",
+      "3-6 yaş için oyun, hikâye ve şarkıyla okul öncesi İngilizce eğitim setleri; anaokulu, atölye ve evde kullanım için seviyeli sistem."
+    ],
+    "preschool": [
+      "Anaokulu İngilizce Eğitim Sistemi | Woody and Friends",
+      "Anaokulları için İngilizce eğitim sistemi: öğretmen seti, öğrenci seti, haftalık plan ve dijital tekrar içerikleri. Kuruma özel teklif alın."
+    ],
+    "workshop": [
+      "Mini School – Atölye İngilizce Seti | Woody and Friends",
+      "Mini School serisi: atölye ve kurs merkezleri için Basic, Junior ve Senior seviyede İngilizce setleri. Öğretmen ve öğrenci setleri online satışta."
+    ],
+    "home-tutor": [
+      "Ev ve Özel Ders İngilizce Seti | Woody and Friends",
+      "Ev ve özel ders için okul öncesi İngilizce setleri: veliler ve özel ders öğretmenleri için seviyeli kitap, kart ve dijital içerik."
+    ],
+    "woody-academy": [
+      "Woody Academy | Cambridge Sınav Hazırlığı ve TKT",
+      "Serileri tamamlayan öğrencilere online birebir derslerle Cambridge English sınav hazırlığı; öğretmenlere TKT odaklı gelişim programı."
+    ],
+    "level-finder": [
+      "Seviye Bulucu | Woody and Friends",
+      "Çocuğunuz için doğru İngilizce seviyesini bulun: yaş ve deneyime göre Basic, Junior veya Senior seviye öneren kısa seviye bulucu."
+    ],
+    "library": [
+      "Dijital Kütüphane | Woody and Friends",
+      "Okul öncesi İngilizce hikâyeleri, şarkıları ve videoları: sınıfta ve evde tekrar için Woody and Friends dijital kütüphanesi."
+    ],
+    "store": [
+      "Mağaza | Yaşa Uygun İngilizce Setleri | Woody and Friends",
+      "Mini School ve Ev & Özel Ders serilerinin öğretmen ve öğrenci setleri online satışta. Anaokulları için Okul serisinde kuruma özel teklif alın."
+    ],
+    "digital-content": [
+      "Dijital İçerik | Woody and Friends",
+      "Okul hesabıyla açılan StoryLand hikâyeleri ve MusicLand şarkılarıyla okul öncesi İngilizceyi sınıf dışında da sürdürün."
+    ],
+    "blog": [
+      "Okul Öncesi İngilizce Rehberleri | Woody and Friends",
+      "Anaokulu İngilizce konuları, müfredat, ders planı, yaşa göre program ve set seçimi üzerine öğretmen, kurum ve veli rehberleri."
+    ],
+    "about": [
+      "Hakkımızda: Kurucu, Yöntem ve Seriler | Woody and Friends",
+      "Woody and Friends'in okul öncesi İngilizce modeli, kurucusu, serileri ve içeriklerin nasıl hazırlandığını anlatan editoryal politika."
+    ],
+    "contact": [
+      "İletişim | Woody and Friends",
+      "Set seçimi, online sipariş ve kurum teklifi için telefon, WhatsApp ve e-posta; Mersin'deki açık adres ve satıcı bilgileri."
+    ],
+    "faqs": [
+      "Sık Sorulan Sorular | Woody and Friends",
+      "Okul öncesi İngilizce eğitim setleri hakkında sık sorulan sorular: yaşa uygunluk, öğretmen desteği, kurum kullanımı ve set seçimi."
+    ],
+    "kvkk": [
+      "KVKK Aydınlatma Metni | Woody and Friends",
+      "Kişisel verilerin hangi amaçla işlendiği, ne kadar saklandığı ve KVKK kapsamındaki haklarınızı nasıl kullanabileceğiniz."
+    ],
+    "privacy-policy": [
+      "Gizlilik Politikası | Woody and Friends",
+      "Sitede toplanan veriler, kullanım amaçları, üçüncü taraf hizmetler ve veri güvenliği hakkında Woody and Friends gizlilik politikası."
+    ],
+    "cookie-policy": [
+      "Çerez Politikası | Woody and Friends",
+      "Sitede kullanılan zorunlu, analitik ve pazarlama çerezleri ile çerez tercihlerinizi nasıl yönetebileceğinizi anlatan çerez politikası."
+    ],
+    "terms": [
+      "Kullanım Koşulları | Woody and Friends",
+      "Siteyi, dijital içerikleri ve online mağazayı kullanırken geçerli kurallar, haklar ve sorumluluklar: Woody and Friends kullanım koşulları."
+    ],
+    "local-istanbul": [
+      "İstanbul Anaokulu İngilizce Eğitimi | Woody and Friends",
+      "İstanbul'daki anaokulları için İngilizce eğitim sistemi: yaşa göre seviyeli set, öğretmen planı ve dijital içerikle kuruma özel teklif."
+    ],
+    "local-ankara": [
+      "Ankara Anaokulu İngilizce Eğitimi | Woody and Friends",
+      "Ankara'daki anaokulları için İngilizce eğitim sistemi: yaşa göre seviyeli set, öğretmen planı ve dijital içerikle kuruma özel teklif."
+    ],
+    "local-izmir": [
+      "İzmir Anaokulu İngilizce Eğitimi | Woody and Friends",
+      "İzmir'deki anaokulları için İngilizce eğitim sistemi: yaşa göre seviyeli set, öğretmen planı ve dijital içerikle kuruma özel teklif."
+    ],
+    "local-bursa": [
+      "Bursa Anaokulu İngilizce Eğitimi | Woody and Friends",
+      "Bursa'daki anaokulları için İngilizce eğitim sistemi: yaşa göre seviyeli set, öğretmen planı ve dijital içerikle kuruma özel teklif."
+    ]
+  },
+  "en": {
+    "home": [
+      "Woody and Friends | Preschool English",
+      "Preschool English learning sets for ages 3-6 built on play, stories and songs; a levelled system for kindergartens, workshops and home use."
+    ],
+    "preschool": [
+      "Kindergarten English Learning System | Woody and Friends",
+      "An English learning system for kindergartens: teacher set, student set, weekly plans and digital review content. Request a quote for your school."
+    ],
+    "workshop": [
+      "Mini School – Workshop English Set | Woody and Friends",
+      "Mini School series: Basic, Junior and Senior English sets for workshops and course centres. Teacher and student sets are sold online."
+    ],
+    "home-tutor": [
+      "Home & Private Tutoring English Set | Woody and Friends",
+      "Preschool English sets for home and private lessons: levelled books, cards and digital content for parents and private tutors."
+    ],
+    "woody-academy": [
+      "Woody Academy | Cambridge Exam Prep and TKT",
+      "Online one-to-one lessons that prepare students who finish the series for Cambridge English exams, plus a TKT-focused programme for teachers."
+    ],
+    "level-finder": [
+      "Level Finder | Woody and Friends",
+      "Find the right English level for your child: a short level finder that suggests Basic, Junior or Senior based on age and experience."
+    ],
+    "library": [
+      "Digital Library | Woody and Friends",
+      "Preschool English stories, songs and videos: the Woody and Friends digital library for review in the classroom and at home."
+    ],
+    "store": [
+      "Store | Age-Appropriate English Sets | Woody and Friends",
+      "Teacher and student sets of the Mini School and Home & Private Tutoring series are sold online. Kindergartens can request a School series quote."
+    ],
+    "digital-content": [
+      "Digital Content | Woody and Friends",
+      "Continue preschool English beyond the classroom with StoryLand stories and MusicLand songs, unlocked through a school account."
+    ],
+    "blog": [
+      "Preschool English Guides | Woody and Friends",
+      "Guides for teachers, schools and parents on kindergarten English topics, curriculum, lesson plans, age-based programmes and choosing a set."
+    ],
+    "about": [
+      "About: Founder, Method and Series | Woody and Friends",
+      "The Woody and Friends preschool English model, its founder, the series and the editorial policy explaining how the content is prepared."
+    ],
+    "contact": [
+      "Contact | Woody and Friends",
+      "Phone, WhatsApp and email for set selection, online orders and institutional quotes, plus the full address and seller details in Mersin."
+    ],
+    "faqs": [
+      "Frequently Asked Questions | Woody and Friends",
+      "Answers to common questions about preschool English learning sets: age suitability, teacher support, use in schools and choosing a set."
+    ],
+    "kvkk": [
+      "Privacy Notice (KVKK) | Woody and Friends",
+      "Why personal data is processed, how long it is kept and how you can exercise your rights under Turkish data protection law (KVKK)."
+    ],
+    "privacy-policy": [
+      "Privacy Policy | Woody and Friends",
+      "The Woody and Friends privacy policy: data collected on the site, purposes of use, third-party services and how the data is protected."
+    ],
+    "cookie-policy": [
+      "Cookie Policy | Woody and Friends",
+      "The essential, analytics and marketing cookies used on the site and how you can manage your cookie preferences at any time."
+    ],
+    "terms": [
+      "Terms of Use | Woody and Friends",
+      "Rules, rights and responsibilities that apply when you use the Woody and Friends website, digital content and online store."
+    ]
+  },
+  "de": {
+    "home": [
+      "Woody and Friends | Englisch im Vorschulalter",
+      "Englisch-Lernsets für 3- bis 6-Jährige mit Spiel, Geschichten und Liedern; ein Stufensystem für Kitas, Kurse und das Lernen zu Hause."
+    ],
+    "preschool": [
+      "Englisch-Lernsystem für Kitas | Woody and Friends",
+      "Englisch-Lernsystem für Kindergärten: Lehrerset, Schülerset, Wochenpläne und digitale Wiederholung. Fordern Sie ein Angebot an."
+    ],
+    "workshop": [
+      "Mini School – Englisch-Set für Kurse | Woody and Friends",
+      "Mini-School-Reihe: Englisch-Sets in den Stufen Basic, Junior und Senior für Workshops und Kurszentren, online erhältlich."
+    ],
+    "home-tutor": [
+      "Englisch-Set für Zuhause & Nachhilfe | Woody and Friends",
+      "Englisch-Sets für Vorschulkinder zu Hause und im Privatunterricht: gestufte Bücher, Karten und digitale Inhalte für Eltern und Lehrkräfte."
+    ],
+    "woody-academy": [
+      "Woody Academy | Cambridge-Vorbereitung und TKT",
+      "Online-Einzelunterricht zur Vorbereitung auf Cambridge-English-Prüfungen nach den Reihen, dazu ein TKT-Programm für Lehrkräfte."
+    ],
+    "level-finder": [
+      "Stufenfinder | Woody and Friends",
+      "Finden Sie die passende Englischstufe für Ihr Kind: Der Stufenfinder empfiehlt Basic, Junior oder Senior nach Alter und Erfahrung."
+    ],
+    "library": [
+      "Digitale Bibliothek | Woody and Friends",
+      "Englische Geschichten, Lieder und Videos für Vorschulkinder: die digitale Bibliothek zum Wiederholen im Unterricht und zu Hause."
+    ],
+    "store": [
+      "Shop | Altersgerechte Englisch-Sets | Woody and Friends",
+      "Lehrer- und Schülersets der Reihen Mini School sowie Zuhause & Nachhilfe online kaufen. Kindergärten erhalten ein Angebot für die Schulreihe."
+    ],
+    "digital-content": [
+      "Digitale Inhalte | Woody and Friends",
+      "Englisch auch außerhalb der Kita: StoryLand-Geschichten und MusicLand-Lieder, freigeschaltet über ein Schulkonto."
+    ],
+    "blog": [
+      "Ratgeber Englisch im Vorschulalter | Woody and Friends",
+      "Ratgeber für Lehrkräfte, Kitas und Eltern zu Englisch-Themen, Lehrplan, Unterrichtsplanung, Programmen nach Alter und der Wahl eines Sets."
+    ],
+    "about": [
+      "Über uns: Gründung, Methode, Reihen | Woody and Friends",
+      "Das Vorschul-Englischmodell von Woody and Friends, die Gründung, die Reihen und die redaktionellen Richtlinien zur Erstellung der Inhalte."
+    ],
+    "contact": [
+      "Kontakt | Woody and Friends",
+      "Telefon, WhatsApp und E-Mail für Setauswahl, Online-Bestellungen und Angebote für Einrichtungen, dazu Adresse und Verkäuferangaben."
+    ],
+    "faqs": [
+      "Häufige Fragen | Woody and Friends",
+      "Antworten auf häufige Fragen zu Englisch-Lernsets für Vorschulkinder: Alterseignung, Unterstützung für Lehrkräfte und Wahl des Sets."
+    ],
+    "kvkk": [
+      "Datenschutzhinweis (KVKK) | Woody and Friends",
+      "Wofür personenbezogene Daten verarbeitet werden, wie lange sie gespeichert werden und welche Rechte Sie nach dem türkischen KVKK haben."
+    ],
+    "privacy-policy": [
+      "Datenschutzerklärung | Woody and Friends",
+      "Welche Daten auf der Website erhoben werden, zu welchem Zweck, welche Drittanbieter beteiligt sind und wie die Daten geschützt werden."
+    ],
+    "cookie-policy": [
+      "Cookie-Richtlinie | Woody and Friends",
+      "Welche notwendigen, Analyse- und Marketing-Cookies die Website verwendet und wie Sie Ihre Cookie-Einstellungen jederzeit verwalten."
+    ],
+    "terms": [
+      "Nutzungsbedingungen | Woody and Friends",
+      "Regeln, Rechte und Pflichten bei der Nutzung der Website, der digitalen Inhalte und des Online-Shops von Woody and Friends."
+    ]
+  },
+  "fr": {
+    "home": [
+      "Woody and Friends | Anglais en maternelle",
+      "Kits d'anglais pour les 3-6 ans fondés sur le jeu, les histoires et les chansons ; un système par niveaux pour écoles, ateliers et maison."
+    ],
+    "preschool": [
+      "Système d'anglais pour la maternelle | Woody and Friends",
+      "Système d'anglais pour écoles maternelles : kit enseignant, kit élève, plans hebdomadaires et contenus numériques. Demandez un devis."
+    ],
+    "workshop": [
+      "Mini School – Kit d'anglais pour ateliers | Woody and Friends",
+      "Série Mini School : kits d'anglais Basic, Junior et Senior pour ateliers et centres de cours. Kits enseignant et élève vendus en ligne."
+    ],
+    "home-tutor": [
+      "Kit d'anglais maison et cours particuliers | Woody and Friends",
+      "Kits d'anglais préscolaire pour la maison et les cours particuliers : livres, cartes et contenus numériques par niveau pour parents et tuteurs."
+    ],
+    "woody-academy": [
+      "Woody Academy | Préparation Cambridge et TKT",
+      "Cours particuliers en ligne préparant aux examens Cambridge English après les séries, et programme de développement TKT pour enseignants."
+    ],
+    "level-finder": [
+      "Trouver le niveau | Woody and Friends",
+      "Trouvez le bon niveau d'anglais pour votre enfant : un court outil qui propose Basic, Junior ou Senior selon l'âge et l'expérience."
+    ],
+    "library": [
+      "Bibliothèque numérique | Woody and Friends",
+      "Histoires, chansons et vidéos en anglais pour la maternelle : la bibliothèque numérique pour réviser en classe et à la maison."
+    ],
+    "store": [
+      "Boutique | Kits d'anglais par âge | Woody and Friends",
+      "Kits enseignant et élève des séries Mini School et Maison & cours particuliers vendus en ligne. Les écoles demandent un devis pour la série École."
+    ],
+    "digital-content": [
+      "Contenus numériques | Woody and Friends",
+      "Prolongez l'anglais hors de la classe avec les histoires StoryLand et les chansons MusicLand, accessibles via un compte école."
+    ],
+    "blog": [
+      "Guides d'anglais en maternelle | Woody and Friends",
+      "Guides pour enseignants, écoles et parents : thèmes d'anglais en maternelle, programme, plans de cours, parcours par âge et choix d'un kit."
+    ],
+    "about": [
+      "À propos : fondation, méthode, séries | Woody and Friends",
+      "Le modèle d'anglais préscolaire Woody and Friends, sa fondation, ses séries et la politique éditoriale qui explique la préparation des contenus."
+    ],
+    "contact": [
+      "Contact | Woody and Friends",
+      "Téléphone, WhatsApp et e-mail pour choisir un kit, commander en ligne ou demander un devis, avec l'adresse complète et les infos vendeur."
+    ],
+    "faqs": [
+      "Questions fréquentes | Woody and Friends",
+      "Réponses aux questions fréquentes sur les kits d'anglais préscolaire : âge adapté, soutien aux enseignants, usage en école et choix du kit."
+    ],
+    "kvkk": [
+      "Avis de confidentialité (KVKK) | Woody and Friends",
+      "Pourquoi les données personnelles sont traitées, combien de temps elles sont conservées et vos droits selon la loi turque KVKK."
+    ],
+    "privacy-policy": [
+      "Politique de confidentialité | Woody and Friends",
+      "Données collectées sur le site, finalités, services tiers utilisés et mesures de protection : la politique de confidentialité de Woody and Friends."
+    ],
+    "cookie-policy": [
+      "Politique relative aux cookies | Woody and Friends",
+      "Les cookies essentiels, d'analyse et marketing utilisés sur le site, et comment gérer vos préférences de cookies à tout moment."
+    ],
+    "terms": [
+      "Conditions d'utilisation | Woody and Friends",
+      "Règles, droits et responsabilités applicables à l'utilisation du site, des contenus numériques et de la boutique en ligne Woody and Friends."
+    ]
+  },
+  "es": {
+    "home": [
+      "Woody and Friends | Inglés en preescolar",
+      "Sets de inglés para niños de 3 a 6 años basados en juegos, cuentos y canciones; un sistema por niveles para escuelas, talleres y casa."
+    ],
+    "preschool": [
+      "Sistema de inglés para preescolar | Woody and Friends",
+      "Sistema de inglés para escuelas infantiles: set docente, set del alumno, planes semanales y repaso digital. Solicite un presupuesto."
+    ],
+    "workshop": [
+      "Mini School – Set de inglés para talleres | Woody and Friends",
+      "Serie Mini School: sets de inglés Basic, Junior y Senior para talleres y centros de cursos. Sets de docente y alumno a la venta en línea."
+    ],
+    "home-tutor": [
+      "Set de inglés para casa y clases particulares | Woody and Friends",
+      "Sets de inglés preescolar para casa y clases particulares: libros, tarjetas y contenido digital por niveles para familias y tutores."
+    ],
+    "woody-academy": [
+      "Woody Academy | Preparación Cambridge y TKT",
+      "Clases individuales en línea que preparan para los exámenes Cambridge English tras las series, y un programa TKT para docentes."
+    ],
+    "level-finder": [
+      "Buscador de nivel | Woody and Friends",
+      "Encuentre el nivel de inglés adecuado para su hijo: un breve buscador que sugiere Basic, Junior o Senior según edad y experiencia."
+    ],
+    "library": [
+      "Biblioteca digital | Woody and Friends",
+      "Cuentos, canciones y vídeos en inglés para preescolar: la biblioteca digital para repasar en el aula y en casa."
+    ],
+    "store": [
+      "Tienda | Sets de inglés por edad | Woody and Friends",
+      "Sets de docente y alumno de las series Mini School y Casa & clases particulares a la venta en línea. Las escuelas piden presupuesto."
+    ],
+    "digital-content": [
+      "Contenido digital | Woody and Friends",
+      "Continúe el inglés fuera del aula con los cuentos de StoryLand y las canciones de MusicLand, disponibles con una cuenta escolar."
+    ],
+    "blog": [
+      "Guías de inglés en preescolar | Woody and Friends",
+      "Guías para docentes, escuelas y familias sobre temas de inglés infantil, currículo, planes de clase, programas por edad y elección de un set."
+    ],
+    "about": [
+      "Sobre nosotros: fundación, método y series | Woody and Friends",
+      "El modelo de inglés preescolar de Woody and Friends, su fundación, las series y la política editorial que explica cómo se preparan los contenidos."
+    ],
+    "contact": [
+      "Contacto | Woody and Friends",
+      "Teléfono, WhatsApp y correo para elegir un set, hacer pedidos en línea o pedir presupuesto, con la dirección completa y datos del vendedor."
+    ],
+    "faqs": [
+      "Preguntas frecuentes | Woody and Friends",
+      "Respuestas a preguntas frecuentes sobre los sets de inglés preescolar: edad adecuada, apoyo docente, uso en escuelas y elección del set."
+    ],
+    "kvkk": [
+      "Aviso de privacidad (KVKK) | Woody and Friends",
+      "Por qué se tratan los datos personales, cuánto tiempo se conservan y cómo ejercer sus derechos según la ley turca de protección de datos."
+    ],
+    "privacy-policy": [
+      "Política de privacidad | Woody and Friends",
+      "Datos recogidos en el sitio, finalidades, servicios de terceros y medidas de protección: la política de privacidad de Woody and Friends."
+    ],
+    "cookie-policy": [
+      "Política de cookies | Woody and Friends",
+      "Las cookies esenciales, analíticas y de marketing que usa el sitio y cómo gestionar sus preferencias de cookies en cualquier momento."
+    ],
+    "terms": [
+      "Condiciones de uso | Woody and Friends",
+      "Normas, derechos y responsabilidades al usar el sitio web, el contenido digital y la tienda en línea de Woody and Friends."
+    ]
+  },
+  "it": {
+    "home": [
+      "Woody and Friends | Inglese per la scuola dell'infanzia",
+      "Set di inglese per bambini dai 3 ai 6 anni basati su gioco, storie e canzoni; un sistema a livelli per scuole, laboratori e casa."
+    ],
+    "preschool": [
+      "Inglese per la scuola dell'infanzia | Woody and Friends",
+      "Sistema di inglese per scuole dell'infanzia: set insegnante, set alunno, piani settimanali e ripasso digitale. Richiedi un preventivo."
+    ],
+    "workshop": [
+      "Mini School – Set di inglese per laboratori | Woody and Friends",
+      "Serie Mini School: set di inglese Basic, Junior e Senior per laboratori e centri corsi. Set insegnante e alunno in vendita online."
+    ],
+    "home-tutor": [
+      "Set di inglese per casa e lezioni private | Woody and Friends",
+      "Set di inglese per l'infanzia a casa e nelle lezioni private: libri, carte e contenuti digitali a livelli per genitori e tutor."
+    ],
+    "woody-academy": [
+      "Woody Academy | Preparazione Cambridge e TKT",
+      "Lezioni individuali online che preparano agli esami Cambridge English dopo le serie, e un programma di sviluppo TKT per insegnanti."
+    ],
+    "level-finder": [
+      "Trova il livello | Woody and Friends",
+      "Trova il livello di inglese giusto per tuo figlio: un breve strumento che suggerisce Basic, Junior o Senior in base a età ed esperienza."
+    ],
+    "library": [
+      "Biblioteca digitale | Woody and Friends",
+      "Storie, canzoni e video in inglese per l'infanzia: la biblioteca digitale per ripassare in classe e a casa."
+    ],
+    "store": [
+      "Negozio | Set di inglese per età | Woody and Friends",
+      "Set insegnante e alunno delle serie Mini School e Casa & lezioni private in vendita online. Le scuole richiedono un preventivo."
+    ],
+    "digital-content": [
+      "Contenuti digitali | Woody and Friends",
+      "Continua l'inglese fuori dalla classe con le storie StoryLand e le canzoni MusicLand, disponibili con un account scolastico."
+    ],
+    "blog": [
+      "Guide all'inglese per l'infanzia | Woody and Friends",
+      "Guide per insegnanti, scuole e genitori su argomenti di inglese, curricolo, piani di lezione, programmi per età e scelta di un set."
+    ],
+    "about": [
+      "Chi siamo: fondazione, metodo e serie | Woody and Friends",
+      "Il modello di inglese per l'infanzia di Woody and Friends, la fondazione, le serie e la politica editoriale su come vengono preparati i contenuti."
+    ],
+    "contact": [
+      "Contatti | Woody and Friends",
+      "Telefono, WhatsApp ed e-mail per scegliere un set, ordinare online o chiedere un preventivo, con indirizzo completo e dati del venditore."
+    ],
+    "faqs": [
+      "Domande frequenti | Woody and Friends",
+      "Risposte alle domande frequenti sui set di inglese per l'infanzia: età adatta, supporto agli insegnanti, uso a scuola e scelta del set."
+    ],
+    "kvkk": [
+      "Informativa privacy (KVKK) | Woody and Friends",
+      "Perché i dati personali vengono trattati, per quanto tempo sono conservati e come esercitare i tuoi diritti secondo la legge turca KVKK."
+    ],
+    "privacy-policy": [
+      "Informativa sulla privacy | Woody and Friends",
+      "Dati raccolti sul sito, finalità, servizi di terze parti e misure di protezione: l'informativa sulla privacy di Woody and Friends."
+    ],
+    "cookie-policy": [
+      "Cookie policy | Woody and Friends",
+      "I cookie tecnici, analitici e di marketing usati dal sito e come gestire le tue preferenze sui cookie in qualsiasi momento."
+    ],
+    "terms": [
+      "Condizioni d'uso | Woody and Friends",
+      "Regole, diritti e responsabilità nell'uso del sito, dei contenuti digitali e del negozio online di Woody and Friends."
+    ]
+  },
+  "nl": {
+    "home": [
+      "Woody and Friends | Engels voor kleuters",
+      "Engelse leersets voor 3- tot 6-jarigen met spel, verhalen en liedjes; een niveausysteem voor scholen, workshops en thuis."
+    ],
+    "preschool": [
+      "Engels leersysteem voor kleuterscholen | Woody and Friends",
+      "Engels leersysteem voor kleuterscholen: leerkrachtset, leerlingset, weekplanning en digitale herhaling. Vraag een offerte aan."
+    ],
+    "workshop": [
+      "Mini School – Engelse set voor workshops | Woody and Friends",
+      "Mini School-serie: Engelse sets op niveau Basic, Junior en Senior voor workshops en cursuscentra, online te koop."
+    ],
+    "home-tutor": [
+      "Engelse set voor thuis en bijles | Woody and Friends",
+      "Engelse sets voor kleuters thuis en tijdens bijles: boeken, kaarten en digitale inhoud per niveau voor ouders en bijlesdocenten."
+    ],
+    "woody-academy": [
+      "Woody Academy | Cambridge-voorbereiding en TKT",
+      "Online één-op-éénlessen die na de series voorbereiden op Cambridge English-examens, plus een TKT-programma voor leerkrachten."
+    ],
+    "level-finder": [
+      "Niveauzoeker | Woody and Friends",
+      "Vind het juiste Engelse niveau voor uw kind: een korte niveauzoeker die Basic, Junior of Senior adviseert op basis van leeftijd en ervaring."
+    ],
+    "library": [
+      "Digitale bibliotheek | Woody and Friends",
+      "Engelse verhalen, liedjes en video's voor kleuters: de digitale bibliotheek om te herhalen in de klas en thuis."
+    ],
+    "store": [
+      "Winkel | Engelse sets per leeftijd | Woody and Friends",
+      "Leerkracht- en leerlingsets van de series Mini School en Thuis & bijles online te koop. Scholen vragen een offerte voor de schoolserie."
+    ],
+    "digital-content": [
+      "Digitale inhoud | Woody and Friends",
+      "Ga buiten de klas verder met Engels via StoryLand-verhalen en MusicLand-liedjes, beschikbaar met een schoolaccount."
+    ],
+    "blog": [
+      "Gidsen Engels voor kleuters | Woody and Friends",
+      "Gidsen voor leerkrachten, scholen en ouders over Engelse thema's, leerplan, lesplannen, programma's per leeftijd en het kiezen van een set."
+    ],
+    "about": [
+      "Over ons: oprichting, methode en series | Woody and Friends",
+      "Het Engelse kleutermodel van Woody and Friends, de oprichting, de series en het redactionele beleid over hoe de inhoud wordt gemaakt."
+    ],
+    "contact": [
+      "Contact | Woody and Friends",
+      "Telefoon, WhatsApp en e-mail voor setkeuze, online bestellingen en offertes voor instellingen, met volledig adres en verkopersgegevens."
+    ],
+    "faqs": [
+      "Veelgestelde vragen | Woody and Friends",
+      "Antwoorden op veelgestelde vragen over Engelse leersets voor kleuters: geschikte leeftijd, steun voor leerkrachten en setkeuze."
+    ],
+    "kvkk": [
+      "Privacyverklaring (KVKK) | Woody and Friends",
+      "Waarom persoonsgegevens worden verwerkt, hoe lang ze worden bewaard en hoe u uw rechten uitoefent volgens de Turkse wet KVKK."
+    ],
+    "privacy-policy": [
+      "Privacybeleid | Woody and Friends",
+      "Gegevens die op de site worden verzameld, doeleinden, diensten van derden en beveiliging: het privacybeleid van Woody and Friends."
+    ],
+    "cookie-policy": [
+      "Cookiebeleid | Woody and Friends",
+      "De noodzakelijke, analytische en marketingcookies die de site gebruikt en hoe u uw cookievoorkeuren op elk moment beheert."
+    ],
+    "terms": [
+      "Gebruiksvoorwaarden | Woody and Friends",
+      "Regels, rechten en verantwoordelijkheden bij het gebruik van de website, de digitale inhoud en de webwinkel van Woody and Friends."
+    ]
+  },
+  "pt-br": {
+    "home": [
+      "Woody and Friends | Inglês na educação infantil",
+      "Kits de inglês para crianças de 3 a 6 anos com jogos, histórias e músicas; um sistema por níveis para escolas, oficinas e casa."
+    ],
+    "preschool": [
+      "Sistema de inglês para educação infantil | Woody and Friends",
+      "Sistema de inglês para escolas de educação infantil: kit do professor, kit do aluno, planos semanais e revisão digital. Peça um orçamento."
+    ],
+    "workshop": [
+      "Mini School – Kit de inglês para oficinas | Woody and Friends",
+      "Série Mini School: kits de inglês Basic, Junior e Senior para oficinas e centros de cursos. Kits do professor e do aluno à venda online."
+    ],
+    "home-tutor": [
+      "Kit de inglês para casa e aulas particulares | Woody and Friends",
+      "Kits de inglês infantil para casa e aulas particulares: livros, cartões e conteúdo digital por nível para famílias e professores particulares."
+    ],
+    "woody-academy": [
+      "Woody Academy | Preparação Cambridge e TKT",
+      "Aulas individuais online que preparam para os exames Cambridge English após as séries, e um programa TKT para professores."
+    ],
+    "level-finder": [
+      "Descobrir o nível | Woody and Friends",
+      "Descubra o nível de inglês certo para seu filho: uma ferramenta rápida que sugere Basic, Junior ou Senior pela idade e experiência."
+    ],
+    "library": [
+      "Biblioteca digital | Woody and Friends",
+      "Histórias, músicas e vídeos em inglês para a educação infantil: a biblioteca digital para revisar em sala e em casa."
+    ],
+    "store": [
+      "Loja | Kits de inglês por idade | Woody and Friends",
+      "Kits do professor e do aluno das séries Mini School e Casa & aulas particulares à venda online. Escolas pedem orçamento da série Escola."
+    ],
+    "digital-content": [
+      "Conteúdo digital | Woody and Friends",
+      "Continue o inglês fora da sala com as histórias StoryLand e as músicas MusicLand, liberadas por uma conta da escola."
+    ],
+    "blog": [
+      "Guias de inglês infantil | Woody and Friends",
+      "Guias para professores, escolas e famílias sobre temas de inglês infantil, currículo, planos de aula, programas por idade e escolha de kit."
+    ],
+    "about": [
+      "Sobre nós: fundação, método e séries | Woody and Friends",
+      "O modelo de inglês infantil da Woody and Friends, a fundação, as séries e a política editorial que explica como o conteúdo é preparado."
+    ],
+    "contact": [
+      "Contato | Woody and Friends",
+      "Telefone, WhatsApp e e-mail para escolher um kit, comprar online ou pedir orçamento, com endereço completo e dados do vendedor."
+    ],
+    "faqs": [
+      "Perguntas frequentes | Woody and Friends",
+      "Respostas às perguntas frequentes sobre kits de inglês infantil: idade adequada, apoio ao professor, uso em escolas e escolha do kit."
+    ],
+    "kvkk": [
+      "Aviso de privacidade (KVKK) | Woody and Friends",
+      "Por que os dados pessoais são tratados, por quanto tempo são guardados e como exercer seus direitos pela lei turca de proteção de dados."
+    ],
+    "privacy-policy": [
+      "Política de privacidade | Woody and Friends",
+      "Dados coletados no site, finalidades, serviços de terceiros e medidas de proteção: a política de privacidade da Woody and Friends."
+    ],
+    "cookie-policy": [
+      "Política de cookies | Woody and Friends",
+      "Os cookies essenciais, analíticos e de marketing usados no site e como gerenciar suas preferências de cookies a qualquer momento."
+    ],
+    "terms": [
+      "Termos de uso | Woody and Friends",
+      "Regras, direitos e responsabilidades ao usar o site, o conteúdo digital e a loja online da Woody and Friends."
+    ]
+  },
+  "ru": {
+    "home": [
+      "Woody and Friends | Английский для дошкольников",
+      "Наборы для изучения английского для детей 3–6 лет через игру, сказки и песни; уровневая система для садов, студий и дома."
+    ],
+    "preschool": [
+      "Система английского для детских садов | Woody and Friends",
+      "Система английского для детских садов: набор педагога, набор ученика, недельные планы и цифровое повторение. Запросите предложение."
+    ],
+    "workshop": [
+      "Mini School – набор английского для студий | Woody and Friends",
+      "Серия Mini School: наборы английского уровней Basic, Junior и Senior для студий и учебных центров. Продаются онлайн."
+    ],
+    "home-tutor": [
+      "Набор английского для дома и репетиторов | Woody and Friends",
+      "Наборы английского для дошкольников дома и на частных занятиях: уровневые книги, карточки и цифровой контент для родителей и репетиторов."
+    ],
+    "woody-academy": [
+      "Woody Academy | Подготовка к Cambridge и TKT",
+      "Индивидуальные онлайн-уроки для подготовки к экзаменам Cambridge English после серий и программа развития TKT для педагогов."
+    ],
+    "level-finder": [
+      "Подбор уровня | Woody and Friends",
+      "Подберите подходящий уровень английского для ребёнка: короткий тест предложит Basic, Junior или Senior по возрасту и опыту."
+    ],
+    "library": [
+      "Цифровая библиотека | Woody and Friends",
+      "Сказки, песни и видео на английском для дошкольников: цифровая библиотека для повторения в классе и дома."
+    ],
+    "store": [
+      "Магазин | Наборы английского по возрасту | Woody and Friends",
+      "Наборы педагога и ученика серий Mini School и «Дом и частные уроки» продаются онлайн. Для садов — предложение по школьной серии."
+    ],
+    "digital-content": [
+      "Цифровой контент | Woody and Friends",
+      "Продолжайте английский вне класса со сказками StoryLand и песнями MusicLand, доступными через школьный аккаунт."
+    ],
+    "blog": [
+      "Руководства по английскому для дошкольников | Woody and Friends",
+      "Руководства для педагогов, садов и родителей: темы английского, программа, планы уроков, программы по возрасту и выбор набора."
+    ],
+    "about": [
+      "О нас: основание, метод и серии | Woody and Friends",
+      "Модель английского для дошкольников Woody and Friends, основание, серии и редакционная политика о том, как готовится контент."
+    ],
+    "contact": [
+      "Контакты | Woody and Friends",
+      "Телефон, WhatsApp и e-mail для выбора набора, онлайн-заказа и предложений для учреждений, а также полный адрес и данные продавца."
+    ],
+    "faqs": [
+      "Частые вопросы | Woody and Friends",
+      "Ответы на частые вопросы о наборах английского для дошкольников: подходящий возраст, поддержка педагогов, использование в саду и выбор."
+    ],
+    "kvkk": [
+      "Уведомление о данных (KVKK) | Woody and Friends",
+      "Зачем обрабатываются персональные данные, как долго они хранятся и как реализовать свои права по турецкому закону KVKK."
+    ],
+    "privacy-policy": [
+      "Политика конфиденциальности | Woody and Friends",
+      "Какие данные собирает сайт, для чего, какие сторонние сервисы используются и как защищаются данные: политика Woody and Friends."
+    ],
+    "cookie-policy": [
+      "Политика cookie | Woody and Friends",
+      "Какие необходимые, аналитические и маркетинговые cookie использует сайт и как в любой момент управлять настройками cookie."
+    ],
+    "terms": [
+      "Условия использования | Woody and Friends",
+      "Правила, права и обязанности при использовании сайта, цифрового контента и интернет-магазина Woody and Friends."
+    ]
+  },
+  "ar": {
+    "home": [
+      "Woody and Friends | الإنجليزية لمرحلة ما قبل المدرسة",
+      "مجموعات لتعلم الإنجليزية للأطفال من 3 إلى 6 سنوات باللعب والقصص والأغاني؛ نظام متدرج للروضات والورش والتعلم في المنزل."
+    ],
+    "preschool": [
+      "نظام الإنجليزية لرياض الأطفال | Woody and Friends",
+      "نظام لتعليم الإنجليزية في رياض الأطفال: مجموعة المعلم ومجموعة الطالب وخطط أسبوعية ومراجعة رقمية. اطلبوا عرض سعر لمؤسستكم."
+    ],
+    "workshop": [
+      "Mini School – مجموعة إنجليزية للورش | Woody and Friends",
+      "سلسلة Mini School: مجموعات إنجليزية بمستويات Basic وJunior وSenior للورش ومراكز الدورات، ومجموعات المعلم والطالب متاحة للشراء عبر الإنترنت."
+    ],
+    "home-tutor": [
+      "مجموعة إنجليزية للمنزل والدروس الخاصة | Woody and Friends",
+      "مجموعات إنجليزية لمرحلة ما قبل المدرسة للمنزل والدروس الخاصة: كتب وبطاقات ومحتوى رقمي متدرج للأهل والمعلمين الخصوصيين."
+    ],
+    "woody-academy": [
+      "Woody Academy | التحضير لكامبريدج وTKT",
+      "دروس فردية عبر الإنترنت تحضّر الطلاب بعد إتمام السلاسل لامتحانات Cambridge English، مع برنامج تطوير TKT للمعلمين."
+    ],
+    "level-finder": [
+      "تحديد المستوى | Woody and Friends",
+      "اعثروا على مستوى الإنجليزية المناسب لطفلكم: أداة قصيرة تقترح Basic أو Junior أو Senior حسب العمر والخبرة."
+    ],
+    "library": [
+      "المكتبة الرقمية | Woody and Friends",
+      "قصص وأغانٍ ومقاطع فيديو بالإنجليزية لمرحلة ما قبل المدرسة: المكتبة الرقمية للمراجعة في الصف وفي المنزل."
+    ],
+    "store": [
+      "المتجر | مجموعات إنجليزية حسب العمر | Woody and Friends",
+      "مجموعات المعلم والطالب من سلسلتي Mini School والمنزل والدروس الخاصة متاحة للشراء عبر الإنترنت، وتطلب الروضات عرض سعر لسلسلة المدرسة."
+    ],
+    "digital-content": [
+      "المحتوى الرقمي | Woody and Friends",
+      "واصلوا تعلم الإنجليزية خارج الصف مع قصص StoryLand وأغاني MusicLand المتاحة عبر حساب المدرسة، للمراجعة في المنزل بعد الدرس."
+    ],
+    "blog": [
+      "أدلة الإنجليزية لمرحلة ما قبل المدرسة | Woody and Friends",
+      "أدلة للمعلمين والمدارس والأهل حول موضوعات الإنجليزية في الروضة والمنهج وخطط الدروس والبرامج حسب العمر واختيار المجموعة."
+    ],
+    "about": [
+      "من نحن: التأسيس والمنهج والسلاسل | Woody and Friends",
+      "نموذج Woody and Friends لتعليم الإنجليزية في مرحلة ما قبل المدرسة، والتأسيس، والسلاسل، والسياسة التحريرية لإعداد المحتوى."
+    ],
+    "contact": [
+      "اتصل بنا | Woody and Friends",
+      "الهاتف وواتساب والبريد الإلكتروني لاختيار المجموعة والطلب عبر الإنترنت وعروض المؤسسات، مع العنوان الكامل وبيانات البائع."
+    ],
+    "faqs": [
+      "الأسئلة الشائعة | Woody and Friends",
+      "إجابات عن الأسئلة الشائعة حول مجموعات الإنجليزية لمرحلة ما قبل المدرسة: العمر المناسب ودعم المعلم والاستخدام في الروضة واختيار المجموعة."
+    ],
+    "kvkk": [
+      "إشعار الخصوصية (KVKK) | Woody and Friends",
+      "لماذا تُعالج البيانات الشخصية، وكم مدة الاحتفاظ بها، وكيف تمارسون حقوقكم وفق قانون حماية البيانات التركي KVKK."
+    ],
+    "privacy-policy": [
+      "سياسة الخصوصية | Woody and Friends",
+      "البيانات التي يجمعها الموقع وأغراض استخدامها والخدمات الخارجية وطرق حمايتها: سياسة الخصوصية لدى Woody and Friends."
+    ],
+    "cookie-policy": [
+      "سياسة ملفات تعريف الارتباط | Woody and Friends",
+      "ملفات تعريف الارتباط الضرورية والتحليلية والتسويقية التي يستخدمها الموقع وكيفية إدارة تفضيلاتكم في أي وقت."
+    ],
+    "terms": [
+      "شروط الاستخدام | Woody and Friends",
+      "القواعد والحقوق والمسؤوليات التي تنطبق عند استخدام موقع Woody and Friends ومحتواه الرقمي ومتجره الإلكتروني وخدماته."
+    ]
+  }
+}

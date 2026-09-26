@@ -9,7 +9,7 @@
     "primaryCTA": "Solicite uma demonstração",
     "primaryHref": "/contact",
     "secondaryCTA": "Ver preços",
-    "secondaryHref": "/fiyat"
+    "secondaryHref": "/store"
   },
   "sections": [
     {
@@ -67,7 +67,7 @@
     }
   ],
   "seo": {
-    "title": "Conjuntos de aprendizagem de inglês pré-escolar | {{appName}} e Amigos",
+    "title": "Conjuntos de aprendizagem de inglês pré-escolar | {{appName}}",
     "description": "{{appName}} Conjunto de aprendizagem de inglês pré-escolar: um programa de inglês para a primeira infância baseado em brincadeiras para crianças de 3 a 6 anos. Currículo de inglês pré-escolar com sistema de preparação Cambridge. Conjuntos de professores e alunos, currículo de inglês pré-escolar e planos de aula.",
     "keywords": "conjunto de aprendizagem de inglês pré-escolar, programa de inglês pré-escolar Turquia, conjunto de inglês para primeira infância, programa de inglês para pré-escola, pré-escola de preparação para Cambridge, programa de inglês para 3 a 6 anos, série de inglês pré-escolar"
   },

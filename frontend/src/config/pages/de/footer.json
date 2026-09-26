@@ -1,5 +1,5 @@
 {
-  "brand": "{{appName}} und Freunde",
+  "brand": "{{appName}}",
   "description": "Ein spielbasiertes und systematisches Lernmodell für die Englischausbildung im Vorschulalter.",
   "columns": {
     "corporate": {
@@ -7,7 +7,7 @@
       "links": [
         {
           "label": "Preise & Pakete",
-          "href": "/fiyat"
+          "href": "/store"
         },
         {
           "label": "Kostenlose Demo anfragen",
@@ -38,5 +38,5 @@
     "label": "{{appName}} Academy Karriere",
     "cta": "Bewerbung als Lehrkraft"
   },
-  "copyright": "© 2026 {{appName}} und Freunde. Alle Rechte vorbehalten."
+  "copyright": "© 2026 {{appName}}. Alle Rechte vorbehalten."
 }

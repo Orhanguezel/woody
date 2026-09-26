@@ -3,6 +3,7 @@ import WoodyFallback from '@/components/woody/WoodyFallback';
 import { loadWoodyPageContent } from '@/components/woody/content-loader.server';
 import WorkshopPageClient from '@/components/woody/workshop/WorkshopPageClient';
 import { woodyMetadata, woodyPageGraph } from '@/components/woody/seo';
+import { answerIntroFromContent } from '@/components/woody/answer-intro.server';
 
 const PAGE_KEY = 'workshop';
 const PATHNAME = '/workshop';
@@ -22,7 +23,7 @@ export default async function WorkshopPage({ params }: Props) {
   return (
     <>
       <JsonLd id="woody-workshop" data={woodyPageGraph({ locale, pathname: PATHNAME, content })} />
-      <WorkshopPageClient content={content} locale={locale} />
+      <WorkshopPageClient content={content} locale={locale} answerIntro={answerIntroFromContent(content, locale)} />
     </>
   );
 }

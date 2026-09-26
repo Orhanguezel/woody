@@ -9,7 +9,7 @@
     "primaryCTA": "Vraag een demo aan",
     "primaryHref": "/contact",
     "secondaryCTA": "Bekijk prijzen",
-    "secondaryHref": "/fiyat"
+    "secondaryHref": "/store"
   },
   "sections": [
     {
@@ -67,7 +67,7 @@
     }
   ],
   "seo": {
-    "title": "Engelse leersets voor kleuters | {{appName}} en Vrienden",
+    "title": "Engelse leersets voor kleuters | {{appName}}",
     "description": "{{appName}} Voorschoolse Engelse leerset: een op spel gebaseerd Engels programma voor jonge kinderen voor kinderen van 3 tot 6 jaar. Curriculum Engels voorschools met een Cambridge-voorbereidingssysteem. Leraren- en studentensets, Engels curriculum en lesplannen voor de kleuterschool.",
     "keywords": "voorschoolse Engelse leerset, voorschoolse Engelse programma Turkije, vroege kinderjaren Engelse set, Engels programma voor kleuterschool, Cambridge voorbereiding voorschoolse, 3-6 leeftijd Engels programma, voorschoolse Engelse serie"
   },

@@ -10,6 +10,7 @@ import { FOCUS_RING } from '@/lib/a11y';
 
 import type { WoodyCard, WoodyPageContent } from '../content-loader.server';
 import { LEVEL_MEDIA, LEVEL_UNDERLINE, type LevelMedia } from '../sets/level-media';
+import AnswerIntro from '@/components/woody/AnswerIntro';
 
 type HomeTutorPageUi = {
   teacherSet?: string;
@@ -48,7 +49,7 @@ function ContentVideoPreview({src, poster, label}: {src: string; poster?: string
   const [playing, setPlaying] = useState(false);
   return playing ? <video src={src} controls autoPlay playsInline className="size-full object-cover" /> : (
     <button type="button" onClick={() => setPlaying(true)} aria-label={label} className={`relative size-full ${FOCUS_RING}`}>
-      {poster ? <Image src={poster} alt="" fill sizes="(max-width: 640px) 90vw, 380px" className="object-cover" /> : null}
+      {poster ? <Image src={poster} alt="" aria-hidden fill sizes="(max-width: 640px) 90vw, 380px" className="object-cover" /> : null}
       <span className="absolute inset-0 flex items-center justify-center bg-black/20"><Play className="size-14 rounded-full bg-black/60 p-3 text-white" aria-hidden /></span>
     </button>
   );
@@ -58,10 +59,13 @@ export default function HomeTutorPageClient({
   content,
   locale,
   products = [],
+  answerIntro,
 }: {
   content: WoodyPageContent;
   locale: string;
   products?: StoreProduct[];
+  /** Doğrudan cevap girişi; sunucuda {{appName}} çözülmüş halde gelir. */
+  answerIntro?: { text: string; links: Array<{ href: string; label: string }> } | null;
 }) {
   const [showVideo, setShowVideo] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState<LevelMedia | null>(null);
@@ -89,7 +93,7 @@ export default function HomeTutorPageClient({
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <section className="relative mt-[72px] h-[50vh] min-h-[400px] overflow-hidden">
-        {heroPoster ? <Image src={heroPoster} alt="" fill priority sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-slate-900" /> }
+        {heroPoster ? <Image src={heroPoster} alt="" aria-hidden fill priority sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-slate-900" /> }
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
           <h1 className="font-display text-[54px] font-black uppercase leading-none tracking-[0.1em] text-white drop-shadow-2xl md:text-[84px] lg:text-[112px]">
@@ -122,6 +126,7 @@ export default function HomeTutorPageClient({
           </h2>
         </div>
       </section>
+      <AnswerIntro text={answerIntro?.text} links={answerIntro?.links} className="mx-auto max-w-[900px] px-6 pt-8 text-center" />
 
       {contentVideos.length ? (
         <section className="bg-gray-50 py-10 md:py-14">
