@@ -12,6 +12,12 @@ import {
 import { useLocaleShort } from '@/i18n';
 import { localizePath } from '@/integrations/shared';
 
+const CONTINUE_TO_CHECKOUT: Record<string, string> = {
+  tr: 'Satın almaya devam et', en: 'Continue to checkout', de: 'Weiter zur Kasse', fr: 'Continuer vers le paiement',
+  es: 'Continuar con la compra', it: 'Continua con l’acquisto', nl: 'Verder naar afrekenen',
+  'pt-br': 'Continuar para o pagamento', ru: 'Перейти к оформлению', ar: 'متابعة الشراء',
+};
+
 export default function VerifyEmailPage() {
   const searchParams = useClientSearchParams();
   const token = searchParams.get('token');
@@ -20,6 +26,9 @@ export default function VerifyEmailPage() {
   const next = searchParams.get('next') || '';
   const locale = useLocaleShort();
   const nextHref = next.startsWith('/') ? next : localizePath(locale, '/profile');
+  // Sepetten gelen yeni üye: buton profile değil ödemeye döndüğünü söylesin.
+  const toCheckout = /\/store\/checkout(\?|$)/.test(nextHref);
+  const checkoutLabel = CONTINUE_TO_CHECKOUT[locale] || CONTINUE_TO_CHECKOUT.en;
 
   const [confirm, { isLoading }] = useConfirmEmailVerificationMutation();
   const [sendVerification, sendState] = useSendEmailVerificationMutation();
@@ -107,7 +116,7 @@ export default function VerifyEmailPage() {
                   href={nextHref}
                   className="inline-block w-full border border-border-light bg-bg-card text-text-primary font-semibold py-3 px-6 rounded-sm hover:bg-bg-card-hover transition-all"
                 >
-                  {locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
+                  {toCheckout ? checkoutLabel : locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
                 </Link>
               </div>
               {message ? <p className="mt-4 text-sm text-text-secondary">{message}</p> : null}
@@ -142,7 +151,7 @@ export default function VerifyEmailPage() {
                 href={nextHref}
                 className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all"
               >
-                {locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
+                {toCheckout ? checkoutLabel : locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
               </Link>
             </>
           ) : status === 'no_token' ? (
@@ -191,7 +200,7 @@ export default function VerifyEmailPage() {
                 href={nextHref}
                 className="inline-block bg-brand-primary text-text-on-dark font-bold py-3 px-6 rounded-sm hover:bg-brand-hover transition-all"
               >
-                {locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
+                {toCheckout ? checkoutLabel : locale === 'de' ? 'Zum Profil' : tUi(locale, 'Go to Profile')}
               </Link>
             </>
           )}
