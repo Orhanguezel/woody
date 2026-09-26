@@ -60,6 +60,9 @@ has() { for t in "${TARGETS[@]}"; do [[ "$t" == "$1" ]] && return 0; done; retur
 echo "Proje: $SLUG → $SSH_TARGET:$DEPLOY_PATH  (hedefler: ${TARGETS[*]})"
 
 # ─── 1. Repo → VPS rsync ─────────────────────────────────────────────────────────
+# --delete sunucuda yerelde olmayan her şeyi siler. Sunucuda üretilen yedekler (/backups)
+# ve yerel araç çıktıları (/output, /.playwright-cli) hariç tutulur: 2026-09-26'da bir
+# deploy, sunucudaki .next geri dönüş yedeklerini sildi.
 say "Repo senkronizasyonu (rsync → $DEPLOY_PATH)"
 remote "mkdir -p '$DEPLOY_PATH'"
 rsync -avz --delete \
@@ -68,6 +71,9 @@ rsync -avz --delete \
   --exclude='/node_modules' \
   --exclude='/packages' \
   --exclude='/docs' \
+  --exclude='/backups' \
+  --exclude='/output' \
+  --exclude='/.playwright-cli' \
   --exclude='.next/' \
   --exclude='.next.previous/' \
   --exclude='.build-*/' \
