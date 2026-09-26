@@ -16,7 +16,10 @@ import {
   CheckCircle2,
   Package,
   History,
-  Truck
+  Truck,
+  MapPin,
+  Pencil,
+  Plus
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -47,8 +50,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 
-import type { OrderStatus, PaymentStatus } from '@/integrations/shared';
-import { useGetOrderAdminQuery, useUpdateOrderAdminMutation, useRefundOrderAdminMutation } from '@/integrations/hooks';
+import type { OrderStatus, PaymentStatus, OrderAdminDetailView } from '@/integrations/shared';
+import type { AdminAddressFields, AdminOrderAddressType } from '@/integrations/hooks';
+import {
+  useGetOrderAdminQuery,
+  useUpdateOrderAdminMutation,
+  useRefundOrderAdminMutation,
+  useGetOrderAddressesAdminQuery,
+  useUpdateOrderAddressAdminMutation,
+} from '@/integrations/hooks';
+import { AddressForm, AddressSummary, emptyBookAddress } from '@/app/(main)/admin/(admin)/_components/address-form';
 
 function fmtMoney(v: string | number, currency: string) {
   const n = Number(v);
@@ -417,6 +428,8 @@ export default function AdminOrderDetailClient() {
         </CardContent>
       </Card>
 
+      <OrderAddressesCard order={order} />
+
       {/* Order Items Table */}
       <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
         <CardHeader className="p-8 pb-4 bg-gm-surface/40 border-b border-gm-border-soft">
@@ -506,5 +519,153 @@ export default function AdminOrderDetailClient() {
         </Card>
       )}
     </div>
+  );
+}
+
+// -------------------------------------------------------------
+// Teslimat ve fatura adresi (order_addresses). Eski siparişlerde satır yoksa
+// orders.shipping_* alanları gösterilir; kaydetmek satırı oluşturur (PUT upsert).
+// -------------------------------------------------------------
+function legacyShipping(order: OrderAdminDetailView): AdminAddressFields | null {
+  if (!order.shipping_address && !order.shipping_name) return null;
+  return {
+    name: order.shipping_name ?? '',
+    phone: order.shipping_phone ?? '',
+    address: order.shipping_address ?? '',
+    district: order.shipping_district ?? '',
+    city: order.shipping_city ?? '',
+    postalCode: order.shipping_postal_code ?? '',
+    country: order.shipping_country || 'TR',
+    invoiceType: 'individual',
+    identityNumber: '',
+    companyName: '',
+    taxOffice: '',
+    taxNumber: '',
+  };
+}
+
+function OrderAddressesCard({ order }: { order: OrderAdminDetailView }) {
+  const addrQ = useGetOrderAddressesAdminQuery({ id: order.id });
+  const [updateAddress, updateState] = useUpdateOrderAddressAdminMutation();
+  const [editing, setEditing] = React.useState<AdminOrderAddressType | null>(null);
+
+  const legacy = legacyShipping(order);
+  const shipping = addrQ.data?.shipping ?? null;
+  const billing = addrQ.data?.billing ?? null;
+
+  const blocks: Array<{
+    type: AdminOrderAddressType;
+    title: string;
+    value: AdminAddressFields | null;
+    fallback: AdminAddressFields | null;
+  }> = [
+    { type: 'shipping', title: 'Teslimat Adresi', value: shipping, fallback: legacy },
+    { type: 'billing', title: 'Fatura Adresi', value: billing, fallback: shipping ?? legacy },
+  ];
+
+  async function save(type: AdminOrderAddressType, v: AdminAddressFields) {
+    const body: AdminAddressFields = {
+      name: v.name,
+      phone: v.phone,
+      address: v.address,
+      district: v.district,
+      city: v.city,
+      postalCode: v.postalCode,
+      country: v.country,
+      invoiceType: v.invoiceType,
+      identityNumber: v.identityNumber,
+      companyName: v.companyName,
+      taxOffice: v.taxOffice,
+      taxNumber: v.taxNumber,
+    };
+    await updateAddress({ id: order.id, type, body }).unwrap();
+    toast.success(type === 'shipping' ? 'Teslimat adresi güncellendi.' : 'Fatura adresi güncellendi.');
+    setEditing(null);
+  }
+
+  return (
+    <Card className="bg-gm-surface/20 border-gm-border-soft rounded-[32px] overflow-hidden backdrop-blur-sm shadow-xl">
+      <CardHeader className="p-8 pb-4 bg-gm-surface/40 border-b border-gm-border-soft">
+        <CardTitle className="font-serif text-2xl flex items-center gap-3">
+          <MapPin className="h-5 w-5 text-gm-gold" /> Teslimat ve fatura adresi
+        </CardTitle>
+        <CardDescription className="font-serif italic text-gm-muted opacity-70">
+          Sipariş anında alınan adresler. Teslimat adresi düzeltildiğinde kargo alanları da güncellenir.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="p-8">
+        {addrQ.isLoading ? (
+          <div className="grid gap-8 lg:grid-cols-2">
+            <Skeleton className="h-40 rounded-[24px] bg-gm-surface/20" />
+            <Skeleton className="h-40 rounded-[24px] bg-gm-surface/20" />
+          </div>
+        ) : addrQ.isError ? (
+          <div className="flex items-center justify-between gap-4 rounded-2xl border border-gm-error/20 bg-gm-error/5 p-4 text-sm text-gm-error">
+            <span>{errMsg(addrQ.error, 'Adresler yüklenemedi.')}</span>
+            <Button variant="outline" size="sm" onClick={() => addrQ.refetch()} className="rounded-full border-gm-error/30">
+              Tekrar dene
+            </Button>
+          </div>
+        ) : (
+          <div className="grid gap-8 lg:grid-cols-2">
+            {blocks.map((block) => {
+              const shown = block.value ?? (block.type === 'shipping' ? block.fallback : null);
+              const isEditing = editing === block.type;
+              return (
+                <div key={block.type} className={cn('space-y-4', isEditing && 'lg:col-span-2')}>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[10px] font-bold text-gm-muted tracking-[0.2em] uppercase">{block.title}</span>
+                      {!block.value ? (
+                        <Badge variant="outline" className="rounded-full border-gm-warning/30 text-gm-warning text-[9px]">
+                          {shown ? 'Eski kayıt' : 'Kayıt yok'}
+                        </Badge>
+                      ) : null}
+                    </div>
+                    {!isEditing ? (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        disabled={editing !== null}
+                        onClick={() => setEditing(block.type)}
+                        className="rounded-full border-gm-border-soft bg-gm-surface/40 hover:bg-gm-surface text-[10px] font-bold tracking-widest uppercase px-5 h-9"
+                      >
+                        {block.value ? <Pencil className="mr-2 size-3.5" /> : <Plus className="mr-2 size-3.5" />}
+                        {block.value ? 'Düzenle' : 'Oluştur'}
+                      </Button>
+                    ) : null}
+                  </div>
+
+                  {isEditing ? (
+                    <AddressForm
+                      mode={block.type}
+                      initial={emptyBookAddress(block.value ?? block.fallback ?? undefined)}
+                      saving={updateState.isLoading}
+                      onSubmit={(v) => save(block.type, v)}
+                      onCancel={() => setEditing(null)}
+                    />
+                  ) : shown ? (
+                    <div className="rounded-[24px] border border-gm-border-soft bg-gm-surface/10 p-6">
+                      <AddressSummary value={shown} withInvoice={block.type === 'billing'} />
+                      {!block.value && block.type === 'shipping' ? (
+                        <p className="pt-3 text-xs italic text-gm-muted">
+                          Siparişin kargo alanlarından gösteriliyor; kaydedince adres kaydı oluşur.
+                        </p>
+                      ) : null}
+                    </div>
+                  ) : (
+                    <div className="rounded-[24px] border border-dashed border-gm-border-soft p-6 text-sm italic text-gm-muted">
+                      {block.type === 'billing'
+                        ? 'Bu sipariş için fatura adresi kaydı yok.'
+                        : 'Bu sipariş için teslimat adresi yok.'}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

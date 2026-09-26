@@ -30,6 +30,8 @@ export type PurchasableProduct = {
   unitPrice: number;
   minQuantity: number;
   hasPhysical: boolean;
+  seriesName?: string;
+  levelName?: string;
 };
 
 /** Online satılan, ücretli ürünler (sepetin geçerli olabileceği tek küme). */
@@ -47,6 +49,8 @@ export async function loadPurchasableProducts(locale: string): Promise<Record<st
       unitPrice,
       minQuantity: Math.max(1, Number(product.minQuantity) || 1),
       hasPhysical: Boolean(product.hasPhysical),
+      seriesName: product.seriesName || product.categoryName || undefined,
+      levelName: product.levelName || undefined,
     };
   }
   return out;

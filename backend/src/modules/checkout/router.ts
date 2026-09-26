@@ -33,6 +33,7 @@ import {
   type NormalizedAddress,
   type NormalizedBilling,
 } from './addresses';
+import { registerAddressRoutesAdmin, registerAddressRoutesPublic } from './addressRoutes';
 
 type CheckoutItem = {
   product_id?: string;
@@ -58,8 +59,6 @@ type CheckoutBody = {
   };
   /** Fatura bilgisi (bireysel/kurumsal). sameAsShipping ile teslimat adresi kullanılır. */
   billing?: BillingInput;
-  /** Varsayılan true: teslimat ve fatura adresi üyenin kayıtlı adresi olarak saklanır. */
-  saveAddresses?: boolean;
   items?: CheckoutItem[];
   notes?: string;
   attribution?: {
@@ -362,26 +361,6 @@ async function logPaytrCallback(entry: {
   }
 }
 
-type AddressRow = RowDataPacket & Record<string, unknown>;
-
-function addressDto(row: AddressRow | undefined) {
-  if (!row) return null;
-  return {
-    invoiceType: row.invoice_type ? String(row.invoice_type) : null,
-    name: String(row.full_name ?? ''),
-    companyName: String(row.company_name ?? ''),
-    taxOffice: String(row.tax_office ?? ''),
-    taxNumber: String(row.tax_number ?? ''),
-    identityNumber: String(row.identity_number ?? ''),
-    phone: String(row.phone ?? ''),
-    address: String(row.address ?? ''),
-    city: String(row.city ?? ''),
-    district: String(row.district ?? ''),
-    postalCode: String(row.postal_code ?? ''),
-    country: String(row.country ?? 'TR'),
-  };
-}
-
 function addressValues(address: NormalizedAddress | NormalizedBilling) {
   const billing = 'invoiceType' in address ? address : null;
   return [
@@ -402,11 +381,9 @@ function addressValues(address: NormalizedAddress | NormalizedBilling) {
 
 async function saveOrderAddresses(
   orderId: string,
-  userId: string,
   email: string,
   shipping: NormalizedAddress | null,
   billing: NormalizedBilling,
-  remember: boolean,
 ) {
   const entries: Array<['shipping' | 'billing', NormalizedAddress | NormalizedBilling]> = [
     ...(shipping ? [['shipping', shipping] as ['shipping', NormalizedAddress]] : []),
@@ -418,17 +395,6 @@ async function saveOrderAddresses(
          tax_number, identity_number, phone, address, district, city, postal_code, country, email)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [randomUUID(), orderId, type, ...addressValues(address), email || null],
-    );
-    if (!remember) continue;
-    await pool.execute(
-      `INSERT INTO user_addresses (id, user_id, type, invoice_type, full_name, company_name, tax_office,
-         tax_number, identity_number, phone, address, district, city, postal_code, country)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-       ON DUPLICATE KEY UPDATE invoice_type=VALUES(invoice_type), full_name=VALUES(full_name),
-         company_name=VALUES(company_name), tax_office=VALUES(tax_office), tax_number=VALUES(tax_number),
-         identity_number=VALUES(identity_number), phone=VALUES(phone), address=VALUES(address),
-         district=VALUES(district), city=VALUES(city), postal_code=VALUES(postal_code), country=VALUES(country)`,
-      [randomUUID(), userId, type, ...addressValues(address)],
     );
   }
 }
@@ -469,6 +435,7 @@ async function getProducts(items: CheckoutItem[], locale: string) {
 }
 
 export async function registerCheckoutPublic(app: FastifyInstance) {
+  await registerAddressRoutesPublic(app);
   app.get('/store/products', async (req) => {
     const q = (req.query || {}) as {
       locale?: string;
@@ -581,25 +548,6 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
     return { ...product, contents };
   });
 
-  // Kayıtlı teslimat/fatura adresi + hesap bilgisi (checkout formunu doldurmak için).
-  app.get('/checkout/addresses', { preHandler: [requireAuth] }, async (req, reply) => {
-    const account = await checkoutAccount(req);
-    if (!account) return reply.code(401).send({ error: { message: 'login_required' } });
-    const [rows] = await pool.execute<AddressRow[]>(
-      'SELECT * FROM user_addresses WHERE user_id = ?',
-      [String(account.id)],
-    );
-    return {
-      account: {
-        email: String(account.email ?? ''),
-        name: String(account.full_name ?? ''),
-        phone: String(account.phone ?? ''),
-      },
-      shipping: addressDto(rows.find((row) => row.type === 'shipping')),
-      billing: addressDto(rows.find((row) => row.type === 'billing')),
-    };
-  });
-
   // Satın alma yalnız üyelere açık (2026-09-26): sipariş token'daki kullanıcıya bağlanır.
   // Eskiden e-postaya göre hesap bulunuyor/oluşturuluyordu; başkasının e-postasını yazan
   // kişi o hesaba sipariş (ve ödeme sonrası içerik hakkı) bağlayabiliyordu.
@@ -701,7 +649,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
       );
     }
 
-    await saveOrderAddresses(orderId, customerId, customerEmail, shippingAddress, billingAddress, body.saveAddresses !== false);
+    await saveOrderAddresses(orderId, customerEmail, shippingAddress, billingAddress);
 
     await persistOrderAttribution(req, orderId, body.attribution);
 
@@ -1103,6 +1051,7 @@ export async function registerCheckoutPublic(app: FastifyInstance) {
 
 // Admin: PayTR callback loglari (SSH'siz izleme) — QE paytr-logs ekraninin API'si
 export async function registerCheckoutAdmin(app: FastifyInstance) {
+  await registerAddressRoutesAdmin(app);
   app.get('/paytr/refund-operations', async () => {
     const [items] = await pool.execute<RowDataPacket[]>(
       `SELECT id,order_id,amount,status,created_at,completed_at FROM commerce_refunds ORDER BY created_at DESC LIMIT 100`,

@@ -26,6 +26,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { UserActivityPanel } from './UserActivityPanel';
+import { UserAddressesCard } from './UserAddressesCard';
 import { Skeleton } from '@/components/ui/skeleton';
 
 import type { UserRoleName, AdminUserView } from '@/integrations/shared';
@@ -412,6 +413,9 @@ export default function UserDetailClient({ id }: { id: string }) {
           </Card>
         </div>
       </div>
+
+      {/* Adres defteri */}
+      <UserAddressesCard userId={u.id} defaults={{ name: u.full_name, phone: u.phone }} />
 
       {/* Ne yapti / nerede gezdi */}
       <UserActivityPanel userId={u.id} />
