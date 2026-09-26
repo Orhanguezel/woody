@@ -4,6 +4,7 @@ import { loadContactDetails } from './contact-details.server';
 
 import { tUi } from '@/i18n/staticUi';
 
+import { loadPageContent, pickLocale } from '@/config/pages/loader';
 import { toE164TR } from '@/lib/contact-details';
 import {
   getLocaleDescriptionFallback,
@@ -24,6 +25,9 @@ export default async function ContactRoutePage({ params }: Props) {
   // Künye tek kaynaktan: DB `contact_info` + site-defaults yedeği.
   // Telefon/adres/ünvan burada YAZMAZ; ekranda ve schema.org'da aynı değer görünür.
   const details = await loadContactDetails(locale);
+  // Loader eksik dilde tr'ye düşer; yalnız sayfanın kendi dilindeki giriş gösterilir.
+  const contactCopy = await loadPageContent<{ locale?: string; answerIntro?: string }>('contact-page', locale);
+  const intro = contactCopy?.locale === pickLocale(locale) ? contactCopy.answerIntro : undefined;
   const pageUrl = `${siteUrl}/${locale}/contact`;
   const logoUrl = new URL(getPublicLogoUrl(), siteUrl).toString();
   const phoneE164 = toE164TR(details.phone);
@@ -66,7 +70,7 @@ export default async function ContactRoutePage({ params }: Props) {
         ])}
       />
       <ContactRouteClient>
-        <ContactIdentityCard locale={locale} details={details} />
+        <ContactIdentityCard locale={locale} details={details} intro={intro} />
       </ContactRouteClient>
     </>
   );

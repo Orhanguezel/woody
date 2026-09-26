@@ -61,5 +61,16 @@
     "title": "Woody Academy | Cambridge Sertifika",
     "description": "{{appName}} Academy: öğrenciler için Cambridge English sertifika süreci ve öğretmenler için Cambridge TKT temelli gelişim programı. Uluslararası geçerliliğe sahip sertifikalar.",
     "keywords": "woody academy, cambridge sertifika, cambridge tkt, öğretmen gelişim programı, cambridge english sınavı, ingilizce öğretmen sertifikası"
-  }
+  },
+  "answerIntro": "{{appName}} Academy nedir? Basic, Junior ve Senior serilerini tamamlayan öğrencilerin Pro Serisi materyalleriyle, {{appName}} Academy İngilizce öğretmenlerinden online birebir ders alarak Cambridge English sınavlarına hazırlandığı ileri aşamadır. Aynı çatı altında öğretmenler için TKT (Teaching Knowledge Test) odaklı gelişim programı yürütülür.",
+  "answerIntroLinks": [
+    {
+      "href": "/about",
+      "label": "Hakkımızda"
+    },
+    {
+      "href": "/contact",
+      "label": "İletişim"
+    }
+  ]
 }

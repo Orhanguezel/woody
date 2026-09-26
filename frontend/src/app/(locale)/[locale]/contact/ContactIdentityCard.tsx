@@ -8,6 +8,8 @@ import { formatAddressLine, toE164TR, whatsappHref, type ContactDetails } from '
 type Props = {
   locale: string;
   details: ContactDetails;
+  /** Doğrudan cevap girişi (veriden; yoksa basılmaz). */
+  intro?: string;
 };
 
 function InfoItem({
@@ -46,7 +48,7 @@ function InfoItem({
  * her zaman `data-header-overlay` taşıyan banner olmalı, yoksa kart başlığı
  * header'ın altında kalır (2026-09 hatası).
  */
-export default function ContactIdentityCard({ locale, details }: Props) {
+export default function ContactIdentityCard({ locale, details, intro }: Props) {
   const countryLabel =
     details.address.addressCountry === 'TR'
       ? tUi(locale, 'Turkey')
@@ -65,6 +67,11 @@ export default function ContactIdentityCard({ locale, details }: Props) {
     <section className="bg-bg-primary pb-4 pt-2 md:pb-8">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-5xl rounded-2xl border border-border-light bg-bg-secondary p-6 shadow-soft md:p-8">
+          {intro ? (
+            <p data-answer-intro className="mb-6 text-base leading-8 text-text-secondary">
+              {intro}
+            </p>
+          ) : null}
           <div className="mb-6 border-b border-border-light pb-5">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-primary">
               {tUi(locale, 'Official Contact Information')}

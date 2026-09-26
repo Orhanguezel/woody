@@ -15,6 +15,7 @@ import WoodyPageLogoHeader from '@/components/woody/WoodyPageLogoHeader';
 import QuoteRequestForm, { type QuoteFormCopy } from '@/components/woody/quote/QuoteRequestForm';
 import type { WaitlistFormCopy } from '@/components/woody/waitlist/WaitlistSignupForm';
 import type { StoreProductFilters, StoreTaxonomyItem, StoreUiCopy } from './types';
+import AnswerIntro from '@/components/woody/AnswerIntro';
 
 export type StoreCatalogCategory = {
   id: string;
@@ -315,6 +316,7 @@ export default function WoodyStoreShowcase({
           ) : null}
         </div>
       ) : null}
+      <AnswerIntro text={ui.answerIntro} className="mx-auto max-w-[820px] px-6 pt-4 text-center" />
 
       {/* Bolumler — her seri kendi basligi altinda (PDF s.1: "mini school ve ozel ders
           ayirt edilmiyor, iki baslik halinde koyalim"). Filtre cubugu kaldirildi. */}

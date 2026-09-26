@@ -64,6 +64,7 @@ export type StoreProductFilters = {
 
 export type StoreUiCopy = Partial<Record<
   | 'addToCart'
+  | 'answerIntro'
   | 'ageCta'
   | 'address'
   | 'all'

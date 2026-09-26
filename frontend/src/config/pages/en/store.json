@@ -143,5 +143,8 @@
     "submit": "Join",
     "success": "You have been added to the waitlist.",
     "error": "Signup failed. Please try again."
+  },
+  "ui": {
+    "answerIntro": "Which sets does the {{appName}} store sell? Basic, Junior and Senior level sets of the Mini School (workshops and course centres) and Home & Private Tutoring series are sold online here; teacher sets and student sets are separate products. The School series for kindergartens is not sold in the store; it is prepared with a quote for each institution. Use the level finder to choose the right level for a child."
   }
 }

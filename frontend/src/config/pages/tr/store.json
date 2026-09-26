@@ -143,5 +143,8 @@
     "submit": "Kaydol",
     "success": "Bekleme listesine eklendiniz.",
     "error": "Kayıt alınamadı. Lütfen tekrar deneyin."
+  },
+  "ui": {
+    "answerIntro": "{{appName}} mağazasında hangi setler satılır? Mini School (atölye ve kurs merkezleri) ile Ev & Özel Ders serilerinin Basic, Junior ve Senior seviye setleri burada online satılır; öğretmen seti ve öğrenci seti ayrı ürünlerdir. Anaokulları için Okul serisi mağazada satılmaz, kuruma özel teklifle hazırlanır. Çocuğa uygun seviyeyi seçmek için seviye bulucuyu kullanabilirsiniz."
   }
 }

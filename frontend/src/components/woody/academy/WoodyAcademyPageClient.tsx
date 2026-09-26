@@ -7,6 +7,7 @@ import { ChevronLeft, Headphones, MessageCircle, PenLine, Check, BookOpen, Arrow
 import { FOCUS_RING } from '@/lib/a11y';
 
 import type { WoodyPageContent, WoodySection } from '../content-loader.server';
+import AnswerIntro from '@/components/woody/AnswerIntro';
 
 const ACADEMY_LOGO =
   '/assets/woody/woody-academy-logo.png';
@@ -61,9 +62,12 @@ function FeatureGrid({ features, variant }: { features: string[]; variant: 'chec
 export default function WoodyAcademyPageClient({
   content,
   locale,
+  answerIntro,
 }: {
   content: WoodyPageContent;
   locale: string;
+  /** Doğrudan cevap girişi; sunucuda {{appName}} çözülmüş halde gelir. */
+  answerIntro?: { text: string; links: Array<{ href: string; label: string }> } | null;
 }) {
   const student = sectionAt(content, 0);
   const teacher = sectionAt(content, 1);
@@ -97,6 +101,7 @@ export default function WoodyAcademyPageClient({
           ) : null}
         </div>
       </section>
+      <AnswerIntro text={answerIntro?.text} links={answerIntro?.links} className="mx-auto max-w-[900px] px-6 pb-4 text-center" />
 
       <div className="mx-auto max-w-[1400px] px-6 pt-2 md:px-16 lg:px-20">
         <Link

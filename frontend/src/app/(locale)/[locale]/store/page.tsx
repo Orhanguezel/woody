@@ -7,6 +7,8 @@ import type { StoreProduct, StoreProductFilters, StoreTaxonomy, StoreUiCopy } fr
 import { loadWoodyPageContent, loadWoodyProducts } from '@/components/woody/content-loader.server';
 import { woodyMetadata, woodyStoreListingGraph } from '@/components/woody/seo';
 import { loadPageContent } from '@/config/pages/loader';
+import { injectAppName } from '@/lib/page-copy';
+import { getPublicAppName } from '@/lib/site-config';
 
 const PAGE_KEY = 'store';
 const PATHNAME = '/store';
@@ -122,6 +124,9 @@ export default async function StorePage({ params, searchParams }: Props) {
   storeCatalog.quoteForm = storeCatalog.quoteForm ?? storeConfig?.quoteForm;
   // ui store-products.json'da tanimli; DB/dbCatalog eksik anahtarlari oradan tamamla
   storeCatalog.ui = { ...((catalog as any)?.ui ?? {}), ...(storeConfig?.ui ?? {}), ...(storeCatalog.ui ?? {}) };
+  // Doğrudan cevap girişi (AI alıntılanabilirliği): DB/config değeri, {{appName}} çözülerek.
+  const storeUi = storeCatalog.ui;
+  if (storeUi?.answerIntro) storeUi.answerIntro = injectAppName(storeUi.answerIntro, getPublicAppName());
   storeCatalog.quoteWhatsApp = storeCatalog.quoteWhatsApp ?? storeConfig?.quoteWhatsApp;
   storeCatalog.quoteMessage = storeCatalog.quoteMessage ?? storeConfig?.quoteMessage;
   // S3 (2026-08-30): online satilan urunlerde fiyat gorunur; teklif-bazlilarda gizli kalir
