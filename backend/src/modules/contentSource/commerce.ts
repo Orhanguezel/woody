@@ -158,6 +158,39 @@ export const commerceLedgerSql = `
  AND EXISTS(SELECT 1 FROM payment_attempts pa WHERE pa.payment_ref=o.payment_ref AND pa.status='refunded' AND COALESCE(JSON_UNQUOTE(JSON_EXTRACT(pa.request_payload,'$.testMode')),'false') NOT IN ('true','1'))
 `;
 
+/** Return payment-verified order IDs for an exact GA4 transaction-ID lookup. */
+export async function commerceOrdersById(req: FastifyRequest, reply: FastifyReply) {
+  if (!verifyCommerceRequest(req, reply)) return;
+  const query = (req.query || {}) as Record<string, unknown>;
+  const raw = query.ids;
+  if (Object.keys(query).some((key) => key !== 'ids') || typeof raw !== 'string' || raw.length > 1849) {
+    return reply.code(422).send({ error: { code: 'INVALID_ORDER_IDS' } });
+  }
+  const ids = raw.split(',');
+  if (!ids.length || ids.length > 50 || new Set(ids).size !== ids.length ||
+      ids.some((id) => !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id))) {
+    return reply.code(422).send({ error: { code: 'INVALID_ORDER_IDS' } });
+  }
+  const placeholders = ids.map(() => '?').join(',');
+  const [rows] = await pool.execute<RowDataPacket[]>(
+    `SELECT e.order_id, e.amount, e.occurred_at,
+            (SELECT x.status FROM commerce_measurement_outbox x
+              WHERE x.order_id=e.order_id AND x.destination='ga4' AND x.event_name='purchase'
+              ORDER BY x.created_at DESC LIMIT 1) AS ga4_outbox_status
+       FROM (${commerceLedgerSql}) e
+      WHERE e.kind='purchase' AND e.order_id IN (${placeholders})`,
+    ids,
+  );
+  return reply.header('Cache-Control', 'private, no-store').send({
+    schemaVersion: '1.0', tenantKey: 'woody', generatedAt: new Date().toISOString(), currency: 'TRY',
+    items: rows.map((row) => ({
+      orderId: String(row.order_id), paidAmountMinor: minor(row.amount),
+      paidAt: row.occurred_at instanceof Date ? row.occurred_at.toISOString() : new Date(String(row.occurred_at)).toISOString(),
+      ga4OutboxStatus: row.ga4_outbox_status || null,
+    })),
+  });
+}
+
 export async function commerceHealth(req: FastifyRequest, reply: FastifyReply) {
   if (!verifyCommerceRequest(req, reply)) return;
   const [rows] = await pool.execute<RowDataPacket[]>(

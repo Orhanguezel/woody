@@ -24,6 +24,7 @@ import {
   commerceAttribution,
   commerceDaily,
   commerceHealth,
+  commerceOrdersById,
   commerceProducts,
   commerceSummary,
 } from './commerce';
@@ -287,6 +288,7 @@ export async function registerContentSourcePublic(app: FastifyInstance) {
       scope.get('/commerce/health', commerceConfig, commerceHealth);
       scope.get('/commerce/summary', commerceConfig, commerceSummary);
       scope.get('/commerce/daily', commerceConfig, commerceDaily);
+      scope.get('/commerce/orders/by-id', commerceConfig, commerceOrdersById);
       scope.get('/commerce/products', commerceConfig, commerceProducts);
       scope.get('/commerce/attribution', commerceConfig, commerceAttribution);
     },

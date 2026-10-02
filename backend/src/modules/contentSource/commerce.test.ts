@@ -1,7 +1,7 @@
 import { createHmac } from 'crypto';
 import { afterEach, describe, expect, test } from 'bun:test';
 
-import { verifyCommerceRequest } from './commerce';
+import { commerceOrdersById, verifyCommerceRequest } from './commerce';
 
 const originalCurrent = process.env.TANITIO_COMMERCE_API_KEY;
 const originalPrevious = process.env.TANITIO_COMMERCE_API_KEY_PREVIOUS;
@@ -13,15 +13,15 @@ afterEach(() => {
   else process.env.TANITIO_COMMERCE_API_KEY_PREVIOUS = originalPrevious;
 });
 
-function request(keyId: string, secret: string, nonce: string) {
+function request(keyId: string, secret: string, nonce: string, url = '/api/v1/content-source/commerce/health') {
   const timestamp = String(Math.floor(Date.now() / 1000));
-  const url = '/api/v1/content-source/commerce/health';
   const signature = createHmac('sha256', secret).update(`GET\n${url}\n${timestamp}\n${nonce}`).digest('hex');
   return {
     method: 'GET',
     protocol: 'https',
     url,
     raw: { url },
+    query: Object.fromEntries(new URL(url, 'https://woodyvearkadaslari.com').searchParams),
     headers: {
       'x-tanitio-key-id': keyId,
       'x-tanitio-timestamp': timestamp,
@@ -57,5 +57,16 @@ describe('commerce HMAC key rotation', () => {
     expect(verifyCommerceRequest(request('woody-prev', 'previous-secret', 'previous_nonce_002'), rejected)).toBe(false);
     expect(rejected.state.status).toBe(401);
     expect(rejected.state.body).toEqual({ error: { code: 'UNAUTHORIZED' } });
+  });
+
+  test('order evidence rejects malformed and duplicate IDs before database access', async () => {
+    process.env.TANITIO_COMMERCE_API_KEY = 'current-secret';
+    for (const [index, ids] of ['not-an-order', '00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000001'].entries()) {
+      const url = `/api/v1/content-source/commerce/orders/by-id?ids=${ids}`;
+      const response = reply();
+      await commerceOrdersById(request('woody', 'current-secret', `order_lookup_nonce_${index}`, url), response);
+      expect(response.state.status).toBe(422);
+      expect(response.state.body).toEqual({ error: { code: 'INVALID_ORDER_IDS' } });
+    }
   });
 });
